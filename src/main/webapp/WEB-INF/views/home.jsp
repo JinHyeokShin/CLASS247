@@ -4,13 +4,12 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>CLASS 247 - 당신의 재능을 판매하세요</title>
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
 
-<P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>
