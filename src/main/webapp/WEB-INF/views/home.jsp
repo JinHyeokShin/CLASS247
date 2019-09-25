@@ -10,6 +10,6 @@
     <title>CLASS 247 - 당신의 재능을 판매하세요</title>
 </head>
 <body>
-
+	<jsp:include page="/WEB-INF/views/user/common/menubar.jsp"></jsp:include>
 </body>
 </html>
