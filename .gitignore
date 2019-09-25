@@ -99,7 +99,6 @@ hs_err_pid*
 ### Java-Web ###
 ## ignoring target file
 target/
-
 ### Maven ###
 pom.xml.tag
 pom.xml.releaseBackup
