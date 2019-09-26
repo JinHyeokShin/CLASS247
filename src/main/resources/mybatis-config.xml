@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC 
+"-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/> <!--  빈값이면 NULL로 인식 -->
+	</settings>
+	
+	<typeAliases> <!-- 변수명으로 저장하는곳 ㅇㅇ -->
+		
+	</typeAliases>
+	
+	<mappers> <!-- 매퍼 지정 -->
+		<mapper resource="mappers/member-mapper.xml" />
+	</mappers>
+</configuration>
