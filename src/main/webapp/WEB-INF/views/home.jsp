@@ -10,6 +10,7 @@
 
     <title>CLASS 247 - 당신을 무엇을 팔 수 있습니까?</title>
 
+    <title>CLASS 247</title>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/user/common/menubar.jsp"></jsp:include>
