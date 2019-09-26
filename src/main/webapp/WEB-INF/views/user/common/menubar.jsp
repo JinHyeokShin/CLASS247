@@ -77,10 +77,10 @@
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">정보보기</a>
+                                    <a class="nav-link" href="contact.html">회원가입</a>
                                 </li>
                                 <li class="d-none d-lg-block">
-                                    <a class="btn_1" href="#">Logout</a>
+                                    <a class="btn_1" href="#">Login</a>
                                 </li>
                             </ul>
                         </div>
@@ -89,3 +89,30 @@
             </div>
         </div>
     </header>
+    
+    
+    <!-- jquery plugins here-->
+    <!-- jquery -->
+    <script src="<c:url value="/resources/user/js/jquery-1.12.1.min.js"/>"></script>
+    <!-- popper js -->
+    <script src="<c:url value="/resources/user/js/popper.min.js"/>"></script>
+    <!-- bootstrap js -->
+    <script src="<c:url value="/resources/user/js/bootstrap.min.js"/>"></script>
+    <!-- easing js -->
+    <script src="<c:url value="/resources/user/js/jquery.magnific-popup.js"/>"></script>
+    <!-- swiper js -->
+    <script src="<c:url value="/resources/user/js/swiper.min.js"/>"></script>
+    <!-- swiper js -->
+    <script src="<c:url value="/resources/user/js/masonry.pkgd.js"/>"></script>
+    <!-- particles js -->
+    <script src="<c:url value="/resources/user/js/owl.carousel.min.js"/>"></script>
+    <script src="<c:url value="/resources/user/js/jquery.nice-select.min.js"/>"></script>
+    <!-- swiper js -->
+    <script src="<c:url value="/resources/user/js/slick.min.js"/>"></script>
+    <script src="<c:url value="/resources/user/js/jquery.counterup.min.js"/>"></script>
+    <script src="<c:url value="/resources/user/js/waypoints.min.js"/>"></script>
+    <!-- custom js -->
+    <script src="<c:url value="/resources/user/js/custom.js"/>"></script>
+    
+    </body>
+    </html>
