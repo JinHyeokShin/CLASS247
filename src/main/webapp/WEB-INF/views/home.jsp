@@ -7,10 +7,13 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<<<<<<< HEAD
 
     <title>CLASS 247 - 당신을 무엇을 팔 수 있습니까?</title>
 
+=======
     <title>CLASS 247</title>
+>>>>>>> parent of afd22f9... 0926_2329
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/user/common/menubar.jsp"></jsp:include>
