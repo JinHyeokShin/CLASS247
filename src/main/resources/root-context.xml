@@ -4,5 +4,47 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+		<!-- 
+		* root-context.xml
+		서버 구동시 web.xml -> root-context.xml 읽게끔 작성되어있음.
+		즉, 서버 구동과 동시에 이 파일을 읽을것임.
 		
+		따라서 서버 구동과 동시에 셋팅해야되는 내용들을 작성하는 설정 파일
+		=> DB연결 설정, 트랜잭션 처리, AOP 관련, 내 외부 모듈 연동 처리
+		 -->
+		 
+		 <!-- DB 연결 설정 -->
+		 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		 	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		 	<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+		 	<property name="username" value="class247"/>
+		 	<property name="password" value="class247"/>
+		 	<property name="defaultAutoCommit" value="false"/>
+		 </bean>
+ 		 <bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		 	<!-- 아까 작성했던 mybatis-config의 설정들 불러들이기 -->
+		 	<property name="configLocation" value="classpath:mybatis-config.xml"/>
+ 		 	<property name="dataSource" ref="dataSource"/>
+		 </bean>
+ 		 <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		 	<constructor-arg  ref="sqlSession"/>
+		 </bean>
+		 <!-- BasicDataSource dataSource = new BasicDataSource();
+		 		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver"); 
+		 		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE"); 
+		 		dataSource.setUserName("class247"); 
+		 		dataSource.setPassword("class247"); 
+		 		dataSource.setDefaultAutocommit(false); 
+		 		
+		 		SqlSessionFactoryBean sqlSession = new SqlSessionFactoryBean();
+		 		sqlSession.setConfigLocation("classpath:mybatis-config.xml");
+		 		sqlSession.setDataSource(dataSource);
+		 		
+		 		SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate();		 		
+		 		* bean 등록시
+		 		property 엘리멘트를 통해 작성 -> setter DI
+		 		constructor-arg 엘리멘트를 통해 작성  -> 생성자 DI
+		 -->
+
 </beans>
+
