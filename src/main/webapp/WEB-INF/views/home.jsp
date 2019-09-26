@@ -7,20 +7,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<<<<<<< HEAD
-<<<<<<< HEAD
 
     <title>CLASS 247 - 당신을 무엇을 팔 수 있습니까?</title>
 
-=======
-    <title>CLASS 247</title>
->>>>>>> parent of afd22f9... 0926_2329
-=======
-    <title>CLASS 247 - 당신이랑 당신, 그리고 당신도 지원하십시오</title>
-=======
-    <title>CLASS 247 - 당신을 무엇을 팔 수 있습니까?</title>
->>>>>>> parent of 7c02e2c... ksm
->>>>>>> parent of 6c6fbfe... 0926_1153
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/user/common/menubar.jsp"></jsp:include>
