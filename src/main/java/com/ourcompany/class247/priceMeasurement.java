@@ -2,7 +2,7 @@ package com.ourcompany.class247;
 
 import java.util.ArrayList;
 
-public class Test {
+public class priceMeasurement {
 
 	public static void main(String[] args) {
 		
