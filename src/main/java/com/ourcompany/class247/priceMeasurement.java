@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class priceMeasurement {
 
-	public static void main(String[] args) {
+//	public static void main(String[] args) {
 		
 		ArrayList<Integer> priceList = new ArrayList();
 
@@ -96,14 +96,14 @@ public class priceMeasurement {
 			System.out.println(resultList);
 			
 			
-			double min = avg-(1.96)*staDev/(Math.sqrt(size));
-			double max = avg+(1.96)*staDev/(Math.sqrt(size));
+			double min = avg-(0.92)*staDev/(Math.sqrt(size));
+			double max = avg+(0.92)*staDev/(Math.sqrt(size));
 
 			System.out.println((int)min);
 			System.out.println((int)max);
 		
 		
 		
-	}
+//	}
 
 }
