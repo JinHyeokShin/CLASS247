@@ -35,6 +35,7 @@
 </head>
 
 <body>
+	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
     <!--::header part start::-->
     <header class="main_menu home_menu">
         <div class="container">
