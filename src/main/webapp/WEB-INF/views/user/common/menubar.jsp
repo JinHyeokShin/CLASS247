@@ -67,7 +67,7 @@
                                     <a class="nav-link" href="cource.html" margin-top="10px">인기/추천<br>강의</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="blog.html">카테고리</a>
+                                    <a class="nav-link" href="main.cr">카테고리</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 강의</a>
