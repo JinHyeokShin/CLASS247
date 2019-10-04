@@ -75,7 +75,7 @@
                                     <a class="nav-link" href="contact.html">회원가입</a>
                                 </li>
                                 <li class="d-none d-lg-block">
-                                    <a class="btn_1" href="#">Login</a>
+                                    <a class="btn_1" href="loginForm.do">Login</a>
                                 </li>
                             </ul>
                         </div>
