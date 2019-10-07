@@ -72,7 +72,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">회원가입</a>
+                                    <a class="nav-link" href="joinForm.do">회원가입</a>
                                 </li>
                                 <li class="d-none d-lg-block">
                                     <a class="btn_1" href="loginForm.do">Login</a>

@@ -21,4 +21,8 @@ public class MemberController {
 		return "user/member/loginForm";
 	}
 	
+	@RequestMapping("joinForm.do")
+	public String joinForm() {
+		return "user/member/memberJoinForm";
+	}
 }
