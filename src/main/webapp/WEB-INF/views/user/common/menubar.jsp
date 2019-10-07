@@ -52,7 +52,7 @@
                         <div class="collapse navbar-collapse main-menu-item justify-content-end"
                             id="navbarSupportedContent">
                             <ul class="navbar-nav align-items-center" align="center">
-                                <li class="nav-item" style="margin-right:-30px;">
+                                <li class="nav-item" style="margin-right:-30px; width : 23%;">
                                     <input type="text" class="form-control" placeholder='무엇을 배우고 싶으세요?'>       
                                 </li>
                                 <li style="margin-right : 60px;">

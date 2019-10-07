@@ -20,7 +20,7 @@
 		border: 1px solid #954CBC;
 		padding: 10px;
 		width: 40%;
-		height:100%;  
+		height:90%;  
 		border-radius: 10px;
 	}
 	table td{
@@ -46,6 +46,7 @@
 	  
 	  	<div class="login" align="center">
         <form class="JoinForm"  action="" method="post">
+        	<br>
       		<h1>회원가입</h1>
       		<hr>
       		<table width="600">
@@ -98,7 +99,7 @@
       			<table width="600">
 						<tr>
 							<td>우편번호 </td>
-							<td><input type="text" name="post" style="border-radius: 5px; width:100; text-align: left;" class="postcodify_postcode5" readonly>&nbsp;<button type="button" class="genric-btn primary-border radius" style="border-radius: 5px; width:70%; height:28px; text-align: center; line-height: 1" id="post_search_btn">검색</button></td>
+							<td><input type="text" name="post" style="border-radius: 5px; width:100; text-align: left;" class="postcodify_postcode5" readonly>&nbsp;<button type="button" class="genric-btn primary-border radius" style="border-radius: 5px; width:50%; height:30px; text-align: center; line-height: 1" id="post_search_btn">검색</button></td>
 						</tr>
 						<tr>
 							<td>도로명주소</td>
@@ -108,7 +109,8 @@
 							<td>상세주소</td>
 							<td><input type="text" name="address2" class="postcodify_extra_info" style="border-radius: 5px; width:50%; text-align: left;"></td>
 						</tr>
-					</table>
+						
+				</table>
 				<!-- 주소 오픈api 스크립트 -->
 				<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 				<script>
