@@ -13,9 +13,22 @@ public class CreatorCenterController {
 	
 	@RequestMapping("cMainView.do")
 	public String goToMain() {
-		
 		return "creator/creatorCenter";
-				
+	}
+	
+	@RequestMapping("courseFormView.do")
+	public String courceFormView() {
+		return "creator/course/coRegistration";
+	}
+	
+	@RequestMapping("creatorFormView.do")
+	public String creatorFormView() {
+		return "creator/creator/creRegistration";
+	}
+	
+	@RequestMapping("cChattingView.do")
+	public String chattingView() {
+		return "creator/cChat";
 	}
 
 }
