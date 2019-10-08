@@ -1,5 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 
 <head>
     <!-- Required meta tags-->
@@ -13,26 +17,26 @@
     <title>Dashboard 2</title>
 
     <!-- Fontfaces CSS-->
-    <link href="css/font-face.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="<c:url value="resources/creator/css/font-face.css"/>" rel="stylesheet" media="all">
+    <link href="<c:url value="/resources/creator/vendor/font-awesome-4.7/css/font-awesome.min.css"/>" rel="stylesheet" media="all">
+    <link href="<c:url value="resources/creator/vendor/font-awesome-5/css/fontawesome-all.min.css"/>"  rel="stylesheet" media="all">
+    <link href="<c:url value="/resources/creator/vendor/mdi-font/css/material-design-iconic-font.min.css"/>" rel="stylesheet" media="all">
 
     <!-- Bootstrap CSS-->
-    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+    <link href="<c:url value="/resources/creator/vendor/bootstrap-4.1/bootstrap.min.css"/>" rel="stylesheet" media="all">
 
     <!-- Vendor CSS-->
-    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-    <link href="vendor/vector-map/jqvmap.min.css" rel="stylesheet" media="all">
+    <link href="<c:url value="vendor/animsition/animsition.min.css"/>" rel="stylesheet" media="all">
+    <link href="<c:url value="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css"/>" rel="stylesheet" media="all">
+    <link href="<c:url value="vendor/wow/animate.css"/>" rel="stylesheet" media="all">
+    <link href="<c:url value="vendor/css-hamburgers/hamburgers.min.css"/>" rel="stylesheet" media="all">
+    <link href="<c:url value="vendor/slick/slick.css"/>" rel="stylesheet" media="all">
+    <link href="<c:url value="vendor/select2/select2.min.css"/>" rel="stylesheet" media="all">
+    <link href="<c:url value="vendor/perfect-scrollbar/perfect-scrollbar.css"/>" rel="stylesheet" media="all">
+    <link href="<c:url value="vendor/vector-map/jqvmap.min.css" rel="stylesheet"/>" media="all">
 
     <!-- Main CSS-->
-    <link href="css/theme.css" rel="stylesheet" media="all">
+    <link href="<c:url value="/resources/creator/css/theme.css"/>" rel="stylesheet" media="all">
 
 </head>
 
@@ -96,7 +100,7 @@
                         </li>
                         <li>
                             <a href="#">
-                            <i class="fas fa-chart-bar"></i>통계</a>
+                            <i class="fas fa-chart-bar"></i>통계</a>x
                         </li>
                         <li>
                             <a href="#">
@@ -700,5 +704,5 @@
 
 </body>
 
+
 </html>
-<!-- end document-->

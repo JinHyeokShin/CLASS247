@@ -27,7 +27,7 @@
                                 his void unto last session for bite. Set have great you'll male grass yielding yielding
                                 man</p>
                             <a href="#" class="btn_1">View Course </a>
-                            <a href="#" class="btn_2">Get Started </a>
+                            <a href="cMainView.do" class="btn_2">Get Started </a>
                         </div>
                     </div>
                 </div>
