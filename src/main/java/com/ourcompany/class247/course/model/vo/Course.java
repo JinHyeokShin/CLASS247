@@ -1,4 +1,4 @@
-package com.ourcompany.class247.course.vo;
+package com.ourcompany.class247.course.model.vo;
 
 import java.sql.Date;
 
@@ -11,6 +11,7 @@ public class Course {
 	private String courseContent;			//강의내용
 	private String courseKind;				//강의타입
 	private int coursePrice;				//강의가격
+	private int loveCount;					//좋아요수
 	private String courseMaterial;			//준비물
 	private String courseMaterialPrice;		//준비물가격
 	private int courseCurrentNum;			//현재인원수
@@ -19,16 +20,16 @@ public class Course {
 	private Date courseApprovedDate;		//승인날짜
 	private Date courseStartDate;			//강의시작날짜
 	private Date courseEndDate;				//강의종료날짜
-	private int 
+	private String courseStatus;			//상태
 	
 	public Course() {
 		
 	}
 
 	public Course(int courseNum, String categoryName, int memNum, String courseTitle, String courseContent,
-			String courseKind, int coursePrice, String courseMaterial, String courseMaterialPrice, int courseCurrentNum,
-			int courseMaxNum, Date courseEnrollDate, Date courseApprovedDate, Date courseStartDate,
-			Date courseEndDate) {
+			String courseKind, int coursePrice, int loveCount, String courseMaterial, String courseMaterialPrice,
+			int courseCurrentNum, int courseMaxNum, Date courseEnrollDate, Date courseApprovedDate,
+			Date courseStartDate, Date courseEndDate, String courseStatus) {
 		super();
 		this.courseNum = courseNum;
 		this.categoryName = categoryName;
@@ -37,6 +38,7 @@ public class Course {
 		this.courseContent = courseContent;
 		this.courseKind = courseKind;
 		this.coursePrice = coursePrice;
+		this.loveCount = loveCount;
 		this.courseMaterial = courseMaterial;
 		this.courseMaterialPrice = courseMaterialPrice;
 		this.courseCurrentNum = courseCurrentNum;
@@ -45,6 +47,7 @@ public class Course {
 		this.courseApprovedDate = courseApprovedDate;
 		this.courseStartDate = courseStartDate;
 		this.courseEndDate = courseEndDate;
+		this.courseStatus = courseStatus;
 	}
 
 	int getCourseNum() {
@@ -101,6 +104,14 @@ public class Course {
 
 	void setCoursePrice(int coursePrice) {
 		this.coursePrice = coursePrice;
+	}
+
+	int getLoveCount() {
+		return loveCount;
+	}
+
+	void setLoveCount(int loveCount) {
+		this.loveCount = loveCount;
 	}
 
 	String getCourseMaterial() {
@@ -167,16 +178,24 @@ public class Course {
 		this.courseEndDate = courseEndDate;
 	}
 
+	String getCourseStatus() {
+		return courseStatus;
+	}
+
+	void setCourseStatus(String courseStatus) {
+		this.courseStatus = courseStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "Course [courseNum=" + courseNum + ", categoryName=" + categoryName + ", memNum=" + memNum
 				+ ", courseTitle=" + courseTitle + ", courseContent=" + courseContent + ", courseKind=" + courseKind
-				+ ", coursePrice=" + coursePrice + ", courseMaterial=" + courseMaterial + ", courseMaterialPrice="
-				+ courseMaterialPrice + ", courseCurrentNum=" + courseCurrentNum + ", courseMaxNum=" + courseMaxNum
-				+ ", courseEnrollDate=" + courseEnrollDate + ", courseApprovedDate=" + courseApprovedDate
-				+ ", courseStartDate=" + courseStartDate + ", courseEndDate=" + courseEndDate + "]";
+				+ ", coursePrice=" + coursePrice + ", loveCount=" + loveCount + ", courseMaterial=" + courseMaterial
+				+ ", courseMaterialPrice=" + courseMaterialPrice + ", courseCurrentNum=" + courseCurrentNum
+				+ ", courseMaxNum=" + courseMaxNum + ", courseEnrollDate=" + courseEnrollDate + ", courseApprovedDate="
+				+ courseApprovedDate + ", courseStartDate=" + courseStartDate + ", courseEndDate=" + courseEndDate
+				+ ", courseStatus=" + courseStatus + "]";
 	}
-
 	
-
+	
 }
