@@ -45,7 +45,7 @@
 	 
 	  
 	  	<div class="login" align="center">
-        <form class="JoinForm"  action="" method="post">
+        <form class="JoinForm"  action="minsert.do" method="post">
         	<br>
       		<h1>회원가입</h1>
       		<hr>
@@ -54,47 +54,47 @@
       				<td>이메일(아이디)</td>
       			</tr>
       			<tr>
-      				<td><input type="email"  style="border-radius: 5px;" name="email" placeholder="이메일@example.com" required></td>
+      				<td><input type="email"  style="border-radius: 5px;" name="memId" placeholder="이메일@example.com" required></td>
       			</tr>
       			<tr>
       				<td>비밀번호 </td>
    				</tr>
    				<tr>
-      				<td><input type="password" name="password" style="border-radius: 5px;" placeholder="비밀번호를 입력해주세요 (8자리 이상)" required></td>
+      				<td><input type="password" name="memPwd" style="border-radius: 5px;" placeholder="비밀번호를 입력해주세요 (8자리 이상)" required></td>
       			</tr>
       			<tr>
       				<td>비밀번호 확인 </td>
    				</tr>
    				<tr>
-      				<td><input type="password" name="password2" style="border-radius: 5px;" placeholder="비밀번호를 입력해주세요 (8자리 이상)" required></td>
+      				<td><input type="password" name="memPwd2" style="border-radius: 5px;" placeholder="비밀번호를 입력해주세요 (8자리 이상)" required></td>
       			</tr>
       			<tr>
       				<td>이름 </td>
    				</tr>
    				<tr>
-      				<td><input type="text" name="userName" style="border-radius: 5px;" placeholder="이름" required></td>
+      				<td><input type="text" name="memName" style="border-radius: 5px;" placeholder="이름" required></td>
       			</tr>
       			<tr>
       				<td>별명 </td>
       			</tr>
       			<tr>
-      				<td><input type="text" name="nickName" style="border-radius: 5px;" placeholder="별명" required></td>
+      				<td><input type="text" name="memNickName" style="border-radius: 5px;" placeholder="별명" required></td>
       			</tr>
       			<tr>
       				<td>휴대폰번호 </td>
    				</tr>
    				<tr>
-      				<td><input type="phone" name="phone" style="border-radius: 5px;"" placeholder="휴대폰 번호" style=""required><input type="button" value="인증하기" class="genric-btn primary-border radius"></td>
+      				<td><input type="text" name="memPhone" style="border-radius: 5px;"" placeholder="휴대폰 번호" style=""required><input type="button" value="인증하기" class="genric-btn primary-border radius"></td>
       			</tr>
       			<tr>
-      				<td>성별<br></td>
+      				<td><br>성별<br></td>
    				</tr>
       			</table>
 	            <div style="text-align : left;">
-	            	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	            	<label for="M"><input type="radio" name="gender" value="M" id="M">남</label>
+	            	  	&nbsp;
+	            	<label for="M"><input type="radio" name="memGender" value="M" id="M">남</label>
 	            	&nbsp;&nbsp;&nbsp;&nbsp;    	
-	           		<label for="F"><input type="radio"	name="gender" value="F" id="F">여</label>		
+	           		<label for="F"><input type="radio"	name="memGender" value="F" id="F">여</label>		
 	            </div>   
       			<table width="600">
 						<tr>

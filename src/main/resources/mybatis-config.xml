@@ -8,7 +8,7 @@
 	</settings>
 	
 	<typeAliases> <!-- 변수명으로 저장하는곳 ㅇㅇ -->
-		
+		<typeAlias type="com.ourcompany.class247.member.model.vo.Member" alias="Member"/>
 	</typeAliases>
 	
 	<mappers> <!-- 매퍼 지정 -->

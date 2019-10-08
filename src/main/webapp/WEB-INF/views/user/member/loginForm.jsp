@@ -73,15 +73,15 @@
 	  		<br>
 			<h1>로그인</h1>
 			<hr>
-       		<form class="loginform"  action="" method="post">
+       		<form class="loginform"  action="login.do" method="post">
         	<table width="400">
 	        	<tr>
 	        		<td width="150">이메일</td>
-	        		<td><input type="email" name="email" class="primary-border" style="border-radius: 5px;"></td>
+	        		<td><input type="email" name="memId" class="primary-border" style="border-radius: 5px;"></td>
 	            </tr>
 	            <tr>
 	        		<td>비밀번호</td>
-	        		<td><input type="password" name="password" class="primary-border" style="border-radius: 5px;"></td>
+	        		<td><input type="password" name="memPwd" class="primary-border" style="border-radius: 5px;"></td>
 	            </tr>
             </table>
 			<br>

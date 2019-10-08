@@ -4,13 +4,14 @@ import java.sql.Date;
 
 public class Member {
 	
-	private int memNum;			//회원번호
+	private int memNum;				//회원번호
 	private String memId;			//아이디
 	private String memPwd;			//비밀번호 
 	private String memNickName;		//닉네임
 	private String memName;			//이름
 	private String memGender;		//성별
 	private String memPhone;		//핸드폰번호
+	private String memAddress;		// 주소
 	private String memType;			//사용자구분자
 	private Date memEnrollDate;		//가입일자	
 	private Date memOutDate;		//탈퇴일자
@@ -21,7 +22,7 @@ public class Member {
 	}
 
 	public Member(int memNum, String memId, String memPwd, String memNickName, String memName, String memGender,
-			String memPhone, String memType, Date memEnrollDate, Date memOutDate, String memStatus) {
+			String memPhone, String memAddress, String memType, Date memEnrollDate, Date memOutDate, String memStatus) {
 		super();
 		this.memNum = memNum;
 		this.memId = memId;
@@ -30,13 +31,12 @@ public class Member {
 		this.memName = memName;
 		this.memGender = memGender;
 		this.memPhone = memPhone;
+		this.memAddress = memAddress;
 		this.memType = memType;
 		this.memEnrollDate = memEnrollDate;
 		this.memOutDate = memOutDate;
 		this.memStatus = memStatus;
 	}
-
-	
 
 	public int getMemNum() {
 		return memNum;
@@ -94,6 +94,14 @@ public class Member {
 		this.memPhone = memPhone;
 	}
 
+	public String getMemAddress() {
+		return memAddress;
+	}
+
+	public void setMemAddress(String memAddress) {
+		this.memAddress = memAddress;
+	}
+
 	public String getMemType() {
 		return memType;
 	}
@@ -129,13 +137,9 @@ public class Member {
 	@Override
 	public String toString() {
 		return "Member [memNum=" + memNum + ", memId=" + memId + ", memPwd=" + memPwd + ", memNickName=" + memNickName
-				+ ", memName=" + memName + ", memGender=" + memGender + ", memPhone=" + memPhone + ", memType="
-				+ memType + ", memEnrollDate=" + memEnrollDate + ", memOutDate=" + memOutDate + ", memStatus="
-				+ memStatus + "]";
+				+ ", memName=" + memName + ", memGender=" + memGender + ", memPhone=" + memPhone + ", memAddress="
+				+ memAddress + ", memType=" + memType + ", memEnrollDate=" + memEnrollDate + ", memOutDate="
+				+ memOutDate + ", memStatus=" + memStatus + "]";
 	}
-
-	
-	
-	
 
 }
