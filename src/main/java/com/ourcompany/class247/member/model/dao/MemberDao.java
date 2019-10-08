@@ -10,10 +10,9 @@ import com.ourcompany.class247.member.model.vo.Member;
 public class MemberDao {
 	
 	@Autowired
-	private SqlSessionTemplate sqlSession; // 얘는 root-context.xml 파일에서 빈으로 등록되어있다
+	private SqlSessionTemplate sqlSession;
 	
 	public Member loginMember(Member m) {
-
 		return sqlSession.selectOne("memberMapper.loginMember",m);
 	}
 	

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
 <head>
     <!-- Required meta tags -->
@@ -53,7 +52,7 @@
                             id="navbarSupportedContent">
                             <ul class="navbar-nav align-items-center" align="center">
                                 <li class="nav-item" style="margin-right:-30px; width : 23%;">
-                                    <input type="text" class="form-control" placeholder='무엇을 배우고 싶으세요?'>       
+                                    <input type="text" class="form-control" placeholder='${ loginUser.memName }님 무엇을 배우고 싶으세요?'>       
                                 </li>
                                 <li style="margin-right : 60px;">
                                     <button class="btn btn_1 primary small button-image" type="button" ><i class="ti-search"></i></button>
@@ -75,12 +74,22 @@
                                         <a class="dropdown-item" href="elements.html">오프라인 강의</a>
                                     </div>
                                 </li>
+                                <c:if test="${ empty sessionScope.loginUser }">
                                 <li class="nav-item">
                                     <a class="nav-link" href="joinForm.do">회원가입</a>
                                 </li>
                                 <li class="d-none d-lg-block">
                                     <a class="btn_1" href="loginForm.do">Login</a>
                                 </li>
+                                </c:if>
+                                <c:if test="${ !empty sessionScope.loginUser }">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="myPage.do">마이페이지</a>
+                                </li>
+                                <li class="d-none d-lg-block">
+                                    <a class="btn_1" href="logout.do">Logout</a>
+                                </li>
+                                </c:if>
                             </ul>
                         </div>
                     </nav>

@@ -8,8 +8,8 @@ public interface MemberService {
 	 * @param m
 	 * @return
 	 */
-	
 	Member loginMember(Member m);
+	
 	/** 2. 회원가입 서비스를 위한 메소드
 	 * @param m
 	 * @return
