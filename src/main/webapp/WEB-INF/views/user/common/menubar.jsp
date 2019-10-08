@@ -62,7 +62,11 @@
                                     <a class="nav-link" href="about.html">서비스 소개</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="cource.html" margin-top="10px">카테고리</a>
+                                    <a class="nav-link" href="cource.html" margin-top="10px">인기/추천<br>강의</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link"  href="cource.html" margin-top="10px">카테고리</a>
+        
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 강의</a>
