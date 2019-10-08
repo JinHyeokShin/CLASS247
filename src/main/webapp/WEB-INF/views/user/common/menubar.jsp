@@ -52,7 +52,7 @@
                         <div class="collapse navbar-collapse main-menu-item justify-content-end"
                             id="navbarSupportedContent">
                             <ul class="navbar-nav align-items-center" align="center">
-                                <li class="nav-item" style="margin-right:-30px;">
+                                <li class="nav-item" style="margin-right:-30px; width : 23%;">
                                     <input type="text" class="form-control" placeholder='무엇을 배우고 싶으세요?'>       
                                 </li>
                                 <li style="margin-right : 60px;">
@@ -76,7 +76,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">회원가입</a>
+                                    <a class="nav-link" href="joinForm.do">회원가입</a>
                                 </li>
                                 <li class="d-none d-lg-block">
                                     <a class="btn_1" href="loginForm.do">Login</a>
