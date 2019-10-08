@@ -50,139 +50,141 @@ public class Course {
 		this.courseStatus = courseStatus;
 	}
 
-	int getCourseNum() {
+
+
+	public int getCourseNum() {
 		return courseNum;
 	}
 
-	void setCourseNum(int courseNum) {
+	public void setCourseNum(int courseNum) {
 		this.courseNum = courseNum;
 	}
 
-	String getCategoryName() {
+	public String getCategoryName() {
 		return categoryName;
 	}
 
-	void setCategoryName(String categoryName) {
+	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
 
-	int getMemNum() {
+	public int getMemNum() {
 		return memNum;
 	}
 
-	void setMemNum(int memNum) {
+	public void setMemNum(int memNum) {
 		this.memNum = memNum;
 	}
 
-	String getCourseTitle() {
+	public String getCourseTitle() {
 		return courseTitle;
 	}
 
-	void setCourseTitle(String courseTitle) {
+	public void setCourseTitle(String courseTitle) {
 		this.courseTitle = courseTitle;
 	}
 
-	String getCourseContent() {
+	public String getCourseContent() {
 		return courseContent;
 	}
 
-	void setCourseContent(String courseContent) {
+	public void setCourseContent(String courseContent) {
 		this.courseContent = courseContent;
 	}
 
-	String getCourseKind() {
+	public String getCourseKind() {
 		return courseKind;
 	}
 
-	void setCourseKind(String courseKind) {
+	public void setCourseKind(String courseKind) {
 		this.courseKind = courseKind;
 	}
 
-	int getCoursePrice() {
+	public int getCoursePrice() {
 		return coursePrice;
 	}
 
-	void setCoursePrice(int coursePrice) {
+	public void setCoursePrice(int coursePrice) {
 		this.coursePrice = coursePrice;
 	}
 
-	int getLoveCount() {
+	public int getLoveCount() {
 		return loveCount;
 	}
 
-	void setLoveCount(int loveCount) {
+	public void setLoveCount(int loveCount) {
 		this.loveCount = loveCount;
 	}
 
-	String getCourseMaterial() {
+	public String getCourseMaterial() {
 		return courseMaterial;
 	}
 
-	void setCourseMaterial(String courseMaterial) {
+	public void setCourseMaterial(String courseMaterial) {
 		this.courseMaterial = courseMaterial;
 	}
 
-	String getCourseMaterialPrice() {
+	public String getCourseMaterialPrice() {
 		return courseMaterialPrice;
 	}
 
-	void setCourseMaterialPrice(String courseMaterialPrice) {
+	public void setCourseMaterialPrice(String courseMaterialPrice) {
 		this.courseMaterialPrice = courseMaterialPrice;
 	}
 
-	int getCourseCurrentNum() {
+	public int getCourseCurrentNum() {
 		return courseCurrentNum;
 	}
 
-	void setCourseCurrentNum(int courseCurrentNum) {
+	public void setCourseCurrentNum(int courseCurrentNum) {
 		this.courseCurrentNum = courseCurrentNum;
 	}
 
-	int getCourseMaxNum() {
+	public int getCourseMaxNum() {
 		return courseMaxNum;
 	}
 
-	void setCourseMaxNum(int courseMaxNum) {
+	public void setCourseMaxNum(int courseMaxNum) {
 		this.courseMaxNum = courseMaxNum;
 	}
 
-	Date getCourseEnrollDate() {
+	public Date getCourseEnrollDate() {
 		return courseEnrollDate;
 	}
 
-	void setCourseEnrollDate(Date courseEnrollDate) {
+	public void setCourseEnrollDate(Date courseEnrollDate) {
 		this.courseEnrollDate = courseEnrollDate;
 	}
 
-	Date getCourseApprovedDate() {
+	public Date getCourseApprovedDate() {
 		return courseApprovedDate;
 	}
 
-	void setCourseApprovedDate(Date courseApprovedDate) {
+	public void setCourseApprovedDate(Date courseApprovedDate) {
 		this.courseApprovedDate = courseApprovedDate;
 	}
 
-	Date getCourseStartDate() {
+	public Date getCourseStartDate() {
 		return courseStartDate;
 	}
 
-	void setCourseStartDate(Date courseStartDate) {
+	public void setCourseStartDate(Date courseStartDate) {
 		this.courseStartDate = courseStartDate;
 	}
 
-	Date getCourseEndDate() {
+	public Date getCourseEndDate() {
 		return courseEndDate;
 	}
 
-	void setCourseEndDate(Date courseEndDate) {
+	public void setCourseEndDate(Date courseEndDate) {
 		this.courseEndDate = courseEndDate;
 	}
 
-	String getCourseStatus() {
+	public String getCourseStatus() {
 		return courseStatus;
 	}
 
-	void setCourseStatus(String courseStatus) {
+	public void setCourseStatus(String courseStatus) {
 		this.courseStatus = courseStatus;
 	}
 

@@ -15,19 +15,21 @@ public class Category {
 		this.categoryName = categoryName;
 	}
 
-	int getCategoryNum() {
+	
+
+	public int getCategoryNum() {
 		return categoryNum;
 	}
 
-	void setCategoryNum(int categoryNum) {
+	public void setCategoryNum(int categoryNum) {
 		this.categoryNum = categoryNum;
 	}
 
-	String getCategoryName() {
+	public String getCategoryName() {
 		return categoryName;
 	}
 
-	void setCategoryName(String categoryName) {
+	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
 

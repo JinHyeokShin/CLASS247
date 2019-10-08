@@ -19,27 +19,28 @@ public class Love {
 		this.wishedDate = wishedDate;
 	}
 
-	int getMemNum() {
+	
+	public int getMemNum() {
 		return memNum;
 	}
 
-	void setMemNum(int memNum) {
+	public void setMemNum(int memNum) {
 		this.memNum = memNum;
 	}
 
-	int getCourseNum() {
+	public int getCourseNum() {
 		return courseNum;
 	}
 
-	void setCourseNum(int courseNum) {
+	public void setCourseNum(int courseNum) {
 		this.courseNum = courseNum;
 	}
 
-	Date getWishedDate() {
+	public Date getWishedDate() {
 		return wishedDate;
 	}
 
-	void setWishedDate(Date wishedDate) {
+	public void setWishedDate(Date wishedDate) {
 		this.wishedDate = wishedDate;
 	}
 
