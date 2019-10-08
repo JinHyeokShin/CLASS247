@@ -17,23 +17,23 @@
     <title>Dashboard 2</title>
 
     <!-- Fontfaces CSS-->
-    <link href="<c:url value="resources/creator/css/font-face.css"/>" rel="stylesheet" media="all">
+    <link href="<c:url value="/resources/creator/css/font-face.css"/>" rel="stylesheet" media="all">
     <link href="<c:url value="/resources/creator/vendor/font-awesome-4.7/css/font-awesome.min.css"/>" rel="stylesheet" media="all">
-    <link href="<c:url value="resources/creator/vendor/font-awesome-5/css/fontawesome-all.min.css"/>"  rel="stylesheet" media="all">
+    <link href="<c:url value="/resources/creator/vendor/font-awesome-5/css/fontawesome-all.min.css"/>"  rel="stylesheet" media="all">
     <link href="<c:url value="/resources/creator/vendor/mdi-font/css/material-design-iconic-font.min.css"/>" rel="stylesheet" media="all">
 
     <!-- Bootstrap CSS-->
     <link href="<c:url value="/resources/creator/vendor/bootstrap-4.1/bootstrap.min.css"/>" rel="stylesheet" media="all">
 
     <!-- Vendor CSS-->
-    <link href="<c:url value="vendor/animsition/animsition.min.css"/>" rel="stylesheet" media="all">
-    <link href="<c:url value="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css"/>" rel="stylesheet" media="all">
-    <link href="<c:url value="vendor/wow/animate.css"/>" rel="stylesheet" media="all">
-    <link href="<c:url value="vendor/css-hamburgers/hamburgers.min.css"/>" rel="stylesheet" media="all">
-    <link href="<c:url value="vendor/slick/slick.css"/>" rel="stylesheet" media="all">
-    <link href="<c:url value="vendor/select2/select2.min.css"/>" rel="stylesheet" media="all">
-    <link href="<c:url value="vendor/perfect-scrollbar/perfect-scrollbar.css"/>" rel="stylesheet" media="all">
-    <link href="<c:url value="vendor/vector-map/jqvmap.min.css" rel="stylesheet"/>" media="all">
+    <link href="<c:url value="/resources/creator/vendor/animsition/animsition.min.css"/>" rel="stylesheet" media="all">
+    <link href="<c:url value="/resources/creator/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css"/>" rel="stylesheet" media="all">
+    <link href="<c:url value="/resources/creator/vendor/wow/animate.css"/>" rel="stylesheet" media="all">
+    <link href="<c:url value="/resources/creator/vendor/css-hamburgers/hamburgers.min.css"/>" rel="stylesheet" media="all">
+    <link href="<c:url value="/resources/creator/vendor/slick/slick.css"/>" rel="stylesheet" media="all">
+    <link href="<c:url value="/resources/creator/vendor/select2/select2.min.css"/>" rel="stylesheet" media="all">
+    <link href="<c:url value="/resources/creator/vendor/perfect-scrollbar/perfect-scrollbar.css"/>" rel="stylesheet" media="all">
+    <link href="<c:url value="/resources/creator/vendor/vector-map/jqvmap.min.css"/>" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
     <link href="<c:url value="/resources/creator/css/theme.css"/>" rel="stylesheet" media="all">
@@ -46,13 +46,13 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="creatorCenter.html">
-                    <img src="images/icon/logo.png" alt="Class247" />
+                    <img src="<%= request.getContextPath() %>/resources/creator/images/icon/logo.png" alt="Class247" />
                 </a>
             </div>
             <div class="menu-sidebar2__content js-scrollbar1">
                 <div class="account2">
                     <div class="image img-cir img-120">
-                        <img src="images/icon/may.jpg" alt="Meseon Han" />
+                        <img src="<%= request.getContextPath() %>/resources/creator/images/icon/may.jpg" alt="Meseon Han" />
                     </div>
                     <h4 class="name">Meseon Han</h4>
                     <a href="#">Logout</a>
@@ -348,7 +348,7 @@
                                 <!-- RECENT REPORT 2-->
                                 <div class="col-md-4">
                                     <div class="card">
-                                        <img class="card-img-top" src="images/class-sample-01.PNG" alt="Card image cap">
+                                        <img class="card-img-top" src="<%= request.getContextPath() %>/resources/creator/images/class-sample-01.PNG" alt="Card image cap">
                                         <div class="card-body">
                                             <h4 class="card-title mb-3">라이트룸과 포토샵으로 만드는 인생 여행 사진</h4>
                                              <p class="card-text"> 강남 : 2019-10-01 <br> 수강생 : 3명</p>
@@ -357,7 +357,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="card">
-                                      <img class="card-img-top" src="images/class-sample-02.PNG" alt="Card image cap">
+                                      <img class="card-img-top" src="<%= request.getContextPath() %>/resources/creator/images/class-sample-02.PNG" alt="Card image cap">
                                         <div class="card-body">
                                            <h4 class="card-title mb-3">포토샵으로 손그림처럼 표현하는 소녀의 설렘</h4>
                                             <p class="card-text">홍대 : 2019-10-04 ~ 2019-10-28 <br> 수강생 : 15명</p>
@@ -366,7 +366,7 @@
                                 </div>
                                 <div class="col-md-4">
                                         <div class="card">
-                                          <img class="card-img-top" src="images/class-default-01.png" alt="Card image cap">
+                                          <img class="card-img-top" src="<%= request.getContextPath() %>/resources/creator/images/class-default-01.png" alt="Card image cap">
                                             <div class="card-body" style="text-align:center;">
                                                <h4 class="card-title mb-3">새로운 클래스를 추가하세요.</h4>
                                                 <p class="card-text" style="text-align:center;"> 
@@ -453,7 +453,7 @@
                                             </td>
                                             <td>
                                                 <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-02.jpg" alt="Cynthia Harvey" />
+                                                    <img src="<%= request.getContextPath() %>/resources/creator/images/icon/avatar-02.jpg" alt="Cynthia Harvey" />
                                                 </div> 
                                             </td>
                                             <td>한미선</td>
@@ -493,7 +493,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="image img-cir img-40">
-                                                        <img src="images/icon/avatar-01.jpg" alt="Cynthia Harvey" />
+                                                        <img src="<%= request.getContextPath() %>/resources/creator/images/icon/avatar-01.jpg" alt="Cynthia Harvey" />
                                                     </div> 
                                                 </td>
                                                 <td>신진혁</td>
@@ -533,7 +533,7 @@
                                             </td>
                                             <td>
                                                 <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
+                                                    <img src="<%= request.getContextPath() %>/resources/creator/images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
                                                 </div> 
                                             </td>
                                             <td>이승은</td>
@@ -573,7 +573,7 @@
                                             </td>
                                             <td>
                                                 <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
+                                                    <img src="<%= request.getContextPath() %>/resources/creator/images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
                                                 </div> 
                                             </td>
                                             <td>김상민</td>
@@ -616,7 +616,7 @@
                                             </td>
                                             <td>
                                                 <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-03.jpg" alt="Cynthia Harvey" />
+                                                    <img src="<%= request.getContextPath() %>/resources/creator/images/icon/avatar-03.jpg" alt="Cynthia Harvey" />
                                                 </div> 
                                             </td>                                            
                                             <td>Lori Lynch</td>
@@ -675,32 +675,31 @@
     </div>
 
     <!-- Jquery JS-->
-    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <script src="<c:url value="/resources/creator/vendor/jquery-3.2.1.min.js"/>"></script>
     <!-- Bootstrap JS-->
-    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <script src="<c:url value="/resources/creator/vendor/bootstrap-4.1/popper.min.js"/>"></script>
+    <script src="<c:url value="/resources/creator/vendor/bootstrap-4.1/bootstrap.min.js"/>"></script>
     <!-- Vendor JS       -->
-    <script src="vendor/slick/slick.min.js">
+    <script src="<c:url value="/resources/creator/vendor/slick/slick.min.js"/>"></script>
+    <script src="<c:url value="/resources/creator/vendor/wow/wow.min.js"/>"></script>
+    <script src="<c:url value="/resources/creator/vendor/animsition/animsition.min.js"/>"></script>
+    <script src="<c:url value="/resources/creator/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"/>">
     </script>
-    <script src="vendor/wow/wow.min.js"></script>
-    <script src="vendor/animsition/animsition.min.js"></script>
-    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    <script src="<c:url value="/resources/creator/vendor/counter-up/jquery.waypoints.min.js"/>"></script>
+    <script src="<c:url value="/resources/creator/vendor/counter-up/jquery.counterup.min.js"/>">
     </script>
-    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="vendor/counter-up/jquery.counterup.min.js">
+    <script src="<c:url value="/resources/creator/vendor/circle-progress/circle-progress.min.js"/>"></script>
+    <script src="<c:url value="/resources/creator/vendor/perfect-scrollbar/perfect-scrollbar.js"/>"></script>
+    <script src="<c:url value="/resources/creator/vendor/chartjs/Chart.bundle.min.js"/>"></script>
+    <script src="<c:url value="/resources/creator/vendor/select2/select2.min.js"/>">
     </script>
-    <script src="vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="vendor/select2/select2.min.js">
-    </script>
-    <script src="vendor/vector-map/jquery.vmap.js"></script>
-    <script src="vendor/vector-map/jquery.vmap.min.js"></script>
-    <script src="vendor/vector-map/jquery.vmap.sampledata.js"></script>
-    <script src="vendor/vector-map/jquery.vmap.world.js"></script>
+    <script src="<c:url value="/resources/creator/vendor/vector-map/jquery.vmap.js"/>"></script>
+    <script src="<c:url value="/resources/creator/vendor/vector-map/jquery.vmap.min.js"/>"></script>
+    <script src="<c:url value="/resources/creator/vendor/vector-map/jquery.vmap.sampledata.js"/>"></script>
+    <script src="<c:url value="/resources/creator/vendor/vector-map/jquery.vmap.world.js"/>"></script>
 
     <!-- Main JS-->
-    <script src="js/main.js"></script>
+    <script src="<c:url value="/resources/creator/js/main.js"/>"></script>
 
 </body>
 
