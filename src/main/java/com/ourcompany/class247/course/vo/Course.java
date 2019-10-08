@@ -19,6 +19,7 @@ public class Course {
 	private Date courseApprovedDate;		//승인날짜
 	private Date courseStartDate;			//강의시작날짜
 	private Date courseEndDate;				//강의종료날짜
+	private int 
 	
 	public Course() {
 		

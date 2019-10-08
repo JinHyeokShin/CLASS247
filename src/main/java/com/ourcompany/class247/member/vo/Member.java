@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Member {
 	
-	private int memNumk;			//회원번호
+	private int memNum;			//회원번호
 	private String memId;			//아이디
 	private String memPwd;			//비밀번호 
 	private String memNickName;		//닉네임
@@ -14,15 +14,16 @@ public class Member {
 	private String memType;			//사용자구분자
 	private Date memEnrollDate;		//가입일자	
 	private Date memOutDate;		//탈퇴일자
+	private String memStatus;		//상태값
 	
 	public Member() {
 		
 	}
 
-	public Member(int memNumk, String memId, String memPwd, String memNickName, String memName, String memGender,
-			String memPhone, String memType, Date memEnrollDate, Date memOutDate) {
+	public Member(int memNum, String memId, String memPwd, String memNickName, String memName, String memGender,
+			String memPhone, String memType, Date memEnrollDate, Date memOutDate, String memStatus) {
 		super();
-		this.memNumk = memNumk;
+		this.memNum = memNum;
 		this.memId = memId;
 		this.memPwd = memPwd;
 		this.memNickName = memNickName;
@@ -32,97 +33,106 @@ public class Member {
 		this.memType = memType;
 		this.memEnrollDate = memEnrollDate;
 		this.memOutDate = memOutDate;
-
+		this.memStatus = memStatus;
 	}
 
-	public int getMemNumk() {
-		return memNumk;
+	int getMemNum() {
+		return memNum;
 	}
 
-	public void setMemNumk(int memNumk) {
-		this.memNumk = memNumk;
+	void setMemNum(int memNum) {
+		this.memNum = memNum;
 	}
 
-	public String getMemId() {
+	String getMemId() {
 		return memId;
 	}
 
-	public void setMemId(String memId) {
+	void setMemId(String memId) {
 		this.memId = memId;
 	}
 
-	public String getMemPwd() {
+	String getMemPwd() {
 		return memPwd;
 	}
 
-	public void setMemPwd(String memPwd) {
+	void setMemPwd(String memPwd) {
 		this.memPwd = memPwd;
 	}
 
-	public String getMemNickName() {
+	String getMemNickName() {
 		return memNickName;
 	}
 
-	public void setMemNickName(String memNickName) {
+	void setMemNickName(String memNickName) {
 		this.memNickName = memNickName;
 	}
 
-	public String getMemName() {
+	String getMemName() {
 		return memName;
 	}
 
-	public void setMemName(String memName) {
+	void setMemName(String memName) {
 		this.memName = memName;
 	}
 
-	public String getMemGender() {
+	String getMemGender() {
 		return memGender;
 	}
 
-	public void setMemGender(String memGender) {
+	void setMemGender(String memGender) {
 		this.memGender = memGender;
 	}
 
-	public String getMemPhone() {
+	String getMemPhone() {
 		return memPhone;
 	}
 
-	public void setMemPhone(String memPhone) {
+	void setMemPhone(String memPhone) {
 		this.memPhone = memPhone;
 	}
 
-	public String getMemType() {
+	String getMemType() {
 		return memType;
 	}
 
-	public void setMemType(String memType) {
+	void setMemType(String memType) {
 		this.memType = memType;
 	}
 
-	public Date getMemEnrollDate() {
+	Date getMemEnrollDate() {
 		return memEnrollDate;
 	}
 
-	public void setMemEnrollDate(Date memEnrollDate) {
+	void setMemEnrollDate(Date memEnrollDate) {
 		this.memEnrollDate = memEnrollDate;
 	}
 
-	public Date getMemOutDate() {
+	Date getMemOutDate() {
 		return memOutDate;
 	}
 
-	public void setMemOutDate(Date memOutDate) {
+	void setMemOutDate(Date memOutDate) {
 		this.memOutDate = memOutDate;
 	}
 
+	String getMemStatus() {
+		return memStatus;
+	}
+
+	void setMemStatus(String memStatus) {
+		this.memStatus = memStatus;
+	}
 
 	@Override
 	public String toString() {
-		return "Member [memNumk=" + memNumk + ", memId=" + memId + ", memPwd=" + memPwd + ", memNickName=" + memNickName
+		return "Member [memNum=" + memNum + ", memId=" + memId + ", memPwd=" + memPwd + ", memNickName=" + memNickName
 				+ ", memName=" + memName + ", memGender=" + memGender + ", memPhone=" + memPhone + ", memType="
 				+ memType + ", memEnrollDate=" + memEnrollDate + ", memOutDate=" + memOutDate + ", memStatus="
-				+"]";
+				+ memStatus + "]";
 	}
+
+	
 	
 	
 
