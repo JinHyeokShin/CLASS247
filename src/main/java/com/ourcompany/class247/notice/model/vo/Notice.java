@@ -30,67 +30,68 @@ public class Notice {
 		this.noticeStatus = noticeStatus;
 	}
 
-	int getNoticeNum() {
+
+	public int getNoticeNum() {
 		return noticeNum;
 	}
 
-	void setNoticeNum(int noticeNum) {
+	public void setNoticeNum(int noticeNum) {
 		this.noticeNum = noticeNum;
 	}
 
-	int getMemNum() {
+	public int getMemNum() {
 		return memNum;
 	}
 
-	void setMemNum(int memNum) {
+	public void setMemNum(int memNum) {
 		this.memNum = memNum;
 	}
 
-	String getNoticeTitle() {
+	public String getNoticeTitle() {
 		return noticeTitle;
 	}
 
-	void setNoticeTitle(String noticeTitle) {
+	public void setNoticeTitle(String noticeTitle) {
 		this.noticeTitle = noticeTitle;
 	}
 
-	String getNoticeContent() {
+	public String getNoticeContent() {
 		return noticeContent;
 	}
 
-	void setNoticeContent(String noticeContent) {
+	public void setNoticeContent(String noticeContent) {
 		this.noticeContent = noticeContent;
 	}
 
-	int getNoticeCount() {
+	public int getNoticeCount() {
 		return noticeCount;
 	}
 
-	void setNoticeCount(int noticeCount) {
+	public void setNoticeCount(int noticeCount) {
 		this.noticeCount = noticeCount;
 	}
 
-	Date getNoticeEnrollDate() {
+	public Date getNoticeEnrollDate() {
 		return noticeEnrollDate;
 	}
 
-	void setNoticeEnrollDate(Date noticeEnrollDate) {
+	public void setNoticeEnrollDate(Date noticeEnrollDate) {
 		this.noticeEnrollDate = noticeEnrollDate;
 	}
 
-	Date getNoticeModifyDate() {
+	public Date getNoticeModifyDate() {
 		return noticeModifyDate;
 	}
 
-	void setNoticeModifyDate(Date noticeModifyDate) {
+	public void setNoticeModifyDate(Date noticeModifyDate) {
 		this.noticeModifyDate = noticeModifyDate;
 	}
 
-	String getNoticeStatus() {
+	public String getNoticeStatus() {
 		return noticeStatus;
 	}
 
-	void setNoticeStatus(String noticeStatus) {
+	public void setNoticeStatus(String noticeStatus) {
 		this.noticeStatus = noticeStatus;
 	}
 

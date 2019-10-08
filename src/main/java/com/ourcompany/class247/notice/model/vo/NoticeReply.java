@@ -31,76 +31,78 @@ public class NoticeReply {
 		this.nReplyModifyDate = nReplyModifyDate;
 		this.nReplyStatus = nReplyStatus;
 	}
-
-	int getnReplyNum() {
+	
+	
+	
+	public int getnReplyNum() {
 		return nReplyNum;
 	}
 
-	void setnReplyNum(int nReplyNum) {
+	public void setnReplyNum(int nReplyNum) {
 		this.nReplyNum = nReplyNum;
 	}
 
-	int getNoticeNum() {
+	public int getNoticeNum() {
 		return noticeNum;
 	}
 
-	void setNoticeNum(int noticeNum) {
+	public void setNoticeNum(int noticeNum) {
 		this.noticeNum = noticeNum;
 	}
 
-	int getMemNum() {
+	public int getMemNum() {
 		return memNum;
 	}
 
-	void setMemNum(int memNum) {
+	public void setMemNum(int memNum) {
 		this.memNum = memNum;
 	}
 
-	int getnReplyParentNum() {
+	public int getnReplyParentNum() {
 		return nReplyParentNum;
 	}
 
-	void setnReplyParentNum(int nReplyParentNum) {
+	public void setnReplyParentNum(int nReplyParentNum) {
 		this.nReplyParentNum = nReplyParentNum;
 	}
 
-	int getnReplyDepth() {
+	public int getnReplyDepth() {
 		return nReplyDepth;
 	}
 
-	void setnReplyDepth(int nReplyDepth) {
+	public void setnReplyDepth(int nReplyDepth) {
 		this.nReplyDepth = nReplyDepth;
 	}
 
-	String getnReplyContent() {
+	public String getnReplyContent() {
 		return nReplyContent;
 	}
 
-	void setnReplyContent(String nReplyContent) {
+	public void setnReplyContent(String nReplyContent) {
 		this.nReplyContent = nReplyContent;
 	}
 
-	Date getnReplyEnrollDate() {
+	public Date getnReplyEnrollDate() {
 		return nReplyEnrollDate;
 	}
 
-	void setnReplyEnrollDate(Date nReplyEnrollDate) {
+	public void setnReplyEnrollDate(Date nReplyEnrollDate) {
 		this.nReplyEnrollDate = nReplyEnrollDate;
 	}
 
-	Date getnReplyModifyDate() {
+	public Date getnReplyModifyDate() {
 		return nReplyModifyDate;
 	}
 
-	void setnReplyModifyDate(Date nReplyModifyDate) {
+	public void setnReplyModifyDate(Date nReplyModifyDate) {
 		this.nReplyModifyDate = nReplyModifyDate;
 	}
 
-	String getnReplyStatus() {
+	public String getnReplyStatus() {
 		return nReplyStatus;
 	}
 
-	void setnReplyStatus(String nReplyStatus) {
+	public void setnReplyStatus(String nReplyStatus) {
 		this.nReplyStatus = nReplyStatus;
 	}
 

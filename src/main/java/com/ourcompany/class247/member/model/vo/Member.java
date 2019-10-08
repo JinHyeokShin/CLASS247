@@ -36,91 +36,93 @@ public class Member {
 		this.memStatus = memStatus;
 	}
 
-	int getMemNum() {
+	
+
+	public int getMemNum() {
 		return memNum;
 	}
 
-	void setMemNum(int memNum) {
+	public void setMemNum(int memNum) {
 		this.memNum = memNum;
 	}
 
-	String getMemId() {
+	public String getMemId() {
 		return memId;
 	}
 
-	void setMemId(String memId) {
+	public void setMemId(String memId) {
 		this.memId = memId;
 	}
 
-	String getMemPwd() {
+	public String getMemPwd() {
 		return memPwd;
 	}
 
-	void setMemPwd(String memPwd) {
+	public void setMemPwd(String memPwd) {
 		this.memPwd = memPwd;
 	}
 
-	String getMemNickName() {
+	public String getMemNickName() {
 		return memNickName;
 	}
 
-	void setMemNickName(String memNickName) {
+	public void setMemNickName(String memNickName) {
 		this.memNickName = memNickName;
 	}
 
-	String getMemName() {
+	public String getMemName() {
 		return memName;
 	}
 
-	void setMemName(String memName) {
+	public void setMemName(String memName) {
 		this.memName = memName;
 	}
 
-	String getMemGender() {
+	public String getMemGender() {
 		return memGender;
 	}
 
-	void setMemGender(String memGender) {
+	public void setMemGender(String memGender) {
 		this.memGender = memGender;
 	}
 
-	String getMemPhone() {
+	public String getMemPhone() {
 		return memPhone;
 	}
 
-	void setMemPhone(String memPhone) {
+	public void setMemPhone(String memPhone) {
 		this.memPhone = memPhone;
 	}
 
-	String getMemType() {
+	public String getMemType() {
 		return memType;
 	}
 
-	void setMemType(String memType) {
+	public void setMemType(String memType) {
 		this.memType = memType;
 	}
 
-	Date getMemEnrollDate() {
+	public Date getMemEnrollDate() {
 		return memEnrollDate;
 	}
 
-	void setMemEnrollDate(Date memEnrollDate) {
+	public void setMemEnrollDate(Date memEnrollDate) {
 		this.memEnrollDate = memEnrollDate;
 	}
 
-	Date getMemOutDate() {
+	public Date getMemOutDate() {
 		return memOutDate;
 	}
 
-	void setMemOutDate(Date memOutDate) {
+	public void setMemOutDate(Date memOutDate) {
 		this.memOutDate = memOutDate;
 	}
 
-	String getMemStatus() {
+	public String getMemStatus() {
 		return memStatus;
 	}
 
-	void setMemStatus(String memStatus) {
+	public void setMemStatus(String memStatus) {
 		this.memStatus = memStatus;
 	}
 

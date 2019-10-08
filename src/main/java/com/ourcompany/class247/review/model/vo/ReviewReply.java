@@ -32,94 +32,95 @@ public class ReviewReply {
 		this.revReplyModifyDate = revReplyModifyDate;
 		this.revReplyStat = revReplyStat;
 	}
+	
+		
 
-
-	int getRevReplyNum() {
+	public int getRevReplyNum() {
 		return revReplyNum;
 	}
 
 
-	void setRevReplyNum(int revReplyNum) {
+	public void setRevReplyNum(int revReplyNum) {
 		this.revReplyNum = revReplyNum;
 	}
 
 
-	int getReviewNum() {
+	public int getReviewNum() {
 		return reviewNum;
 	}
 
 
-	void setReviewNum(int reviewNum) {
+	public void setReviewNum(int reviewNum) {
 		this.reviewNum = reviewNum;
 	}
 
 
-	int getMemNum() {
+	public int getMemNum() {
 		return memNum;
 	}
 
 
-	void setMemNum(int memNum) {
+	public void setMemNum(int memNum) {
 		this.memNum = memNum;
 	}
 
 
-	int getRevReplyParentNum() {
+	public int getRevReplyParentNum() {
 		return revReplyParentNum;
 	}
 
 
-	void setRevReplyParentNum(int revReplyParentNum) {
+	public void setRevReplyParentNum(int revReplyParentNum) {
 		this.revReplyParentNum = revReplyParentNum;
 	}
 
 
-	int getRevReplyDepth() {
+	public int getRevReplyDepth() {
 		return revReplyDepth;
 	}
 
 
-	void setRevReplyDepth(int revReplyDepth) {
+	public void setRevReplyDepth(int revReplyDepth) {
 		this.revReplyDepth = revReplyDepth;
 	}
 
 
-	String getRevReplyContent() {
+	public String getRevReplyContent() {
 		return revReplyContent;
 	}
 
 
-	void setRevReplyContent(String revReplyContent) {
+	public void setRevReplyContent(String revReplyContent) {
 		this.revReplyContent = revReplyContent;
 	}
 
 
-	Date getRevReplyEnrollDate() {
+	public Date getRevReplyEnrollDate() {
 		return revReplyEnrollDate;
 	}
 
 
-	void setRevReplyEnrollDate(Date revReplyEnrollDate) {
+	public void setRevReplyEnrollDate(Date revReplyEnrollDate) {
 		this.revReplyEnrollDate = revReplyEnrollDate;
 	}
 
 
-	Date getRevReplyModifyDate() {
+	public Date getRevReplyModifyDate() {
 		return revReplyModifyDate;
 	}
 
 
-	void setRevReplyModifyDate(Date revReplyModifyDate) {
+	public void setRevReplyModifyDate(Date revReplyModifyDate) {
 		this.revReplyModifyDate = revReplyModifyDate;
 	}
 
 
-	String getRevReplyStat() {
+	public String getRevReplyStat() {
 		return revReplyStat;
 	}
 
 
-	void setRevReplyStat(String revReplyStat) {
+	public void setRevReplyStat(String revReplyStat) {
 		this.revReplyStat = revReplyStat;
 	}
 

@@ -27,59 +27,61 @@ public class Review {
 		this.reviewStatus = reviewStatus;
 	}
 
-	int getReviewNum() {
+	
+
+	public int getReviewNum() {
 		return reviewNum;
 	}
 
-	void setReviewNum(int reviewNum) {
+	public void setReviewNum(int reviewNum) {
 		this.reviewNum = reviewNum;
 	}
 
-	int getClassNum() {
+	public int getClassNum() {
 		return classNum;
 	}
 
-	void setClassNum(int classNum) {
+	public void setClassNum(int classNum) {
 		this.classNum = classNum;
 	}
 
-	int getMemNum() {
+	public int getMemNum() {
 		return memNum;
 	}
 
-	void setMemNum(int memNum) {
+	public void setMemNum(int memNum) {
 		this.memNum = memNum;
 	}
 
-	String getReviewContent() {
+	public String getReviewContent() {
 		return reviewContent;
 	}
 
-	void setReviewContent(String reviewContent) {
+	public void setReviewContent(String reviewContent) {
 		this.reviewContent = reviewContent;
 	}
 
-	Date getReviewEnrollDate() {
+	public Date getReviewEnrollDate() {
 		return reviewEnrollDate;
 	}
 
-	void setReviewEnrollDate(Date reviewEnrollDate) {
+	public void setReviewEnrollDate(Date reviewEnrollDate) {
 		this.reviewEnrollDate = reviewEnrollDate;
 	}
 
-	Date getReviewModifyDate() {
+	public Date getReviewModifyDate() {
 		return reviewModifyDate;
 	}
 
-	void setReviewModifyDate(Date reviewModifyDate) {
+	public void setReviewModifyDate(Date reviewModifyDate) {
 		this.reviewModifyDate = reviewModifyDate;
 	}
 
-	String getReviewStatus() {
+	public String getReviewStatus() {
 		return reviewStatus;
 	}
 
-	void setReviewStatus(String reviewStatus) {
+	public void setReviewStatus(String reviewStatus) {
 		this.reviewStatus = reviewStatus;
 	}
 
