@@ -1,24 +1,25 @@
-package com.ourcompany.class247.notice.vo;
+package com.ourcompany.class247.notice.model.vo;
 
 import java.sql.Date;
 
 public class NoticeReply {
 	
-	private int nReplyNum;
-	private int noticeNum;
-	private int memNum;
-	private int nReplyParentNum;
-	private int nReplyDepth;
-	private String nReplyContent;
-	private Date nReplyEnrollDate;
-	private Date nReplyModifyDate;
+	private int nReplyNum;			//공지사항리뷰번호
+	private int noticeNum;			//공지사항번호
+	private int memNum;				//작성자번호
+	private int nReplyParentNum;	//댓글리뷰번호
+	private int nReplyDepth;		//댓글깊이
+	private String nReplyContent;	//댓글내용
+	private Date nReplyEnrollDate;	//작성날짜
+	private Date nReplyModifyDate;	//수정날짜
+	private String nReplyStatus;	//상태값
 	
 	public NoticeReply() {
 		
 	}
-
+	
 	public NoticeReply(int nReplyNum, int noticeNum, int memNum, int nReplyParentNum, int nReplyDepth,
-			String nReplyContent, Date nReplyEnrollDate, Date nReplyModifyDate) {
+			String nReplyContent, Date nReplyEnrollDate, Date nReplyModifyDate, String nReplyStatus) {
 		super();
 		this.nReplyNum = nReplyNum;
 		this.noticeNum = noticeNum;
@@ -28,70 +29,79 @@ public class NoticeReply {
 		this.nReplyContent = nReplyContent;
 		this.nReplyEnrollDate = nReplyEnrollDate;
 		this.nReplyModifyDate = nReplyModifyDate;
+		this.nReplyStatus = nReplyStatus;
 	}
 
-	public int getnReplyNum() {
+	int getnReplyNum() {
 		return nReplyNum;
 	}
 
-	public void setnReplyNum(int nReplyNum) {
+	void setnReplyNum(int nReplyNum) {
 		this.nReplyNum = nReplyNum;
 	}
 
-	public int getNoticeNum() {
+	int getNoticeNum() {
 		return noticeNum;
 	}
 
-	public void setNoticeNum(int noticeNum) {
+	void setNoticeNum(int noticeNum) {
 		this.noticeNum = noticeNum;
 	}
 
-	public int getMemNum() {
+	int getMemNum() {
 		return memNum;
 	}
 
-	public void setMemNum(int memNum) {
+	void setMemNum(int memNum) {
 		this.memNum = memNum;
 	}
 
-	public int getnReplyParentNum() {
+	int getnReplyParentNum() {
 		return nReplyParentNum;
 	}
 
-	public void setnReplyParentNum(int nReplyParentNum) {
+	void setnReplyParentNum(int nReplyParentNum) {
 		this.nReplyParentNum = nReplyParentNum;
 	}
 
-	public int getnReplyDepth() {
+	int getnReplyDepth() {
 		return nReplyDepth;
 	}
 
-	public void setnReplyDepth(int nReplyDepth) {
+	void setnReplyDepth(int nReplyDepth) {
 		this.nReplyDepth = nReplyDepth;
 	}
 
-	public String getnReplyContent() {
+	String getnReplyContent() {
 		return nReplyContent;
 	}
 
-	public void setnReplyContent(String nReplyContent) {
+	void setnReplyContent(String nReplyContent) {
 		this.nReplyContent = nReplyContent;
 	}
 
-	public Date getnReplyEnrollDate() {
+	Date getnReplyEnrollDate() {
 		return nReplyEnrollDate;
 	}
 
-	public void setnReplyEnrollDate(Date nReplyEnrollDate) {
+	void setnReplyEnrollDate(Date nReplyEnrollDate) {
 		this.nReplyEnrollDate = nReplyEnrollDate;
 	}
 
-	public Date getnReplyModifyDate() {
+	Date getnReplyModifyDate() {
 		return nReplyModifyDate;
 	}
 
-	public void setnReplyModifyDate(Date nReplyModifyDate) {
+	void setnReplyModifyDate(Date nReplyModifyDate) {
 		this.nReplyModifyDate = nReplyModifyDate;
+	}
+
+	String getnReplyStatus() {
+		return nReplyStatus;
+	}
+
+	void setnReplyStatus(String nReplyStatus) {
+		this.nReplyStatus = nReplyStatus;
 	}
 
 	@Override
@@ -99,7 +109,7 @@ public class NoticeReply {
 		return "NoticeReply [nReplyNum=" + nReplyNum + ", noticeNum=" + noticeNum + ", memNum=" + memNum
 				+ ", nReplyParentNum=" + nReplyParentNum + ", nReplyDepth=" + nReplyDepth + ", nReplyContent="
 				+ nReplyContent + ", nReplyEnrollDate=" + nReplyEnrollDate + ", nReplyModifyDate=" + nReplyModifyDate
-				+ "]";
+				+ ", nReplyStatus=" + nReplyStatus + "]";
 	}
 	
 	

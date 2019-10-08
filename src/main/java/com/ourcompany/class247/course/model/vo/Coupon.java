@@ -1,4 +1,4 @@
-package com.ourcompany.class247.course.vo;
+package com.ourcompany.class247.course.model.vo;
 
 import java.sql.Date;
 
@@ -11,6 +11,7 @@ public class Coupon {
 	private Date couponEnrollDate;	//쿠폰생성날짜
 	private Date couponeUsingDate;	//쿠폰사용날짜
 	private Date couponEndDate;		//쿠폰종료날짜
+	
 	
 	public Coupon() {
 		

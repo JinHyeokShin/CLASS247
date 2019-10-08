@@ -1,4 +1,4 @@
-package com.ourcompany.class247.course.vo;
+package com.ourcompany.class247.course.model.vo;
 
 public class Category {
 	
