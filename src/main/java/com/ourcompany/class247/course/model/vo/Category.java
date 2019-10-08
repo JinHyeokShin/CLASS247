@@ -2,8 +2,8 @@ package com.ourcompany.class247.course.model.vo;
 
 public class Category {
 	
-	private int categoryNum;
-	private String categoryName;
+	private int categoryNum;		//카테고리번호
+	private String categoryName;	//카테고리이름
 	
 	public Category() {
 		

@@ -4,9 +4,9 @@ import java.sql.Date;
 
 public class Love {
 	
-	private int memNum;
-	private int courseNum;
-	private Date wishedDate;
+	private int memNum;			//회원번호
+	private int courseNum;		//수업번호
+	private Date wishedDate;	//좋아요날짜
 	
 	public Love() {
 		

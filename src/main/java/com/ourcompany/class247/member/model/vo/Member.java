@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Member {
 	
-	private int memNum;			//회원번호
+	private int memNum;				//회원번호
 	private String memId;			//아이디
 	private String memPwd;			//비밀번호 
 	private String memNickName;		//닉네임

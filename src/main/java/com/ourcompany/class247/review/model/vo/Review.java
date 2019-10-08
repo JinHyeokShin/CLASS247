@@ -3,13 +3,13 @@ import java.sql.Date;
 
 public class Review {
 	
-	private int reviewNum;
-	private int classNum;
-	private int memNum;
-	private String reviewContent;
-	private Date reviewEnrollDate;
-	private Date reviewModifyDate;
-	private String reviewStatus;
+	private int reviewNum;				//리뷰번호
+	private int classNum;				//수업번호
+	private int memNum;					//회원번호
+	private String reviewContent;		//리뷰내용
+	private Date reviewEnrollDate;		//작성날짜
+	private Date reviewModifyDate;		//수정날짜
+	private String reviewStatus;		//상태값
 	
 	public Review() {
 		
