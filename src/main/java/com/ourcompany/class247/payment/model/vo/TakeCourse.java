@@ -8,7 +8,7 @@ public class TakeCourse {
 	private int payNum;
 	private int memNum;
 	private String takePrice;
-	private String takeCancle;
+	private String takeCancel;
 	private Date takeDate;
 	private Date takeCancelDate;
 	
@@ -16,14 +16,14 @@ public class TakeCourse {
 		
 	}
 
-	public TakeCourse(int takeNum, int payNum, int memNum, String takePrice, String takeCancle, Date takeDate,
+	public TakeCourse(int takeNum, int payNum, int memNum, String takePrice, String takeCancel, Date takeDate,
 			Date takeCancelDate) {
 		super();
 		this.takeNum = takeNum;
 		this.payNum = payNum;
 		this.memNum = memNum;
 		this.takePrice = takePrice;
-		this.takeCancle = takeCancle;
+		this.takeCancel = takeCancel;
 		this.takeDate = takeDate;
 		this.takeCancelDate = takeCancelDate;
 	}
@@ -60,12 +60,12 @@ public class TakeCourse {
 		this.takePrice = takePrice;
 	}
 
-	public String getTakeCancle() {
-		return takeCancle;
+	public String getTakeCancel() {
+		return takeCancel;
 	}
 
-	public void setTakeCancle(String takeCancle) {
-		this.takeCancle = takeCancle;
+	public void setTakeCancel(String takeCancel) {
+		this.takeCancel = takeCancel;
 	}
 
 	public Date getTakeDate() {
@@ -87,12 +87,9 @@ public class TakeCourse {
 	@Override
 	public String toString() {
 		return "TakeCourse [takeNum=" + takeNum + ", payNum=" + payNum + ", memNum=" + memNum + ", takePrice="
-				+ takePrice + ", takeCancle=" + takeCancle + ", takeDate=" + takeDate + ", takeCancelDate="
+				+ takePrice + ", takeCancel=" + takeCancel + ", takeDate=" + takeDate + ", takeCancelDate="
 				+ takeCancelDate + "]";
 	}
 
-	
-	
-	
 
 }
