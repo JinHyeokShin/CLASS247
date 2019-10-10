@@ -118,10 +118,10 @@
                                         </div>
                                         <div class="card-footer" style="text-align:center">
                                             <button type="submit" class="btn btn-primary btn-sm">
-                                                크리에이터 신청하기
+                                                	크리에이터 신청하기
                                             </button>
                                             <button type="reset" class="btn btn-secondary btn-sm">
-                                                 초기화
+                                                 	초기화
                                             </button>
                                         </div>
                                     </div>            

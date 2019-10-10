@@ -19,7 +19,7 @@
                                 <i class="fas fa-comment-alt"></i>실시간 톡
                             </h3>
                             <div class="row">
-                                <div class="col-lg-7" style="margin-right:auto; margin-left:auto;">
+                                <div class="col-lg-6" style="margin-right:auto; margin-left:auto;">
                                     <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
                                         <div class="au-card-title" style="background-image:url('images/bg-title-02.jpg');">
                                             <div class="bg-overlay bg-overlay--blue"></div>

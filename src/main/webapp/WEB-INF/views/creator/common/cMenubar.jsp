@@ -43,7 +43,7 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="creatorCenter.html">
+                <a href="cMainView.do">
                     <img src="<%= request.getContextPath() %>/resources/creator/images/icon/logo.png" alt="Class247" />
                 </a>
             </div>
@@ -58,7 +58,7 @@
                 <nav class="navbar-sidebar2">
                     <ul class="list-unstyled navbar__list">
                         <li>
-                            <a href="creNotice.html">
+                            <a href="creNoticeList.do">
                             <i class="far fa-bell"></i>공지사항</a>
                         </li>
                         <li>
@@ -98,7 +98,7 @@
                         </li>
                         <li>
                             <a href="#">
-                            <i class="fas fa-chart-bar"></i>통계</a>x
+                            <i class="fas fa-chart-bar"></i>통계</a>
                         </li>
                         <li>
                             <a href="#">

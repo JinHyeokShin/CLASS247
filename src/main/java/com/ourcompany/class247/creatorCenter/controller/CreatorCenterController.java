@@ -30,5 +30,10 @@ public class CreatorCenterController {
 	public String chattingView() {
 		return "creator/cChat";
 	}
+	
+	@RequestMapping("creNoticeList.do")
+	public String notictList() {
+		return "creator/creNoticeList";
+	}
 
 }
