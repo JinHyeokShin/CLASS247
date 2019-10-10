@@ -16,7 +16,7 @@
 /**************** common css start ****************/
 /* line 3, E:/172 Etrain Education/172_Etrain_Education_html/sass/_common.scss */
 body {
-font-family: 'Jua', sans-serif;
+font-family: 'Noto Sans KR', sans-serif;
   padding: 0;
   margin: 0;
   font-size: 14px;
@@ -152,13 +152,13 @@ a:hover {
 /* line 72, E:/172 Etrain Education/172_Etrain_Education_html/sass/_common.scss */
 h1, h2, h3, h4, h5, h6 {
   color: #954CBC;
-  font-family: 'Jua', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 /* line 76, E:/172 Etrain Education/172_Etrain_Education_html/sass/_common.scss */
 p {
   color: #666666;
-font-family: 'Jua', sans-serif;
+font-family: 'Noto Sans KR', sans-serif;
   line-height: 1.929;
   font-size: 14px;
   margin-bottom: 0px;
@@ -2189,7 +2189,7 @@ ul {
   color: black;
   font-size: 15px;
   padding: 0px 15px;
-  font-family: 'Jua', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
@@ -2418,7 +2418,7 @@ ul {
   color: #fff;
   font-size: 15px;
   padding: 0px 24px;
-  font-family: 'Jua', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
@@ -2637,7 +2637,7 @@ ul {
 .banner_part .banner_text p {
   font-size: 15px;
   line-height: 1.8;
-  font-family: 'Jua', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   color: #777777;
 }
 
@@ -2883,7 +2883,7 @@ ul {
   color: #ff7e5f;
   font-size: 22px;
   font-style: italic;
-  font-family: 'Jua', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-weight: 300;
 }
 
@@ -3356,7 +3356,7 @@ ul {
 
 /* line 81, E:/172 Etrain Education/172_Etrain_Education_html/sass/_learning.scss */
 .learning_part .learning_member_text h5 {
-font-family: 'Jua', sans-serif;
+font-family: 'Noto Sans KR', sans-serif;
   color: #556172;
   font-size: 14px;
   font-weight: 500;
@@ -3882,7 +3882,6 @@ font-family: 'Jua', sans-serif;
 .member_counter .single_member_counter h4 {
   color: #fff;
   font-size: 24px;
-  font-size: 600;
   margin-top: 28px;
   text-transform: capitalize;
   position: relative;
@@ -4690,7 +4689,7 @@ font-family: 'Jua', sans-serif;
 /* line 163, E:/172 Etrain Education/172_Etrain_Education_html/sass/_testimonial_part.scss */
 .testimonial_part h5 {
   font-size: 14px;
-font-family: 'Jua', sans-serif;
+font-family: 'Noto Sans KR', sans-serif;
   color: #888888;
 }
 
@@ -4790,7 +4789,7 @@ font-family: 'Jua', sans-serif;
   font-size: 13px;
   color: #999999;
   border: 0px solid transparent;
-  font-family: 'Jua', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 /* line 65, E:/172 Etrain Education/172_Etrain_Education_html/sass/_footer.scss */
@@ -4810,7 +4809,7 @@ font-family: 'Jua', sans-serif;
   border: 0;
   font-size: 12px;
   font-weight: 400;
-font-family: 'Jua', sans-serif;
+font-family: 'Noto Sans KR', sans-serif;
   position: relative;
   left: 0;
 }
@@ -7041,7 +7040,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 13px;
   color: #999999;
   border: 0px solid transparent;
-font-family: 'Jua', sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 /* line 65, E:/172 Etrain Education/172_Etrain_Education_html/sass/_footer.scss */
@@ -7061,7 +7060,7 @@ font-family: 'Jua', sans-serif;
   border: 0;
   font-size: 12px;
   font-weight: 400;
-font-family: 'Jua', sans-serif;
+font-family: 'Noto Sans KR', sans-serif;
   position: relative;
   left: 0;
 }
