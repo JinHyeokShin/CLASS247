@@ -17,27 +17,29 @@ public class FAQ {
 		this.faqContent = faqContent;
 	}
 
-	int getFaqNum() {
+	
+
+	public int getFaqNum() {
 		return faqNum;
 	}
 
-	void setFaqNum(int faqNum) {
+	public void setFaqNum(int faqNum) {
 		this.faqNum = faqNum;
 	}
 
-	String getFaqTitle() {
+	public String getFaqTitle() {
 		return faqTitle;
 	}
 
-	void setFaqTitle(String faqTitle) {
+	public void setFaqTitle(String faqTitle) {
 		this.faqTitle = faqTitle;
 	}
 
-	String getFaqContent() {
+	public String getFaqContent() {
 		return faqContent;
 	}
 
-	void setFaqContent(String faqContent) {
+	public void setFaqContent(String faqContent) {
 		this.faqContent = faqContent;
 	}
 

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
 <head>
     <!-- Required meta tags -->
@@ -70,14 +69,15 @@
 	 	
 	  
 	  		<div class="login" align="center">
+       		<form action="login.do" method="post" class="loginform">
 	  		<br>
 			<h1>로그인</h1>
+			${ loginUser }
 			<hr>
-       		<form class="loginform"  action="login.do" method="post">
         	<table width="400">
 	        	<tr>
 	        		<td width="150">이메일</td>
-	        		<td><input type="email" name="memId" class="primary-border" style="border-radius: 5px;"></td>
+	        		<td><input type="text" name="memId" class="primary-border" style="border-radius: 5px;"></td>
 	            </tr>
 	            <tr>
 	        		<td>비밀번호</td>
@@ -85,19 +85,20 @@
 	            </tr>
             </table>
 			<br>
-            <table><tr>
-            <td colspan="2" width="100%">
-        		<button class="genric-btn primary-border" name="log-btn" type="submit">로그인</button><br>
-            </td>
-                </tr>
+            <table>
+            <tr>
+	            <td colspan="2" width="100%">
+	        		<button class="genric-btn primary-border" name="log-btn" type="submit" onclick="console.log(loginUser)">로그인</button><br>
+	            </td>
+            </tr>
                 <tr>
-                    <td width="50%"><a href="#" class="genric-btn primary-border">회원가입</a></td>
-                    <td width="50%"><a href="#" class="genric-btn primary-border">비밀번호 찾기</a></td>
+                    <td width="50%"><a href="" class="genric-btn primary-border">회원가입</a></td>
+                    <td width="50%"><a href="" class="genric-btn primary-border">비밀번호 찾기</a></td>
                 </tr>
             </table>
             <hr>
             </form>
-           	<a id="custom-login-btn" href="javascript:loginWithKakao()">
+    	<a id="custom-login-btn" href="javascript:loginWithKakao()">
 				<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
 			</a>
 			<script type='text/javascript'>
@@ -123,10 +124,10 @@
          		</button>
             </a>
 
-            </div>
             <br>
     	
-            
+      
+            </div>
     	
     
 	<c:import url="/WEB-INF/views/user/common/footer.jsp"/>

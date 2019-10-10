@@ -1,5 +1,8 @@
 package com.ourcompany.class247.member.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -7,7 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.request.SessionScope;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ourcompany.class247.member.model.service.MemberService;
 import com.ourcompany.class247.member.model.vo.Member;
@@ -77,19 +84,26 @@ public class MemberController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="login.do", method=RequestMethod.POST)
-	public String loginMember(Member m, Model model) {
+	@RequestMapping("login.do")
+	public ModelAndView loginMember(Member m, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
 		
 		Member loginUser = mService.loginMember(m);
 		
+		ModelAndView mv = new ModelAndView();
+		
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) { // 로그인에 성공했을 경우
-			model.addAttribute("loginUser",loginUser);
-			return "redirect:home.do";
-		}else {
-			model.addAttribute("msg","로그인 실패 !!");
+
+			session.setAttribute("loginUser", loginUser);
+			System.out.println(session);
+			mv.setViewName("home");
 			
-			return "common/errorPage";
+		}else {
+			session.setAttribute("msg", "로그인에 실패하였습니다.");
+			mv.setViewName("common/errorPage");
 		}
+		return mv;
 	}
 	
 	
@@ -98,8 +112,14 @@ public class MemberController {
 	 * @return
 	 */
 	@RequestMapping("logout.do")
-	public String logout(SessionStatus status) {
-		status.setComplete();
-		return "redirect:home.do";
+	public ModelAndView logout(HttpServletRequest request ) {
+		HttpSession session = request.getSession();
+		
+		ModelAndView mv = new ModelAndView();
+		
+		session.removeAttribute("loginUser");
+		
+		mv.setViewName("home");
+		return mv;
 	}
 }

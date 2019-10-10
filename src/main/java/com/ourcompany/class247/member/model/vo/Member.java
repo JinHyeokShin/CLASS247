@@ -2,6 +2,11 @@ package com.ourcompany.class247.member.model.vo;
 
 import java.sql.Date;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class Member {
 	
 	private int memNum;				//회원번호
