@@ -13,7 +13,7 @@ public class Course {
 	private int coursePrice;				//강의가격
 	private int loveCount;					//좋아요수
 	private String courseMaterial;			//준비물
-	private String courseMaterialPrice;		//준비물가격
+	private int courseMaterialPrice;		//준비물가격
 	private int courseCurrentNum;			//현재인원수
 	private int courseMaxNum;				//max인원수
 	private Date courseEnrollDate;			//등록날짜
@@ -27,7 +27,7 @@ public class Course {
 	}
 
 	public Course(int courseNum, String categoryName, int memNum, String courseTitle, String courseContent,
-			String courseKind, int coursePrice, int loveCount, String courseMaterial, String courseMaterialPrice,
+			String courseKind, int coursePrice, int loveCount, String courseMaterial, int courseMaterialPrice,
 			int courseCurrentNum, int courseMaxNum, Date courseEnrollDate, Date courseApprovedDate,
 			Date courseStartDate, Date courseEndDate, String courseStatus) {
 		super();
@@ -49,8 +49,6 @@ public class Course {
 		this.courseEndDate = courseEndDate;
 		this.courseStatus = courseStatus;
 	}
-
-
 
 	public int getCourseNum() {
 		return courseNum;
@@ -124,11 +122,11 @@ public class Course {
 		this.courseMaterial = courseMaterial;
 	}
 
-	public String getCourseMaterialPrice() {
+	public int getCourseMaterialPrice() {
 		return courseMaterialPrice;
 	}
 
-	public void setCourseMaterialPrice(String courseMaterialPrice) {
+	public void setCourseMaterialPrice(int courseMaterialPrice) {
 		this.courseMaterialPrice = courseMaterialPrice;
 	}
 
@@ -198,6 +196,6 @@ public class Course {
 				+ courseApprovedDate + ", courseStartDate=" + courseStartDate + ", courseEndDate=" + courseEndDate
 				+ ", courseStatus=" + courseStatus + "]";
 	}
-	
+
 	
 }
