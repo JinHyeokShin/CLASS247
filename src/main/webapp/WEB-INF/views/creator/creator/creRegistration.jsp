@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>크리에이터 신청하기</title>
 </head>
 <body class="animsition">
 	<c:import url="../common/cMenubar.jsp"/>
@@ -52,23 +52,23 @@
                                             <h3><strong>크리에이터 기본 정보</strong></h3>
                                         </div>
                                         <div class="card-body card-block">
-                                            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                            <form action="creInsert.do" method="post" enctype="multipart/form-data" class="form-horizontal">
                                                 <div class="row form-group">
                                                     <div class="col col-md-2">
-                                                        <label for="text-input" class=" form-control-label">* 전화번호 인증</label>
+                                                        <label for="phone" class=" form-control-label">* 전화번호 인증</label>
                                                     </div>
                                                     <div class="col-12 col-md-8">
-                                                        <input type="text" id="" name="" placeholder="(-)제외한 전화번호 " class="form-control">
+                                                        <input type="text" id="phone" name="phone" placeholder="${ loginUser.memPhone }" class="form-control">
                                                     </div>
                                                     <button class="btn btn-primary btn-sm">인증하기</button>
                                                 </div>
                                                 <hr>
                                                 <div class="row form-group">
                                                     <div class="col col-md-2">
-                                                        <label for="text-input" class=" form-control-label">* 프로필 사진</label>
+                                                        <label for="creProfile" class=" form-control-label">* 프로필 사진</label>
                                                     </div>
                                                     <div class="col-12 col-md-9" style="height:200px">
-                                                        <input class="btn btn-sm" type="file">
+                                                        <input name="creProfile" id="creProfile" class="btn btn-sm" type="file">
                                                         <div style="width:150px; height:150px; margin-top: 10px; text-align: center">
                                                             <img src="resources/creator/images/icon/user.png" alt="basic_profile" />
                                                         </div>
@@ -77,52 +77,63 @@
                                                 <hr>
                                                 <div class="row form-group">
                                                     <div class="col col-md-2">
-                                                        <label for="email-input" class=" form-control-label">* 신분증 인증</label>
+                                                        <label for="creID" class=" form-control-label">* 신분증 인증</label>
                                                         <button type="button" data-toggle="modal" data-target="#mediumModal"><i class="fas fa-question"></i></button>
                                                     </div>
                                                     <div class="col-12 col-md-9">
-                                                        <input class="btn btn-sm" type="file">
+                                                        <input name="creID" id="creID" class="btn btn-sm" type="file">
                                                         <small class="help-block form-text">주민등록증/운전면허증/여권을 업로드하세요.</small>
                                                     </div>
                                                 </div>
                                                 <hr>
                                                 <div class="row form-group">
                                                     <div class="col col-md-2">
-                                                        <label for="text-input" class=" form-control-label">학력</label>
+                                                        <label for="education" class=" form-control-label">학력</label>
                                                     </div>
                                                     <div class="col-12 col-md-9">
-                                                        <input type="text" id="" name="" placeholder="예) 247 대학교/공예학" class="form-control">
+                                                        <input type="text" id="education" name="education" placeholder="예) 247 대학교/공예학" class="form-control">
                                                         <small class="help-block form-text">관련 학력 사항을 기입하세요.</small>
                                                     </div>
                                                 </div>
                                                 <hr>
                                                 <div class="row form-group">
                                                     <div class="col col-md-2">
-                                                        <label for="text-input" class=" form-control-label">자격증</label>
+                                                        <label for="career" class=" form-control-label">경력</label>
                                                     </div>
                                                     <div class="col-12 col-md-9">
-                                                        <input type="text" id="" name="" placeholder="예) 토익 900, SQLD, 한국사1급" class="form-control">
+                                                        <input type="text" id="career" name="career" placeholder="예)KH아카데미 보조교사" class="form-control">
+                                                        <small class="help-block form-text">관련 학력 사항을 기입하세요.</small>
+                                                    </div>
+                                                </div>  
+                                                <hr>                                              
+                                                <div class="row form-group">
+                                                    <div class="col col-md-2">
+                                                        <label for="certification" class=" form-control-label">자격증</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-9">
+                                                        <input type="text" id="certification" name="certification" placeholder="예) 토익 900, SQLD, 한국사1급" class="form-control">
                                                         <small class="help-block form-text">관련 자격증이 있다면 입력하세요.</small>
                                                     </div>
                                                 </div>
                                                 <hr>
                                                 <div class="row form-group">
                                                     <div class="col col-md-2">
-                                                        <label for="textarea-input" class=" form-control-label">자기소개</label>
+                                                        <label for="introduction" class=" form-control-label">자기소개</label>
                                                     </div>
                                                     <div class="col-12 col-md-9">
-                                                        <textarea name="" id="" rows="9" placeholder="학생들에게 소개하는 톡톡튀는 본인만의 자기소개를 작성해주세요 :) " class="form-control"></textarea>
+                                                        <textarea name="introduction" id="introduction" rows="9" placeholder="학생들에게 소개하는 톡톡튀는 본인만의 자기소개를 작성해주세요 :) " class="form-control"></textarea>
+                                                    	<input type="hidden" name="memNum" value="${ loginUser.memNum }">
                                                     </div>
                                                 </div>
+		                                        <div class="card-footer" style="text-align:center">
+		                                            <button type="submit" class="btn btn-primary btn-sm">
+		                                                	크리에이터 신청하기
+		                                            </button>
+		                                            <button type="reset" class="btn btn-secondary btn-sm">
+		                                                 	초기화
+		                                            </button>
+		                                        </div>
                                             </form>
-                                        </div>
-                                        <div class="card-footer" style="text-align:center">
-                                            <button type="submit" class="btn btn-primary btn-sm">
-                                                	크리에이터 신청하기
-                                            </button>
-                                            <button type="reset" class="btn btn-secondary btn-sm">
-                                                 	초기화
-                                            </button>
                                         </div>
                                     </div>            
                                 </div> 

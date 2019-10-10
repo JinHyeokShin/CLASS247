@@ -21,10 +21,10 @@ public class CreatorCenterController {
 		return "creator/course/coRegistration";
 	}
 	
-	@RequestMapping("creatorFormView.do")
-	public String creatorFormView() {
-		return "creator/creator/creRegistration";
-	}
+//	@RequestMapping("creatorFormView.do")
+//	public String creatorFormView() {
+//		return "creator/creator/creRegistration";
+//	}
 	
 	@RequestMapping("cChattingView.do")
 	public String chattingView() {

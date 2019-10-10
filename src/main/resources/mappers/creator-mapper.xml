@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="creatorMapper">
+
+
+
+	<select id="selectCreNum" parameterType="_int" resultType="_int">
+		select cre_num 
+		from creator
+		where mem_num=#{memNum}
+	</select>
+
+	<insert id="insertCreator" parameterType="Creator">
+		insert into creator 
+		values(creator_seq.nextval, #{memNum}, #{introduction}, #{career}, #{education}, #{certification}, default)
+	</insert>
+
+	<insert id="insertProfile" parameterType="CreatorAttachment">
+		insert into creator_attachment 
+		values(creator_attachment_seq.nextval, #{creNum}, #{craOname}, #{craRname}, 0, #{craPath})
+	</insert>
+
+	<insert id="insertID" parameterType="CreatorAttachment">
+		insert into creator_attachment
+		values(creator_attachment_seq.nextval, #{creNum}, #{craOname}, #{craRname}, 1, #{craPath})
+	</insert>
+
+
+</mapper>
