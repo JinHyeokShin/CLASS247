@@ -10,6 +10,12 @@
 <body class="animsition">
 	<c:import url="../common/cMenubar.jsp"/>
 	
+	<script>
+		$(function(){
+			
+		})
+	</script>
+	
 	<div class="page-wrapper">
 		<!-- modal medium -->
 			<div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">

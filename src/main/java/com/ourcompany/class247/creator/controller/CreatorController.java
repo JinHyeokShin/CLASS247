@@ -1,4 +1,4 @@
-package com.ourcompany.class247.creator.creator.controller;
+package com.ourcompany.class247.creator.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ourcompany.class247.creator.creator.model.service.CreatorService;
-import com.ourcompany.class247.creator.creator.model.vo.Creator;
-import com.ourcompany.class247.creator.creator.model.vo.CreatorAttachment;
+import com.ourcompany.class247.creator.model.service.CreatorService;
+import com.ourcompany.class247.creator.model.vo.Creator;
+import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 import com.ourcompany.class247.member.model.vo.Member;
 
 @SessionAttributes("creator")
@@ -29,11 +29,15 @@ public class CreatorController {
 	private CreatorService creService;
 	
 	
+	/** 크리에이터 메인페이지로 이동
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("cMainView.do")
 	public String goToMain(HttpSession session, Model model) { 
 		int userId = ((Member)session.getAttribute("loginUser")).getMemNum();
 		Creator creator = creService.getCreator(userId);
-		System.out.println("로그인 크리에이터는? : " + creator);
 		if(creator != null) {
 			model.addAttribute("creator", creator);
 			return "creator/creatorCenter";

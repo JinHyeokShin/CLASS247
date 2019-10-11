@@ -1,11 +1,11 @@
-package com.ourcompany.class247.creator.creator.model.dao;
+package com.ourcompany.class247.creator.model.dao;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ourcompany.class247.creator.creator.model.vo.Creator;
-import com.ourcompany.class247.creator.creator.model.vo.CreatorAttachment;
+import com.ourcompany.class247.creator.model.vo.Creator;
+import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 
 @Repository("creDao")
 public class CreatorDao {
