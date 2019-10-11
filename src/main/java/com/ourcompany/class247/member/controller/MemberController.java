@@ -96,7 +96,6 @@ public class MemberController {
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) { // 로그인에 성공했을 경우
 
 			session.setAttribute("loginUser", loginUser);
-			System.out.println(session);
 			mv.setViewName("redirect:home.do");
 			
 		}else {
