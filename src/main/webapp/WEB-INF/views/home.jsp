@@ -26,7 +26,7 @@
                                 his void unto last session for bite. Set have great you'll male grass yielding yielding
                                 man</p>
                             <a href="#" class="btn_1">View Course </a>
-                            <a class="btn_2" onclick="loginCheck()">Get Started </a>
+                            <a href="cMainView.do" class="btn_2" onclick="return loginCheck()">Get Started </a>
                         </div>
                     </div>
                 </div>
@@ -39,8 +39,10 @@
     			
     			if ( '${ loginUser.memNum }' == "") {
     				alert("로그인 후 사용할 수 있는 서비스입니다.");
+    				return false;
     			} else {
     				location.href="<%= request.getContextPath() %>/cMainView.do";
+    				return true;
     			}
     		
     		}
