@@ -14,50 +14,20 @@
 <body>
 	<c:import url="/WEB-INF/views/user/common/menubar.jsp"/>
 
-   	<section class="banner_part">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-xl-6">
-                    <div class="banner_text">
-                        <div class="banner_text_iner">
-                            <h5>당신의 모든 취미를 클래스로 개설할 수 있습니다.</h5>
-                            <h1> 당신의 클래스를 <br>개설하세요 !</h1>
-                            <p>Replenish seasons may male hath fruit beast were seas saw you arrie said man beast whales
-                                his void unto last session for bite. Set have great you'll male grass yielding yielding
-                                man</p>
-                            <a href="#" class="btn_1">서비스 소개 </a>
-                            <a href="cMainView.do" class="btn_2">크리에이터 센터 </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-        <section class="member_counter">
+<section class="breadcrumb breadcrumb_bg">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_member_counter">
-                        <span class="counter">1024</span>
-                        <h4>모든 튜터</h4>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_member_counter">
-                        <span class="counter">123</span>
-                        <h4>모든 회원</h4>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_member_counter">
-                        <span class="counter">1020</span>
-                        <h4>온라인 강의</h4>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_member_counter">
-                        <span class="counter">820</span>
-                        <h4>오프라인 강의</h4>
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner text-center">
+                        <div class="breadcrumb_iner_item">
+                            <div class="banner_text_iner">
+                            <h5 style="color:white;">당신의 모든 취미를 클래스로 개설할 수 있습니다.</h5>
+                            <h1> 당신의 클래스를 <br>개설하세요 !</h1>
+                            <a href="#" class="btn_1">서비스 소개 </a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="cMainView.do" class="btn_2">크리에이터 센터 </a>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -272,6 +242,36 @@
                             </div>
                         </div>
 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+            <section class="member_counter">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_member_counter">
+                        <span class="counter">1024</span>
+                        <h4>모든 튜터</h4>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_member_counter">
+                        <span class="counter">123</span>
+                        <h4>모든 회원</h4>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_member_counter">
+                        <span class="counter">1020</span>
+                        <h4>온라인 강의</h4>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_member_counter">
+                        <span class="counter">820</span>
+                        <h4>오프라인 강의</h4>
                     </div>
                 </div>
             </div>
