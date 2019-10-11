@@ -27,9 +27,6 @@
     <!-- style CSS -->
     <link rel="stylesheet" href="resources/user/css/style.css">
     <style>
-    .button-image{
-        padding-left: 0px;
-    }
     ul li{
     	width:90px;
     }
@@ -84,7 +81,7 @@
                                 </li>
                                 <c:if test="${ empty sessionScope.loginUser }">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="cMainView.do">크리에이터<br>센터</a>
+                                    <a class="nav-link" href="cMainView.do" onclick="return loginCheck()">크리에이터<br>센터</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="joinForm.do">회원가입</a>
@@ -112,7 +109,19 @@
             </div>
         </div>
     </header>
-    
+     <script>
+  		function loginCheck() {
+  			
+  			if ( '${ loginUser.memNum }' == "") {
+  				alert("로그인 후 사용할 수 있는 서비스입니다.");
+  				return false;
+  			} else {
+  				location.href="<%= request.getContextPath() %>/cMainView.do";
+  				return true;
+  			}
+  		
+  		}
+  	</script>
     <!-- jquery plugins here-->
     <!-- jquery -->
     <script src="resources/user/js/jquery-1.12.1.min.js"></script>

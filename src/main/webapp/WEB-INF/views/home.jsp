@@ -23,9 +23,6 @@
                             <div class="banner_text_iner">
                             <h5 style="color:white;">당신의 모든 취미를 클래스로 개설할 수 있습니다.</h5>
                             <h1> 당신의 클래스를 <br>개설하세요 !</h1>
-                            <p>Replenish seasons may male hath fruit beast were seas saw you arrie said man beast whales
-                                his void unto last session for bite. Set have great you'll male grass yielding yielding
-                                man</p>
                             <a href="#" class="btn_1">View Course </a>
                             <a href="cMainView.do" class="btn_2" onclick="return loginCheck()">Get Started </a>
                         </div>
@@ -48,37 +45,6 @@
     		
     		}
     	</script>
-   
-        <section class="member_counter">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_member_counter">
-                        <span class="counter">1024</span>
-                        <h4>모든 튜터</h4>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_member_counter">
-                        <span class="counter">123</span>
-                        <h4>모든 회원</h4>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_member_counter">
-                        <span class="counter">1020</span>
-                        <h4>온라인 강의</h4>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_member_counter">
-                        <span class="counter">820</span>
-                        <h4>오프라인 강의</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
      <section class="special_cource padding_top">
         <div class="container">
             <div class="row justify-content-center">

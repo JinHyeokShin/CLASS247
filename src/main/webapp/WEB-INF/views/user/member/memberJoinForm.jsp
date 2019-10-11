@@ -91,7 +91,7 @@
    				</tr>
       			</table>
 	            <div style="text-align : left;">
-	            	  	&nbsp;
+	            	  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	            	<label for="M"><input type="radio" name="memGender" value="M" id="M">남</label>
 	            	&nbsp;&nbsp;&nbsp;&nbsp;    	
 	           		<label for="F"><input type="radio"	name="memGender" value="F" id="F">여</label>		
