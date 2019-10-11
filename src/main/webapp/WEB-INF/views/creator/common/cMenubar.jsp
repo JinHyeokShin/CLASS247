@@ -12,7 +12,7 @@
     <meta name="keywords" content="au theme template">
 	
 	<!-- Title Page-->
-    <title>Dashboard 2</title>
+    <title>CreatorCenter Menubar</title>
 
     <!-- Fontfaces CSS-->
     <link href="<c:url value="/resources/creator/css/font-face.css"/>" rel="stylesheet" media="all">
@@ -66,7 +66,7 @@
                             <i class="fas fas fa-user"></i>크리에이터 정보</a>
                         </li>
                         <li class="active has-sub">
-                            <a class="js-arrow" href="coManageView.do">
+                            <a class="js-arrow" href="">
                                 <i class="fas fa-th-large"></i>내 클래스
                                 <span class="arrow">
                                     <i class="fas fa-angle-down"></i>
@@ -78,7 +78,7 @@
                                         <i class="fab fa-flickr"></i>클래스 신청</a>
                                 </li>
                                 <li>
-                                    <a href="index2.html">
+                                    <a href="coManageView.do">
                                         <i class="fas fa-th-large"></i>클래스 관리</a>
                                 </li>
                                 <li>

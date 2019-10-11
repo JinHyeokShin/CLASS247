@@ -1,12 +1,11 @@
-package com.ourcompany.class247.creator.creator.model.service;
+package com.ourcompany.class247.creator.model.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ourcompany.class247.course.model.vo.Course;
-import com.ourcompany.class247.creator.creator.model.dao.CreatorDao;
-import com.ourcompany.class247.creator.creator.model.vo.Creator;
-import com.ourcompany.class247.creator.creator.model.vo.CreatorAttachment;
+import com.ourcompany.class247.creator.model.dao.CreatorDao;
+import com.ourcompany.class247.creator.model.vo.Creator;
+import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 
 @Service("creService")
 public class CreatorServiceImpl implements CreatorService{

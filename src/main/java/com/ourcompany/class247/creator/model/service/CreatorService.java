@@ -1,7 +1,7 @@
-package com.ourcompany.class247.creator.creator.model.service;
+package com.ourcompany.class247.creator.model.service;
 
-import com.ourcompany.class247.creator.creator.model.vo.Creator;
-import com.ourcompany.class247.creator.creator.model.vo.CreatorAttachment;
+import com.ourcompany.class247.creator.model.vo.Creator;
+import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 
 public interface CreatorService {
 	

@@ -9,8 +9,8 @@
 	
 	<typeAliases> <!-- 변수명으로 저장하는곳 ㅇㅇ -->
 		<typeAlias type="com.ourcompany.class247.member.model.vo.Member" alias="Member"/>
-		<typeAlias type="com.ourcompany.class247.creator.creator.model.vo.Creator" alias="Creator"/>
-		<typeAlias type="com.ourcompany.class247.creator.creator.model.vo.CreatorAttachment" alias="CreatorAttachment"/>
+		<typeAlias type="com.ourcompany.class247.creator.model.vo.Creator" alias="Creator"/>
+		<typeAlias type="com.ourcompany.class247.creator.model.vo.CreatorAttachment" alias="CreatorAttachment"/>
 	</typeAliases>
 	
 	
