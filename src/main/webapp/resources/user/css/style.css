@@ -111,7 +111,7 @@ input:hover, input:focus {
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
   /* line 48, E:/172 Etrain Education/172_Etrain_Education_html/sass/_common.scss */
   .padding_top {
-    padding-top: 40px;
+    padding-top: 80px;
   }
 }
 
@@ -2186,8 +2186,13 @@ ul {
 
 /* line 38, E:/172 Etrain Education/172_Etrain_Education_html/sass/_menu.scss */
 .main_menu .main-menu-item ul li .nav-link {
+<<<<<<< HEAD
   color: white;
   font-size: 13px;
+=======
+  color: black;
+  font-size: 11px;
+>>>>>>> parent of ee28f55... 메뉴바 크리에이터센터 추가 및 글씨 크기, li크기 조정
   padding-right: 9px;
   padding-left: 9px;
   font-family: 'Noto Sans KR', sans-serif;
