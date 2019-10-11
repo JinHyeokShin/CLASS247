@@ -8,10 +8,39 @@ public class Creator {
 	private String career;
 	private String education;
 	private String certification;
+	private String creStatus;
 	
 	public Creator() {
 		
 	}
+	
+	
+
+	public Creator(int creNum, int memNum, String introduction, String career, String education, String certification,
+			String creStatus) {
+		super();
+		this.creNum = creNum;
+		this.memNum = memNum;
+		this.introduction = introduction;
+		this.career = career;
+		this.education = education;
+		this.certification = certification;
+		this.creStatus = creStatus;
+	}
+
+	
+
+	public String getCreStatus() {
+		return creStatus;
+	}
+
+
+
+	public void setCreStatus(String creStatus) {
+		this.creStatus = creStatus;
+	}
+
+
 
 	public int getCreNum() {
 		return creNum;
@@ -61,13 +90,13 @@ public class Creator {
 		this.certification = certification;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Creator [creNum=" + creNum + ", memNum=" + memNum + ", introduction=" + introduction + ", career="
-				+ career + ", education=" + education + ", certification=" + certification + "]";
-	} 
-	
-	
-	
+				+ career + ", education=" + education + ", certification=" + certification + ", creStatus=" + creStatus
+				+ "]";
+	}
 
 }

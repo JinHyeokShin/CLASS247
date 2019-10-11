@@ -48,4 +48,14 @@ public class CreatorServiceImpl implements CreatorService{
 	}
 
 
+
+	/** 크리에이터 로그인 
+	 *
+	 */
+	@Override
+	public Creator getCreator(int memNum) {
+		return creDao.getCreator(memNum);
+	}
+
+
 }

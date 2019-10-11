@@ -66,7 +66,7 @@
                             <i class="fas fas fa-user"></i>크리에이터 정보</a>
                         </li>
                         <li class="active has-sub">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow" href="coManageView.do">
                                 <i class="fas fa-th-large"></i>내 클래스
                                 <span class="arrow">
                                     <i class="fas fa-angle-down"></i>

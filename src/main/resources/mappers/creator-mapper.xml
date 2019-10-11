@@ -4,7 +4,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="creatorMapper">
 
+	<resultMap id="creatorResultSet" type="Creator">
+		<id property="creNum" column="cre_num"/>
+		<result property="memNum" column="mem_num"/>
+		<result property="introduction" column="introduction"/>
+		<result property="career" column="career"/>
+		<result property="education" column="education"/>
+		<result property="certification" column="certification"/>
+		<result property="creStatus" column="cre_status"/>	
+	</resultMap>
 
+	<select id="selectCreator" parameterType="_int" resultMap="creatorResultSet">
+		select *
+		from creator 
+		where mem_num=#{memNum}
+	</select>
 
 	<select id="selectCreNum" parameterType="_int" resultType="_int">
 		select cre_num 

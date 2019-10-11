@@ -45,5 +45,9 @@ public class CreatorDao {
 	public int insertID(CreatorAttachment ca) {
 		return sqlSession.insert("creatorMapper.insertID", ca);
 	}
+	
+	public Creator getCreator(int memNum) {
+		return sqlSession.selectOne("creatorMapper.selectCreator", memNum);
+	}
 
 }

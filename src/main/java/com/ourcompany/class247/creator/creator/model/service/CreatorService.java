@@ -4,6 +4,8 @@ import com.ourcompany.class247.creator.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.creator.model.vo.CreatorAttachment;
 
 public interface CreatorService {
+	
+	Creator getCreator(int memNum);
 
 	int insertCreator(Creator creator);
 	

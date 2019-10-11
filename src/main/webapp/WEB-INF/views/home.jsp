@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.ourcompany.class247.member.model.vo.Member"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+
 
 <html>
 <head>
@@ -27,13 +27,26 @@
                                 his void unto last session for bite. Set have great you'll male grass yielding yielding
                                 man</p>
                             <a href="#" class="btn_1">View Course </a>
-                            <a href="cMainView.do" class="btn_2">Get Started </a>
+                            <a class="btn_2" onclick="loginCheck()">Get Started </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    
+    	<script>
+    		function loginCheck() {
+    			
+    			if ( '${ loginUser.memNum }' == "") {
+    				alert("로그인 후 사용할 수 있는 서비스입니다.");
+    			} else {
+    				location.href="<%= request.getContextPath() %>/cMainView.do";
+    			}
+    		
+    		}
+    	</script>
+   
         <section class="member_counter">
         <div class="container">
             <div class="row">

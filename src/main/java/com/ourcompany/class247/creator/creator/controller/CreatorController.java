@@ -6,22 +6,43 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ourcompany.class247.creator.creator.model.service.CreatorService;
 import com.ourcompany.class247.creator.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.creator.model.vo.CreatorAttachment;
+import com.ourcompany.class247.member.model.vo.Member;
 
+@SessionAttributes("creator")
 @Controller
 public class CreatorController {
 	
 	@Autowired
 	private CreatorService creService;
+	
+	
+	@RequestMapping("cMainView.do")
+	public String goToMain(HttpSession session, Model model) { 
+		int userId = ((Member)session.getAttribute("loginUser")).getMemNum();
+		Creator creator = creService.getCreator(userId);
+		System.out.println("로그인 크리에이터는? : " + creator);
+		if(creator != null) {
+			model.addAttribute("creator", creator);
+			return "creator/creatorCenter";
+		} else {
+			return "creator/test";
+		}
+		
+		
+	}
 
 	
 	/** 1. 크리에이터 신청 폼으로 이동 
