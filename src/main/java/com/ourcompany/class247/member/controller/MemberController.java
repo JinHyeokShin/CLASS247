@@ -97,7 +97,7 @@ public class MemberController {
 
 			session.setAttribute("loginUser", loginUser);
 			System.out.println(session);
-			mv.setViewName("home");
+			mv.setViewName("redirect:home.do");
 			
 		}else {
 			session.setAttribute("msg", "로그인에 실패하였습니다.");
@@ -119,7 +119,7 @@ public class MemberController {
 		
 		session.removeAttribute("loginUser");
 		
-		mv.setViewName("home");
+		mv.setViewName("redirect:home.do");
 		return mv;
 	}
 }
