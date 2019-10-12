@@ -42,7 +42,7 @@ public class CreatorController {
 			model.addAttribute("creator", creator);
 			return "creator/creatorCenter";
 		} else {
-			return "creator/test";
+			return "creator/noCreatorPage";
 		}
 		
 		
