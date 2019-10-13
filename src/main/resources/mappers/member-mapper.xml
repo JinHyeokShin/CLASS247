@@ -3,5 +3,31 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="memberMapper">
+
+	<resultMap type="Member" id="memberResultSet">
+		<id property="memNum" column="mem_num"/>
+		<result property="memId" column="mem_id"/>
+		<result property="memPwd" column="mem_pwd"/>
+		<result property="memName" column="mem_name"/>
+		<result property="memNickName" column="mem_nickname"/>
+		<result property="memGender" column="mem_gender"/>
+		<result property="memPhone" column="mem_phone"/>
+		<result property="memAddress" column="mem_address"/>
+		<result property="memType" column="mem_type"/>
+		<result property="memStatus" column="mem_status"/>
+		<result property="memEnrollDate" column="enroll_date"/>
+		<result property="memOutDate" column="out_date"/>
+	</resultMap>
 	
+	 <!-- 1. 로그인 -->
+	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
+		select *
+		from member
+		where mem_id=#{memId} and mem_status='Y'
+	</select>
+	<!-- 2. 회원가입 -->
+	<insert id="insertMember" parameterType="Member" >
+		insert into member 
+		values(MEMBER_SEQ.NEXTVAL,#{memId},#{memPwd},#{memNickName},#{memName},#{memGender},#{memPhone},#{memAddress},1,default,default,null)
+	</insert>
 </mapper>
