@@ -94,11 +94,20 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) { // 로그인에 성공했을 경우
-
+			
 			session.setAttribute("loginUser", loginUser);
-			System.out.println(session);
+			System.out.println(loginUser);
+			if(loginUser.getMemType() == 1 ) {
+				
+				System.out.println("실행");
+				
+				mv.setViewName("redirect:adminMain.do");
+				
+			}else {
+			
 			mv.setViewName("redirect:home.do");
 			
+			}
 		}else {
 			session.setAttribute("msg", "로그인에 실패하였습니다.");
 			mv.setViewName("common/errorPage");
