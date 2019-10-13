@@ -2141,6 +2141,7 @@ ul {
   top: 0;
   width: 100%;
   z-index: 999;
+  background-color:black;
 }
 
 /* line 8, E:/172 Etrain Education/172_Etrain_Education_html/sass/_menu.scss */
@@ -2207,7 +2208,7 @@ ul {
 
 /* line 46, E:/172 Etrain Education/172_Etrain_Education_html/sass/_menu.scss */
 .main_menu .main-menu-item ul li .nav-link:hover {
-  color: purple;
+  color: rgb(149,76,188);
 }
 
 /* line 51, E:/172 Etrain Education/172_Etrain_Education_html/sass/_menu.scss */
@@ -2439,7 +2440,7 @@ ul {
   position: fixed;
   z-index: 9999 !important;
   width: 100%;
-  background-color: #fff;
+  background-color: black;
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.05);
   top: 0;
 }
@@ -2456,7 +2457,7 @@ ul {
 
 /* line 299, E:/172 Etrain Education/172_Etrain_Education_html/sass/_menu.scss */
 .menu_fixed .main-menu-item ul li .nav-link {
-  color: black;
+  color: white;
 }
 
 /**************** banner part css start ****************/
