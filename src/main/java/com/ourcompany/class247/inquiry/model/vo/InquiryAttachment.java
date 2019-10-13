@@ -6,19 +6,19 @@ public class InquiryAttachment {
 	private int inquiryNum;
 	private String iaOName;
 	private String iaRName;
-	private String caPath;
+	private String iaPaht;
 	
 	public InquiryAttachment() {
 		
 	}
 
-	public InquiryAttachment(int iaNum, int inquiryNum, String iaOName, String iaRName, String caPath) {
+	public InquiryAttachment(int iaNum, int inquiryNum, String iaOName, String iaRName, String iaPaht) {
 		super();
 		this.iaNum = iaNum;
 		this.inquiryNum = inquiryNum;
 		this.iaOName = iaOName;
 		this.iaRName = iaRName;
-		this.caPath = caPath;
+		this.iaPaht = iaPaht;
 	}
 
 	public int getIaNum() {
@@ -53,20 +53,19 @@ public class InquiryAttachment {
 		this.iaRName = iaRName;
 	}
 
-	public String getCaPath() {
-		return caPath;
+	public String getIaPaht() {
+		return iaPaht;
 	}
 
-	public void setCaPath(String caPath) {
-		this.caPath = caPath;
+	public void setIaPaht(String iaPaht) {
+		this.iaPaht = iaPaht;
 	}
 
 	@Override
 	public String toString() {
 		return "InquiryAttachment [iaNum=" + iaNum + ", inquiryNum=" + inquiryNum + ", iaOName=" + iaOName
-				+ ", iaRName=" + iaRName + ", caPath=" + caPath + "]";
+				+ ", iaRName=" + iaRName + ", iaPaht=" + iaPaht + "]";
 	}
 	
 	
-
 }

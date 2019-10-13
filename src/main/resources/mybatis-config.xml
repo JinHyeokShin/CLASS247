@@ -9,9 +9,13 @@
 	
 	<typeAliases> <!-- 변수명으로 저장하는곳 ㅇㅇ -->
 		<typeAlias type="com.ourcompany.class247.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.ourcompany.class247.creator.model.vo.Creator" alias="Creator"/>
+		<typeAlias type="com.ourcompany.class247.creator.model.vo.CreatorAttachment" alias="CreatorAttachment"/>
 	</typeAliases>
+	
 	
 	<mappers> <!-- 매퍼 지정 -->
 		<mapper resource="mappers/member-mapper.xml" />
+		<mapper resource="mappers/creator-mapper.xml"/>
 	</mappers>
 </configuration>

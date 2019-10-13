@@ -2,7 +2,7 @@ package com.ourcompany.class247.review.model.vo;
 
 public class ReviewAttachment {
 	
-	private int rNum;
+	private int raNum;
 	private int reviewNum;
 	private int revReplyNum;
 	private String raOName;
@@ -13,9 +13,9 @@ public class ReviewAttachment {
 		
 	}
 
-	public ReviewAttachment(int rNum, int reviewNum, int revReplyNum, String raOName, String raRName, String raPath) {
+	public ReviewAttachment(int raNum, int reviewNum, int revReplyNum, String raOName, String raRName, String raPath) {
 		super();
-		this.rNum = rNum;
+		this.raNum = raNum;
 		this.reviewNum = reviewNum;
 		this.revReplyNum = revReplyNum;
 		this.raOName = raOName;
@@ -23,12 +23,12 @@ public class ReviewAttachment {
 		this.raPath = raPath;
 	}
 
-	public int getrNum() {
-		return rNum;
+	public int getRaNum() {
+		return raNum;
 	}
 
-	public void setrNum(int rNum) {
-		this.rNum = rNum;
+	public void setRaNum(int raNum) {
+		this.raNum = raNum;
 	}
 
 	public int getReviewNum() {
@@ -73,11 +73,8 @@ public class ReviewAttachment {
 
 	@Override
 	public String toString() {
-		return "ReviewAttachment [rNum=" + rNum + ", reviewNum=" + reviewNum + ", revReplyNum=" + revReplyNum
+		return "ReviewAttachment [raNum=" + raNum + ", reviewNum=" + reviewNum + ", revReplyNum=" + revReplyNum
 				+ ", raOName=" + raOName + ", raRName=" + raRName + ", raPath=" + raPath + "]";
 	}
 	
-	
-	
-
 }

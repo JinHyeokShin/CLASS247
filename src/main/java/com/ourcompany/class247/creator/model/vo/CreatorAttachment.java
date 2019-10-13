@@ -3,22 +3,22 @@ package com.ourcompany.class247.creator.model.vo;
 public class CreatorAttachment {
 	
 	private int craNum;
-	private int memNum;
-	private String craOName;
-	private String craRName;
+	private int creNum;
+	private String craOname;
+	private String craRname;
 	private int craLevel;
 	private String craPath;
 	
 	public CreatorAttachment() {
 		
 	}
-
-	public CreatorAttachment(int craNum, int memNum, String craOName, String craRName, int craLevel, String craPath) {
+	
+	public CreatorAttachment(int craNum, int creNum, String craOname, String craRname, int craLevel, String craPath) {
 		super();
 		this.craNum = craNum;
-		this.memNum = memNum;
-		this.craOName = craOName;
-		this.craRName = craRName;
+		this.creNum = creNum;
+		this.craOname = craOname;
+		this.craRname = craRname;
 		this.craLevel = craLevel;
 		this.craPath = craPath;
 	}
@@ -31,28 +31,28 @@ public class CreatorAttachment {
 		this.craNum = craNum;
 	}
 
-	public int getMemNum() {
-		return memNum;
+	public int getCreNum() {
+		return creNum;
 	}
 
-	public void setMemNum(int memNum) {
-		this.memNum = memNum;
+	public void setCreNum(int creNum) {
+		this.creNum = creNum;
 	}
 
-	public String getCraOName() {
-		return craOName;
+	public String getCraOname() {
+		return craOname;
 	}
 
-	public void setCraOName(String craOName) {
-		this.craOName = craOName;
+	public void setCraOname(String craOname) {
+		this.craOname = craOname;
 	}
 
-	public String getCraRName() {
-		return craRName;
+	public String getCraRname() {
+		return craRname;
 	}
 
-	public void setCraRName(String craRName) {
-		this.craRName = craRName;
+	public void setCraRname(String craRname) {
+		this.craRname = craRname;
 	}
 
 	public int getCraLevel() {
@@ -73,10 +73,9 @@ public class CreatorAttachment {
 
 	@Override
 	public String toString() {
-		return "CreatorAttachment [craNum=" + craNum + ", memNum=" + memNum + ", craOName=" + craOName + ", craRName="
-				+ craRName + ", craLevel=" + craLevel + ", craPath=" + craPath + "]";
+		return "CreatorAttachment [craNum=" + craNum + ", creNum=" + creNum + ", craOname=" + craOname + ", craRname="
+				+ craRname + ", craLevel=" + craLevel + ", craPath=" + craPath + "]";
 	}
-	
 	
 	
 	

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="creatorMapper">
+
+	<resultMap id="creatorResultSet" type="Creator">
+		<id property="creNum" column="cre_num"/>
+		<result property="memNum" column="mem_num"/>
+		<result property="introduction" column="introduction"/>
+		<result property="career" column="career"/>
+		<result property="education" column="education"/>
+		<result property="certification" column="certification"/>
+		<result property="creStatus" column="cre_status"/>	
+	</resultMap>
+
+	<select id="selectCreator" parameterType="_int" resultMap="creatorResultSet">
+		select *
+		from creator 
+		where mem_num=#{memNum}
+	</select>
+
+	<select id="selectCreNum" parameterType="_int" resultType="_int">
+		select cre_num 
+		from creator
+		where mem_num=#{memNum}
+	</select>
+
+	<insert id="insertCreator" parameterType="Creator">
+		insert into creator 
+		values(creator_seq.nextval, #{memNum}, #{introduction}, #{career}, #{education}, #{certification}, default)
+	</insert>
+
+	<insert id="insertProfile" parameterType="CreatorAttachment">
+		insert into creator_attachment 
+		values(creator_attachment_seq.nextval, #{creNum}, #{craOname}, #{craRname}, 0, #{craPath})
+	</insert>
+
+	<insert id="insertID" parameterType="CreatorAttachment">
+		insert into creator_attachment
+		values(creator_attachment_seq.nextval, #{creNum}, #{craOname}, #{craRname}, 1, #{craPath})
+	</insert>
+
+
+</mapper>
