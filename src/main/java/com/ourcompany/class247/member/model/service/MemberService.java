@@ -15,4 +15,10 @@ public interface MemberService {
 	 * @return
 	 */
 	int insertMember(Member m);
+	
+	/** 3. 회원 정보 수정 서비스를 위한 메소드
+	 * @param m
+	 * @return
+	 */
+	int updateMember(Member m);
 }

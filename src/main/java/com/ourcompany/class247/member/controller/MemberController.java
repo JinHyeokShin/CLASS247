@@ -132,5 +132,28 @@ public class MemberController {
 		return "user/member/myPage";
 	}
 	
-	
+	/**
+	 * 7. 회원정보수정페이지폼으로 이동.
+	 * @return
+	 */
+	@RequestMapping("memUpdate.do")
+	public String memUpdate(Member m, Model model, @RequestParam("mempwd") String mempwd,
+			@RequestParam("memnickname") String memnickname, @RequestParam("memphone") String memphone,
+			@RequestParam("post") String post, 
+			@RequestParam("address1") String address1, @RequestParam("address2") String address2) {
+		if(!post.equals("")) { //주소 작성해서 값이 넘어왔을 경우
+			m.setMemAddress(post+","+address1+","+address2);	
+		}
+		
+		int result = mService.updateMember(m);
+		
+		if(result >0) {
+			model.addAttribute("loginUser", m);
+			return "user/member/myPage";
+		}else {
+			model.addAttribute("msg", "회원정보수정실패");
+			return "common/errorPage";
+		}
+		
+		}
 }
