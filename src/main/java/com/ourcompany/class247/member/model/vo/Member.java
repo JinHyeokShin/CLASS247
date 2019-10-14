@@ -5,8 +5,7 @@ import java.sql.Date;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
+
 public class Member {
 	
 	private int memNum;				//회원번호
@@ -17,7 +16,7 @@ public class Member {
 	private String memGender;		//성별
 	private String memPhone;		//핸드폰번호
 	private String memAddress;		// 주소
-	private int memType;			//사용자구분자
+	private int memType;			//사용자구분자 관리자:0 사용자:1
 	private Date memEnrollDate;		//가입일자	
 	private Date memOutDate;		//탈퇴일자
 	private String memStatus;		//상태값
@@ -146,7 +145,6 @@ public class Member {
 				+ memAddress + ", memType=" + memType + ", memEnrollDate=" + memEnrollDate + ", memOutDate="
 				+ memOutDate + ", memStatus=" + memStatus + "]";
 	}
-	
-	
-	
+
+
 }

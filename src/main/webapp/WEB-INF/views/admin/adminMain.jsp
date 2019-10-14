@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -38,6 +39,10 @@
 </head>
 
 <body class="animsition">
+
+	<c:import url="common/aMenubar.jsp"/>
+
+
     <div class="page-wrapper">
        
         <!-- PAGE CONTAINER-->
@@ -64,7 +69,7 @@
                                             </div>
                                             <div class="mess__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-06.jpg" alt="Michelle Moreno" />
+                                                    <img src="<%= request.getContextPath() %>/resources/admin/images/icon/avatar-06.jpg" alt="Michelle Moreno" />
                                                 </div>
                                                 <div class="content">
                                                     <h6>Michelle Moreno</h6>
@@ -74,7 +79,7 @@
                                             </div>
                                             <div class="mess__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-04.jpg" alt="Diane Myers" />
+                                                    <img src="<%= request.getContextPath() %>/resources/admin/images/icon/avatar-04.jpg" alt="Diane Myers" />
                                                 </div>
                                                 <div class="content">
                                                     <h6>Diane Myers</h6>
@@ -96,7 +101,7 @@
                                             </div>
                                             <div class="email__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
+                                                    <img src="<%= request.getContextPath() %>/resources/admin/images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
                                                 </div>
                                                 <div class="content">
                                                     <p>Meeting about new dashboard...</p>
@@ -105,7 +110,7 @@
                                             </div>
                                             <div class="email__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
+                                                    <img src="<%= request.getContextPath() %>/resources/admin/images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
                                                 </div>
                                                 <div class="content">
                                                     <p>Meeting about new dashboard...</p>
@@ -114,7 +119,7 @@
                                             </div>
                                             <div class="email__item">
                                                 <div class="image img-cir img-40">
-                                                    <img src="images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
+                                                    <img src="<%= request.getContextPath() %>/resources/admin/images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
                                                 </div>
                                                 <div class="content">
                                                     <p>Meeting about new dashboard...</p>
@@ -169,7 +174,7 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                            <img src="<%= request.getContextPath() %>/resources/admin/images/icon/avatar-01.jpg" alt="John Doe" />
                                         </div>
                                         <div class="content">
                                             <a class="js-acc-btn" href="#">john doe</a>
@@ -178,7 +183,7 @@
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                                        <img src="<%= request.getContextPath() %>/resources/admin/images/icon/avatar-01.jpg" alt="John Doe" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
@@ -591,7 +596,7 @@
                                                         <div class="au-message__item-text">
                                                             <div class="avatar-wrap">
                                                                 <div class="avatar">
-                                                                    <img src="images/icon/avatar-02.jpg" alt="John Smith">
+                                                                    <img src="<%= request.getContextPath() %>/resources/admin/images/icon/avatar-02.jpg" alt="John Smith">
                                                                 </div>
                                                             </div>
                                                             <div class="text">
@@ -609,7 +614,7 @@
                                                         <div class="au-message__item-text">
                                                             <div class="avatar-wrap online">
                                                                 <div class="avatar">
-                                                                    <img src="images/icon/avatar-03.jpg" alt="Nicholas Martinez">
+                                                                    <img src="<%= request.getContextPath() %>/resources/admin/images/icon/avatar-03.jpg" alt="Nicholas Martinez">
                                                                 </div>
                                                             </div>
                                                             <div class="text">
@@ -627,7 +632,7 @@
                                                         <div class="au-message__item-text">
                                                             <div class="avatar-wrap online">
                                                                 <div class="avatar">
-                                                                    <img src="images/icon/avatar-04.jpg" alt="Michelle Sims">
+                                                                    <img src="<%= request.getContextPath() %>/resources/admin/images/icon/avatar-04.jpg" alt="Michelle Sims">
                                                                 </div>
                                                             </div>
                                                             <div class="text">
@@ -645,7 +650,7 @@
                                                         <div class="au-message__item-text">
                                                             <div class="avatar-wrap">
                                                                 <div class="avatar">
-                                                                    <img src="images/icon/avatar-05.jpg" alt="Michelle Sims">
+                                                                    <img src="<%= request.getContextPath() %>/resources/admin/images/icon/avatar-05.jpg" alt="Michelle Sims">
                                                                 </div>
                                                             </div>
                                                             <div class="text">
@@ -663,7 +668,7 @@
                                                         <div class="au-message__item-text">
                                                             <div class="avatar-wrap online">
                                                                 <div class="avatar">
-                                                                    <img src="images/icon/avatar-04.jpg" alt="Michelle Sims">
+                                                                    <img src="<%= request.getContextPath() %>/resources/admin/images/icon/avatar-04.jpg" alt="Michelle Sims">
                                                                 </div>
                                                             </div>
                                                             <div class="text">
@@ -681,7 +686,7 @@
                                                         <div class="au-message__item-text">
                                                             <div class="avatar-wrap">
                                                                 <div class="avatar">
-                                                                    <img src="images/icon/avatar-05.jpg" alt="Michelle Sims">
+                                                                    <img src="<%= request.getContextPath() %>/resources/admin/images/icon/avatar-05.jpg" alt="Michelle Sims">
                                                                 </div>
                                                             </div>
                                                             <div class="text">
@@ -704,7 +709,7 @@
                                                 <div class="au-chat-info">
                                                     <div class="avatar-wrap online">
                                                         <div class="avatar avatar--small">
-                                                            <img src="images/icon/avatar-02.jpg" alt="John Smith">
+                                                            <img src="<%= request.getContextPath() %>/resources/admin/images/icon/avatar-02.jpg" alt="John Smith">
                                                         </div>
                                                     </div>
                                                     <span class="nick">
@@ -717,7 +722,7 @@
                                                     <span class="mess-time">12 Min ago</span>
                                                     <div class="recei-mess__inner">
                                                         <div class="avatar avatar--tiny">
-                                                            <img src="images/icon/avatar-02.jpg" alt="John Smith">
+                                                            <img src="<%= request.getContextPath() %>/resources/admin/images/icon/avatar-02.jpg" alt="John Smith">
                                                         </div>
                                                         <div class="recei-mess-list">
                                                             <div class="recei-mess">Lorem ipsum dolor sit amet, consectetur adipiscing elit non iaculis</div>
