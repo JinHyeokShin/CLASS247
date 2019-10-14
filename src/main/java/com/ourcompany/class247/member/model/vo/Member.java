@@ -16,7 +16,7 @@ public class Member {
 	private String memGender;		//성별
 	private String memPhone;		//핸드폰번호
 	private String memAddress;		// 주소
-	private int memType;			//사용자구분자 관리자:0 사용자:1
+	private String memType;			//사용자구분자 관리자:a 사용자:u
 	private Date memEnrollDate;		//가입일자	
 	private Date memOutDate;		//탈퇴일자
 	private String memStatus;		//상태값
@@ -26,7 +26,7 @@ public class Member {
 	}
 
 	public Member(int memNum, String memId, String memPwd, String memNickName, String memName, String memGender,
-			String memPhone, String memAddress, int memType, Date memEnrollDate, Date memOutDate, String memStatus) {
+			String memPhone, String memAddress, String memType, Date memEnrollDate, Date memOutDate, String memStatus) {
 		super();
 		this.memNum = memNum;
 		this.memId = memId;
@@ -106,11 +106,11 @@ public class Member {
 		this.memAddress = memAddress;
 	}
 
-	public int getMemType() {
+	public String getMemType() {
 		return memType;
 	}
 
-	public void setMemType(int memType) {
+	public void setMemType(String memType) {
 		this.memType = memType;
 	}
 
@@ -145,6 +145,6 @@ public class Member {
 				+ memAddress + ", memType=" + memType + ", memEnrollDate=" + memEnrollDate + ", memOutDate="
 				+ memOutDate + ", memStatus=" + memStatus + "]";
 	}
-
-
+	
+	
 }
