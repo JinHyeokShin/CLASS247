@@ -30,6 +30,17 @@
     ul li{
     	width:90px;
     }
+
+	.rating img{
+		margin: -1px;
+	    float: left;
+	    width:10px;
+	}
+/* 	.single_special_cource{
+		margin-left: 10px;
+	    margin-right: 10px;
+    } */
+
     </style>
 </head>
 
@@ -69,7 +80,7 @@
                                     <a class="nav-link" href="cource.html" margin-top="10px">인기/추천<br>강의</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link"  href="cource.html" margin-top="10px">카테고리</a>
+                                    <a class="nav-link" href="categoryList.do" margin-top="10px">카테고리</a>
         
                                 </li>
                                 <li class="nav-item dropdown">
