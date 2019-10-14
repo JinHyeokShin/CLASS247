@@ -122,4 +122,15 @@ public class MemberController {
 		mv.setViewName("redirect:home.do");
 		return mv;
 	}
+	
+	/**
+	 * 6. 마이페이지폼으로 이동.
+	 * @return
+	 */
+	@RequestMapping("myPage.do")
+	public String myPage() {
+		return "user/member/myPage";
+	}
+	
+	
 }
