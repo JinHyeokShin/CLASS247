@@ -31,6 +31,47 @@
                 ul li {
                     width: 90px;
                 }
+                
+                .rating img {
+                    margin: -1px;
+                    float: left;
+                    width: 10px;
+                }
+                /* 	.single_special_cource{
+		margin-left: 10px;
+	    margin-right: 10px;
+    } */
+            </style>
+        </head>
+
+        <head>
+            <!-- Required meta tags -->
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <title>CLASS 247 - 당신의 재능을 판매하세요</title>
+            <link rel="icon" href="resources/user/img/favicon.png">
+            <!-- Bootstrap CSS -->
+            <link rel="stylesheet" href="resources/user/css/bootstrap.min.css">
+            <!-- animate CSS -->
+            <link rel="stylesheet" href="resources/user/css/animate.css">
+            <!-- owl carousel CSS -->
+            <link rel="stylesheet" href="resources/user/css/owl.carousel.min.css">
+            <!-- themify CSS -->
+            <link rel="stylesheet" href="resources/user/css/themify-icons.css">
+            <!-- flaticon CSS -->
+            <link rel="stylesheet" href="resources/user/css/flaticon.css">
+            <!-- font awesome CSS -->
+            <link rel="stylesheet" href="resources/user/css/font-awesome.min.css">
+            <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:700&display=swap" rel="stylesheet">
+            <!-- <link rel="stylesheet" href="css/magnific-popup.css"> -->
+            <!-- swiper CSS -->
+            <link rel="stylesheet" href="resources/user/css/slick.css">
+            <!-- style CSS -->
+            <link rel="stylesheet" href="resources/user/css/style.css">
+            <style>
+                ul li {
+                    width: 90px;
+                }
             </style>
         </head>
 
@@ -48,13 +89,13 @@
                         </button>
 
                                 <div class="collapse navbar-collapse main-menu-item justify-content-end" id="navbarSupportedContent">
-                                    <ul class="navbar-nav align-items-center" align="center">
+                                    <ul class="navbar-nav align-items-center" align="center" width="100%">
                                         <li class="nav-item" style="margin-right:-30px; width : 23%;">
                                             <c:if test="${ !empty sessionScope.loginUser }">
-                                                <input type="text" style="font-size: 11px" class="form-control" placeholder='${ loginUser.memName }님 무엇을 배우고 싶으세요?'>
+                                                <input type="text" style="font-size: 11px" class="form-control" placeholder='${ loginUser.memName }님 무엇을 배우고 싶으세요?' onclick="gohome();">
                                             </c:if>
                                             <c:if test="${ empty sessionScope.loginUser }">
-                                                <input type="text" style="font-size: 11px" class="form-control" placeholder='무엇을 배우고 싶으세요?'>
+                                                <input type="text" style="font-size: 11px" class="form-control" placeholder='무엇을 배우고 싶으세요?' onclick="gohome();">
                                             </c:if>
                                         </li>
                                         <li style="margin-right : 60px;">
@@ -67,7 +108,7 @@
                                             <a class="nav-link" href="cource.html" margin-top="10px">인기/추천<br>강의</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="cource.html" margin-top="10px">카테고리</a>
+                                            <a class="nav-link" href="categoryList.do" margin-top="10px">카테고리</a>
 
                                         </li>
                                         <li class="nav-item dropdown">
@@ -84,11 +125,15 @@
                                             <li class="nav-item">
                                                 <a class="nav-link" href="joinForm.do">회원가입</a>
                                             </li>
+
                                             <li class="d-none d-lg-block">
                                                 <a class="btn_1" href="loginForm.do">Login</a>
                                             </li>
                                         </c:if>
                                         <c:if test="${ !empty sessionScope.loginUser }">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="cMainView.do">크리에이터<br>센터</a>
+                                            </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="myPage.do">MyPage</a>
                                             </li>
@@ -98,9 +143,9 @@
                                         </c:if>
                                     </ul>
                                 </div>
-                            </nav>
                         </div>
                     </div>
+                </div>
                 </div>
             </header>
             <script>
@@ -114,6 +159,10 @@
                         return true;
                     }
 
+                }
+
+                function gohome() {
+                    alert('안뇽');
                 }
             </script>
             <!-- jquery plugins here-->
