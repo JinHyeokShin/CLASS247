@@ -129,4 +129,46 @@ public class MemberController {
 		mv.setViewName("redirect:home.do");
 		return mv;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
+	 * 
+	 * 
+	 * 관리자용
+	 * 
+	 * 
+	 * 
+	 */
+	
+	@RequestMapping("aMemberList.do")
+	public String selectMemberList() {
+		
+		return "admin/member/memberList";
+	}
+	
 }

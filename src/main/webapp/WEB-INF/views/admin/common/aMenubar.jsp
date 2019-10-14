@@ -82,7 +82,7 @@
 							class="fas fa-users"></i>Member
 					</a>
 						<ul class="list-unstyled navbar__sub-list js-sub-list">
-							<li><a href="index.html">User</a></li>
+							<li><a href="aMemberList.do">User</a></li>
 							<li><a href="index2.html">Creator</a></li>
 							<li><a href="index3.html"><i class="far fa-check-square"></i>Await
 									Creator</a></li>
@@ -104,6 +104,25 @@
 
 					<li><a href="table.html"> <i class="fas fa-table"></i>Payment
 					</a></li>
+					<li class="has-sub"><a class="js-arrow" href="#"> <i
+							class="fas fa-copy"></i>EVENT
+					</a>
+						<ul class="list-unstyled navbar__sub-list js-sub-list">
+							<li><a href="aNoticeList.do">COUPONE</a></li>
+							<li><a href="aFAQList.do">POWER</a></li>
+							<li><a href="aFAQList.do">LOGO</a></li>
+						</ul></li>
+						
+					<li class="has-sub"><a class="js-arrow" href="#"> <i
+							class="fas fa-copy"></i>STATS
+					</a>
+						<ul class="list-unstyled navbar__sub-list js-sub-list">
+							<li><a href="aNoticeList.do">STATS</a></li>
+							<li><a href="aFAQList.do">STATS</a></li>
+							<li><a href="aFAQList.do">STATS</a></li>
+						</ul></li>
+						
+					
 
 
 
