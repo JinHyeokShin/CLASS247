@@ -53,10 +53,10 @@
                             <ul class="navbar-nav align-items-center" align="center" width="100%">
                                 <li class="nav-item" style="margin-right:-30px; width : 23%;">
                                 	<c:if test="${ !empty sessionScope.loginUser }">
-                                    <input type="text" style="font-size: 11px" class="form-control" placeholder='${ loginUser.memName }님 무엇을 배우고 싶으세요?'>       
+                                    <input type="text" style="font-size: 11px" class="form-control" placeholder='${ loginUser.memName }님 무엇을 배우고 싶으세요?' onclick="gohome();">       
                                 	</c:if>
                                 	<c:if test="${ empty sessionScope.loginUser }">
-                                    <input type="text" style="font-size: 11px" class="form-control" placeholder='무엇을 배우고 싶으세요?'>       
+                                    <input type="text" style="font-size: 11px" class="form-control" placeholder='무엇을 배우고 싶으세요?'onclick="gohome();">       
                                 	</c:if>
                                 </li>
                                 <li style="margin-right : 60px;">
@@ -120,6 +120,9 @@
   				return true;
   			}
   		
+  		}
+  		function gohome(){
+  			alert('안뇽');
   		}
   	</script>
     <!-- jquery plugins here-->
