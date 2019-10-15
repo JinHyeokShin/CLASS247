@@ -16,6 +16,12 @@
             <script src="resources/user/js/waypoints.min.js"></script>
 
         </head>
+        <style>
+        .special_img{
+        	width:100%;
+        	height:333px;
+        }
+        </style>
         <c:import url="/WEB-INF/views/user/common/menubar.jsp" />
 
         <body>
@@ -88,7 +94,7 @@
                     });
                 </script>
             </section>
-            <section class="special_cource padding_top">
+            <section class="special_cource padding_top" id="Mdrecom">
                 <div class="container">
                     <div class="row justify-content-left">
                         <div class="col-xl-5">

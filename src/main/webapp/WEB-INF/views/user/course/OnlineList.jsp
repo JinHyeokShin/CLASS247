@@ -17,6 +17,9 @@
 	<c:import url="/WEB-INF/views/user/common/menubar.jsp"/>
 	<section class="special_cource padding_top" style="padding-top:100px">
 		<div class="container" style="padding-bottom: 40px">
+			<hr>
+			<h1>온라인 클래스</h1>
+			<hr>
 			<div class="row justify-content-left">
 				<div class="col-xl-5">
 					<div class="section_tittle text-left">

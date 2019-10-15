@@ -102,20 +102,20 @@
                                             <button class="btn btn_1 primary small button-image" type="button"><i class="ti-search"></i></button>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="about.html">서비스 소개</a>
+                                            <a class="nav-link" href="about.html">공지사항</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="cource.html" margin-top="10px">인기/추천<br>강의</a>
+                                            <a class="nav-link" href="home.do/Mdrecom" margin-top="10px">인기/추천<br>클래스</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="categoryList.do" margin-top="10px">카테고리</a>
 
                                         </li>
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 강의</a>
+                                            <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">클래스</a>
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                <a class="dropdown-item" href="single-blog.html">온라인 강의</a>
-                                                <a class="dropdown-item" href="elements.html">오프라인 강의</a>
+                                                <a class="dropdown-item" href="goOnline.do">온라인 클래스</a>
+                                                <a class="dropdown-item" href="goOffline.do">오프라인 클래스</a>
                                             </div>
                                         </li>
                                         <c:if test="${ empty sessionScope.loginUser }">
