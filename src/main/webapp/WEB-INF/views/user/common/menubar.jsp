@@ -37,11 +37,10 @@
                     float: left;
                     width: 10px;
                 }
-                /* 	.single_special_cource{
-		margin-left: 10px;
-	    margin-right: 10px;
-    } */
-            </style>
+		        .special_cource_text{
+		        height:40%;
+		        }
+	        </style>
         </head>
 
         <head>
@@ -72,6 +71,43 @@
                 ul li {
                     width: 90px;
                 }
+                /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	        }
+	    
+	        /* Modal Content/Box */
+	        .modal-content {
+	            background-color: #fefefe;
+	            margin: 15% auto; /* 15% from the top and centered */
+	            padding: 20px;
+	            border: 1px solid #888;
+	            width: 50%; /* Could be more or less, depending on screen size */                          
+	        }
+	        /* The Close Button */
+	        .close {
+	            color: #aaa;
+	            float: right;
+	            text-align:right;
+	            font-size: 28px;
+	            font-weight: bold;
+	        }
+	        .close:hover,
+	        .close:focus {
+	            color: black;
+	            text-decoration: none;
+	            cursor: pointer;
+	        }
+                
             </style>
         </head>
 
@@ -90,32 +126,32 @@
 
                                 <div class="collapse navbar-collapse main-menu-item justify-content-end" id="navbarSupportedContent">
                                     <ul class="navbar-nav align-items-center" align="center" width="100%">
-                                        <li class="nav-item" style="margin-right:-30px; width : 23%;">
-                                            <c:if test="${ !empty sessionScope.loginUser }">
-                                                <input type="text" style="font-size: 11px" class="form-control" placeholder='${ loginUser.memName }님 무엇을 배우고 싶으세요?' onclick="gohome();">
+                                        <li class="nav-item" style="margin-right:-30px; width : 23%; margin-right:60px;" >
+                                       		<c:if test="${ !empty sessionScope.loginUser }">
+                                                <input type="text" style="font-size: 11px" class="form-control" placeholder='${ loginUser.memName }님 무엇을 배우고 싶으세요?' id="myBtn">
                                             </c:if>
                                             <c:if test="${ empty sessionScope.loginUser }">
-                                                <input type="text" style="font-size: 11px" class="form-control" placeholder='무엇을 배우고 싶으세요?' onclick="gohome();">
+                                                <input type="text" style="font-size: 11px" class="form-control" placeholder="무엇을 배우고 싶으세요?" id="myBtn">
                                             </c:if>
                                         </li>
-                                        <li style="margin-right : 60px;">
-                                            <button class="btn btn_1 primary small button-image" type="button"><i class="ti-search"></i></button>
+                                       <!--  <li style="margin-right : 60px;">
+                                            <button class="btn btn_1 primary small button-image" type="button" id="myBtn"><i class="ti-search" ></i></button>
+                                        </li> -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="about.html">공지사항</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="about.html">서비스 소개</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="cource.html" margin-top="10px">인기/추천<br>강의</a>
+                                            <a class="nav-link" href="home.do/Mdrecom" margin-top="10px">인기/추천<br>클래스</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="categoryList.do" margin-top="10px">카테고리</a>
 
                                         </li>
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 강의</a>
+                                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">클래스</a>
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                <a class="dropdown-item" href="single-blog.html">온라인 강의</a>
-                                                <a class="dropdown-item" href="elements.html">오프라인 강의</a>
+                                                <a class="dropdown-item" href="goOnline.do">온라인 클래스</a>
+                                                <a class="dropdown-item" href="goOffline.do">오프라인 클래스</a>
                                             </div>
                                         </li>
                                         <c:if test="${ empty sessionScope.loginUser }">
@@ -146,7 +182,43 @@
                         </div>
                     </div>
                 </div>
-                </div>
+                
+			    <!-- The Modal -->
+			    <div id="myModal" class="modal">
+			 <!-- Modal content -->
+			      <div class="modal-content">
+			        <span class="close">&times;</span>                                                               
+			        <p>Some text in the Modal..</p>
+			      </div>
+			 
+			    </div>
+                <script>
+                
+	                // Get the modal
+	                var modal = document.getElementById('myModal');
+	         
+	                // Get the button that opens the modal
+	                var btn = document.getElementById("myBtn");
+	                // Get the <span> element that closes the modal
+	                var span = document.getElementsByClassName("close")[0];                                          
+	         
+	                // When the user clicks on the button, open the modal 
+	                btn.onclick = function() {
+	                    modal.style.display = "block";
+	                }
+	         
+	                // When the user clicks on <span> (x), close the modal
+	                span.onclick = function() {
+	                    modal.style.display = "none";
+	                }
+	         
+	                // When the user clicks anywhere outside of the modal, close it
+	                window.onclick = function(event) {
+	                    if (event.target == modal) {
+	                        modal.style.display = "none";
+	                    }
+                }
+                </script>
             </header>
             <script>
                 function loginCheck() {
@@ -159,10 +231,6 @@
                         return true;
                     }
 
-                }
-
-                function gohome() {
-                    alert('안뇽');
                 }
             </script>
             <!-- jquery plugins here-->
