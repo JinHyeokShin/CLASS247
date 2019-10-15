@@ -13,6 +13,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="memGender" column="mem_gender"/>
 		<result property="memPhone" column="mem_phone"/>
 		<result property="memAddress" column="mem_address"/>
+		<result property="memProfileName" column="mem_profil_name"/>
+		<result property="memProfilePath" column="mem_profil_path"/>
 		<result property="memType" column="mem_type"/>
 		<result property="memStatus" column="mem_status"/>
 		<result property="memEnrollDate" column="enroll_date"/>
@@ -28,6 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 2. 회원가입 -->
 	<insert id="insertMember" parameterType="Member" >
 		insert into member 
-		values(MEMBER_SEQ.NEXTVAL,#{memId},#{memPwd},#{memNickName},#{memName},#{memGender},#{memPhone},#{memAddress},0,default,default,null)
+		values(MEMBER_SEQ.NEXTVAL,#{memId},#{memPwd},#{memNickName},#{memName},#{memGender},
+				#{memPhone},#{memAddress}, null, null, default, default, sysdate, null)
 	</insert>
 </mapper>

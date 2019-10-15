@@ -165,6 +165,10 @@ public class MemberController {
 	 * 
 	 */
 	
+	/**
+	 * 1. 회원조회
+	 * @return 
+	 */
 	@RequestMapping("aMemberList.do")
 	public String selectMemberList() {
 		
