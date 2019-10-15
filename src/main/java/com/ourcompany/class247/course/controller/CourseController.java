@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ourcompany.class247.course.model.service.CourseService;
 import com.ourcompany.class247.course.model.vo.Course;
+import com.ourcompany.class247.course.model.vo.CourseAttachment;
+import com.ourcompany.class247.course.model.vo.Online;
 
 @Controller
 public class CourseController {
@@ -25,41 +27,52 @@ public class CourseController {
 	
 	
 	@RequestMapping("coNext.do")
-	public ModelAndView insertCourse(Course co, HttpServletRequest request, ModelAndView mv,
-									@RequestParam(name="coverImage") MultipartFile coverImage) {
+	public ModelAndView insertCourse(Course co,  ModelAndView mv) {
 		
-
-//		
-//		
-//		
-//		if(result > 0) {
-//			if(!coverImage.getOriginalFilename().equals("")) {
-//				String coverRename = saveFile(coverImage, request);
-//				
-//				if(coverRename != null) {
-//					CourseAttachment cover = new CourseAttachment();
-//					cover.setCoaRName(coverRename);
-//					cover.setCoaOName(coverImage.getOriginalFilename());
-//					cover.setCoaPath(request.getSession().getServletContext().getRealPath("resources") + "\\course\\images");
-//					
-//					coService.insertCoverImage(cover);
-//				}
-//				
-//			}
 			
 			if(co.getCourseKind().equals("online")) {
-				mv.addObject("coverImage", coverImage);
 				mv.addObject("co", co);
 				mv.setViewName("creator/course/nextOnline");
 			} else {
-				mv.addObject("coverImage", coverImage);
 				mv.addObject("co", co);
 				mv.setViewName("creator/course/nextOffline");
 			}
 			
 			return mv;
-//		}
-		//return "common/errorPage";
+
+			
+	}
+	
+	
+	
+	
+	@RequestMapping("onlineInsert.do")
+	public void insertOnline(Course co, Online online, HttpServletRequest request,
+							@RequestParam(name="coverImage") MultipartFile coverImage) {
+		System.out.println(coverImage.getOriginalFilename());
+		System.out.println(co);
+		System.out.println(online);
+		
+		
+		
+		int result = coService.insertCourse(co, online);
+		
+		
+		if(result > 0) {
+			if(!coverImage.getOriginalFilename().equals("")) {
+				String coverRename = saveFile(coverImage, request);
+				
+				if(coverRename != null) {
+					CourseAttachment cover = new CourseAttachment();
+					cover.setCoaRName(coverRename);
+					cover.setCoaOName(coverImage.getOriginalFilename());
+					cover.setCoaPath(request.getSession().getServletContext().getRealPath("resources") + "\\course\\images");
+					
+					coService.insertCoverImage(cover);
+				}
+				
+			}
+		}
 	}
 	
 	

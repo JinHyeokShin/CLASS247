@@ -9,13 +9,14 @@ public class Video {
 	private String videoPath;
 	private String videoTitle;
 	private String videoContent;
+	private int videoDepth;
 	
 	public Video() {
 		
 	}
 
 	public Video(int videoCourseNum, int onlineNum, String videoOName, String videoRName, String videoPath,
-			String videoTitle, String videoContent) {
+			String videoTitle, String videoContent, int videoDepth) {
 		super();
 		this.videoCourseNum = videoCourseNum;
 		this.onlineNum = onlineNum;
@@ -24,6 +25,7 @@ public class Video {
 		this.videoPath = videoPath;
 		this.videoTitle = videoTitle;
 		this.videoContent = videoContent;
+		this.videoDepth = videoDepth;
 	}
 
 	public int getVideoCourseNum() {
@@ -82,12 +84,19 @@ public class Video {
 		this.videoContent = videoContent;
 	}
 
+	public int getVideoDepth() {
+		return videoDepth;
+	}
+
+	public void setVideoDepth(int videoDepth) {
+		this.videoDepth = videoDepth;
+	}
 
 	@Override
 	public String toString() {
 		return "Video [videoCourseNum=" + videoCourseNum + ", onlineNum=" + onlineNum + ", videoOName=" + videoOName
 				+ ", videoRName=" + videoRName + ", videoPath=" + videoPath + ", videoTitle=" + videoTitle
-				+ ", videoContent=" + videoContent + ", videoDepth=" + "]";
+				+ ", videoContent=" + videoContent + ", videoDepth=" + videoDepth + "]";
 	}
 	
 	

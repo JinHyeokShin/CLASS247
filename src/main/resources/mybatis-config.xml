@@ -12,6 +12,8 @@
 		<typeAlias type="com.ourcompany.class247.creator.model.vo.Creator" alias="Creator"/>
 		<typeAlias type="com.ourcompany.class247.creator.model.vo.CreatorAttachment" alias="CreatorAttachment"/>
 		<typeAlias type="com.ourcompany.class247.course.model.vo.Course" alias="Course"/>
+		<typeAlias type="com.ourcompany.class247.course.model.vo.Online" alias="Online"/>
+		<typeAlias type="com.ourcompany.class247.course.model.vo.Offline" alias="Offline"/>
 		<typeAlias type="com.ourcompany.class247.course.model.vo.CourseAttachment" alias="CourseAttachment"/>
 	</typeAliases>
 	

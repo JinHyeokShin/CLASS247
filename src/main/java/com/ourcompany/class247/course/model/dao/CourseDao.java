@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
+import com.ourcompany.class247.course.model.vo.Online;
 
 @Repository("coDao")
 public class CourseDao {
@@ -19,6 +20,11 @@ public class CourseDao {
 	 */
 	public int insertCourse(Course co) {
 		return sqlSession.insert("courseMapper.insertCourse", co);
+	}
+	
+	
+	public int insertOnline(Online online) {
+		return sqlSession.insert("courseMapper.insertOnline", online);
 	}
 	
 	

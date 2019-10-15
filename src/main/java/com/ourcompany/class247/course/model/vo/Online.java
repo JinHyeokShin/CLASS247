@@ -24,6 +24,19 @@ public class Online extends Course{
 		CourseVideoUrl = courseVideoUrl;
 	}
 
+	public Online(int courseNum, String categoryName, int creNum, String courseTitle, String courseContent,
+			String courseKind, int loveCount, int courseCurrentNum, Date courseEnrollDate, Date courseApprovedDate,
+			Date courseStartDate, Date courseEndDate, String courseApproved, String courseStatus, int onlineNum, int coursePrice, String courseMaterial, int courseMaterialPrice,
+			String courseVideoUrl) {
+		super(courseNum, categoryName, creNum, courseTitle, courseContent,
+				courseKind, loveCount, courseCurrentNum, courseEnrollDate, courseApprovedDate,
+				courseStartDate, courseEndDate, courseApproved, courseStatus);
+		this.onlineNum = onlineNum;
+		this.coursePrice = coursePrice;
+		this.courseMaterial = courseMaterial;
+		this.courseMaterialPrice = courseMaterialPrice;
+		CourseVideoUrl = courseVideoUrl;
+	}
 
 	public int getOnlineNum() {
 		return onlineNum;

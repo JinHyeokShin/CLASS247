@@ -80,19 +80,6 @@
                                          	   </div>                              
                                                 <hr>
                                                 <div class="form-group">
-                                                    <div class="col col-md-5">
-                                                        <label for="text-input" class=" form-control-label">* 클래스 커버 사진</label>
-                                                        <input class="" type="file" name="coverImage">
-                                                    </div>
-                                                    <div class="col-12 col-md-9" style="height:200px">
-                                                        <small class="help-block form-text">클래스를 대표할 커버사진을 추가하세요.</small>
-                                                        <div style="width:40%; height:40%; margin-top: 10px; text-align: center">
-                                                            <img src="resources/creator/images/bg-title-02.jpg" alt="cover" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <hr>
-                                                <div class="form-group">
                                                     <label for="class_content" class=" form-control-label">* 클래스 상세 정보</label>
                                                     <textarea name="courseContent" rows="9" placeholder="클래스에 대한 소개 및 커리큘럼을 작성해주세요. " class="form-control"></textarea>
                                                     <input type="hidden" name="creNum" value="${ creator.creNum }">

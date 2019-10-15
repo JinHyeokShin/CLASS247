@@ -139,6 +139,19 @@
                                                 </div>                                                
                                                 <hr> 
                                                 <div class="form-group">
+                                                    <div class="col col-md-5">
+                                                        <label for="text-input" class=" form-control-label">* 클래스 커버 사진</label>
+                                                        <input class="" type="file" name="coverImage">
+                                                    </div>
+                                                    <div class="col-12 col-md-9" style="height:200px">
+                                                        <small class="help-block form-text">클래스를 대표할 커버사진을 추가하세요.</small>
+                                                        <div style="width:40%; height:40%; margin-top: 10px; text-align: center">
+                                                            <img src="resources/creator/images/bg-title-02.jpg" alt="cover" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="form-group">
                                                     <label class=" form-control-label">수업 가격*</label><br>
                                                     <div class="">
                                                        <input type="number" placeholder="ex) 10000" id="courseHourPrice" name="courseHourPrice" class="form-control" style="width:300px; display:inline-block"> 원 &nbsp;&nbsp;

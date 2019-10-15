@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.ourcompany.class247.course.model.dao.CourseDao;
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
+import com.ourcompany.class247.course.model.vo.Online;
 
 @Service("coService")
 public class CourseServiceImpl implements CourseService{
@@ -17,8 +18,23 @@ public class CourseServiceImpl implements CourseService{
 	 * 1. 클래스 추가 
 	 */
 	@Override
-	public int insertCourse(Course co) {
-		return coDao.insertCourse(co);
+	public int insertCourse(Course co, Online online) {
+		
+		int result = coDao.insertCourse(co); 
+		
+		int result2 = 0;
+		if (result > 0) {
+			result2 = coDao.insertOnline(online);			
+		}
+		
+		if(result > 0 && result2 > 0) {
+			return 1;
+		} else {
+			return 0;
+		}
+		
+		
+		
 	}
 
 	/**
