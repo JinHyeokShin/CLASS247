@@ -32,10 +32,10 @@
                                                     <label class=" form-control-label">준비물 여부</label><br>
                                                     <div class="form-check-inline form-check">
                                                         <label for="noMaterial" class="form-check-label ">
-                                                            <input type="radio" id="noMaterial" name="materialCheck" value="" class="form-check-input" onchange="check()">준비물 없음 &nbsp;&nbsp;
+                                                            <input type="radio" id="noMaterial" name="courseMaterial" value="" class="form-check-input" onchange="check()">준비물 없음 &nbsp;&nbsp;
                                                         </label>
                                                         <label for="material" class="form-check-label">
-                                                            <input type="radio" id="material" name="materialCheck" value="" class="form-check-input" onchange="check()">준비물 추가
+                                                            <input type="radio" id="material" name="courseMaterial" class="form-check-input" onchange="check()">준비물 추가
                                                         </label>
                                                     </div>
                                                     <small class="help-block form-text">&nbsp;수업에 필요한 준비물이 있다면 입력해주세요.</small>

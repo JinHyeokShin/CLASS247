@@ -27,8 +27,6 @@ public class Member {
 		
 	}
 
-
-
 	public Member(int memNum, String memId, String memPwd, String memNickName, String memName, String memGender,
 			String memPhone, String memAddress, String memProfileName, String memProfilePath, String memType,
 			Date memEnrollDate, Date memOutDate, String memStatus) {

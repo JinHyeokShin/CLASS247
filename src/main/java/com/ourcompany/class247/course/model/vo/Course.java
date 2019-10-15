@@ -28,7 +28,7 @@ public class Course {
 	// select용
 	public Course(int courseNum, String categoryName, int creNum, String courseTitle, String courseContent,
 			String courseKind, int loveCount, int courseCurrentNum, Date courseEnrollDate, Date courseApprovedDate,
-			Date courseStartDate, Date courseEndDate, String courseApproved, String courseStatus) {
+			Date courseStartDate, Date courseEndDate, String courseApproved, String courseStatus, String courseLevel) {
 		super();
 		this.courseNum = courseNum;
 		this.categoryName = categoryName;
@@ -138,15 +138,7 @@ public class Course {
 	}
 	
 	
-	
 
-	public String getCourseLevel() {
-		return courseLevel;
-	}
-
-	public void setCourseLevel(String courseLevel) {
-		this.courseLevel = courseLevel;
-	}
 
 	public int getCourseNum() {
 		return courseNum;

@@ -47,12 +47,8 @@ public class CourseController {
 	
 	
 	@RequestMapping("onlineInsert.do")
-	public void insertOnline(Course co, Online online, HttpServletRequest request,
+	public String insertOnline(Course co, Online online, HttpServletRequest request,
 							@RequestParam(name="coverImage") MultipartFile coverImage) {
-		System.out.println(coverImage.getOriginalFilename());
-		System.out.println(co);
-		System.out.println(online);
-		
 		
 		
 		int result = coService.insertCourse(co, online);
@@ -73,6 +69,8 @@ public class CourseController {
 				
 			}
 		}
+		
+		return "redirect:cMainView.do";
 	}
 	
 	

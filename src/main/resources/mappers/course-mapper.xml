@@ -8,14 +8,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertCourse" parameterType="Course">
 		insert into course 
 		values(course_seq.nextval, #{categoryNum}, #{creNum}, #{courseTitle}, #{courseContent}, 
-				#{courseKind}, ${courseLevel}, 0, sysdate, null, ${ courseStartDate }, ${ courseEndDate}, default, default)
+				#{courseKind}, #{courseLevel}, 0, sysdate, null, #{ courseStartDate }, #{ courseEndDate}, default, default)
 	</insert>
 	
 	
 	<!-- 1_1. 온라인 클래스 추가 쿼리  -->
 	<insert id="insertOnline" parameterType="Online">
-		
-	
+		insert into online_course
+		values(online_course_seq.nextval, course_seq.currval, #{coursePrice}, #{courseMaterial}, 
+				#{courseMaterialPrice}, #{courseVideoUrl})
 	</insert>
 	
 	
