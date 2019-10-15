@@ -1,8 +1,9 @@
 package com.ourcompany.class247.course.model.service;
 
+import java.util.ArrayList;
+
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
-import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 
 public interface CourseService {
@@ -15,6 +16,7 @@ public interface CourseService {
 	// 2. 클래스 커버사진 추가 
 	int insertCoverImage(CourseAttachment cover);
 
-
-	public ArrayList<Course> awaitCourseList();
+	
+	// 3. 대기중인 클래스 리스트 추가 
+	public ArrayList<Course> selectAwaitCourseList();
 }

@@ -3,6 +3,7 @@ package com.ourcompany.class247.course.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,12 +19,19 @@ import com.ourcompany.class247.course.model.service.CourseService;
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
 import com.ourcompany.class247.course.model.vo.Online;
+import com.ourcompany.class247.creator.model.service.CreatorService;
+import com.ourcompany.class247.creator.model.vo.Creator;
+import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
+import com.ourcompany.class247.member.model.service.MemberService;
+import com.ourcompany.class247.member.model.vo.Member;
 
 @Controller
 public class CourseController {
 	
 	@Autowired
 	private CourseService coService;
+	private MemberService mService;
+	private CreatorService creService;
 	
 	
 	@RequestMapping("coNext.do")
@@ -115,13 +123,44 @@ public class CourseController {
 	}
 
 
+	/**
+	 * admin 1. 승인대기중인 리스트 불러오기
+	 * @return
+	 */
 	@RequestMapping("aAwaitCourseList.do")
 	public ModelAndView awaitCourseList() {
 		
+		ModelAndView mv = new ModelAndView();
 		
+		ArrayList<Course> list = coService.selectAwaitCourseList();
 		
+		mv.addObject("list", list);
+		mv.setViewName("admin/course/awaitCourseList");
 		
 		return mv;
+	}
+	
+	@RequestMapping("aAwaitCourseDetail.do")
+	public ModelAndView aAwaitCourseDetail(int courseNum) {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		Course co = coService.selectCourseList(courseNum);
+		
+		ArrayList<CourseAttachment> coaList = coService.selectCourseAttachment(co.getCourseNum());
+		
+		Creator cre = creService.selectCreator(courseNum);
+		
+		ArrayList<CreatorAttachment> craList = creService.selectCreatorAttachment(cre.getCreNum());
+		
+		Member m = mService.selectMember(cre.getMemNum());
+		
+		mv.addObject(co).addObject(coaList).addObject(cre).addObject(craList).addObject(m);
+		
+		mv.setViewName("admin/course/);
+		
+		return mv;
+		
 	}
 
 }

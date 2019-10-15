@@ -49,10 +49,10 @@ public class CourseServiceImpl implements CourseService{
 	
 
 
-		@Override
-	public ArrayList<Course> awaitCourseList() {
+	@Override
+	public ArrayList<Course> selectAwaitCourseList() {
 		
-		return courseDao.awaitCourseList();
+		return coDao.selectAwaitCourseList();
 	}
 
 }

@@ -3,6 +3,25 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="courseMapper">
+	
+	<resultMap id="courseResultSet" type="Course">
+		<id property="courseNum" column="course_num"/>
+		<result property="categoryName" column="category_name"/>
+		<result property="creNum" column="cre_num"/>
+		<result property="courseTitle" column="course_title"/>
+		<result property="courseContent" column="course_content"/>
+		<result property="courseKind" column="course_kind"/>
+		<result property="courseLevel" column="course_level"/>
+		<result property="courseCurrentNum" column="course_current_num"/>
+		<result property="courseEnrollDate" column="course_enroll_date"/>
+		<result property="courseApprovedDate" column="course_approved_date"/>
+		<result property="courseStartDate" column="course_start_date"/>
+		<result property="courseEndDate" column="course_end_date"/>
+		<result property="courseApproved" column="course_approved"/>
+		<result property="courseStatus" column="course_status"/>
+		<result property="memNickName" column="mem_nickname"/>							
+	</resultMap>
+	
 
 	<!-- 1. 클래스 추가 쿼리 -->
 	<insert id="insertCourse" parameterType="Course">
@@ -28,9 +47,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 
-	<select id="awaitCourseList" parameterType="Course" resultMap="CourseResultSet">
-		select *
-		from course
+	<select id="awaitCourseList" parameterType="Course" resultMap="courseResultSet">
+				select c.course_num, category.category_name, cre_num, c.course_title, c.course_content, c.course_kind, 
+                c.course_level, c.course_current_num, c.course_enroll_date, c.course_approved_date, c.course_start_date,
+                c.course_end_date, c.course_approved, c.course_status, member.mem_nickname
+		from course c
+        join category using (category_num)
+        join creator using(cre_num)
+        join member using(mem_num)
 		where course_approved = 'n'
 	</select>
 

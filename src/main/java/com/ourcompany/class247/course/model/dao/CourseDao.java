@@ -40,7 +40,7 @@ public class CourseDao {
 	}
 
 
-	public ArrayList<Course> awaitCourseList() {
+	public ArrayList<Course> selectAwaitCourseList() {
 	
 		return (ArrayList)sqlSession.selectList("courseMapper.awaitCourseList");
 		
