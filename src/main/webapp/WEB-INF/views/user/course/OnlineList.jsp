@@ -7,12 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-        <style>
-        .special_img{
-        	width:100%;
-        	height:333px;
-        }
-        </style>
 <body>
 	<c:import url="/WEB-INF/views/user/common/menubar.jsp"/>
 	<section class="special_cource padding_top" style="padding-top:100px">
@@ -66,6 +60,7 @@
 			</div>
 		</div>
 	</section>
+	<hr>
      <section class="special_cource padding_top">
         <div class="container">
             <div class="row justify-content-left">
@@ -260,6 +255,7 @@
             </div>
         </div>
     </section>
+   	<hr>
     <section class="special_cource padding_top" >
         <div class="container" style="padding-bottom:80px">
             <div class="row justify-content-left">
@@ -364,6 +360,7 @@
             </div>
         </div>
     </section>
+   	<hr>
 	<section class="special_cource padding_top">
 		<div class="container" style="padding-bottom: 80px">
 			<div class="row justify-content-left">
@@ -412,6 +409,7 @@
 			</div>
 		</div>
 	</section>
+	<hr>
 	<section class="special_cource padding_top">
 		<div class="container" style="padding-bottom: 80px">
 			<div class="row justify-content-left">
@@ -460,6 +458,7 @@
 			</div>
 		</div>
 	</section>
+	<hr>
 	<section class="special_cource padding_top">
 		<div class="container" style="padding-bottom: 80px">
 			<div class="row justify-content-left">
@@ -508,6 +507,7 @@
 			</div>
 		</div>
 	</section>
+	<hr>
 	<section class="special_cource padding_top">
 		<div class="container" style="padding-bottom: 80px">
 			<div class="row justify-content-left">
@@ -556,6 +556,7 @@
 			</div>
 		</div>
 	</section>
+	<hr>
 	<section class="special_cource padding_top">
 		<div class="container" style="padding-bottom: 80px">
 			<div class="row justify-content-left">
@@ -604,6 +605,7 @@
 			</div>
 		</div>
 	</section>
+	<hr>
 	<section class="special_cource padding_top">
 		<div class="container" style="padding-bottom: 80px">
 			<div class="row justify-content-left">
@@ -652,6 +654,7 @@
 			</div>
 		</div>
 	</section>
+	<hr>
 	<section class="special_cource padding_top">
 		<div class="container" style="padding-bottom: 80px">
 			<div class="row justify-content-left">
@@ -700,6 +703,7 @@
 			</div>
 		</div>
 	</section>
+	<hr>
 	<section class="special_cource padding_top">
 		<div class="container" style="padding-bottom: 80px">
 			<div class="row justify-content-left">
@@ -756,7 +760,7 @@
 	$(document).ready(function(){
 		var owl = $('.owl-carousel');
 		owl.owlCarousel({
-		    items:3,
+		    items:4,
 		    loop:true,
 		    margin:10,
 		    autoplay:true,

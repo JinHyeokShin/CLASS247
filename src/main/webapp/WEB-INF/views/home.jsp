@@ -16,12 +16,6 @@
             <script src="resources/user/js/waypoints.min.js"></script>
 
         </head>
-        <style>
-        .special_img{
-        	width:100%;
-        	height:333px;
-        }
-        </style>
         <c:import url="/WEB-INF/views/user/common/menubar.jsp" />
 
         <body>
@@ -318,7 +312,7 @@
                 $(document).ready(function() {
                     var owl = $('.owl-carousel');
                     owl.owlCarousel({
-                        items: 3,
+                        items: 4,
                         loop: true,
                         margin: 10,
                         autoplay: true,
