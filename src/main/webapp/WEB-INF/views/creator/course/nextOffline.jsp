@@ -25,7 +25,7 @@
                                             <h3><strong>오프라인 클래스 상세정보</strong></h3>
                                         </div>
                                         <div class="card-body card-block">
-                                            <form action="coInsert.do" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                            <form action="offlineInsert.do" method="post" enctype="multipart/form-data" class="form-horizontal">
                                                 <div class="form-group">
                                               	  <label for="categoryNum" class=" form-control-label">수업등록지역(대표)*</label> <br>
                                                   <div class="col-md-5" style="display:inline-block">
@@ -36,7 +36,7 @@
                                                  	      <option value="인천">인천</option>
                                                  	      <option value="부산">부산</option>
                                                  	      <option value="경상">경상, 대구, 울산</option>
-                                                 	      <option value="대전">대전, 충청</option>
+                                                 	      <option value="대전">대전</option>
                                                  	      <option value="강원">강원</option>
                                                  	      <option value="광주">광주, 전라, 제주</option>
                                                  	      <option value="기타">기타</option>
@@ -104,16 +104,16 @@
                                                 <div class="form-group">
                                                     <label class=" form-control-label">수업 참원 인원</label><br>
                                                     <div class="form-check-inline form-check">
-                                                        <label for="online" class="form-check-label ">
-                                                            <input type="radio" id="online" name="courseKind" value="online" class="form-check-input">1:1 수업 &nbsp;&nbsp;
+                                                        <label for="courseMinPax" class="form-check-label ">
+                                                            <input type="radio"  name="courseType" value="oneToOne" class="form-check-input">1:1 수업 &nbsp;&nbsp;
                                                         </label>
                                                         <label for="offline" class="form-check-label ">
-                                                            <input type="radio" id="offline" name="courseKind" value="offline" class="form-check-input">그룹 수업
+                                                            <input type="radio" name="courseType" value="group" class="form-check-input">그룹 수업
                                                         </label>
                                                     </div>
                                                     <div>
-                                                    	<input type="number" placeholder="최소인원수" class="form-control" style="width:200px; display:inline-block">명 ~ 
-                                                    	<input type="number" placeholder="최대인원수" class="form-control" style="width:200px;display:inline-block">명 
+                                                    	<input type="number" name="courseMinPax" placeholder="최소인원수" class="form-control" style="width:200px; display:inline-block">명 ~ 
+                                                    	<input type="number" name="courseMaxPax" placeholder="최대인원수" class="form-control" style="width:200px;display:inline-block">명 
                                                     </div>
                                                     <small class="help-block form-text">&nbsp;class247 수강생들이 선호하는 그룹수업은 평균적으로 2~6인 내외입니다.</small>
                                                 </div>                                                
@@ -121,19 +121,26 @@
                                                 <div class="form-group">
                                                     <label class=" form-control-label">수업 날짜/시간</label><br>
                                                     <div>
-                                                    	<input type="date" placeholder="최소인원수" class="form-control" style="width:200px; display:inline-block"> ~ 
-                                                    	<input type="date" placeholder="최대인원수" class="form-control" style="width:200px;display:inline-block">
+                                                    	<input type="date" name="courseStartDate" class="form-control" style="width:200px; display:inline-block"> ~ 
+                                                    	<input type="date" name="courseEndDate" class="form-control" style="width:200px;display:inline-block">
                                                     </div>  
                                                     <small class="help-block form-text">수업 시작일과 종료일을 입력해주세요(최소 1개월)</small><br>
                                                     &nbsp;
                                                     <div class="form-check-inline form-check">
-                                                        <input type="checkbox" name="courseDay" value="monday" class="form-check-input">월요일 &nbsp;&nbsp;
-                                                        <input type="checkbox" name="courseDay" value="tuesday" class="form-check-input">화요일 &nbsp;&nbsp;
-                                                        <input type="checkbox" name="courseDay" value="wednesay" class="form-check-input">수요일 &nbsp;&nbsp;
-                                                        <input type="checkbox" name="courseDay" value="thursday" class="form-check-input">목요일 &nbsp;&nbsp;
-                                                        <input type="checkbox" name="courseDay" value="friday" class="form-check-input">금요일 &nbsp;&nbsp;
-                                                        <input type="checkbox" name="courseDay" value="saturday" class="form-check-input">토요일 &nbsp;&nbsp;
-                                                        <input type="checkbox" name="courseDay" value="sunday" class="form-check-input">일요일 &nbsp;&nbsp;
+                                                        <input type="checkbox" name="courseDay" id="월요일" value="월요일" class="form-check-input">
+                                                        <label for="월요일">월요일 &nbsp;&nbsp; </label>
+                                                        <input type="checkbox" name="courseDay" id="화요일" value="화요일" class="form-check-input">
+                                                        <label for="화요일">화요일 &nbsp;&nbsp; </label>
+                                                        <input type="checkbox" name="courseDay" id="수요일" value="수요일" class="form-check-input">
+                                                        <label for="수요일">수요일 &nbsp;&nbsp; </label>
+                                                        <input type="checkbox" name="courseDay" id="목요일" value="목요일" class="form-check-input">
+                                                        <label for="목요일">목요일 &nbsp;&nbsp; </label>
+                                                        <input type="checkbox" name="courseDay" id="금요일" value="금요일" class="form-check-input">
+                                                        <label for="금요일">금요일 &nbsp;&nbsp; </label>
+                                                        <input type="checkbox" name="courseDay" id="토요일" value="토요일" class="form-check-input">
+                                                        <label for="토요일">토요일 &nbsp;&nbsp; </label>
+                                                        <input type="checkbox" name="courseDay" id="일요일" value="일요일" class="form-check-input">
+                                                        <label for="일요일">일요일 &nbsp;&nbsp; </label>
                                                     </div>
                                                     <small class="help-block form-text">&nbsp;수업 요일을 선택해주세요(매주)</small><br>
                                                 </div>                                                
@@ -156,14 +163,20 @@
                                                     <div class="">
                                                        <input type="number" placeholder="ex) 10000" id="courseHourPrice" name="courseHourPrice" class="form-control" style="width:300px; display:inline-block"> 원 &nbsp;&nbsp;
                                                  	   <small class="help-block form-text">시간당 수업 가격을 입력하세요.</small><br>
-                                                  	   <input type="number" placeholder="ex) 1" id="courseHours" class="form-control" style="width:300px; display:inline-block"> 시간                              
+                                                  	   <input type="number" placeholder="ex) 1" id="courseHours" name="courseHours" class="form-control" style="width:300px; display:inline-block"> 시간                              
                                                   	   <small class="help-block form-text">1회당 수업 시간을 입력하세요.</small><br>
-                                                  	   <input type="number" placeholder="ex) 4" id="courseCount" class="form-control" style="width:300px; display:inline-block"> 회                         
+                                                  	   <input type="number" placeholder="ex) 4" id="courseCount" name="courseCount" class="form-control" style="width:300px; display:inline-block"> 회                         
                                                   	   <small class="help-block form-text">총 수업횟수를 입력하세요</small><br>
                                                     </div>
                                                     <div style="background-color:lightgray; width:90%; height:100px; align:center">
                                                     	<span id="courseHourPrice"></span>원 X <span id="courseHours"></span>시간 X <span id="courseCount"></span>회
                                                     </div>
+                                                                                                        <input type="hidden" name="categoryNum" value="${ co.categoryNum }">
+                                                    <input type="hidden" name="creNum" value="${ co.creNum }">
+                                                    <input type="hidden" name="courseTitle" value="${ co.courseTitle }">
+                                                    <input type="hidden" name="courseContent" value="${ co.courseContent }">
+                                                    <input type="hidden" name="courseKind" value="${ co.courseKind }"> 
+                                                    <input type="hidden" name="courseLevel" value="${ co.courseLevel }">
                                                 </div>                 
                                                 <hr>
                                                 <div class="form-group">

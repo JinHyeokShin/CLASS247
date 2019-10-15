@@ -4,6 +4,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="courseMapper">
 
+	<resultMap id="OnlineResultSet" type="Online">
+		<id property="courseNum" column="course_num"/>
+		<result property="categoryNum" column="category_num"/>
+		<result property="creNum" column="cre_num"/>
+		<result property="courseTitle" column="course_title"/>
+		<result property="courseContent" column="courseContent"/>
+		<result property="courseKind" column="course_kind"/>
+		<result property="courseLevel" column="course_level"/>
+		<result property="courseCurrentNum" column="course_current_num"/>
+		<result property="courseEnrollDate" column="course_enroll_date"/>
+		<result property="courseApprovedDate" column="course_approved_date"/>
+		<result property="courseStartDate" column="course_start_date"/>
+		<result property="courseEndDate" column="course_end_date"/>
+		<result property="courseApproved" column="course_approved"/>
+		<result property="courseStatus" column="course_status"/>
+		<result property="coursePrice" column="course_price"/>
+		<result property="courseMaterial" column="course_material"/>
+		<result property="courseMaterialPrice" column="course_material_price"/>
+		<result property="courseVideoUrl" column="course_video_url"/>
+	</resultMap>
+
+
+	
+
+
 	<!-- 1. 클래스 추가 쿼리 -->
 	<insert id="insertCourse" parameterType="Course">
 		insert into course 
@@ -19,11 +44,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				#{courseMaterialPrice}, #{courseVideoUrl})
 	</insert>
 	
+	<insert id="insertOffline" parameterType="Offline">
+		insert into offline_course
+		values(offline_course_seq.nextval, course_seq.currval, #{courseMinPax}, #{courseMaxPax}, 
+				#{courseHours}, #{courseHourPrice}, #{courseDay}, #{courseCount})
+	</insert>
+	
 	
 	<!-- 2. 클래스 커버 사진 추가하기  -->
 	<insert id="insertCoverImage" parameterType="CourseAttachment">
 		insert into course_attachment
 		values(course_attachment_seq.nextval, course_seq.currval, #{coaOName}, #{coaRName}, 1, #{coaPath})
 	</insert>
+	
+	
+	<select id="selectMyOnlineList" parameterType="_int" resultMap="OnlineResultSet">
+		select * 
+		from course
+		join online_course using(course_num)
+		where cre_num = #{creNum} 
+		and course_approved = 'Y'
+		and course_status='Y'
+	</select>
 
 </mapper>

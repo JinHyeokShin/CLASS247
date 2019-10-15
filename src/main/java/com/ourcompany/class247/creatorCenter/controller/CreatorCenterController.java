@@ -32,9 +32,6 @@ public class CreatorCenterController {
 		return "creator/creNoticeList";
 	}
 	
-	@RequestMapping("coManageView.do")
-	public String coManageView() {
-		return "creator/course/coManagement";
-	}
+
 
 }
