@@ -96,7 +96,7 @@
 	            </td>
             </tr>
                 <tr>
-                    <td width="50%"><a href="" class="genric-btn primary-border">회원가입</a></td>
+                    <td width="50%"><a href="joinForm.do" class="genric-btn primary-border">회원가입</a></td>
                     <td width="50%"><a href="" class="genric-btn primary-border">비밀번호 찾기</a></td>
                 </tr>
             </table>
