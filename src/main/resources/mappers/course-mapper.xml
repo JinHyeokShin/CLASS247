@@ -4,12 +4,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="courseMapper">
 
-	<resultMap id="OnlineResultSet" type="Online">
+	<resultMap id="CourseResultSet" type="Online">
 		<id property="courseNum" column="course_num"/>
 		<result property="categoryNum" column="category_num"/>
 		<result property="creNum" column="cre_num"/>
 		<result property="courseTitle" column="course_title"/>
-		<result property="courseContent" column="courseContent"/>
+		<result property="courseContent" column="course_content"/>
 		<result property="courseKind" column="course_kind"/>
 		<result property="courseLevel" column="course_level"/>
 		<result property="courseCurrentNum" column="course_current_num"/>
@@ -19,12 +19,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="courseEndDate" column="course_end_date"/>
 		<result property="courseApproved" column="course_approved"/>
 		<result property="courseStatus" column="course_status"/>
-		<result property="coursePrice" column="course_price"/>
-		<result property="courseMaterial" column="course_material"/>
-		<result property="courseMaterialPrice" column="course_material_price"/>
-		<result property="courseVideoUrl" column="course_video_url"/>
+		
+		<discriminator javaType="string" column="course_kind">
+     		 <case value="online" resultType="Online">
+     		 	<result property="onlineNum" column="online_num"/>
+				<result property="coursePrice" column="course_price"/>
+				<result property="courseMaterial" column="course_material"/>	
+				<result property="courseMaterialPrice" column="course_material_price"/>
+				<result property="courseVideoUrl" column="course_video_url"/>
+     		 </case>
+     		 <case value="offline" resultType="Offline">
+     		 	<result property="offlineNum" column="offline_num"/>
+				<result property="courseMinPax" column="course_min_pax"/>
+				<result property="courseMaxPax" column="course_max_pax"/>	
+				<result property="courseHours" column="course_hours"/>
+				<result property="courseHourPrice" column="course_hour_price"/>
+				<result property="courseDay" column="course_day"/>
+				<result property="courseCount" column="course_count"/>
+     		 </case>
+   		</discriminator>
 	</resultMap>
-
+	
+	
 
 	
 
@@ -58,10 +74,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	
-	<select id="selectMyOnlineList" parameterType="_int" resultMap="OnlineResultSet">
+	<select id="selectMyOnlineList" parameterType="_int" resultMap="CourseResultSet">
 		select * 
 		from course
 		join online_course using(course_num)
+		where cre_num = #{creNum} 
+		and course_approved = 'Y'
+		and course_status='Y'
+	</select>
+	
+	
+	<select id="selectMyOfflineList" parameterType="_int" resultMap="CourseResultSet">
+		select * 
+		from course
+		join offline_course using(course_num)
 		where cre_num = #{creNum} 
 		and course_approved = 'Y'
 		and course_status='Y'

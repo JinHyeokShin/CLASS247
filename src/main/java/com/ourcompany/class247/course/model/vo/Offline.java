@@ -114,7 +114,12 @@ public class Offline extends Course{
 
 	@Override
 	public String toString() {
-		return "Offline [offlineNum=" + offlineNum + ", courseArea=" + courseArea + ", courseMinPax=" + courseMinPax
+		return "Offline [courseNum=" + getCourseNum() + ",  categoryName=" + getCategoryName() + ", categoryNum=" + getCategoryNum() + ", creNum=" + getCreNum() 
+		
+		+ ", courseTitle" + getCourseTitle() + ", courseContent=" + getCourseContent() + ", courseKind=" + getCourseKind() +", courseLevel=" + getCourseLevel() 
+		+ ", loveCount=" + getLoveCount() + ", courseCurrentNum=" + getCourseCurrentNum() + ", courseEnrollDate=" + getCourseEnrollDate() 
+		+ ", courseApprovedDate= " + getCourseApprovedDate() + ", courseStartDate=" + getCourseStartDate() + ", courseEndDate=" + getCourseEndDate()
+		+ ", courseApproved=" + getCourseApproved() + ", courseStatus=" + getCourseStatus() + "offlineNum=" + offlineNum + ", courseArea=" + courseArea + ", courseMinPax=" + courseMinPax
 				+ ", courseMaxPax=" + courseMaxPax + ", courseHours=" + courseHours + ", courseHourPrice="
 				+ courseHourPrice + ", courseDay=" + courseDay + ", courseCount=" + courseCount + "]";
 	}
