@@ -30,7 +30,7 @@
                                                     <label class=" form-control-label">클래스 종류</label><br>
                                                     <div class="form-check-inline form-check">
                                                         <label for="online" class="form-check-label ">
-                                                            <input type="radio" id="online" name="courseKind" value="online" class="form-check-input">온라인 클래스 &nbsp;&nbsp;
+                                                            <input type="radio" id="online" name="courseKind" value="online" class="form-check-input" checked>온라인 클래스 &nbsp;&nbsp;
                                                         </label>
                                                         <label for="offline" class="form-check-label ">
                                                             <input type="radio" id="offline" name="courseKind" value="offline" class="form-check-input">오프라인 클래스
@@ -39,14 +39,14 @@
                                                 </div>
                                                 <hr>
                                                 <div class="form-group">
-                                                    <label for="class_title" class=" form-control-label">클래스 제목</label>
-                                                    <input type="text" name="courseTitle" placeholder="클래스를 대표할 수 있는 제목을 추가해주세요." class="form-control">
+                                                    <label for="class_title" class=" form-control-label">* 클래스 제목</label>
+                                                    <input type="text" name="courseTitle" placeholder="클래스를 대표할 수 있는 제목을 추가해주세요." class="form-control" required>
                                                 </div>
                                                 <hr>
                                                 <div class="form-group">
-                                              	  <label for="categoryNum" class=" form-control-label">클래스 카테고리</label>
+                                              	  <label for="categoryNum" class=" form-control-label">* 클래스 카테고리</label>
                                                   <div class="col-md-3">
-                                                 	   <select name="categoryNum" id="categoryNum" class="form-control">
+                                                 	   <select name="categoryNum" id="categoryNum" class="form-control" required>
                                                   	      <option value="1">공예</option>
                                                   	      <option value="2">디자인</option>
                                                  	       <option value="3">개발</option>
@@ -65,9 +65,9 @@
                                          	   </div>                              
                                                 <hr>
                                                 <div class="form-group">
-                                              	  <label for="select" class=" form-control-label">클래스 수강 대상</label>
+                                              	  <label for="select" class=" form-control-label">* 클래스 수강 대상</label>
                                                   <div class="col-md-3">
-                                                 	   <select name="courseLevel" id="courseLevel" class="form-control">
+                                                 	   <select name="courseLevel" id="courseLevel" class="form-control" required>
                                                   	      <option value="입문자">입문자</option>
                                                   	      <option value="초급자">초급자</option>
                                                  	       <option value="중급자">중급자</option>
@@ -81,7 +81,7 @@
                                                 <hr>
                                                 <div class="form-group">
                                                     <label for="class_content" class=" form-control-label">* 클래스 상세 정보</label>
-                                                    <textarea name="courseContent" rows="9" placeholder="클래스에 대한 소개 및 커리큘럼을 작성해주세요. " class="form-control"></textarea>
+                                                    <textarea name="courseContent" rows="9" placeholder="클래스에 대한 소개 및 커리큘럼을 작성해주세요. " class="form-control" required></textarea>
                                                     <input type="hidden" name="creNum" value="${ creator.creNum }">
                                                 </div>
 		                                        <div style="text-align:center">
