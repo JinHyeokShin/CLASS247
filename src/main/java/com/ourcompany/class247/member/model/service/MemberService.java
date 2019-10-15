@@ -15,4 +15,6 @@ public interface MemberService {
 	 * @return
 	 */
 	int insertMember(Member m);
+	
+	Member selectMember(int memNum);
 }

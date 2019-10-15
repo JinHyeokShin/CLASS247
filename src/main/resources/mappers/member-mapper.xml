@@ -33,4 +33,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(MEMBER_SEQ.NEXTVAL,#{memId},#{memPwd},#{memNickName},#{memName},#{memGender},
 				#{memPhone},#{memAddress}, null, null, default, default, sysdate, null)
 	</insert>
+	
+	<select id="selectMember" parameterType="Member" resultMap="memberResultSet">
+		select *
+		from member
+		where mem_num = #{memNum}
+	</select>
 </mapper>

@@ -58,9 +58,6 @@ public class CourseController {
 			
 	}
 	
-	
-	
-	
 	/** 2. 온라인수업 추가 
 	 * @param co
 	 * @param online
@@ -213,27 +210,52 @@ public class CourseController {
 		return mv;
 	}
 	
+	/**
+	 * admin 2. 승인대기중인 클래스 불러오기
+	 * @param courseNum
+	 * @param courseKind
+	 * @return
+	 */
 	@RequestMapping("aAwaitCourseDetail.do")
-	public ModelAndView aAwaitCourseDetail(int courseNum) {
+	public ModelAndView aAwaitCourseDetail(int courseNum, String courseKind) {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		Course co = coService.selectCourseList(courseNum);
+		if(courseKind.equals("offLine")) {
+			Offline off = coService.selectOffline(courseNum);
+			mv.addObject("off", off);
+		}else {
+			Online on = coService.selectOnline(courseNum);
+			mv.addObject("on", on);
+		}
 		
-		ArrayList<CourseAttachment> coaList = coService.selectCourseAttachment(co.getCourseNum());
+		ArrayList<CourseAttachment> coaList = coService.selectCourseAttachmentList(courseNum);
 		
-		Creator cre = creService.selectCreator(courseNum);
+		Creator cre = creService.selectCreatorCourse(courseNum);
 		
-		ArrayList<CreatorAttachment> craList = creService.selectCreatorAttachment(cre.getCreNum());
+		ArrayList<CreatorAttachment> craList = creService.selectCreatorAttachmentList(cre.getCreNum());
 		
 		Member m = mService.selectMember(cre.getMemNum());
 		
-		mv.addObject(co).addObject(coaList).addObject(cre).addObject(craList).addObject(m);
+		mv.addObject("coaList", coaList).addObject("cre", cre).addObject("craList", craList).addObject("m", m);
 		
-		mv.setViewName("admin/course/);
+		mv.setViewName("admin/course/");
 		
 		return mv;
 		
+	}
+	
+	@RequestMapping("aApprovalCourse.do")
+	public String aApprovalCourse(int courseNum) {
+		
+		int result = coService.allowCourse(courseNum);
+		
+		if(result > 0 ) {
+		
+			return "redirect:aAwaitCourseList.do";
+		}else {
+			return "common/errorPage";
+		}
 	}
 
 }

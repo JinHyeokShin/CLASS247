@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="courseMapper">
 	
-	<resultMap id="courseResultSet" type="Course">
+	<resultMap id="SingleCourseResultSet" type="Course">
 		<id property="courseNum" column="course_num"/>
 		<result property="categoryName" column="category_name"/>
 		<result property="creNum" column="cre_num"/>
@@ -42,6 +42,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="courseMaterial" column="course_material"/>
 		<result property="courseMaterialPrice" column="course_material_price"/>
 		<result property="courseVideoUrl" column="course_video_url"/>
+	</resultMap>
+	
+	
+	<resultMap id="CourseAttachmentResultSet" type="CourseAttachment">
+		<id property="coaNum" column="coa_num"/>
+		<result property="courseNum" column="course_num"/>
+		<result property="coaOName" column="coa_OName"/>
+		<result property="coaRName" column="coa_RName"/>
+		<result property="coaLevel" column="coa_level"/>
+		<result property="coaPath" column="coa_path"/>						
 	</resultMap>
 
 
@@ -88,7 +98,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 
-	<select id="awaitCourseList" parameterType="Course" resultMap="courseResultSet">
+	<select id="awaitCourseList" resultMap="SingleCourseResultSet">
 				select c.course_num, category.category_name, cre_num, c.course_title, c.course_content, c.course_kind, 
                 c.course_level, c.course_current_num, c.course_enroll_date, c.course_approved_date, c.course_start_date,
                 c.course_end_date, c.course_approved, c.course_status, member.mem_nickname
@@ -98,5 +108,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         join member using(mem_num)
 		where course_approved = 'n'
 	</select>
+	
+	<select id="selectOnline" parameterType="_int" resultMap="CourseResultSet">
+		select *
+		from course
+		join online_course using(course_num)
+		where course_num = #{courseNum}
+	</select>
+	
+	<select id="selectOffline" parameterType="Offline" resultMap="CourseResultSet">
+		select *
+		from course
+		join offline_course using(course_num)
+		where course_num = #{courseNum}
+	</select>
+	
+	<select id="selectCourseAttachmentList" parameterType="CourseAttachment" resultMap="CourseAttachmentResultSet">
+		select *
+		from course_attachment
+		where course_num = #{courseNum}
+		and coaLevel = 1
+	</select>
+	
+	<update id="allowCourse" parameterType="_int">
+		update course
+		set course_approved_date=sysdate, course_approved='Y'
+		where course_num = #{courseNum}
+	
+	</update>
 
 </mapper>

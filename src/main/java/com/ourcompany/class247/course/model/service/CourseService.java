@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
+import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 
 public interface CourseService {
@@ -21,6 +22,21 @@ public interface CourseService {
 	// 2. 내 클래스 리스트 가져오기 
 	ArrayList<Course> selectMyCoList(int creNum);
 
-	// 3. 대기중인 클래스 리스트 추가 
+	
+	// 관리용
+	// 1. 대기중인 클래스 리스트 추가 
 	public ArrayList<Course> selectAwaitCourseList();
+	
+	// 2. 온라인 클래스 가지고 오기
+	public Online selectOnline(int courseNum);
+	
+	// 3. 오파리인 클래스 가지고 오기
+	public Offline selectOffline(int courseNum);
+	
+	public ArrayList<CourseAttachment> selectCourseAttachmentList(int courseNum);
+	
+
+	public int allowCourse(int courseNum);
+
+	
 }

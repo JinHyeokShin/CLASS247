@@ -65,11 +65,41 @@ public class CourseServiceImpl implements CourseService{
 	}
 	
 
-
+	// 관리자
+	
+	
+	/**
+	 *
+	 */
 	@Override
 	public ArrayList<Course> selectAwaitCourseList() {
 		
 		return coDao.selectAwaitCourseList();
 	}
+
+	@Override
+	public Online selectOnline(int courseNum) {
+		
+		return coDao.selectOnline(courseNum);
+	}
+
+	@Override
+	public Offline selectOffline(int courseNum) {
+		
+		return coDao.selectOffline(courseNum);
+	}
+
+	@Override
+	public ArrayList<CourseAttachment> selectCourseAttachmentList(int courseNum) {
+		
+		return coDao.selectCourseAttachmentList(courseNum);
+	}
+	
+	@Override
+	public int allowCourse(int courseNum) {
+				return coDao.allowCourse(courseNum);
+	}
+
+
 
 }

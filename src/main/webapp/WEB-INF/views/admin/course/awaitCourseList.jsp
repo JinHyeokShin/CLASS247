@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <!DOCTYPE html>
         <html>
 
@@ -29,28 +29,32 @@
                                                     <th>No</th>
                                                     <th>클래스사진</th>
                                                     <th>제목</th>
+                                                    <th>타입</th>
                                                     <th class="text-right">수강자대상</th>
                                                     <th class="text-right">작성자</th>
                                                     <th class="text-right">등록날짜</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <c:forEach items="${ list }" var="c">
+                                                <c:forEach items="${ list }" var="co">
+                                                    <c:url value="aAwaitCourseDetail.do" var="awaitCourseDetail">
                                                     <tr>
-                                                        <td>${c.courseNum }</td>
+                                                        <td>${co.courseNum }</td>
                                                         <td></td>
+                                                        <td><a href="${awaitCourseDetail}">${co.courseTitle }</a></td>
                                                         <td>
-                                                            <c:url value="aAwaitCourseDetail.do" var="awaitCourseDetail">
-                                                                <c:param name="courseNum" value="${ courseNum }" />
-                                                            </c:url>
-                                                            <a href="${awaitCourseDetail}">${c.courseTitle }</a>
-
+                                                             <c:param name="courseKind" value="${ co.courseKind }"/>
+                                                        </td>
+                                                        <td>   
+                                                             <c:param name="courseNum" value="${ co.courseNum }" />
                                                         </td>
 
-                                                        <td>${c.courseLevel }</td>
-                                                        <td>${c.memNickName }</td>
-                                                        <td>${c.courseEnrollDate }</td>
+                                                        <td>${co.courseLevel }</td>
+                                                        <td>${co.memNickName }</td>
+                                                        <td>${co.courseEnrollDate }</td>
                                                     </tr>
+                                                    
+                                                    </c:url>
                                                 </c:forEach>
                                             </tbody>
                                         </table>

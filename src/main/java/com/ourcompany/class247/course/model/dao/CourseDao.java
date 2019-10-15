@@ -52,16 +52,40 @@ public class CourseDao {
 	}
 
 
-	public ArrayList<Course> selectAwaitCourseList() {
-	
-		return (ArrayList)sqlSession.selectList("courseMapper.awaitCourseList");
-		
-	}
+
 	
 	
 	public ArrayList<Course> selectMyCoList(int creNum){
 		return (ArrayList)sqlSession.selectList("courseMapper.selectMyOnlineList", creNum);
 		
+	}
+	
+	
+	
+	
+	// 관리자용
+	public ArrayList<Course> selectAwaitCourseList() {
+		
+		return (ArrayList)sqlSession.selectList("courseMapper.awaitCourseList");
+		
+	}
+	
+	public Offline selectOffline(int courseNum) {
+		return sqlSession.selectOne("courseMapper.selectOffline", courseNum);
+	}
+	
+	public Online selectOnline(int courseNum) {
+		return sqlSession.selectOne("courseMapper.selectOnline", courseNum);
+	}
+	
+	public ArrayList<CourseAttachment> selectCourseAttachmentList(int courseNum) {
+		
+		return (ArrayList)sqlSession.selectList("courseMapper.selectCourseAttachmentList", courseNum);
+	}
+	
+	public int allowCourse(int courseNum) {
+		
+		return sqlSession.update("courseMapper.allowCourse", courseNum);
 	}
 	
 }

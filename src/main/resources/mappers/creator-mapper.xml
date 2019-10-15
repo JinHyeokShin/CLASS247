@@ -40,6 +40,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into creator_attachment
 		values(creator_attachment_seq.nextval, #{creNum}, #{craOname}, #{craRname}, 1, #{craPath})
 	</insert>
+	
+	<select id="selectCreatorCourse" parameterType="_int" resultType="creatorResult">
+		select *
+		from creator
+		join course using(cre_num)
+		where courseNum = #{courseNum}
+	</select>
+	
+	<select id="selectCreatorAttachmentList" parameterType="_int" resultType="creatorAttachmentResultSet">
+		select *
+		from creator_attachment
+		where cre_num = #{creNum}
+	</select>
 
 
 </mapper>
