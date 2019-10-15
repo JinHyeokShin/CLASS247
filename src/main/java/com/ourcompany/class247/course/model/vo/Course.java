@@ -36,6 +36,53 @@ public class Course {
 		this.courseTitle = courseTitle;
 		this.courseContent = courseContent;
 		this.courseKind = courseKind;
+		this.courseLevel = courseLevel;
+		this.loveCount = loveCount;
+		this.courseCurrentNum = courseCurrentNum;
+		this.courseEnrollDate = courseEnrollDate;
+		this.courseApprovedDate = courseApprovedDate;
+		this.courseStartDate = courseStartDate;
+		this.courseEndDate = courseEndDate;
+		this.courseApproved = courseApproved;
+		this.courseStatus = courseStatus;
+	}
+	
+	// insert용
+	public Course(int courseNum, int categoryNum, int craNum, String courseTitle, String courseContent,
+			String courseKind, String courseLevel, int loveCount, int courseCurrentNum, Date courseEnrollDate, Date courseApprovedDate,
+			Date courseStartDate, Date courseEndDate, String courseApproved, String courseStatus) {
+		super();
+		this.courseNum = courseNum;
+		this.categoryNum = categoryNum;
+		this.creNum = craNum;
+		this.courseTitle = courseTitle;
+		this.courseContent = courseContent;
+		this.courseKind = courseKind;
+		this.courseLevel = courseLevel;
+		this.loveCount = loveCount;
+		this.courseCurrentNum = courseCurrentNum;
+		this.courseEnrollDate = courseEnrollDate;
+		this.courseApprovedDate = courseApprovedDate;
+		this.courseStartDate = courseStartDate;
+		this.courseEndDate = courseEndDate;
+		this.courseApproved = courseApproved;
+		this.courseStatus = courseStatus;
+	}
+	
+	// 종합
+	public Course(int courseNum, String categoryName, int categoryNum, int creNum, String courseTitle,
+			String courseContent, String courseKind, String courseLevel, int loveCount, int courseCurrentNum, Date courseEnrollDate,
+			Date courseApprovedDate, Date courseStartDate, Date courseEndDate, String courseApproved,
+			String courseStatus) {
+		super();
+		this.courseNum = courseNum;
+		this.categoryName = categoryName;
+		this.categoryNum = categoryNum;
+		this.creNum = creNum;
+		this.courseTitle = courseTitle;
+		this.courseContent = courseContent;
+		this.courseKind = courseKind;
+		this.courseLevel = courseLevel;
 		this.loveCount = loveCount;
 		this.courseCurrentNum = courseCurrentNum;
 		this.courseEnrollDate = courseEnrollDate;
@@ -157,6 +204,14 @@ public class Course {
 		this.courseKind = courseKind;
 	}
 
+	public String getCourseLevel() {
+		return courseLevel;
+	}
+
+	public void setCourseLevel(String courseLevel) {
+		this.courseLevel = courseLevel;
+	}
+
 	public int getLoveCount() {
 		return loveCount;
 	}
@@ -223,16 +278,16 @@ public class Course {
 
 	@Override
 	public String toString() {
-		return "Course [courseNum=" + courseNum + ", categoryName=" + categoryName + ", categoryNum=" + categoryNum
-				+ ", creNum=" + creNum + ", courseTitle=" + courseTitle + ", courseContent=" + courseContent
-				+ ", courseKind=" + courseKind + ", courseLevel=" + courseLevel + ", loveCount=" + loveCount
-				+ ", courseCurrentNum=" + courseCurrentNum + ", courseEnrollDate=" + courseEnrollDate
-				+ ", courseApprovedDate=" + courseApprovedDate + ", courseStartDate=" + courseStartDate
-				+ ", courseEndDate=" + courseEndDate + ", courseApproved=" + courseApproved + ", courseStatus="
-				+ courseStatus + "]";
+		return "Course [courseNum=" + courseNum + ", categoryName=" + categoryName + ", creNum=" + creNum
+				+ ", courseTitle=" + courseTitle + ", courseContent=" + courseContent + ", courseKind=" + courseKind
+				+ ", loveCount=" + loveCount + ", courseCurrentNum=" + courseCurrentNum + ", courseEnrollDate="
+				+ courseEnrollDate + ", courseApprovedDate=" + courseApprovedDate + ", courseStartDate="
+				+ courseStartDate + ", courseEndDate=" + courseEndDate + ", courseApproved=" + courseApproved
+				+ ", courseStatus=" + courseStatus + "]";
 	}
 
 
+	
 	
 	
 }
