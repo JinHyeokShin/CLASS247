@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+
 <html>
 <head>
     <!-- Required meta tags -->
@@ -19,15 +19,15 @@
 		margin: 9% auto;
 		border: 1px solid #954CBC;
 		padding: 10px;
-		width: 40%;
-		height:90%;  
+		width: 50%;
+		height:120%;  
 		border-radius: 10px;
 	}
 	table td{
 		text-align: left;
 	}
-	td a, td input, td button{
-		width : 100%;
+	td a, td button{
+		width : 70%;
 	}	
 	.genric-btn{
 	padding: 9 9 10 9;
@@ -35,6 +35,9 @@
 	.genderForm{
 		align : left;
 	}
+	 td input{
+		 width : 80%;
+	 }
 </style>
 
 </head>
@@ -45,89 +48,145 @@
 	 
 	  
 	  	<div class="login" align="center">
-        <form class="JoinForm"  action="minsert.do" method="post">
+        <form action="mUpdate.do" method="post">
         	<br>
-      		<h1>회원가입</h1>
+      		<h1>회원 정보 수정</h1>
       		<hr>
       		<table width="600">
       			<tr>
       				<td>이메일(아이디)</td>
       			</tr>
-      			<tr>
-      				<td><input type="email"  style="border-radius: 5px;" name="memId" placeholder="이메일@example.com" required></td>
+      			<tr><input type="hidden" name="memId" value="${ loginUser.memId }">
+      				<td>${ loginUser.memId }</td>
       			</tr>
       			<tr>
+      			
       				<td>비밀번호 </td>
    				</tr>
    				<tr>
-      				<td><input type="password" name="memPwd" style="border-radius: 5px;" placeholder="비밀번호를 입력해주세요 (8자리 이상)" required></td>
+      				<td><input type="password" name="memPwd" style="border-radius: 5px;" required></td>
       			</tr>
+      			
+      			
+      			
       			<tr>
       				<td>비밀번호 확인 </td>
    				</tr>
    				<tr>
-      				<td><input type="password" name="memPwd2" style="border-radius: 5px;" placeholder="비밀번호를 입력해주세요 (8자리 이상)" required></td>
+      				<td><input type="password" name="memPwd2" style="border-radius: 5px;" required></td>
       			</tr>
       			<tr>
       				<td>이름 </td>
    				</tr>
    				<tr>
-      				<td><input type="text" name="memName" style="border-radius: 5px;" placeholder="이름" required></td>
+      				<td>${ loginUser.memName }</td>
       			</tr>
       			<tr>
       				<td>별명 </td>
       			</tr>
       			<tr>
-      				<td><input type="text" name="memNickName" style="border-radius: 5px;" placeholder="별명" required></td>
+      				<td><input type="text" name="memNickName" style="border-radius: 5px;" value="${ loginUser.memNickName }" required></td>
       			</tr>
       			<tr>
       				<td>휴대폰번호 </td>
    				</tr>
    				<tr>
-      				<td><input type="text" name="memPhone" style="border-radius: 5px;"" placeholder="휴대폰 번호" style=""required><input type="button" value="인증하기" class="genric-btn primary-border radius"></td>
+      				<td><input type="text" name="memPhone" style="border-radius: 5px;" value="${ loginUser.memPhone }" required></td>
       			</tr>
       			<tr>
       				<td><br>성별<br></td>
    				</tr>
-      			</table>
+      			 </table>
 	            <div style="text-align : left;">
-	            	  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	            	<label for="M"><input type="radio" name="memGender" value="M" id="M">남</label>
-	            	&nbsp;&nbsp;&nbsp;&nbsp;    	
-	           		<label for="F"><input type="radio"	name="memGender" value="F" id="F">여</label>		
-	            </div>   
-      			<table width="600">
-						<tr>
-							<td>우편번호 </td>
-							<td><input type="text" name="post" style="border-radius: 5px; width:100; text-align: left;" class="postcodify_postcode5" readonly>&nbsp;<button type="button" class="genric-btn primary-border radius" style="border-radius: 5px; width:50%; height:30px; text-align: center; line-height: 1" id="post_search_btn">검색</button></td>
-						</tr>
-						<tr>
-							<td>도로명주소</td>
-							<td><input type="text" name="address1" class="postcodify_address" style="border-radius: 5px; width:100%; text-align: left;" readonly></td>
-						</tr>			
-						<tr>
-							<td>상세주소</td>
-							<td><input type="text" name="address2" class="postcodify_extra_info" style="border-radius: 5px; width:50%; text-align: left;"></td>
-						</tr>
+	            	  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   	
+	           		<c:choose>
+						<c:when test="${ loginUser.memGender eq 'M' }">
+							<td>
+								<input type="radio" name="gender" value="M" checked> 남 
+									            	&nbsp;&nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="gender" value="F"> 여
+							</td>
+						</c:when>
+						<c:when test="${ loginUser.memGender eq 'F' }">
+							<td>
+								<input type="radio" name="gender" value="M"> 남 
+									            	&nbsp;&nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="gender" value="F" checked> 여
+							</td>
+						</c:when>
+						<c:otherwise>
+							<td>
+								<input type="radio" name="gender" value="M"> 남 
+									            	&nbsp;&nbsp;&nbsp;&nbsp; 
+								<input type="radio" name="gender" value="F"> 여
+							</td>
+						</c:otherwise>
+					</c:choose>	
+	            </div>  
+	           
+	            <table width="600">
+      			<c:if test="${ empty loginUser.memAddress }">
+					<tr>
+						<td>우편번호</td>
+						<td>
+							<input type="text" name="post" size="6" class="postcodify_postcode5">
+								&nbsp;&nbsp;&nbsp;&nbsp; 
+							<button type="button" id="post_search_btn">검색</button>
+						</td>
 						
-				</table>
-				<!-- 주소 오픈api 스크립트 -->
+					</tr>
+					
+					<tr>
+						<td>도로명 주소</td>
+						<td><input type="text" name="address1" class="postcodify_address"></td>
+					</tr>
+					<tr>
+						<td>상세 주소</td>
+						<td><input type="text" name="address2" class="postcodify_extra_info"></td>
+					</tr>
+				</c:if>
+				<c:if test="${ !empty loginUser.memAddress }">
+					<c:forTokens items="${ loginUser.memAddress }" delims="," var="addr" varStatus="status">
+						<c:if test="${ status.index eq 0 }">
+							<tr>
+								<td>우편번호</td>
+								<td>
+									<input type="text" name="post" size="6" value="${ addr }" class="postcodify_postcode5">
+									&nbsp;&nbsp;
+									<button type="button" id="post_search_btn">검색</button>
+								</td>
+							</tr>
+						</c:if>
+						<c:if test="${ status.index eq 1 }">
+							<tr>
+								<td>도로명 주소</td>
+								<td><input type="text" name="address1" value="${ addr }"  class="postcodify_address"></td>
+							</tr>
+						</c:if>
+						<c:if test="${ status.index eq 2 }">
+							<tr>
+								<td>상세 주소</td>
+								<td><input type="text" name="address2" value="${ addr }"  class="postcodify_extra_info"></td>
+							</tr>
+						</c:if>
+					</c:forTokens>
+				</c:if>
+				</table> 
 				<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 				<script>
 					$(function(){
-						$("#post_search_btn").postcodifyPopUp();  <!-- // 검색 버튼 누르면 팝업 레이어가 열리도록 설정 id일때 # -->
+						// 검색 버튼 누르면 팝업 레이어가 열리도록 설정
+						$("#post_search_btn").postcodifyPopUp();
 					});
 				</script>
+				
 			<br>
-			<div>
-            	<input type="checkbox">  <a href="#">이용악관</a>및   <a href="#">개인정보 처리방침</a>에 동의해주세요
-            </div>
+			
       		
       		<table width="600">
       			<tr>
-      				<td><button class="genric-btn primary-border radius" name="log-btn" type="submit">회원가입</button></td>
-      			</tr>
-      			<tr>
+      				<td><button class="genric-btn primary-border radius" name="log-btn" type="submit">수정완료</button></td>
+      				
       				<td><button class="genric-btn primary-border radius" name="log-btn" type="reset">취소</button></td>
       			</tr>
       		</table>

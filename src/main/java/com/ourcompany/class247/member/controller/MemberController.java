@@ -137,23 +137,43 @@ public class MemberController {
 	 * @return
 	 */
 	@RequestMapping("memUpdate.do")
-	public String memUpdate(Member m, Model model, @RequestParam("mempwd") String mempwd,
-			@RequestParam("memnickname") String memnickname, @RequestParam("memphone") String memphone,
+	public String memUpdate() {
+		return "user/member/memUpdate";
+	}
+	
+	/**
+	 * 8. 회원정보수정페이지폼으로 이동.
+	 * @return
+	 */
+	@RequestMapping("mUpdate.do")
+	public String mUpdate(Member m, Model model, HttpServletRequest request,
 			@RequestParam("post") String post, 
 			@RequestParam("address1") String address1, @RequestParam("address2") String address2) {
+		
+		HttpSession session = request.getSession();
+		
 		if(!post.equals("")) { //주소 작성해서 값이 넘어왔을 경우
 			m.setMemAddress(post+","+address1+","+address2);	
 		}
 		
+
+		String encPwd= bcryptPasswordEncoder.encode(m.getMemPwd());
+		m.setMemPwd(encPwd);
+		
 		int result = mService.updateMember(m);
 		
+		Member loginUser = mService.loginMember(m);
+
 		if(result >0) {
-			model.addAttribute("loginUser", m);
+			session.setAttribute("loginUser", loginUser);
+			model.addAttribute("loginUser", loginUser);
 			return "user/member/myPage";
 		}else {
 			model.addAttribute("msg", "회원정보수정실패");
 			return "common/errorPage";
 		}
 		
+		
 		}
+	
 }

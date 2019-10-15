@@ -72,6 +72,7 @@
 
 <body>
 	<c:import url="/WEB-INF/views/user/common/menubar.jsp"/>
+
 	
 	 	
 	  
