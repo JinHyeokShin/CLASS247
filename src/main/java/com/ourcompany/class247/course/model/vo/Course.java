@@ -11,7 +11,7 @@ public class Course {
 	private String courseTitle;				//강의제목
 	private String courseContent;			//강의내용
 	private String courseKind;				//강의타입
-	private String courseLevel;				//강의 난이도
+	private String courseLevel;				//수강자 레벨
 	private int loveCount;					//좋아요수
 	private int courseCurrentNum;			//현재인원수
 	private Date courseEnrollDate;			//등록날짜
@@ -27,8 +27,8 @@ public class Course {
 
 	// select용
 	public Course(int courseNum, String categoryName, int creNum, String courseTitle, String courseContent,
-			String courseKind, String courseLevel, int loveCount, int courseCurrentNum, Date courseEnrollDate, Date courseApprovedDate,
-			Date courseStartDate, Date courseEndDate, String courseApproved, String courseStatus) {
+			String courseKind, int loveCount, int courseCurrentNum, Date courseEnrollDate, Date courseApprovedDate,
+			Date courseStartDate, Date courseEndDate, String courseApproved, String courseStatus, String courseLevel) {
 		super();
 		this.courseNum = courseNum;
 		this.categoryName = categoryName;
@@ -92,6 +92,53 @@ public class Course {
 		this.courseApproved = courseApproved;
 		this.courseStatus = courseStatus;
 	}
+	
+	// insert용
+	public Course(int courseNum, int categoryNum, int craNum, String courseTitle, String courseContent,
+			String courseKind, int loveCount, int courseCurrentNum, Date courseEnrollDate, Date courseApprovedDate,
+			Date courseStartDate, Date courseEndDate, String courseApproved, String courseStatus) {
+		super();
+		this.courseNum = courseNum;
+		this.categoryNum = categoryNum;
+		this.creNum = craNum;
+		this.courseTitle = courseTitle;
+		this.courseContent = courseContent;
+		this.courseKind = courseKind;
+		this.loveCount = loveCount;
+		this.courseCurrentNum = courseCurrentNum;
+		this.courseEnrollDate = courseEnrollDate;
+		this.courseApprovedDate = courseApprovedDate;
+		this.courseStartDate = courseStartDate;
+		this.courseEndDate = courseEndDate;
+		this.courseApproved = courseApproved;
+		this.courseStatus = courseStatus;
+	}
+	
+	// 종합
+	public Course(int courseNum, String categoryName, int categoryNum, int creNum, String courseTitle,
+			String courseContent, String courseKind, int loveCount, int courseCurrentNum, Date courseEnrollDate,
+			Date courseApprovedDate, Date courseStartDate, Date courseEndDate, String courseApproved,
+			String courseStatus) {
+		super();
+		this.courseNum = courseNum;
+		this.categoryName = categoryName;
+		this.categoryNum = categoryNum;
+		this.creNum = creNum;
+		this.courseTitle = courseTitle;
+		this.courseContent = courseContent;
+		this.courseKind = courseKind;
+		this.loveCount = loveCount;
+		this.courseCurrentNum = courseCurrentNum;
+		this.courseEnrollDate = courseEnrollDate;
+		this.courseApprovedDate = courseApprovedDate;
+		this.courseStartDate = courseStartDate;
+		this.courseEndDate = courseEndDate;
+		this.courseApproved = courseApproved;
+		this.courseStatus = courseStatus;
+	}
+	
+	
+
 
 	public int getCourseNum() {
 		return courseNum;
@@ -233,6 +280,7 @@ public class Course {
 	}
 
 
+	
 	
 	
 }

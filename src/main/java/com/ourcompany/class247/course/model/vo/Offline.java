@@ -30,13 +30,14 @@ public class Offline extends Course{
 		this.courseCount = courseCount;
 	}
 
-	public Offline(int courseNum, String categoryName, int creNum, String courseTitle, String courseContent,
+	public Offline(int courseNum, String categoryName, int categoryNum, int creNum, String courseTitle, String courseContent,
 			String courseKind, String courseLevel, int loveCount, int courseCurrentNum, Date courseEnrollDate, Date courseApprovedDate,
 			Date courseStartDate, Date courseEndDate, String courseApproved, String courseStatus, int offlineNum, String courseArea, int courseMinPax, int courseMaxPax, int courseHours,
 			int courseHourPrice, String courseDay, int courseCount) {
-		super(courseNum, categoryName, creNum, courseTitle, courseContent,
-				courseKind, courseLevel, loveCount, courseCurrentNum, courseEnrollDate, courseApprovedDate,
-				courseStartDate, courseEndDate, courseApproved, courseStatus);
+		super(courseNum, categoryName, categoryNum, creNum, courseTitle,
+			 courseContent, courseKind, courseLevel, loveCount, courseCurrentNum, courseEnrollDate,
+			 courseApprovedDate, courseStartDate, courseEndDate, courseApproved,
+			 courseStatus);
 		this.offlineNum = offlineNum;
 		this.courseArea = courseArea;
 		this.courseMinPax = courseMinPax;

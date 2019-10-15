@@ -2,33 +2,33 @@ package com.ourcompany.class247.course.model.vo;
 
 public class CourseAttachment {
 	
-	private int caNum;
+	private int coaNum;
 	private int courseNum;
-	private String caOName;
-	private String caRName;
-	private int caLevel;
-	private String caPath;
+	private String coaOName;
+	private String coaRName;
+	private int coaLevel;
+	private String coaPath;
 	
 	public CourseAttachment() {
 		
 	}
 
-	public CourseAttachment(int caNum, int courseNum, String caOName, String caRName, int caLevel, String caPath) {
+	public CourseAttachment(int coaNum, int courseNum, String coaOName, String coaRName, int coaLevel, String coaPath) {
 		super();
-		this.caNum = caNum;
+		this.coaNum = coaNum;
 		this.courseNum = courseNum;
-		this.caOName = caOName;
-		this.caRName = caRName;
-		this.caLevel = caLevel;
-		this.caPath = caPath;
+		this.coaOName = coaOName;
+		this.coaRName = coaRName;
+		this.coaLevel = coaLevel;
+		this.coaPath = coaPath;
 	}
 
-	public int getCaNum() {
-		return caNum;
+	public int getCoaNum() {
+		return coaNum;
 	}
 
-	public void setCaNum(int caNum) {
-		this.caNum = caNum;
+	public void setCoaNum(int coaNum) {
+		this.coaNum = coaNum;
 	}
 
 	public int getCourseNum() {
@@ -39,43 +39,43 @@ public class CourseAttachment {
 		this.courseNum = courseNum;
 	}
 
-	public String getCaOName() {
-		return caOName;
+	public String getCoaOName() {
+		return coaOName;
 	}
 
-	public void setCaOName(String caOName) {
-		this.caOName = caOName;
+	public void setCoaOName(String coaOName) {
+		this.coaOName = coaOName;
 	}
 
-	public String getCaRName() {
-		return caRName;
+	public String getCoaRName() {
+		return coaRName;
 	}
 
-	public void setCaRName(String caRName) {
-		this.caRName = caRName;
+	public void setCoaRName(String coaRName) {
+		this.coaRName = coaRName;
 	}
 
-	public int getCaLevel() {
-		return caLevel;
+	public int getCoaLevel() {
+		return coaLevel;
 	}
 
-	public void setCaLevel(int caLevel) {
-		this.caLevel = caLevel;
+	public void setCoaLevel(int coaLevel) {
+		this.coaLevel = coaLevel;
 	}
 
-	public String getCaPath() {
-		return caPath;
+	public String getCoaPath() {
+		return coaPath;
 	}
 
-	public void setCaPath(String caPath) {
-		this.caPath = caPath;
+	public void setCoaPath(String coaPath) {
+		this.coaPath = coaPath;
 	}
 
 	@Override
 	public String toString() {
-		return "CourseAttachment [caNum=" + caNum + ", courseNum=" + courseNum + ", caOName=" + caOName + ", caRName="
-				+ caRName + ", caLevel=" + caLevel + ", caPath=" + caPath + "]";
+		return "CourseAttachment [coaNum=" + coaNum + ", courseNum=" + courseNum + ", coaOName=" + coaOName
+				+ ", coaRName=" + coaRName + ", coaLevel=" + coaLevel + ", coaPath=" + coaPath + "]";
 	}
-	
+
 	
 }
