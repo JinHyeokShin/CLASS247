@@ -223,13 +223,15 @@ public class Course {
 
 	@Override
 	public String toString() {
-		return "Course [courseNum=" + courseNum + ", categoryName=" + categoryName + ", creNum=" + creNum
-				+ ", courseTitle=" + courseTitle + ", courseContent=" + courseContent + ", courseKind=" + courseKind
-				+ ", loveCount=" + loveCount + ", courseCurrentNum=" + courseCurrentNum + ", courseEnrollDate="
-				+ courseEnrollDate + ", courseApprovedDate=" + courseApprovedDate + ", courseStartDate="
-				+ courseStartDate + ", courseEndDate=" + courseEndDate + ", courseApproved=" + courseApproved
-				+ ", courseStatus=" + courseStatus + "]";
+		return "Course [courseNum=" + courseNum + ", categoryName=" + categoryName + ", categoryNum=" + categoryNum
+				+ ", creNum=" + creNum + ", courseTitle=" + courseTitle + ", courseContent=" + courseContent
+				+ ", courseKind=" + courseKind + ", courseLevel=" + courseLevel + ", loveCount=" + loveCount
+				+ ", courseCurrentNum=" + courseCurrentNum + ", courseEnrollDate=" + courseEnrollDate
+				+ ", courseApprovedDate=" + courseApprovedDate + ", courseStartDate=" + courseStartDate
+				+ ", courseEndDate=" + courseEndDate + ", courseApproved=" + courseApproved + ", courseStatus="
+				+ courseStatus + "]";
 	}
+
 
 	
 	
