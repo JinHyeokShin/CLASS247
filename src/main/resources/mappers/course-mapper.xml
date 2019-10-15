@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="courseMapper">
+
+	<!-- 1. 클래스 추가 쿼리 -->
+	<insert id="insertCourse" parameterType="Course">
+		insert into course 
+		values(course_seq.nextval, #{categoryNum}, #{creNum}, #{courseTitle}, #{courseContent}, 
+				#{courseKind}, 0, null, null, default, 0, sysdate, null, sysdate, null, default, default)
+	</insert>
+	
+	<!-- 2. 클래스 커버 사진 추가하기  -->
+	<insert id="insertCoverImage" parameterType="CourseAttachment">
+		insert into course_attachment
+		values(course_attachment_seq.nextval, course_seq.currval, #{coaOName}, #{coaRName}, 1, #{coaPath})
+	</insert>
+
+</mapper>
