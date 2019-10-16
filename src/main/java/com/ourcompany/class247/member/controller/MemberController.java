@@ -1,5 +1,7 @@
 package com.ourcompany.class247.member.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,12 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.context.request.SessionScope;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ourcompany.class247.member.model.service.MemberService;
@@ -131,24 +128,34 @@ public class MemberController {
 	}
 	
 	
+
 	
 	
+	@RequestMapping("aMemberList.do")
+	public ModelAndView memberList() {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		ArrayList<Member> list = mService.selectMemberList();
+		
+		mv.addObject("list", list);
+		
+		return mv;
+		
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@RequestMapping("memDetail.do")
+	public ModelAndView memberDetail(int memNum) {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		Member m = mService.selectMember(memNum);
+		
+		mv.addObject("m", m).setViewName("admin/member/memberDetail");
+		
+		return mv;
+		
+	}
 	
 	
 	
@@ -174,5 +181,7 @@ public class MemberController {
 		
 		return "admin/member/memberList";
 	}
+	
+	
 	
 }
