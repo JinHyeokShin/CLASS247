@@ -29,8 +29,10 @@
                                     <div class="banner_text_iner">
                                         <h5 style="color:white;">당신의 모든 취미를 클래스로 개설할 수 있습니다.</h5>
                                         <h1> 당신의 클래스를 <br>개설하세요 !</h1>
-                                        <a href="#" class="btn_1">View Course </a> &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="cMainView.do" class="btn_2" onclick="return loginCheck()">Get Started </a>
+                                        <a href="introduce.do" class="btn_1">서비스 소개 </a> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="cMainView.do" class="btn_2" onclick="return loginCheck()">크리에이터 센터</a>
+                                        <br><br>
+                    <a class="btn_2" href="#Mdrecom" style="float:right;">인기/추천<br>클래스</a>
                                     </div>
                                 </div>
                             </div>
@@ -89,7 +91,7 @@
                 </script>
             </section>
             <section class="special_cource padding_top" id="Mdrecom">
-                <div class="container">
+                <div class="container" id="Mdrecom">
                     <div class="row justify-content-left">
                         <div class="col-xl-5">
                             <div class="section_tittle text-left">

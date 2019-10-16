@@ -130,6 +130,10 @@ public class MemberController {
 		return mv;
 	}
 	
+	@RequestMapping("introduce.do")
+	public String intoduce() {
+		return "user/introduce/introduce";
+	}
 	
 	
 	
