@@ -25,64 +25,74 @@
                                             <h3><strong>클래스 기본 정보</strong></h3>
                                         </div>
                                         <div class="card-body card-block">
-                                            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                            <form action="coNext.do" method="post" enctype="multipart/form-data" class="form-horizontal">
                                                 <div class="form-group">
                                                     <label class=" form-control-label">클래스 종류</label><br>
                                                     <div class="form-check-inline form-check">
                                                         <label for="online" class="form-check-label ">
-                                                            <input type="radio" id="online" name="online" value="online" class="form-check-input">온라인 클래스 &nbsp;&nbsp;
+                                                            <input type="radio" id="online" name="courseKind" value="online" class="form-check-input" checked>온라인 클래스 &nbsp;&nbsp;
                                                         </label>
                                                         <label for="offline" class="form-check-label ">
-                                                            <input type="radio" id="offline" name="offline" value="offline" class="form-check-input">오프라인 클래스
+                                                            <input type="radio" id="offline" name="courseKind" value="offline" class="form-check-input">오프라인 클래스
                                                         </label>
                                                     </div>
                                                 </div>
                                                 <hr>
                                                 <div class="form-group">
-                                                    <label for="class_title" class=" form-control-label">클래스 제목</label>
-                                                    <input type="text" id="class_title" placeholder="클래스를 대표할 수 있는 제목을 추가해주세요." class="form-control">
+                                                    <label for="class_title" class=" form-control-label">* 클래스 제목</label>
+                                                    <input type="text" name="courseTitle" placeholder="클래스를 대표할 수 있는 제목을 추가해주세요." class="form-control" required>
                                                 </div>
                                                 <hr>
                                                 <div class="form-group">
-                                                    <label for="category" class=" form-control-label">클래스 카테고리</label>
-                                                    <input type="text" id="category" placeholder="분야를 선택해 주세요." class="form-control">
-                                                </div>
+                                              	  <label for="categoryNum" class=" form-control-label">* 클래스 카테고리</label>
+                                                  <div class="col-md-3">
+                                                 	   <select name="categoryNum" id="categoryNum" class="form-control" required>
+                                                  	      <option value="1">공예</option>
+                                                  	      <option value="2">디자인</option>
+                                                 	       <option value="3">개발</option>
+                                                 	       <option value="4">디지털 드로잉</option>
+                                                 	       <option value="5">라이프 스타일</option>
+                                                 	       <option value="6">미술</option>
+                                                 	       <option value="7">사진, 영상</option>
+                                                 	       <option value="8">여행</option>
+                                                 	       <option value="9">요리, 음료</option>
+                                                 	       <option value="10">음악</option>
+                                                 	       <option value="11">커리어</option>
+                                                 	       <option value="0">기타</option>
+                                                 	   </select>
+                                               	 </div>
+                                              	 <small class="help-block form-text">어느 역량의 수강생을 위한 클래스인지 선택해주세요.</small>
+                                         	   </div>                              
                                                 <hr>
                                                 <div class="form-group">
-                                                    <label for="category_detail" class=" form-control-label">클래스 상세 카테고리</label>
-                                                    <input type="text" id="category_detail" placeholder="커리큘럼을 모두 포괄하는 하나의 카테고리를 작성해주세요." class="form-control">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="level" class=" form-control-label">클래스 난이도</label>
-                                                    <input type="text" id="level" placeholder="어느 역량의 수강생을 위한 클래스인지 선택해주세요." class="form-control">
-                                                </div>
-                                                <hr>
-                                                <div class="form-group">
-                                                    <div class="col col-md-5">
-                                                        <label for="text-input" class=" form-control-label">* 클래스 커버 사진</label>
-                                                        <input class="" type="file">
-                                                    </div>
-                                                    <div class="col-12 col-md-9" style="height:200px">
-                                                        <small class="help-block form-text">클래스를 대표할 커버사진을 추가하세요.</small>
-                                                        <div style="width:40%; height:40%; margin-top: 10px; text-align: center">
-                                                            <img src="resources/creator/images/bg-title-02.jpg" alt="cover" />
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                              	  <label for="select" class=" form-control-label">* 클래스 수강 대상</label>
+                                                  <div class="col-md-3">
+                                                 	   <select name="courseLevel" id="courseLevel" class="form-control" required>
+                                                  	      <option value="입문자">입문자</option>
+                                                  	      <option value="초급자">초급자</option>
+                                                 	       <option value="중급자">중급자</option>
+                                                 	       <option value="준전문가">준전문가</option>
+                                                 	       <option value="전문가">전문가</option>
+                                                 	       <option value="무관">무관</option>
+                                                 	   </select>
+                                               	 </div>
+                                              	 <small class="help-block form-text">어느 역량의 수강생을 위한 클래스인지 선택해주세요.</small>
+                                         	   </div>                              
                                                 <hr>
                                                 <div class="form-group">
                                                     <label for="class_content" class=" form-control-label">* 클래스 상세 정보</label>
-                                                    <textarea name="class_content" id="class_content" rows="9" placeholder="클래스에 대한 소개 및 커리큘럼을 작성해주세요. " class="form-control"></textarea>
+                                                    <textarea name="courseContent" rows="9" placeholder="클래스에 대한 소개 및 커리큘럼을 작성해주세요. " class="form-control" required></textarea>
+                                                    <input type="hidden" name="creNum" value="${ creator.creNum }">
                                                 </div>
+		                                        <div style="text-align:center">
+		                                            <button type="submit" class="btn btn-primary btn-sm">
+		                                           		다음
+		                                            </button>
+		                                            <button type="reset" class="btn btn-secondary btn-sm">
+		                                          		 취소하기
+		                                            </button>
+		                                        </div>
                                             </form>
-                                        </div>
-                                        <div class="card-footer" style="text-align:center">
-                                            <button type="submit" class="btn btn-primary btn-sm">
-                                           		클래스 신청하기
-                                            </button>
-                                            <button type="reset" class="btn btn-secondary btn-sm">
-                                          		 취소하기
-                                            </button>
                                         </div>
                                     </div>            
                                 </div> 

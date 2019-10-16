@@ -11,11 +11,6 @@ public class CreatorCenterController {
 	//private CtreatorCenterService ccService;
 
 	
-//	@RequestMapping("cMainView.do")
-//	public String goToMain() { 
-//		return "creator/creatorCenter";
-//	}
-	
 	@RequestMapping("courseFormView.do")
 	public String courceFormView() {
 		return "creator/course/coRegistration";
@@ -32,9 +27,7 @@ public class CreatorCenterController {
 		return "creator/creNoticeList";
 	}
 	
-	@RequestMapping("coManageView.do")
-	public String coManageView() {
-		return "creator/course/coManagement";
-	}
+
+
 
 }

@@ -8,31 +8,33 @@ public class Course {
 	private String categoryName;			//카테고리이름
 	private int categoryNum;				//카테고리번호
 	private int creNum;						//크리에이터넘버
+	private String memNickName;				//닉네임
 	private String courseTitle;				//강의제목
 	private String courseContent;			//강의내용
 	private String courseKind;				//강의타입
-	private String courseLevel;				//강의 난이도
+	private String courseLevel;				//수강자 레벨
 	private int loveCount;					//좋아요수
 	private int courseCurrentNum;			//현재인원수
 	private Date courseEnrollDate;			//등록날짜
 	private Date courseApprovedDate;		//승인날짜
 	private Date courseStartDate;			//강의시작날짜
 	private Date courseEndDate;				//강의종료날짜
-	private String courseApproved;			//승인영부
-	private String courseStatus;			//상태
+	private String courseApproved;			//승인여부(N-대기, Y-승인, R(refuse)-거절) 
+	private String courseStatus;			//상태(수업만료 여부) 
 	
 	public Course() {
 		
 	}
 
 	// select용
-	public Course(int courseNum, String categoryName, int creNum, String courseTitle, String courseContent,
-			String courseKind, String courseLevel, int loveCount, int courseCurrentNum, Date courseEnrollDate, Date courseApprovedDate,
-			Date courseStartDate, Date courseEndDate, String courseApproved, String courseStatus) {
+	public Course(int courseNum, String categoryName, int creNum, String memNickName, String courseTitle, String courseContent,
+			String courseKind, int loveCount, int courseCurrentNum, Date courseEnrollDate, Date courseApprovedDate,
+			Date courseStartDate, Date courseEndDate, String courseApproved, String courseStatus, String courseLevel) {
 		super();
 		this.courseNum = courseNum;
 		this.categoryName = categoryName;
 		this.creNum = creNum;
+		this.memNickName = memNickName;
 		this.courseTitle = courseTitle;
 		this.courseContent = courseContent;
 		this.courseKind = courseKind;
@@ -69,11 +71,12 @@ public class Course {
 		this.courseStatus = courseStatus;
 	}
 	
-	// 종합
+	
+	// nickName 없는것
 	public Course(int courseNum, String categoryName, int categoryNum, int creNum, String courseTitle,
-			String courseContent, String courseKind, String courseLevel, int loveCount, int courseCurrentNum, Date courseEnrollDate,
-			Date courseApprovedDate, Date courseStartDate, Date courseEndDate, String courseApproved,
-			String courseStatus) {
+			String courseContent, String courseKind, String courseLevel, int loveCount, int courseCurrentNum,
+			Date courseEnrollDate, Date courseApprovedDate, Date courseStartDate, Date courseEndDate,
+			String courseApproved, String courseStatus) {
 		super();
 		this.courseNum = courseNum;
 		this.categoryName = categoryName;
@@ -93,6 +96,32 @@ public class Course {
 		this.courseStatus = courseStatus;
 	}
 
+	// NickName 있는것
+	public Course(int courseNum, String categoryName, int categoryNum, int creNum, String memNickName,
+			String courseTitle, String courseContent, String courseKind, String courseLevel, int loveCount,
+			int courseCurrentNum, Date courseEnrollDate, Date courseApprovedDate, Date courseStartDate,
+			Date courseEndDate, String courseApproved, String courseStatus) {
+		super();
+		this.courseNum = courseNum;
+		this.categoryName = categoryName;
+		this.categoryNum = categoryNum;
+		this.creNum = creNum;
+		this.memNickName = memNickName;
+		this.courseTitle = courseTitle;
+		this.courseContent = courseContent;
+		this.courseKind = courseKind;
+		this.courseLevel = courseLevel;
+		this.loveCount = loveCount;
+		this.courseCurrentNum = courseCurrentNum;
+		this.courseEnrollDate = courseEnrollDate;
+		this.courseApprovedDate = courseApprovedDate;
+		this.courseStartDate = courseStartDate;
+		this.courseEndDate = courseEndDate;
+		this.courseApproved = courseApproved;
+		this.courseStatus = courseStatus;
+	}
+	
+	
 	public int getCourseNum() {
 		return courseNum;
 	}
@@ -123,6 +152,14 @@ public class Course {
 
 	public void setCreNum(int creNum) {
 		this.creNum = creNum;
+	}
+	
+	public String getMemNickName() {
+		return memNickName;
+	}
+
+	public void setMemNickName(String memNickName) {
+		this.memNickName = memNickName;
 	}
 
 	public String getCourseTitle() {
@@ -223,14 +260,17 @@ public class Course {
 
 	@Override
 	public String toString() {
-		return "Course [courseNum=" + courseNum + ", categoryName=" + categoryName + ", creNum=" + creNum
-				+ ", courseTitle=" + courseTitle + ", courseContent=" + courseContent + ", courseKind=" + courseKind
-				+ ", loveCount=" + loveCount + ", courseCurrentNum=" + courseCurrentNum + ", courseEnrollDate="
-				+ courseEnrollDate + ", courseApprovedDate=" + courseApprovedDate + ", courseStartDate="
-				+ courseStartDate + ", courseEndDate=" + courseEndDate + ", courseApproved=" + courseApproved
-				+ ", courseStatus=" + courseStatus + "]";
+		return "Course [courseNum=" + courseNum + ", categoryName=" + categoryName + ", categoryNum=" + categoryNum
+				+ ", creNum=" + creNum + ", courseTitle=" + courseTitle + ", courseContent=" + courseContent
+				+ ", courseKind=" + courseKind + ", courseLevel=" + courseLevel + ", loveCount=" + loveCount
+				+ ", courseCurrentNum=" + courseCurrentNum + ", courseEnrollDate=" + courseEnrollDate
+				+ ", courseApprovedDate=" + courseApprovedDate + ", courseStartDate=" + courseStartDate
+				+ ", courseEndDate=" + courseEndDate + ", courseApproved=" + courseApproved + ", courseStatus="
+				+ courseStatus + "]";
 	}
 
+
+	
 	
 	
 }

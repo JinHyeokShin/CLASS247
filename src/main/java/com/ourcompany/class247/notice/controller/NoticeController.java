@@ -20,5 +20,10 @@ public class NoticeController {
 		
 		
 	}
+	
+	@RequestMapping("noticeListView.do")
+	public String noticeListView() {
+		return "user/notice/noticeListView";
+	}
 
 }

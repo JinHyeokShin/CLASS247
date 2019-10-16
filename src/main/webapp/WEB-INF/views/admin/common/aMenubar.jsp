@@ -90,7 +90,13 @@
 						</ul></li>
 					<li class="has-sub"><a class="js-arrow" href="#"> <i
 							class="fas fa-users"></i>Class
-					</a></li>
+					</a>
+					<ul class="list-unstyled navbar__sub-list js-sub-list">
+							<li><a href="aFAQList.do">Class</a></li>
+							<li><a href="aAwaitCourseList.do">Await</a></li>
+
+						</ul>
+					</li>
 					<li class="has-sub"><a class="js-arrow" href="#"> <i
 							class="fas fa-copy"></i>Board
 					</a>

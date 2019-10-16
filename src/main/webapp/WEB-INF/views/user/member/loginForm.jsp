@@ -11,7 +11,6 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <style>
-
 	.login{
 		margin: 9% auto;
 		border: 1px solid #954CBC;
@@ -72,12 +71,11 @@
        		<form action="login.do" method="post" class="loginform">
 	  		<br>
 			<h1>로그인</h1>
-			${ loginUser }
 			<hr>
         	<table width="400">
 	        	<tr>
 	        		<td width="150">이메일</td>
-	        		<td><input type="text" name="memId" class="primary-border" style="border-radius: 5px;"></td>
+	        		<td class="mt-10"><input type="text" name="memId" class="primary-border" style="border-radius: 5px;"></td>
 	            </tr>
 	            <tr>
 	        		<td>비밀번호</td>

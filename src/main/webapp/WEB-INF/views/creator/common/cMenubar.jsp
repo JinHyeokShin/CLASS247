@@ -52,8 +52,8 @@
                     <div class="image img-cir img-120">
                         <img src="<%= request.getContextPath() %>/resources/creator/images/icon/may.jpg" alt="Meseon Han" />
                     </div>
-                    <h4 class="name">Meseon Han</h4>
-                    <a href="#">Logout</a>
+                    <h4 class="name">${ loginUser.memName }</h4>
+                    <a href="logout.do">Logout</a>
                 </div>
                 <nav class="navbar-sidebar2">
                     <ul class="list-unstyled navbar__list">
@@ -82,7 +82,7 @@
                                         <i class="fas fa-th-large"></i>클래스 관리</a>
                                 </li>
                                 <li>
-                                    <a href="index3.html">
+                                    <a href="studentManage.do">
                                         <i class="far fa-id-card"></i>수강생 관리</a>
                                 </li>
                                 <li>
