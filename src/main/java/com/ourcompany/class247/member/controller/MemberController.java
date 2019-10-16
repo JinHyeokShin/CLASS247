@@ -184,6 +184,7 @@ public class MemberController {
 				out = response.getWriter();
 				out.println("<script>alert('수정이 완료되었습니다.'); history.go(-2);</script>");
 				out.flush();
+				
 			} catch (IOException e) {
 				
 				e.printStackTrace();
@@ -205,8 +206,7 @@ public class MemberController {
 	
 
 	@RequestMapping("mDelete.do")
-	public String mDelete(Member m, Model model, HttpServletRequest request,  @RequestParam("why") String why,
-		HttpServletResponse response){
+	public String mDelete(Member m, Model model, HttpServletRequest request, HttpServletResponse response, @RequestParam("why") String why){
 	
 		HttpSession session = request.getSession();
 		
@@ -225,19 +225,9 @@ public class MemberController {
 			if(result >0) {
 				session.setAttribute("loginUser", loginUser);
 				model.addAttribute("loginUser", loginUser);
-				response.setContentType("text/html; charset=UTF-8");
-				PrintWriter out;
-				try {
-					out = response.getWriter();
-					out.println("<script>alert('탈퇴가 완료되었습니다.'); history.go(-3);</script>");
-					out.flush();
-				} catch (IOException e) {
-					
-					e.printStackTrace();
-					
-				}
-
-				return "home";
+				
+				
+				return "redirect:logout.do";
 			}else {
 				model.addAttribute("msg", "회원정보수정실패");
 				return "common/errorPage";
@@ -249,6 +239,7 @@ public class MemberController {
 				out = response.getWriter();
 				out.println("<script>alert('비밀번호가 틀렸습니다. 다시 입력해주세요!'); history.go(-1);</script>");
 				out.flush();
+				
 			} catch (IOException e) {
 				
 				e.printStackTrace();
