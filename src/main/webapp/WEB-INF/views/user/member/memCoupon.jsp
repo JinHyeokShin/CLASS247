@@ -52,6 +52,7 @@
 	table th:hover{
 		cursor:default;
 	}
+	
 </style>
 
 </head>
@@ -62,18 +63,79 @@
 	 
 	  
 	  	<div class="login" align="center">
-        <form action="mDelete.do" method="post">
         	<br>
-      		<h1>나의 쿠폰 목록</h1>
+      		<h1>${ loginUser.memName }님의 쿠폰 목록</h1>
       		<hr>
-      		<h3 align="center">나의 총 쿠폰 갯수 : ${ pi.listCount }</h3>	
- 
+      		<br>
+      		<h4 align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      		${ loginUser.memName } 님의 총 쿠폰 갯수 : ${ pi.listCount }</h3>	
+      		<br>
+ 			<table align="center" border="1" cellspacing="0" width="90%">
+				<tr style="color:white;background-color:#954CBC;">
+					<th>쿠폰 번호</th> 
+					<th>쿠폰 이름</th>
+					<th>쿠폰 발급 날짜</th>
+					<th>쿠폰 사용 날짜</th>
+					<th>발급된 쿠폰 상태</th>
+				</tr>
+				<c:if test=""${ !empty ${ list }">
+		<c:forEach items="${ list }" var="c">
+		<tr>
+			<td align="center">${ c.givecouponNum }</td>
+			<td align="center">${ b.bWriter }</td>
+			<td align="center">${ b.bCreateDate }</td>
+			<td align="center">${ b.bcount }</td>
+			<td align="center">
+				</c:if>
+				<c:if test="${ empty list }">
+					<td colspan="5">발급된 쿠폰이 없습니다.</td>
+				</c:if>
+			</td>
+		</tr>
+		</c:forEach>
+			</table>
             <br><hr>
             
-            </form>
+       
             </div>
     	
-    
+		
+				
+				<!-- [이전] -->	
+				<c:if test="${ pi.currentPage eq 1 }">
+					[이전] 
+				</c:if>
+				<c:if test="${ pi.currentPage ne 1 }">
+					<c:url value="blist.do" var="before">
+						<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+					</c:url>
+					<a href="${ before }">[이전] </a> 
+				</c:if>		
+				
+				<!-- 번호들  -->
+				<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
+					<c:if test="${ p eq pi.currentPage }">
+						<font color="red" size="4">[${ p }]</font>
+					</c:if>
+					<c:if test="${ p ne pi.currentPage }">
+						<c:url value="blist.do" var="page">
+							<c:param name="currentPage" value="${ p }"/>
+						</c:url>
+						<a href="${ page }">${ p }</a>
+					</c:if>
+				</c:forEach>
+				
+				<!-- [다음] -->
+				<c:if test="${ pi.currentPage eq pi.maxPage }">
+					 [다음]
+				</c:if>
+				<c:if test="${ pi.currentPage ne pi.maxPage }">
+					<c:url value="blist.do" var="next">
+						<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+					</c:url>
+					<a href="${ next }"> [다음]</a>
+				</c:if>
+   
 	<jsp:include page="/WEB-INF/views/user/common/footer.jsp"></jsp:include>
 </body>
 </html>

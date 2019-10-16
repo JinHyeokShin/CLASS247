@@ -250,11 +250,6 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping("memCoupon.do")
-	public String memCoupon(){
-		return "user/member/memCoupon";
-	}
-	
 	
 	
 	
