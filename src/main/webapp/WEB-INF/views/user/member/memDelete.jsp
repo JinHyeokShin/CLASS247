@@ -120,9 +120,10 @@
       				<td>비밀번호</td>
    				</tr>
    				<tr>
-      				<td><input type="password" name="memPwd" style="border-radius: 5px;" required></td>
+      				<td width="40%"><input type="password" name="memPwd" style="border-radius: 5px;" required></td>
       			
-      				<td><button class="genric-btn primary-border radius" name="log-btn" type="submit">탈퇴하기</button></td>
+      				<td width="40%">&nbsp;	&nbsp;	&nbsp;	&nbsp;  &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;
+      				<button class="genric-btn primary-border radius" name="log-btn" type="submit">탈퇴하기</button></td>
 
       			</tr>
       		</table>
