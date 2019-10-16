@@ -11,6 +11,13 @@
 	table tr{
 		height:30px;
 	}
+	table tr:hover{
+		background-color:lightgrey;
+		cursor:pointer;
+	}
+	table th:hover{
+		cursor:default;
+	}
 </style>
 <body>
 	<c:import url="/WEB-INF/views/user/common/menubar.jsp"/>
@@ -27,9 +34,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="container" >
+			<div class="container">
 			<table border="1px solid black" style="width:100%;">
-				<tr style="color:white;background-color:black;">
+				<tr style="color:white;background-color:#954CBC;">
 					<th width="5%">번호</th>
 					<th>제목</th>
 					<th width="45px">작성자</th>
