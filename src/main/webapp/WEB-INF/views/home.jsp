@@ -88,7 +88,7 @@
                     });
                 </script>
             </section>
-            <section class="special_cource padding_top">
+            <section class="special_cource padding_top" id="Mdrecom">
                 <div class="container">
                     <div class="row justify-content-left">
                         <div class="col-xl-5">
@@ -312,7 +312,7 @@
                 $(document).ready(function() {
                     var owl = $('.owl-carousel');
                     owl.owlCarousel({
-                        items: 3,
+                        items: 4,
                         loop: true,
                         margin: 10,
                         autoplay: true,

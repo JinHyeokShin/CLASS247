@@ -20,7 +20,6 @@
 		border: 1px solid #954CBC;
 		padding: 10px;
 		width: 40%;
-		height:90%;  
 		border-radius: 10px;
 	}
 	table td{
@@ -34,6 +33,15 @@
 	}
 	.genderForm{
 		align : left;
+	}
+	.profileImg{
+		width:75px;
+		height:75px;
+		margin:auto;
+		padding:auto;
+		border: 1px solid black;
+		text-align:center;
+		border-radius: 10px;
 	}
 </style>
 
@@ -49,7 +57,7 @@
         	<br>
       		<h1>회원가입</h1>
       		<hr>
-      		<table width="600">
+    		<table width="600">
       			<tr>
       				<td>이메일(아이디)</td>
       			</tr>
@@ -84,7 +92,7 @@
       				<td>휴대폰번호 </td>
    				</tr>
    				<tr>
-      				<td><input type="text" name="memPhone" style="border-radius: 5px;"" placeholder="휴대폰 번호" style=""required><input type="button" value="인증하기" class="genric-btn primary-border radius"></td>
+      				<td><input type="text" name="memPhone" style="border-radius: 5px;" placeholder="휴대폰 번호" style=""required><input type="button" value="인증하기" class="genric-btn primary-border radius"></td>
       			</tr>
       			<tr>
       				<td><br>성별<br></td>
@@ -96,6 +104,7 @@
 	            	&nbsp;&nbsp;&nbsp;&nbsp;    	
 	           		<label for="F"><input type="radio"	name="memGender" value="F" id="F">여</label>		
 	            </div>   
+	            
       			<table width="600">
 						<tr>
 							<td>우편번호 </td>

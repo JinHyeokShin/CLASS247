@@ -1,9 +1,12 @@
 package com.ourcompany.class247.creator.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ourcompany.class247.course.model.vo.CourseAttachment;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 
@@ -49,5 +52,15 @@ public class CreatorDao {
 	public Creator getCreator(int memNum) {
 		return sqlSession.selectOne("creatorMapper.selectCreator", memNum);
 	}
+	
+	public Creator selectCreatorCourse(int courseNum) {
+		return sqlSession.selectOne("creatorMapper.selectCreatorCourse", courseNum);
+	}
+	
+	public ArrayList<CreatorAttachment> selectCreatorAttachmentList(int creNum) {
+		return (ArrayList)sqlSession.selectList("creatorMapper.selectCreatorAttachmentList", creNum);
+	}
+	
+	
 
 }

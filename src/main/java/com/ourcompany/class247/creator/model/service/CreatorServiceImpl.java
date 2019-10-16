@@ -1,5 +1,7 @@
 package com.ourcompany.class247.creator.model.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,6 +57,26 @@ public class CreatorServiceImpl implements CreatorService{
 	public Creator getCreator(int memNum) {
 		return creDao.getCreator(memNum);
 	}
+
+
+
+	@Override
+	public Creator selectCreatorCourse(int courseNum) {
+		return creDao.selectCreatorCourse(courseNum);
+	}
+
+
+
+	@Override
+	public ArrayList<CreatorAttachment> selectCreatorAttachmentList(int creNum) {
+		return creDao.selectCreatorAttachmentList(creNum);
+	}
+
+
+
+
+	
+	
 
 
 }

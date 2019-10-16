@@ -17,10 +17,31 @@ public interface CourseService {
 
 	// 1_2. 클래스 커버사진 추가 
 	int insertCoverImage(CourseAttachment cover);
+
 	
 	// 2. 내 클래스 리스트 가져오기 
 	ArrayList<Course> selectMyCoList(int creNum);
-	
+
 	//3. 클래스 메인커버사진리스트 가져오기 
 	ArrayList<CourseAttachment> selectCoverList(int creNum);
+
+	
+	// 관리용
+	// 1. 대기중인 클래스 리스트 추가 
+	public ArrayList<Course> selectAwaitCourseList();
+	
+	// 2. 온라인 클래스 가지고 오기
+	public Online selectOnline(int courseNum);
+	
+	// 3. 오파리인 클래스 가지고 오기
+	public Offline selectOffline(int courseNum);
+	
+	public ArrayList<CourseAttachment> selectCourseAttachmentList(int courseNum);
+	
+
+	public int allowCourse(int courseNum);
+
+	
+	
+
 }

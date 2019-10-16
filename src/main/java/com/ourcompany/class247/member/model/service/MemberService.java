@@ -1,5 +1,7 @@
 package com.ourcompany.class247.member.model.service;
 
+import java.util.ArrayList;
+
 import com.ourcompany.class247.member.model.vo.Member;
 
 public interface MemberService {
@@ -15,4 +17,8 @@ public interface MemberService {
 	 * @return
 	 */
 	int insertMember(Member m);
+	
+	Member selectMember(int memNum);
+	
+	ArrayList<Member> selectMemberList();
 }

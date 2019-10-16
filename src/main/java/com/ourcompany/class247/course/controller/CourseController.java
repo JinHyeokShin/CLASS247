@@ -20,6 +20,11 @@ import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
+import com.ourcompany.class247.creator.model.service.CreatorService;
+import com.ourcompany.class247.creator.model.vo.Creator;
+import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
+import com.ourcompany.class247.member.model.service.MemberService;
+import com.ourcompany.class247.member.model.vo.Member;
 import com.ourcompany.class247.creator.model.vo.Creator;
 
 @Controller
@@ -27,6 +32,8 @@ public class CourseController {
 	
 	@Autowired
 	private CourseService coService;
+	private MemberService mService;
+	private CreatorService creService;
 	
 	
 	/** 1. 클래스 추가시 오프라인/온라인 페이지 이동 
@@ -50,9 +57,6 @@ public class CourseController {
 
 			
 	}
-	
-	
-	
 	
 	/** 2. 온라인수업 추가 
 	 * @param co
@@ -192,6 +196,72 @@ public class CourseController {
 		mv.addObject("coverList", coverList);
 		mv.setViewName("creator/course/coManagement");
 		 return mv;
+	}
+
+
+	/**
+	 * admin 1. 승인대기중인 리스트 불러오기
+	 * @return
+	 */
+	@RequestMapping("aAwaitCourseList.do")
+	public ModelAndView awaitCourseList() {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		ArrayList<Course> list = coService.selectAwaitCourseList();
+		
+		mv.addObject("list", list);
+		mv.setViewName("admin/course/awaitCourseList");
+		
+		return mv;
+	}
+	
+	/**
+	 * admin 2. 승인대기중인 클래스 불러오기
+	 * @param courseNum
+	 * @param courseKind
+	 * @return
+	 */
+	@RequestMapping("aAwaitCourseDetail.do")
+	public ModelAndView aAwaitCourseDetail(int courseNum, String courseKind) {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		if(courseKind.equals("offLine")) {
+			Offline off = coService.selectOffline(courseNum);
+			mv.addObject("off", off);
+		}else {
+			Online on = coService.selectOnline(courseNum);
+			mv.addObject("on", on);
+		}
+		
+		ArrayList<CourseAttachment> coaList = coService.selectCourseAttachmentList(courseNum);
+		
+		Creator cre = creService.selectCreatorCourse(courseNum);
+		
+		ArrayList<CreatorAttachment> craList = creService.selectCreatorAttachmentList(cre.getCreNum());
+		
+		Member m = mService.selectMember(cre.getMemNum());
+		
+		mv.addObject("coaList", coaList).addObject("cre", cre).addObject("craList", craList).addObject("m", m);
+		
+		mv.setViewName("admin/course/");
+		
+		return mv;
+		
+	}
+	
+	@RequestMapping("aApprovalCourse.do")
+	public String aApprovalCourse(int courseNum) {
+		
+		int result = coService.allowCourse(courseNum);
+		
+		if(result > 0 ) {
+		
+			return "redirect:aAwaitCourseList.do";
+		}else {
+			return "common/errorPage";
+		}
 	}
 
 }
