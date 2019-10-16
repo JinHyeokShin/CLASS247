@@ -4,198 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
- <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
-<body class="animsition">
-
-	<c:import url="../creator/common/cMenubar.jsp"/>
-<!-- 크리에이터 신청 후 승인 대기 중일 경우 -->
-<c:if test="${ creator.creStatus == 'N'}">
-
- 	<div class="page-wrapper">
-	       <!-- MAIN CONTENT-->
-            <div class="main-content">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="row">
-                             <div class="col-md-12">
-                                <div class="card" style="height:600px">
-                                    <div class="card-body" align="center">
-                                    	<div style="width:50%">
-                                    	<br><br>
-	                                    	<img src="resources/creator/images/NonCreator.jpg">
-                                    	</div><br>
-                                        <div class="mx-auto d-block" style="font-family:Noto Serif KR">
-                                            <h1 class="text-sm-center mt-2 mb-1"> 크리에이터 센터에 오신것을 환영합니다!</h1>
-                                            <h3 class="text-sm-center mt-2 mb-1"> ${ loginUser.memName}의 크리에이터 신청서는 검토 중에 있습니다. <br>
-                                            										승인까지 조금만 더 기다려주세요 :) </h3>
-                                        </div>
-                                      	<br>
-                                        <div align="center" style="font-family:Noto Serif KR">
-	                                        <button type="button" class="btn btn-primary" onclick="location.href='#';">문의하기</button>
-	                                        <button type="button" class="btn btn-secondary" onclick="location.href='home.do';">메인으로 돌아가기</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>                       
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <section>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="copyright">
-                                <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- END PAGE CONTAINER-->
-        </div>
-
-	</c:if>
+<body>
+	<c:import url="../common/cMenubar.jsp"/>
 	
-	
-	
-	<!-- 크리에이터 Status == 'Y'일 경우 -->
-<c:if test="${ creator.creStatus == 'Y' }">
-   <div class="page-wrapper">
-            <!-- BREADCRUMB-->
-            <section class="au-breadcrumb m-t-75">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="au-breadcrumb-content">
-                                    <div class="au-breadcrumb-left">
-                                        <span class="au-breadcrumb-span">You are here:</span>
-                                        <ul class="list-unstyled list-inline au-breadcrumb__list">
-                                            <li class="list-inline-item active">
-                                                <a href="#">Home</a>
-                                            </li>
-                                            <li class="list-inline-item seprate">
-                                                <span>/</span>
-                                            </li>
-                                            <li class="list-inline-item">Dashboard</li>
-                                        </ul>
-                                    </div>
-                                    <button class="au-btn au-btn-icon au-btn--green">
-                                        <i class="zmdi zmdi-plus"></i>new class</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- END BREADCRUMB-->
-
-            <!-- STATISTIC-->
-            <section class="statistic">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <h3 class="title-3 m-b-30">
-                            <i class="fas fa-bar-chart"></i>summary
-                        </h3>
-                        <div class="row">
-                            <div class="col-md-6 col-lg-3">
-                                <div class="statistic__item">
-                                    <h2 class="number">368</h2>
-                                    <span class="desc">total number of 
-                                        students</span>
-                                    <div class="icon">
-                                        <i class="zmdi zmdi-account-o"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="statistic__item">
-                                    <h2 class="number">2</h2>
-                                    <span class="desc">current class</span>
-                                    <div class="icon">
-                                        <i class="zmdi zmdi-book"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="statistic__item">
-                                        <div class="au-progress">
-                                                <span class="au-progress__title"></span>
-                                                <div class="au-progress__bar">
-                                                    <div class="au-progress__inner js-progressbar-simple" role="progressbar" data-transitiongoal="78">
-                                                        <span class="au-progress__value js-value"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    <span class="desc">rating</span>
-                                    <div class="icon">
-                                        <i class="zmdi zmdi-star"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <div class="statistic__item">
-                                    <h2 class="number">&#8361;160,386</h2>
-                                    <span class="desc">total earnings</span>
-                                    <div class="icon">
-                                        <i class="zmdi zmdi-money"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- END STATISTIC-->
-
-            <section>
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <h3 class="title-3 m-b-30">
-                            <i class="zmdi zmdi-book"></i>my class
-                        </h3>
-                        <div class="row">
-                            <!-- <div class="col-xl-16"> -->
-                                <!-- RECENT REPORT 2-->
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img class="card-img-top" src="<%= request.getContextPath() %>/resources/creator/images/class-sample-01.PNG" alt="Card image cap">
-                                        <div class="card-body">
-                                            <h4 class="card-title mb-3">라이트룸과 포토샵으로 만드는 인생 여행 사진</h4>
-                                             <p class="card-text"> 강남 : 2019-10-01 <br> 수강생 : 3명</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                      <img class="card-img-top" src="<%= request.getContextPath() %>/resources/creator/images/class-sample-02.PNG" alt="Card image cap">
-                                        <div class="card-body">
-                                           <h4 class="card-title mb-3">포토샵으로 손그림처럼 표현하는 소녀의 설렘</h4>
-                                            <p class="card-text">홍대 : 2019-10-04 ~ 2019-10-28 <br> 수강생 : 15명</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                        <div class="card">
-                                          <img class="card-img-top" src="<%= request.getContextPath() %>/resources/creator/images/class-default-01.png" alt="Card image cap">
-                                            <div class="card-body" style="text-align:center;">
-                                               <h4 class="card-title mb-3">새로운 클래스를 추가하세요.</h4>
-                                                <p class="card-text" style="text-align:center;"> 
-                                                    <img class="" src="<%= request.getContextPath() %>/resources/creator/images/icon/plus.png" style="width:65px; height:65px;">
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                            <!-- </div> -->
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section>
+		   <div class="page-wrapper">
+	            <section class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <h3 class="title-3 m-b-30">
@@ -471,23 +287,8 @@
                     </div>
                 </div>
             </section>
+	</div>
 
-            <section>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="copyright">
-                                <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- END PAGE CONTAINER-->
-        </div>
-	</c:if>
-	
-	<c:import url="../creator/common/cMenubar.jsp"/>
-	
+
 </body>
 </html>

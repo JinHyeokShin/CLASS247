@@ -62,4 +62,10 @@ public class CourseDao {
 		
 	}
 	
+	
+	
+	public ArrayList<CourseAttachment> selectCoverList(int creNum) {
+		return (ArrayList)sqlSession.selectList("courseMapper.selectCoverList", creNum);
+	}
+	
 }

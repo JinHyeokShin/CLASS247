@@ -63,6 +63,14 @@ public class CourseServiceImpl implements CourseService{
 		return coDao.selectMyCoList(creNum);
 		
 	}
+
+	/**
+	 * 3. 클래스 메인커버사진리스트 가져오기 
+	 */
+	@Override
+	public ArrayList<CourseAttachment> selectCoverList(int creNum) {
+		return coDao.selectCoverList(creNum);
+	}
 	
 
 }

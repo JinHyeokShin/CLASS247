@@ -178,14 +178,16 @@ public class CourseController {
 	 * @param request
 	 */
 	@RequestMapping("coManageView.do")
-	public void coManageView(HttpServletRequest request) {
+	public ModelAndView coManageView(HttpServletRequest request, ModelAndView mv) {
 		int creNum = ((Creator)request.getSession().getAttribute("creator")).getCreNum();
 		ArrayList<Course> list = coService.selectMyCoList(creNum);
+		
+		ArrayList<CourseAttachment> coverList = coService.selectCoverList(creNum);
 
-		for (Course c : list) {
-			System.out.println(c);
-		}
-		//return "creator/course/coManagement";
+		mv.addObject("list", list);
+		mv.addObject("coverList", coverList);
+		mv.setViewName("creator/course/coManagement");
+		 return mv;
 	}
 
 }
