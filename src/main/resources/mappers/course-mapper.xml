@@ -145,20 +145,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where course_approved = 'N'
 	</select>
 	
-	<select id="selectOnline" parameterType="_int" resultMap="CourseResultSet">
-		select *
-		from course
-		join online_course using(course_num)
-		where course_num = #{courseNum}
-	</select>
-	
-	<select id="selectOffline" parameterType="Offline" resultMap="CourseResultSet">
-		select *
-		from course
-		join offline_course using(course_num)
-		where course_num = #{courseNum}
-	</select>
-	
 	<select id="selectCourseAttachmentList" parameterType="CourseAttachment" resultMap="CourseAttachmentResultSet">
 		select *
 		from course_attachment

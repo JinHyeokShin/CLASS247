@@ -86,18 +86,6 @@ public class CourseServiceImpl implements CourseService{
 	}
 
 	@Override
-	public Online selectOnline(int courseNum) {
-		
-		return coDao.selectOnline(courseNum);
-	}
-
-	@Override
-	public Offline selectOffline(int courseNum) {
-		
-		return coDao.selectOffline(courseNum);
-	}
-
-	@Override
 	public ArrayList<CourseAttachment> selectCourseAttachmentList(int courseNum) {
 		
 		return coDao.selectCourseAttachmentList(courseNum);

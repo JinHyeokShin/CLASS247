@@ -82,14 +82,6 @@ public class CourseDao {
 		
 	}
 	
-	public Offline selectOffline(int courseNum) {
-		return sqlSession.selectOne("courseMapper.selectOffline", courseNum);
-	}
-	
-	public Online selectOnline(int courseNum) {
-		return sqlSession.selectOne("courseMapper.selectOnline", courseNum);
-	}
-	
 	public ArrayList<CourseAttachment> selectCourseAttachmentList(int courseNum) {
 		
 		return (ArrayList)sqlSession.selectList("courseMapper.selectCourseAttachmentList", courseNum);

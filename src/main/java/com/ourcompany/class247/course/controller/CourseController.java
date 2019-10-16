@@ -251,6 +251,11 @@ public class CourseController {
 		
 	}
 	
+	/**
+	 * 3. 수업 허락하기
+	 * @param courseNum
+	 * @return
+	 */
 	@RequestMapping("aApprovalCourse.do")
 	public String aApprovalCourse(int courseNum) {
 		
