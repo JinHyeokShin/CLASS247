@@ -181,6 +181,10 @@ public class CourseController {
 	public ModelAndView coManageView(HttpServletRequest request, ModelAndView mv) {
 		int creNum = ((Creator)request.getSession().getAttribute("creator")).getCreNum();
 		ArrayList<Course> list = coService.selectMyCoList(creNum);
+	
+		for (Course c : list) {
+			System.out.println(c);
+		}
 		
 		ArrayList<CourseAttachment> coverList = coService.selectCoverList(creNum);
 

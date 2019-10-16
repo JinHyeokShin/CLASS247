@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="courseMapper">
 
-	<resultMap id="CourseResultSet" type="Online">
+	<resultMap id="CourseResultSet" type="Course">
 		<id property="courseNum" column="course_num"/>
 		<result property="categoryNum" column="category_num"/>
 		<result property="creNum" column="cre_num"/>
