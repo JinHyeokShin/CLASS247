@@ -94,10 +94,17 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) { // 로그인에 성공했을 경우
-
+			
 			session.setAttribute("loginUser", loginUser);
 			System.out.println(session);
-			mv.setViewName("redirect:home.do");
+			
+			if(loginUser.getMemType().equals("A") ) {
+				
+				mv.setViewName("redirect:adminMain.do");
+				
+			}else {
+				mv.setViewName("redirect:home.do");
+			}
 			
 		}else {
 			session.setAttribute("msg", "로그인에 실패하였습니다.");
@@ -175,5 +182,45 @@ public class MemberController {
 		
 		
 		}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
+	 * 
+	 * 
+	 * 관리자용
+	 * 
+	 * 
+	 * 
+	 */
+	
+	@RequestMapping("aMemberList.do")
+	public String selectMemberList() {
+		
+		return "admin/member/memberList";
+	}
 	
 }
