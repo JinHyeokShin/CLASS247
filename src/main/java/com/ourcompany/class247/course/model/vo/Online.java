@@ -81,7 +81,12 @@ public class Online extends Course{
 
 	@Override
 	public String toString() {
-		return "Online [onlineNum=" + onlineNum + ", coursePrice=" + coursePrice + ", courseMaterial=" + courseMaterial
+		return "Online [" + "courseNum=" + getCourseNum() + ",  categoryName=" + getCategoryName() + ", categoryNum=" + getCategoryNum() + ", creNum=" + getCreNum() 
+				
+				+ ", courseTitle" + getCourseTitle() + ", courseContent=" + getCourseContent() + ", courseKind=" + getCourseKind() +", courseLevel=" + getCourseLevel() 
+				+ ", loveCount=" + getLoveCount() + ", courseCurrentNum=" + getCourseCurrentNum() + ", courseEnrollDate=" + getCourseEnrollDate() 
+				+ ", courseApprovedDate= " + getCourseApprovedDate() + ", courseStartDate=" + getCourseStartDate() + ", courseEndDate=" + getCourseEndDate()
+				+ ", courseApproved=" + getCourseApproved() + ", courseStatus=" + getCourseStatus() + ", onlineNum=" + onlineNum + ", coursePrice=" + coursePrice + ", courseMaterial=" + courseMaterial
 				+ ", courseMaterialPrice=" + courseMaterialPrice + ", CourseVideoUrl=" + CourseVideoUrl + "]";
 	}
 	

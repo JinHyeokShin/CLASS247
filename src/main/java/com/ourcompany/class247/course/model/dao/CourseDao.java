@@ -56,8 +56,20 @@ public class CourseDao {
 	
 	
 	public ArrayList<Course> selectMyCoList(int creNum){
-		return (ArrayList)sqlSession.selectList("courseMapper.selectMyOnlineList", creNum);
+		ArrayList<Course> onlineList = (ArrayList)sqlSession.selectList("courseMapper.selectMyOnlineList", creNum);
+		ArrayList<Course> offlineList = (ArrayList)sqlSession.selectList("courseMapper.selectMyOfflineList", creNum);
 		
+		onlineList.addAll(offlineList);
+		
+		return onlineList;
+		
+		
+	}
+	
+	
+	
+	public ArrayList<CourseAttachment> selectCoverList(int creNum) {
+		return (ArrayList)sqlSession.selectList("courseMapper.selectCoverList", creNum);
 	}
 	
 	
