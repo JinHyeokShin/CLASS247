@@ -40,6 +40,8 @@ public interface CourseService {
 	
 
 	public int allowCourse(int courseNum);
+	
+	public Course selectCourse(int courseNum);
 
 	
 	
