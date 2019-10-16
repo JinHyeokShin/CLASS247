@@ -153,7 +153,7 @@
                                                     	<input type="hidden" name="memNum" value="${ loginUser.memNum }">
                                                     </div>
                                                 </div>
-		                                        <div class="card-footer" style="text-align:center">
+		                                        <div style="text-align:center">
 		                                            <button type="submit" class="btn btn-primary btn-sm">
 		                                                	크리에이터 신청하기
 		                                            </button>

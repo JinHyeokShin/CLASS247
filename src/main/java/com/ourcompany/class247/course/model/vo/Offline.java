@@ -30,13 +30,14 @@ public class Offline extends Course{
 		this.courseCount = courseCount;
 	}
 
-	public Offline(int courseNum, String categoryName, int creNum, String courseTitle, String courseContent,
+	public Offline(int courseNum, String categoryName, int categoryNum, int creNum, String courseTitle, String courseContent,
 			String courseKind, String courseLevel, int loveCount, int courseCurrentNum, Date courseEnrollDate, Date courseApprovedDate,
 			Date courseStartDate, Date courseEndDate, String courseApproved, String courseStatus, int offlineNum, String courseArea, int courseMinPax, int courseMaxPax, int courseHours,
 			int courseHourPrice, String courseDay, int courseCount) {
-		super(courseNum, categoryName, creNum, courseTitle, courseContent,
-				courseKind, courseLevel, loveCount, courseCurrentNum, courseEnrollDate, courseApprovedDate,
-				courseStartDate, courseEndDate, courseApproved, courseStatus);
+		super(courseNum, categoryName, categoryNum, creNum, courseTitle,
+			 courseContent, courseKind, courseLevel, loveCount, courseCurrentNum, courseEnrollDate,
+			 courseApprovedDate, courseStartDate, courseEndDate, courseApproved,
+			 courseStatus);
 		this.offlineNum = offlineNum;
 		this.courseArea = courseArea;
 		this.courseMinPax = courseMinPax;
@@ -113,7 +114,12 @@ public class Offline extends Course{
 
 	@Override
 	public String toString() {
-		return "Offline [offlineNum=" + offlineNum + ", courseArea=" + courseArea + ", courseMinPax=" + courseMinPax
+		return "Offline [courseNum=" + getCourseNum() + ",  categoryName=" + getCategoryName() + ", categoryNum=" + getCategoryNum() + ", creNum=" + getCreNum() 
+		
+		+ ", courseTitle" + getCourseTitle() + ", courseContent=" + getCourseContent() + ", courseKind=" + getCourseKind() +", courseLevel=" + getCourseLevel() 
+		+ ", loveCount=" + getLoveCount() + ", courseCurrentNum=" + getCourseCurrentNum() + ", courseEnrollDate=" + getCourseEnrollDate() 
+		+ ", courseApprovedDate= " + getCourseApprovedDate() + ", courseStartDate=" + getCourseStartDate() + ", courseEndDate=" + getCourseEndDate()
+		+ ", courseApproved=" + getCourseApproved() + ", courseStatus=" + getCourseStatus() + "offlineNum=" + offlineNum + ", courseArea=" + courseArea + ", courseMinPax=" + courseMinPax
 				+ ", courseMaxPax=" + courseMaxPax + ", courseHours=" + courseHours + ", courseHourPrice="
 				+ courseHourPrice + ", courseDay=" + courseDay + ", courseCount=" + courseCount + "]";
 	}

@@ -9,14 +9,6 @@
 <body class="animsition">
 
 	<c:import url="../creator/common/cMenubar.jsp"/>
-	
-	<script>
-		$(function() {
-			console.log('${creator}');
-		})
-	
-	</script>
-
 <!-- 크리에이터 신청 후 승인 대기 중일 경우 -->
 <c:if test="${ creator.creStatus == 'N'}">
 
@@ -494,6 +486,8 @@
             <!-- END PAGE CONTAINER-->
         </div>
 	</c:if>
+	
+	<c:import url="../creator/common/cMenubar.jsp"/>
 	
 </body>
 </html>
