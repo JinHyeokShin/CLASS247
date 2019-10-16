@@ -50,15 +50,18 @@
                         <div class="row">
                             <!-- <div class="col-xl-16"> -->
                                 <!-- RECENT REPORT 2-->
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img class="card-img-top" src="<%= request.getContextPath() %>/resources/creator/images/class-sample-01.PNG" alt="Card image cap">
-                                        <div class="card-body">
-                                            <h4 class="card-title mb-3">라이트룸과 포토샵으로 만드는 인생 여행 사진</h4>
-                                             <p class="card-text"> 강남 : 2019-10-01 <br> 수강생 : 3명</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                
+                                <c:if test="${ empty list }">
+	                                <div class="col-md-4">
+	                                    <div class="card">
+	                                        <img class="card-img-top" src="<%= request.getContextPath() %>/resources/creator/images/class-sample-01.PNG" alt="Card image cap">
+	                                        <div class="card-body">
+	                                            <h4 class="card-title mb-3"> 개설된 수업이 없습니다.</h4>
+	                                             <p class="card-text"> Class247과 함께 여러분의 재능을 공유해보세요!</p>
+	                                        </div>
+	                                    </div>
+	                                </div>
+                                </c:if>
                                 
                                 <c:forEach items="${ list }" var="c">
                                 	<c:forEach items="${ coverList }" var="cover">

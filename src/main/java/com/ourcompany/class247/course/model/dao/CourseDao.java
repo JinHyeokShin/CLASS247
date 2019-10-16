@@ -23,7 +23,13 @@ public class CourseDao {
 	 * @return
 	 */
 	public int insertCourse(Course co) {
-		return sqlSession.insert("courseMapper.insertCourse", co);
+		int result = sqlSession.insert("courseMapper.insertCourse", co);
+		if (result < 1) {
+			sqlSession.delete("courseMapper.deleteCourse", co);
+			return 0;
+		} else {
+			return 1;
+		}
 	}
 	
 	
@@ -56,10 +62,15 @@ public class CourseDao {
 	
 	
 	public ArrayList<Course> selectMyCoList(int creNum){
+
 		ArrayList<Course> onlineList = (ArrayList)sqlSession.selectList("courseMapper.selectMyOnlineList", creNum);
 		ArrayList<Course> offlineList = (ArrayList)sqlSession.selectList("courseMapper.selectMyOfflineList", creNum);
 		
 		onlineList.addAll(offlineList);
+		
+		for(Course c : onlineList) {
+			System.out.println(c);
+		}
 		
 		return onlineList;
 		

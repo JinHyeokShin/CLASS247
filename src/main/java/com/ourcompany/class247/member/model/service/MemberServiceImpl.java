@@ -35,4 +35,14 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.selectMemberList();
 	}
 
+	
+	
+	
+	
+	// ------	------------ 크리에이터용 ----------------------
+	@Override
+	public ArrayList<Member> selectStuList(int creNum) {
+		return mDao.selectStuList(creNum);
+	}
+
 }

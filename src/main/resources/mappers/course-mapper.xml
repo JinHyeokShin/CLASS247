@@ -49,6 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      		 </case>
      		 <case value="offline" resultType="Offline">
      		 	<result property="offlineNum" column="offline_num"/>
+     		 	<result property="courseArea" column="course_area"/>
 				<result property="courseMinPax" column="course_min_pax"/>
 				<result property="courseMaxPax" column="course_max_pax"/>	
 				<result property="courseHours" column="course_hours"/>
@@ -90,7 +91,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insertOffline" parameterType="Offline">
 		insert into offline_course
-		values(offline_course_seq.nextval, course_seq.currval, #{courseMinPax}, #{courseMaxPax}, 
+		values(offline_course_seq.nextval, course_seq.currval, #{courseMinPax}, #{courseArea}, #{courseMaxPax}, 
 				#{courseHours}, #{courseHourPrice}, #{courseDay}, #{courseCount})
 	</insert>
 	
