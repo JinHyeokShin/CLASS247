@@ -1,6 +1,10 @@
 package com.ourcompany.class247.member.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -153,7 +157,7 @@ public class MemberController {
 	 * @return
 	 */
 	@RequestMapping("mUpdate.do")
-	public String mUpdate(Member m, Model model, HttpServletRequest request,
+	public String mUpdate(Member m, Model model, HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("post") String post, 
 			@RequestParam("address1") String address1, @RequestParam("address2") String address2) {
 		
@@ -174,16 +178,85 @@ public class MemberController {
 		if(result >0) {
 			session.setAttribute("loginUser", loginUser);
 			model.addAttribute("loginUser", loginUser);
-			return "user/member/myPage";
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out;
+			try {
+				out = response.getWriter();
+				out.println("<script>alert('수정이 완료되었습니다.'); history.go(-2);</script>");
+				out.flush();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
 		}else {
 			model.addAttribute("msg", "회원정보수정실패");
 			return "common/errorPage";
 		}
 		
+		return "user/member/myPage";
 		
 		}
 	
 	
+	@RequestMapping("memDelete.do")
+	public String memDelete(){
+		return "user/member/memDelete";
+	}
+	
+
+	@RequestMapping("mDelete.do")
+	public String mDelete(Member m, Model model, HttpServletRequest request,  @RequestParam("why") String why,
+		HttpServletResponse response){
+	
+		HttpSession session = request.getSession();
+		
+		if(!why.equals("")) { //주소 작성해서 값이 넘어왔을 경우
+			m.setMemAddress(why);	
+		}
+
+		
+	Member loginUser = mService.loginMember(m);
+	System.out.println(loginUser);
+		
+	if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) { // 로그인에 성공했을 경우
+		
+			int result = mService.deleteMember(m);
+			
+			if(result >0) {
+				session.setAttribute("loginUser", loginUser);
+				model.addAttribute("loginUser", loginUser);
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out;
+				try {
+					out = response.getWriter();
+					out.println("<script>alert('탈퇴가 완료되었습니다.'); history.go(-3);</script>");
+					out.flush();
+				} catch (IOException e) {
+					
+					e.printStackTrace();
+					
+				}
+
+				return "home";
+			}else {
+				model.addAttribute("msg", "회원정보수정실패");
+				return "common/errorPage";
+			}
+		}else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out;
+			try {
+				out = response.getWriter();
+				out.println("<script>alert('비밀번호가 틀렸습니다. 다시 입력해주세요!'); history.go(-1);</script>");
+				out.flush();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+			return "user/member/memDelete";
+		}
+		
+	}
 	
 	
 	
