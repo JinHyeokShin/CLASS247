@@ -226,14 +226,10 @@ public class CourseController {
 		
 		ModelAndView mv = new ModelAndView();
 		
+		Course co = coService.selectCourse(courseNum);
 		
-		if(courseKind.equals("offLine")) {
-			Offline off = coService.selectOffline(courseNum);
-			mv.addObject("off", off);
-		}else {
-			Online on = coService.selectOnline(courseNum);
-			mv.addObject("on", on);
-		}
+		mv.addObject("co", co);
+		
 			
 		ArrayList<CourseAttachment> coaList = coService.selectCourseAttachmentList(courseNum);
 		

@@ -95,6 +95,11 @@ public class CourseServiceImpl implements CourseService{
 	public int allowCourse(int courseNum) {
 				return coDao.allowCourse(courseNum);
 	}
+	
+	@Override
+	public Course selectCourse(int courseNum) {
+		return coDao.selectCourse(courseNum);
+	}
 
 
 

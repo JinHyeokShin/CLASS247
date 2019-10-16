@@ -92,4 +92,8 @@ public class CourseDao {
 		return sqlSession.update("courseMapper.allowCourse", courseNum);
 	}
 	
+	public Course selectCourse(int courseNum) {
+		return sqlSession.selectOne("courseMapper.selectCourse", courseNum);
+	}
+	
 }
