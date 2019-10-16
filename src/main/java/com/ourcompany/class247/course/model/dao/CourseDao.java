@@ -68,10 +68,6 @@ public class CourseDao {
 		
 		onlineList.addAll(offlineList);
 		
-		for(Course c : onlineList) {
-			System.out.println(c);
-		}
-		
 		return onlineList;
 		
 		
@@ -81,6 +77,14 @@ public class CourseDao {
 	
 	public ArrayList<CourseAttachment> selectCoverList(int creNum) {
 		return (ArrayList)sqlSession.selectList("courseMapper.selectCoverList", creNum);
+	}
+	
+	public CourseAttachment selectCover(int courseNum) {
+		return sqlSession.selectOne("courseMapper.selectCover", courseNum);
+	}
+	
+	public Course selectCourse(int courseNum) {
+		return sqlSession.selectOne("courseMapper.selectCourse", courseNum);
 	}
 	
 	

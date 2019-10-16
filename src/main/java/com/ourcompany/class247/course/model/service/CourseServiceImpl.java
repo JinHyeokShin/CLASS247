@@ -72,8 +72,21 @@ public class CourseServiceImpl implements CourseService{
 		return coDao.selectCoverList(creNum);
 	}
 	
+	
+	//-------------------- 크리에이터 -------------------
+	
+	@Override
+	public Course selectCourse(int courseNum) {
+		return coDao.selectCourse(courseNum);
+	
+	}
+	
+	@Override
+	public CourseAttachment selectCover(int courseNum) {
+		return coDao.selectCover(courseNum);
+	}
 
-	// 관리자
+	//--------------------- 관리자-------------------
 	
 	
 	/**
@@ -107,6 +120,9 @@ public class CourseServiceImpl implements CourseService{
 	public int allowCourse(int courseNum) {
 				return coDao.allowCourse(courseNum);
 	}
+
+
+	
 
 
 

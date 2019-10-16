@@ -30,4 +30,6 @@ public interface MemberService {
 	//---------------- 크리에이터센터용 -----------------------
 	ArrayList<Member> selectStuList(int creNum);
 	
+	ArrayList<Member> selectStuByCo(int courseNum);  
+	
 }

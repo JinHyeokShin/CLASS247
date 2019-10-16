@@ -66,7 +66,7 @@
                                 <c:forEach items="${ list }" var="c">
                                 	<c:forEach items="${ coverList }" var="cover">
                                 		<c:if test="${ cover.courseNum == c.courseNum}"> 
-	                                		<c:url value="myClassDetail.do" var="classDetail">
+	                                		<c:url value="myCourseDetail.do" var="classDetail">
 												<c:param name="courseNum" value="${ c.courseNum }"/>
 											</c:url>
 											
