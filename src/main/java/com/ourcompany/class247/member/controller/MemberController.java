@@ -138,7 +138,9 @@ public class MemberController {
 		
 		ArrayList<Member> list = mService.selectMemberList();
 		
-		mv.addObject("list", list);
+		mv.addObject("list", list).setViewName("admin/member/memberList");
+	
+
 		
 		return mv;
 		
@@ -176,11 +178,7 @@ public class MemberController {
 	 * 1. 회원조회
 	 * @return 
 	 */
-	@RequestMapping("aMemberList.do")
-	public String selectMemberList() {
-		
-		return "admin/member/memberList";
-	}
+
 	
 	
 	

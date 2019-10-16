@@ -13,6 +13,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="certification" column="certification"/>
 		<result property="creStatus" column="cre_status"/>	
 	</resultMap>
+	
+	<resultMap id="creatorAttachmentResultSet" type="CreatorAttachment">
+		<id property="craNum" column="cre_num"/>
+		<result property="creNum" column="cre_num" />
+		<result property="craOname" column="cra_oname" />
+		<result property="craRname" column="cra_rname" />
+		<result property="craLevel" column="cra_Level" />
+		<result property="craPath" column="cra_Path" />
+	</resultMap>
 
 	<select id="selectCreator" parameterType="_int" resultMap="creatorResultSet">
 		select *
@@ -41,14 +50,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(creator_attachment_seq.nextval, #{creNum}, #{craOname}, #{craRname}, 1, #{craPath})
 	</insert>
 	
-	<select id="selectCreatorCourse" parameterType="_int" resultType="creatorResult">
+	<select id="selectCreatorCourse" parameterType="_int" resultMap="creatorResultSet">
 		select *
 		from creator
 		join course using(cre_num)
-		where courseNum = #{courseNum}
+		where course_num = #{courseNum}
 	</select>
 	
-	<select id="selectCreatorAttachmentList" parameterType="_int" resultType="creatorAttachmentResultSet">
+	<select id="selectCreatorAttachmentList" parameterType="_int" resultMap="creatorAttachmentResultSet">
 		select *
 		from creator_attachment
 		where cre_num = #{creNum}

@@ -25,14 +25,17 @@ import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 import com.ourcompany.class247.member.model.service.MemberService;
 import com.ourcompany.class247.member.model.vo.Member;
-import com.ourcompany.class247.creator.model.vo.Creator;
 
 @Controller
 public class CourseController {
 	
 	@Autowired
 	private CourseService coService;
+	
+	@Autowired
 	private MemberService mService;
+	
+	@Autowired
 	private CreatorService creService;
 	
 	
@@ -223,6 +226,7 @@ public class CourseController {
 		
 		ModelAndView mv = new ModelAndView();
 		
+		
 		if(courseKind.equals("offLine")) {
 			Offline off = coService.selectOffline(courseNum);
 			mv.addObject("off", off);
@@ -230,7 +234,7 @@ public class CourseController {
 			Online on = coService.selectOnline(courseNum);
 			mv.addObject("on", on);
 		}
-		
+			
 		ArrayList<CourseAttachment> coaList = coService.selectCourseAttachmentList(courseNum);
 		
 		Creator cre = creService.selectCreatorCourse(courseNum);
@@ -241,7 +245,7 @@ public class CourseController {
 		
 		mv.addObject("coaList", coaList).addObject("cre", cre).addObject("craList", craList).addObject("m", m);
 		
-		mv.setViewName("admin/course/");
+		mv.setViewName("admin/course/awaitCourseDetail");
 		
 		return mv;
 		

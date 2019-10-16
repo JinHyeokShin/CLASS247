@@ -68,7 +68,7 @@
 </head>
 <body>
 
-	<aside class="menu-sidebar d-none d-lg-block">
+	<aside style="float:right" class="menu-sidebar d-none d-lg-block">
 		<div class="logo">
 			<a href="#"> <img
 				src="<%= request.getContextPath() %>/resources/admin/images/icon/logo.png"
