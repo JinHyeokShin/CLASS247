@@ -71,6 +71,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="coaPath" column="coa_path"/>
 	</resultMap>
 	
+	
+	<resultMap id="LoveResultSet" type="Love">
+		<id property="memNum" column="mem_Num"/>
+		<result property="courseTitle" column="course_title"/>
+		<result property="creatorName" column="mem_nickname"/>
+		<result property="courseKind" column="course_kind"/>
+		<result property="coaRName" column="coa_rname"/>
+		<result property="wishedDate" column="wished_date"/>	
+		<discriminator javaType="string" column="course_kind">
+     		 <case value="online" resultType="_int" >
+     		 	<result property="coursePrice" column="course_hour_price"/>
+				
+     		 </case>
+     		 <case value="offline" resultType="_int">
+     		 	<result property="coursePrice" column="course_price"/>
+     		 	
+     		 </case>
+   		</discriminator>
+	</resultMap>
+	
 
 	
 
@@ -179,6 +199,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * 
 		from course
 		where course_num=#{courseNum}
+	</select>
+	
+	<select id="selectLove" resultMap="LoveResultSet">
+	select *
+	from love_view
+	where mem_num = 1
 	</select>
 	 
 

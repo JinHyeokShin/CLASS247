@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
+import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 
@@ -108,16 +109,20 @@ public class CourseDao {
 		return (ArrayList)sqlSession.selectList("courseMapper.selectList");
 	}
 	
-	public Course selectCourse(int cId) {
-		return sqlSession.selectOne("courseMapper.selectCourse", cId);
+	public Course selectCourse(int courseNum) {
+		return sqlSession.selectOne("courseMapper.selectCourse", courseNum);
 	}
-	public Course selectCourse(int courseNum, String courseKind) {
-	      Course co;
-	      if(courseKind.equals("online")) { //온라인 클래스일경우
-	         co = sqlSession.selectOne("courseMapper.selectOnline", courseNum);
-	      } else { //오프라인클래스일 경우 
-	         co = sqlSession.selectOne("courseMapper.selectOffline", courseNum);
-	      }
-	      return co;
-	   }
+	
+
+	
+	public ArrayList<Love> selectLove() {
+		
+		System.out.println("실행");
+		
+		return (ArrayList)sqlSession.selectList("courseMapper.selectLove");
+	}
+	
+	public ArrayList<Course> awaitSelectList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.awaitCourseList");
+	}
 }

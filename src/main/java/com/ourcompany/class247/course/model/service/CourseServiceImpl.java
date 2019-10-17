@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ourcompany.class247.course.model.dao.CourseDao;
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
+import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 
@@ -101,18 +102,23 @@ public class CourseServiceImpl implements CourseService{
 		return coDao.selectCourse(courseNum);
 	}
 
-	@Override
-	public Course selectCourse(int cId,String courseKind) {
-	
-			return coDao.selectCourse(cId, courseKind);
-				
-				
-	}
 
 	@Override
 	public ArrayList<Course> selectList() {
 		
 		return coDao.selectList();
+	}
+	
+	@Override
+	public ArrayList<Love> selectLove() {
+		
+		return coDao.selectLove();
+	}
+	
+	@Override
+	public ArrayList<Course> awaitSelectList() {
+		
+		return coDao.awaitSelectList();
 	}
 
 

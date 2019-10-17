@@ -45,7 +45,7 @@
                                                         <td>
                                                          <c:url value="aAwaitCourseDetail.do" var="awaitCourseDetail">
                                                         	<c:param name="courseNum" value="${ co.courseNum }"/>
-                                                        	<c:param name="courseKind" value="${ co.courseKine }"/>
+                                                        	<c:param name="courseKind" value="${ co.courseKind }"/>
                                                          </c:url>
                                                          <a style="color:black" href="${awaitCourseDetail}">${co.courseTitle }</a>
                                                         </td>

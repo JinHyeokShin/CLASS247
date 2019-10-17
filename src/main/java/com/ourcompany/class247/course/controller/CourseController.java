@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ourcompany.class247.course.model.service.CourseService;
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
+import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.creator.model.service.CreatorService;
@@ -230,23 +231,36 @@ public class CourseController {
 		
 		return mv;
 	}
+	
 	/**
 	 * 강의 클릭시 불러오기
 	 * @param cId
 	 * @param mv
 	 * @return
 	 */
-	@RequestMapping("codetail.do")
+	@RequestMapping("aAwaitCourseList.do")
+	public ModelAndView aSelectList(ModelAndView mv) {
+		
+		ArrayList<Course> list = coService.awaitSelectList();
+		mv.addObject("list", list).setViewName("admin/course/awaitCourseList");
+		
+		return mv;
+	}
+	
+	
+	@RequestMapping("aAwaitCourseDetail.do")
 	public ModelAndView selectCourse(int courseNum,String courseKind, ModelAndView mv) {
 		
-		Course c = coService.selectCourse(courseNum,courseKind );
+		System.out.println("실행");
 		
-		Course co = coService.selectCourse(courseNum, courseKind);
+		ArrayList<Love> list = coService.selectLove();
+		
+		System.out.println(list.size());
+		
+		
+		Course co = coService.selectCourse(courseNum);
 		
 		mv.addObject("co", co);
-		
-		System.out.println(co);
-		
 			
 		ArrayList<CourseAttachment> coaList = coService.selectCourseAttachmentList(courseNum);
 		
