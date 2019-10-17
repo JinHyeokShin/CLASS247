@@ -24,9 +24,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="cs" column="course_status"/>						
 	</resultMap>
 
-	<select id="selectCourse" parameterType="_int" resultMap="courseResultSet">
+	<select id="selectList" resultMap="courseResultSet">
 		select *
 		from course 
+		
+	</select>
+	
+	<select id="courseDetail" parameterType="_int" resultMap="courseResultSet">
+		select * 
+		from course
 		where course_num=#{cid}
 	</select>
 

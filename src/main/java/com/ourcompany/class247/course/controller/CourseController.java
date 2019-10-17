@@ -1,5 +1,7 @@
 package com.ourcompany.class247.course.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,28 +19,37 @@ public class CourseController {
 	@Autowired
 	private CourseService couService;
 	
-//		@RequestMapping("courseDetail.do")
-//		public ModelAndView courseDetail(int cId, ModelAndView mv) {
-//				
-//				Course c  = couService.courseDetail(cId);
-//			
-//				if(c != null) {
-//					mv.addObject("c", c)
-//					  .setViewName("course/course-details");
-//					
-//				}else {
-//					mv.addObject("msg", "게시글 상세조회실패!")
-//					  .setViewName("common/errorPage");
-//				}
-//				
-//				return mv;
-//			
-//		}
-	@RequestMapping("courseDetail.do")
-	public String courseDetail() {
-			return "userCourseDetail";
-				
 		
-	}
+		
+		@RequestMapping("couDetail.do")
+		public ModelAndView courseDetail(int cId, ModelAndView mv) {
+			
+			Course c = couService.courseDetail(cId);
+			
+			if(c != null) {
+				mv.addObject("c", c)
+				  .setViewName("creator/course/userCourseDetail");
+				
+			}else {
+				mv.addObject("msg", "게시글 상세조회실패!")
+				  .setViewName("common/errorPage");
+			}
+			
+			return mv;
+			
+		}
+		
+		@RequestMapping("coulist.do")
+		public ModelAndView selectList(ModelAndView mv) {
+			ArrayList<Course> list = couService.selectList();
+			System.out.println(list);
+			
+			mv.addObject("list", list);
+			mv.setViewName("views/home");
+			
+			return mv;
+		}
+
+
 	
 }

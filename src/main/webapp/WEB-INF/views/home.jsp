@@ -92,14 +92,20 @@
             </div>
             <!-- 수업들foreach -->
             <div class="row">
-            
+            <c:forEach items="${ list }" var="list">
+		            <c:if test="${ !empty loginUser }">
+							<c:url value="couDetail.do" var="coudetail">
+								<c:param name="cid" value="${ cou.cid }"/>
+							</c:url>
+							<a href="${ couDetail }">${ cou.cTitle }</a>
+					</c:if>
                 <div class="col-sm-6 col-lg-4">
                     <div class="single_special_cource">
-                        <img src="resources/user/img/special_cource_1.png" class="special_img" onclick="location.href='${ courseDetail}';">
+                        <img src="resources/user/img/special_cource_1.png" class="special_img" onclick="location.href='couDetail.do';">
                         <div class="special_cource_text">
                             <a href="${ courseDetail} }" class="btn_4">category</a>
                             <h4>${ cou.coursePrice }</h4>
-                            <a href="courseDetail.do"><h3>${ cou.courseTitle }</h3></a>
+                            <a href="couDetail.do"><h3>${ cou.courseTitle }</h3></a>
                             <p>${ cou.courseContent }</p>
                             <div class="author_info">
                                 <div class="author_img">
@@ -114,7 +120,7 @@
                         </div>
                    	 </div>
       			 </div>
-              
+            </c:forEach>
             </div>
         </div>
             <!-- 수정 -->
