@@ -33,6 +33,7 @@ public class MemberServiceImpl implements MemberService{
 	public int deleteMember(Member m) {
 
 		return mDao.deleteMember(m);
+	}
 	public Member selectMember(int memNum) {
 
 		return mDao.selectMember(memNum);
