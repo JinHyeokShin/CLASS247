@@ -157,7 +157,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update course
 		set course_approved_date=sysdate, course_approved='Y'
 		where course_num = #{courseNum}
-	
 	</update>
 	
 	<select id="selectCourse" parameterType="_int" resultMap="CourseResultSet">
@@ -166,5 +165,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where course_num = #{courseNum}
 	
 	</select>
+	
+	<select id="course"
 
 </mapper>
