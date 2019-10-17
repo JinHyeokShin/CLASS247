@@ -27,7 +27,7 @@
 		margin-left:auto;
         margin-right:auto;
         margin-top:40px;
-        margin-bottom:auto;
+        margin-bottom:10%;
 		
 	}
 	td a, td input, td button{
@@ -85,12 +85,13 @@
         	
 			<br>
             <table width="70%" height="80%">
+            
             <tr>
             	<td><a href="memUpdate.do"><img src="resources/user/img/notepad.png"></a><br><br>회원 정보 수정</td>
             	<td><a href="memDelete.do"><img src="resources/user/img/exit.png"></a><br><br>회원 정보 탈퇴</td>
             	<td><a href="memClass.do"><img src="resources/user/img/presentation.png"></a><br><br>나의  수강 내역</td>
             </tr>
-            
+           
       
             <tr>
          
@@ -98,7 +99,7 @@
             	<td><a href="memZzim.do"><img src="resources/user/img/heart.png"></a><br><br>나의 찜하기 목록</td>
             	<td><a href="memDelivary.do"><img src="resources/user/img/truck.png"></a><br><br>주문 및 배송 목록</td>
             </tr>
-           
+          
             
             </table>
          

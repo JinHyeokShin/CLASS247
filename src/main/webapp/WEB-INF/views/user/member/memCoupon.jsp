@@ -24,7 +24,7 @@
 		border-radius: 10px;
 	}
 	table td{
-		text-align: left;
+		text-align: center;
 	}
 	td a, td button{
 		width : 70%;
@@ -45,10 +45,6 @@
 	    	table tr{
 		height:30px;
 	}
-	table tr:hover{
-		background-color:lightgrey;
-		cursor:pointer;
-	}
 	table th:hover{
 		cursor:default;
 	}
@@ -59,48 +55,48 @@
 
 <body>
 	<jsp:include page="/WEB-INF/views/user/common/menubar.jsp"></jsp:include>
-	
-	 
-	  
+
 	  	<div class="login" align="center">
         	<br>
       		<h1>${ loginUser.memName }님의 쿠폰 목록</h1>
       		<hr>
       		<br>
-      		<h4 align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      		${ loginUser.memName } 님의 총 쿠폰 갯수 : ${ pi.listCount }</h3>	
+      		<c:if test="${ !empty couponlist }">
+	      		<h4 align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	      		${ loginUser.memName } 님의 총 쿠폰 갯수 : ${ pi.listCount }</h4>	
+	      	</c:if>
+      		<c:if test="${ empty couponlist }">
+	      		<h4 align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	      		${ loginUser.memName } 님의 총 쿠폰 갯수 : 0 </h4>	
+      		</c:if>
       		<br>
  			<table align="center" border="1" cellspacing="0" width="90%">
 				<tr style="color:white;background-color:#954CBC;">
-					<th>쿠폰 번호</th> 
+					<th>No.</th> 
 					<th>쿠폰 이름</th>
 					<th>쿠폰 발급 날짜</th>
-					<th>쿠폰 사용 날짜</th>
-					<th>발급된 쿠폰 상태</th>
+					<th>쿠폰 할인 가격</th>
+					<th>쿠폰 종료 날짜</th>
 				</tr>
-				<c:if test=""${ !empty ${ list }">
-		<c:forEach items="${ list }" var="c">
+				<c:if test="${ !empty couponlist }">
+		<c:forEach items="${ couponlist }" var="c">
 		<tr>
-			<td align="center">${ c.givecouponNum }</td>
-			<td align="center">${ b.bWriter }</td>
-			<td align="center">${ b.bCreateDate }</td>
-			<td align="center">${ b.bcount }</td>
-			<td align="center">
-				</c:if>
-				<c:if test="${ empty list }">
-					<td colspan="5">발급된 쿠폰이 없습니다.</td>
-				</c:if>
-			</td>
+			<td align="center">${ c.rNum }</td>
+			<td align="center">${ c.couponName }</td>
+			<td align="center">${ c.givecouponEnrolledDate }</td>
+			<td align="center">${ c.couponDiscount }%</td>
+			<td align="center">${ c.couponEndDate }</td>
 		</tr>
 		</c:forEach>
-			</table>
-            <br><hr>
-            
-       
-            </div>
-    	
-		
+				</c:if>
+				<c:if test="${ empty couponlist }">
+				<tr>
+					<td colspan="5" align="center">발급된 쿠폰이 없습니다.</td>
+					</tr>
+				</c:if>
 				
+			</table>	
+			<br>	
 				<!-- [이전] -->	
 				<c:if test="${ pi.currentPage eq 1 }">
 					[이전] 
@@ -115,7 +111,7 @@
 				<!-- 번호들  -->
 				<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
 					<c:if test="${ p eq pi.currentPage }">
-						<font color="red" size="4">[${ p }]</font>
+						<font color="#954CBC" size="4">[${ p }]</font>
 					</c:if>
 					<c:if test="${ p ne pi.currentPage }">
 						<c:url value="blist.do" var="page">
@@ -134,8 +130,9 @@
 						<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 					</c:url>
 					<a href="${ next }"> [다음]</a>
-				</c:if>
-   
+				</c:if>  
+				      <br><br><hr>  
+            </div>
 	<jsp:include page="/WEB-INF/views/user/common/footer.jsp"></jsp:include>
 </body>
 </html>

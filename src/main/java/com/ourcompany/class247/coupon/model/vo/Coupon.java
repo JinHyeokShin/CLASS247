@@ -4,49 +4,63 @@ import java.sql.Date;
 
 public class Coupon {
 	
+	private int rNum; //리스트 번호
+	private int givecouponNum; //발급쿠폰번호
+	private int memNum; //회원번호
+	private Date givecouponEnrolledDate; //쿠폰발급날짜
+	private Date givecouponUsingDate; //쿠폰사용날짜
+	private String givecouponStatus; //발급쿠폰상태 Y,N
 	private int couponType;
 	private String couponName;
 	private int couponDiscount;
 	private Date couponStartDate;
 	private Date couponEndDate;
 	
-	private int givecouponNum; //발급쿠폰번호
-	private int memNum; //회원번호
-	private Date givecouponEnrolledDate; //쿠폰발급날짜
-	private Date givecouponUsingDate; //쿠폰사용날짜
-	private String givecouponStatus; //발급쿠폰상태 Y,N
 	
 	
 	public Coupon() {
 		
 	}
 	
-	public Coupon(int couponType, String couponName, int couponDiscount, Date couponStartDate, Date couponEndDate,
-			int givecouponNum, int memNum, Date givecouponEnrolledDate, Date givecouponUsingDate,
-			String givecouponStatus) {
+
+
+
+
+	public Coupon(int rNum, int givecouponNum, int memNum, Date givecouponEnrolledDate, Date givecouponUsingDate,
+			String givecouponStatus, int couponType, String couponName, int couponDiscount, Date couponStartDate,
+			Date couponEndDate) {
 		super();
+		this.rNum = rNum;
+		this.givecouponNum = givecouponNum;
+		this.memNum = memNum;
+		this.givecouponEnrolledDate = givecouponEnrolledDate;
+		this.givecouponUsingDate = givecouponUsingDate;
+		this.givecouponStatus = givecouponStatus;
 		this.couponType = couponType;
 		this.couponName = couponName;
 		this.couponDiscount = couponDiscount;
 		this.couponStartDate = couponStartDate;
 		this.couponEndDate = couponEndDate;
-		this.givecouponNum = givecouponNum;
-		this.memNum = memNum;
-		this.givecouponEnrolledDate = givecouponEnrolledDate;
-		this.givecouponUsingDate = givecouponUsingDate;
-		this.givecouponStatus = givecouponStatus;
 	}
 
-	public Coupon(int couponType, int givecouponNum, int memNum, Date givecouponEnrolledDate, Date givecouponUsingDate,
-			String givecouponStatus) {
-		super();
-		this.couponType = couponType;
-		this.givecouponNum = givecouponNum;
-		this.memNum = memNum;
-		this.givecouponEnrolledDate = givecouponEnrolledDate;
-		this.givecouponUsingDate = givecouponUsingDate;
-		this.givecouponStatus = givecouponStatus;
+
+
+
+
+	public int getrNum() {
+		return rNum;
 	}
+
+
+
+
+
+	public void setrNum(int rNum) {
+		this.rNum = rNum;
+	}
+
+
+
 
 
 	public int getCouponType() {
@@ -148,14 +162,18 @@ public class Coupon {
 		this.givecouponStatus = givecouponStatus;
 	}
 
+
+
+
+
 	@Override
 	public String toString() {
-		return "Coupon [couponType=" + couponType + ", couponName=" + couponName + ", couponDiscount=" + couponDiscount
-				+ ", couponStartDate=" + couponStartDate + ", couponEndDate=" + couponEndDate + ", givecouponNum="
-				+ givecouponNum + ", memNum=" + memNum + ", givecouponEnrolledDate=" + givecouponEnrolledDate
-				+ ", givecouponUsingDate=" + givecouponUsingDate + ", givecouponStatus=" + givecouponStatus + "]";
+		return "Coupon [rNum=" + rNum + ", givecouponNum=" + givecouponNum + ", memNum=" + memNum
+				+ ", givecouponEnrolledDate=" + givecouponEnrolledDate + ", givecouponUsingDate=" + givecouponUsingDate
+				+ ", givecouponStatus=" + givecouponStatus + ", couponType=" + couponType + ", couponName=" + couponName
+				+ ", couponDiscount=" + couponDiscount + ", couponStartDate=" + couponStartDate + ", couponEndDate="
+				+ couponEndDate + "]";
 	}
 
-	
 	
 }
