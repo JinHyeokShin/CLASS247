@@ -118,7 +118,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where course_num = #{courseNum}
 	</select>
 	
-	<!-- 온라인 클래스 불러오기 -->
+	<!-- 온라인 클래스 불러오기 by creNum-->
 	<select id="selectMyOnlineList" parameterType="_int" resultMap="CourseResultSet">
 		select * 
 		from course
@@ -129,7 +129,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by course_num desc
 	</select>
 	
-	<!-- 오프라인 클래스 불러오기 -->
+	<!-- 오프라인 클래스 불러오기  by creNum-->
 	<select id="selectMyOfflineList" parameterType="_int" resultMap="CourseResultSet">
 		select * 
 		from course
@@ -137,6 +137,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where cre_num = #{creNum} 
 		and course_approved = 'Y'
 		and course_status='Y'
+		order by course_num desc
 	</select>
 	
 	<!-- 클래스 메인 커버리스트 가져오기  -->
@@ -170,17 +171,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where course_approved = 'n'
 	</select>
 	
+	<!-- 온라인 클래스 상세보기 불러오기 by courseNum -->
 	<select id="selectOnline" parameterType="_int" resultMap="CourseResultSet">
 		select *
 		from course
 		join online_course using(course_num)
+		join category using (category_num)
 		where course_num = #{courseNum}
 	</select>
-	
+	<!-- 오프라인 클래스 상세보기 불러오기 by courseNum -->
 	<select id="selectOffline" parameterType="_int" resultMap="CourseResultSet">
 		select *
 		from course
 		join offline_course using(course_num)
+		join category using (category_num)
 		where course_num = #{courseNum}
 	</select>
 	

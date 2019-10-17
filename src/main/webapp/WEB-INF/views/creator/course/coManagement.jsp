@@ -73,13 +73,14 @@
 											
 			                                <div class="col-md-4">
 			                                    <div class="card" onclick="location.href='${classDetail}';">
-			                                        <img class="card-img-top" src="resources/course/images/${ cover.coaRName }" alt="Card image cap">
+			                                        <img style="height:250px" class="card-img-top" src="resources/course/images/${ cover.coaRName }" alt="Card image cap">
 			                                        <div class="card-body">
-			                                            <h4 class="card-title mb-3">${c.courseTitle}</h4>
 			                                            <c:if test="${ c.courseKind == 'offline' }">
+			                                            	<h4 style="display:inline; class="card-title mb-3">${c.courseTitle}</h4> <span class="badge badge-danger">offline</span>
 			                                             	<p class="card-text"> ${ c.courseArea } : ${c.courseStartDate} ~ ${c.courseEndDate} <br> 수강생 : ${c.courseCurrentNum}명</p>
 			                                             </c:if> 
 			                                             <c:if test="${ c.courseKind == 'online' }">
+			                                             	<h4 style="display:inline;" class="card-title mb-3">${c.courseTitle}</h4><span class="badge badge-primary"> online</span>
 			                                             	<p class="card-text"> ${ c.courseKind } : ${c.courseStartDate} ~ ${c.courseEndDate} <br> 수강생 : ${c.courseCurrentNum}명</p>
 			                                             </c:if> 
 			                                        </div>

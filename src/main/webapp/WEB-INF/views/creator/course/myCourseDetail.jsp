@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR:600&display=swap" rel="stylesheet">
 <title>Insert title here</title>
 <style>	
 	.ic{
@@ -14,11 +15,21 @@
 	
 	.thead{
 		font-size:13px;	
+		
 	}
 	
-	.cotitle{
-		font-weight:400;
+	.coTitle{
+		font-weight:bold;
+		padding:5px;
+		color: gray;
 	}
+
+	#coPrice{
+		font-size:20px;
+		font-family: 'Noto Serif KR', serif;
+		font-weight:semi-Bold 600;
+	}
+
 </style>
 </head>
 <body class="animsition">
@@ -43,72 +54,170 @@
                     </div>
                     <div class="vue-lists">
                       <h2 class="mb-4"></h2>
-                      <div class="row">
-                        <div class="col-md-8">
-							<img class="card-img-top" src="resources/course/images/${ cover.coaRName }" alt="Card image cap">
-                        </div>
-                        <div class="col-md-4 text-left">
-                          <div>
-                            <h3>ABOUT CLASS</h3>
-                            <br>
-                            <div>
-                                <span class="badge badge-danger">${co.courseKind}</span>
-                            	<span class="badge badge-primary">${co.categoryName}</span>
-                            </div>
-                            <div>
-                            	<span class="coTitle">수강가격</span><br>
-                            	<span>${ co.coursePrice }</span>
-                            </div>
-                            <div>
-                            	<span class="coTitle">수강 기간</span><br>
-                            	${co.courseStartDate} ~ ${co.courseEndDate}
-                            </div>
-                            <div>
-	                            <div class="progress mb-2">
-									<div class="progress-bar bg-info" role="progressbar" style="width: 40%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">40%</div>
+                      
+                      
+                      <!-- 온라인 클래스일 때  -->
+                      <c:if test="${ co.courseKind eq 'online' }">
+	                      <div class="row">
+	                        <div class="col-md-8">
+								<img class="card-img-top" src="resources/course/images/${ cover.coaRName }" alt="Card image cap">
+	                        </div>
+	                        <div class="col-md-4 text-left">
+	                          <div>
+	                            <h3>ABOUT CLASS</h3>
+	                            <br>
+	                            <div class="coDiv">
+	                                <span class="badge badge-danger">${co.courseKind}</span>
+	                            	<span class="badge badge-primary">${co.categoryName}</span>
+	                            </div>
+	                            <div class="coDiv">
+	                            	<span class="coTitle">수강가격</span><br>
+	                            	<span id="coPrice">${ co.coursePrice }원</span><span style="font-family:'Noto Serif KR'; font-size:12px;">(준비물 미포함)</span>
+	                            </div>
+	                            <br>
+	                            <div class="coDiv">
+	                            	<span class="coTitle">수강 기간</span><br>
+	                            	${co.courseStartDate} ~ ${co.courseEndDate}
+	                            </div>
+	                            <br>
+	                            <div class="coDiv">
+		                            <div class="progress mb-2">
+										<div class="progress-bar bg-info" role="progressbar" style="width: 40%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">40%</div>
+									</div>
+									<span class="coTitle">${co.courseCurrentNum}명 신청</span>
+	                            </div>
+	                            <br>
+	                            <div class="coDiv">
+		                            <table>
+		                            	<tr>
+		                            		<td style="width:300px">신청 날짜</td>
+		                            		<td style="width:50%">승인 날짜</td>
+		                            	</tr>
+		                            	<tr>
+		                            		<td>${co.courseApprovedDate} ex) ${co.courseEndDate}</td>
+		                            		<td>${co.courseApprovedDate} ex)${co.courseEndDate}</td>
+		                            	</tr>
+		                            </table>
 								</div>
-								<span class="coTitle">현재인원 : </span>  ${co.courseCurrentNum}
-                            </div>
-                            <div>
-                            	<span class="coTitle">신청 날짜</span><br>
-                            	${co.courseApprovedDate} ex) ${co.courseEndDate}
-                            </div>
-                            <div>
-                            	<span class="coTitle">승인 날짜</span><br>
-                            	${co.courseApprovedDate} ex)${co.courseEndDate}
-                            </div>
-                            <hr>
-                            <div>
-                            	<table>
-                            		<tr>
-                            			<td rowspan="2" class="ic"><i class="fas fa-users"></i></td>
-                            			<td class="thead">수강 대상</td>
-                            		</tr>
-                            		<tr>
-                            			<td>${co.courseLevel}</td>
-                            		</tr>
-                            		<tr>
-                            			<td rowspan="2"  class="ic" ><i class="fas fa-play-circle"></i></td>
-                            			<td class="thead">포함 내역</td>
-                            			<td rowspan="2"  class="ic"><i class="fas fa-inbox"></i></td>
-                            			<td class="thead">선택 내역</td>
-                            		</tr>
-                            		<tr>
-                            			<td>콘텐츠 이용권</td>
-                            			<td>준비물 키트</td>
-                            		</tr>
-                            	</table>
-                            </div>
-                            <hr>
-							<div>
-								<button type="button" class="btn btn-warning btn-lg btn-block">클래스 수정하기</button><br>
-								<button type="button" class="btn btn-danger btn-lg btn-block">클래스 취소하기</button>
-							</div>
-                          </div>
-                        </div>
-                      </div>
+	                            <hr>
+	                            <div class="coDiv">
+	                            	<table>
+	                            		<tr>
+	                            			<td rowspan="2" class="ic"><i class="fas fa-users"></i></td>
+	                            			<td class="thead">수강 대상</td>
+	                            		</tr>
+	                            		<tr>
+	                            			<td>${co.courseLevel}</td>
+	                            		</tr>
+	                            		<tr>
+	                            			<td rowspan="2"  class="ic" ><i class="fas fa-play-circle"></i></td>
+	                            			<td class="thead">포함 내역</td>
+	                            			<td rowspan="2"  class="ic"><i class="fas fa-inbox"></i></td>
+	                            			<td class="thead">선택 내역</td>
+	                            		</tr>
+	                            		<tr>
+	                            			<td>콘텐츠 이용권</td>
+	                            			<td>준비물 키트</td>
+	                            		</tr>
+	                            	</table>
+	                            </div>
+	                            <hr>
+								<div>
+									<button type="button" class="btn btn-warning btn-lg btn-block">클래스 수정하기</button><br>
+									<button type="button" class="btn btn-danger btn-lg btn-block">클래스 취소하기</button>
+								</div>
+	                          </div>
+	                        </div>
+	                      </div>
+	                      </c:if>
+	                      
+	                      
+	                      
+	                      <!-- 오프라인 클래스 일 때  -->
+	                      <c:if test="${ co.courseKind eq 'offline' }">
+		                      <div class="row">
+		                        <div class="col-md-8">
+									<img class="card-img-top" src="resources/course/images/${ cover.coaRName }" alt="Card image cap">
+		                        </div>
+		                        <div class="col-md-4 text-left">
+		                          <div>
+		                            <h3>ABOUT CLASS</h3>
+		                            <br>
+		                            <div class="coDiv">
+		                                <span class="badge badge-danger">${co.courseKind}</span>
+		                            	<span class="badge badge-primary">${co.categoryName}</span>
+		                            </div>
+		                            <div class="coDiv">
+		                            	<span class="coTitle">수강가격</span><br>
+		                            	<span id="coPrice">${ co.courseHours * co.courseHourPrice * co.courseCount }원</span>
+		                            </div>
+		                            <br>
+		                            <div class="coDiv">
+		                            	<span class="coTitle">수강 기간</span><br>
+		                            	${co.courseStartDate} ~ ${co.courseEndDate}<br>
+		                            	<span class="coTitle">수업 요일</span><br>
+		                            	매주 ${co.courseDay} <span style="font-family:'Noto Serif KR'; font-size:12px;">총 ${co.courseCount}회</span>
+		                            </div>
+		                            <br>
+		                            <div class="coDiv">
+			                            <div class="progress mb-2">
+											<div class="progress-bar bg-info" role="progressbar" style="width: 40%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">40%</div>
+										</div>
+										<span class="coTitle">${co.courseCurrentNum}명 신청</span> 
+										<span style="font-family:'Noto Serif KR'; font-size:12px;">최대인원 ${ co.courseMaxPax }명/ 최소인원 ${ co.courseMinPax }명</span>
+		                            </div>
+		                            <br>
+		                            <div class="coDiv">
+			                            <table>
+			                            	<tr>
+			                            		<td style="width:300px">신청 날짜</td>
+			                            		<td style="width:50%">승인 날짜</td>
+			                            	</tr>
+			                            	<tr>
+			                            		<td>${co.courseApprovedDate} ex) ${co.courseEndDate}</td>
+			                            		<td>${co.courseApprovedDate} ex)${co.courseEndDate}</td>
+			                            	</tr>
+			                            </table>
+									</div>
+		                            <hr>
+		                            <div class="coDiv">
+		                            	<table>
+		                            		<tr>
+		                            			<td rowspan="2" class="ic"><i class="fas fa-users"></i></td>
+		                            			<td class="thead">수강 대상</td>
+		                            			<td rowspan="2" class="ic"><i class="fas fa-users"></i></td>
+		                            			<td class="thead">수업 지역</td>
+		                            		</tr>
+		                            		<tr>
+		                            			<td>${ co.courseArea }</td>
+		                            			<td>${co.courseLevel}</td>
+		                            		</tr>
+		                            		<tr>
+		                            			<td rowspan="2"  class="ic" ><i class="fas fa-play-circle"></i></td>
+		                            			<td class="thead">시간당 가격</td>
+		                            			<td rowspan="2"  class="ic"><i class="fas fa-inbox"></i></td>
+		                            			<td class="thead">1회당 수업 시간</td>
+		                            		</tr>
+		                            		<tr>
+		                            			<td>${ co.courseHourPrice }원/1시간</td>
+		                            			<td>${ co.courseHours }시간/1회</td>
+		                            		</tr>
+		                            	</table>
+		                            </div>
+		                            <hr>
+									<div>
+										<button type="button" class="btn btn-warning btn-lg btn-block">클래스 수정하기</button><br>
+										<button type="button" class="btn btn-danger btn-lg btn-block">클래스 취소하기</button>
+									</div>
+		                          </div>
+		                        </div>
+		                      </div>                      
+                      </c:if>
+                      
+                      
+                      
                       <div class="row">
-						<div class=".col">
+						<div class=".col" style="width:100%">
 							<div class="card">
 								<div class="card-body">
 									<div class="default-tab">
@@ -190,7 +299,7 @@
 				                                            </td>
 				                                        </tr>
 				                                        <tr class="spacer"></tr>
-			                                      		  </c:forEach>
+			                                      		 </c:forEach>
 			                                      		  </c:if>
 			                                     		   <c:if test="${ empty stuList }">
 			                                        			<tr class="tr-shadow">
@@ -201,11 +310,8 @@
 			                                		</table>
 			                           			 </div>
 												</div>
-												<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-													<p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
-														master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh
-														dreamcatcher synth. Cosby sweater eu banh mi, irure terry richardson ex sd. Alip placeat salvia cillum iphone.
-														Seitan alip s cardigan american apparel, butcher voluptate nisi .</p>
+												<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" style="width:100%">
+													<p>${co.courseContent }</p>
 												</div>
 												<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
 													<p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
