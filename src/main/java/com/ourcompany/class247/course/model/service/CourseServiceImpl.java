@@ -109,9 +109,9 @@ public class CourseServiceImpl implements CourseService{
 	}
 
 	@Override
-	public Course courseDetail(int cId) {
+	public Course selectCourse(int cId,String courseKind) {
 	
-			return coDao.courseDetail(cId);
+			return coDao.selectCourse(cId, courseKind);
 				
 				
 	}

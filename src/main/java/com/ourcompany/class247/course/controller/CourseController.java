@@ -200,13 +200,13 @@ public class CourseController {
 	 * @param mv
 	 * @return
 	 */
-	@RequestMapping("coulist.do")
+	@RequestMapping("colist.do")
 	public ModelAndView selectList(ModelAndView mv) {
 		ArrayList<Course> list = coService.selectList();
 		System.out.println(list);
 		
 		mv.addObject("list", list);
-		mv.setViewName("views/home");
+		mv.setViewName("home");
 		
 		return mv;
 	}
@@ -216,10 +216,10 @@ public class CourseController {
 	 * @param mv
 	 * @return
 	 */
-	@RequestMapping("coudetail.do")
-	public ModelAndView courseDetail(int cId, ModelAndView mv) {
+	@RequestMapping("codetail.do")
+	public ModelAndView selectCourse(int courseNum,String courseKind, ModelAndView mv) {
 		
-		Course c = coService.courseDetail(cId);
+		Course c = coService.selectCourse(courseNum,courseKind );
 		
 		if(c != null) {
 			mv.addObject("c", c)
@@ -233,6 +233,9 @@ public class CourseController {
 		return mv;
 		
 	}
-
+//	@RequestMapping("couDetail.do")
+//	public String couDetail() {
+//		return "creator/course/userCourseDetail2";
+//	}
 
 }

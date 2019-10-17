@@ -45,7 +45,7 @@ public interface CourseService {
 	ArrayList<Course> selectList();
 	
 	//클래스 상세보기
-	Course courseDetail(int cId);
+	Course selectCourse(int courseNum,String courseKind);
 	
 
 }
