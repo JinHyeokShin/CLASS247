@@ -1,41 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.ourcompany.class247.member.model.vo.Member"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-        <html>
 
-        <html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>CLASS 247</title>
+    <link rel="icon" href="resources/user/img/favicon.png">
+</head>
+<body>
+	<c:import url="/WEB-INF/views/user/common/menubar.jsp"/>
 
-        <head>
-            <!-- Required meta tags -->
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-            <title>CLASS 247</title>
-            <link rel="icon" href="resources/user/img/favicon.png">
-            <script src="resources/user/js/jquery.counterup.min.js"></script>
-            <script src="resources/user/js/waypoints.min.js"></script>
-
-        </head>
-        <c:import url="/WEB-INF/views/user/common/menubar.jsp" />
-
-        <body>
-
-            <section class="breadcrumb breadcrumb_bg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="breadcrumb_iner text-center">
-                                <div class="breadcrumb_iner_item">
-                                    <div class="banner_text_iner">
-                                        <h5 style="color:white;">당신의 모든 취미를 클래스로 개설할 수 있습니다.</h5>
-                                        <h1> 당신의 클래스를 <br>개설하세요 !</h1>
-                                        <a href="introduce.do" class="btn_1">서비스 소개 </a> &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="cMainView.do" class="btn_2" onclick="return loginCheck()">크리에이터 센터</a>
-                                        <br><br>
-                    <a class="btn_2" href="#Mdrecom" style="float:right;">인기/추천<br>클래스</a>
-                                    </div>
-                                </div>
-                            </div>
+<section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner text-center">
+                        <div class="breadcrumb_iner_item">
+                            <div class="banner_text_iner">
+                            <h5 style="color:white;">당신의 모든 취미를 클래스로 개설할 수 있습니다.</h5>
+                            <h1> 당신의 클래스를 <br>개설하세요 !</h1>
+                            <p>Replenish seasons may male hath fruit beast were seas saw you arrie said man beast whales
+                                his void unto last session for bite. Set have great you'll male grass yielding yielding
+                                man</p>
+                            <a href="#" class="btn_1">View Course </a>
+                            <a href="cMainView.do" class="btn_2" onclick="return loginCheck()">Get Started </a>
                         </div>
                     </div>
                 </div>
@@ -100,21 +92,19 @@
             </div>
             <!-- 수업들foreach -->
             <div class="row">
-            <c:forEach items="${ list }" var="list">
-		            <c:if test="${ !empty loginUser }">
-							<c:url value="couDetail.do" var="coudetail">
-								<c:param name="cid" value="${ cou.cid }"/>
+            	<c:forEach items="${ list }" var="list">
+							<c:url value="coudetail.do" var="c">
+								<c:param name="course_num" value="${ c.course_num }"/>
 							</c:url>
-							<a href="${ couDetail }">${ cou.cTitle }</a>
-					</c:if>
+							<a href="${ couDetail }">${ c.course_title }</a>
                 <div class="col-sm-6 col-lg-4">
                     <div class="single_special_cource">
                         <img src="resources/user/img/special_cource_1.png" class="special_img" onclick="location.href='couDetail.do';">
                         <div class="special_cource_text">
-                            <a href="${ courseDetail} }" class="btn_4">category</a>
-                            <h4>${ cou.coursePrice }</h4>
-                            <a href="couDetail.do"><h3>${ cou.courseTitle }</h3></a>
-                            <p>${ cou.courseContent }</p>
+                            
+                            <h4>${ c.coursePrice }</h4>
+                            <a href="${ couDetail}"><h3>${ c.course_title }</h3></a>
+                            <p>${ c.course_content }</p>
                             <div class="author_info">
                                 <div class="author_img">
                                     <img src="resources/user/img/author/author_1.png" alt="">
@@ -172,100 +162,65 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
-                    <div class="owl-carousel">
-                        <div class="item">
-                            <div class="single_special_cource">
-                                <img src="resources/user/img/special_cource_1.png" class="special_img" alt="">
-                                <div class="special_cource_text">
-                                    <a href="course-details.html" class="btn_4">라이프 스타일</a>
-                                    <h4>$130.00</h4>
-                                    <a href="course-details.html">
-                                        <h3>Web Development</h3>
-                                    </a>
-                                    <p>Which whose darkness saying were life unto fish wherein all fish of together called</p>
-                                    <div class="author_info">
-                                        <div class="author_img">
-                                            <img src="resources/user/img/author/author_1.png" alt="">
-                                            <div class="author_info_text">
-                                                <p>Conduct by:</p>
-                                                <h5><a href="#">James Well</a></h5>
-                                            </div>
-                                        </div>
-                                        <div class="author_rating">
-                                            <div class="rating">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/star.svg" alt="">
-                                            </div>
-                                            <p>3.8 Ratings</p>
-                                        </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="single_special_cource">
+                        <img src="resources/user/img/special_cource_2.png" class="special_img" alt="">
+                        <div class="special_cource_text">
+                            <a href="course-details.html" class="btn_4">design</a>
+                            <h4>$160.00</h4>
+                            <a href="course-details.html"> <h3>Web UX/UI Design </h3></a>
+                            <p>Which whose darkness saying were life unto fish wherein all fish of together called</p>
+                            <div class="author_info">
+                                <div class="author_img">
+                                    <img src="resources/user/img/author/author_2.png" alt="">
+                                    <div class="author_info_text">
+                                        <p>Conduct by:</p>
+                                        <h5><a href="#">James Well</a></h5>
                                     </div>
+                                </div>
+                                <div class="author_rating">
+                                    <div class="rating">
+                                        <a href="#"><img src="resources/user/img/icon/color_star.svg" alt=""></a>
+                                        <a href="#"><img src="resources/user/img/icon/color_star.svg" alt=""></a>
+                                        <a href="#"><img src="resources/user/img/icon/color_star.svg" alt=""></a>
+                                        <a href="#"><img src="resources/user/img/icon/color_star.svg" alt=""></a>
+                                        <a href="#"><img src="resources/user/img/icon/star.svg" alt=""></a>
+                                    </div>
+                                    <p>3.8 Ratings</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="single_special_cource">
-                                <img src="resources/user/img/special_cource_3.png" class="special_img" alt="">
-                                <div class="special_cource_text">
-                                    <a href="course-details.html" class="btn_4">미술</a>
-                                    <h4>300,000&#8361;</h4>
-                                    <a href="course-details.html">
-                                        <h3>Wordpress Development</h3>
-                                    </a>
-                                    <p>Which whose darkness saying were life unto fish wherein all fish of together called</p>
-                                    <div class="author_info">
-                                        <div class="author_img">
-                                            <img src="resources/user/img/author/author_3.png" alt="">
-                                            <div class="author_info_text">
-                                                <p>Conduct by:</p>
-                                                <h5><a href="#">James Well</a></h5>
-                                            </div>
-                                        </div>
-                                        <div class="author_rating">
-                                            <div class="rating">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/star.svg" alt="">
-                                            </div>
-                                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="single_special_cource">
+                        <img src="resources/user/img/special_cource_3.png" class="special_img" alt="">
+                        <div class="special_cource_text">
+                            <a href="course-details.html" class="btn_4">Wordpress</a>
+                            <h4>$140.00</h4>
+                            <a href="course-details.html">  <h3>Wordpress Development</h3> </a> 
+                            <p>Which whose darkness saying were life unto fish wherein all fish of together called</p>
+                            <div class="author_info">
+                                <div class="author_img">
+                                    <img src="resources/user/img/author/author_3.png" alt="">
+                                    <div class="author_info_text">
+                                        <p>Conduct by:</p>
+                                        <h5><a href="#">James Well</a></h5>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="single_special_cource">
-                                <img src="resources/user/img/special_cource_3.png" class="special_img" alt="">
-                                <div class="special_cource_text">
-                                    <a href="course-details.html" class="btn_4">사진, 영상</a>
-                                    <h4>$140.00</h4>
-                                    <a href="course-details.html">
-                                        <h3>보람쌤과 함께하는 쉬운 아이티</h3>
-                                    </a>
-                                    <p>Which whose darkness saying were life unto fish wherein all fish of together called</p>
-                                    <div class="author_info">
-                                        <div class="author_img">
-                                            <img src="resources/user/img/author/author_3.png" alt="">
-                                            <div class="author_info_text">
-                                                <p>Conduct by:</p>
-                                                <h5><a href="#">James Well</a></h5>
-                                            </div>
-                                        </div>
-                                        <div class="author_rating">
-                                            <div class="rating">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/star.svg" alt="">
-                                            </div>
-                                            <p>3.8 Ratings</p>
-                                        </div>
+                                <div class="author_rating">
+                                    <div class="rating">
+                                        <a href="#"><img src="resources/user/img/icon/color_star.svg" alt=""></a>
+                                        <a href="#"><img src="resources/user/img/icon/color_star.svg" alt=""></a>
+                                        <a href="#"><img src="resources/user/img/icon/color_star.svg" alt=""></a>
+                                        <a href="#"><img src="resources/user/img/icon/color_star.svg" alt=""></a>
+                                        <a href="#"><img src="resources/user/img/icon/star.svg" alt=""></a>
                                     </div>
+                                    <p>3.8 Ratings</p>
                                 </div>
                             </div>
                         </div>
@@ -303,21 +258,9 @@
                         <h4>오프라인 강의</h4>
                     </div>
                 </div>
-            </section>
-            <c:import url="/WEB-INF/views/user/common/footer.jsp" />
-            <script>
-                $(document).ready(function() {
-                    var owl = $('.owl-carousel');
-                    owl.owlCarousel({
-                        items: 4,
-                        loop: true,
-                        margin: 10,
-                        autoplay: true,
-                        autoplayTimeout: 3000,
-                        autoplayHoverPause: true
-                    });
-                });
-            </script>
-        </body>
-
-        </html>
+            </div>
+        </div>
+    </section>
+	<c:import url="/WEB-INF/views/user/common/footer.jsp"/>
+</body>
+</html>

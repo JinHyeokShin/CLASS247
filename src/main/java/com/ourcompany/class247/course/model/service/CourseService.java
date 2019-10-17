@@ -41,7 +41,11 @@ public interface CourseService {
 
 	public int allowCourse(int courseNum);
 
+	//클래스리스트 가지고 오기	
+	ArrayList<Course> selectList();
 	
+	//클래스 상세보기
+	Course courseDetail(int cId);
 	
 
 }

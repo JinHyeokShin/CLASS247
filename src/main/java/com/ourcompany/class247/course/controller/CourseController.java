@@ -194,5 +194,45 @@ public class CourseController {
 		mv.setViewName("creator/course/coManagement");
 		 return mv;
 	}
+	//김은기
+	
+	/**home에 강의리스트 불러오기
+	 * @param mv
+	 * @return
+	 */
+	@RequestMapping("coulist.do")
+	public ModelAndView selectList(ModelAndView mv) {
+		ArrayList<Course> list = coService.selectList();
+		System.out.println(list);
+		
+		mv.addObject("list", list);
+		mv.setViewName("views/home");
+		
+		return mv;
+	}
+	/**
+	 * 강의 클릭시 불러오기
+	 * @param cId
+	 * @param mv
+	 * @return
+	 */
+	@RequestMapping("coudetail.do")
+	public ModelAndView courseDetail(int cId, ModelAndView mv) {
+		
+		Course c = coService.courseDetail(cId);
+		
+		if(c != null) {
+			mv.addObject("c", c)
+			  .setViewName("creator/course/userCourseDetail");
+			
+		}else {
+			mv.addObject("msg", "게시글 상세조회실패!")
+			  .setViewName("common/errorPage");
+		}
+		
+		return mv;
+		
+	}
+
 
 }

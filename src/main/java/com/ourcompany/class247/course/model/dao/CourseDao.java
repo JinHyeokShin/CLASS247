@@ -110,5 +110,12 @@ public class CourseDao {
 		
 		return sqlSession.update("courseMapper.allowCourse", courseNum);
 	}
+	public ArrayList<Course> selectList(){
+		return (ArrayList)sqlSession.selectList("courseMapper.selectList");
+	}
+	
+	public Course courseDetail(int cId) {
+		return sqlSession.selectOne("courseMapper.selectCourse", cId);
+	}
 	
 }

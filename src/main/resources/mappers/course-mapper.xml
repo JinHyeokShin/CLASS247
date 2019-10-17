@@ -173,5 +173,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where course_num = #{courseNum}
 	
 	</update>
+	
+	
+	<select id="selectList" resultMap="courseResultSet">
+		select *
+		from course 
+		where course_status='Y'
+	</select>
+	
+
+	<select id="selectCourse" parameterType="_int" resultMap="courseResultSet">
+		select * 
+		from course
+		where course_num=#{courseNum}
+	</select>
+	 
 
 </mapper>
