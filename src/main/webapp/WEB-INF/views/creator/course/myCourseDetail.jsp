@@ -37,14 +37,25 @@
                           <div>
                             <h3>ABOUT CLASS</h3>
                             <br>
+                            <div>
+                                <span class="badge badge-danger">${co.courseKind}</span>
+                            	<span class="badge badge-primary">${co.categoryName}</span>
+                            </div>
+                            <div>
+                            	<span>수강 기간</span><br>
+                            	${co.courseStartDate} ~ ${co.courseEndDate}
+                            </div>
+                            <div>
+	                            <div class="progress mb-2">
+									<div class="progress-bar bg-info" role="progressbar" style="width: 10%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">%</div>
+								</div>
+                            </div>
+                            <div>
+                            	<span>수강 대상자</span><br>
+                            	${co.courseLevel}
+                            </div>
+                            
                             <table>
-                            	<tr>
-                            		<td><span class="badge badge-danger">${co.courseKind}</span></td>
-                            		<td>${co.courseLevel}</td>
-                            	</tr>
-                            	<tr>
-                            		<td colspan="2">${co.courseStartDate} ~ ${co.courseEndDate}</td>
-                            	</tr>
                             	<tr>
                             		<td>승인날짜:</td>
                             		<td>${co.courseApprovedDate}</td>
@@ -54,6 +65,7 @@
                             		<td>${co.courseCurrentNum}명</td>
                             	</tr>
                             </table>
+
                           </div>
                         </div>
                       </div>

@@ -25,6 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<resultMap id="CourseResultSet" type="Course">
 		<id property="courseNum" column="course_num"/>
+		<result property="categoryName" column="category_name"/>
 		<result property="categoryNum" column="category_num"/>
 		<result property="creNum" column="cre_num"/>
 		<result property="courseTitle" column="course_title"/>
@@ -111,6 +112,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectCourse" parameterType="_int" resultMap="CourseResultSet">
 		select *
 		from course 
+		join category using(category_num)
 		where course_num = #{courseNum}
 	</select>
 	
