@@ -19,8 +19,8 @@ public class Course {
 	private Date courseApprovedDate;		//승인날짜
 	private Date courseStartDate;			//강의시작날짜
 	private Date courseEndDate;				//강의종료날짜
-	private String courseApproved;			//승인영부
-	private String courseStatus;			//상태
+	private String courseApproved;			//승인여부(N-대기, Y-승인, R(refuse)-거절) 
+	private String courseStatus;			//상태(수업만료 여부) 
 	
 	public Course() {
 		

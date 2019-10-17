@@ -101,6 +101,20 @@ public class CourseServiceImpl implements CourseService{
 		return coDao.selectCourse(courseNum);
 	}
 
+	@Override
+	public Course selectCourse(int cId,String courseKind) {
+	
+			return coDao.selectCourse(cId, courseKind);
+				
+				
+	}
+
+	@Override
+	public ArrayList<Course> selectList() {
+		
+		return coDao.selectList();
+	}
+
 
 
 }

@@ -74,214 +74,71 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="tr-shadow">
-                                            <td>
-                                                <label class="au-checkbox">
-                                                    <input type="checkbox">
-                                                    <span class="au-checkmark"></span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <div class="image img-cir img-40">
-                                                    <img src="<%= request.getContextPath() %>/resources/creator/images/icon/avatar-02.jpg" alt="Cynthia Harvey" />
-                                                </div> 
-                                            </td>
-                                            <td>한미선</td>
-                                            <td>
-                                                <span class="block-email">포토샵으로 손그림</span>
-                                            </td>
-                                            <td>09/27</td>
-                                            <td>01093201234</td>
-                                                <td>
-                                                    <span class="status--process">수강</span>
-                                                </td>
-                                            <td>입문자</td>
-                                            <td>
-                                                <div class="table-data-feature">
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
-                                                        <i class="zmdi zmdi-mail-send"></i>
-                                                    </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Information">
-                                                        <i class="zmdi zmdi-info"></i>
-                                                    </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Memo">
-                                                        <i class="zmdi zmdi-edit"></i>
-                                                    </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                                        <i class="zmdi zmdi-more"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="spacer"></tr>
-                                        <tr class="tr-shadow">
-                                                <td>
-                                                    <label class="au-checkbox">
-                                                        <input type="checkbox">
-                                                        <span class="au-checkmark"></span>
-                                                    </label>
-                                                </td>
-                                                <td>
-                                                    <div class="image img-cir img-40">
-                                                        <img src="<%= request.getContextPath() %>/resources/creator/images/icon/avatar-01.jpg" alt="Cynthia Harvey" />
-                                                    </div> 
-                                                </td>
-                                                <td>신진혁</td>
-                                                <td>
-                                                    <span class="block-email">포토샵으로 손그림</span>
-                                                </td>
-                                                <td>09/27</td>
-                                                <td>01093201234</td>
-                                                    <td>
-                                                        <span class="status--process">수강</span>
-                                                    </td>
-                                                <td>중급</td>
-                                                <td>
-                                                    <div class="table-data-feature">
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
-                                                            <i class="zmdi zmdi-mail-send"></i>
-                                                        </button>
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Information">
-                                                            <i class="zmdi zmdi-info"></i>
-                                                        </button>
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Memo">
-                                                            <i class="zmdi zmdi-edit"></i>
-                                                        </button>
-                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                                            <i class="zmdi zmdi-more"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="spacer"></tr>
-                                        <tr class="tr-shadow">
-                                            <td>
-                                                <label class="au-checkbox">
-                                                    <input type="checkbox">
-                                                    <span class="au-checkmark"></span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <div class="image img-cir img-40">
-                                                    <img src="<%= request.getContextPath() %>/resources/creator/images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
-                                                </div> 
-                                            </td>
-                                            <td>이승은</td>
-                                            <td>
-                                                <span class="block-email">포토샵으로 손그림</span>
-                                            </td>
-                                            <td>09/27</td>
-                                            <td>01093201234</td>
-                                                <td>
-                                                    <span class="status--process">수강</span>
-                                                </td>
-                                            <td>고급</td>
-                                            <td>
-                                                <div class="table-data-feature">
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
-                                                        <i class="zmdi zmdi-mail-send"></i>
-                                                    </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Information">
-                                                        <i class="zmdi zmdi-info"></i>
-                                                    </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Memo">
-                                                        <i class="zmdi zmdi-edit"></i>
-                                                    </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                                        <i class="zmdi zmdi-more"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="spacer"></tr>
-                                        <tr class="tr-shadow">
-                                            <td>
-                                                <label class="au-checkbox">
-                                                    <input type="checkbox">
-                                                    <span class="au-checkmark"></span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <div class="image img-cir img-40">
-                                                    <img src="<%= request.getContextPath() %>/resources/creator/images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
-                                                </div> 
-                                            </td>
-                                            <td>김상민</td>
-                                            <td>
-                                                <span class="block-email">포토샵으로 손그림</span>
-                                            </td>
-                                            <td>09/27</td>
-                                            <td>01093201234</td>
-                                                <td>
-                                                    <span class="status--process">수강</span>
-                                                </td>
-                                            <td>입문자</td>
-                                            <td>
-                                                <div class="table-data-feature">
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
-                                                        <i class="zmdi zmdi-mail-send"></i>
-                                                    </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Information">
-                                                        <i class="zmdi zmdi-info"></i>
-                                                    </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Memo">
-                                                        <i class="zmdi zmdi-edit"></i>
-                                                    </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                                        <i class="zmdi zmdi-more"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        
-                                       
-                                        <tr class="spacer"></tr>
-                                        <tr class="tr-shadow">
-                                            <td>
-                                                <label class="au-checkbox">
-                                                    <input type="checkbox">
-                                                    <span class="au-checkmark"></span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <div class="image img-cir img-40">
-                                                    <img src="<%= request.getContextPath() %>/resources/creator/images/icon/avatar-03.jpg" alt="Cynthia Harvey" />
-                                                </div> 
-                                            </td>                                            
-                                            <td>Lori Lynch</td>
-                                            <td>
-                                                <span class="block-email">lyn@example.com</span>
-                                            </td>
-                                            <td class="desc">iPhone X 256Gb Black</td>
-                                            <td>2018-09-25 19:03</td>
-                                            <td>
-                                                <span class="status--denied">Denied</span>
-                                            </td>
-                                            <td>$1199.00</td>
-                                            <td>
-                                                <div class="table-data-feature">
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
-                                                        <i class="zmdi zmdi-mail-send"></i>
-                                                    </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                        <i class="zmdi zmdi-edit"></i>
-                                                    </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                        <i class="zmdi zmdi-delete"></i>
-                                                    </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                                        <i class="zmdi zmdi-more"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="spacer"></tr>
-
+                                    
+                                    
+                                    
+                                    <c:forEach items="${ studentList }" var="s">
+	                                    <c:url value="stuDetail.do" var="stuDetail">
+	                                    	<c:param name="memNum" value="${s.memNum}"/>
+	                                    	<c:param name="courseNum" value="${s.courseNum}"/>
+	                                    </c:url>
+	                                        <tr class="tr-shadow" onclick="location.href='${stuDetail}';">
+	                                            <td>
+	                                                <label class="au-checkbox">
+	                                                    <input type="checkbox">
+	                                                    <span class="au-checkmark"></span>
+	                                                </label>
+	                                            </td>
+	                                            <td>
+	                                                <div class="image img-cir img-40">
+	                                                    <img src="<%= request.getContextPath() %>/resources/creator/images/icon/avatar-02.jpg" alt="Cynthia Harvey" />
+	                                                </div> 
+	                                            </td>
+	                                            <td>${ s.memName }</td>
+	                                            <td>
+	                                                <span class="block-email">${ s.courseTitle }</span>
+	                                            </td>
+	                                            <td>09/27</td>
+	                                            <td>${ s.memPhone }</td>
+	                                                <td>
+	                                                    <span class="status--process">수강</span>
+	                                                </td>
+	                                            <td>입문자</td>
+	                                            <td>
+	                                                <div class="table-data-feature">
+	                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
+	                                                        <i class="zmdi zmdi-mail-send"></i>
+	                                                    </button>
+	                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Information">
+	                                                        <i class="zmdi zmdi-info"></i>
+	                                                    </button>
+	                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Memo">
+	                                                        <i class="zmdi zmdi-edit"></i>
+	                                                    </button>
+	                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="More">
+	                                                        <i class="zmdi zmdi-more"></i>
+	                                                    </button>
+	                                                </div>
+	                                            </td>
+	                                        </tr>
+	                                        <tr class="spacer"></tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
                             <!-- END DATA TABLE -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+           	<section>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright">
+                                <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
                             </div>
                         </div>
                     </div>

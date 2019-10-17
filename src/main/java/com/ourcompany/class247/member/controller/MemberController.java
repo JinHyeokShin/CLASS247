@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.member.model.service.MemberService;
 import com.ourcompany.class247.member.model.vo.Member;
 
@@ -127,6 +128,10 @@ public class MemberController {
 		return mv;
 	}
 	
+	@RequestMapping("introduce.do")
+	public String intoduce() {
+		return "user/introduce/introduce";
+	}
 	
 
 	
@@ -174,11 +179,37 @@ public class MemberController {
 	 * 
 	 */
 	
-	/**
-	 * 1. 회원조회
-	 * @return 
-	 */
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//----------------------------------------------------------------------------------
+	/*
+	 * 크리에이터센터용
+	 * 
+	 */
+	
+	/**
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("studentManage.do")
+	public ModelAndView studentManage(HttpServletRequest request, ModelAndView mv) {
+		int creNum = ((Creator)request.getSession().getAttribute("creator")).getCreNum();
+		ArrayList<Member> studentList = mService.selectStuList(creNum);
+		
+		mv.addObject("studentList", studentList);
+		mv.setViewName("creator/student/studentManage");
+		
+		return mv;
+	}
 	
 	
 	

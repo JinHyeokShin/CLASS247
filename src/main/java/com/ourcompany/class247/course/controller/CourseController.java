@@ -61,6 +61,9 @@ public class CourseController {
 			
 	}
 	
+	
+	
+	
 	/** 2. 온라인수업 추가 
 	 * @param co
 	 * @param online
@@ -124,7 +127,7 @@ public class CourseController {
 					CourseAttachment cover = new CourseAttachment();
 					cover.setCoaRName(coverRename);
 					cover.setCoaOName(coverImage.getOriginalFilename());
-					cover.setCoaPath(request.getSession().getServletContext().getRealPath("resources") + "\\course\\images");
+					cover.setCoaPath(request.getSession().getServletContext().getRealPath("resources") + "\\course\\images\\");
 					
 					coService.insertCoverImage(cover);
 				}
@@ -189,6 +192,11 @@ public class CourseController {
 		int creNum = ((Creator)request.getSession().getAttribute("creator")).getCreNum();
 		ArrayList<Course> list = coService.selectMyCoList(creNum);
 		
+		
+		for (Course c : list) {
+			System.out.println(c);
+		}
+		
 		ArrayList<CourseAttachment> coverList = coService.selectCoverList(creNum);
 
 		mv.addObject("list", list);
@@ -196,35 +204,42 @@ public class CourseController {
 		mv.setViewName("creator/course/coManagement");
 		 return mv;
 	}
-
-
-	/**
-	 * admin 1. 승인대기중인 리스트 불러오기
+	
+	@RequestMapping("goOnline.do")
+	public String goOnline() {
+		return "user/course/onlineList";
+	}
+	
+	@RequestMapping("goOffline.do")
+	public String goOffline() {
+		return "user/course/offlineList";
+	}
+	//김은기
+	
+	/**home에 강의리스트 불러오기
+	 * @param mv
 	 * @return
 	 */
-	@RequestMapping("aAwaitCourseList.do")
-	public ModelAndView awaitCourseList() {
-		
-		ModelAndView mv = new ModelAndView();
-		
-		ArrayList<Course> list = coService.selectAwaitCourseList();
+	@RequestMapping("home.do")
+	public ModelAndView selectList(ModelAndView mv) {
+		ArrayList<Course> list = coService.selectList();
+		System.out.println(list);
 		
 		mv.addObject("list", list);
-		mv.setViewName("admin/course/awaitCourseList");
+		mv.setViewName("home");
 		
 		return mv;
 	}
-	
 	/**
-	 * admin 2. 승인대기중인 클래스 불러오기
-	 * @param courseNum
-	 * @param courseKind
+	 * 강의 클릭시 불러오기
+	 * @param cId
+	 * @param mv
 	 * @return
 	 */
-	@RequestMapping("aAwaitCourseDetail.do")
-	public ModelAndView aAwaitCourseDetail(int courseNum, String courseKind) {
+	@RequestMapping("codetail.do")
+	public ModelAndView selectCourse(int courseNum,String courseKind, ModelAndView mv) {
 		
-		ModelAndView mv = new ModelAndView();
+		Course c = coService.selectCourse(courseNum,courseKind );
 		
 		Course co = coService.selectCourse(courseNum, courseKind);
 		

@@ -21,4 +21,13 @@ public interface MemberService {
 	Member selectMember(int memNum);
 	
 	ArrayList<Member> selectMemberList();
+	
+	
+	
+	
+	
+	
+	//---------------- 크리에이터센터용 -----------------------
+	ArrayList<Member> selectStuList(int creNum);
+	
 }

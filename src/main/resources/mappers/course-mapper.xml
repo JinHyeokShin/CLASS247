@@ -50,6 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      		 </case>
      		 <case value="offline" resultType="Offline">
      		 	<result property="offlineNum" column="offline_num"/>
+     		 	<result property="courseArea" column="course_area"/>
 				<result property="courseMinPax" column="course_min_pax"/>
 				<result property="courseMaxPax" column="course_max_pax"/>	
 				<result property="courseHours" column="course_hours"/>
@@ -91,7 +92,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insertOffline" parameterType="Offline">
 		insert into offline_course
-		values(offline_course_seq.nextval, course_seq.currval, #{courseMinPax}, #{courseMaxPax}, 
+		values(offline_course_seq.nextval, course_seq.currval, #{courseMinPax}, #{courseArea}, #{courseMaxPax}, 
 				#{courseHours}, #{courseHourPrice}, #{courseDay}, #{courseCount})
 	</insert>
 	
@@ -159,13 +160,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where course_num = #{courseNum}
 	</update>
 	
-	<select id="selectCourse" parameterType="_int" resultMap="CourseResultSet">
-		select *
-		from course
-		where course_num = #{courseNum}
 	
+	<select id="selectList" resultMap="SingleCourseResultSet">
+			select c.course_num, category.category_name, cre_num, c.course_title, c.course_content, c.course_kind, 
+                c.course_level, c.course_current_num, c.course_enroll_date, c.course_approved_date, c.course_start_date,
+                c.course_end_date, c.course_approved, c.course_status, member.mem_nickname
+		from course c
+        join category using (category_num)
+        join creator using(cre_num)
+        join member using(mem_num)
+		where course_approved = 'Y'
 	</select>
 	
-	<select id="course"
+	
+	
+
+	<select id="selectCourse" parameterType="_int" resultMap="CourseResultSet">
+		select * 
+		from course
+		where course_num=#{courseNum}
+	</select>
+	 
 
 </mapper>

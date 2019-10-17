@@ -30,4 +30,12 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.selectMemberList");
 	}
 	
+	
+	
+	
+	//---------------- 크리에이터 -----------------------
+	public ArrayList<Member> selectStuList(int creNum){
+		return (ArrayList)sqlSession.selectList("memberMapper.selectStuByCreNum", creNum);
+	}
+	
 }

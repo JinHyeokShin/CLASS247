@@ -27,10 +27,7 @@ public class CreatorCenterController {
 		return "creator/creNoticeList";
 	}
 	
-	@RequestMapping("studentManage.do")
-	public String studentManage() {
-		return "creator/student/studentManage";
-	}
+
 
 
 }
