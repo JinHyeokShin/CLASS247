@@ -24,13 +24,14 @@ public class Online extends Course{
 		CourseVideoUrl = courseVideoUrl;
 	}
 
-	public Online(int courseNum, String categoryName, int memNum, String courseTitle, String courseContent,
-			String courseKind, int loveCount, int courseCurrentNum, Date courseEnrollDate, Date courseApprovedDate,
+	public Online(int courseNum, String categoryName, int categoryNum, int creNum, String courseTitle, String courseContent,
+			String courseKind, String courseLevel, int loveCount, int courseCurrentNum, Date courseEnrollDate, Date courseApprovedDate,
 			Date courseStartDate, Date courseEndDate, String courseApproved, String courseStatus, int onlineNum, int coursePrice, String courseMaterial, int courseMaterialPrice,
 			String courseVideoUrl) {
-		super(courseNum, categoryName, memNum, courseTitle, courseContent,
-				courseKind, loveCount, courseCurrentNum, courseEnrollDate, courseApprovedDate,
-				courseStartDate, courseEndDate, courseApproved, courseStatus);
+		super(courseNum, categoryName, categoryNum, creNum, courseTitle,
+				 courseContent, courseKind, courseLevel, loveCount, courseCurrentNum, courseEnrollDate,
+				 courseApprovedDate, courseStartDate, courseEndDate, courseApproved,
+				 courseStatus);
 		this.onlineNum = onlineNum;
 		this.coursePrice = coursePrice;
 		this.courseMaterial = courseMaterial;
@@ -80,7 +81,12 @@ public class Online extends Course{
 
 	@Override
 	public String toString() {
-		return "Online [onlineNum=" + onlineNum + ", coursePrice=" + coursePrice + ", courseMaterial=" + courseMaterial
+		return "Online [" + "courseNum=" + getCourseNum() + ",  categoryName=" + getCategoryName() + ", categoryNum=" + getCategoryNum() + ", creNum=" + getCreNum() 
+				
+				+ ", courseTitle" + getCourseTitle() + ", courseContent=" + getCourseContent() + ", courseKind=" + getCourseKind() +", courseLevel=" + getCourseLevel() 
+				+ ", loveCount=" + getLoveCount() + ", courseCurrentNum=" + getCourseCurrentNum() + ", courseEnrollDate=" + getCourseEnrollDate() 
+				+ ", courseApprovedDate= " + getCourseApprovedDate() + ", courseStartDate=" + getCourseStartDate() + ", courseEndDate=" + getCourseEndDate()
+				+ ", courseApproved=" + getCourseApproved() + ", courseStatus=" + getCourseStatus() + ", onlineNum=" + onlineNum + ", coursePrice=" + coursePrice + ", courseMaterial=" + courseMaterial
 				+ ", courseMaterialPrice=" + courseMaterialPrice + ", CourseVideoUrl=" + CourseVideoUrl + "]";
 	}
 	

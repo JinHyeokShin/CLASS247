@@ -59,7 +59,7 @@
                              	서울특별시 중구 한강대로 416 서울스퀘어 위워크 13층 | 사업자등록번호 : 457-81-00277 | 통신판매업신고 : 2019-서울중구-0087<br>
                              	(주)클래스101은 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 (주)클래스101은 상품, 거래정보 및 거래에 대하여 책임을 지지 않습니다.
                             </p>
-                    		<a class="genric-btn primary-border e-large" href="cMainView.do"> 크리에이터 지원하기 </a>	
+                    		<a class="genric-btn primary-border e-large" href="cMainView.do" onclick="return loginCheck();"> 크리에이터 지원하기 </a>	
                         </div>
                     </div>
                 </div>
@@ -82,5 +82,18 @@
             </div>
         </div>
     </footer>
+        	<script>
+    		function loginCheck() {
+    			
+    			if ( '${ loginUser.memNum }' == "") {
+    				alert("로그인 후 사용할 수 있는 서비스입니다.");
+    				return false;
+    			} else {
+    				location.href="<%= request.getContextPath() %>/cMainView.do";
+    				return true;
+    			}
+    		
+    		}
+    	</script>
 </body>
 </html>
