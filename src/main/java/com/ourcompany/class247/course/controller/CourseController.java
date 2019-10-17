@@ -194,5 +194,15 @@ public class CourseController {
 		mv.setViewName("creator/course/coManagement");
 		 return mv;
 	}
+	
+	@RequestMapping("goOnline.do")
+	public String goOnline() {
+		return "user/course/onlineList";
+	}
+	
+	@RequestMapping("goOffline.do")
+	public String goOffline() {
+		return "user/course/offlineList";
+	}
 
 }
