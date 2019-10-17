@@ -5,10 +5,10 @@ public class Creator {
 	private int creNum;
 	private int memNum; 
 	private String introduction;
-	private String career;
-	private String education;
-	private String certification;
-	private String creStatus;
+	private String career;			//경력
+	private String education;		//학력
+	private String certification;	//자격증
+	private String creStatus;		
 	
 	public Creator() {
 		

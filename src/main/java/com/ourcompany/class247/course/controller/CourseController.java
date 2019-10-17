@@ -226,9 +226,11 @@ public class CourseController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		Course co = coService.selectCourse(courseNum);
+		Course co = coService.selectCourse(courseNum, courseKind);
 		
 		mv.addObject("co", co);
+		
+		System.out.println(co);
 		
 			
 		ArrayList<CourseAttachment> coaList = coService.selectCourseAttachmentList(courseNum);

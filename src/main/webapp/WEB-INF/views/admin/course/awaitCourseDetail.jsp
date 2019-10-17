@@ -8,6 +8,18 @@
 <meta charset="UTF-8">
 <title>AwaitCourseDetail</title>
 
+<style>
+	.user{
+		background:#f2f2f2;
+	}
+	
+	.text{
+		padding-top:1px;
+	}
+	
+
+</style>
+
 </head>
 
 
@@ -37,50 +49,81 @@
 									</h3>
 								</div>
 								<div class="card-body card-block">
+									<div class="row form-groupb">
+										<div class="col col-md-2">
+											<label for="creID" class="form-control-label text">이메일</label>
+											
+										</div>
+										<div class="col-12 col-md-4 user">
+											<label for="creID" class=" form-control-label text">${ m.memId }</label>
+										</div>
+										<div class="col col-md-2">
+											<label for="creID" class=" form-control-label text">휴대폰 번호</label>
+											
+										</div>
+										<div class="col-12 col-md-4 user">
+											<label for="creID" class=" form-control-label text" >${ m.memPhone }</label>
+										</div>
+									</div>
+									<div class="row form-groupb">
+										<div class="col col-md-2">
+											<label for="creID" class=" form-control-label text">이름</label>
+											
+										</div>
+										<div class="col-12 col-md-4 user" >
+											<label for="creID" class=" form-control-label text">${ m.memName } </label>
+										</div>
+										<div class="col col-md-2">
+											<label for="creID" class=" form-control-label text">닉네임</label>
+											
+										</div>
+										<div class="col-12 col-md-4 user">
+											<label for="creID" class=" form-control-label text"> ${ m.memNickName }</label>
+										</div>
+									</div>
+									<div class="row form-groupb">
+										<div class="col col-md-2">
+											<label for="creID" class=" form-control-label text">가입날짜</label>
+											
+										</div>
+										<div class="col-12 col-md-4 user">
+											<label for="creID" class=" form-control-label text">${ m.memEnrollDate }</label>
+										</div>
+										<div class="col col-md-2">
+											<label for="creID" class=" form-control-label text">크리에이터승격날짜</label>
+											
+										</div>
+										<div class="col-12 col-md-4 user">
+											<label for="creID" class=" form-control-label text">승격날짜</label>
+										</div>
+									</div>
+									<div class="row form-group">
+										<div class="col col-md-2">
+											<label for="creID" class=" form-control-label text">주소</label>
+										</div>
+										<div class="col-12 col-md-10 user">
+											<label for="creID" class=" form-control-label text">${ m.memAddress }</label>
+										</div>
+									</div>
+									
+									<hr>
 
 									<div class="row form-group">
 										<div class="col col-md-2">
-											<label for="phone" class=" form-control-label">* 전화번호
+											<label for="creID" class=" form-control-label">신분증
 												인증</label>
-										</div>
-										<div class="col-12 col-md-8">
-											<input type="text" id="phone" name="phone"
-												value="${ loginUser.memPhone }" class="form-control"
-												required>
-										</div>
-										<button class="btn btn-primary btn-sm">인증하기</button>
-									</div>
-									<hr>
-									<div class="row form-group">
-										<div class="col col-md-2">
-											<label for="creProfile" class=" form-control-label">*
-												프로필 사진</label>
-										</div>
-										<div class="col-12 col-md-9" style="height: 200px">
-											<input name="creProfile" id="creProfile" class="btn btn-sm"
-												type="file" required>
-											<div
-												style="width: 150px; height: 150px; margin-top: 10px; text-align: center">
-												<img src="resources/creator/images/icon/user.png"
-													alt="basic_profile" />
-											</div>
-										</div>
-									</div>
-									<hr>
-									<div class="row form-group">
-										<div class="col col-md-2">
-											<label for="creID" class=" form-control-label">* 신분증
-												인증</label>
-											<button type="button" data-toggle="modal"
-												data-target="#mediumModal">
-												<i class="fas fa-question"></i>
-											</button>
 										</div>
 										<div class="col-12 col-md-9">
-											<input name="creID" id="creID" class="btn btn-sm" type="file"
-												required> <small class="help-block form-text">주민등록증/운전면허증/여권을
-												업로드하세요.</small>
+								
+											<c:forEach items="${ craList }" var="craList">
+											<div class="image img-240">
+												<img src="/class247/resources/creator/creatorImages/${ craList.craRname }">
+											</div>
+											
+											</c:forEach>
+											
 										</div>
+										
 									</div>
 									<hr>
 									<div class="row form-group">
@@ -88,9 +131,8 @@
 											<label for="education" class=" form-control-label">학력</label>
 										</div>
 										<div class="col-12 col-md-9">
-											<input type="text" id="education" name="education"
-												placeholder="예) 247 대학교/공예학" class="form-control" required>
-											<small class="help-block form-text">관련 학력 사항을 기입하세요.</small>
+											<label for="creID" class=" form-control-label text">${ cre.education }</label>
+											
 										</div>
 									</div>
 									<hr>
@@ -99,9 +141,8 @@
 											<label for="career" class=" form-control-label">경력</label>
 										</div>
 										<div class="col-12 col-md-9">
-											<input type="text" id="career" name="career"
-												placeholder="예)KH아카데미 보조교사" class="form-control"> <small
-												class="help-block form-text">관련 학력 사항을 기입하세요.</small>
+											<label for="creID" class=" form-control-label text">${ cre.career }</label>
+											
 										</div>
 									</div>
 									<hr>
@@ -110,10 +151,7 @@
 											<label for="certification" class=" form-control-label">자격증</label>
 										</div>
 										<div class="col-12 col-md-9">
-											<input type="text" id="certification" name="certification"
-												placeholder="예) 토익 900, SQLD, 한국사1급" class="form-control">
-											<small class="help-block form-text">관련 자격증이 있다면
-												입력하세요.</small>
+											<label for="creID" class=" form-control-label text">${ cre.certification }</label>
 										</div>
 									</div>
 									<hr>
@@ -122,11 +160,8 @@
 											<label for="introduction" class=" form-control-label">자기소개</label>
 										</div>
 										<div class="col-12 col-md-9">
-											<textarea name="introduction" id="introduction" rows="9"
-												placeholder="학생들에게 소개하는 톡톡튀는 본인만의 자기소개를 작성해주세요 :) "
-												class="form-control" required></textarea>
-											<input type="hidden" name="memNum"
-												value="${ loginUser.memNum }">
+											<label for="creID" class=" form-control-label text">${ cre.introduction }</label>
+												
 										</div>
 									</div>
 
@@ -148,29 +183,29 @@
 									<div class="form-group">
 										<label class=" form-control-label">클래스 종류</label><br>
 										<div class="form-check-inline form-check">
-											<label for="online" class="form-check-label "> <input
-												type="radio" id="online" name="courseKind" value="online"
-												class="form-check-input" checked>온라인 클래스
+											<label for="online" class="form-check-label ">
+											 <input type="radio" id="online" name="courseKind" value="online" class="form-check-input" disabled <c:if test="${co.courseKind eq 'online' }"> checked</c:if>>온라인 클래스</label>
 												&nbsp;&nbsp;
-											</label> <label for="offline" class="form-check-label "> <input
-												type="radio" id="offline" name="courseKind" value="offline"
-												class="form-check-input">오프라인 클래스
+											 <label for="offline" class="form-check-label ">
+											 <input type="radio" id="offline" name="courseKind" value="offline"	class="form-check-input" disabled <c:if test="${co.courseKind eq 'offline' }"> checked</c:if>>오프라인 클래스
 											</label>
 										</div>
 									</div>
 									<hr>
 									<div class="form-group">
-										<label for="class_title" class=" form-control-label">*
-											클래스 제목</label> <input type="text" name="courseTitle"
-											placeholder="클래스를 대표할 수 있는 제목을 추가해주세요." class="form-control"
-											required>
+										<label for="class_title" class=" form-control-label">
+											클래스 제목</label> 
+										
+										<label for="creID" class=" form-control-label text">${ co.courseMaterial }</label>
 									</div>
 									<hr>
 									<div class="form-group">
-										<label for="categoryNum" class=" form-control-label">*
+										<label for="categoryNum" class=" form-control-label">
 											클래스 카테고리</label>
 										<div class="col-md-3">
-											<label></label>
+											 <select name="categoryNum" id="categoryNum" class="form-control">
+                                                  	      <option>가나</option>
+                                              </select>
 										</div>
 										<small class="help-block form-text">어느 역량의 수강생을 위한
 											클래스인지 선택해주세요.</small>
@@ -313,7 +348,7 @@
 									</div>
 								</div>
 								<hr>
-
+							</div>
 						
 
 						</div>
@@ -340,11 +375,14 @@
 				
 				<br>
 				<div>
-
-						<input type="button" onclick="location.href='';" value="승인하기">
-						<input type="button" value="거부하기">
-
-				
+					<c:url value="aApprovalCourse.do" var="aApprovalCourse">
+						<c:param value="${ co.courseNum }" name="courseNum"/>
+					</c:url>
+						<input type="button" class="btn btn-outline-primary" onclick="location.href='${aApprovalCourse}'" value="승인하기">
+						<input type="button" class="btn btn-outline-danger" onclick="select('reject')" value="거부하기">
+					<c:url value="aRejectCourse.do" var="aRejectCourse">
+						<c:param value="${ co.courseNum }" name="courseNum"/>
+					</c:url>
 				</div>
 			</div>
 			<nav class="navbar-sidebar">
@@ -387,6 +425,7 @@
 			}
 
 		}
+		
 	</script>
 
 

@@ -38,6 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="courseEndDate" column="course_end_date"/>
 		<result property="courseApproved" column="course_approved"/>
 		<result property="courseStatus" column="course_status"/>
+		<result property="memNickName" column="mem_nickname"/>	
 		
 		<discriminator javaType="string" column="course_kind">
      		 <case value="online" resultType="Online">

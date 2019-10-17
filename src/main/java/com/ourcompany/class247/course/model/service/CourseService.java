@@ -32,7 +32,6 @@ public interface CourseService {
 	
 	public ArrayList<CourseAttachment> selectCourseAttachmentList(int courseNum);
 	
-
 	public int allowCourse(int courseNum);
 	
 	public Course selectCourse(int courseNum);
