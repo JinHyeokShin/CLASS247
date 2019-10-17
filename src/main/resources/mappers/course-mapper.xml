@@ -173,5 +173,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where course_num = #{courseNum}
 	
 	</update>
+	
+	
+	<select id="selectList" resultMap="SingleCourseResultSet">
+			select c.course_num, category.category_name, cre_num, c.course_title, c.course_content, c.course_kind, 
+                c.course_level, c.course_current_num, c.course_enroll_date, c.course_approved_date, c.course_start_date,
+                c.course_end_date, c.course_approved, c.course_status, member.mem_nickname
+		from course c
+        join category using (category_num)
+        join creator using(cre_num)
+        join member using(mem_num)
+		where course_approved = 'Y'
+	</select>
+	
+	
+	
+
+	<select id="selectCourse" parameterType="_int" resultMap="CourseResultSet">
+		select * 
+		from course
+		where course_num=#{courseNum}
+	</select>
+	 
 
 </mapper>
