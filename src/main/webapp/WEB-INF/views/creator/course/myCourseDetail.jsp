@@ -6,6 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>	
+	.ic{
+		padding-right:20px;
+		padding-left:20px;
+	}
+	
+	.thead{
+		font-size:13px;	
+	}
+	
+	.cotitle{
+		font-weight:400;
+	}
+</style>
 </head>
 <body class="animsition">
 	<c:import url="../common/cMenubar.jsp"/>
@@ -18,7 +32,7 @@
         <div class="section__content section__content--p30">
           <div class="container-fluid">
             <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-13">
                 <div class="card">
                   <div class="card-header">
                     <strong class="card-title">클래스 상세 보기</strong>
@@ -33,7 +47,7 @@
                         <div class="col-md-8">
 							<img class="card-img-top" src="resources/course/images/${ cover.coaRName }" alt="Card image cap">
                         </div>
-                        <div class="col-md-3 text-left">
+                        <div class="col-md-4 text-left">
                           <div>
                             <h3>ABOUT CLASS</h3>
                             <br>
@@ -42,30 +56,54 @@
                             	<span class="badge badge-primary">${co.categoryName}</span>
                             </div>
                             <div>
-                            	<span>수강 기간</span><br>
+                            	<span class="coTitle">수강가격</span><br>
+                            	<span>${ co.coursePrice }</span>
+                            </div>
+                            <div>
+                            	<span class="coTitle">수강 기간</span><br>
                             	${co.courseStartDate} ~ ${co.courseEndDate}
                             </div>
                             <div>
 	                            <div class="progress mb-2">
-									<div class="progress-bar bg-info" role="progressbar" style="width: 10%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">%</div>
+									<div class="progress-bar bg-info" role="progressbar" style="width: 40%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">40%</div>
 								</div>
+								<span class="coTitle">현재인원 : </span>  ${co.courseCurrentNum}
                             </div>
                             <div>
-                            	<span>수강 대상자</span><br>
-                            	${co.courseLevel}
+                            	<span class="coTitle">신청 날짜</span><br>
+                            	${co.courseApprovedDate} ex) ${co.courseEndDate}
                             </div>
-                            
-                            <table>
-                            	<tr>
-                            		<td>승인날짜:</td>
-                            		<td>${co.courseApprovedDate}</td>
-                            	</tr>
-                            	<tr>
-                            		<td>현재 수강생 </td>
-                            		<td>${co.courseCurrentNum}명</td>
-                            	</tr>
-                            </table>
-
+                            <div>
+                            	<span class="coTitle">승인 날짜</span><br>
+                            	${co.courseApprovedDate} ex)${co.courseEndDate}
+                            </div>
+                            <hr>
+                            <div>
+                            	<table>
+                            		<tr>
+                            			<td rowspan="2" class="ic"><i class="fas fa-users"></i></td>
+                            			<td class="thead">수강 대상</td>
+                            		</tr>
+                            		<tr>
+                            			<td>${co.courseLevel}</td>
+                            		</tr>
+                            		<tr>
+                            			<td rowspan="2"  class="ic" ><i class="fas fa-play-circle"></i></td>
+                            			<td class="thead">포함 내역</td>
+                            			<td rowspan="2"  class="ic"><i class="fas fa-inbox"></i></td>
+                            			<td class="thead">선택 내역</td>
+                            		</tr>
+                            		<tr>
+                            			<td>콘텐츠 이용권</td>
+                            			<td>준비물 키트</td>
+                            		</tr>
+                            	</table>
+                            </div>
+                            <hr>
+							<div>
+								<button type="button" class="btn btn-warning btn-lg btn-block">클래스 수정하기</button><br>
+								<button type="button" class="btn btn-danger btn-lg btn-block">클래스 취소하기</button>
+							</div>
                           </div>
                         </div>
                       </div>

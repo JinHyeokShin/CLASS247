@@ -76,8 +76,8 @@ public class CourseServiceImpl implements CourseService{
 	//-------------------- 크리에이터 -------------------
 	
 	@Override
-	public Course selectCourse(int courseNum) {
-		return coDao.selectCourse(courseNum);
+	public Course selectCourse(int courseNum, String courseKind) {
+		return coDao.selectCourse(courseNum, courseKind);
 	
 	}
 	

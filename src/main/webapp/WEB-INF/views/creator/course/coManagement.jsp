@@ -68,6 +68,7 @@
                                 		<c:if test="${ cover.courseNum == c.courseNum}"> 
 	                                		<c:url value="myCourseDetail.do" var="classDetail">
 												<c:param name="courseNum" value="${ c.courseNum }"/>
+												<c:param name="courseKind" value="${ c.courseKind }"/>
 											</c:url>
 											
 			                                <div class="col-md-4">

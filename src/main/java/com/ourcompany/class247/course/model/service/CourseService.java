@@ -26,7 +26,7 @@ public interface CourseService {
 	ArrayList<CourseAttachment> selectCoverList(int creNum);
 	
 	//-------------------- 크리에이터용 
-	Course selectCourse(int courseNum);
+	Course selectCourse(int courseNum, String courseKind);
 	
 	CourseAttachment selectCover(int courseNum);
 	

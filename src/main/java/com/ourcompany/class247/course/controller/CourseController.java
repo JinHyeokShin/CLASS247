@@ -83,7 +83,7 @@ public class CourseController {
 					cover.setCoaOName(coverImage.getOriginalFilename());
 					cover.setCoaPath(request.getSession().getServletContext().getRealPath("resources") + "\\course\\images");
 					
-					coService.insertCoverImage(cover);
+					coService.insertCoverImage(cover); 
 				}
 				
 			}
@@ -205,10 +205,13 @@ public class CourseController {
 	 * 내 클래스관리 -> 클래스 디테일 (수강정보 + 수강생정보)
 	 */
 	@RequestMapping("myCourseDetail.do")
-	public ModelAndView myCourseDetail(int courseNum, ModelAndView mv) {
-		Course course = coService.selectCourse(courseNum); 
+	public ModelAndView myCourseDetail(int courseNum, String courseKind, ModelAndView mv) {
+		
+		Course course = coService.selectCourse(courseNum, courseKind); 
 		CourseAttachment cover = coService.selectCover(courseNum);
 		ArrayList<Member> stuList = mService.selectStuByCo(courseNum);
+		
+		System.out.println(course);
 		
 		mv.addObject("co", course);
 		mv.addObject("cover", cover);

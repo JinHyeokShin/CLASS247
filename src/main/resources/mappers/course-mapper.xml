@@ -61,6 +61,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    		</discriminator>
 	</resultMap>
 	
+		
+	
 	
 	<resultMap id="CourseAttachmentResultSet" type="CourseAttachment">
 		<id property="coaNum" column="coa_num"/>
@@ -175,7 +177,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where course_num = #{courseNum}
 	</select>
 	
-	<select id="selectOffline" parameterType="Offline" resultMap="CourseResultSet">
+	<select id="selectOffline" parameterType="_int" resultMap="CourseResultSet">
 		select *
 		from course
 		join offline_course using(course_num)
