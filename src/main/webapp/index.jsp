@@ -10,7 +10,7 @@
 <body>
 
 <script>
-	location.href="colist.do";
+	location.href="home.do";
 </script>
  
 

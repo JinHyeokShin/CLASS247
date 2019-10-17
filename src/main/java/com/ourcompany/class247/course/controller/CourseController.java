@@ -210,7 +210,7 @@ public class CourseController {
 	 * @param mv
 	 * @return
 	 */
-	@RequestMapping("colist.do")
+	@RequestMapping("home.do")
 	public ModelAndView selectList(ModelAndView mv) {
 		ArrayList<Course> list = coService.selectList();
 		System.out.println(list);

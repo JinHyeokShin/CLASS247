@@ -8,15 +8,11 @@
 <title>Insert title here</title>
 </head>
 <style>
-	table tr{
-		height:30px;
-	}
-	table tr:hover{
-		background-color:lightgrey;
-		cursor:pointer;
-	}
 	table th:hover{
 		cursor:default;
+	}
+	table tr{
+		height:30px;
 	}
 </style>
 <body>
@@ -111,14 +107,25 @@
 			</div>
 		</div>
 	</section>
-	<script>
-		$(".trclick td").click(function(){
-			$(this).parent().click(function(){
-				
+		<script>
+		$(function(){
+			$(".trclick td").find("a").mouseenter(function(){
+				$(this).parent().parent().css({"background":"lightgrey","cursor":"pointer"});
+			}).mouseout(function(){
+				$(this).parent().parent().css({"background":"white"});
+			}).click(function(){
 				var noticeNum = $(this).children().eq(0).text();
-				
-				location.href='ndetail.do?noticeNum='+noticeNum;
-				
+				location.href="ndetail.do?noticeNum="+noticeNum;
+			});
+		});
+		$(function(){
+			$(".trclick td").mouseenter(function(){
+				$(this).parent().css({"background":"lightgrey","cursor":"pointer"});
+			}).mouseout(function(){
+				$(this).parent().css({"background":"white"});
+			}).click(function(){
+				var noticeNum = $(this).parent().children().eq(0).text();
+				location.href="ndetail.do?noticeNum="+noticeNum;
 			});
 		});
 	</script>
