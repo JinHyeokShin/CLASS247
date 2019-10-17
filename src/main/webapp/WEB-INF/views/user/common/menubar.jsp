@@ -221,11 +221,11 @@
 			        		<td colspan="5"><a href="#"><img src="resources/user/img/categoryImg/signiture.png"></a></td>
 			        	</tr>
 				        <tr>
-				        	<td><a href="#"><img src="resources/user/img/categoryImg/crafts.png"></a></td>
-				        	<td><a href="#"><img src="resources/user/img/categoryImg/designdevelopment.png"></a></td>
-				        	<td><a href="#"><img src="resources/user/img/categoryImg/designdevelopment.png"></a></td>
-				        	<td><a href="#"><img src="resources/user/img/categoryImg/digitaldrawing.png"></a></td>
-				        	<td><a href="#"><img src="resources/user/img/categoryImg/lifestyle.png"></a></td>
+				        	<td><a href="#"><img src="resources/user/img/categoryImg/crafts.png">&nbsp;</a></td>
+				        	<td><a href="#"><img src="resources/user/img/categoryImg/designdevelopment.png">&nbsp;</a></td>
+				        	<td><a href="#"><img src="resources/user/img/categoryImg/designdevelopment.png">&nbsp;</a></td>
+				        	<td><a href="#"><img src="resources/user/img/categoryImg/digitaldrawing.png">&nbsp;</a></td>
+				        	<td><a href="#"><img src="resources/user/img/categoryImg/lifestyle.png"></a>&nbsp;</td>
 				        </tr>
 				        <tr>
 				        	<td><a href="#"><img src="resources/user/img/categoryImg/art.png"></a></td>

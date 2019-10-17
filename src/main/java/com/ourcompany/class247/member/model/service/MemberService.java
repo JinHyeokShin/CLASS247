@@ -1,5 +1,7 @@
 package com.ourcompany.class247.member.model.service;
 
+import java.util.ArrayList;
+
 import com.ourcompany.class247.member.model.vo.Member;
 
 public interface MemberService {
@@ -36,11 +38,16 @@ public interface MemberService {
 	
 	
 	
+	Member selectMember(int memNum);
+	
+	ArrayList<Member> selectMemberList();
 	
 	
 	
 	
 	
 	
+	//---------------- 크리에이터센터용 -----------------------
+	ArrayList<Member> selectStuList(int creNum);
 	
 }
