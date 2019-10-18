@@ -135,6 +135,16 @@ public class CourseServiceImpl implements CourseService{
 		return coDao.selectList();
 	}
 
+	@Override
+	public ArrayList<Course> modalsearchList(String search) {
+		return coDao.modalsearchList(search);
+	}
+
+	@Override
+	public ArrayList<Course> modalsearchCategory(int categoryNum) {
+		return coDao.modalsearchCategory(categoryNum);
+	}
+
 
 	
 

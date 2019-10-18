@@ -129,4 +129,14 @@ public class CourseDao {
 	 * //오프라인클래스일 경우 co = sqlSession.selectOne("courseMapper.selectOffline",
 	 * courseNum); } return co; }
 	 */
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> modalsearchList(String search){
+		return (ArrayList)sqlSession.selectList("courseMapper.modalsearchList",search);
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> modalsearchCategory(int categoryNum){
+		return (ArrayList)sqlSession.selectList("courseMapper.modalsearchCategory",categoryNum);
+	}
 }

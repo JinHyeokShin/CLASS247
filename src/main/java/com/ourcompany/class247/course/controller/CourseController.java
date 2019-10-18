@@ -188,7 +188,7 @@ public class CourseController {
 		
 		
 		for (Course c : list) {
-			System.out.println(c);
+			/* System.out.println(c); */
 		}
 		
 		ArrayList<CourseAttachment> coverList = coService.selectCoverList(creNum);
@@ -211,7 +211,7 @@ public class CourseController {
 		CourseAttachment cover = coService.selectCover(courseNum);
 		ArrayList<Member> stuList = mService.selectStuByCo(courseNum);
 		
-		System.out.println(course);
+		/* System.out.println(course); */
 		
 		mv.addObject("co", course);
 		mv.addObject("cover", cover);
@@ -238,7 +238,7 @@ public class CourseController {
 	@RequestMapping("home.do")
 	public ModelAndView selectList(ModelAndView mv) {
 		ArrayList<Course> list = coService.selectList();
-		System.out.println(list);
+		/* System.out.println(list); */
 		
 		mv.addObject("list", list);
 		mv.setViewName("home");
@@ -272,5 +272,30 @@ public class CourseController {
 //	public String couDetail() {
 //		return "creator/course/userCourseDetail2";
 //	}
+	
+	/**  검색창에서 텍스트로 검색하는 메소드
+	 * @param search
+	 * @param mv
+	 * @return
+	 */
+	@RequestMapping("searchmodal.do")
+	public ModelAndView modalsearchList(String search, ModelAndView mv) {
+		
+		ArrayList<Course> list = coService.modalsearchList(search);
+		
+		mv.addObject("list", list).setViewName("user/course/searchList");
+		
+		return mv;
+	}
+	
+	@RequestMapping("searchCategory.do")
+	public ModelAndView modalsearchCategory(int categoryNum, ModelAndView mv){
+		ArrayList<Course> list = coService.modalsearchCategory(categoryNum);
+		System.out.println(list);
+		mv.addObject("list", list).setViewName("user/course/searchCateList");
+		
+		return mv;
+		
+	}
 
 }
