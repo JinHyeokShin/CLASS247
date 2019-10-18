@@ -61,11 +61,11 @@
       		<h1>${ loginUser.memName }님의 찜한 클래스 목록</h1>
       		<hr>
       		<br>
-      		<c:if test="${ !empty couponlist }">
+      		<c:if test="${ !empty lovelist }">
 	      		<h4 align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	      		${ loginUser.memName } 님의 총 클래스 찜한 갯수 : ${ pi.listCount }</h4>	
 	      	</c:if>
-      		<c:if test="${ empty couponlist }">
+      		<c:if test="${ empty lovelist }">
 	      		<h4 align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	      		${ loginUser.memName } 님의 총 클래스 찜한 갯수 : 0 </h4>	
       		</c:if>
@@ -73,50 +73,34 @@
       		<br>
  			<table align="center" border="1" cellspacing="0" width="90%">
 				<tr style="color:white;background-color:#954CBC;">
-					<th>No.</th> 
-					<th>쿠폰 이름</th>
-					<th>쿠폰 발급 날짜</th>
-					<th>쿠폰 할인 가격</th>
-					<th>쿠폰 종료 날짜</th>
+					<th width="10%"></th> 
+					<th></th>
+					<th colspan="3"></th>
+					
 				</tr>
-				<c:if test="${ !empty list }">
-		<c:forEach items="${ list }" var="c">
+				<c:if test="${ !empty lovelist }">
+		<c:forEach items="${ lovelist }" var="l">
 		<tr>
-			<td align="center">${ c.rNum }</td>
-			<td align="center">${ c.couponName }</td>
-			<td align="center">${ c.givecouponEnrolledDate }</td>
-			<td align="center">${ c.couponDiscount }%</td>
-			<td align="center">${ c.couponEndDate }</td>
+			<td align="center"><input type="checkbox" value="check"></td>
+			<td align="center" width="30%"><img src="resources/user/img/test1.jpeg" alt="" class="img-fluid"></td>
+			<td align="left" colspan="3">
+						${ l.wishedDate }<br>
+						${ l.courseTitle }<br>
+						${ l.coursePrice }<br>
+						${ l.courseKind }<br>
+						${ l.creatorName }<br>
+			
 		</tr>
 		</c:forEach>
 				</c:if>
-				<c:if test="${ empty couponlist }">
+				<c:if test="${ empty lovelist }">
 				<tr>
 					<td colspan="5" align="center">내가 찜한 클래스가 없습니다.</td>
 					</tr>
 				</c:if>
 				
 			</table>	
-			<div class="whole-wrap">
-		<div class="container box_1170">
-			<div class="section-top-border">
-				<div class="row">
-				<input type="checkbox" value="check">
-					<div class="col-md-3">
-						<img src="resources/user/img/test1.jpeg" alt="" class="img-fluid">
-					</div>
-					<div class="col-md-12 mt-sm-20">
-						<p>wishedDate{찜한 날짜 - sysdate}<br>
-						courseTitle{클래스제목 - title}<br>
-						coursePrice{클래스 가격 - }<br>
-						courseKind{클래스 종류}
-						creatorName{강사님 이름}<br>
-							</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 			
 			<br>	
 				<!-- [이전] -->	

@@ -158,7 +158,7 @@ public class CourseDao {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("courseMapper.couponList", memNum, rowBounds );
+		return (ArrayList)sqlSession.selectList("courseMapper.selectLove", memNum, rowBounds );
 
 	}
 }

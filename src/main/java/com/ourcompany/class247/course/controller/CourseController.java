@@ -295,6 +295,8 @@ public class CourseController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		ArrayList<Love> lovelist = coService.lovelist(memNum, pi);
 		
+		System.out.println(lovelist);
+		
 		mv.addObject("pi",pi).addObject("lovelist", lovelist);
 		mv.setViewName("user/member/memZzim");
 	

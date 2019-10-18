@@ -63,11 +63,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="coaRName" column="coa_rname"/>
       <result property="wishedDate" column="wished_date"/>   
       <discriminator javaType="string" column="course_kind">
-            <case value="online" resultType="_int" >
+            <case value="offline" resultType="Love" >
                <result property="coursePrice" column="course_hour_price"/>
             
             </case>
-            <case value="offline" resultType="_int">
+            <case value="online" resultType="Love">
                <result property="coursePrice" column="course_price"/>
                
             </case>
