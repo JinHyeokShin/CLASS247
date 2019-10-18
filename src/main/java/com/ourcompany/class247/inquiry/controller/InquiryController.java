@@ -30,7 +30,7 @@ public class InquiryController {
 		}
 		
 		mv.addObject("iList", inquiryList);
-		mv.setViewName("creator/creNotice");
+		mv.setViewName("creator/inquiry/cInquiryList");
 		
 		return mv;
 	}
