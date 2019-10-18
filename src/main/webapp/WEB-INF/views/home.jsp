@@ -32,7 +32,7 @@
                                         <a href="introduce.do" class="btn_1">서비스 소개 </a> &nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="cMainView.do" class="btn_2" onclick="return loginCheck()">크리에이터 센터</a>
                                         <br><br>
-                    <a class="btn_2" href="#Mdrecom" style="float:right;">인기/추천<br>클래스</a>
+               	     <a class="btn_2" href="#Mdrecom" style="float:right;">인기/추천<br>클래스</a>
                                     </div>
                                 </div>
                             </div>
