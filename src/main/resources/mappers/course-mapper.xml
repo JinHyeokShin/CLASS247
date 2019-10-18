@@ -4,24 +4,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="courseMapper">
 	
-	<resultMap id="SingleCourseResultSet" type="Course">
-		<id property="courseNum" column="course_num"/>
-		<result property="categoryName" column="category_name"/>
-		<result property="creNum" column="cre_num"/>
-		<result property="courseTitle" column="course_title"/>
-		<result property="courseContent" column="course_content"/>
-		<result property="courseKind" column="course_kind"/>
-		<result property="courseLevel" column="course_level"/>
-		<result property="courseCurrentNum" column="course_current_num"/>
-		<result property="courseEnrollDate" column="course_enroll_date"/>
-		<result property="courseApprovedDate" column="course_approved_date"/>
-		<result property="courseStartDate" column="course_start_date"/>
-		<result property="courseEndDate" column="course_end_date"/>
-		<result property="courseApproved" column="course_approved"/>
-		<result property="courseStatus" column="course_status"/>
-		<result property="memNickName" column="mem_nickname"/>							
-	</resultMap>
-	
 
 	<resultMap id="CourseResultSet" type="Course">
 		<id property="courseNum" column="course_num"/>
@@ -92,7 +74,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </discriminator>
    </resultMap>
 	
-
+   <resultMap id="SingleCourseResultSet" type="SingleCourse">
+      <id property="courseNum" column="course_num"/>
+      <result property="courseTitle" column="course_title"/>
+      <result property="categoryName" column="category_name"/>
+      <result property="memNickName" column="mem_nickname"/>
+      <result property="courseKind" column="course_kind"/>
+      <result property="courseLevel" column="course_Level"/>
+      <result property="courseEnrollDate" column="course_enroll_date"/>
+      <result property="courseStartDate" column="course_start_date"/>   
+      <result property="courseEndDate" column="course_end_date"/>
+      <result property="coaRName" column="course_rname"/>
+      <discriminator javaType="string" column="course_kind">
+            <case value="online" resultType="SingleCourse" >
+               <result property="coursePrice" column="course_hour_price"/>
+            
+            </case>
+            <case value="offline" resultType="SingleCourse">
+               <result property="coursePrice" column="course_price"/>
+               <result property="courseArea" column="courseArea"/>
+            </case>
+         </discriminator>
+   </resultMap>
 	
 
 
@@ -236,12 +239,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 1. 페이지처리 구문 -->
 	<select id="getListCount" resultType="_int">
 		select count(*)
-		from love
-		where givecoupon_status='Y'
+		from love_view
 	</select>
 	
 	<!-- 찜하기  -->
- <select id="selectLove" resultMap="LoveResultSet">
+ 	<select id="selectLove" resultMap="LoveResultSet">
    select *
    from love_view
    where mem_num = #{memNum}

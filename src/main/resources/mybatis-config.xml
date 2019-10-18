@@ -19,6 +19,7 @@
 		<typeAlias type="com.ourcompany.class247.coupon.model.vo.Coupon" alias="Coupon"/>
 		<typeAlias type="com.ourcompany.class247.inquiry.model.vo.Inquiry" alias="Inquiry"/>
 		<typeAlias type="com.ourcompany.class247.course.model.vo.Love" alias="Love"/>
+		<typeAlias type="com.ourcompany.class247.course.model.vo.SingleCourse" alias="SingleCourse"/>
 	</typeAliases>
 	
 	
