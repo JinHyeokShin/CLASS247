@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Love {
 	
 	private int memNum;
+	private int courseNum;
 	private String courseTitle;
 	private String creatorName;
 	private String courseKind;
@@ -15,11 +16,35 @@ public class Love {
 	public Love() {
 		
 	}
+	
+	public Love(int memNum, int courseNum, Date wishedDate) {
+		super();
+		this.memNum = memNum;
+		this.courseNum = courseNum;
+		this.wishedDate = wishedDate;
+	}
+
+
 
 	public Love(int memNum, String courseTitle, String creatorName, String courseKind, String coaRName, Date wishedDate,
 			int coursePrice) {
 		super();
 		this.memNum = memNum;
+		this.courseTitle = courseTitle;
+		this.creatorName = creatorName;
+		this.courseKind = courseKind;
+		this.coaRName = coaRName;
+		this.wishedDate = wishedDate;
+		this.coursePrice = coursePrice;
+	}
+	
+	
+
+	public Love(int memNum, int courseNum, String courseTitle, String creatorName, String courseKind, String coaRName,
+			Date wishedDate, int coursePrice) {
+		super();
+		this.memNum = memNum;
+		this.courseNum = courseNum;
 		this.courseTitle = courseTitle;
 		this.creatorName = creatorName;
 		this.courseKind = courseKind;
@@ -34,6 +59,16 @@ public class Love {
 
 	public void setMemNum(int memNum) {
 		this.memNum = memNum;
+	}
+	
+	
+
+	public int getCourseNum() {
+		return courseNum;
+	}
+
+	public void setCourseNum(int courseNum) {
+		this.courseNum = courseNum;
 	}
 
 	public String getCourseTitle() {
@@ -86,8 +121,8 @@ public class Love {
 
 	@Override
 	public String toString() {
-		return "Love [memNum=" + memNum + ", courseTitle=" + courseTitle + ", creatorName=" + creatorName
-				+ ", courseKind=" + courseKind + ", coaRName=" + coaRName + ", wishedDate=" + wishedDate
+		return "Love [memNum=" + memNum + ", courseNum=" + courseNum + ", courseTitle=" + courseTitle + ", creatorName="
+				+ creatorName + ", courseKind=" + courseKind + ", coaRName=" + coaRName + ", wishedDate=" + wishedDate
 				+ ", coursePrice=" + coursePrice + "]";
 	}
 
