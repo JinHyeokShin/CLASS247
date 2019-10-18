@@ -119,7 +119,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		join payment using(mem_num)
 		join takecourse using(pay_num)
 		where course_num = #{courseNum}
-		and member_status = 'Y' 
+		and mem_status = 'Y' 
 		order by mem_name
 	</select>
 	

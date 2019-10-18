@@ -55,4 +55,9 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.selectStuList(creNum);
 	}
 
+	@Override
+	public ArrayList<Member> selectStuByCo(int courseNum) {
+		return mDao.selectStuByCo(courseNum);
+	}
+
 }

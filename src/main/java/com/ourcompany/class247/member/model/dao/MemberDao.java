@@ -47,4 +47,8 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.selectStuByCreNum", creNum);
 	}
 	
+	public ArrayList<Member> selectStuByCo(int courseNum){
+		return (ArrayList)sqlSession.selectList("memberMapper.selectStuByCoNum", courseNum);
+	}
+	
 }

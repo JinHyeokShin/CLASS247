@@ -21,12 +21,16 @@ import com.ourcompany.class247.course.model.vo.CourseAttachment;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.creator.model.vo.Creator;
+import com.ourcompany.class247.member.model.service.MemberService;
+import com.ourcompany.class247.member.model.vo.Member;
 
 @Controller
 public class CourseController {
 	
 	@Autowired
 	private CourseService coService;
+	@Autowired
+	private MemberService mService;
 	
 	
 	/** 1. 클래스 추가시 오프라인/온라인 페이지 이동 
@@ -79,7 +83,7 @@ public class CourseController {
 					cover.setCoaOName(coverImage.getOriginalFilename());
 					cover.setCoaPath(request.getSession().getServletContext().getRealPath("resources") + "\\course\\images");
 					
-					coService.insertCoverImage(cover);
+					coService.insertCoverImage(cover); 
 				}
 				
 			}
@@ -174,7 +178,7 @@ public class CourseController {
 	}
 	
 	
-	/** 메뉴바(내 클래스 관리) 
+	/** 메뉴바(내 클래스 관리로 이동) 
 	 * @param request
 	 */
 	@RequestMapping("coManageView.do")
@@ -195,6 +199,27 @@ public class CourseController {
 		 return mv;
 	}
 	
+	
+	 
+	/** 크리에이터센터 
+	 * 내 클래스관리 -> 클래스 디테일 (수강정보 + 수강생정보)
+	 */
+	@RequestMapping("myCourseDetail.do")
+	public ModelAndView myCourseDetail(int courseNum, String courseKind, ModelAndView mv) {
+		
+		Course course = coService.selectCourse(courseNum, courseKind); 
+		CourseAttachment cover = coService.selectCover(courseNum);
+		ArrayList<Member> stuList = mService.selectStuByCo(courseNum);
+		
+		System.out.println(course);
+		
+		mv.addObject("co", course);
+		mv.addObject("cover", cover);
+		mv.addObject("stuList", stuList);
+		mv.setViewName("creator/course/myCourseDetail");
+		
+		return mv;
+	}
 	@RequestMapping("goOnline.do")
 	public String goOnline() {
 		return "user/course/onlineList";

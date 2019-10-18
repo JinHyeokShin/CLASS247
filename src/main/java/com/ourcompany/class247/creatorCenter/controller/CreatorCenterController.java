@@ -24,7 +24,7 @@ public class CreatorCenterController {
 	
 	@RequestMapping("creNoticeList.do")
 	public String notictList() {
-		return "creator/creNoticeList";
+		return "inquiry/cInquiryList";
 	}
 	
 

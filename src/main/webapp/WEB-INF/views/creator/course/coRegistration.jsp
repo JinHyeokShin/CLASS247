@@ -40,7 +40,7 @@
                                                 <hr>
                                                 <div class="form-group">
                                                     <label for="class_title" class=" form-control-label">* 클래스 제목</label>
-                                                    <input type="text" name="courseTitle" placeholder="클래스를 대표할 수 있는 제목을 추가해주세요." class="form-control" required>
+                                                    <input type="text" name="courseTitle" placeholder="클래스를 대표할 수 있는 제목을 추가해주세요." maxlength="15" class="form-control" required>
                                                 </div>
                                                 <hr>
                                                 <div class="form-group">
