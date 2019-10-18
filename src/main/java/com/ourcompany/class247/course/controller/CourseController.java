@@ -247,5 +247,21 @@ public class CourseController {
 //	public String couDetail() {
 //		return "creator/course/userCourseDetail2";
 //	}
+	
+	
+	
+	
+	
+	/*****************************사용자*************/
+	
+	/**
+	 * 1. 찜하기폼으로 이동.
+	 * @return
+	 */
+	@RequestMapping("memZzim.do")
+	public String memZzim() {
+		return "user/member/memZzim";
+	}
+	
 
 }
