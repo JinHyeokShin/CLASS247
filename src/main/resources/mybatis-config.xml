@@ -15,6 +15,7 @@
 		<typeAlias type="com.ourcompany.class247.course.model.vo.Online" alias="Online"/>
 		<typeAlias type="com.ourcompany.class247.course.model.vo.Offline" alias="Offline"/>
 		<typeAlias type="com.ourcompany.class247.course.model.vo.CourseAttachment" alias="CourseAttachment"/>
+		<typeAlias type="com.ourcompany.class247.inquiry.model.vo.Inquiry" alias="Inquiry"/>
 	</typeAliases>
 	
 	
@@ -22,5 +23,6 @@
 		<mapper resource="mappers/member-mapper.xml" />
 		<mapper resource="mappers/creator-mapper.xml"/>
 		<mapper resource="mappers/course-mapper.xml"/>
+		<mapper resource="mappers/inquiry-mapper.xml"/>
 	</mappers>
 </configuration>

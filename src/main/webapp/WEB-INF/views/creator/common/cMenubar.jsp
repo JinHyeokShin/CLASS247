@@ -58,10 +58,6 @@
                 <nav class="navbar-sidebar2">
                     <ul class="list-unstyled navbar__list">
                         <li>
-                            <a href="creNoticeList.do">
-                            <i class="far fa-bell"></i>공지사항</a>
-                        </li>
-                        <li>
                             <a href="creatorFormView.do">
                             <i class="fas fas fa-user"></i>크리에이터 정보</a>
                         </li>
@@ -105,7 +101,7 @@
                             <i class="fas fa-trophy"></i>MD등록</a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="inquiryList.do">
                                 <i class="fas fa-question-circle"></i>고객센터</a>
                         </li>
                     </ul>
