@@ -27,7 +27,13 @@ public class Love {
 
 
 
-   public Love(int memNum, String courseTitle, String creatorName, String courseKind, String coaRName, Date wishedDate,
+   public Love(int memNum, int courseNum) {
+	super();
+	this.memNum = memNum;
+	this.courseNum = courseNum;
+}
+
+public Love(int memNum, String courseTitle, String creatorName, String courseKind, String coaRName, Date wishedDate,
          int coursePrice) {
       super();
       this.memNum = memNum;

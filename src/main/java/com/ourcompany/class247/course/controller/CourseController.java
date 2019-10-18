@@ -294,15 +294,36 @@ public class CourseController {
 		int listCount = coService.getListCount();
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		ArrayList<Love> lovelist = coService.lovelist(memNum, pi);
-		
-		System.out.println(lovelist);
-		
+
 		mv.addObject("pi",pi).addObject("lovelist", lovelist);
 		mv.setViewName("user/member/memZzim");
 	
 		
 		return mv;
 	}
+	@RequestMapping("mZzim.do")
+	public ModelAndView mZzim(HttpServletRequest request, ModelAndView mv, @RequestParam(name="check") int check
+			, @RequestParam(value="currentpage", required=false, defaultValue="1")int currentPage) {
 	
+	Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+	
+	//String[] checklist = check.split(",");
+	//for(String c : checklist) { }
+		int memNum = loginUser.getMemNum();
+		int listCount = coService.getListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		ArrayList<Love> lovelist = coService.lovelist(memNum, pi);
 
+		for(Love l : lovelist ) {
+			 Love i = new Love();
+			 i.setMemNum(memNum);
+			 i.setCourseNum(check);
+			 coService.deleteLove(i);
+			}
+	mv.setViewName("user/member/memZzim");
+
+	
+	return mv;
+	
+	}
 }

@@ -64,6 +64,11 @@ public interface CourseService {
 
 	//찜하기 리스트 가져오기
 	ArrayList<Love> lovelist(int memNum, PageInfo pi);
+
+	//찜하기 리스트 선택 삭제하기
+	int deleteLove(Love i);
+
+
 	
 
 }

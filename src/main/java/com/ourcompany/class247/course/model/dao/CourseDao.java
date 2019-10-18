@@ -161,4 +161,10 @@ public class CourseDao {
 		return (ArrayList)sqlSession.selectList("courseMapper.selectLove", memNum, rowBounds );
 
 	}
+	
+	public int deleteLove(Love i) {
+		
+		return sqlSession.delete("courseMapper.deleteLove", i );
+		
+	}
 }

@@ -157,6 +157,12 @@ public class CourseServiceImpl implements CourseService{
 		
 		return coDao.lovelist(memNum, pi);
 	}
+	
+	@Override
+	public int deleteLove(Love i) {
+		// TODO Auto-generated method stub
+		return coDao.deleteLove(i);
+	}
 
 
 	

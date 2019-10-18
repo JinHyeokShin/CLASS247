@@ -61,16 +61,18 @@
       		<h1>${ loginUser.memName }님의 찜한 클래스 목록</h1>
       		<hr>
       		<br>
+      		 <form action="mZzim.do" method="post">
       		<c:if test="${ !empty lovelist }">
 	      		<h4 align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	      		${ loginUser.memName } 님의 총 클래스 찜한 갯수 : ${ pi.listCount }</h4>	
+	      		${ loginUser.memName } 님의 총 클래스 찜한 갯수 : ${ pi.listCount }
+	      		</h4>
+	      		<h4 align="right"><button class="genric-btn primary-border radius" name="log-btn" type="submit">삭제하기</button>	<br>
+	      		</h4>
 	      	</c:if>
       		<c:if test="${ empty lovelist }">
 	      		<h4 align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	      		${ loginUser.memName } 님의 총 클래스 찜한 갯수 : 0 </h4>	
-      		</c:if>
-      		<input type="button" value="삭제하기" align="right">
-      		<br>
+	      	</c:if>
  			<table align="center" border="1" cellspacing="0" width="90%">
 				<tr style="color:white;background-color:#954CBC;">
 					<th width="10%"></th> 
@@ -81,7 +83,7 @@
 				<c:if test="${ !empty lovelist }">
 		<c:forEach items="${ lovelist }" var="l">
 		<tr>
-			<td align="center"><input type="checkbox" value="check"></td>
+			<td align="center"><input type="checkbox" name="check" value="${ l.courseNum }"></td>
 			<td align="center" width="30%"><img src="resources/user/img/test1.jpeg" alt="" class="img-fluid"></td>
 			<td align="left" colspan="3">
 						${ l.wishedDate }<br>
@@ -99,7 +101,8 @@
 					</tr>
 				</c:if>
 				
-			</table>	
+			</table>
+			</form>	
 			
 			
 			<br>	
