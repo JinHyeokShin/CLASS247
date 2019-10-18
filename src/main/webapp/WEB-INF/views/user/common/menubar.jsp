@@ -40,6 +40,16 @@
 		        .special_cource_text{
 		        height:40%;
 		        }
+		        .not_scroll{
+			    position: fixed;
+			    overflow: hidden;
+			    width: 100%;
+			    height: 100%
+				}
+				.not_scroll .cont {
+				    position: relative;
+				    top: 0;
+				}
 	        </style>
         </head>
 
@@ -107,6 +117,12 @@
 	            text-decoration: none;
 	            cursor: pointer;
 	        }
+	        table{
+	        	text-align:center;
+	        }
+	        table td input{
+	        	width:100%;
+	        }
                 
             </style>
         </head>
@@ -138,10 +154,10 @@
                                             <button class="btn btn_1 primary small button-image" type="button" id="myBtn"><i class="ti-search" ></i></button>
                                         </li> -->
                                         <li class="nav-item">
-                                            <a class="nav-link" href="about.html">공지사항</a>
+                                            <a class="nav-link" href="noticeListView.do">공지사항</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="home.do/Mdrecom" margin-top="10px">인기/추천<br>클래스</a>
+                                            <a class="nav-link" href="introduce.do" margin-top="10px">서비스 소개</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="categoryList.do" margin-top="10px">카테고리</a>
@@ -178,17 +194,48 @@
                                             </li>
                                         </c:if>
                                     </ul>
+                                    </div>
+                					</nav>
                                 </div>
                         </div>
                     </div>
-                </div>
+
+                
                 
 			    <!-- The Modal -->
 			    <div id="myModal" class="modal">
-			 <!-- Modal content -->
-			      <div class="modal-content">
+			 	<!-- Modal content -->
+		      	<div class="modal-content">
 			        <span class="close">&times;</span>                                                               
-			        <p>Some text in the Modal..</p>
+        		<form action=""> <!-- 검색하기 주소로 이동  -->
+			        <table width="100%" align="center">
+			        	<tr><td><h2 align="left">검색하기</h2></td></tr>
+			        	<tr>
+			        		<td></td>
+			        		<td colspan="2"><input type="text" name="search" id="search" style="border-radius:10px;"></td>
+			        		<td colspan="1"><input type="submit" class="btn_2" style="padding-top:8px; padding-bottom:8px;"value="검색하기"></td>
+			        		<td></td>
+			        	</tr>
+						<tr><td colspan="2"><h2  align="left">카테고리별 검색</h2></td></tr>
+			        	<tr>
+			        		<td colspan="5"><a href="#"><img src="resources/user/img/categoryImg/signiture.png"></a></td>
+			        	</tr>
+				        <tr>
+				        	<td><a href="#"><img src="resources/user/img/categoryImg/crafts.png">&nbsp;</a></td>
+				        	<td><a href="#"><img src="resources/user/img/categoryImg/designdevelopment.png">&nbsp;</a></td>
+				        	<td><a href="#"><img src="resources/user/img/categoryImg/designdevelopment.png">&nbsp;</a></td>
+				        	<td><a href="#"><img src="resources/user/img/categoryImg/digitaldrawing.png">&nbsp;</a></td>
+				        	<td><a href="#"><img src="resources/user/img/categoryImg/lifestyle.png"></a>&nbsp;</td>
+				        </tr>
+				        <tr>
+				        	<td><a href="#"><img src="resources/user/img/categoryImg/art.png"></a></td>
+				        	<td><a href="#"><img src="resources/user/img/categoryImg/camera.png"></a></td>
+				        	<td><a href="#"><img src="resources/user/img/categoryImg/food.png"></a></td>
+				        	<td><a href="#"><img src="resources/user/img/categoryImg/music.png"></a></td>
+				        	<td><a href="#"><img src="resources/user/img/categoryImg/career.png"></a></td>
+				        </tr>
+			        </table>
+			        </form>
 			      </div>
 			 
 			    </div>
@@ -204,17 +251,20 @@
 	         
 	                // When the user clicks on the button, open the modal 
 	                btn.onclick = function() {
+	                	 $("html, body").addClass("not_scroll");
 	                    modal.style.display = "block";
 	                }
 	         
 	                // When the user clicks on <span> (x), close the modal
 	                span.onclick = function() {
+	                	 $("html, body").removeClass("not_scroll");
 	                    modal.style.display = "none";
 	                }
 	         
 	                // When the user clicks anywhere outside of the modal, close it
 	                window.onclick = function(event) {
 	                    if (event.target == modal) {
+		                	$("html, body").removeClass("not_scroll");
 	                        modal.style.display = "none";
 	                    }
                 }

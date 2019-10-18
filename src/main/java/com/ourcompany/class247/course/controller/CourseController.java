@@ -220,5 +220,57 @@ public class CourseController {
 		
 		return mv;
 	}
+	@RequestMapping("goOnline.do")
+	public String goOnline() {
+		return "user/course/onlineList";
+	}
+	
+	@RequestMapping("goOffline.do")
+	public String goOffline() {
+		return "user/course/offlineList";
+	}
+	//김은기
+	
+	/**home에 강의리스트 불러오기
+	 * @param mv
+	 * @return
+	 */
+	@RequestMapping("home.do")
+	public ModelAndView selectList(ModelAndView mv) {
+		ArrayList<Course> list = coService.selectList();
+		System.out.println(list);
+		
+		mv.addObject("list", list);
+		mv.setViewName("home");
+		
+		return mv;
+	}
+	/**
+	 * 강의 클릭시 불러오기
+	 * @param cId
+	 * @param mv
+	 * @return
+	 */
+	@RequestMapping("codetail.do")
+	public ModelAndView selectCourse(int courseNum,String courseKind, ModelAndView mv) {
+		
+		Course c = coService.selectCourse(courseNum,courseKind );
+		
+		if(c != null) {
+			mv.addObject("c", c)
+			  .setViewName("creator/course/userCourseDetail");
+			
+		}else {
+			mv.addObject("msg", "게시글 상세조회실패!")
+			  .setViewName("common/errorPage");
+		}
+		
+		return mv;
+		
+	}
+//	@RequestMapping("couDetail.do")
+//	public String couDetail() {
+//		return "creator/course/userCourseDetail2";
+//	}
 
 }
