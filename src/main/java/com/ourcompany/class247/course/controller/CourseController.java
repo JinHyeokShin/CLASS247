@@ -236,7 +236,14 @@ public class CourseController {
 	 * @return
 	 */
 	@RequestMapping("home.do")
-	public ModelAndView selectList(ModelAndView mv) {
+	public ModelAndView selectList(ModelAndView mv, HttpServletRequest request) {
+		//크리에이터 센터 나가면서 세션에 올려둔 크리에이터 객체 삭제. 
+		Creator creator = (Creator)request.getSession().getAttribute("creator");
+		if(creator != null) {
+			request.getSession().removeAttribute("creator");
+		}
+		
+		
 		ArrayList<Course> list = coService.selectList();
 		System.out.println(list);
 		

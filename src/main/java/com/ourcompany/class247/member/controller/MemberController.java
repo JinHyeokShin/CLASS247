@@ -122,7 +122,7 @@ public class MemberController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		session.removeAttribute("loginUser");
+		session.invalidate();
 		
 		mv.setViewName("redirect:home.do");
 		return mv;

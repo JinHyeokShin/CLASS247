@@ -3,6 +3,7 @@ package com.ourcompany.class247.creator.model.vo;
 public class Creator {
 	
 	private int creNum;
+	private String creName;
 	private int memNum; 
 	private String introduction;
 	private String career;
@@ -14,12 +15,12 @@ public class Creator {
 		
 	}
 	
-	
 
-	public Creator(int creNum, int memNum, String introduction, String career, String education, String certification,
-			String creStatus) {
+	public Creator(int creNum, String creName, int memNum, String introduction, String career, String education,
+			String certification, String creStatus) {
 		super();
 		this.creNum = creNum;
+		this.creName = creName;
 		this.memNum = memNum;
 		this.introduction = introduction;
 		this.career = career;
@@ -27,8 +28,19 @@ public class Creator {
 		this.certification = certification;
 		this.creStatus = creStatus;
 	}
-
 	
+	
+
+
+	public String getCreName() {
+		return creName;
+	}
+
+
+	public void setCreName(String creName) {
+		this.creName = creName;
+	}
+
 
 	public String getCreStatus() {
 		return creStatus;
@@ -91,12 +103,13 @@ public class Creator {
 	}
 
 
-
 	@Override
 	public String toString() {
-		return "Creator [creNum=" + creNum + ", memNum=" + memNum + ", introduction=" + introduction + ", career="
-				+ career + ", education=" + education + ", certification=" + certification + ", creStatus=" + creStatus
-				+ "]";
+		return "Creator [creNum=" + creNum + ", creName=" + creName + ", memNum=" + memNum + ", introduction="
+				+ introduction + ", career=" + career + ", education=" + education + ", certification=" + certification
+				+ ", creStatus=" + creStatus + "]";
 	}
+
+
 
 }

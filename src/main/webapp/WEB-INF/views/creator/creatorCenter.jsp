@@ -5,12 +5,20 @@
 <html>
 <head>
  <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
+ <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
 <body class="animsition">
 
 	<c:import url="../creator/common/cMenubar.jsp"/>
+	<script>
+		$(function() {
+			console.log('memNum' + '${loginUser.memNum}');
+			console.log('creNum' + '${creator.creNum}');
+		});
+	</script>
 <!-- 크리에이터 신청 후 승인 대기 중일 경우 -->
-<c:if test="${ creator.creStatus == 'N'}">
+<c:if test="${ !empty creator}">
+	<c:if test = "${creator.creStatus == 'N' }">
 
  	<div class="page-wrapper">
 	       <!-- MAIN CONTENT-->
@@ -27,7 +35,7 @@
                                     	</div><br>
                                         <div class="mx-auto d-block" style="font-family:Noto Serif KR">
                                             <h1 class="text-sm-center mt-2 mb-1"> 크리에이터 센터에 오신것을 환영합니다!</h1>
-                                            <h3 class="text-sm-center mt-2 mb-1"> ${ loginUser.memName}의 크리에이터 신청서는 검토 중에 있습니다. <br>
+                                            <h3 class="text-sm-center mt-2 mb-1"> '${ loginUser.memName}'님의 크리에이터 신청서는 검토 중에 있습니다. <br>
                                             										승인까지 조금만 더 기다려주세요 :) </h3>
                                         </div>
                                       	<br>
@@ -58,6 +66,7 @@
         </div>
 
 	</c:if>
+	
 	
 	
 	
@@ -486,6 +495,42 @@
             <!-- END PAGE CONTAINER-->
         </div>
 	</c:if>
+	</c:if>
+	
+	
+<c:if test="${ empty creator }">
+
+	 <div class="page-wrapper">
+	       <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                             <div class="col-md-12">
+                                <div class="card" style="height:600px">
+                                    <div class="card-body" align="center">
+                                    	<div style="width:50%">
+                                    	<br><br>
+	                                    	<img src="resources/creator/images/NonCreator.jpg">
+                                    	</div><br>
+                                        <div class="mx-auto d-block" style="font-family:Noto Serif KR">
+                                            <h1 class="text-sm-center mt-2 mb-1">크리에이터 센터에 오신것을 환영합니다!</h1>
+                                            <h3 class="text-sm-center mt-2 mb-1">아직 크리에이터가 아니시군요? <br>지금 당신의 재능을 공유해보세요!</h3>
+                                        </div>
+                                      	<br>
+                                        <div align="center" style="font-family:Noto Serif KR">
+	                                        <button type="button" class="btn btn-primary" onclick="location.href='creatorFormView.do';">크리에이터 신청하기</button>
+	                                        <button type="button" class="btn btn-secondary" onclick="location.href='home.do';">메인으로 돌아가기</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                       
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+</c:if>
 	
 	<c:import url="../creator/common/cMenubar.jsp"/>
 	

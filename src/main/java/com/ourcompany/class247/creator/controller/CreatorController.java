@@ -10,11 +10,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ourcompany.class247.creator.model.service.CreatorService;
 import com.ourcompany.class247.creator.model.vo.Creator;
@@ -35,19 +35,21 @@ public class CreatorController {
 	 * @return
 	 */
 	@RequestMapping("cMainView.do")
-	public String goToMain(HttpSession session, Model model) { 
-		int userId = ((Member)session.getAttribute("loginUser")).getMemNum();
-		Creator creator = creService.getCreator(userId);
-		if(creator != null) {
-			model.addAttribute("creator", creator);
-			return "creator/creatorCenter";
-		} else {
-			return "creator/noCreatorPage";
-		}
+	public ModelAndView goToMain(HttpSession session, ModelAndView mv) { 
+		int memNum = ((Member)session.getAttribute("loginUser")).getMemNum();
+		Creator creator = creService.getCreator(memNum);
 		
+		System.out.println(creator);
+		if(creator != null) { //크리에이터 존재 시 
+			mv.addObject("creator", creator);
+			mv.setViewName("creator/creatorCenter");
+		} else { //크리에이터가 아닐 때 
+			mv.addObject("creator", creator);
+			mv.setViewName("creator/creatorCenter");
+		}
+		return mv;
 		
 	}
-
 	
 	/** 1. 크리에이터 신청 폼으로 이동 
 	 * @return
@@ -86,6 +88,7 @@ public class CreatorController {
 			}
 		}
 		
+		
 		if(!creID.getOriginalFilename().equals("")) {
 			String idRename = saveFile(creID, request);
 			
@@ -111,8 +114,18 @@ public class CreatorController {
 	}
 	
 	
+	/** 3. 크리에이터 마이페이지로 이동 
+	 * @return
+	 */
+	@RequestMapping("creatorInfo.do")
+	public String creatorInfo() {
+		
+		return "creator/creator/creInfoPage";
+	}
 	
-	/** 3. 파일 저장하기 
+	
+	
+	/** 4. 파일 저장하기 
 	 * @param file
 	 * @param request
 	 * @return

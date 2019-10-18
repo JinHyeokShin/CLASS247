@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<resultMap id="creatorResultSet" type="Creator">
 		<id property="creNum" column="cre_num"/>
+		<result property="creName" column="mem_name"/>
 		<result property="memNum" column="mem_num"/>
 		<result property="introduction" column="introduction"/>
 		<result property="career" column="career"/>
@@ -27,6 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectCreator" parameterType="_int" resultMap="creatorResultSet">
 		select *
 		from creator 
+		join member using(mem_num)
 		where mem_num=#{memNum}
 	</select>
 
