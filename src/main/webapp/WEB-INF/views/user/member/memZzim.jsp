@@ -69,6 +69,7 @@
 	      		<h4 align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	      		${ loginUser.memName } 님의 총 클래스 찜한 갯수 : 0 </h4>	
       		</c:if>
+      		<input type="button" value="삭제하기" align="right">
       		<br>
  			<table align="center" border="1" cellspacing="0" width="90%">
 				<tr style="color:white;background-color:#954CBC;">
@@ -96,6 +97,27 @@
 				</c:if>
 				
 			</table>	
+			<div class="whole-wrap">
+		<div class="container box_1170">
+			<div class="section-top-border">
+				<div class="row">
+				<input type="checkbox" value="check">
+					<div class="col-md-3">
+						<img src="resources/user/img/test1.jpeg" alt="" class="img-fluid">
+					</div>
+					<div class="col-md-12 mt-sm-20">
+						<p>wishedDate{찜한 날짜 - sysdate}<br>
+						courseTitle{클래스제목 - title}<br>
+						coursePrice{클래스 가격 - }<br>
+						courseKind{클래스 종류}
+						creatorName{강사님 이름}<br>
+							</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
 			<br>	
 				<!-- [이전] -->	
 				<c:if test="${ pi.currentPage eq 1 }">

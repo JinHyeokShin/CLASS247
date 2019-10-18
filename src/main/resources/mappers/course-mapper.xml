@@ -233,10 +233,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where course_approved = 'Y'
 	</select>
 
+	<!-- 1. 페이지처리 구문 -->
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from love
+		where givecoupon_status='Y'
+	</select>
 	
 	<!-- 찜하기  -->
-	
-	   <select id="selectLove" resultMap="LoveResultSet">
+ <select id="selectLove" resultMap="LoveResultSet">
    select *
    from love_view
    where mem_num = #{memNum}

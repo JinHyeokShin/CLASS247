@@ -2,8 +2,10 @@ package com.ourcompany.class247.course.model.service;
 
 import java.util.ArrayList;
 
+import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
+import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 
@@ -26,7 +28,7 @@ public interface CourseService {
 	ArrayList<CourseAttachment> selectCoverList(int creNum);
 	
 	//-------------------- 크리에이터용 
-	Course selectCourse(int courseNum, String courseKind);
+	//Course selectCourse(int courseNum, String courseKind);
 	
 	CourseAttachment selectCover(int courseNum);
 	
@@ -37,7 +39,7 @@ public interface CourseService {
 	// 2. 온라인 클래스 가지고 오기
 	public Online selectOnline(int courseNum);
 	
-	// 3. 오파리인 클래스 가지고 오기
+	// 3. 오프라인 클래스 가지고 오기
 	public Offline selectOffline(int courseNum);
 	
 	public ArrayList<CourseAttachment> selectCourseAttachmentList(int courseNum);
@@ -50,6 +52,18 @@ public interface CourseService {
 	
 	//클래스 상세보기
 	Course selectCourse(int courseNum,String courseKind);
+
+	
+	
+	
+	
+	/*사용자 페이지*/
+	
+	//페이징처리
+	int getListCount();
+
+	//찜하기 리스트 가져오기
+	ArrayList<Love> lovelist(int memNum, PageInfo pi);
 	
 
 }

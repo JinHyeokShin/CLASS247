@@ -10,7 +10,7 @@ public class Love {
    private String courseTitle;
    private String creatorName;
    private String courseKind;
-   private String coaRName;
+   private String coaRName;//클래스파일저장이름
    private Date wishedDate;
    private int coursePrice;
    

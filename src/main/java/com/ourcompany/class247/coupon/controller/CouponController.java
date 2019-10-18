@@ -21,6 +21,7 @@ public class CouponController {
 	@Autowired
 	private CouponService cService;
 	
+	
 	@RequestMapping("memCoupon.do")
 	public ModelAndView memCoupon(HttpServletRequest request, ModelAndView mv,@RequestParam(value="currentpage", required=false, defaultValue="1")int currentPage){
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");

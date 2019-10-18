@@ -2,12 +2,15 @@ package com.ourcompany.class247.course.model.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
+import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 
@@ -129,4 +132,33 @@ public class CourseDao {
 	 * //오프라인클래스일 경우 co = sqlSession.selectOne("courseMapper.selectOffline",
 	 * courseNum); } return co; }
 	 */
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//사용자 단
+	
+	
+	public int getListCount() {
+
+		return sqlSession.selectOne("courseMapper.getListCount");
+	}
+	
+	public ArrayList<Love> lovelist(int memNum, PageInfo pi) {
+		
+
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("courseMapper.couponList", memNum, rowBounds );
+
+	}
 }

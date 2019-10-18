@@ -15,9 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ourcompany.class247.common.PageInfo;
+import com.ourcompany.class247.common.Pagination;
+import com.ourcompany.class247.coupon.model.vo.Coupon;
 import com.ourcompany.class247.course.model.service.CourseService;
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
+import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.creator.model.vo.Creator;
@@ -284,8 +288,18 @@ public class CourseController {
 	 * @return
 	 */
 	@RequestMapping("memZzim.do")
-	public String memZzim() {
-		return "user/member/memZzim";
+	public ModelAndView memZzim(HttpServletRequest request, ModelAndView mv, @RequestParam(value="currentpage", required=false, defaultValue="1")int currentPage ) {
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+		int memNum = loginUser.getMemNum();
+		int listCount = coService.getListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		ArrayList<Love> lovelist = coService.lovelist(memNum, pi);
+		
+		mv.addObject("pi",pi).addObject("lovelist", lovelist);
+		mv.setViewName("user/member/memZzim");
+	
+		
+		return mv;
 	}
 	
 

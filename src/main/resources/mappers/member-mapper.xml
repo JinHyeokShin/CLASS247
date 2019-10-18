@@ -92,12 +92,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where mem_num=#{memNum} and givecoupon_status='Y') c
 	</select>
 	
-	<!-- 6.  -->
+	<!-- 6. 페이지처리 구문 -->
 	<select id="getListCount" resultType="_int">
 		select count(*)
 		from givecoupon
 		where givecoupon_status='Y'
 	</select>
+	
+	
 	
 	
 	<select id="selectMember" parameterType="Member" resultMap="memberResultSet">

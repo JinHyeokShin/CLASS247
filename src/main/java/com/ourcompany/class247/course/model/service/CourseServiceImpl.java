@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.course.model.dao.CourseDao;
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
+import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 
@@ -133,6 +135,27 @@ public class CourseServiceImpl implements CourseService{
 	public ArrayList<Course> selectList() {
 		
 		return coDao.selectList();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	//사용자 단
+
+	@Override
+	public int getListCount() {
+		
+		return coDao.getListCount();
+	}
+
+	@Override
+	public ArrayList<Love> lovelist(int memNum, PageInfo pi) {
+		
+		return coDao.lovelist(memNum, pi);
 	}
 
 

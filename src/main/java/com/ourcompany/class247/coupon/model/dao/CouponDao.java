@@ -20,8 +20,6 @@ public class CouponDao {
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
-		//return (ArrayList)sqlSession.selectList("boardMapper.selectList", null, rowBounds);
-		
 		return (ArrayList)sqlSession.selectList("memberMapper.couponList",memNum,rowBounds );
 
 	}
