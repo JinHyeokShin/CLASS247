@@ -11,6 +11,7 @@ import com.ourcompany.class247.course.model.vo.CourseAttachment;
 import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
+import com.ourcompany.class247.course.model.vo.SingleCourse;
 
 @Service("coService")
 public class CourseServiceImpl implements CourseService{
@@ -129,7 +130,7 @@ public class CourseServiceImpl implements CourseService{
 	}
 	
 	@Override
-	public ArrayList<Course> awaitSelectList() {
+	public ArrayList<SingleCourse> awaitSelectList() {
 		
 		return coDao.awaitSelectList();
 	}

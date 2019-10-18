@@ -7,6 +7,7 @@ import com.ourcompany.class247.course.model.vo.CourseAttachment;
 import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
+import com.ourcompany.class247.course.model.vo.SingleCourse;
 
 public interface CourseService {
 
@@ -48,6 +49,6 @@ public interface CourseService {
 	
 	ArrayList<Love> selectLove();
 	
-	ArrayList<Course> awaitSelectList();
+	ArrayList<SingleCourse> awaitSelectList();
 
 }

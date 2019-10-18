@@ -11,6 +11,7 @@ import com.ourcompany.class247.course.model.vo.CourseAttachment;
 import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
+import com.ourcompany.class247.course.model.vo.SingleCourse;
 
 @Repository("coDao")
 public class CourseDao {
@@ -131,7 +132,8 @@ public class CourseDao {
 		return (ArrayList)sqlSession.selectList("courseMapper.selectLove");
 	}
 	
-	public ArrayList<Course> awaitSelectList() {
+	public ArrayList<SingleCourse> awaitSelectList() {
+		
 		return (ArrayList)sqlSession.selectList("courseMapper.awaitCourseList");
 	}
 }

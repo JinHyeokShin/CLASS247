@@ -18,9 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ourcompany.class247.course.model.service.CourseService;
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
-import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
+import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.creator.model.service.CreatorService;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
@@ -32,9 +32,6 @@ public class CourseController {
 	
 	@Autowired
 	private CourseService coService;
-	@Autowired
-	private MemberService mService;
-	
 	@Autowired
 	private MemberService mService;
 	
@@ -240,25 +237,11 @@ public class CourseController {
 	 * @param mv
 	 * @return
 	 */
-	@RequestMapping("aAwaitCourseList.do")
-	public ModelAndView aSelectList(ModelAndView mv) {
-		
-		ArrayList<Course> list = coService.awaitSelectList();
-		mv.addObject("list", list).setViewName("admin/course/awaitCourseList");
-		
-		return mv;
-	}
+
 	
 	
 	@RequestMapping("aAwaitCourseDetail.do")
 	public ModelAndView selectCourse(int courseNum,String courseKind, ModelAndView mv) {
-		
-		System.out.println("실행");
-		
-		ArrayList<Love> list = coService.selectLove();
-		
-		System.out.println(list.size());
-		
 		
 		Course co = coService.selectCourse(courseNum);
 		
@@ -296,7 +279,7 @@ public class CourseController {
 		}else {
 			return "common/errorPage";
 		}
-	
+	}
 	 
 	/** 크리에이터센터 
 	 * 내 클래스관리 -> 클래스 디테일 (수강정보 + 수강생정보)
@@ -317,5 +300,29 @@ public class CourseController {
 		
 		return mv;
 	}
+	
+	
+	
+	/*
+	 * 
+	 * SingleCourse
+	 * 
+	 * 
+	 */
+	@RequestMapping("aAwaitCourseList.do")
+	public ModelAndView aSelectList() {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		ArrayList<SingleCourse> list = coService.awaitSelectList();
+		
+		mv.addObject("list", list).setViewName("admin/course/awaitCourseList");
+		
+		return mv;
+	}
+	
+	
+	
+	
 
 }
