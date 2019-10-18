@@ -61,7 +61,7 @@ public class CourseDao {
 
 
 	
-	
+	// 크리에이터센터 - 마이 클래스 관리 
 	public ArrayList<Course> selectMyCoList(int creNum){
 
 		ArrayList<Course> onlineList = (ArrayList)sqlSession.selectList("courseMapper.selectMyOnlineList", creNum);
@@ -69,19 +69,28 @@ public class CourseDao {
 		
 		onlineList.addAll(offlineList);
 		
-		for(Course c : onlineList) {
-			System.out.println(c);
-		}
-		
 		return onlineList;
 		
 		
 	}
 	
-	
-	
+	// 크리에이터센터 - 마이 클래스 커버사진 불러오기
 	public ArrayList<CourseAttachment> selectCoverList(int creNum) {
 		return (ArrayList)sqlSession.selectList("courseMapper.selectCoverList", creNum);
+	}
+	
+	public CourseAttachment selectCover(int courseNum) {
+		return sqlSession.selectOne("courseMapper.selectCover", courseNum);
+	}
+	
+	public Course selectCourse(int courseNum, String courseKind) {
+		Course co;
+		if(courseKind.equals("online")) { //온라인 클래스일경우
+			co = sqlSession.selectOne("courseMapper.selectOnline", courseNum);
+		} else { //오프라인클래스일 경우 
+			co = sqlSession.selectOne("courseMapper.selectOffline", courseNum);
+		}
+		return co;
 	}
 	
 	
