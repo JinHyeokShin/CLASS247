@@ -116,9 +116,7 @@ public class CourseDao {
 		return (ArrayList)sqlSession.selectList("courseMapper.selectList");
 	}
 	
-	public Course selectCourse(int cId) {
-		return sqlSession.selectOne("courseMapper.selectCourse", cId);
-	}
+	
 	public Course selectCourse(int courseNum, String courseKind) {
 	      Course co;
 	      if(courseKind.equals("online")) { //온라인 클래스일경우
@@ -126,6 +124,7 @@ public class CourseDao {
 	      } else { //오프라인클래스일 경우 
 	         co = sqlSession.selectOne("courseMapper.selectOffline", courseNum);
 	      }
+	     
 	      return co;
 	   }
 }
