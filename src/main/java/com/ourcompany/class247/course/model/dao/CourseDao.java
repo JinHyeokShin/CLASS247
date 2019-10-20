@@ -114,6 +114,12 @@ public class CourseDao {
 		return sqlSession.update("courseMapper.allowCourse", courseNum);
 	}
 	
+	public int rejectCourse(int courseNum) {
+		
+		return sqlSession.update("courseMapper.rejectCourse", courseNum);
+	}
+	
+	
 	//김은
 	public ArrayList<Course> selectList(){
 		return (ArrayList)sqlSession.selectList("courseMapper.selectList");

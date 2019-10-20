@@ -1,147 +1,227 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>AwaitCourseDetail</title>
+
+<style>
+	.user{
+		background:#f2f2f2;
+	}
+	
+	.text{
+		padding-top:1px;
+	}
+	
+
+</style>
+
 </head>
-<body>
-        <body class="animsition">
-
-            <c:import url="../common/aMenubar.jsp" />
-            <div class="page-container2">
 
 
-            <section class="main-content">
-                    <div class="section__content section__content--p30">
-                        <div class="container-fluid">
-                            <h3 class="title-3 m-b-30">
-                                <i class="fas fas fa-user"></i>creator information
-                            </h3>
-                            <div class="row">
-                                <div class="col-lg-10">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h3><strong>크리에이터 기본 정보</strong></h3>
-                                        </div>
-                                        <div class="card-body card-block">
-                                            <form action="creInsert.do" method="post" enctype="multipart/form-data" class="form-horizontal" id="creatorForm">
-                                                <div class="row form-group">
-                                                    <div class="col col-md-2">
-                                                        <label for="phone" class=" form-control-label">* 전화번호 인증</label>
-                                                    </div>
-                                                    <div class="col-12 col-md-8">
-                                                        <input type="text" id="phone" name="phone" value="${ loginUser.memPhone }" class="form-control" required>
-                                                    </div>
-                                                    <button class="btn btn-primary btn-sm">인증하기</button>
-                                                </div>
-                                                <hr>
-                                                <div class="row form-group">
-                                                    <div class="col col-md-2">
-                                                        <label for="creProfile" class=" form-control-label">* 프로필 사진</label>
-                                                    </div>
-                                                    <div class="col-12 col-md-9" style="height:200px">
-                                                        <input name="creProfile" id="creProfile" class="btn btn-sm" type="file" required>
-                                                        <div style="width:150px; height:150px; margin-top: 10px; text-align: center">
-                                                            <img src="resources/creator/images/icon/user.png" alt="basic_profile" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <hr>
-                                                <div class="row form-group">
-                                                    <div class="col col-md-2">
-                                                        <label for="creID" class=" form-control-label">* 신분증 인증</label>
-                                                        <button type="button" data-toggle="modal" data-target="#mediumModal"><i class="fas fa-question"></i></button>
-                                                    </div>
-                                                    <div class="col-12 col-md-9">
-                                                        <input name="creID" id="creID" class="btn btn-sm" type="file" required>
-                                                        <small class="help-block form-text">주민등록증/운전면허증/여권을 업로드하세요.</small>
-                                                    </div>
-                                                </div>
-                                                <hr>
-                                                <div class="row form-group">
-                                                    <div class="col col-md-2">
-                                                        <label for="education" class=" form-control-label">학력</label>
-                                                    </div>
-                                                    <div class="col-12 col-md-9">
-                                                        <input type="text" id="education" name="education" placeholder="예) 247 대학교/공예학" class="form-control" required>
-                                                        <small class="help-block form-text">관련 학력 사항을 기입하세요.</small>
-                                                    </div>
-                                                </div>
-                                                <hr>
-                                                <div class="row form-group">
-                                                    <div class="col col-md-2">
-                                                        <label for="career" class=" form-control-label">경력</label>
-                                                    </div>
-                                                    <div class="col-12 col-md-9">
-                                                        <input type="text" id="career" name="career" placeholder="예)KH아카데미 보조교사" class="form-control">
-                                                        <small class="help-block form-text">관련 학력 사항을 기입하세요.</small>
-                                                    </div>
-                                                </div>  
-                                                <hr>                                              
-                                                <div class="row form-group">
-                                                    <div class="col col-md-2">
-                                                        <label for="certification" class=" form-control-label">자격증</label>
-                                                    </div>
-                                                    <div class="col-12 col-md-9">
-                                                        <input type="text" id="certification" name="certification" placeholder="예) 토익 900, SQLD, 한국사1급" class="form-control">
-                                                        <small class="help-block form-text">관련 자격증이 있다면 입력하세요.</small>
-                                                    </div>
-                                                </div>
-                                                <hr>
-                                                <div class="row form-group">
-                                                    <div class="col col-md-2">
-                                                        <label for="introduction" class=" form-control-label">자기소개</label>
-                                                    </div>
-                                                    <div class="col-12 col-md-9">
-                                                        <textarea name="introduction" id="introduction" rows="9" placeholder="학생들에게 소개하는 톡톡튀는 본인만의 자기소개를 작성해주세요 :) " class="form-control" required></textarea>
-                                                    	<input type="hidden" name="memNum" value="${ loginUser.memNum }">
-                                                    </div>
-                                                </div>
-		                                        <div style="text-align:center">
-		                                            <button type="submit" class="btn btn-primary btn-sm">
-		                                                	크리에이터 신청하기
-		                                            </button>
-		                                            <button type="reset" class="btn btn-secondary btn-sm">
-		                                                 	초기화
-		                                            </button>
-		                                        </div>
-                                            </form>
-                                        </div>
-                                    </div>            
-                                </div> 
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                </div>
-                
-                <script>
-                
-                	$(function() {
-                		$('#preInfoModalBtn').click();
-                	});
-  
-                </script>
 
 
-            <!-- PAGE CONTAINER-->
-            <section>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="copyright">
-                                <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <script>
-            </script>
-            <c:import url="../common/aImportJs.jsp" />
+
+<body class="animsition">
+	<c:import url="../common/aMenubar.jsp" />
+	<div class="page-container2" style="">
+
+
+
+		<!-- FORM START -->
+		<section class="main-content">
+			<div class="section__content section__content--p30">
+
+				<div class="container-fluid">
+
+					<div class="row">
+
+
+						<div class="col-lg-10">
+							<div class="card" id="creator-div">
+								<div class="card-header">
+									<h3>
+										<strong>크리에이터 정보</strong>
+									</h3>
+								</div>
+								<div class="card-body card-block">
+									<div class="row form-groupb">
+										<div class="col col-md-2">
+											<label for="creID" class="form-control-label text">이메일</label>
+											
+										</div>
+										<div class="col-12 col-md-4 user">
+											<label for="creID" class=" form-control-label text">${ m.memId }</label>
+										</div>
+										<div class="col col-md-2">
+											<label for="creID" class=" form-control-label text">휴대폰 번호</label>
+											
+										</div>
+										<div class="col-12 col-md-4 user">
+											<label for="creID" class=" form-control-label text" >${ m.memPhone }</label>
+										</div>
+									</div>
+									<div class="row form-groupb">
+										<div class="col col-md-2">
+											<label for="creID" class=" form-control-label text">이름</label>
+											
+										</div>
+										<div class="col-12 col-md-4 user" >
+											<label for="creID" class=" form-control-label text">${ m.memName } </label>
+										</div>
+										<div class="col col-md-2">
+											<label for="creID" class=" form-control-label text">닉네임</label>
+											
+										</div>
+										<div class="col-12 col-md-4 user">
+											<label for="creID" class=" form-control-label text"> ${ m.memNickName }</label>
+										</div>
+									</div>
+									<div class="row form-groupb">
+										<div class="col col-md-2">
+											<label for="creID" class=" form-control-label text">가입날짜</label>
+											
+										</div>
+										<div class="col-12 col-md-4 user">
+											<label for="creID" class=" form-control-label text">${ m.memEnrollDate }</label>
+										</div>
+										<div class="col col-md-2">
+											<label for="creID" class=" form-control-label text">크리에이터승격날짜</label>
+											
+										</div>
+										<div class="col-12 col-md-4 user">
+											<label for="creID" class=" form-control-label text">승격날짜</label>
+										</div>
+									</div>
+									<div class="row form-group">
+										<div class="col col-md-2">
+											<label for="creID" class=" form-control-label text">주소</label>
+										</div>
+										<div class="col-12 col-md-10 user">
+											<label for="creID" class=" form-control-label text">${ m.memAddress }</label>
+										</div>
+									</div>
+									
+									<hr>
+
+									<div class="row form-group">
+										<div class="col col-md-2">
+											<label for="creID" class=" form-control-label">신분증
+												인증</label>
+										</div>
+										<div class="col-12 col-md-9">
+								
+											<c:forEach items="${ craList }" var="craList">
+											<div class="image img-240">
+												<img src="/class247/resources/creator/creatorImages/${ craList.craRname }">
+											</div>
+											
+											</c:forEach>
+											
+										</div>
+										
+									</div>
+									<hr>
+									<div class="row form-group">
+										<div class="col col-md-2">
+											<label for="education" class=" form-control-label">학력</label>
+										</div>
+										<div class="col-12 col-md-9">
+											<label for="creID" class=" form-control-label text">${ cre.education }</label>
+											
+										</div>
+									</div>
+									<hr>
+									<div class="row form-group">
+										<div class="col col-md-2">
+											<label for="career" class=" form-control-label">경력</label>
+										</div>
+										<div class="col-12 col-md-9">
+											<label for="creID" class=" form-control-label text">${ cre.career }</label>
+											
+										</div>
+									</div>
+									<hr>
+									<div class="row form-group">
+										<div class="col col-md-2">
+											<label for="certification" class=" form-control-label">자격증</label>
+										</div>
+										<div class="col-12 col-md-9">
+											<label for="creID" class=" form-control-label text">${ cre.certification }</label>
+										</div>
+									</div>
+									<hr>
+									<div class="row form-group">
+										<div class="col col-md-2">
+											<label for="introduction" class=" form-control-label">자기소개</label>
+										</div>
+										<div class="col-12 col-md-9">
+											<label for="creID" class=" form-control-label text">${ cre.introduction }</label>
+												
+										</div>
+									</div>
+
+
+								</div>
+							</div>
+
+
+
+
+						
+
+
+				</div>
+			</div>
+	</div>
+	</section>
+	</div>
+
+
+	<aside style='top: 75px; left: 85%; z-index: 2'
+		class="menu-sidebar d-none d-lg-block">
+
+		<div class="menu-sidebar__content js-scrollbar1">
+			<div class="account2">
+				<div class="image img-cir img-120">
+					<img
+						src="<%=request.getContextPath()%>/resources/creator/images/icon/may.jpg"
+						alt="Meseon Han" />
+				</div>
+				<h4 class="name">${ m.memName }</h4>
+				
+				<br>
+				<div>
+					<c:url value="aApprovalCourse.do" var="aApprovalCourse">
+						<c:param value="${ cre.creNum }" name="creNum"/>
+					</c:url>
+						<input type="button" class="btn btn-outline-primary" onclick="location.href='${aApprovalCreator.do}'" value="승인하기">
+						<input type="button" class="btn btn-outline-danger" onclick="location.href='${aRejectCreator.do}'" value="거부하기">
+					<c:url value="aRejectCourse.do" var="aRejectCourse">
+						<c:param value="${ cre.creNum }" name="creNum"/>
+					</c:url>
+				</div>
+			</div>
+			<nav class="navbar-sidebar">
+				<ul class="list-unstyled navbar__list">
+					<li class="has-sub" onclick="showDiv('creator');"><a
+						class="js-arrow" href="#"> <i class="fas fa-users"></i>Creator
+					</a></li>
+
+
+				</ul>
+			</nav>
+		</div>
+	</aside>
+	
+
+
+	<c:import url="../common/aImportJs.jsp" />
 
 </body>
+
 </html>

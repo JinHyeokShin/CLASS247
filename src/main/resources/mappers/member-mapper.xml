@@ -93,4 +93,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by mem_name
 	</select>
 	
+	<select id="selectBlackList" resultMap="memberResultSet">
+		select *
+		where member
+		where mem_status = 'N' and out_date is not null
+	</select> 
+	
 </mapper>

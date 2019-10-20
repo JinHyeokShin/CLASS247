@@ -280,6 +280,20 @@ public class CourseController {
 			return "common/errorPage";
 		}
 	}
+	
+	@RequestMapping("aRejectCourse.do")
+	public String aRejectCourse(int courseNum) {
+		
+		int result = coService.rejectCourse(courseNum);
+		
+		if(result > 0 ) {
+		
+			return "redirect:aAwaitCourseList.do";
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
 	 
 	/** 크리에이터센터 
 	 * 내 클래스관리 -> 클래스 디테일 (수강정보 + 수강생정보)
@@ -320,6 +334,8 @@ public class CourseController {
 		
 		return mv;
 	}
+	
+	
 	
 	
 	

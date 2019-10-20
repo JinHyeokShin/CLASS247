@@ -178,6 +178,29 @@ public class MemberController {
 	 * 
 	 * 
 	 */
+	@RequestMapping("aMemberList.do")
+	public ModelAndView aMemberList(ModelAndView mv) {
+		
+		ArrayList<Member> list = mService.selectMemberList();
+		
+		mv.addObject("list", list).setViewName("admin/member/memberList");
+		
+		return mv;
+	}
+
+	
+	@RequestMapping("aBlackList")
+	public ModelAndView aBlacklist(ModelAndView mv) {
+		
+		ArrayList<Member> list = mService.selectBlackList();
+		
+		mv.addObject("list", list).setViewName("admin/member/blackList");
+		
+		
+		return mv;
+	}
+	
+	
 	
 
 	

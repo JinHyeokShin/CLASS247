@@ -32,4 +32,9 @@ public interface MemberService {
 	
 	ArrayList<Member> selectStuByCo(int courseNum);  
 	
+	
+	
+	//---------------- 관리자용 -------------------
+	ArrayList<Member> selectBlackList();
+	
 }

@@ -42,4 +42,8 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.selectStuByCoNum", courseNum);
 	}
 	
+	//---------------- 크리에이터 -----------------------
+	public ArrayList<Member> selectBlackList() {
+		return (ArrayList)sqlSession.selectList("memberMapper.selectBlackList");
+	}
 }

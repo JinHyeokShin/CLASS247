@@ -22,6 +22,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="craLevel" column="cra_Level" />
 		<result property="craPath" column="cra_Path" />
 	</resultMap>
+	
+	<resultMap id="signleCreatorResultSet" type="Creator">
+		<id property="creNum" column="cre_num"/>
+		<result property="memNum" column="mem_num"/>
+		<result property="mem_NickName" column="mem_nick_name"/>
+		<result property="introduction" column="introduction"/>
+		<result property="career" column="career"/>
+		<result property="education" column="education"/>
+		<result property="certification" column="certification"/>
+		<result property="creStatus" column="cre_status"/>	
+	</resultMap>
 
 	<select id="selectCreator" parameterType="_int" resultMap="creatorResultSet">
 		select *
@@ -61,6 +72,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select *
 		from creator_attachment
 		where cre_num = #{creNum} and cra_level = 1
+	</select>
+	
+	<select id="awaitSelectList" resultMap="singleCreatorResultSet">
+		select *
+		from creator
+		join member using(mem_num)
+		where cre_approved = 'N'
+	</select>
+	
+	<update id="allowCreator" parameterType="_int">
+		update creator
+		set approved_date=sysdate, cre_status='Y'
+		where cre_num = #{creNum}
+	</update>
+	
+	<update id="rejectCreator" parameterType="_int">
+		update course
+		set approved_date=sysdate, cre_status='R'
+		where cre_num = #{creNum}
+	</update>
+	
+	<select id="creSelectList" resultMap="singleCreatorResultSet">
+		select *
+		from creator
+		join member using(mem_num)
+		where cre_approved = 'Y'
 	</select>
 
 

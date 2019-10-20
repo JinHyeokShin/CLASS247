@@ -3,6 +3,7 @@ package com.ourcompany.class247.creator.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ourcompany.class247.creator.model.service.CreatorService;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
+import com.ourcompany.class247.member.model.service.MemberService;
 import com.ourcompany.class247.member.model.vo.Member;
 
 @SessionAttributes("creator")
@@ -27,6 +30,9 @@ public class CreatorController {
 	
 	@Autowired
 	private CreatorService creService;
+	
+	@Autowired
+	private MemberService mService;
 	
 	
 	/** 크리에이터 메인페이지로 이동
@@ -151,6 +157,69 @@ public class CreatorController {
 		
 		return renameFileName;
 	}
-
+	
+	
+	@RequestMapping("aAwaitCreatorList.do")
+	public ModelAndView aSelectList() {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		ArrayList<Creator> list = creService.awaitSelectList();
+		
+		mv.addObject("list", list).setViewName("admin/creator/awaitCreatorList");
+		
+		return mv;
+	}
+	
+	@RequestMapping("aAwaitCreatorDetail.do")
+	public ModelAndView aCreatorDetail(ModelAndView mv, Creator creator) {
+		
+		Member m = mService.selectMember(creator.getMemNum());
+		
+		ArrayList<CreatorAttachment> craList = creService.selectCreatorAttachmentList(creator.getCreNum());
+		
+		mv.addObject("cre", creator).addObject("craList", craList).addObject("m", m).setViewName("admin/creator/awaitCreatorDetail");
+		
+		return mv;
+		
+	}
+	
+	@RequestMapping("aApprovalCreator.do")
+	public String aApprovalCreator(int creNum) {
+		
+		int result = creService.allowCreator(creNum);
+		
+		if(result > 0 ) {
+		
+			return "redirect:aAwaitCreatorList.do";
+		}else {
+			return "common/errorPage";
+		}
+		
+	}
+	
+	@RequestMapping("aRejectCreator.do")
+	public String aRejectCourse(int creNum) {
+		
+		int result = creService.rejectCreator(creNum);
+		
+		if(result > 0 ) {
+		
+			return "redirect:aAwaitCreatorList.do";
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
+	@RequestMapping("aCreatorList.do")
+	public ModelAndView aCreatorList(ModelAndView mv) {
+		
+		ArrayList<Creator> list = creService.creSelectList();
+		
+		mv.addObject("list", list).setViewName("admin/creator/creatorList");
+		
+		return mv;
+	}
+	
 
 }

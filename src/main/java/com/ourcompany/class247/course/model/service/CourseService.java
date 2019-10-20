@@ -40,6 +40,8 @@ public interface CourseService {
 	
 	int allowCourse(int courseNum);
 	
+	int rejectCourse(int courseNum);
+	
 	Course selectCourse(int courseNum);
 
 	//클래스리스트 가지고 오기	

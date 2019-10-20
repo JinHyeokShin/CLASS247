@@ -220,6 +220,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where course_num = #{courseNum}
 	</update>
 	
+	<update id="rejectCourse" parameterType="_int">
+		update course
+		set course_approved_date=sysdate, course_approved='R'
+		where course_num = #{courseNum}
+	</update>
+	
 	
 	<select id="selectList" resultMap="SingleCourseResultSet">
 		select *
