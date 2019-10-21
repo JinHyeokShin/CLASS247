@@ -121,10 +121,10 @@ public class CourseServiceImpl implements CourseService{
 	
 	}
 
-	@Override
-	public Course coursePayment(int courseNum, String courseKind) {
-		return coDao.coursePayment(courseNum, courseKind);
-	}
+//	@Override
+//	public int coursePayment(int courseNum, String courseKind) {
+//		return coDao.coursePayment(courseNum, courseKind);
+//	}
 
 
 

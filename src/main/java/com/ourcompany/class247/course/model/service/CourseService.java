@@ -47,6 +47,6 @@ public interface CourseService {
 	//클래스 상세보기
 	Course selectCourse(int courseNum,String courseKind);
 	
-	Course coursePayment(int courseNum,String courseKind);
+//	Course coursePayment(int courseNum,String courseKind);
 
 }

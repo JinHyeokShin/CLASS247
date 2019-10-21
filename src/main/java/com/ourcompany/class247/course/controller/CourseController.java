@@ -243,24 +243,24 @@ public class CourseController {
 		return mv;
 		
 	}
-	@RequestMapping("coBuy.do")
-	public ModelAndView coursePayment(int courseNum,String courseKind, ModelAndView mv) {
-		
-		Course c = coService.coursePayment(courseNum,courseKind );
-	
-		System.out.println(c);
-		if(c != null) {
-			mv.addObject("c", c)
-			  .setViewName("creator/course/userCourseDetail2");
-			
-		}else {
-			mv.addObject("msg", "게시글 상세조회실패!")
-			  .setViewName("common/errorPage");
-		}
-		
-		return mv;
-		
-	}
+//	@RequestMapping("coBuy.do")
+//	public ModelAndView coursePayment(int courseNum,String courseKind, ModelAndView mv) {
+//		
+//		Course c = coService.coursePayment(courseNum,courseKind );
+//	
+//		System.out.println(c);
+//		if(c != null) {
+//			mv.addObject("c", c)
+//			  .setViewName("creator/course/userCourseDetail2");
+//			
+//		}else {
+//			mv.addObject("msg", "게시글 상세조회실패!")
+//			  .setViewName("common/errorPage");
+//		}
+//		
+//		return mv;
+//		
+//	}
 	
 
 
