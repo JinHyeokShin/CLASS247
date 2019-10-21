@@ -326,4 +326,12 @@ public class CourseController {
 	return mv;
 	
 	}
+	
+	@RequestMapping("memClass.do")
+	public ModelAndView memClass(HttpServletRequest request, ModelAndView mv) {
+		mv.setViewName("user/member/memClass");
+		return mv;
+	}
+	
+	
 }
