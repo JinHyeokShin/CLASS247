@@ -15,9 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ourcompany.class247.common.PageInfo;
+import com.ourcompany.class247.common.Pagination;
+import com.ourcompany.class247.coupon.model.vo.Coupon;
 import com.ourcompany.class247.course.model.service.CourseService;
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
+import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
@@ -294,23 +298,27 @@ public class CourseController {
 		}
 	}
 	
-	 
-	/** 크리에이터센터 
-	 * 내 클래스관리 -> 클래스 디테일 (수강정보 + 수강생정보)
+	
+	
+	
+	
+	/*****************************사용자*************/
+	
+	/**
+	 * 1. 찜하기폼으로 이동.
+	 * @return
 	 */
-	@RequestMapping("myCourseDetail.do")
-	public ModelAndView myCourseDetail(int courseNum, String courseKind, ModelAndView mv) {
-		
-		Course course = coService.selectCourse(courseNum, courseKind); 
-		CourseAttachment cover = coService.selectCover(courseNum);
-		ArrayList<Member> stuList = mService.selectStuByCo(courseNum);
-		
-		System.out.println(course);
-		
-		mv.addObject("co", course);
-		mv.addObject("cover", cover);
-		mv.addObject("stuList", stuList);
-		mv.setViewName("creator/course/myCourseDetail");
+	@RequestMapping("memZzim.do")
+	public ModelAndView memZzim(HttpServletRequest request, ModelAndView mv, @RequestParam(value="currentpage", required=false, defaultValue="1")int currentPage ) {
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+		int memNum = loginUser.getMemNum();
+		int listCount = coService.getListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		ArrayList<Love> lovelist = coService.lovelist(memNum, pi);
+
+		mv.addObject("pi",pi).addObject("lovelist", lovelist);
+		mv.setViewName("user/member/memZzim");
+	
 		
 		return mv;
 	}
@@ -340,5 +348,29 @@ public class CourseController {
 	
 	
 	
+	@RequestMapping("mZzim.do")
+	public ModelAndView mZzim(HttpServletRequest request, ModelAndView mv, @RequestParam(name="check") int check
+			, @RequestParam(value="currentpage", required=false, defaultValue="1")int currentPage) {
+	
+	Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+	
+	//String[] checklist = check.split(",");
+	//for(String c : checklist) { }
+		int memNum = loginUser.getMemNum();
+		int listCount = coService.getListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		ArrayList<Love> lovelist = coService.lovelist(memNum, pi);
 
+		for(Love l : lovelist ) {
+			 Love i = new Love();
+			 i.setMemNum(memNum);
+			 i.setCourseNum(check);
+			 coService.deleteLove(i);
+			}
+	mv.setViewName("user/member/memZzim");
+
+	
+	return mv;
+	
+	}
 }

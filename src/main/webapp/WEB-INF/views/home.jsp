@@ -116,7 +116,7 @@
                                     <a>
                                         <h3>${co.courseTitle }</h3>
                                     </a>
-                                    <p>${co.courseContent }</p>
+                                    <p></p>
                                     <div class="author_info">
                                         <div class="author_img">
                                             <img src="resources/user/img/author/author_1.png" alt="">

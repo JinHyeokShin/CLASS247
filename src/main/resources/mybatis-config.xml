@@ -9,9 +9,6 @@
 	
 	<typeAliases> <!-- 변수명으로 저장하는곳 ㅇㅇ -->
 		<typeAlias type="com.ourcompany.class247.member.model.vo.Member" alias="Member"/>
-		<typeAlias type="com.ourcompany.class247.creator.model.vo.Creator" alias="Creator"/>
-		<typeAlias type="com.ourcompany.class247.creator.model.vo.CreatorAttachment" alias="CreatorAttachment"/>
-		<typeAlias type="com.ourcompany.class247.course.model.vo.Course" alias="Course"/>
 		<typeAlias type="com.ourcompany.class247.course.model.vo.Online" alias="Online"/>
 		<typeAlias type="com.ourcompany.class247.course.model.vo.Offline" alias="Offline"/>
 		<typeAlias type="com.ourcompany.class247.course.model.vo.CourseAttachment" alias="CourseAttachment"/>
@@ -19,6 +16,7 @@
 		<typeAlias type="com.ourcompany.class247.inquiry.model.vo.Inquiry" alias="Inquiry"/>
 		<typeAlias type="com.ourcompany.class247.course.model.vo.SingleCourse" alias="SingleCourse"/>
 		<typeAlias type="com.ourcompany.class247.notice.model.vo.Notice" alias="Notice"/>
+		<typeAlias type="com.ourcompany.class247.coupon.model.vo.Coupon" alias="Coupon"/>
 	</typeAliases>
 	
 	

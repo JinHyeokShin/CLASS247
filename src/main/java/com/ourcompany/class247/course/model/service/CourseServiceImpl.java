@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.course.model.dao.CourseDao;
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
@@ -139,6 +140,26 @@ public class CourseServiceImpl implements CourseService{
 	public ArrayList<SingleCourse> awaitSelectList() {
 		
 		return coDao.awaitSelectList();
+	
+	
+	//사용자 단
+
+	@Override
+	public int getListCount() {
+		
+		return coDao.getListCount();
+	}
+
+	@Override
+	public ArrayList<Love> lovelist(int memNum, PageInfo pi) {
+		
+		return coDao.lovelist(memNum, pi);
+	}
+	
+	@Override
+	public int deleteLove(Love i) {
+		// TODO Auto-generated method stub
+		return coDao.deleteLove(i);
 	}
 
 

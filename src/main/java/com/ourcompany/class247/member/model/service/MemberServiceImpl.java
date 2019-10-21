@@ -24,6 +24,16 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
+	public int updateMember(Member m) {
+		
+		return mDao.updateMember(m);
+	}
+
+	@Override
+	public int deleteMember(Member m) {
+
+		return mDao.deleteMember(m);
+	}
 	public Member selectMember(int memNum) {
 
 		return mDao.selectMember(memNum);

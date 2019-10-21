@@ -18,6 +18,26 @@ public interface MemberService {
 	 */
 	int insertMember(Member m);
 	
+	/** 3. 회원 정보 수정 서비스를 위한 메소드
+	 * @param m
+	 * @return
+	 */
+	int updateMember(Member m);
+
+	/** 4. 회원 정보 탈퇴 서비스를 위한 메소드
+	 * @param m
+	 * @return
+	 */
+	
+	int deleteMember(Member m);
+	
+	
+	
+	
+	
+	
+	
+	
 	Member selectMember(int memNum);
 	
 	ArrayList<Member> selectMemberList();

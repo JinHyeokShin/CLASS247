@@ -55,51 +55,48 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="coaPath" column="coa_path"/>
 	</resultMap>
 	
+	   <resultMap id="LoveResultSet" type="Love">
+      <id property="memNum" column="mem_Num"/>
+      <result property="courseNum" column="course_num"/>
+      <result property="courseTitle" column="course_title"/>
+      <result property="creatorName" column="mem_nickname"/>
+      <result property="courseKind" column="course_kind"/>
+      <result property="coaRName" column="coa_rname"/>
+      <result property="wishedDate" column="wished_date"/>   
+      <discriminator javaType="string" column="course_kind">
+            <case value="offline" resultType="Love" >
+               <result property="coursePrice" column="course_hour_price"/>
+            
+            </case>
+            <case value="online" resultType="Love">
+               <result property="coursePrice" column="course_price"/>
+               
+            </case>
+         </discriminator>
+   </resultMap>
 	
-	<resultMap id="LoveResultSet" type="Love">
-		<id property="memNum" column="mem_Num"/>
-		<result property="courseTitle" column="course_title"/>
-		<result property="creatorName" column="mem_nickname"/>
-		<result property="courseKind" column="course_kind"/>
-		<result property="coaRName" column="coa_rname"/>
-		<result property="wishedDate" column="wished_date"/>	
-		<discriminator javaType="string" column="course_kind">
-     		 <case value="online" resultType="Love" >
-     		 	<result property="coursePrice" column="course_hour_price"/>
-				
-     		 </case>
-     		 <case value="offline" resultType="Love">
-     		 	<result property="coursePrice" column="course_price"/>
-     		 	
-     		 </case>
-   		</discriminator>
-	</resultMap>
-	
-	
-	<resultMap id="SingleCourseResultSet" type="SingleCourse">
-		<id property="courseNum" column="course_num"/>
-		<result property="courseTitle" column="course_title"/>
-		<result property="categoryName" column="category_name"/>
-		<result property="memNickName" column="mem_nickname"/>
-		<result property="courseKind" column="course_kind"/>
-		<result property="courseLevel" column="course_Level"/>
-		<result property="courseEnrollDate" column="course_enroll_date"/>
-		<result property="courseStartDate" column="course_start_date"/>	
-		<result property="courseEndDate" column="course_end_date"/>
-		<result property="coaRName" column="course_rname"/>
-		<discriminator javaType="string" column="course_kind">
-     		 <case value="online" resultType="SingleCourse" >
-     		 	<result property="coursePrice" column="course_hour_price"/>
-				
-     		 </case>
-     		 <case value="offline" resultType="SingleCourse">
-     		 	<result property="coursePrice" column="course_price"/>
-     		 	<result property="courseArea" column="courseArea"/>
-     		 </case>
-   		</discriminator>
-	</resultMap>
-	
-
+   <resultMap id="SingleCourseResultSet" type="SingleCourse">
+      <id property="courseNum" column="course_num"/>
+      <result property="courseTitle" column="course_title"/>
+      <result property="categoryName" column="category_name"/>
+      <result property="memNickName" column="mem_nickname"/>
+      <result property="courseKind" column="course_kind"/>
+      <result property="courseLevel" column="course_Level"/>
+      <result property="courseEnrollDate" column="course_enroll_date"/>
+      <result property="courseStartDate" column="course_start_date"/>   
+      <result property="courseEndDate" column="course_end_date"/>
+      <result property="coaRName" column="course_rname"/>
+      <discriminator javaType="string" column="course_kind">
+            <case value="online" resultType="SingleCourse" >
+               <result property="coursePrice" column="course_hour_price"/>
+            
+            </case>
+            <case value="offline" resultType="SingleCourse">
+               <result property="coursePrice" column="course_price"/>
+               <result property="courseArea" column="courseArea"/>
+            </case>
+         </discriminator>
+   </resultMap>
 	
 
 
@@ -232,11 +229,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from single_course_view
 		where course_approved = 'Y'
 	</select>
-	
-	<select id="selectLove" resultMap="LoveResultSet">
-	select *
-	from love_view
+
+	<!-- 1. 페이지처리 구문 -->
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from love_view
 	</select>
+	
+	<!-- 찜하기  -->
+ 	<select id="selectLove" resultMap="LoveResultSet">
+   select *
+   from love_view
+   where mem_num = #{memNum}
+   </select>
+   
+   <!-- 찜하기 리스트 삭제 -->
+	<delete id="deleteLove" parameterType="Love">
+		delete from love
+		where mem_num = #{memNum}
+		and course_num = #{courseNum}
+	</delete>
+	
+   
 	 
 
 </mapper>
