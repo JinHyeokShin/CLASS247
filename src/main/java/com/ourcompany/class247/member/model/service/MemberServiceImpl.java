@@ -24,6 +24,16 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
+	public int updateMember(Member m) {
+		
+		return mDao.updateMember(m);
+	}
+
+	@Override
+	public int deleteMember(Member m) {
+
+		return mDao.deleteMember(m);
+	}
 	public Member selectMember(int memNum) {
 
 		return mDao.selectMember(memNum);
@@ -34,6 +44,7 @@ public class MemberServiceImpl implements MemberService{
 
 		return mDao.selectMemberList();
 	}
+	
 
 	
 	
@@ -49,5 +60,15 @@ public class MemberServiceImpl implements MemberService{
 	public ArrayList<Member> selectStuByCo(int courseNum) {
 		return mDao.selectStuByCo(courseNum);
 	}
+
+
+	
+	// ----------------- 관리자용용 ----------------------
+	@Override
+	public ArrayList<Member> selectBlackList() {
+
+		return mDao.selectBlackList();
+	}
+	
 
 }

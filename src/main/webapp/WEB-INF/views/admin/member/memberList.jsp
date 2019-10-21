@@ -36,7 +36,7 @@
                                         	
                                         </thead>
                                         <tbody>
-                                        	<c:forEach items="list" var="m">
+                                        	<c:forEach items="${list}" var="m">
                                             <tr>
                                                 <c:url value="memDetail.do" var="memDetail">
                                                 <td>${ m.memNum }</td>

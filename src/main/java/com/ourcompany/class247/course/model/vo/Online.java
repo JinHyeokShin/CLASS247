@@ -8,7 +8,7 @@ public class Online extends Course{
 	private int coursePrice;			//온라인 수업 가격
 	private String courseMaterial;		//준비물
 	private int courseMaterialPrice;	//준비물가격
-	private String CourseVideoUrl;			//소개영상링크
+	private String courseVideoUrl;			//소개영상링크
 	
 	public Online() {
 		
@@ -21,22 +21,7 @@ public class Online extends Course{
 		this.coursePrice = coursePrice;
 		this.courseMaterial = courseMaterial;
 		this.courseMaterialPrice = courseMaterialPrice;
-		CourseVideoUrl = courseVideoUrl;
-	}
-
-	public Online(int courseNum, String categoryName, int categoryNum, int creNum, String courseTitle, String courseContent,
-			String courseKind, String courseLevel, int loveCount, int courseCurrentNum, Date courseEnrollDate, Date courseApprovedDate,
-			Date courseStartDate, Date courseEndDate, String courseApproved, String courseStatus, int onlineNum, int coursePrice, String courseMaterial, int courseMaterialPrice,
-			String courseVideoUrl) {
-		super(courseNum, categoryName, categoryNum, creNum, courseTitle,
-				 courseContent, courseKind, courseLevel, loveCount, courseCurrentNum, courseEnrollDate,
-				 courseApprovedDate, courseStartDate, courseEndDate, courseApproved,
-				 courseStatus);
-		this.onlineNum = onlineNum;
-		this.coursePrice = coursePrice;
-		this.courseMaterial = courseMaterial;
-		this.courseMaterialPrice = courseMaterialPrice;
-		CourseVideoUrl = courseVideoUrl;
+		this.courseVideoUrl = courseVideoUrl;
 	}
 
 	public int getOnlineNum() {
@@ -72,22 +57,17 @@ public class Online extends Course{
 	}
 
 	public String getCourseVideoUrl() {
-		return CourseVideoUrl;
+		return courseVideoUrl;
 	}
 
 	public void setCourseVideoUrl(String courseVideoUrl) {
-		CourseVideoUrl = courseVideoUrl;
+		this.courseVideoUrl = courseVideoUrl;
 	}
 
 	@Override
 	public String toString() {
-		return "Online [" + "courseNum=" + getCourseNum() + ",  categoryName=" + getCategoryName() + ", categoryNum=" + getCategoryNum() + ", creNum=" + getCreNum() 
-				
-				+ ", courseTitle" + getCourseTitle() + ", courseContent=" + getCourseContent() + ", courseKind=" + getCourseKind() +", courseLevel=" + getCourseLevel() 
-				+ ", loveCount=" + getLoveCount() + ", courseCurrentNum=" + getCourseCurrentNum() + ", courseEnrollDate=" + getCourseEnrollDate() 
-				+ ", courseApprovedDate= " + getCourseApprovedDate() + ", courseStartDate=" + getCourseStartDate() + ", courseEndDate=" + getCourseEndDate()
-				+ ", courseApproved=" + getCourseApproved() + ", courseStatus=" + getCourseStatus() + ", onlineNum=" + onlineNum + ", coursePrice=" + coursePrice + ", courseMaterial=" + courseMaterial
-				+ ", courseMaterialPrice=" + courseMaterialPrice + ", CourseVideoUrl=" + CourseVideoUrl + "]";
+		return "Online [onlineNum=" + onlineNum + ", coursePrice=" + coursePrice + ", courseMaterial=" + courseMaterial
+				+ ", courseMaterialPrice=" + courseMaterialPrice + ", courseVideoUrl=" + courseVideoUrl + "]";
 	}
 	
 	

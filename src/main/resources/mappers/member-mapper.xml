@@ -41,18 +41,66 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="courseLevel" column="course_level"/>
 	</resultMap>
 	
+		<resultMap type="Coupon" id="couponResultSet">
+		<id property="rNum" column="rownum"/>
+		<result property="givecouponNum" column="givecoupon_Num"/>
+		<result property="memNum" column="mem_num"/>
+		<result property="givecouponEnrolledDate" column="givecoupon_enrolled_date"/>
+		<result property="givecouponUsingDate" column="givecoupon_using_date"/>
+		<result property="givecouponStatus" column="givecoupon_status"/>
+		<result property="couponType" column="coupon_type"/>
+		<result property="couponName" column="coupon_name"/>
+		<result property="couponDiscount" column="coupon_discount"/>
+		<result property="couponStartDate" column="coupon_start_date"/>
+		<result property="couponEndDate" column="coupon_end_date"/>
+	</resultMap>
+	
 	 <!-- 1. 로그인 -->
 	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
 		select *
 		from member
 		where mem_id=#{memId} and mem_status='Y'
 	</select>
+	
 	<!-- 2. 회원가입 -->
 	<insert id="insertMember" parameterType="Member" >
 		insert into member 
 		values(MEMBER_SEQ.NEXTVAL,#{memId},#{memPwd},#{memNickName},#{memName},#{memGender},
 				#{memPhone},#{memAddress}, null, null, default, default, sysdate, null)
 	</insert>
+	
+	<!-- 3. 회원 정보 수정 -->
+	<update id="updateMember" parameterType="Member">
+		update member
+		set mem_pwd=#{memPwd}, mem_nickname=#{memNickName}, mem_phone=#{memPhone}, mem_address=#{memAddress}
+		where mem_id=#{memId}
+	</update>
+	
+	<!-- 4. 회원 정보 탈퇴 -->
+	<update id="deleteMember" parameterType="Member">
+		update member
+		set mem_address=#{memAddress}, mem_status='N'
+		where mem_id=#{memId} 
+	</update>
+	
+	 <!-- 5. 쿠폰 리스트 불러오기 -->
+	<select id="couponList" parameterType="_int" resultMap="couponResultSet">
+		select rownum, c.*
+		from (select *
+		from givecoupon
+		join coupon using(coupon_type)
+		where mem_num=#{memNum} and givecoupon_status='Y') c
+	</select>
+	
+	<!-- 6. 페이지처리 구문 -->
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from givecoupon
+		where givecoupon_status='Y'
+	</select>
+	
+	
+	
 	
 	<select id="selectMember" parameterType="Member" resultMap="memberResultSet">
 		select *
@@ -92,5 +140,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		and course_status='Y' and mem_status='Y'
 		order by mem_name
 	</select>
+	
+	<select id="selectBlackList" resultMap="memberResultSet">
+		select *
+		where member
+		where mem_status = 'N' and out_date is not null
+	</select> 
 	
 </mapper>

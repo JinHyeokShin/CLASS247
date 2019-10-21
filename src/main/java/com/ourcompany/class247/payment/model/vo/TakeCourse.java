@@ -7,6 +7,7 @@ public class TakeCourse {
 	private int takeNum;
 	private int payNum;
 	private int memNum;
+	private int courseNum;
 	private String takePrice;
 	private String takeCancel;
 	private Date takeDate;
@@ -16,17 +17,20 @@ public class TakeCourse {
 		
 	}
 
-	public TakeCourse(int takeNum, int payNum, int memNum, String takePrice, String takeCancel, Date takeDate,
-			Date takeCancelDate) {
+	public TakeCourse(int takeNum, int payNum, int memNum, int courseNum, String takePrice, String takeCancel,
+			Date takeDate, Date takeCancelDate) {
 		super();
 		this.takeNum = takeNum;
 		this.payNum = payNum;
 		this.memNum = memNum;
+		this.courseNum = courseNum;
 		this.takePrice = takePrice;
 		this.takeCancel = takeCancel;
 		this.takeDate = takeDate;
 		this.takeCancelDate = takeCancelDate;
 	}
+
+
 
 	public int getTakeNum() {
 		return takeNum;
@@ -50,6 +54,14 @@ public class TakeCourse {
 
 	public void setMemNum(int memNum) {
 		this.memNum = memNum;
+	}
+	
+	public int getCourseNum() {
+		return courseNum;
+	}
+
+	public void setCourseNum(int courseNum) {
+		this.courseNum = courseNum;
 	}
 
 	public String getTakePrice() {

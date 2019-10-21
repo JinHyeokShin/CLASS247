@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ourcompany.class247.creator.model.dao.CreatorDao;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
+import com.ourcompany.class247.member.model.vo.Member;
 
 @Service("creService")
 public class CreatorServiceImpl implements CreatorService{
@@ -70,6 +71,35 @@ public class CreatorServiceImpl implements CreatorService{
 	@Override
 	public ArrayList<CreatorAttachment> selectCreatorAttachmentList(int creNum) {
 		return creDao.selectCreatorAttachmentList(creNum);
+	}
+
+
+
+	@Override
+	public ArrayList<Creator> awaitSelectList() {
+		
+		return creDao.awaitSelectList();
+	}
+
+
+
+	@Override
+	public int allowCreator(int creNum) {
+		
+		return creDao.allowCreator(creNum);
+	}
+
+
+
+	@Override
+	public int rejectCreator(int creNum) {
+		
+		return creDao.rejectCreator(creNum);
+	}
+	
+	@Override
+	public ArrayList<Creator> creSelectList() {
+		return creDao.creSelectList();
 	}
 
 

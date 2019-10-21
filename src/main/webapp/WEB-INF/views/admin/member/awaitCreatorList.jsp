@@ -27,7 +27,6 @@
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>클래스사진</th>
                                                     <th>제목</th>
                                                     <th>타입</th>
                                                     <th>수강자대상</th>
@@ -36,32 +35,21 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <c:forEach items="${ list }" var="co">
+                                                <c:forEach items="${ list }" var="cre">
                       
                                                     
                                                     <tr>
-                                                        <td>${co.courseNum }</td>
-                                                        <td>
-                                                  
-                                                        <div class="image img-240">
-															
-														</div>
-                                                        </td>
+                                                        <td>${cre.creNum }</td>
+  
                                                        
                                                         <td>
                                                          <c:url value="aAwaitCourseDetail.do" var="awaitCourseDetail">
-                                                        	<c:param name="courseNum" value="${ co.courseNum }"/>
-                                                        	<c:param name="courseKind" value="${ co.courseKind }"/>
+                                                        	<c:param name="creator" value="${ list }"/>
                                                          </c:url>
-                                                         <a style="color:black" href="${awaitCourseDetail}">${co.courseTitle }</a>
+                                                         <a style="color:black" href="${awaitCreatorDetail}">${cre.introduction }</a>
                                                         </td>
                                                         
-                                                        <td>
-                                              				${co.courseKind }
-                                                        </td>
-                                                        <td>${co.courseLevel }</td>
-                                                        <td>${co.memNickName }</td>
-                                                        <td>${co.courseEnrollDate }</td>
+                                                        <td>${cre.enrollDate }</td>
                                                     </tr>
                                                     
                                                    

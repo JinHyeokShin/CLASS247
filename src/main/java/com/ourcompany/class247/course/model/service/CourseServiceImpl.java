@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.course.model.dao.CourseDao;
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
+import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
+import com.ourcompany.class247.course.model.vo.SingleCourse;
 
 @Service("coService")
 public class CourseServiceImpl implements CourseService{
@@ -99,18 +102,6 @@ public class CourseServiceImpl implements CourseService{
 	}
 
 	@Override
-	public Online selectOnline(int courseNum) {
-		
-		return coDao.selectOnline(courseNum);
-	}
-
-	@Override
-	public Offline selectOffline(int courseNum) {
-		
-		return coDao.selectOffline(courseNum);
-	}
-
-	@Override
 	public ArrayList<CourseAttachment> selectCourseAttachmentList(int courseNum) {
 		
 		return coDao.selectCourseAttachmentList(courseNum);
@@ -120,8 +111,16 @@ public class CourseServiceImpl implements CourseService{
 	public int allowCourse(int courseNum) {
 				return coDao.allowCourse(courseNum);
 	}
-
+	
 	@Override
+	public int rejectCourse(int courseNum) {
+		return coDao.rejectCourse(courseNum);
+	}
+	
+	
+	@Override
+	public Course selectCourse(int courseNum) {
+		return coDao.selectCourse(courseNum);
 	public ArrayList<Course> selectList() {
 		
 		return coDao.selectList();
@@ -147,6 +146,38 @@ public class CourseServiceImpl implements CourseService{
 	@Override
 	public ArrayList<Course> modalsearchCategory(int categoryNum) {
 		return coDao.modalsearchCategory(categoryNum);
+	}
+	
+	@Override
+	public ArrayList<Love> selectLove() {
+		
+		return coDao.selectLove();
+	}
+	
+	@Override
+	public ArrayList<SingleCourse> awaitSelectList() {
+		
+		return coDao.awaitSelectList();
+	
+	
+	//사용자 단
+
+	@Override
+	public int getListCount() {
+		
+		return coDao.getListCount();
+	}
+
+	@Override
+	public ArrayList<Love> lovelist(int memNum, PageInfo pi) {
+		
+		return coDao.lovelist(memNum, pi);
+	}
+	
+	@Override
+	public int deleteLove(Love i) {
+		// TODO Auto-generated method stub
+		return coDao.deleteLove(i);
 	}
 
 
