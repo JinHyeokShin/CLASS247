@@ -26,11 +26,18 @@
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+		<!-- 웹소켓을 위한 비동기화 -->
+		<async-supported>true</async-supported>  
 	</servlet>
 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	<!-- 채팅 웹 소켓용 매핑패턴입니다. -->
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
 	<!-- 한글 깨짐 방지 인코딩 필터 -->

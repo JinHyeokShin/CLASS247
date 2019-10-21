@@ -72,8 +72,21 @@ public class CourseServiceImpl implements CourseService{
 		return coDao.selectCoverList(creNum);
 	}
 	
+	
+	//-------------------- 크리에이터 -------------------
+	
+	@Override
+	public Course selectCourse(int courseNum, String courseKind) {
+		return coDao.selectCourse(courseNum, courseKind);
+	
+	}
+	
+	@Override
+	public CourseAttachment selectCover(int courseNum) {
+		return coDao.selectCover(courseNum);
+	}
 
-	// 관리자
+	//--------------------- 관리자-------------------
 	
 	
 	/**
@@ -125,6 +138,19 @@ public class CourseServiceImpl implements CourseService{
 //	public int coursePayment(int courseNum, String courseKind) {
 //		return coDao.coursePayment(courseNum, courseKind);
 //	}
+
+	@Override
+	public ArrayList<Course> modalsearchList(String search) {
+		return coDao.modalsearchList(search);
+	}
+
+	@Override
+	public ArrayList<Course> modalsearchCategory(int categoryNum) {
+		return coDao.modalsearchCategory(categoryNum);
+	}
+
+
+	
 
 
 

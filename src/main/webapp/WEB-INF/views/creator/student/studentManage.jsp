@@ -75,8 +75,6 @@
                                     </thead>
                                     <tbody>
                                     
-                                    
-                                    
                                     <c:forEach items="${ studentList }" var="s">
 	                                    <c:url value="stuDetail.do" var="stuDetail">
 	                                    	<c:param name="memNum" value="${s.memNum}"/>

@@ -25,6 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<resultMap id="CourseResultSet" type="Course">
 		<id property="courseNum" column="course_num"/>
+		<result property="categoryName" column="category_name"/>
 		<result property="categoryNum" column="category_num"/>
 		<result property="creNum" column="cre_num"/>
 		<result property="courseTitle" column="course_title"/>
@@ -60,6 +61,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    		</discriminator>
 	</resultMap>
 	
+		
+	
 	
 	<resultMap id="CourseAttachmentResultSet" type="CourseAttachment">
 		<id property="coaNum" column="coa_num"/>
@@ -81,6 +84,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				#{courseKind}, #{courseLevel}, 0, sysdate, null, #{ courseStartDate }, #{ courseEndDate}, default, default)
 	</insert>
 	
+	<!-- 1. 클래스 추가 실패시 삭제 -->
+	<delete id="deleteCourse" parameterType="Course">
+		delete course where course_num = #{courseNum}
+	</delete>
+	
 	
 	<!-- 1_1. 온라인 클래스 추가 쿼리  -->
 	<insert id="insertOnline" parameterType="Online">
@@ -91,7 +99,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insertOffline" parameterType="Offline">
 		insert into offline_course
-		values(offline_course_seq.nextval, course_seq.currval, #{courseMinPax}, #{courseArea}, #{courseMaxPax}, 
+		values(offline_course_seq.nextval, course_seq.currval,  #{courseArea}, #{courseMinPax}, #{courseMaxPax}, 
 				#{courseHours}, #{courseHourPrice}, #{courseDay}, #{courseCount})
 	</insert>
 	
@@ -102,7 +110,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(course_attachment_seq.nextval, course_seq.currval, #{coaOName}, #{coaRName}, 1, #{coaPath})
 	</insert>
 	
-	<!-- 온라인 클래스 불러오기 -->
+	<!-- 클래스 상세정보 불러오기 -->
+	<select id="selectCourse" parameterType="_int" resultMap="CourseResultSet">
+		select *
+		from course 
+		join category using(category_num)
+		where course_num = #{courseNum}
+	</select>
+	
+	<!-- 온라인 클래스 불러오기 by creNum-->
 	<select id="selectMyOnlineList" parameterType="_int" resultMap="CourseResultSet">
 		select * 
 		from course
@@ -110,9 +126,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where cre_num = #{creNum} 
 		and course_approved = 'Y'
 		and course_status='Y'
+		order by course_num desc
 	</select>
 	
-	<!-- 오프라인 클래스 불러오기 -->
+	<!-- 오프라인 클래스 불러오기  by creNum-->
 	<select id="selectMyOfflineList" parameterType="_int" resultMap="CourseResultSet">
 		select * 
 		from course
@@ -120,6 +137,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where cre_num = #{creNum} 
 		and course_approved = 'Y'
 		and course_status='Y'
+		order by course_num desc
 	</select>
 	
 	<!-- 클래스 메인 커버리스트 가져오기  -->
@@ -130,6 +148,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where cre_num = #{creNum}
 		and course_approved = 'Y'
 		and course_status='Y'
+		and coa_level = 1
+	</select>
+	
+	<select id="selectCover" parameterType="_int" resultMap="CourseAttachmentResultSet">
+		select *
+		from course_attachment
+		where course_num = #{courseNum}
 		and coa_level = 1
 	</select>
 
@@ -146,17 +171,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where course_approved = 'n'
 	</select>
 	
-	<!-- <select id="selectOnline" parameterType="_int" resultMap="CourseResultSet">
+	<!-- 온라인 클래스 상세보기 불러오기 by courseNum -->
+	<select id="selectOnline" parameterType="_int" resultMap="CourseResultSet">
 		select *
 		from course
 		join online_course using(course_num)
+		join category using (category_num)
 		where course_num = #{courseNum}
 	</select>
-	
-	<select id="selectOffline" parameterType="Offline" resultMap="CourseResultSet">
+	<!-- 오프라인 클래스 상세보기 불러오기 by courseNum -->
+	<select id="selectOffline" parameterType="_int" resultMap="CourseResultSet">
 		select *
 		from course
 		join offline_course using(course_num)
+		join category using (category_num)
 		where course_num = #{courseNum}
 	</select>
 	 -->
@@ -186,7 +214,49 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where course_approved = 'Y' and course_status='Y'
 	</select>
 	
+	<select id="modalsearchList" parameterType="String" resultMap="CourseResultSet">
+			select c.course_num, category.category_name, cre_num, c.course_title, c.course_content, c.course_kind, 
+                c.course_level, c.course_current_num, c.course_enroll_date, c.course_approved_date, c.course_start_date,
+                c.course_end_date, c.course_approved, c.course_status, member.mem_nickname
+			from course c
+	        join category using (category_num)
+	        join creator using(cre_num)
+	        join member using(mem_num)
+			where course_title like '%'||#{search}||'%'
+            
+            UNION
+            
+			select c.course_num, category.category_name, cre_num, c.course_title, c.course_content, c.course_kind, 
+                c.course_level, c.course_current_num, c.course_enroll_date, c.course_approved_date, c.course_start_date,
+                c.course_end_date, c.course_approved, c.course_status, member.mem_nickname
+			from course c
+	        join category using (category_num)
+	        join creator using(cre_num)
+	        join member using(mem_num)
+			where mem_nickname like '%'||#{search}||'%'
+            
+            UNION
+            
+			select c.course_num, category.category_name, cre_num, c.course_title, c.course_content, c.course_kind, 
+                c.course_level, c.course_current_num, c.course_enroll_date, c.course_approved_date, c.course_start_date,
+                c.course_end_date, c.course_approved, c.course_status, member.mem_nickname
+			from course c
+	        join category using (category_num)
+	        join creator using(cre_num)
+	        join member using(mem_num)
+			where category_name like '%'||#{search}||'%'
+	</select>
 	
+	<select id="modalsearchCategory" parameterType="_int" resultMap="CourseResultSet">
+			select c.course_num, category.category_name, cre_num, c.course_title, c.course_content, c.course_kind, 
+                c.course_level, c.course_current_num, c.course_enroll_date, c.course_approved_date, c.course_start_date,
+                c.course_end_date, c.course_approved, c.course_status, member.mem_nickname
+			from course c
+	        join category using (category_num)
+	        join creator using(cre_num)
+	        join member using(mem_num)
+			where category_num = #{categoryNum} and course_approved='Y'
+	</select>
 	
 
 	 <!-- 온라인 클래스 상세보기 불러오기 by courseNum -->

@@ -80,7 +80,7 @@ public class CreatorController {
 				CreatorAttachment caProfile = new CreatorAttachment();
 				caProfile.setCraRname(profileRename);
 				caProfile.setCraOname(profile.getOriginalFilename());
-				caProfile.setCraPath(request.getSession().getServletContext().getRealPath("resources") + "creator\\creatorImages");
+				caProfile.setCraPath(request.getSession().getServletContext().getRealPath("resources") + "\\creator\\creatorImages");
 				
 				creService.insertProfile(caProfile, creator.getMemNum());
 			}
@@ -93,7 +93,7 @@ public class CreatorController {
 				CreatorAttachment caId = new CreatorAttachment();
 				caId.setCraRname(idRename);
 				caId.setCraOname(profile.getOriginalFilename());
-				caId.setCraPath(request.getSession().getServletContext().getRealPath("resources") + "creator\\creatorImages");
+				caId.setCraPath(request.getSession().getServletContext().getRealPath("resources") + "\\creator\\creatorImages");
 				
 				creService.insertID(caId, creator.getMemNum());
 			}
