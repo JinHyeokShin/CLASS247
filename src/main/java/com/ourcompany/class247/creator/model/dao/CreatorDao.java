@@ -76,5 +76,9 @@ public class CreatorDao {
 	public ArrayList<Creator> creSelectList() {
 		return (ArrayList)sqlSession.selectList("creatorMapper.creSelectList");
 	}
+	
+	public CreatorAttachment selectMyProFile(int creNum) {
+		return sqlSession.selectOne("creatorMapper.selectMyProFile", creNum);
+	}
 
 }

@@ -16,7 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ourcompany.class247.course.model.service.CourseService;
+import com.ourcompany.class247.course.model.vo.Course;
+import com.ourcompany.class247.course.model.vo.CourseAttachment;
+import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.creator.model.service.CreatorService;
 import com.ourcompany.class247.creator.model.vo.Creator;
+import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 import com.ourcompany.class247.member.model.service.MemberService;
 import com.ourcompany.class247.member.model.vo.Member;
 
@@ -28,6 +34,12 @@ public class MemberController {
 	
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
+	@Autowired
+	private CreatorService creService;
+	
+	@Autowired
+	private CourseService coService;
 	
 	/**
 	 * 1. 로그인폼으로 이동.
@@ -274,14 +286,23 @@ public class MemberController {
 		
 		Member m = mService.selectMember(memNum);
 		
-		mv.addObject("m", m).setViewName("admin/member/memberDetail");
+		Creator cre = creService.getCreator(memNum);
+		
+		ArrayList<Course> coList = coService.selectMyCoList(cre.getCreNum());
+		
+		CreatorAttachment cra = creService.selectMyProFile(cre.getCreNum());
+		
+		ArrayList<CreatorAttachment> craList = creService.selectCreatorAttachmentList(cre.getCreNum());
+		
+		ArrayList<CourseAttachment> coaList = coService.selectCoverList(cre.getCreNum());
+		
+		ArrayList<SingleCourse> coListU = coService.selectMyTakeCourse(memNum);
+		
+		mv.addObject("m", m).addObject("cre", cre).addObject("coList", coList).addObject("cra", cra).addObject("craList", craList).addObject("coaList", coaList).setViewName("admin/member/memDetail");
 		
 		return mv;
 		
 	}
-	
-	
-	
 	
 	
 	

@@ -28,5 +28,6 @@ public interface CreatorService {
 	
 	ArrayList<Creator> creSelectList();
 	
+	CreatorAttachment selectMyProFile(int creNum);
 
 }

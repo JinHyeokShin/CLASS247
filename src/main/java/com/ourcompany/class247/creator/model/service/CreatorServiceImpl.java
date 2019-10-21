@@ -103,7 +103,10 @@ public class CreatorServiceImpl implements CreatorService{
 	}
 
 
-
+	@Override
+	public CreatorAttachment selectMyProFile(int creNum) {
+		return creDao.selectMyProFile(creNum);
+	}
 
 	
 	

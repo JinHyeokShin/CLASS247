@@ -80,6 +80,7 @@ public class CourseServiceImpl implements CourseService{
 	
 	@Override
 	public Course selectCourse(int courseNum, String courseKind) {
+		
 		return coDao.selectCourse(courseNum, courseKind);
 	
 	}
@@ -120,18 +121,20 @@ public class CourseServiceImpl implements CourseService{
 	
 	@Override
 	public Course selectCourse(int courseNum) {
-		return coDao.selectCourse(courseNum);
+		
+		Course c = coDao.selectCourse(courseNum);
+		c.setLoveCount(coDao.countLove(courseNum));
+		
+		return c;
+		
+	}
+	
+	@Override
 	public ArrayList<Course> selectList() {
 		
 		return coDao.selectList();
 	}
 	
-	@Override
-	public Course selectCourse(int courseNum,String courseKind) {
-		
-		return coDao.selectCourse(courseNum, courseKind);
-	
-	}
 
 
 	@Override
@@ -150,6 +153,12 @@ public class CourseServiceImpl implements CourseService{
 		
 		return coDao.awaitSelectList();
 	
+	}
+	
+	@Override
+	public ArrayList<SingleCourse> selectMyTakeCourse(int memNum) {
+		return coDao.selectMyTakeCourse(memNum);
+	}
 	
 	//사용자 단
 
@@ -169,6 +178,12 @@ public class CourseServiceImpl implements CourseService{
 	public int deleteLove(Love i) {
 		// TODO Auto-generated method stub
 		return coDao.deleteLove(i);
+	}
+
+	@Override
+	public Offline selectOffline(int courseNum) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

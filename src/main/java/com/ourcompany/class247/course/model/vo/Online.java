@@ -1,7 +1,5 @@
 package com.ourcompany.class247.course.model.vo;
 
-import java.sql.Date;
-
 public class Online extends Course{
 	
 	private int onlineNum;				//온라인수업 번호

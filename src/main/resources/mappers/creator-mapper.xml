@@ -99,6 +99,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		join member using(mem_num)
 		where cre_approved = 'Y'
 	</select>
+	
+	<select id="selectMyProFile" resultMap="creatorAttachmentResultSet">
+		select *
+		from creator_attachment
+		where cre_num = #{creNum} and cra_level = 0
+	</select>
 
 
 </mapper>
