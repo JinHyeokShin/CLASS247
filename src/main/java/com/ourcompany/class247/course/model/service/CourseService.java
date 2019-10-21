@@ -73,5 +73,7 @@ public interface CourseService {
 	ArrayList<Love> selectLove();
 	
 	ArrayList<SingleCourse> awaitSelectList();
+	
+	Course coursePayment(int courseNum,String courseKind);
 
 }

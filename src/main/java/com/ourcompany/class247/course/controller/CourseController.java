@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.common.Pagination;
-import com.ourcompany.class247.coupon.model.vo.Coupon;
 import com.ourcompany.class247.course.model.service.CourseService;
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
@@ -227,7 +226,6 @@ public class CourseController {
 	@RequestMapping("home.do")
 	public ModelAndView selectList(ModelAndView mv) {
 		ArrayList<Course> list = coService.selectList();
-		System.out.println(list);
 		
 		mv.addObject("list", list);
 		mv.setViewName("home");
@@ -367,10 +365,33 @@ public class CourseController {
 			 i.setCourseNum(check);
 			 coService.deleteLove(i);
 			}
-	mv.setViewName("user/member/memZzim");
+	
+
+		mv.setViewName("user/member/memZzim");
+		return mv;
+	}
+
+	@RequestMapping("coBuy.do")
+	public ModelAndView coursePayment(int courseNum,String courseKind, ModelAndView mv) {
+		
+		Course c = coService.coursePayment(courseNum,courseKind );
+	
+		System.out.println(c);
+		if(c != null) {
+			mv.addObject("c", c)
+			  .setViewName("creator/course/userCourseDetail2");
+			
+		}else {
+			mv.addObject("msg", "게시글 상세조회실패!")
+			  .setViewName("common/errorPage");
+		}
+		
+		return mv;
+		
+	}
+	
+
 
 	
-	return mv;
-	
-	}
+
 }
