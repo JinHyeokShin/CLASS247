@@ -16,6 +16,7 @@ public class SingleCourse {
 	private int coursePrice;
 	private String coaRName;
 	private String courseArea;
+	private int loveCount;
 	
 	public SingleCourse() {
 		
@@ -37,6 +38,27 @@ public class SingleCourse {
 		this.coursePrice = coursePrice;
 		this.coaRName = coaRName;
 		this.courseArea = courseArea;
+	}
+	
+	
+
+	public SingleCourse(int courseNum, String courseTitle, String categoryName, String memNickName, String courseKind,
+			String courseLevel, Date courseEnrollDate, Date courseStartDate, Date courseEndDate, int coursePrice,
+			String coaRName, String courseArea, int loveCount) {
+		super();
+		this.courseNum = courseNum;
+		this.courseTitle = courseTitle;
+		this.categoryName = categoryName;
+		this.memNickName = memNickName;
+		this.courseKind = courseKind;
+		this.courseLevel = courseLevel;
+		this.courseEnrollDate = courseEnrollDate;
+		this.courseStartDate = courseStartDate;
+		this.courseEndDate = courseEndDate;
+		this.coursePrice = coursePrice;
+		this.coaRName = coaRName;
+		this.courseArea = courseArea;
+		this.loveCount = loveCount;
 	}
 
 	public int getCourseNum() {
@@ -134,6 +156,17 @@ public class SingleCourse {
 	public void setCourseArea(String courseArea) {
 		this.courseArea = courseArea;
 	}
+	
+	
+	
+
+	public int getLoveCount() {
+		return loveCount;
+	}
+
+	public void setLoveCount(int loveCount) {
+		this.loveCount = loveCount;
+	}
 
 	@Override
 	public String toString() {
@@ -141,8 +174,8 @@ public class SingleCourse {
 				+ categoryName + ", memNickName=" + memNickName + ", courseKind=" + courseKind + ", courseLevel="
 				+ courseLevel + ", courseEnrollDate=" + courseEnrollDate + ", courseStartDate=" + courseStartDate
 				+ ", courseEndDate=" + courseEndDate + ", coursePrice=" + coursePrice + ", coaRName=" + coaRName
-				+ ", courseArea=" + courseArea + "]";
+				+ ", courseArea=" + courseArea + ", loveCount=" + loveCount + "]";
 	}
-	
+
 	
 }
