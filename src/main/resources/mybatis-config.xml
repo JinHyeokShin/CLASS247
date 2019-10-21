@@ -20,6 +20,7 @@
 		<typeAlias type="com.ourcompany.class247.inquiry.model.vo.Inquiry" alias="Inquiry"/>
 		<typeAlias type="com.ourcompany.class247.course.model.vo.Love" alias="Love"/>
 		<typeAlias type="com.ourcompany.class247.course.model.vo.SingleCourse" alias="SingleCourse"/>
+		<typeAlias type="com.ourcompany.class247.payment.model.vo.TakeCourse" alias="TakeCourse"/>
 	</typeAliases>
 	
 	
