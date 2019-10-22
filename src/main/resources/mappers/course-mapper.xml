@@ -98,6 +98,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             </case>
          </discriminator>
    </resultMap>
+   
+   <resultMap id="TakeCourseResultSet" type="TakeCourse">
+		<id property="takeNum" column="take_num"/>
+		<result property="memNum" column="mem_num"/>
+		<result property="payNum" column="pay_num"/>
+		<result property="courseNum" column="course_num"/>
+		<result property="courseTitle" column="course_title"/>
+		<result property="categoryName" column="category_name"/>
+		<result property="memNickname" column="mem_nickname"/>
+		<result property="courseKind" column="course_kind"/>
+		<result property="courseLevel" column="course_level"/>
+		<result property="courseStartDate" column="course_start_date"/>
+		<result property="courseEndDate" column="course_end_date"/>
+		<result property="coaRname" column="coa_rname"/>
+		<result property="coursePrice" column="course_price"/>
+		<result property="payPrice" column="pay_price"/>
+		<result property="courseArea" column="course_area"/>
+		<result property="courseHourPrice" column="course_hour_price"/>
+		<result property="courseApproved" column="course_approved"/>
+		<result property="takeDate" column="take_date"/>
+	</resultMap>
+	
 	
 
 
@@ -234,6 +256,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		and course_num = #{courseNum}
 	</delete>
 	
+	<!-- 온라인 클래스만 리스트 보여주기 -->
+	<select id="payonList" resultMap="TakeCourseResultSet">
+	select *
+	from user_course_view
+	where course_kind = 'online'
+	</select>
+	
+	<!-- 오프라인 클래스만 리스트 보여주기 -->
+	<select id="payoffList" resultMap="TakeCourseResultSet">
+	select *
+	from user_course_view
+	where course_kind = 'offline'
+	</select>
    
 	 
 
