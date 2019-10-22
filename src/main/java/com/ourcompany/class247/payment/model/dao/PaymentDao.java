@@ -22,5 +22,10 @@ public class PaymentDao {
 
 		return (ArrayList)sqlSession.selectList("courseMapper.payoffList",memNum);
 	}
+	
+	public ArrayList<Payment> selectMyPaymentList(int memNum) {
+		
+		return (ArrayList)sqlSession.selectList("paymentMapper.selectMyPaymentList", memNum);
+	}
 
 }

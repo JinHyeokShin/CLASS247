@@ -221,4 +221,8 @@ public class CourseDao {
 	public ArrayList<Course> modalsearchCategory(int categoryNum){
 		return (ArrayList)sqlSession.selectList("courseMapper.modalsearchCategory",categoryNum);
 	}
+	
+	public ArrayList<SingleCourse> mySingleCourseList(int creNum) {
+		return (ArrayList)sqlSession.selectList("courseMapper.mySingleCourseList", creNum);
+	}
 }

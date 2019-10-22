@@ -204,6 +204,11 @@ public class CourseServiceImpl implements CourseService {
 		// TODO Auto-generated method stub
 		return coDao.deleteLove(i);
 	}
+	
+	@Override
+	public ArrayList<SingleCourse> mySingleCourseList(int creNum) {
+		return coDao.mySingleCourseList(creNum);
+	}
 
 
 

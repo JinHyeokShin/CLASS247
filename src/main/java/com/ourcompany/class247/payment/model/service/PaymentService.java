@@ -9,5 +9,7 @@ public interface PaymentService {
 	ArrayList<Payment> payonlist(int memNum);
 
 	ArrayList<Payment> payofflist(int memNum);
+	
+	ArrayList<Payment> selectMyPaymentList(int memNum);
 
 }

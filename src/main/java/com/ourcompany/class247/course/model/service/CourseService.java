@@ -55,6 +55,8 @@ public interface CourseService {
 
 	ArrayList<SingleCourse> selectMyTakeCourse(int memNum);
 	
+	ArrayList<SingleCourse> mySingleCourseList(int creNum);
+	
 	/*사용자 페이지*/
 	
 	//페이징처리

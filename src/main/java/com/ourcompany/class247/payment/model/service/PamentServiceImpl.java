@@ -26,4 +26,10 @@ private PaymentDao pDao;
 		return pDao.payofflist(memNum);
 	}
 
+	@Override
+	public ArrayList<Payment> selectMyPaymentList(int memNum) {
+		
+		return pDao.selectMyPaymentList(memNum);
+	}
+
 }
