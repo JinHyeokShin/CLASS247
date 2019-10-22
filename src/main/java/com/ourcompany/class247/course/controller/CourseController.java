@@ -23,7 +23,6 @@ import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.creator.model.service.CreatorService;
 import com.ourcompany.class247.creator.model.vo.Creator;
-import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 import com.ourcompany.class247.member.model.service.MemberService;
 import com.ourcompany.class247.member.model.vo.Member;
 
@@ -32,6 +31,8 @@ public class CourseController {
 	
 	@Autowired
 	private CourseService coService;
+	@Autowired
+	private MemberService mService;
 	
 	@Autowired
 	private MemberService mService;
@@ -90,7 +91,7 @@ public class CourseController {
 					cover.setCoaOName(coverImage.getOriginalFilename());
 					cover.setCoaPath(request.getSession().getServletContext().getRealPath("resources") + "\\course\\images");
 					
-					coService.insertCoverImage(cover);
+					coService.insertCoverImage(cover); 
 				}
 				
 			}
@@ -185,7 +186,7 @@ public class CourseController {
 	}
 	
 	
-	/** 메뉴바(내 클래스 관리) 
+	/** 메뉴바(내 클래스 관리로 이동) 
 	 * @param request
 	 */
 	@RequestMapping("coManageView.do")
@@ -195,7 +196,7 @@ public class CourseController {
 		
 		
 		for (Course c : list) {
-			System.out.println(c);
+			/* System.out.println(c); */
 		}
 		
 		ArrayList<CourseAttachment> coverList = coService.selectCoverList(creNum);
@@ -206,6 +207,27 @@ public class CourseController {
 		 return mv;
 	}
 	
+	
+	 
+	/** 크리에이터센터 
+	 * 내 클래스관리 -> 클래스 디테일 (수강정보 + 수강생정보)
+	 */
+	@RequestMapping("myCourseDetail.do")
+	public ModelAndView myCourseDetail(int courseNum, String courseKind, ModelAndView mv) {
+		
+		Course course = coService.selectCourse(courseNum, courseKind); 
+		CourseAttachment cover = coService.selectCover(courseNum);
+		ArrayList<Member> stuList = mService.selectStuByCo(courseNum);
+		
+		/* System.out.println(course); */
+		
+		mv.addObject("co", course);
+		mv.addObject("cover", cover);
+		mv.addObject("stuList", stuList);
+		mv.setViewName("creator/course/myCourseDetail");
+		
+		return mv;
+	}
 	@RequestMapping("goOnline.do")
 	public String goOnline() {
 		return "user/course/onlineList";
@@ -224,7 +246,7 @@ public class CourseController {
 	@RequestMapping("home.do")
 	public ModelAndView selectList(ModelAndView mv) {
 		ArrayList<Course> list = coService.selectList();
-		System.out.println(list);
+		/* System.out.println(list); */
 		
 		mv.addObject("list", list);
 		mv.setViewName("home");
@@ -277,23 +299,34 @@ public class CourseController {
 		return mv;
 		
 	}
+//	@RequestMapping("couDetail.do")
+//	public String couDetail() {
+//		return "creator/course/userCourseDetail2";
+//	}
 	
-	/**
-	 * 3. 수업 허락하기
-	 * @param courseNum
+	/**  검색창에서 텍스트로 검색하는 메소드
+	 * @param search
+	 * @param mv
 	 * @return
 	 */
-	@RequestMapping("aApprovalCourse.do")
-	public String aApprovalCourse(int courseNum) {
+	@RequestMapping("searchmodal.do")
+	public ModelAndView modalsearchList(String search, ModelAndView mv) {
 		
-		int result = coService.allowCourse(courseNum);
+		ArrayList<Course> list = coService.modalsearchList(search);
 		
-		if(result > 0 ) {
+		mv.addObject("list", list).setViewName("user/course/searchList");
 		
-			return "redirect:aAwaitCourseList.do";
-		}else {
-			return "common/errorPage";
-		}
+		return mv;
+	}
+	
+	@RequestMapping("searchCategory.do")
+	public ModelAndView modalsearchCategory(int categoryNum, ModelAndView mv){
+		ArrayList<Course> list = coService.modalsearchCategory(categoryNum);
+		System.out.println(list);
+		mv.addObject("list", list).setViewName("user/course/searchCateList");
+		
+		return mv;
+		
 	}
 
 }

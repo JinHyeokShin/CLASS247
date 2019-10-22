@@ -9,14 +9,15 @@
 	
 	<typeAliases> <!-- 변수명으로 저장하는곳 ㅇㅇ -->
 		<typeAlias type="com.ourcompany.class247.member.model.vo.Member" alias="Member"/>
-				<typeAlias type="com.ourcompany.class247.notice.model.vo.Notice" alias="Notice"/>
+		<typeAlias type="com.ourcompany.class247.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="com.ourcompany.class247.creator.model.vo.Creator" alias="Creator"/>
 		<typeAlias type="com.ourcompany.class247.creator.model.vo.CreatorAttachment" alias="CreatorAttachment"/>
 		<typeAlias type="com.ourcompany.class247.course.model.vo.Course" alias="Course"/>
 		<typeAlias type="com.ourcompany.class247.course.model.vo.Online" alias="Online"/>
 		<typeAlias type="com.ourcompany.class247.course.model.vo.Offline" alias="Offline"/>
 		<typeAlias type="com.ourcompany.class247.course.model.vo.CourseAttachment" alias="CourseAttachment"/>
-		<typeAlias type="com.ourcompany.class247.course.model.vo.Love" alias="Love"/>
+		<typeAlias type="com.ourcompany.class247.inquiry.model.vo.Inquiry" alias="Inquiry"/>
+		<typeAlias type="com.ourcompany.class247.notice.model.vo.FAQ" alias="Faq"/>
 	</typeAliases>
 	
 	
@@ -25,5 +26,6 @@
 		<mapper resource="mappers/creator-mapper.xml"/>
 		<mapper resource="mappers/course-mapper.xml"/>
 		<mapper resource="mappers/notice-mapper.xml"/>
+		<mapper resource="mappers/inquiry-mapper.xml"/>
 	</mappers>
 </configuration>

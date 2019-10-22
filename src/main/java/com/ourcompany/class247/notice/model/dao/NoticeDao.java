@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ourcompany.class247.common.PageInfo;
+import com.ourcompany.class247.notice.model.vo.FAQ;
 import com.ourcompany.class247.notice.model.vo.Notice;
 
 @Repository("nDao")
@@ -35,5 +36,18 @@ public class NoticeDao {
 	public Notice noticeDetail(int noticeNum) {
 		return sqlSession.selectOne("noticeMapper.selectNotice", noticeNum);
 	}
+	
+	public int getUserFaqListCount() {
+		return sqlSession.selectOne("noticeMapper.getUserFaqListCount");
+	}
+	
+	@SuppressWarnings( { "unchecked", "rawtypes" } )
+	public ArrayList<FAQ> selectUserFaqList(PageInfo pi){
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectUserFaqList", null, rowBounds);
+	}
+	
 	
 }

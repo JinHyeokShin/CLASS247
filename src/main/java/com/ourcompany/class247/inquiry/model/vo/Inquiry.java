@@ -2,26 +2,31 @@ package com.ourcompany.class247.inquiry.model.vo;
 
 public class Inquiry {
 	
+	
 	private int inquiryNum;				//문의번호
 	private int memNum;					//작성자번호
-	private int inquiryParentNum;		//문의상단번호
 	private String inquiryContent;		//문의내용
-	private String inquiryAnswer;		//문의답변상태
+	private String inquiryPath;			//파일경로
+	private String inquiryFileName;		//파일 이름
+	private String answerContent;		//답변내용
+	private String answerStatus;		//답변여부
 	private String inquiryEnrollDate;	//작성날짜
+	private String inquiryStatus;		//문의답변상태
 	
-	public Inquiry() {
-		
-	}
-
-	public Inquiry(int inquiryNum, int memNum, int inquiryParentNum, String inquiryContent, String inquiryAnswer,
-			String inquiryEnrollDate) {
+	public Inquiry() {}
+	
+	public Inquiry(int inquiryNum, int memNum, String inquiryContent, String inquiryPath, String inquiryFileName,
+			String answerContent, String answerStatus, String inquiryEnrollDate, String inquiryStatus) {
 		super();
 		this.inquiryNum = inquiryNum;
 		this.memNum = memNum;
-		this.inquiryParentNum = inquiryParentNum;
 		this.inquiryContent = inquiryContent;
-		this.inquiryAnswer = inquiryAnswer;
+		this.inquiryPath = inquiryPath;
+		this.inquiryFileName = inquiryFileName;
+		this.answerContent = answerContent;
+		this.answerStatus = answerStatus;
 		this.inquiryEnrollDate = inquiryEnrollDate;
+		this.inquiryStatus = inquiryStatus;
 	}
 
 	public int getInquiryNum() {
@@ -40,14 +45,6 @@ public class Inquiry {
 		this.memNum = memNum;
 	}
 
-	public int getInquiryParentNum() {
-		return inquiryParentNum;
-	}
-
-	public void setInquiryParentNum(int inquiryParentNum) {
-		this.inquiryParentNum = inquiryParentNum;
-	}
-
 	public String getInquiryContent() {
 		return inquiryContent;
 	}
@@ -56,12 +53,36 @@ public class Inquiry {
 		this.inquiryContent = inquiryContent;
 	}
 
-	public String getInquiryAnswer() {
-		return inquiryAnswer;
+	public String getInquiryPath() {
+		return inquiryPath;
 	}
 
-	public void setInquiryAnswer(String inquiryAnswer) {
-		this.inquiryAnswer = inquiryAnswer;
+	public void setInquiryPath(String inquiryPath) {
+		this.inquiryPath = inquiryPath;
+	}
+
+	public String getInquiryFileName() {
+		return inquiryFileName;
+	}
+
+	public void setInquiryFileName(String inquiryFileName) {
+		this.inquiryFileName = inquiryFileName;
+	}
+
+	public String getAnswerContent() {
+		return answerContent;
+	}
+
+	public void setAnswerContent(String answerContent) {
+		this.answerContent = answerContent;
+	}
+
+	public String getAnswerStatus() {
+		return answerStatus;
+	}
+
+	public void setAnswerStatus(String answerStatus) {
+		this.answerStatus = answerStatus;
 	}
 
 	public String getInquiryEnrollDate() {
@@ -72,13 +93,22 @@ public class Inquiry {
 		this.inquiryEnrollDate = inquiryEnrollDate;
 	}
 
+	public String getInquiryStatus() {
+		return inquiryStatus;
+	}
+
+	public void setInquiryStatus(String inquiryStatus) {
+		this.inquiryStatus = inquiryStatus;
+	}
+
 	@Override
 	public String toString() {
-		return "Inquiry [inquiryNum=" + inquiryNum + ", memNum=" + memNum + ", inquiryParentNum=" + inquiryParentNum
-				+ ", inquiryContent=" + inquiryContent + ", inquiryAnswer=" + inquiryAnswer + ", inquiryEnrollDate="
-				+ inquiryEnrollDate + "]";
+		return "Inquiry [inquiryNum=" + inquiryNum + ", memNum=" + memNum + ", inquiryContent=" + inquiryContent
+				+ ", inquiryPath=" + inquiryPath + ", inquiryFileName=" + inquiryFileName + ", answerContent="
+				+ answerContent + ", answerStatus=" + answerStatus + ", inquiryEnrollDate=" + inquiryEnrollDate
+				+ ", inquiryStatus=" + inquiryStatus + "]";
 	}
 	
-	
+
 
 }

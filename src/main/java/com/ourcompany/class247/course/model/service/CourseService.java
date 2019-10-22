@@ -25,9 +25,13 @@ public interface CourseService {
 
 	//3. 클래스 메인커버사진리스트 가져오기 
 	ArrayList<CourseAttachment> selectCoverList(int creNum);
-
 	
-	// 관리용
+	//-------------------- 크리에이터용 
+	Course creSelectCourse(int courseNum, String courseKind);
+	
+	CourseAttachment selectCover(int courseNum);
+	
+	//--------------------- 관리용
 	// 1. 대기중인 클래스 리스트 추가 
 	ArrayList<Course> selectAwaitCourseList();
 	
@@ -42,8 +46,9 @@ public interface CourseService {
 	
 	//클래스 상세보기
 	
-	ArrayList<Love> selectLove();
+	ArrayList<Course> modalsearchList(String search);
 	
-	ArrayList<Course> awaitSelectList();
+	ArrayList<Course> modalsearchCategory(int categoryNum);
+	
 
 }

@@ -8,7 +8,7 @@
 <title>크리에이터 공지사항</title>
 </head>
 <body class="animsition">
-	<c:import url="common/cMenubar.jsp"/>
+	<c:import url="../common/cMenubar.jsp"/>
 	
 	<div class="page-wrapper">
         <!-- START NOTICE TABLE -->
@@ -16,7 +16,7 @@
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                          <h3 class="title-3 m-b-30">
-                            <i class="far fa-bell"></i>Notice
+                            <i class="fas fa-question-circle"></i>INQUIRY
                         </h3>
                         <div class="row m-t-30">
                             <div class="col-md-12">

@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.common.Pagination;
 import com.ourcompany.class247.notice.model.service.NoticeService;
+import com.ourcompany.class247.notice.model.vo.FAQ;
 import com.ourcompany.class247.notice.model.vo.Notice;
 
 @Controller
@@ -62,6 +63,16 @@ public class NoticeController {
 		
 	}
 	
-	
+	@RequestMapping("userFaqListView.do")
+	public ModelAndView faqListView(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+		int listCount = nService.getUserFaqListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<FAQ> flist = nService.selectUserFaqList(pi);
+		
+		mv.addObject("pi",pi).addObject("flist", flist).setViewName("user/notice/faqListView");
+		return mv;
+	}
 	
 }
