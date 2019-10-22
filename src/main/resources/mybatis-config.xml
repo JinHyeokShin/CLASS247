@@ -17,6 +17,7 @@
 		<typeAlias type="com.ourcompany.class247.course.model.vo.Offline" alias="Offline"/>
 		<typeAlias type="com.ourcompany.class247.course.model.vo.CourseAttachment" alias="CourseAttachment"/>
 		<typeAlias type="com.ourcompany.class247.inquiry.model.vo.Inquiry" alias="Inquiry"/>
+		<typeAlias type="com.ourcompany.class247.notice.model.vo.FAQ" alias="Faq"/>
 	</typeAliases>
 	
 	
