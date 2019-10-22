@@ -83,8 +83,8 @@
 					</a>
 						<ul class="list-unstyled navbar__sub-list js-sub-list">
 							<li><a href="aMemberList.do">User</a></li>
-							<li><a href="index2.html">Creator</a></li>
-							<li><a href="aAwaitCourseList.do"><i class="far fa-check-square"></i>Await
+							<li><a href="">Creator</a></li>
+							<li><a href="aAwaitCreatorList.do"><i class="far fa-check-square"></i>Await
 									Creator</a></li>
 							<li><a href="index4.html">Black List</a></li>
 						</ul></li>

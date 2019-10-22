@@ -80,7 +80,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select *
 		from creator
 		join member using(mem_num)
-		where cre_approved = 'N'
+		where cre_status = 'N'
 	</select>
 	
 	<update id="allowCreator" parameterType="_int">

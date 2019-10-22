@@ -128,13 +128,15 @@ public class CourseDao {
 		return (ArrayList)sqlSession.selectList("courseMapper.selectList");
 	}
 	
-	public Course selectCourse(int courseNum) {
-		return sqlSession.selectOne("courseMapper.selectCourse", courseNum);
-	}
 	
 	public int countLove(int courseNum) {
 		return sqlSession.selectOne("courseMapper.countLove", courseNum);
 	}
+	
+	public Course selectCourse(int courseNum) {
+		return sqlSession.selectOne("courseMapper.selectCourse", courseNum);
+	}
+	
 	
 	public Course selectCourse(int courseNum, String courseKind) {
 	      Course co;
