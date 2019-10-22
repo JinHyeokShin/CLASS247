@@ -226,7 +226,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		join category using (category_num)
 		where course_num = #{courseNum}
 	</select>
-	 -->
+	 
 	<select id="selectCourseAttachmentList" parameterType="CourseAttachment" resultMap="CourseAttachmentResultSet">
 		select *
 		from course_attachment
@@ -331,24 +331,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	where course_kind = 'offline'
 	</select>
    
-	 
-
-	 <!-- 온라인 클래스 상세보기 불러오기 by courseNum -->
-	<select id="selectOnline" parameterType="_int" resultMap="CourseResultSet">
-		select *
-		from course
-		join online_course using(course_num)
-		join category using (category_num)
-		where course_num = #{courseNum}
-	</select>
-	<!-- 오프라인 클래스 상세보기 불러오기 by courseNum -->
-	<select id="selectOffline" parameterType="_int" resultMap="CourseResultSet">
-		select *
-		from course
-		join offline_course using(course_num)
-		join category using (category_num)
-		where course_num = #{courseNum}
-	</select>
 	
  <!-- 온라인 클래스 상세보기 불러오기 by courseNum -->
 	<select id="selectOnlinePayment" parameterType="_int">
@@ -369,7 +351,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where course_num = #{courseNum}
 	</select>
 	
-	<select id="selectCourse" parameterType="_int" resultType="_int">
+	<select id="selectCourseLove" parameterType="_int" resultType="_int">
 		select count(*)
 		from love_count_view
 		where course_num = #{courseNum}

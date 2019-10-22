@@ -70,23 +70,12 @@ public class TakeCourse {
 		this.takeNum = takeNum;
 		this.payNum = payNum;
 		this.memNum = memNum;
-		this.courseNum = courseNum;
 		this.takePrice = takePrice;
 		this.takeCancel = takeCancel;
 		this.takeDate = takeDate;
 		this.takeCancelDate = takeCancelDate;
 	}
 
-	public int getCourseNum() {
-		return courseNum;
-	}
-
-
-
-
-	public void setCourseNum(int courseNum) {
-		this.courseNum = courseNum;
-	}
 
 
 

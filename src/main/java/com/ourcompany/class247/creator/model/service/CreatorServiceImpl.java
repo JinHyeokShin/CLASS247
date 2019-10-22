@@ -79,6 +79,7 @@ public class CreatorServiceImpl implements CreatorService{
 	public ArrayList<Creator> awaitSelectList() {
 		
 		return creDao.awaitSelectList();
+	}
 	/** 크리에이터 정보 수정
 	 *
 	 */
@@ -93,6 +94,7 @@ public class CreatorServiceImpl implements CreatorService{
 	public int allowCreator(int creNum) {
 		
 		return creDao.allowCreator(creNum);
+	}
 	/** 크리에이터 탈퇴하기 
 	 *
 	 */
