@@ -11,11 +11,15 @@
 		<typeAlias type="com.ourcompany.class247.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.ourcompany.class247.creator.model.vo.Creator" alias="Creator"/>
 		<typeAlias type="com.ourcompany.class247.creator.model.vo.CreatorAttachment" alias="CreatorAttachment"/>
+		<typeAlias type="com.ourcompany.class247.notice.model.vo.FAQ" alias="FAQ"/>
+		<typeAlias type="com.ourcompany.class247.notice.model.vo.Notice" alias="Notice"/>
+		<!--  <typeAlias type="com.ourcompany.class247.notice.model.vo.NoticeReply" alias="NoticeReply"/> -->
 	</typeAliases>
 	
 	
 	<mappers> <!-- 매퍼 지정 -->
 		<mapper resource="mappers/member-mapper.xml" />
 		<mapper resource="mappers/creator-mapper.xml"/>
+		<mapper resource="mappers/notice-mapper.xml"/>
 	</mappers>
 </configuration>

@@ -7,12 +7,56 @@
 <head>
     <meta charset="UTF-8">
 <title>FAQ List</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+  <script>
+    $(document).ready(function(){
+        
+        /** 초기화 처리*/
 
+        // 첫 번재 항목이 펼쳐져 있도록 처리
+        $(".collapsible:eq(0) a").addClass("selected"); //첫번째 항목만 selected 클래스를 적용
+        $(".collapsible").not(":eq(0)").find(".content").hide(); //첫번째 항목 이외의 content를 숨김
+        
+        /** 링크에 대한 클릭 이벤트 처리 */
+        $(".collapsible .title a").click(function() {            
+            $(this).toggleClass("selected");
+            //클릭된 나 자신을 제외한 나머리 링크들은 slected 클래스를 무조건 제거
+            $(".collapsible .title a").not(this).removeClass("selected"); 
+
+            // 펼칠 내용 영역 선택
+            var target = $(this).parents(".collapsible").find(".content");
+
+            // 나머지 내용 영역을 선택
+            var other = $(".collapsible .title a").not(this)
+                                                  .parents(".collapsible").find(".content");
+
+            // 애니메이션으로 열고 닫기 처리
+            target.slideToggle(300);
+            other.slideUp(300);
+            
+            // 링크 페이지 이동 중지
+            return false;
+        });
+    });
+  </script>
 </head>
 
-<body class="animsition">
+<body>
 
 	<c:import url="../common/aMenubar.jsp"/>
+	
+	<h3 align="center"> 
+		총 게시글 갯수 : ${ pi.listCount }
+		<c:if test="${ !empty sessionScope.loginUser }">
+			<button onclick="location.href='';">글쓰기</button>
+		</c:if>	
+	</h3>
+	
+	
         <div class="page-container2">
 
             <!-- MAIN CONTENT-->
@@ -21,86 +65,63 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h2 class="title-1 m-b-25">FAQ List</h2>
-                                <div class="table-responsive table--no-card m-b-40">
-                                    <table class="table table-borderless table-striped table-earning">
-                                        <thead>
-                                            <tr>
-                                                <th>date</th>
-                                                <th>order ID</th>
-                                                <th>name</th>
-                                                <th class="text-right">price</th>
-                                                <th class="text-right">quantity</th>
-                                                <th class="text-right">total</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>100398</td>
-                                                <td>iPhone X 64Gb Grey</td>
-                                                <td class="text-right">$999.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$999.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-28 01:22</td>
-                                                <td>100397</td>
-                                                <td>Samsung S8 Black</td>
-                                                <td class="text-right">$756.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$756.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-27 02:12</td>
-                                                <td>100396</td>
-                                                <td>Game Console Controller</td>
-                                                <td class="text-right">$22.00</td>
-                                                <td class="text-right">2</td>
-                                                <td class="text-right">$44.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-26 23:06</td>
-                                                <td>100395</td>
-                                                <td>iPhone X 256Gb Black</td>
-                                                <td class="text-right">$1199.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$1199.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-25 19:03</td>
-                                                <td>100393</td>
-                                                <td>USB 3.0 Cable</td>
-                                                <td class="text-right">$10.00</td>
-                                                <td class="text-right">3</td>
-                                                <td class="text-right">$30.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>100392</td>
-                                                <td>Smartwatch 4.0 LTE Wifi</td>
-                                                <td class="text-right">$199.00</td>
-                                                <td class="text-right">6</td>
-                                                <td class="text-right">$1494.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-24 19:10</td>
-                                                <td>100391</td>
-                                                <td>Camera C430W 4k</td>
-                                                <td class="text-right">$699.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$699.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-22 00:43</td>
-                                                <td>100393</td>
-                                                <td>USB 3.0 Cable</td>
-                                                <td class="text-right">$10.00</td>
-                                                <td class="text-right">3</td>
-                                                <td class="text-right">$30.00</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <h2 class="title-1 m-b-25" align="center">FAQ 자주 묻는 질문들!</h2>
+                                <div class="table-responsive table--no-card m-b-40">                        
+                                 
+                                 <c:forEach items="${ flist }" var="f">
+                                 <ul>
+							        <li class="collapsible">
+							            <h2 class="title"><a href="#html5">&nbsp; ${ f.faqNum}.  ${ f.faqTitle}</a></h2>
+							            <hr>     
+							            <h3 class="content">${ f.faqContent }</h3>
+							        </li>
+							        <hr>							       
+							    </ul>
+							    
+							     </c:forEach>
+							    
+							    <tr align="center" height="20">
+							    	<td colspan="6">
+							    		
+							    		<!-- 이전버튼 -->
+							    		<c:if test="${ pi.currentPage eq 1 }">
+							    			[이전]
+							    		</c:if>
+							    		<c:if test="${ pi.currentPage ne 1 }">
+											<c:url value="aFAQList.do" var='before'>
+												<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+											</c:url>
+							    			<a href="${ before }">[이전]</a>
+							    		</c:if>
+							    		
+							    		<!-- 번호 -->
+							    		<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
+							    			<c:if test="${ p eq pi.currentPage }">
+							    				<font color="black" size="4">[${ p }]</font>
+							    			</c:if>
+							    			<c:if test="${ p ne pi.currentPage }">
+							    				<c:url value="aFAQList.do" var="page">
+							    					<c:param name="currentPage" value="${ p }"/>
+							    				</c:url>
+							    				<a href="${ page }">${ p }</a>
+							    			</c:if>
+							    		</c:forEach>
+							    		
+							    		<!-- 다음버튼 -->
+							    		<c:if test="${ pi.currentPage eq pi.maxPage }">
+							    			[다음]
+							    		</c:if>
+							    		<c:if test="${ pi.currentPage ne pi.maxPage}">
+							    			<c:url value="aFAQList.do" var="next">
+							    				<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+							    			</c:url>
+							    			<a href="${ next }"> [다음]</a>
+							    		</c:if>
+							    		
+							    		
+							    	</td>
+							   	 </tr>
+							   	 
                                 </div>
                             </div>
                         </div>   
@@ -108,8 +129,9 @@
                 </div>
             </div>
             
-
             </div>
+   
+    
  	<c:import url="../common/aImportJs.jsp"/>
 
 

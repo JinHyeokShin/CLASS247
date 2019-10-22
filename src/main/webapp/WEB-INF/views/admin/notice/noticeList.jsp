@@ -6,11 +6,11 @@
 
 <head>
     <meta charset="UTF-8">
-<title>FAQ List</title>
+<title>공지사항 목록</title>
 
 </head>
 
-<body class="animsition">
+<body>
 
 	<c:import url="../common/aMenubar.jsp"/>
         <div class="page-container2">
@@ -26,83 +26,85 @@
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>
                                             <tr>
-                                                <th>date</th>
-                                                <th>order ID</th>
-                                                <th>name</th>
-                                                <th class="text-right">price</th>
-                                                <th class="text-right">quantity</th>
-                                                <th class="text-right">total</th>
+                                                <th>공지번호</th>
+                                                <th>공지사항</th>
+                                                <th>조회수</th>
+                                                <th class="text-right">작성날짜</th>
+                                                <th class="text-right">첨부파일</th>
+                                               
                                             </tr>
                                         </thead>
                                         <tbody>
+                                      
+                                        <c:forEach items="${ nlist }" var="n">
+                                        
                                             <tr>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>100398</td>
-                                                <td>iPhone X 64Gb Grey</td>
-                                                <td class="text-right">$999.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$999.00</td>
+                                            <td>${n.noticeNum}</td>
+                                                <td>
+	                                                <c:if test="${empty loginUser }">
+	                                                	${n.noticeTitle}
+                                                	</c:if>
+                                                	<c:if test="${!empty loginUser }">
+                                                		<c:url value="ndetail.do" var="ndetail">
+                                                			<c:param name="noticeNum" value="${ n.noticeNum }"/>
+                                                		</c:url>
+                                                		<a href="${ ndetail }">${n.noticeTitle }</a>
+                                                	</c:if>
+                                                </td>
+                                                <td>${n.noticeCount}</td>
+                                                <td class="text-right">${n.noticeEnrollDate}</td>
+                                                <td>
+                                                	<c:if test="${ !empty n.noticeFileName }">
+														◎
+													</c:if>
+													<c:if test="${ empty n.noticeFileName }">
+														&nbsp;
+													</c:if>
+                                                </td>
+                                            
                                             </tr>
-                                            <tr>
-                                                <td>2018-09-28 01:22</td>
-                                                <td>100397</td>
-                                                <td>Samsung S8 Black</td>
-                                                <td class="text-right">$756.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$756.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-27 02:12</td>
-                                                <td>100396</td>
-                                                <td>Game Console Controller</td>
-                                                <td class="text-right">$22.00</td>
-                                                <td class="text-right">2</td>
-                                                <td class="text-right">$44.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-26 23:06</td>
-                                                <td>100395</td>
-                                                <td>iPhone X 256Gb Black</td>
-                                                <td class="text-right">$1199.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$1199.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-25 19:03</td>
-                                                <td>100393</td>
-                                                <td>USB 3.0 Cable</td>
-                                                <td class="text-right">$10.00</td>
-                                                <td class="text-right">3</td>
-                                                <td class="text-right">$30.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>100392</td>
-                                                <td>Smartwatch 4.0 LTE Wifi</td>
-                                                <td class="text-right">$199.00</td>
-                                                <td class="text-right">6</td>
-                                                <td class="text-right">$1494.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-24 19:10</td>
-                                                <td>100391</td>
-                                                <td>Camera C430W 4k</td>
-                                                <td class="text-right">$699.00</td>
-                                                <td class="text-right">1</td>
-                                                <td class="text-right">$699.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2018-09-22 00:43</td>
-                                                <td>100393</td>
-                                                <td>USB 3.0 Cable</td>
-                                                <td class="text-right">$10.00</td>
-                                                <td class="text-right">3</td>
-                                                <td class="text-right">$30.00</td>
-                                            </tr>
+                                         </c:forEach>
+                                           
                                         </tbody>
                                     </table>
                                 </div>
-                                                                    <input class="btn btn-outline-info" type="button" value="Input">
+                                <div align="center">
+                                		<!-- 이전버튼 -->
+							    		<c:if test="${ pi.currentPage eq 1 }">
+							    			[이전]
+							    		</c:if>
+							    		<c:if test="${ pi.currentPage ne 1 }">
+											<c:url value="aNoticeList.do" var='before'>
+												<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+											</c:url>
+							    			<a href="${ before }">[이전]</a>
+							    		</c:if>
+							    		
+							    		<!-- 번호 -->
+							    		<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
+							    			<c:if test="${ p eq pi.currentPage }">
+							    				<font color="black" size="4">[${ p }]</font>
+							    			</c:if>
+							    			<c:if test="${ p ne pi.currentPage }">
+							    				<c:url value="aNoticeList.do" var="page">
+							    					<c:param name="currentPage" value="${ p }"/>
+							    				</c:url>
+							    				<a href="${ page }">${ p }</a>
+							    			</c:if>
+							    		</c:forEach>
+							    		
+							    		<!-- 다음버튼 -->
+							    		<c:if test="${ pi.currentPage eq pi.maxPage }">
+							    			[다음]
+							    		</c:if>
+							    		<c:if test="${ pi.currentPage ne pi.maxPage}">
+							    			<c:url value="aNoticeList.do" var="next">
+							    				<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+							    			</c:url>
+							    			<a href="${ next }"> [다음]</a>
+							    		</c:if>	
+                                        <input class="btn btn-outline-info" type="button" onclick="location.href='ninsertView.do';" value="글쓰기">
+                                   </div>
                             </div>
                         </div>   
                     </div>
