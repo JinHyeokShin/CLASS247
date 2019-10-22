@@ -21,6 +21,8 @@ import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.creator.model.service.CreatorService;
+import com.ourcompany.class247.common.PageInfo;
+import com.ourcompany.class247.common.Pagination;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 import com.ourcompany.class247.member.model.service.MemberService;
@@ -137,7 +139,7 @@ public class MemberController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		session.removeAttribute("loginUser");
+		session.invalidate();
 		
 		mv.setViewName("redirect:home.do");
 		return mv;
@@ -361,9 +363,15 @@ public class MemberController {
 	 * @return
 	 */
 	@RequestMapping("studentManage.do")
-	public ModelAndView studentManage(HttpServletRequest request, ModelAndView mv) {
+	public ModelAndView studentManage(@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage, 
+									HttpServletRequest request, ModelAndView mv) {
 		int creNum = ((Creator)request.getSession().getAttribute("creator")).getCreNum();
-		ArrayList<Member> studentList = mService.selectStuList(creNum);
+		int stuCount = mService.getStuCount(creNum);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, stuCount);
+		ArrayList<Member> studentList = mService.selectStuList(pi, creNum);
+		System.out.println("count : " + stuCount);
+		System.out.println(pi);
 		
 		mv.addObject("studentList", studentList);
 		mv.setViewName("creator/student/studentManage");

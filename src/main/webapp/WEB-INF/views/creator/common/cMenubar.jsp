@@ -40,6 +40,26 @@
 </head>
 <body class="animsition">
 
+<c:if test="${ empty creator || creator.creStatus == 'N' }">
+	<script>
+		$(function() {
+			$(".navbar-sidebar2 li a").click(function () { alert('크리에이터 승인 후 이용가능한 서비스 입니다.'); return false;});
+	
+		})
+	</script>
+</c:if>
+
+
+<script>
+	function checkCre() {
+		var status = '${creator.creStatus}';
+		if(status == 'Y') {
+			alert('이미 크리에이터 승인이 완료된 크리에이터입니다.');
+		}
+	}
+	
+</script>
+
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
@@ -57,15 +77,29 @@
                 </div>
                 <nav class="navbar-sidebar2">
                     <ul class="list-unstyled navbar__list">
-                        <li>
-                            <a href="creatorFormView.do">
-                            <i class="fas fas fa-user"></i>크리에이터 정보</a>
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fas fa-user"></i>크리에이터 
+                                <span class="arrow">
+                                    <i class="fas fa-angle-down"></i>
+                                </span>
+                            </a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="creatorInfo.do">
+                                    <i class="fas fas fa-user"></i>크리에이터 정보</a>
+                                </li>
+                                <li>
+                                    <a href="#" onclick="checkCre();">
+                                    <i class="fas fas fa-user"></i>크리에이터 신청</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="active has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-th-large"></i>내 클래스
                                 <span class="arrow">
-                                    <i class="fas fa-angle-down"></i>
+                                <i class="fas fa-angle-down"></i>
                                 </span>
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
@@ -109,7 +143,8 @@
             </div>
         </aside>
         <!-- END MENU SIDEBAR-->
-		</div>
+        
+
 	
 	    <!-- PAGE CONTAINER-->
         <div class="page-container2">
@@ -207,7 +242,7 @@
                     </div>
                 </header>
             <!-- END HEADER DESKTOP-->
-            
+          
             
     <!-- Jquery JS-->
     <script src="<c:url value="/resources/creator/vendor/jquery-3.2.1.min.js"/>"></script>

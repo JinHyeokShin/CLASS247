@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Creator {
 	
 	private int creNum;
+	private String creName;
 	private int memNum; 
 	private String memNickName;
 	private String introduction;
@@ -20,12 +21,12 @@ public class Creator {
 		
 	}
 	
-	
 
-	public Creator(int creNum, int memNum, String introduction, String career, String education, String certification,
-			String creStatus) {
+	public Creator(int creNum, String creName, int memNum, String introduction, String career, String education,
+			String certification, String creStatus) {
 		super();
 		this.creNum = creNum;
+		this.creName = creName;
 		this.memNum = memNum;
 		this.introduction = introduction;
 		this.career = career;
@@ -34,9 +35,6 @@ public class Creator {
 		this.creStatus = creStatus;
 	}
 	
-	
-
-
 
 
 	public Creator(int creNum, int memNum, String memNickName, String introduction, String career, String education,
@@ -55,6 +53,15 @@ public class Creator {
 		this.creStatus = creStatus;
 	}
 
+
+	public String getCreName() {
+		return creName;
+	}
+
+
+	public void setCreName(String creName) {
+		this.creName = creName;
+	}
 
 
 	public String getCreStatus() {
@@ -170,7 +177,6 @@ public class Creator {
 	}
 
 
-
 	@Override
 	public String toString() {
 		return "Creator [creNum=" + creNum + ", memNum=" + memNum + ", memNickName=" + memNickName + ", introduction="
@@ -178,7 +184,6 @@ public class Creator {
 				+ ", enrollDate=" + enrollDate + ", approvedDate=" + approvedDate + ", endDate=" + endDate
 				+ ", creStatus=" + creStatus + "]";
 	}
-
 
 
 

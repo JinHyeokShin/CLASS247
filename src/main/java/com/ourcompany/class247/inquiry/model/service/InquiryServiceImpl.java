@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.inquiry.model.dao.InquiryDao;
 import com.ourcompany.class247.inquiry.model.vo.Inquiry;
 
@@ -15,7 +16,12 @@ public class InquiryServiceImpl implements InquiryService {
 	private InquiryDao iDao;
 
 	@Override
-	public ArrayList<Inquiry> getInquiryList(int creNum) {
-		return iDao.getInquiryList(creNum);
+	public ArrayList<Inquiry> getInquiryList(PageInfo pi, int creNum) {
+		return iDao.getInquiryList(pi, creNum);
+	}
+
+	@Override
+	public int getInquiryCount(int creNum) {
+		return iDao.getInquiryCount(creNum);
 	}
 }

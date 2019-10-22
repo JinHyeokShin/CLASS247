@@ -79,6 +79,12 @@ public class CreatorServiceImpl implements CreatorService{
 	public ArrayList<Creator> awaitSelectList() {
 		
 		return creDao.awaitSelectList();
+	/** 크리에이터 정보 수정
+	 *
+	 */
+	@Override
+	public int updateCreator(Creator newCre) {
+		return creDao.updateCreator(newCre);
 	}
 
 
@@ -87,6 +93,12 @@ public class CreatorServiceImpl implements CreatorService{
 	public int allowCreator(int creNum) {
 		
 		return creDao.allowCreator(creNum);
+	/** 크리에이터 탈퇴하기 
+	 *
+	 */
+	@Override
+	public int deleteCreator(int creNum) {
+		return creDao.deleteCreator(creNum);
 	}
 
 
@@ -107,6 +119,16 @@ public class CreatorServiceImpl implements CreatorService{
 	public CreatorAttachment selectMyProFile(int creNum) {
 		return creDao.selectMyProFile(creNum);
 	}
+	/** 해당 크리에이터의 클래스가 존재하는지 확인하는 서비스 
+	 *
+	 */
+	@Override
+	public int getCourseCount(int creNum) {
+		return creDao.getCourseCount(creNum);
+	}
+
+
+
 
 	
 	

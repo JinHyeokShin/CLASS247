@@ -125,6 +125,42 @@
                                 </table>
                             </div>
                             <!-- END DATA TABLE -->
+   							  <div id="pagingBarArea" style="text-align:center">
+			                        <!-- 이전 -->
+									<c:if test="${ pi.currentPage eq 1}">
+										<button class="btn btn-secondary" disabled>이전</button>
+									</c:if>
+									<c:if test="${ pi.currentPage ne 1 }">
+										<c:url value="studentManage.do" var="before">
+											<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+										</c:url>
+										<a href="${ before }" class="btn btn-primary">이전</a>
+									</c:if>
+									
+									<!-- 번호들 -->
+									<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
+										<c:if test="${ p eq pi.currentPage }">
+											<button class="btn btn-secondary" disabled>${ p }</button>	
+										</c:if>
+										<c:if test="${ p ne pi.currentPage }">
+											<c:url value="studentManage.do" var="page">
+												<c:param name="currentPage" value="${ p }"/>
+											</c:url>
+											<a href="${ page }" class="btn btn-primary">${ p }</a>
+										</c:if>
+									</c:forEach>
+									
+									<!-- 다음 -->
+									<c:if test="${ pi.currentPage eq pi.maxPage }">
+										<button class="btn btn-secondary" disabled>다음</button>
+									</c:if>
+									<c:if test="${ pi.currentPage ne pi.maxPage }">
+										<c:url value="studentManage.do" var="next">
+											<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+										</c:url>
+										<a href="${ next }" class="btn btn-primary">다음</a>
+									</c:if>
+		                         </div>
                             </div>
                         </div>
                     </div>
