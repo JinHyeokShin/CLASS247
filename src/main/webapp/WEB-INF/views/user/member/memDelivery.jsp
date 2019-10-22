@@ -21,7 +21,7 @@
 		height:120%;  
 		border-radius: 10px;
 	}
-	.progress-table{
+	.progress-table-wrap{
 	width: 90%;
 	
 	}
@@ -52,6 +52,9 @@
 	.DELIVERY_detail{
 	width: 10%;
 	}
+	.table-row{
+	font-size: 15;
+	}
 	</style>
             <link rel="icon" href="resources/user/img/favicon.png">
             <script src="resources/user/js/jquery.counterup.min.js"></script>
@@ -66,7 +69,7 @@
 	  		 <h1>${ loginUser.memName }님의 주문 및 배송 목록</h1>
                                  <br>
 	  		<hr>
-	  		<br>
+	  		
 		<div class="section-top-border">
 				<h3 class="mb-30"></h3>
 				<div class="progress-table-wrap">
@@ -81,28 +84,19 @@
 							<div class="MEM_NAME">주문자</div>
 							<div class="DELIVERY_detail">상세조회</div>
 						</div>
-						<c:forEach 
+						<c:forEach items="${ delist }" var="de">
 						<div class="table-row">
-							<div class="DELIVERY_NUM">No.</div>
-							<div class="PAY_DATE">주문일자</div>
-							<div class="COURSE_TITLE">클래스</div>
-							<div class="COURSE_MATERIAL">준비물내역</div>
-							<div class="PAY_PRICE">주문금액</div>
-							<div class="DELIVERY_STATUS">주문상태</div>
-							<div class="MEM_NAME">주문자</div>
-							<div class="DELIVERY_detail">상세조회</div>
+							<div class="DELIVERY_NUM">${ de.deliveryNum }</div>
+							<div class="PAY_DATE">${ de.payDate }</div>
+							<div class="COURSE_TITLE">${ de.courseTitle }</div>
+							<div class="COURSE_MATERIAL">${ de.courseMaterial }</div>
+							<div class="PAY_PRICE">${ de.payPrice }</div>
+							<div class="DELIVERY_STATUS">${ de.deliveryStatus }</div>
+							<div class="MEM_NAME">${ de.memName }</div>
+							<div class="DELIVERY_detail"><input type="button" value="상세보기"></div>
 						</div>
+						</c:forEach>
 						
-						<div class="table-row">
-							<div class="DELIVERY_NUM">No.</div>
-							<div class="PAY_DATE">주문일자</div>
-							<div class="COURSE_TITLE">클래스</div>
-							<div class="COURSE_MATERIAL">준비물내역</div>
-							<div class="PAY_PRICE">주문금액</div>
-							<div class="DELIVERY_STATUS">주문상태</div>
-							<div class="MEM_NAME">주문자</div>
-							<div class="DELIVERY_detail">상세조회</div>
-							</div>
 						</div>
 					</div>
 				</div>

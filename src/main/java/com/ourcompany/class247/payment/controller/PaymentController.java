@@ -52,7 +52,7 @@ public class PaymentController {
 		int memNum = loginUser.getMemNum();
 		
 		ArrayList<Delivery> delist = pService.memdelivery(memNum);
-		
+		mv.addObject("delist", delist);
 		mv.setViewName("user/member/memDelivery");
 		return mv;
 	}
