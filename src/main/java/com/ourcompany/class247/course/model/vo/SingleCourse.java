@@ -4,32 +4,69 @@ import java.sql.Date;
 
 public class SingleCourse {
 	
+	private int courseNum;
 	private String courseTitle;
 	private String categoryName;
 	private String memNickName;
 	private String courseKind;
+	private String courseLevel;
+	private Date courseEnrollDate;
 	private Date courseStartDate;
-	private Date couresEndDate;
+	private Date courseEndDate;
+	private int coursePrice;
 	private String coaRName;
 	private String courseArea;
-	private int coursePrice;
+	private int loveCount;
 	
 	public SingleCourse() {
 		
 	}
 
-	public SingleCourse(String courseTitle, String categoryName, String memNickName, String courseKind,
-			Date courseStartDate, Date couresEndDate, String coaRName, String courseArea, int coursePrice) {
+	public SingleCourse(int courseNum, String courseTitle, String categoryName, String memNickName, String courseKind,
+			String courseLevel, Date courseEnrollDate, Date courseStartDate, Date courseEndDate, int coursePrice,
+			String coaRName, String courseArea) {
 		super();
+		this.courseNum = courseNum;
 		this.courseTitle = courseTitle;
 		this.categoryName = categoryName;
 		this.memNickName = memNickName;
 		this.courseKind = courseKind;
+		this.courseLevel = courseLevel;
+		this.courseEnrollDate = courseEnrollDate;
 		this.courseStartDate = courseStartDate;
-		this.couresEndDate = couresEndDate;
+		this.courseEndDate = courseEndDate;
+		this.coursePrice = coursePrice;
 		this.coaRName = coaRName;
 		this.courseArea = courseArea;
+	}
+	
+	
+
+	public SingleCourse(int courseNum, String courseTitle, String categoryName, String memNickName, String courseKind,
+			String courseLevel, Date courseEnrollDate, Date courseStartDate, Date courseEndDate, int coursePrice,
+			String coaRName, String courseArea, int loveCount) {
+		super();
+		this.courseNum = courseNum;
+		this.courseTitle = courseTitle;
+		this.categoryName = categoryName;
+		this.memNickName = memNickName;
+		this.courseKind = courseKind;
+		this.courseLevel = courseLevel;
+		this.courseEnrollDate = courseEnrollDate;
+		this.courseStartDate = courseStartDate;
+		this.courseEndDate = courseEndDate;
 		this.coursePrice = coursePrice;
+		this.coaRName = coaRName;
+		this.courseArea = courseArea;
+		this.loveCount = loveCount;
+	}
+
+	public int getCourseNum() {
+		return courseNum;
+	}
+
+	public void setCourseNum(int courseNum) {
+		this.courseNum = courseNum;
 	}
 
 	public String getCourseTitle() {
@@ -64,6 +101,22 @@ public class SingleCourse {
 		this.courseKind = courseKind;
 	}
 
+	public String getCourseLevel() {
+		return courseLevel;
+	}
+
+	public void setCourseLevel(String courseLevel) {
+		this.courseLevel = courseLevel;
+	}
+
+	public Date getCourseEnrollDate() {
+		return courseEnrollDate;
+	}
+
+	public void setCourseEnrollDate(Date courseEnrollDate) {
+		this.courseEnrollDate = courseEnrollDate;
+	}
+
 	public Date getCourseStartDate() {
 		return courseStartDate;
 	}
@@ -72,12 +125,20 @@ public class SingleCourse {
 		this.courseStartDate = courseStartDate;
 	}
 
-	public Date getCouresEndDate() {
-		return couresEndDate;
+	public Date getCourseEndDate() {
+		return courseEndDate;
 	}
 
-	public void setCouresEndDate(Date couresEndDate) {
-		this.couresEndDate = couresEndDate;
+	public void setCourseEndDate(Date courseEndDate) {
+		this.courseEndDate = courseEndDate;
+	}
+
+	public int getCoursePrice() {
+		return coursePrice;
+	}
+
+	public void setCoursePrice(int coursePrice) {
+		this.coursePrice = coursePrice;
 	}
 
 	public String getCoaRName() {
@@ -95,21 +156,26 @@ public class SingleCourse {
 	public void setCourseArea(String courseArea) {
 		this.courseArea = courseArea;
 	}
+	
+	
+	
 
-	public int getCoursePrice() {
-		return coursePrice;
+	public int getLoveCount() {
+		return loveCount;
 	}
 
-	public void setCoursePrice(int coursePrice) {
-		this.coursePrice = coursePrice;
+	public void setLoveCount(int loveCount) {
+		this.loveCount = loveCount;
 	}
 
 	@Override
 	public String toString() {
-		return "SingleCourse [courseTitle=" + courseTitle + ", categoryName=" + categoryName + ", memNickName="
-				+ memNickName + ", courseKind=" + courseKind + ", courseStartDate=" + courseStartDate
-				+ ", couresEndDate=" + couresEndDate + ", coaRName=" + coaRName + ", courseArea=" + courseArea
-				+ ", coursePrice=" + coursePrice + "]";
+		return "SingleCourse [courseNum=" + courseNum + ", courseTitle=" + courseTitle + ", categoryName="
+				+ categoryName + ", memNickName=" + memNickName + ", courseKind=" + courseKind + ", courseLevel="
+				+ courseLevel + ", courseEnrollDate=" + courseEnrollDate + ", courseStartDate=" + courseStartDate
+				+ ", courseEndDate=" + courseEndDate + ", coursePrice=" + coursePrice + ", coaRName=" + coaRName
+				+ ", courseArea=" + courseArea + ", loveCount=" + loveCount + "]";
 	}
+
 	
 }

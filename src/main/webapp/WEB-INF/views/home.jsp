@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.ourcompany.class247.member.model.vo.Member"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
         <html>
 
@@ -19,6 +19,16 @@
         <c:import url="/WEB-INF/views/user/common/menubar.jsp" />
 
         <body>
+   
+   
+   <!-- alert창으로 메세지 띄우기  -->     
+	   <c:if test="${!empty msg }">
+			<script>
+				var msg = '${msg}';
+				alert(msg);
+				<% session.removeAttribute("msg"); %>
+			</script>
+		</c:if>
 
             <section class="breadcrumb breadcrumb_bg">
                 <div class="container">
@@ -32,7 +42,7 @@
                                         <a href="introduce.do" class="btn_1">서비스 소개 </a> &nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="cMainView.do" class="btn_2" onclick="return loginCheck()">크리에이터 센터</a>
                                         <br><br>
-                    <a class="btn_2" href="#Mdrecom" style="float:right;">인기/추천<br>클래스</a>
+               	     <a class="btn_2" href="#Mdrecom" style="float:right;">인기/추천<br>클래스</a>
                                     </div>
                                 </div>
                             </div>
@@ -107,22 +117,23 @@
 							<c:param name="courseNum" value="${ co.courseNum }"/>
 							<c:param name="courseKind" value="${ co.courseKind}"/>
 						</c:url>
-                        <div class="item">
+                        <div class="item" >
+                        
                             <div class="single_special_cource">
-                                <img src="resources/user/img/test1.jpeg" class="special_img" alt="" >
+                                <img src="resources/user/img/test1.jpeg" class="special_img" alt="" onclick="location.href=${codetail}">
                                 <div class="special_cource_text">
-                                    <a href="codetail.do" class="btn_4">카테고리</a>
+                                    <a class="btn_4">카테고리</a>
                                     <h4>가격</h4>
-                                    <a>
+                                    <a href="${ codetail }">
                                         <h3>${co.courseTitle }</h3>
                                     </a>
-                                    <p>${co.courseContent }</p>
+                                    <p></p>
                                     <div class="author_info">
                                         <div class="author_img">
-                                            <img src="resources/user/img/author/author_1.png" alt="">
+                                            <img src="resources/user/img/author/author_1.png" alt="" onclick="location.href=${codetail}">
                                             <div class="author_info_text">
                                                 <p>Conduct by:</p>
-                                                <h5><a href="#">James Well</a></h5>
+                                                <h5><a href="${ codetail }">James Well</a></h5>
                                             </div>
                                         </div>
                                         <div class="author_rating">
@@ -138,6 +149,7 @@
                                     </div>
                                 </div>
                             </div>
+                          
                         </div>  
                         </c:forEach>
                     </div>

@@ -15,14 +15,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ourcompany.class247.common.PageInfo;
+import com.ourcompany.class247.common.Pagination;
 import com.ourcompany.class247.course.model.service.CourseService;
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
 import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
+import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.creator.model.service.CreatorService;
 import com.ourcompany.class247.creator.model.vo.Creator;
+import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 import com.ourcompany.class247.member.model.service.MemberService;
 import com.ourcompany.class247.member.model.vo.Member;
 
@@ -31,9 +35,6 @@ public class CourseController {
 	
 	@Autowired
 	private CourseService coService;
-	@Autowired
-	private MemberService mService;
-	
 	@Autowired
 	private MemberService mService;
 	
@@ -244,9 +245,15 @@ public class CourseController {
 	 * @return
 	 */
 	@RequestMapping("home.do")
-	public ModelAndView selectList(ModelAndView mv) {
+	public ModelAndView selectList(ModelAndView mv, HttpServletRequest request) {
+		//크리에이터 센터 나가면서 세션에 올려둔 크리에이터 객체 삭제. 
+		Creator creator = (Creator)request.getSession().getAttribute("creator");
+		if(creator != null) {
+			request.getSession().removeAttribute("creator");
+		}
+		
+		
 		ArrayList<Course> list = coService.selectList();
-		/* System.out.println(list); */
 		
 		mv.addObject("list", list);
 		mv.setViewName("home");
@@ -260,25 +267,11 @@ public class CourseController {
 	 * @param mv
 	 * @return
 	 */
-	@RequestMapping("aAwaitCourseList.do")
-	public ModelAndView aSelectList(ModelAndView mv) {
-		
-		ArrayList<Course> list = coService.awaitSelectList();
-		mv.addObject("list", list).setViewName("admin/course/awaitCourseList");
-		
-		return mv;
-	}
+
 	
 	
 	@RequestMapping("aAwaitCourseDetail.do")
 	public ModelAndView selectCourse(int courseNum,String courseKind, ModelAndView mv) {
-		
-		System.out.println("실행");
-		
-		ArrayList<Love> list = coService.selectLove();
-		
-		System.out.println(list.size());
-		
 		
 		Course co = coService.selectCourse(courseNum);
 		
@@ -299,9 +292,130 @@ public class CourseController {
 		return mv;
 		
 	}
-//	@RequestMapping("couDetail.do")
-//	public String couDetail() {
-//		return "creator/course/userCourseDetail2";
+	
+	/**
+	 * 3. 수업 허락하기
+	 * @param courseNum
+	 * @return
+	 */
+	@RequestMapping("aApprovalCourse.do")
+	public String aApprovalCourse(int courseNum) {
+		
+		int result = coService.allowCourse(courseNum);
+		
+		if(result > 0 ) {
+		
+			return "redirect:aAwaitCourseList.do";
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
+	@RequestMapping("aRejectCourse.do")
+	public String aRejectCourse(int courseNum) {
+		
+		int result = coService.rejectCourse(courseNum);
+		
+		if(result > 0 ) {
+		
+			return "redirect:aAwaitCourseList.do";
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
+	
+	
+	
+	
+	/*****************************사용자*************/
+	
+	/**
+	 * 1. 찜하기폼으로 이동.
+	 * @return
+	 */
+	@RequestMapping("memZzim.do")
+	public ModelAndView memZzim(HttpServletRequest request, ModelAndView mv, @RequestParam(value="currentpage", required=false, defaultValue="1")int currentPage ) {
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+		int memNum = loginUser.getMemNum();
+		int listCount = coService.getListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		ArrayList<Love> lovelist = coService.lovelist(memNum, pi);
+
+		mv.addObject("pi",pi).addObject("lovelist", lovelist);
+		mv.setViewName("user/member/memZzim");
+	
+		
+		return mv;
+	}
+	
+	
+	
+	/*
+	 * 
+	 * SingleCourse
+	 * 
+	 * 
+	 */
+	@RequestMapping("aAwaitCourseList.do")
+	public ModelAndView aSelectList() {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		ArrayList<SingleCourse> list = coService.awaitSelectList();
+		
+		mv.addObject("list", list).setViewName("admin/course/awaitCourseList");
+		
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
+	@RequestMapping("mZzim.do")
+	public ModelAndView mZzim(HttpServletRequest request, ModelAndView mv, @RequestParam(name="check") int check
+			, @RequestParam(value="currentpage", required=false, defaultValue="1")int currentPage) {
+	
+	Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+	
+	//String[] checklist = check.split(",");
+	//for(String c : checklist) { }
+		int memNum = loginUser.getMemNum();
+		int listCount = coService.getListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		ArrayList<Love> lovelist = coService.lovelist(memNum, pi);
+
+		for(Love l : lovelist ) {
+			 Love i = new Love();
+			 i.setMemNum(memNum);
+			 i.setCourseNum(check);
+			 coService.deleteLove(i);
+			}
+	
+
+		mv.setViewName("user/member/memZzim");
+		return mv;
+	}
+
+	//	@RequestMapping("coBuy.do")
+//	public ModelAndView coursePayment(int courseNum,String courseKind, ModelAndView mv) {
+//		
+//		Course c = coService.coursePayment(courseNum,courseKind );
+//	
+//		System.out.println(c);
+//		if(c != null) {
+//			mv.addObject("c", c)
+//			  .setViewName("creator/course/userCourseDetail2");
+//			
+//		}else {
+//			mv.addObject("msg", "게시글 상세조회실패!")
+//			  .setViewName("common/errorPage");
+//		}
+//		
+//		return mv;
+//		
 //	}
 	
 	/**  검색창에서 텍스트로 검색하는 메소드
@@ -328,5 +442,7 @@ public class CourseController {
 		return mv;
 		
 	}
+
+	
 
 }

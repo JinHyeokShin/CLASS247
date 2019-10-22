@@ -1,3 +1,4 @@
+
 package com.ourcompany.class247.course.model.vo;
 
 import java.sql.Date;
@@ -12,11 +13,19 @@ public class Love {
 	private String coaRName;
 	private Date wishedDate;
 	private int coursePrice;
+
 	
 	public Love() {
 		
 	}
-	
+
+
+   public Love(int memNum, int courseNum) {
+	super();
+	this.memNum = memNum;
+	this.courseNum = courseNum;
+   }
+
 	public Love(int memNum, int courseNum, Date wishedDate) {
 		super();
 		this.memNum = memNum;

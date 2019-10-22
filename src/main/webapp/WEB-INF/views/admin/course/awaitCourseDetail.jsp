@@ -203,39 +203,31 @@
 										<label for="categoryNum" class=" form-control-label">
 											클래스 카테고리</label>
 										<div class="col-md-3">
-											 <select name="categoryNum" id="categoryNum" class="form-control">
-                                                  	      <option>가나</option>
+											 <select name="categoryNum" id="categoryNum" class="form-control" disabled>
+                                                  	      <option>${ co.categoryName }</option>
                                               </select>
 										</div>
-										<small class="help-block form-text">어느 역량의 수강생을 위한
-											클래스인지 선택해주세요.</small>
+
 									</div>
 									<hr>
 									<div class="form-group">
-										<label for="select" class=" form-control-label">* 클래스
+										<label for="select" class=" form-control-label">클래스
 											수강 대상</label>
 										<div class="col-md-3">
 											<select name="courseLevel" id="courseLevel"
-												class="form-control" required>
-												<option value="입문자">입문자</option>
-												<option value="초급자">초급자</option>
-												<option value="중급자">중급자</option>
-												<option value="준전문가">준전문가</option>
-												<option value="전문가">전문가</option>
-												<option value="무관">무관</option>
+												class="form-control" disabled>
+												<option>${ co.courseLevel }</option>
+												
 											</select>
 										</div>
-										<small class="help-block form-text">어느 역량의 수강생을 위한
-											클래스인지 선택해주세요.</small>
+									
 									</div>
 									<hr>
 									<div class="form-group">
-										<label for="class_content" class=" form-control-label">*
+										<label for="class_content" class=" form-control-label">
 											클래스 상세 정보</label>
 										<textarea name="courseContent" rows="9"
-											placeholder="클래스에 대한 소개 및 커리큘럼을 작성해주세요. "
-											class="form-control" required></textarea>
-										<input type="hidden" name="creNum" value="${ creator.creNum }">
+											class="form-control" disabled>${ co.courseContent }</textarea>
 									</div>
 									<hr>
 
@@ -253,98 +245,75 @@
 						<div class="card" id="detail-div" style="display:none">
 							<div class="card-header">
 								<h3>
-									<strong>온라인 클래스 상세정보</strong>
+									<strong>
+									<c:if test="${co.courseKind eq 'offline' }">오프라인 </c:if>
+									<c:if test="${co.courseKind eq 'online' }">온라인 </c:if>
+									
+									 클래스 상세보기										
+									 
+									 </strong>
 								</h3>
 							</div>
 							<div class="card-body card-block">
 								<div class="form-group">
-									<label class=" form-control-label">* 준비물 여부</label><br>
+									<label class=" form-control-label">준비물 여부</label><br>
 									<div class="form-check-inline form-check">
 										<label for="noMaterial" class="form-check-label "> <input
 											type="radio" id="noMaterial" name="materialCheck" value=""
-											class="form-check-input" onchange="check()" checked>준비물
+											class="form-check-input" onchange="check()" disabled <c:if test="${empty co.courseMaterial}">checked</c:if>>준비물
 											없음 &nbsp;&nbsp;
 										</label> <label for="material" class="form-check-label"> <input
 											type="radio" id="material" name="materialCheck"
-											class="form-check-input" onchange="check()">준비물 추가
+											class="form-check-input" onchange="check()" disabled <c:if test="${!empty co.courseMaterial}">checked</c:if>>준비물 추가
 										</label>
+									
 									</div>
-									<small class="help-block form-text">&nbsp;수업에 필요한 준비물이
-										있다면 입력해주세요.</small>
+									<c:if test="${!empty co.courseMaterial}">>
 									<div class="form-group" id="meterialBox" style="display: none">
 										<table id="meterialTable">
 											<tr>
-												<td><input type="text" name="courseMaterial"
-													placeholder="준비물 이름" class="form-control">
 												<td>
-												<td><button type="button" onclick="add()"
-														class="btn btn-primary btn-sm">추가</button>
-												<td>
-												<td></td>
-												<td width="300">&nbsp;&nbsp;&nbsp;<input type="number"
-													name="courseMaterialPrice" placeholder="준비물 총 가격 입력"
-													class="form-control" required>원
+													${co.courseMaterial}
+												</td>
+												<td width="300">
+													${co.courseMaterialPrice }
 												</td>
 											</tr>
 										</table>
 									</div>
+									</c:if>
 								</div>
 
 
 								<div class="form-group">
 									<label class=" form-control-label">* 수업 날짜/시간</label><br>
 									<div>
-										<input type="date" name="courseStartDate" class="form-control"
-											style="width: 200px; display: inline-block"> ~ <input
-											type="date" name="courseEndDate" class="form-control"
-											style="width: 200px; display: inline-block">
+										${co.courseStartDate } ~ ${co.courseEndDate }
 									</div>
-									<small class="help-block form-text">수업 시작일과 종료일을
-										입력해주세요(최소 1개월)</small>
 								</div>
 								<hr>
 								<div class="form-group">
 									<label class=" form-control-label">* 온라인 수업 가격</label><br>
-									<input type="number" class="form-control"
-										placeholder="수업의 총 가격을 입력하세요." name="coursePrice"
-										style="width: 300px; display: inline-block" required>
-									원
+									${co.coursePrice } 원
 								</div>
 								<hr>
 								<div class="form-group">
 									<label class=" form-control-label"> 샘플 영상등록</label><br>
 									<div class="">
 										<input type="text"
-											placeholder="ex) http://youbute/1stCl2as4s7"
+											
 											name="CourseVideoUrl" class="form-control"
-											style="width: 300px; display: inline-block"> 원
-										&nbsp;&nbsp; <small class="help-block form-text"> 수업
-											샘플 영상의 url을 입력해주세요.</small><br>
+											style="width: 300px; display: inline-block " value="${co.courseVideoUrl}" disabled> 
+										<br>
 									</div>
-									<input type="hidden" name="categoryNum"
-										value="${ co.categoryNum }"> <input type="hidden"
-										name="creNum" value="${ co.creNum }"> <input
-										type="hidden" name="courseTitle" value="${ co.courseTitle }">
-									<input type="hidden" name="courseContent"
-										value="${ co.courseContent }"> <input type="hidden"
-										name="courseKind" value="${ co.courseKind }"> <input
-										type="hidden" name="courseLevel" value="${ co.courseLevel }">
+									
 								</div>
 								<hr>
 								<div class="form-group">
 									<div class="col col-md-5">
-										<label for="text-input" class=" form-control-label">*
-											클래스 커버 사진</label> <input class="" type="file" name="coverImage"
-											required>
-									</div>
-									<div class="col-12 col-md-9" style="height: 200px">
-										<small class="help-block form-text">클래스를 대표할 커버사진을
-											추가하세요.</small>
-										<div
-											style="width: 40%; height: 40%; margin-top: 10px; text-align: center">
-											<img src="resources/creator/images/bg-title-02.jpg"
-												alt="cover" />
-										</div>
+										<label for="text-input" class=" form-control-label">
+											클래스 커버 사진</label> 
+										<img src="">
 									</div>
 								</div>
 								<hr>
@@ -378,8 +347,8 @@
 					<c:url value="aApprovalCourse.do" var="aApprovalCourse">
 						<c:param value="${ co.courseNum }" name="courseNum"/>
 					</c:url>
-						<input type="button" class="btn btn-outline-primary" onclick="location.href='${aApprovalCourse}'" value="승인하기">
-						<input type="button" class="btn btn-outline-danger" onclick="select('reject')" value="거부하기">
+						<input type="button" class="btn btn-outline-primary" onclick="location.href='${aApprovalCourse.do}'" value="승인하기">
+						<input type="button" class="btn btn-outline-danger" onclick="location.href='${aRejectCourse.do}'" value="거부하기">
 					<c:url value="aRejectCourse.do" var="aRejectCourse">
 						<c:param value="${ co.courseNum }" name="courseNum"/>
 					</c:url>
@@ -395,7 +364,13 @@
 						class="js-arrow" href="#"> <i class="fas fa-users"></i>Course
 					</a></li>
 					<li class="has-sub" onclick="showDiv('detail');"><a
-						class="js-arrow" href="#"> <i class="fas fa-users"></i>detail
+						class="js-arrow" href="#"> <i class="fas fa-users"></i>
+															<c:if test="${co.courseKind eq 'offline' }">offline </c:if>
+									<c:if test="${co.courseKind eq 'online' }">online </c:if>
+						
+						
+						
+				
 					</a></li>
 					
 					

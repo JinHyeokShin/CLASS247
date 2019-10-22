@@ -37,10 +37,16 @@
                                             </thead>
                                             <tbody>
                                                 <c:forEach items="${ list }" var="co">
+                      
                                                     
                                                     <tr>
                                                         <td>${co.courseNum }</td>
-                                                        <td></td>
+                                                        <td>
+                                                  
+                                                        <div class="image img-240">
+															
+														</div>
+                                                        </td>
                                                        
                                                         <td>
                                                          <c:url value="aAwaitCourseDetail.do" var="awaitCourseDetail">

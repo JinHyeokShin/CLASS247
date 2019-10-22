@@ -83,8 +83,8 @@
 					</a>
 						<ul class="list-unstyled navbar__sub-list js-sub-list">
 							<li><a href="aMemberList.do">User</a></li>
-							<li><a href="index2.html">Creator</a></li>
-							<li><a href="index3.html"><i class="far fa-check-square"></i>Await
+							<li><a href="">Creator</a></li>
+							<li><a href="aAwaitCreatorList.do"><i class="far fa-check-square"></i>Await
 									Creator</a></li>
 							<li><a href="index4.html">Black List</a></li>
 						</ul></li>
@@ -105,17 +105,17 @@
 							<li><a href="aFAQList.do">FAQ</a></li>
 						</ul></li>
 
-					<li><a href="table.html"> <i class="fas fa-table"></i>Iquired
+					<li><a href="aInqiredList.do"> <i class="fas fa-table"></i>Iquired
 					</a></li>
 
-					<li><a href="table.html"> <i class="fas fa-table"></i>Payment
+					<li><a href="aPayment.do"> <i class="fas fa-table"></i>Payment
 					</a></li>
 					<li class="has-sub"><a class="js-arrow" href="#"> <i
 							class="fas fa-copy"></i>EVENT
 					</a>
 						<ul class="list-unstyled navbar__sub-list js-sub-list">
-							<li><a href="aNoticeList.do">COUPONE</a></li>
-							<li><a href="aFAQList.do">POWER</a></li>
+							<li><a href="aCoupon.do">COUPONE</a></li>
+							<li><a href="aPower.do">POWER</a></li>
 							<li><a href="aFAQList.do">LOGO</a></li>
 						</ul></li>
 						
@@ -128,28 +128,6 @@
 							<li><a href="aFAQList.do">STATS</a></li>
 						</ul></li>
 						
-					
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 					<li><a href="form.html"> <i class="far fa-check-square"></i>Forms
