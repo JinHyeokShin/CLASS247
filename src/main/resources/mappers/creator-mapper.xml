@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select *
 		from creator 
 		join member using(mem_num)
-		where mem_num=#{memNum}
+		where mem_num=#{memNum} and cre_status!='D'
 	</select>
 
 	<select id="selectCreNum" parameterType="_int" resultType="_int">
@@ -65,6 +65,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from creator_attachment
 		where cre_num = #{creNum}
 	</select>
-
-
+	
+	<update id="updateCreator" parameterType="Creator">
+		update creator
+		set introduction=#{introduction}, career=#{career}, education=#{education}, certification=#{certification}
+		where cre_num = #{creNum}
+	</update>
+	
+	<update id="deleteCreator" parameterType="_int">
+		update creator
+		set cre_status = 'D' 
+		where cre_num=#{creNum}
+	</update>
+	
+	<select id="getCourseCount" parameterType="_int" resultType="_int">
+		select count(*)
+		from course 
+		where cre_num=#{creNum}
+		and course_status = 'Y' 
+	</select>
 </mapper>

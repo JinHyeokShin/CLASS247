@@ -14,8 +14,17 @@
 		$(function() {
 			console.log('memNum' + '${loginUser.memNum}');
 			console.log('creNum' + '${creator.creNum}');
+			console.log('creStatus' + '${creator.creStatus}');
 		});
 	</script>
+	
+	<c:if test="${!empty msg }">
+		<script>
+			var msg = '${msg}';
+			alert(msg);
+			<% request.removeAttribute("msg"); %>
+		</script>
+	</c:if>
 <!-- 크리에이터 신청 후 승인 대기 중일 경우 -->
 <c:if test="${ !empty creator}">
 	<c:if test = "${creator.creStatus == 'N' }">
@@ -84,7 +93,7 @@
                                         <span class="au-breadcrumb-span">You are here:</span>
                                         <ul class="list-unstyled list-inline au-breadcrumb__list">
                                             <li class="list-inline-item active">
-                                                <a href="#">Home</a>
+                                                <a href="editor.do">Home</a>
                                             </li>
                                             <li class="list-inline-item seprate">
                                                 <span>/</span>

@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
 </head>
 <body>
 	<c:import url="../common/cMenubar.jsp"/>
@@ -50,10 +53,11 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="introduction" class="control-label mb-1">자기소개</label>
-                                                <textarea id="introduction" name="introduction" rows='10' type="text" class="form-control cc-number identified visa">${creator.introduction}</textarea>
+                                            	<textarea id="summernote" name="introduction"></textarea>
                                             </div>                                            
                                             <div>
                                                 <button type="submit" class="btn btn-lg btn-info btn-block">정보 수정</button>
+                                                <button type="button" class="btn btn-lg btn-danger btn-block" onclick="deleteCreator();">크리에이터 탈퇴</button>
                                             </div>
 										</div>
 										</div>
@@ -65,5 +69,44 @@
                     </div>
                  </div>
              </div>
+             
+             
+             <script>
+	             $(document).ready(function() {
+		             var markupStr = '${creator.introduction}';
+		             $('#summernote').summernote('code', markupStr);
+	             });
+	             
+             	//탈퇴하기 
+	             function deleteCreator() {
+	            	
+	            		$.ajax({
+	            			url:"existCourse.do",
+	            			method:"post",
+	            			success:function(data){
+	            				console.log("data : "+ data);
+	            				if(data == 'success') {
+	            					
+		            				if(confirm('정말 탈퇴하시겠습니까?')){
+		            					location.href='deleteCreator.do';
+		            				}
+	            					
+	            				} else {
+	            					console.log("data : " + data );
+	            					alert('수강 중인 클래스가 존재하여 회원탈퇴가 불가합니다. 관리자에게 문의하세요.');
+	            				}
+	            			}, 
+	            			error:function(){
+	            				console.log("서버통신 실패");
+	            			}
+	            		});        	 
+           		  };
+             </script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> 
+ <!--    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>             
+
 </body>
 </html>

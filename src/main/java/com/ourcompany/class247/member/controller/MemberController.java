@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ourcompany.class247.common.PageInfo;
+import com.ourcompany.class247.common.Pagination;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.member.model.service.MemberService;
 import com.ourcompany.class247.member.model.vo.Member;
@@ -199,9 +201,15 @@ public class MemberController {
 	 * @return
 	 */
 	@RequestMapping("studentManage.do")
-	public ModelAndView studentManage(HttpServletRequest request, ModelAndView mv) {
+	public ModelAndView studentManage(@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage, 
+									HttpServletRequest request, ModelAndView mv) {
 		int creNum = ((Creator)request.getSession().getAttribute("creator")).getCreNum();
-		ArrayList<Member> studentList = mService.selectStuList(creNum);
+		int stuCount = mService.getStuCount(creNum);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, stuCount);
+		ArrayList<Member> studentList = mService.selectStuList(pi, creNum);
+		System.out.println("count : " + stuCount);
+		System.out.println(pi);
 		
 		mv.addObject("studentList", studentList);
 		mv.setViewName("creator/student/studentManage");

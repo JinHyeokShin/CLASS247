@@ -60,6 +60,31 @@ public class CreatorDao {
 	public ArrayList<CreatorAttachment> selectCreatorAttachmentList(int creNum) {
 		return (ArrayList)sqlSession.selectList("creatorMapper.selectCreatorAttachmentList", creNum);
 	}
+
+	/** 크리에이터 정보 수정 
+	 * @param newCre
+	 * @return
+	 */
+	public int updateCreator(Creator newCre) {
+		return sqlSession.update("creatorMapper.updateCreator", newCre);
+	}
+
+	/** 크리에이터 탈퇴하기 
+	 * @param creNum
+	 * @return
+	 */
+	public int deleteCreator(int creNum) {
+		return sqlSession.update("creatorMapper.deleteCreator", creNum);
+	}
+
+	/** 해당 크리에이터의 클래스가 존재하는지 확인하는 서비스 
+	 * @param creNum
+	 * @return
+	 */
+	public int getCourseCount(int creNum) {
+		return sqlSession.selectOne("creatorMapper.getCourseCount", creNum);
+	}
+	
 	
 	
 
