@@ -45,6 +45,12 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.selectMemberList();
 	}
 
+	@Override
+	public int updateMemProfile(Member loginUser) {
+		
+		return mDao.updateMemProfile(loginUser);
+	}
+
 	
 	
 	
@@ -59,5 +65,6 @@ public class MemberServiceImpl implements MemberService{
 	public ArrayList<Member> selectStuByCo(int courseNum) {
 		return mDao.selectStuByCo(courseNum);
 	}
+
 
 }

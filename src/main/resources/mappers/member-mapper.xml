@@ -13,8 +13,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="memGender" column="mem_gender"/>
 		<result property="memPhone" column="mem_phone"/>
 		<result property="memAddress" column="mem_address"/>
-		<result property="memProfileName" column="mem_profil_name"/>
-		<result property="memProfilePath" column="mem_profil_path"/>
+		<result property="memProfileName" column="mem_profile_name"/>
+		<result property="memProfilePath" column="mem_profile_path"/>
 		<result property="memType" column="mem_type"/>
 		<result property="memStatus" column="mem_status"/>
 		<result property="memEnrollDate" column="enroll_date"/>
@@ -66,7 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertMember" parameterType="Member" >
 		insert into member 
 		values(MEMBER_SEQ.NEXTVAL,#{memId},#{memPwd},#{memNickName},#{memName},#{memGender},
-				#{memPhone},#{memAddress}, null, null, default, default, sysdate, null)
+				#{memPhone},#{memAddress}, 'user.png', null, 'U', default, sysdate, null)
 	</insert>
 	
 	<!-- 3. 회원 정보 수정 -->
@@ -140,5 +140,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		and course_status='Y' and mem_status='Y'
 		order by mem_name
 	</select>
+	
+	<update id="updateMemProfile" parameterType="Member">
+		update member
+		set mem_profile_name=#{memProfileName}, mem_profile_path=#{memProfilePath}
+		where mem_id=#{memId}
+	</update>
 	
 </mapper>

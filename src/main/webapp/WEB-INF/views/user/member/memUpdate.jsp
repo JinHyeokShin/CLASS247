@@ -43,16 +43,36 @@
 </head>
 
 <body>
+
 	<jsp:include page="/WEB-INF/views/user/common/menubar.jsp"></jsp:include>
 	
-	 
+	 <c:if test="${!empty msg }">
+	 	<script>
+	 		$(function(){
+	 			alert('${msg}');
+	 			<% request.removeAttribute("msg"); %>
+	 		});
+	 	</script>
+	 </c:if>
 	  
 	  	<div class="login" align="center">
-        <form action="mUpdate.do" method="post">
+        
         	<br>
       		<h1>회원 정보 수정</h1>
       		<hr>
       		<table width="600">
+	      		<tr>
+	      			<td>
+	      			<form action="updateMemProfile.do" method="post" enctype="multipart/form-data">
+	      				<img src="<%= request.getContextPath() %>/resources/user/img/profile/${loginUser.memProfileName}" width="30%" height="30%">
+	      				
+	      				<input type="file" name="profile">
+	      			
+	      				<button type="submit">사진 수정하기</button>
+	      			</form>
+	      			</td>
+	      		</tr>
+	      		 <form action="mUpdate.do" method="post">
       			<tr>
       				<td>이메일(아이디)</td>
       			</tr>
@@ -190,9 +210,9 @@
       				<td><button class="genric-btn primary-border radius" name="log-btn" type="reset">취소</button></td>
       			</tr>
       		</table>
+             </form>
             <br><hr>
             
-            </form>
             </div>
     	
     

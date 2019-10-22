@@ -42,7 +42,7 @@ public interface MemberService {
 	
 	ArrayList<Member> selectMemberList();
 	
-	
+	int updateMemProfile(Member loginUser);  
 	
 	
 	
@@ -50,6 +50,8 @@ public interface MemberService {
 	//---------------- 크리에이터센터용 -----------------------
 	ArrayList<Member> selectStuList(int creNum);
 	
-	ArrayList<Member> selectStuByCo(int courseNum);  
+	ArrayList<Member> selectStuByCo(int courseNum);
+
+	
 	
 }

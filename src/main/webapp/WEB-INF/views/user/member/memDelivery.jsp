@@ -81,6 +81,7 @@
 							<div class="MEM_NAME">주문자</div>
 							<div class="DELIVERY_detail">상세조회</div>
 						</div>
+						<c:forEach 
 						<div class="table-row">
 							<div class="DELIVERY_NUM">No.</div>
 							<div class="PAY_DATE">주문일자</div>

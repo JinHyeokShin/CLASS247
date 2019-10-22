@@ -1,7 +1,10 @@
 package com.ourcompany.class247.member.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,12 +17,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.member.model.service.MemberService;
 import com.ourcompany.class247.member.model.vo.Member;
-
 
 @Controller
 public class MemberController {
@@ -125,7 +129,7 @@ public class MemberController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		session.removeAttribute("loginUser");
+		session.invalidate();
 		
 		mv.setViewName("redirect:home.do");
 		return mv;
@@ -279,6 +283,67 @@ public class MemberController {
 	}
 	
 	
+	@RequestMapping("updateMemProfile.do")
+	public ModelAndView updateMemProfile(@RequestParam(name="profile", required=false) MultipartFile profile,
+			HttpServletRequest request, ModelAndView mv) {
+		System.out.println(profile.getOriginalFilename());
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+		
+		int result;
+		if(!profile.getOriginalFilename().equals("")) {
+			String rename = saveFile(profile, request);
+			loginUser.setMemProfileName(rename);
+			loginUser.setMemProfilePath("resources\\user\\img\\profile\\");
+			result = mService.updateMemProfile(loginUser);
+		}
+		
+		Member newloginUser  = mService.loginMember(loginUser);
+		request.getSession().removeAttribute("loginUser");
+		request.getSession().setAttribute("loginUser", newloginUser);
+		mv.addObject("loginUser", newloginUser).addObject("msg","수정되었습니다.").setViewName("user/member/memUpdate");
+		
+		return mv;
+	}
+	
+	   /** 4. 파일 저장하기 
+	    * @param file
+	    * @param request
+	    * @return
+	    */
+	   public String saveFile(MultipartFile file, HttpServletRequest request) {
+	      
+	      //파일이 저장될 경로 설정
+	      String root = request.getSession().getServletContext().getRealPath("resources");
+	      String savePath = root + "\\user\\img\\profile";
+	      
+	      File folder = new File(savePath); //저장될 폴더 지정 
+	      
+	      if(!folder.exists()) {
+	         folder.mkdir();
+	      }
+	      
+	      String originalFileName = file.getOriginalFilename(); //원본명
+	      
+	      SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+	      String renameFileName = sdf.format(new Date(System.currentTimeMillis())) 
+	                        + originalFileName.substring(originalFileName.lastIndexOf("."));
+	      
+	      
+	      String renamePath = savePath + "\\" + renameFileName;
+	      
+	      //서버에 저장
+	      try {
+	         file.transferTo(new File(renamePath));
+	         
+	      } catch (IllegalStateException e) {
+	         e.printStackTrace();
+	      } catch (IOException e) {
+	         e.printStackTrace();
+	      }
+	      
+	      
+	      return renameFileName;
+	   }
 	
 	
 	

@@ -38,6 +38,11 @@ public class MemberDao {
 	public ArrayList<Member> selectMemberList() {
 		return (ArrayList)sqlSession.selectList("memberMapper.selectMemberList");
 	}
+
+	public int updateMemProfile(Member loginUser) {
+		
+		return sqlSession.update("memberMapper.updateMemProfile", loginUser);
+	}
 	
 	
 	
@@ -50,5 +55,6 @@ public class MemberDao {
 	public ArrayList<Member> selectStuByCo(int courseNum){
 		return (ArrayList)sqlSession.selectList("memberMapper.selectStuByCoNum", courseNum);
 	}
+
 	
 }

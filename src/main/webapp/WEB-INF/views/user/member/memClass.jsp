@@ -77,7 +77,7 @@
                                             <img src="resources/user/img/author/author_1.png" alt="">
                                             <div class="author_info_text">
                                                 <p>튜터 : </p>
-                                                <h5><a href="#">${pon.memNickname }</a></h5>
+                                                <h5><a href="#">${pon.creNickname }</a></h5>
                                             </div>
                                         </div>
                                         <div class="author_rating">
@@ -124,7 +124,7 @@
                             <div class="single_special_cource">
                                 <img src="resources/user/img/test1.jpeg" class="special_img" alt="" >
                                 <div class="special_cource_text">
-                                    <a href="codetail.do" class="btn_4">${poff.categoryName }</a>
+                                    <a href="${ codetail }" class="btn_4">${poff.categoryName }</a>
                                     <h4>가격</h4>
                                     <a>
                                         <h3>${poff.courseTitle }</h3>
@@ -135,7 +135,7 @@
                                             <img src="resources/user/img/author/author_1.png" alt="">
                                             <div class="author_info_text">
                                                 <p>튜터 : </p>
-                                                <h5><a href="#">${poff.memNickname }</a></h5>
+                                                <h5><a href="#">${poff.creNickname }</a></h5>
                                             </div>
                                         </div>
                                         <div class="author_rating">
@@ -170,7 +170,7 @@
 
                        // autoplay: true,
                         //autoplayTimeout: 3000,
-                        autoplayHoverPause: true
+                        //autoplayHoverPause: true
                     });
                 });
             </script>
