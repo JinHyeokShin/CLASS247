@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ourcompany.class247.member.model.vo.Member;
 import com.ourcompany.class247.payment.model.service.PamentServiceImpl;
 import com.ourcompany.class247.payment.model.service.PaymentService;
+import com.ourcompany.class247.payment.model.vo.Delivery;
 import com.ourcompany.class247.payment.model.vo.Payment;
 
 @Controller
@@ -42,6 +43,17 @@ public class PaymentController {
 		mv.addObject("payonlist",payonlist);
 		mv.addObject("payofflist", payofflist);
 		mv.setViewName("user/member/memClass");
+		return mv;
+	}
+	
+	@RequestMapping("memDelivery.do")
+	public ModelAndView memDalivery(HttpServletRequest request, ModelAndView mv) {
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+		int memNum = loginUser.getMemNum();
+		
+		ArrayList<Delivery> delist = pService.memdelivery(memNum);
+		
+		mv.setViewName("user/member/memDelivery");
 		return mv;
 	}
 	

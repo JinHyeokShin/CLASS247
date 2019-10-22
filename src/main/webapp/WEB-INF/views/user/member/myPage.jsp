@@ -97,7 +97,7 @@
          
             	<td><a href="memCoupon.do"><img src="resources/user/img/voucher.png"></a><br><br>나의 쿠폰 목록</td>
             	<td><a href="memZzim.do"><img src="resources/user/img/heart.png"></a><br><br>나의 찜하기 목록</td>
-            	<td><a href="memDelivary.do"><img src="resources/user/img/truck.png"></a><br><br>주문 및 배송 목록</td>
+            	<td><a href="memDelivery.do"><img src="resources/user/img/truck.png"></a><br><br>주문 및 배송 목록</td>
             </tr>
           
             

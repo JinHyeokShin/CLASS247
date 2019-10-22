@@ -119,6 +119,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="takeDate" column="take_date"/>
 	</resultMap>
 	
+	 <resultMap id="DeliveryResultSet" type="Delivery">
+		<id property="deliveryNum" column="delivery_num"/>
+		<result property="payNum" column="pay_num"/>
+		<result property="deliveryAddress" column="deliveryAddress"/>
+		<result property="deliveryStatus" column="deliveryStatus"/>
+		<result property="payDate" column="pay_date"/>
+		<result property="payPrice" column="pay_price"/>
+		<result property="memName" column="mem_name"/>
+		<result property="courseTitle" column="course_title"/>
+		<result property="courseMeterial" column="course_meterial"/>
+		<result property="memNum" column="mem_num"/>
+	</resultMap>
+	
 	
 
 
@@ -283,14 +296,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="payonList" resultMap="TakeCourseResultSet">
 	select *
 	from user_course_view
-	where course_kind = 'online'
+	where course_kind = 'online' and mem_num = #{memNum}
 	</select>
 	
 	<!-- 오프라인 클래스만 리스트 보여주기 -->
 	<select id="payoffList" resultMap="TakeCourseResultSet">
 	select *
 	from user_course_view
-	where course_kind = 'offline'
+	where course_kind = 'offline' and mem_num = #{memNum}
+	</select>
+	
+	<!-- 배송정보 리스트 보여주기 -->
+	<select id="memdelivery" resultMap="DeliveryResultSet">
+	select *
+	from user_delivery_view
+	where mem_num= #{memNum}
 	</select>
    
 	 

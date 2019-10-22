@@ -66,7 +66,7 @@
                             <div class="single_special_cource">
                                 <img src="resources/user/img/test1.jpeg" class="special_img" alt="" >
                                 <div class="special_cource_text">
-                                    <a href="codetail.do" class="btn_4">${pon.categoryName }</a>
+                                    <a href="${ codetail }" class="btn_4">${pon.categoryName }</a>
                                     <h4>가격</h4>
                                     <a>
                                         <h3>${pon.courseTitle }</h3>
