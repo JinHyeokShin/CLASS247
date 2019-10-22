@@ -18,9 +18,14 @@
 		border: 1px solid #954CBC;
 		padding: 10px;
 		width: 80%;
-		height:150%;  
+		height:220%;  
 		border-radius: 10px;
 	}
+	.owl-stage-outer{
+	height:45%;
+	
+	}
+	
 	</style>
             <link rel="icon" href="resources/user/img/favicon.png">
             <script src="resources/user/js/jquery.counterup.min.js"></script>
@@ -40,7 +45,7 @@
                         <div class="col-xl-5">
                             <div class="section_tittle text-left">
                                  <h2>${ loginUser.memName }님의 수강내역</h2>
-                                 <br><br>
+                                 <br>
 	  		<hr>
 	  		<br>
 	  		<h3>온라인</h3>
@@ -100,7 +105,7 @@
                     <div class="row justify-content-left">
                         <div class="col-xl-5">
                             <div class="section_tittle text-left">
-	  		<br>
+	  	
 	  		<h3>오프라인</h3>
 	  		<br>
 	  		
