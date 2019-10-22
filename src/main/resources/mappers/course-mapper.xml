@@ -209,7 +209,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from single_course_view
 		where course_approved = 'N'
 	</select>
-
+	
+	<!-- 온라인 클래스 상세보기 불러오기 by courseNum -->
+	<select id="selectOnline" parameterType="_int" resultMap="CourseResultSet">
+		select *
+		from course
+		join online_course using(course_num)
+		join category using (category_num)
+		where course_num = #{courseNum}
+	</select>
+	<!-- 오프라인 클래스 상세보기 불러오기 by courseNum -->
+	<select id="selectOffline" parameterType="_int" resultMap="CourseResultSet">
+		select *
+		from course
+		join offline_course using(course_num)
+		join category using (category_num)
+		where course_num = #{courseNum}
+	</select>
+	 -->
 	<select id="selectCourseAttachmentList" parameterType="CourseAttachment" resultMap="CourseAttachmentResultSet">
 		select *
 		from course_attachment
@@ -240,6 +257,50 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getListCount" resultType="_int">
 		select count(*)
 		from love_view
+	</select>
+	
+	<select id="modalsearchList" parameterType="String" resultMap="CourseResultSet">
+			select c.course_num, category.category_name, cre_num, c.course_title, c.course_content, c.course_kind, 
+                c.course_level, c.course_current_num, c.course_enroll_date, c.course_approved_date, c.course_start_date,
+                c.course_end_date, c.course_approved, c.course_status, member.mem_nickname
+			from course c
+	        join category using (category_num)
+	        join creator using(cre_num)
+	        join member using(mem_num)
+			where course_title like '%'||#{search}||'%'
+            
+            UNION
+            
+			select c.course_num, category.category_name, cre_num, c.course_title, c.course_content, c.course_kind, 
+                c.course_level, c.course_current_num, c.course_enroll_date, c.course_approved_date, c.course_start_date,
+                c.course_end_date, c.course_approved, c.course_status, member.mem_nickname
+			from course c
+	        join category using (category_num)
+	        join creator using(cre_num)
+	        join member using(mem_num)
+			where mem_nickname like '%'||#{search}||'%'
+            
+            UNION
+            
+			select c.course_num, category.category_name, cre_num, c.course_title, c.course_content, c.course_kind, 
+                c.course_level, c.course_current_num, c.course_enroll_date, c.course_approved_date, c.course_start_date,
+                c.course_end_date, c.course_approved, c.course_status, member.mem_nickname
+			from course c
+	        join category using (category_num)
+	        join creator using(cre_num)
+	        join member using(mem_num)
+			where category_name like '%'||#{search}||'%'
+	</select>
+	
+	<select id="modalsearchCategory" parameterType="_int" resultMap="CourseResultSet">
+			select c.course_num, category.category_name, cre_num, c.course_title, c.course_content, c.course_kind, 
+                c.course_level, c.course_current_num, c.course_enroll_date, c.course_approved_date, c.course_start_date,
+                c.course_end_date, c.course_approved, c.course_status, member.mem_nickname
+			from course c
+	        join category using (category_num)
+	        join creator using(cre_num)
+	        join member using(mem_num)
+			where category_num = #{categoryNum} and course_approved='Y'
 	</select>
 	
 	<!-- 찜하기  -->
@@ -290,7 +351,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
  <!-- 온라인 클래스 상세보기 불러오기 by courseNum -->
-	<select id="selectOnlinePayment" parameterType="_int" resultMap="CourseResultSet">
+	<select id="selectOnlinePayment" parameterType="_int">
 		select *      
 		from payment 
         join course using(course_num)
@@ -299,7 +360,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where course_num = #{courseNum}
 	</select>
 	<!-- 오프라인 클래스 상세보기 불러오기 by courseNum -->
-	<select id="selectOfflinePayment" parameterType="_int" resultMap="CourseResultSet">
+	<select id="selectOfflinePayment" parameterType="_int" >
 		select *      
 		from payment 
         join course using(course_num)

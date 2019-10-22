@@ -131,7 +131,7 @@ public class CourseDao {
 	}
 	
 	
-	//김은
+	//김은기
 	public ArrayList<Course> selectList(){
 		return (ArrayList)sqlSession.selectList("courseMapper.selectList");
 	}
@@ -144,7 +144,16 @@ public class CourseDao {
 		return sqlSession.selectOne("courseMapper.countLove", courseNum);
 	}
 	
+	public Course selectCourse(int courseNum, String courseKind) {
+	      Course co;
+	      if(courseKind.equals("online")) { //온라인 클래스일경우
+	         co = sqlSession.selectOne("courseMapper.selectOnline", courseNum);
+	      } else { //오프라인클래스일 경우 
+	         co = sqlSession.selectOne("courseMapper.selectOffline", courseNum);
 
+		  }
+			 return co;
+	}
 	
 	public ArrayList<Love> selectLove() {
 		
@@ -199,4 +208,23 @@ public class CourseDao {
 	     
 	      return co;
 	   }
+//	public Course coursePayment(int courseNum, String courseKind) {
+//	      Course co;
+//	      if(courseKind.equals("online")) { //온라인 클래스일경우
+//	         co = sqlSession.insert("courseMapper.selectOnlinePayment", courseNum);
+//	      } else { //오프라인클래스일 경우 
+//	         co = sqlSession.insert("courseMapper.selectOfflinePayment", courseNum);
+//	      }
+//	     
+//	      return co;
+//	   }
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> modalsearchList(String search){
+		return (ArrayList)sqlSession.selectList("courseMapper.modalsearchList",search);
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> modalsearchCategory(int categoryNum){
+		return (ArrayList)sqlSession.selectList("courseMapper.modalsearchCategory",categoryNum);
+	}
 }

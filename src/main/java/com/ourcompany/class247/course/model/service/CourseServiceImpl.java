@@ -136,10 +136,19 @@ public class CourseServiceImpl implements CourseService{
 	}
 	
 
+//	@Override
+//	public int coursePayment(int courseNum, String courseKind) {
+//		return coDao.coursePayment(courseNum, courseKind);
+//	}
 
 	@Override
-	public Course coursePayment(int courseNum, String courseKind) {
-		return coDao.coursePayment(courseNum, courseKind);
+	public ArrayList<Course> modalsearchList(String search) {
+		return coDao.modalsearchList(search);
+	}
+
+	@Override
+	public ArrayList<Course> modalsearchCategory(int categoryNum) {
+		return coDao.modalsearchCategory(categoryNum);
 	}
 	
 	@Override

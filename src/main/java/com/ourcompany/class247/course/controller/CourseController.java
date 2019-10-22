@@ -197,7 +197,7 @@ public class CourseController {
 		
 		
 		for (Course c : list) {
-			System.out.println(c);
+			/* System.out.println(c); */
 		}
 		
 		ArrayList<CourseAttachment> coverList = coService.selectCoverList(creNum);
@@ -208,6 +208,27 @@ public class CourseController {
 		 return mv;
 	}
 	
+	
+	 
+	/** 크리에이터센터 
+	 * 내 클래스관리 -> 클래스 디테일 (수강정보 + 수강생정보)
+	 */
+	@RequestMapping("myCourseDetail.do")
+	public ModelAndView myCourseDetail(int courseNum, String courseKind, ModelAndView mv) {
+		
+		Course course = coService.selectCourse(courseNum, courseKind); 
+		CourseAttachment cover = coService.selectCover(courseNum);
+		ArrayList<Member> stuList = mService.selectStuByCo(courseNum);
+		
+		/* System.out.println(course); */
+		
+		mv.addObject("co", course);
+		mv.addObject("cover", cover);
+		mv.addObject("stuList", stuList);
+		mv.setViewName("creator/course/myCourseDetail");
+		
+		return mv;
+	}
 	@RequestMapping("goOnline.do")
 	public String goOnline() {
 		return "user/course/onlineList";
@@ -371,26 +392,49 @@ public class CourseController {
 		return mv;
 	}
 
-	@RequestMapping("coBuy.do")
-	public ModelAndView coursePayment(int courseNum,String courseKind, ModelAndView mv) {
-		
-		Course c = coService.coursePayment(courseNum,courseKind );
+	//	@RequestMapping("coBuy.do")
+//	public ModelAndView coursePayment(int courseNum,String courseKind, ModelAndView mv) {
+//		
+//		Course c = coService.coursePayment(courseNum,courseKind );
+//	
+//		System.out.println(c);
+//		if(c != null) {
+//			mv.addObject("c", c)
+//			  .setViewName("creator/course/userCourseDetail2");
+//			
+//		}else {
+//			mv.addObject("msg", "게시글 상세조회실패!")
+//			  .setViewName("common/errorPage");
+//		}
+//		
+//		return mv;
+//		
+//	}
 	
-		System.out.println(c);
-		if(c != null) {
-			mv.addObject("c", c)
-			  .setViewName("creator/course/userCourseDetail2");
-			
-		}else {
-			mv.addObject("msg", "게시글 상세조회실패!")
-			  .setViewName("common/errorPage");
-		}
+	/**  검색창에서 텍스트로 검색하는 메소드
+	 * @param search
+	 * @param mv
+	 * @return
+	 */
+	@RequestMapping("searchmodal.do")
+	public ModelAndView modalsearchList(String search, ModelAndView mv) {
+		
+		ArrayList<Course> list = coService.modalsearchList(search);
+		
+		mv.addObject("list", list).setViewName("user/course/searchList");
+		
+		return mv;
+	}
+	
+	@RequestMapping("searchCategory.do")
+	public ModelAndView modalsearchCategory(int categoryNum, ModelAndView mv){
+		ArrayList<Course> list = coService.modalsearchCategory(categoryNum);
+		System.out.println(list);
+		mv.addObject("list", list).setViewName("user/course/searchCateList");
 		
 		return mv;
 		
 	}
-	
-
 
 	
 

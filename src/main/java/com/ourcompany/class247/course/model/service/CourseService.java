@@ -72,6 +72,10 @@ public interface CourseService {
 	
 	ArrayList<SingleCourse> awaitSelectList();
 	
-	Course coursePayment(int courseNum,String courseKind);
+//	Course coursePayment(int courseNum,String courseKind);
+	ArrayList<Course> modalsearchList(String search);
+	
+	ArrayList<Course> modalsearchCategory(int categoryNum);
+	
 
 }

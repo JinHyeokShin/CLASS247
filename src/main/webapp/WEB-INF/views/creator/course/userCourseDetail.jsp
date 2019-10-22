@@ -94,7 +94,7 @@
                         <div class="tab-content" >    
                             <div class="tab-pane fade show active" id="Objectives">
                                 <h4 class="title_top">Objectives</h4>
-                           		${co.CourseVideoUrl }
+                           	
                             
                         </div>
                         <!-- 패키지    -->
@@ -174,25 +174,25 @@
                             <li>
                                 <a class="justify-content-between d-flex">
                                     <p>Trainer’s Name</p>
-                                    <span class="color">${ co.creNum }</span>
+                                    <span class="color">${ c.creNum }</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>Title </p>
-                                    <span>${ co.courseTitle }</span>
+                                    <span>${ c.courseTitle }</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>Category</p>
-                                    <span>${ co.categoryName}</span>
+                                    <span>${ c.categoryName}</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>Course Fee </p>
-                                    <span>${ co.coursePrice }+${courseMaterialPrice }</span>
+                                    <span>${ c.coursePrice }+${c.courseMaterialPrice }</span>
                                 </a>
                             </li>
                             <li>
