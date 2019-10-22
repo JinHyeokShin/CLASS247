@@ -26,7 +26,7 @@ public interface CreatorService {
 
 	int getCourseCount(int creNum);
 	
-	
+	Creator selectACreator(int creNum);
 	
 	ArrayList<Creator> awaitSelectList();
 	

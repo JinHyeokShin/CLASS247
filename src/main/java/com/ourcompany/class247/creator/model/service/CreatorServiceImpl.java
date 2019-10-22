@@ -128,10 +128,11 @@ public class CreatorServiceImpl implements CreatorService{
 		return creDao.getCourseCount(creNum);
 	}
 
-
-
-
 	
+	@Override
+	public Creator selectACreator(int creNum) {
+		return creDao.selectACreator(creNum);
+	}
 	
 
 

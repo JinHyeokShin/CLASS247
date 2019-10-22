@@ -281,7 +281,7 @@ public class MemberController {
 		
 	}
 	
-	@RequestMapping("memDetail.do")
+	@RequestMapping("aMemDetail.do")
 	public ModelAndView memberDetail(int memNum) {
 		
 		ModelAndView mv = new ModelAndView();

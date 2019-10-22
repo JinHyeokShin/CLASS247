@@ -105,5 +105,9 @@ public class CreatorDao {
 	public CreatorAttachment selectMyProFile(int creNum) {
 		return sqlSession.selectOne("creatorMapper.selectMyProFile", creNum);
 	}
+	
+	public Creator selectACreator(int creNum) {
+		return sqlSession.selectOne("creatorMapper.selectACreator", creNum);
+	}
 
 }
