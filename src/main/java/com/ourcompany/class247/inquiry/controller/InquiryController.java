@@ -56,7 +56,7 @@ public class InquiryController {
 	 */
 	@RequestMapping("iwrite.do")
 	public String inquiryWritePage() {
-		return "creator/write";
+		return "creator/inquiry/inquiryInsertForm";
 	}
 	
 	
@@ -73,7 +73,7 @@ public class InquiryController {
 
 			String rename = saveFile(file, request);
 			inq.setInquiryFileName(rename);
-			inq.setInquiryPath(request.getSession().getServletContext().getRealPath("resources") + "\\creator\\inquiryImages");
+			inq.setInquiryPath(request.getSession().getServletContext().getRealPath("resources") + "\\creator\\inquiryImages\\");
 		}
 		
 		int result = iService.insertInquiry(inq);
@@ -91,6 +91,30 @@ public class InquiryController {
 	}
 	
 	
+	/** 문의글 상세보기 
+	 * @param inquiryNum
+	 */
+	@RequestMapping("idetail.do")
+	public ModelAndView selectInquiryDetail(@RequestParam int inquiryNum, ModelAndView mv) {
+		Inquiry inquiry = iService.selectInquiry(inquiryNum);
+		System.out.println(inquiry);
+		if(inquiry != null) {
+			mv.addObject("inq", inquiry);
+			mv.setViewName("creator/inquiry/inquiryDetail");
+		} else {
+			mv.addObject("msg", "실패하였습니다.");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	
+	 
+	/** 서버에 파일 저장하기 
+	 * @param file
+	 * @param request
+	 * @return
+	 */
 	public String saveFile(MultipartFile file, HttpServletRequest request) {
 		
 		//파일이 저장될 경로 설정

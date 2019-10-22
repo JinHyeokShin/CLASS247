@@ -38,4 +38,9 @@ public class InquiryServiceImpl implements InquiryService {
 	public int insertInquiry(Inquiry inq) {
 		return iDao.insertInquiry(inq);
 	}
+
+	@Override
+	public Inquiry selectInquiry(int inquiryNum) {
+		return iDao.selectInquiry(inquiryNum);
+	}
 }

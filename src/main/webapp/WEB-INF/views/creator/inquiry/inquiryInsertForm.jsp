@@ -14,7 +14,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 </head>
 <body class="animsition">
-  <c:import url="common/cMenubar.jsp"/>
+  <c:import url="../common/cMenubar.jsp"/>
 
   <div class="page-wrapper">
  	<div class="main-content">

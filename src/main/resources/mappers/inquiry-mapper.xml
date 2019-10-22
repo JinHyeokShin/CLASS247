@@ -24,6 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select *
 		from inquiry
 		where cre_num = #{creNum}
+		order by inquiry_num desc
 	</select>
 	
 	<select id="getInquiryCount" parameterType="_int" resultType="_int">
@@ -34,7 +35,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insertInquiry" parameterType="Inquiry">
-		insert
+		insert into inquiry 
+		values(inquiry_seq.nextval, #{creNum}, #{inquiryTitle}, #{inquiryContent}, #{inquiryPath}, 
+		#{inquiryFileName}, sysdate, default, null, null, default)
 	</insert>
+	
+	<select id="selectInquiry" parameterType="Inquiry" resultMap="InquiryResultSet">
+		select *
+		from inquiry
+		where inquiry_num = #{inquiryNum}
+	</select>
 
 </mapper>

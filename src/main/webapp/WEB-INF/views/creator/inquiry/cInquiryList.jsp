@@ -16,6 +16,9 @@
             <section class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
+                        <div align="right" style="float:right">
+				         	<button type="button" class="btn btn-success" onclick="location.href='iwrite.do';">글쓰기</button>
+				         </div>
                          <h3 class="title-3 m-b-30">
                             <i class="fas fa-question-circle"></i>INQUIRY
                         </h3>
@@ -48,10 +51,7 @@
                                         <c:if test="${ !empty iList }">
                                         	<c:forEach items="${ iList }" var="i">
 		                                        <tbody id="inquiryTable">
-		                                            <tr>
-		                                            	<c:url value="idetail.do" var="idetail">
-		                                            		<c:param name="inquiryNum" value="${i.inquiryNum}"/>
-		                                            	</c:url>	
+		                                            <tr>	
 		                                                <td>${i.inquiryNum}</td>
 		                                                <td>${i.inquiryTitle}</td>
 		                                                <td>${i.answerStatus}</td>
@@ -98,9 +98,7 @@
 										</c:url>
 										<a href="${ next }" class="btn btn-primary">다음</a>
 									</c:if>
-		                         <div align="right">
-						         	<button type="button" class="btn btn-success" onclick="location.href='iwrite.do';">글쓰기</button>
-						         </div>
+
 		                         </div>
 		                      </div>
 		                  </div>
@@ -118,7 +116,7 @@
 	            	}).click(function() {
 	            		var num = $(this).parent().children().eq(0).text();
 	            		alert(num);
-	            		location.href='binsertView.do?inquiryNum=' + num; 
+	            		location.href='<%= request.getContextPath() %>/idetail.do?inquiryNum=' + num; 
 	            	})
 	            });
             </script>

@@ -16,18 +16,28 @@ public class InquiryDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
+	//문의글 리스트 불러오기 + 페이징 처리 
 	public ArrayList<Inquiry> getInquiryList(PageInfo pi, int creNum) {
 		
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit(); 
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("inquiryMapper.getInquiryList", creNum, rowBounds);
 	}
-
+	
+	
+	//문의글 총 수 구하기 
 	public int getInquiryCount(int creNum) {
 		return sqlSession.selectOne("inquiryMapper.getInquiryCount", creNum);
 	}
-
+	
+	
+	//문의글 추가하기 
 	public int insertInquiry(Inquiry inq) {
 		return sqlSession.insert("inquiryMapper.insertInquiry", inq);
+	}
+
+	//문의글 상세보기 
+	public Inquiry selectInquiry(int inquiryNum) {
+		return sqlSession.selectOne("inquiryMapper.selectInquiry", inquiryNum);
 	}
 }

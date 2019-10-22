@@ -15,6 +15,9 @@ public interface InquiryService {
 
 	// 문의글 등록
 	int insertInquiry(Inquiry inq);
+	
+	//문의글 상세보기 
+	Inquiry selectInquiry(int inquiryNum);
 
 
 }
