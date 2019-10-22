@@ -128,6 +128,7 @@ public class CourseServiceImpl implements CourseService {
 	public Course selectCourse(int cId, String courseKind) {
 
 		return coDao.selectCourse(cId, courseKind);
+	}
 
 	public int rejectCourse(int courseNum) {
 		return coDao.rejectCourse(courseNum);
@@ -204,10 +205,6 @@ public class CourseServiceImpl implements CourseService {
 		return coDao.deleteLove(i);
 	}
 
-	@Override
-	public Offline selectOffline(int courseNum) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }

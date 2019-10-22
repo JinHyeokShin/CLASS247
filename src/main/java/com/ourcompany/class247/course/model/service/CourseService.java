@@ -76,6 +76,10 @@ public interface CourseService {
 	ArrayList<Course> modalsearchList(String search);
 	
 	ArrayList<Course> modalsearchCategory(int categoryNum);
+
+	Online selectOnline(int courseNum);
+
+	Course creSelectCourse(int courseNum, String courseKind);
 	
 
 }

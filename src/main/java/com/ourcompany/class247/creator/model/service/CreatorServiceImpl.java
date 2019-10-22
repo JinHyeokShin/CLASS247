@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.ourcompany.class247.creator.model.dao.CreatorDao;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
-import com.ourcompany.class247.member.model.vo.Member;
 
 @Service("creService")
 public class CreatorServiceImpl implements CreatorService{

@@ -351,7 +351,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where course_num = #{courseNum}
 	</select>
 	
-	<select id="selectCourseLove" parameterType="_int" resultType="_int">
+	<select id="countLove" parameterType="_int" resultType="_int">
 		select count(*)
 		from love_count_view
 		where course_num = #{courseNum}
