@@ -32,5 +32,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where cre_num = #{creNum}
 		and inquiry_status='Y'
 	</select>
+	
+	<insert id="insertInquiry" parameterType="Inquiry">
+		insert
+	</insert>
 
 </mapper>

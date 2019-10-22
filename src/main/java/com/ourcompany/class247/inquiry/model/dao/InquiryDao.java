@@ -26,4 +26,8 @@ public class InquiryDao {
 	public int getInquiryCount(int creNum) {
 		return sqlSession.selectOne("inquiryMapper.getInquiryCount", creNum);
 	}
+
+	public int insertInquiry(Inquiry inq) {
+		return sqlSession.insert("inquiryMapper.insertInquiry", inq);
+	}
 }

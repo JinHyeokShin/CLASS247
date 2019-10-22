@@ -49,7 +49,7 @@ public interface CourseService {
 	ArrayList<Course> selectList();
 	
 	//클래스 상세보기
-	Course selectCourse(int courseNum,String courseKind);
+	//Course selectCourse(int courseNum,String courseKind);
 	
 
 }
