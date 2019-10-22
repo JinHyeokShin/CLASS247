@@ -15,7 +15,6 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <style>
-
 	.login{
 		margin: 9% auto;
 		border: 1px solid #954CBC;
@@ -76,7 +75,6 @@
        		<form action="login.do" method="post" class="loginform">
 	  		<br>
 			<h1>로그인</h1>
-			${ loginUser }
 			<hr>
         	<table width="400">
 	        	<tr>

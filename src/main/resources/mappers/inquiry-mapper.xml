@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="inquiryMapper">
+
+
+	<resultMap id="InquiryResultSet" type="Inquiry">
+		<id property="inquiryNum" column="inquiry_num"/>
+		<result property="creNum" column="cre_num"/>
+		<result property="inquiryTitle" column="inquiry_title"/>
+		<result property="inquiryContent" column="inquiry_content"/>
+		<result property="inquiryPath" column="inquiry_path"/>
+		<result property="inquiryFileName" column="inquiry_filename"/>
+		<result property="inquiryEnrollDate" column="inquiry_enroll_date"/>
+		<result property="inquiryStatus" column="inquiry_status"/>
+		<result property="answerContent" column="answer_content"/>
+		<result property="answerEnrollDate" column="answer_eroll_date"/>
+		<result property="answerStatus" column="answer_status"/>
+	</resultMap>
+
+
+	<select id="getInquiryList" parameterType="_int" resultMap="InquiryResultSet">
+		select *
+		from inquiry
+		where cre_num = #{creNum}
+	</select>
+	
+	<select id="getInquiryCount" parameterType="_int" resultType="_int">
+		select count(*)
+		from inquiry
+		where cre_num = #{creNum}
+		and inquiry_status='Y'
+	</select>
+
+</mapper>

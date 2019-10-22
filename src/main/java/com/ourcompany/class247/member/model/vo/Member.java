@@ -2,9 +2,6 @@ package com.ourcompany.class247.member.model.vo;
 
 import java.sql.Date;
 
-import lombok.Getter;
-import lombok.Setter;
-
 
 public class Member {
 	
@@ -16,17 +13,29 @@ public class Member {
 	private String memGender;		//성별
 	private String memPhone;		//핸드폰번호
 	private String memAddress;		// 주소
+	private String memProfileName;	//프로필파일이름
+	private String memProfilePath;	//프로필파일경로
 	private String memType;			//사용자구분자 관리자:a 사용자:u
 	private Date memEnrollDate;		//가입일자	
 	private Date memOutDate;		//탈퇴일자
 	private String memStatus;		//상태값
-	
+
+	//크리에이터센터에서 학생 수강목록 조회 용 
+	private Date payDate; 			//결제일
+	private int payPrice;			//수강결제가격
+	private Date takeDate;			//수강일
+	private int courseNum;			//클래스번호
+	private String courseTitle; 	//클래스제목
+	private String courseKind; 		//온라인,오프라인
+	private String courseLevel;		//수강생 레벨
+ 
 	public Member() {
 		
 	}
 
 	public Member(int memNum, String memId, String memPwd, String memNickName, String memName, String memGender,
-			String memPhone, String memAddress, String memType, Date memEnrollDate, Date memOutDate, String memStatus) {
+			String memPhone, String memAddress, String memProfileName, String memProfilePath, String memType,
+			Date memEnrollDate, Date memOutDate, String memStatus) {
 		super();
 		this.memNum = memNum;
 		this.memId = memId;
@@ -36,10 +45,100 @@ public class Member {
 		this.memGender = memGender;
 		this.memPhone = memPhone;
 		this.memAddress = memAddress;
+		this.memProfileName = memProfileName;
+		this.memProfilePath = memProfilePath;
 		this.memType = memType;
 		this.memEnrollDate = memEnrollDate;
 		this.memOutDate = memOutDate;
 		this.memStatus = memStatus;
+	}
+
+
+	public Member(int memNum, String memId, String memPwd, String memNickName, String memName, String memGender,
+			String memPhone, String memAddress, String memProfileName, String memProfilePath, String memType,
+			Date memEnrollDate, Date memOutDate, String memStatus, Date payDate, int payPrice, Date takeDate,
+			int courseNum, String courseTitle, String courseKind, String courseLevel) {
+		super();
+		this.memNum = memNum;
+		this.memId = memId;
+		this.memPwd = memPwd;
+		this.memNickName = memNickName;
+		this.memName = memName;
+		this.memGender = memGender;
+		this.memPhone = memPhone;
+		this.memAddress = memAddress;
+		this.memProfileName = memProfileName;
+		this.memProfilePath = memProfilePath;
+		this.memType = memType;
+		this.memEnrollDate = memEnrollDate;
+		this.memOutDate = memOutDate;
+		this.memStatus = memStatus;
+		this.payDate = payDate;
+		this.payPrice = payPrice;
+		this.takeDate = takeDate;
+		this.courseNum = courseNum;
+		this.courseTitle = courseTitle;
+		this.courseKind = courseKind;
+		this.courseLevel = courseLevel;
+	}
+	
+	
+	
+
+	public int getCourseNum() {
+		return courseNum;
+	}
+
+	public void setCourseNum(int courseNum) {
+		this.courseNum = courseNum;
+	}
+
+	public String getCourseTitle() {
+		return courseTitle;
+	}
+
+	public void setCourseTitle(String courseTitle) {
+		this.courseTitle = courseTitle;
+	}
+
+	public String getCourseKind() {
+		return courseKind;
+	}
+
+	public void setCourseKind(String courseKind) {
+		this.courseKind = courseKind;
+	}
+
+	public String getCourseLevel() {
+		return courseLevel;
+	}
+
+	public void setCourseLevel(String courseLevel) {
+		this.courseLevel = courseLevel;
+	}
+
+	public Date getPayDate() {
+		return payDate;
+	}
+
+	public void setPayDate(Date payDate) {
+		this.payDate = payDate;
+	}
+
+	public int getPayPrice() {
+		return payPrice;
+	}
+
+	public void setPayPrice(int payPrice) {
+		this.payPrice = payPrice;
+	}
+
+	public Date getTakeDate() {
+		return takeDate;
+	}
+
+	public void setTakeDate(Date takeDate) {
+		this.takeDate = takeDate;
 	}
 
 	public int getMemNum() {
@@ -106,6 +205,28 @@ public class Member {
 		this.memAddress = memAddress;
 	}
 
+	public String getMemProfileName() {
+		return memProfileName;
+	}
+
+	public void setMemProfileName(String memProfileName) {
+		this.memProfileName = memProfileName;
+	}
+
+
+
+	public String getMemProfilePath() {
+		return memProfilePath;
+	}
+
+
+
+	public void setMemProfilePath(String memProfilePath) {
+		this.memProfilePath = memProfilePath;
+	}
+
+
+
 	public String getMemType() {
 		return memType;
 	}
@@ -145,6 +266,7 @@ public class Member {
 				+ memAddress + ", memType=" + memType + ", memEnrollDate=" + memEnrollDate + ", memOutDate="
 				+ memOutDate + ", memStatus=" + memStatus + "]";
 	}
+	
 	
 	
 }

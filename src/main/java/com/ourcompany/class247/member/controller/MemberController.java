@@ -1,6 +1,11 @@
 package com.ourcompany.class247.member.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,14 +13,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.context.request.SessionScope;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ourcompany.class247.course.model.service.CourseService;
+import com.ourcompany.class247.course.model.vo.Course;
+import com.ourcompany.class247.course.model.vo.CourseAttachment;
+import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.creator.model.service.CreatorService;
+import com.ourcompany.class247.common.PageInfo;
+import com.ourcompany.class247.common.Pagination;
+import com.ourcompany.class247.creator.model.vo.Creator;
+import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 import com.ourcompany.class247.member.model.service.MemberService;
 import com.ourcompany.class247.member.model.vo.Member;
 
@@ -27,6 +36,12 @@ public class MemberController {
 	
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
+	@Autowired
+	private CreatorService creService;
+	
+	@Autowired
+	private CourseService coService;
 	
 	/**
 	 * 1. 로그인폼으로 이동.
@@ -124,34 +139,172 @@ public class MemberController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		session.removeAttribute("loginUser");
+		session.invalidate();
 		
 		mv.setViewName("redirect:home.do");
 		return mv;
 	}
 	
+	/**
+	 * 6. 마이페이지폼으로 이동.
+	 * @return
+	 */
+	@RequestMapping("myPage.do")
+	public String myPage() {
+		return "user/member/myPage";
+	}
+	
+	/**
+	 * 7. 회원정보수정페이지폼으로 이동.
+	 * @return
+	 */
+	@RequestMapping("memUpdate.do")
+	public String memUpdate() {
+		return "user/member/memUpdate";
+	}
+	@RequestMapping("introduce.do")
+	public String intoduce() {
+		return "user/introduce/introduce";
+	}
+	
+
+	
+	/**
+	 * 8. 회원정보수정페이지폼으로 이동.
+	 * @return
+	 */
+	@RequestMapping("mUpdate.do")
+	public String mUpdate(Member m, Model model, HttpServletRequest request, HttpServletResponse response,
+			@RequestParam("post") String post, 
+			@RequestParam("address1") String address1, @RequestParam("address2") String address2) {
+		
+		HttpSession session = request.getSession();
+		
+		if(!post.equals("")) { //주소 작성해서 값이 넘어왔을 경우
+			m.setMemAddress(post+","+address1+","+address2);	
+		}
+		
+
+		String encPwd= bcryptPasswordEncoder.encode(m.getMemPwd());
+		m.setMemPwd(encPwd);
+		
+		int result = mService.updateMember(m);
+		
+		Member loginUser = mService.loginMember(m);
+
+		if(result >0) {
+			session.setAttribute("loginUser", loginUser);
+			model.addAttribute("loginUser", loginUser);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out;
+			try {
+				out = response.getWriter();
+				out.println("<script>alert('수정이 완료되었습니다.'); history.go(-2);</script>");
+				out.flush();
+				
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+		}else {
+			model.addAttribute("msg", "회원정보수정실패");
+			return "common/errorPage";
+		}
+		
+		return "user/member/myPage";
+		
+		}
 	
 	
+	@RequestMapping("memDelete.do")
+	public String memDelete(){
+		return "user/member/memDelete";
+	}
 	
+
+	@RequestMapping("mDelete.do")
+	public String mDelete(Member m, Model model, HttpServletRequest request, HttpServletResponse response, @RequestParam("why") String why){
 	
+		HttpSession session = request.getSession();
+		
+		if(!why.equals("")) { //주소 작성해서 값이 넘어왔을 경우
+			m.setMemAddress(why);	
+		}
+
+		
+	Member loginUser = mService.loginMember(m);
+	System.out.println(loginUser);
+		
+	if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) { // 로그인에 성공했을 경우
+		
+			int result = mService.deleteMember(m);
+			
+			if(result >0) {
+				session.setAttribute("loginUser", loginUser);
+				model.addAttribute("loginUser", loginUser);
+				
+				
+				return "redirect:logout.do";
+			}else {
+				model.addAttribute("msg", "회원정보수정실패");
+				return "common/errorPage";
+			}
+		}else {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out;
+			try {
+				out = response.getWriter();
+				out.println("<script>alert('비밀번호가 틀렸습니다. 다시 입력해주세요!'); history.go(-1);</script>");
+				out.flush();
+				
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+			return "user/member/memDelete";
+		}
+		
+	}
 	
+	@RequestMapping("aMemberList.do")
+	public ModelAndView memberList() {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		ArrayList<Member> list = mService.selectMemberList();
+		
+		mv.addObject("list", list).setViewName("admin/member/memberList");
 	
+
+		
+		return mv;
+		
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@RequestMapping("aMemDetail.do")
+	public ModelAndView memberDetail(int memNum) {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		Member m = mService.selectMember(memNum);
+		
+		Creator cre = creService.getCreator(memNum);
+		
+		ArrayList<Course> coList = coService.selectMyCoList(cre.getCreNum());
+		
+		CreatorAttachment cra = creService.selectMyProFile(cre.getCreNum());
+		
+		ArrayList<CreatorAttachment> craList = creService.selectCreatorAttachmentList(cre.getCreNum());
+		
+		ArrayList<CourseAttachment> coaList = coService.selectCoverList(cre.getCreNum());
+		
+		ArrayList<SingleCourse> coListU = coService.selectMyTakeCourse(memNum);
+		
+		mv.addObject("m", m).addObject("cre", cre).addObject("coList", coList).addObject("cra", cra).addObject("craList", craList).addObject("coaList", coaList).setViewName("admin/member/memDetail");
+		
+		return mv;
+		
+	}
 	
 	
 	
@@ -164,11 +317,50 @@ public class MemberController {
 	 * 
 	 * 
 	 */
+
+
 	
-	@RequestMapping("aMemberList.do")
-	public String selectMemberList() {
+	@RequestMapping("aBlackList")
+	public ModelAndView aBlacklist(ModelAndView mv) {
 		
-		return "admin/member/memberList";
+		ArrayList<Member> list = mService.selectBlackList();
+		
+		mv.addObject("list", list).setViewName("admin/member/blackList");
+		
+		
+		return mv;
 	}
+	
+	
+	
+	
+	//----------------------------------------------------------------------------------
+	/*
+	 * 크리에이터센터용
+	 * 
+	 */
+	
+	/**
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("studentManage.do")
+	public ModelAndView studentManage(@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage, 
+									HttpServletRequest request, ModelAndView mv) {
+		int creNum = ((Creator)request.getSession().getAttribute("creator")).getCreNum();
+		int stuCount = mService.getStuCount(creNum);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, stuCount);
+		ArrayList<Member> studentList = mService.selectStuList(pi, creNum);
+		System.out.println("count : " + stuCount);
+		System.out.println(pi);
+		
+		mv.addObject("studentList", studentList);
+		mv.setViewName("creator/student/studentManage");
+		
+		return mv;
+	}
+	
+	
 	
 }

@@ -15,4 +15,6 @@ public class CategoryController {
 		return "user/course/categoryList";
 	}
 	
+
+	
 }

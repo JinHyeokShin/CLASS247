@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,9 +31,18 @@ import com.ourcompany.class247.notice.model.service.NoticeService;
 import com.ourcompany.class247.notice.model.vo.FAQ;
 import com.ourcompany.class247.notice.model.vo.Notice;
 import com.ourcompany.class247.notice.model.vo.NoticeReply;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.ourcompany.class247.common.PageInfo;
+import com.ourcompany.class247.common.Pagination;
+import com.ourcompany.class247.notice.model.service.NoticeService;
+import com.ourcompany.class247.notice.model.vo.FAQ;
+import com.ourcompany.class247.notice.model.vo.Notice;
 
 @Controller
 public class NoticeController {
+	@Autowired
+	private NoticeService nService;
 	
 	@Autowired
 	private FAQService fService;
@@ -134,7 +145,7 @@ public class NoticeController {
 	}
 
 	
-	@RequestMapping("ndetail.do")
+	@RequestMapping("aNdetail.do")
 	public ModelAndView noticeDetail(int noticeNum, ModelAndView mv) {
 		
 		Notice n = nService.selectNotice(noticeNum);
@@ -216,4 +227,46 @@ public class NoticeController {
 		
 	}
 */
+	
+	@RequestMapping("noticeListView.do")
+	public ModelAndView selectList(ModelAndView mv,@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+		
+		int listCount = nService.getListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Notice> list = nService.selectList(pi);
+		
+		mv.addObject("pi",pi).addObject("list", list).setViewName("user/notice/noticeListView");
+		return mv;
+	}
+	
+	@RequestMapping("ndetail.do")
+	public ModelAndView boardDetail(int noticeNum, ModelAndView mv) {
+		
+		Notice n= nService.noticeDetail(noticeNum);
+		
+		if(n != null) {
+			mv.addObject("n", n)
+			.setViewName("user/notice/noticeDetailView");
+		}else {
+			mv.addObject("msg", "게시글상세조회 실패").setViewName("common/errorPage");
+			
+		}
+		return mv;
+		
+	}
+	
+	@RequestMapping("userFaqListView.do")
+	public ModelAndView faqListView(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+		int listCount = nService.getUserFaqListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<FAQ> flist = nService.selectUserFaqList(pi);
+		
+		mv.addObject("pi",pi).addObject("flist", flist).setViewName("user/notice/faqListView");
+		return mv;
+	}
+	
 }

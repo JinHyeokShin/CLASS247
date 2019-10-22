@@ -6,13 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>크리에이터 신청하기</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 </head>
 <body class="animsition">
 	<c:import url="../common/cMenubar.jsp"/>
 	
 	
- 		<!-- PRE INFO 모달창  -->
 			<div class="modal fade" id="preInfoModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-lg" role="document">
 					<div class="modal-content">
@@ -24,7 +28,7 @@
 						</div>
 						<div class="modal-body">
 							<p>
-					                                크리에이터 신청해주셔서 감사합니다. <br>
+					                                크리에이터 신청페이지에 오신것을 환영합니다! <br>
 					                                여러분의 신청서는 관리자가 충분히 검토 후 승인이 됩니다. <br>
 					                               주말 및 공휴일을 제외한 48시간 이내에 여부를 확인 할 수 있습니다.<br>
 							</p>
@@ -36,10 +40,8 @@
 				</div>
 			</div>
 	   		 <button type="button" data-toggle="modal" data-target="#preInfoModal" id="preInfoModalBtn"></button>
-		<!-- PRE INFO 모달창 END -->
 	
 	<div class="page-wrapper">
-		<!-- modal medium -->
 			<div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-lg" role="document">
 					<div class="modal-content">
@@ -63,8 +65,6 @@
 					</div>
 				</div>
 			</div>
-		<!-- end modal medium -->
-	
 	
 		            <!-- FORM START -->
             <section class="main-content">
@@ -144,16 +144,16 @@
                                                     </div>
                                                 </div>
                                                 <hr>
-                                                <div class="row form-group">
+                                                <div class="form-group">
                                                     <div class="col col-md-2">
                                                         <label for="introduction" class=" form-control-label">자기소개</label>
                                                     </div>
-                                                    <div class="col-12 col-md-9">
-                                                        <textarea name="introduction" id="introduction" rows="9" placeholder="학생들에게 소개하는 톡톡튀는 본인만의 자기소개를 작성해주세요 :) " class="form-control" required></textarea>
+                                                    <div class="col-12 col-md-12">
+                                                        <textarea name="introduction" id="summernote" rows="9" placeholder="학생들에게 소개하는 톡톡튀는 본인만의 자기소개를 작성해주세요 :) " class="form-control" required></textarea>
                                                     	<input type="hidden" name="memNum" value="${ loginUser.memNum }">
                                                     </div>
                                                 </div>
-		                                        <div class="card-footer" style="text-align:center">
+		                                        <div style="text-align:center">
 		                                            <button type="submit" class="btn btn-primary btn-sm">
 		                                                	크리에이터 신청하기
 		                                            </button>
@@ -170,13 +170,7 @@
                     </div>
                 </section>
                 
-                <script>
-                
-                	$(function() {
-                		$('#preInfoModalBtn').click();
-                	});
-  
-                </script>
+
 
 
             <!-- PAGE CONTAINER-->
@@ -193,6 +187,26 @@
             </section>
          <!-- END PAGE CONTAINER-->
 	</div>
-
+    <script>
+        $(document).ready(function() {
+             
+             $('#summernote').summernote({
+                 placeholder: '학생들에게 소개하는 톡톡튀는 본인만의 자기소개를 작성해주세요 :) ',
+                 tabsize: 2,
+                 height: 400,
+                 dialogsInBody: true,
+               });
+        });
+                
+          $(function() {
+             $('#preInfoModalBtn').click();
+         }); 
+    </script>
+                
+                
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 </body>
 </html>

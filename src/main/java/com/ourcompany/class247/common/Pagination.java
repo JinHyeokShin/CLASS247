@@ -6,7 +6,7 @@ public class Pagination {
 		int maxPage;
 		int startPage;
 		int endPage;
-		int boardLimit = 5; // 한 페이지에 보일 게시글 개수
+		int boardLimit = 10; // 한 페이지에 보일 게시글 개수
 		
 		maxPage = (int)Math.ceil((double)listCount/boardLimit);
 		

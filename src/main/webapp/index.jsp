@@ -8,6 +8,11 @@
 <title>CLASS - 247</title>
 </head>
 <body>
-	<jsp:forward page="WEB-INF/views/home.jsp"/>
+
+<script>
+	location.href="home.do";
+</script>
+ 
+
 </body>
 </html>

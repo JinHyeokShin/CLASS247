@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.ourcompany.class247.member.model.vo.Member"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
         <html>
 
@@ -19,6 +19,16 @@
         <c:import url="/WEB-INF/views/user/common/menubar.jsp" />
 
         <body>
+   
+   
+   <!-- alert창으로 메세지 띄우기  -->     
+	   <c:if test="${!empty msg }">
+			<script>
+				var msg = '${msg}';
+				alert(msg);
+				<% session.removeAttribute("msg"); %>
+			</script>
+		</c:if>
 
             <section class="breadcrumb breadcrumb_bg">
                 <div class="container">
@@ -29,8 +39,10 @@
                                     <div class="banner_text_iner">
                                         <h5 style="color:white;">당신의 모든 취미를 클래스로 개설할 수 있습니다.</h5>
                                         <h1> 당신의 클래스를 <br>개설하세요 !</h1>
-                                        <a href="#" class="btn_1">View Course </a> &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="cMainView.do" class="btn_2" onclick="return loginCheck()">Get Started </a>
+                                        <a href="introduce.do" class="btn_1">서비스 소개 </a> &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="cMainView.do" class="btn_2" onclick="return loginCheck()">크리에이터 센터</a>
+                                        <br><br>
+               	     <a class="btn_2" href="#Mdrecom" style="float:right;">인기/추천<br>클래스</a>
                                     </div>
                                 </div>
                             </div>
@@ -88,8 +100,8 @@
                     });
                 </script>
             </section>
-            <section class="special_cource padding_top">
-                <div class="container">
+            <section class="special_cource padding_top" id="Mdrecom">
+                <div class="container" id="Mdrecom">
                     <div class="row justify-content-left">
                         <div class="col-xl-5">
                             <div class="section_tittle text-left">
@@ -98,23 +110,30 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="owl-carousel">
-                        <div class="item">
+                     <c:forEach items="${ list }" var="co">
+                     	<c:url value="codetail.do" var="codetail">
+							<c:param name="courseNum" value="${ co.courseNum }"/>
+							<c:param name="courseKind" value="${ co.courseKind}"/>
+						</c:url>
+                        <div class="item" >
+                        
                             <div class="single_special_cource">
-                                <img src="resources/user/img/special_cource_1.png" class="special_img" alt="">
+                                <img src="resources/user/img/test1.jpeg" class="special_img" alt="" onclick="location.href=${codetail}">
                                 <div class="special_cource_text">
-                                    <a href="course-details.html" class="btn_4">공예</a>
-                                    <h4>$130.00</h4>
-                                    <a href="course-details.html">
-                                        <h3>Web Development</h3>
+                                    <a class="btn_4">카테고리</a>
+                                    <h4>가격</h4>
+                                    <a href="${ codetail }">
+                                        <h3>${co.courseTitle }</h3>
                                     </a>
-                                    <p>Which whose darkness saying were life unto fish wherein all fish of together called</p>
+                                    <p></p>
                                     <div class="author_info">
                                         <div class="author_img">
-                                            <img src="resources/user/img/author/author_1.png" alt="">
+                                            <img src="resources/user/img/author/author_1.png" alt="" onclick="location.href=${codetail}">
                                             <div class="author_info_text">
                                                 <p>Conduct by:</p>
-                                                <h5><a href="#">James Well</a></h5>
+                                                <h5><a href="${ codetail }">James Well</a></h5>
                                             </div>
                                         </div>
                                         <div class="author_rating">
@@ -130,72 +149,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <div class="single_special_cource">
-                                <img src="resources/user/img/special_cource_3.png" class="special_img" alt="">
-                                <div class="special_cource_text">
-                                    <a href="course-details.html" class="btn_4">디자인</a>
-                                    <h4>$140.00</h4>
-                                    <a href="course-details.html">
-                                        <h3>Wordpress Development</h3>
-                                    </a>
-                                    <p>Which whose darkness saying were life unto fish wherein all fish of together called</p>
-                                    <div class="author_info">
-                                        <div class="author_img">
-                                            <img src="resources/user/img/author/author_3.png" alt="">
-                                            <div class="author_info_text">
-                                                <p>Conduct by:</p>
-                                                <h5><a href="#">James Well</a></h5>
-                                            </div>
-                                        </div>
-                                        <div class="author_rating">
-                                            <div class="rating">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/star.svg" alt="">
-                                            </div>
-                                            <p>3.8 Ratings</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="single_special_cource">
-                                <img src="resources/user/img/special_cource_3.png" class="special_img" alt="">
-                                <div class="special_cource_text">
-                                    <a href="course-details.html" class="btn_4">디지털 드로잉</a>
-                                    <h4>$140.00</h4>
-                                    <a href="course-details.html">
-                                        <h3>Wordpress Development</h3>
-                                    </a>
-                                    <p>Which whose darkness saying were life unto fish wherein all fish of together called</p>
-                                    <div class="author_info">
-                                        <div class="author_img">
-                                            <img src="resources/user/img/author/author_3.png" alt="">
-                                            <div class="author_info_text">
-                                                <p>Conduct by:</p>
-                                                <h5><a href="#">James Well</a></h5>
-                                            </div>
-                                        </div>
-                                        <div class="author_rating">
-                                            <div class="rating">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/star.svg" alt="">
-                                            </div>
-                                            <p>3.8 Ratings</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                          
+                        </div>  
+                        </c:forEach>
                     </div>
+                   
                 </div>
             </section>
             <section class="special_cource padding_top">
@@ -312,7 +270,7 @@
                 $(document).ready(function() {
                     var owl = $('.owl-carousel');
                     owl.owlCarousel({
-                        items: 3,
+                        items: 4,
                         loop: true,
                         margin: 10,
                         autoplay: true,

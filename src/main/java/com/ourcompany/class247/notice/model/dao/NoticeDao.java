@@ -11,10 +11,14 @@ import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.notice.model.vo.Notice;
 import com.ourcompany.class247.notice.model.vo.NoticeReply;
 
-	
-@Repository("nDao")
-public class NoticeDao{
+
 		
+import com.ourcompany.class247.notice.model.vo.FAQ;
+import com.ourcompany.class247.notice.model.vo.Notice;
+
+@Repository("nDao")
+public class NoticeDao {
+
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
@@ -34,13 +38,9 @@ public class NoticeDao{
 		
 	}
 	
-	public int updateCount(int noticeNum) {
-		return sqlSession.update("noticeMapper.updateCount", noticeNum); 
-	}
+
 	
-	public Notice noticeDetail(int noticeNum) {
-		return sqlSession.selectOne("noticeMapper.selectBoard", noticeNum);
-	}
+
 	
 	public int deleteBoard(int noticeNum) {
 		return sqlSession.update("noticeMapper.deleteNotice", noticeNum);
@@ -55,5 +55,33 @@ public class NoticeDao{
 		return sqlSession.insert("noticeMapper.insertReply", nr);
 	}
 */
+	@SuppressWarnings( { "unchecked", "rawtypes" } )
+	public ArrayList<Notice> selectList(PageInfo pi){
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectList", null, rowBounds);
+	}
+	
+	public int updateCount(int noticeNum) {
+		return sqlSession.update("noticeMapper.updateCount", noticeNum);
+	}
+	
+	public Notice noticeDetail(int noticeNum) {
+		return sqlSession.selectOne("noticeMapper.selectNotice", noticeNum);
+	}
+	
+	public int getUserFaqListCount() {
+		return sqlSession.selectOne("noticeMapper.getUserFaqListCount");
+	}
+	
+	@SuppressWarnings( { "unchecked", "rawtypes" } )
+	public ArrayList<FAQ> selectUserFaqList(PageInfo pi){
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectUserFaqList", null, rowBounds);
+	}
+	
 	
 }

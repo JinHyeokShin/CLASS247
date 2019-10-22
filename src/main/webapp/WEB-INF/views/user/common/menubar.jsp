@@ -37,11 +37,23 @@
                     float: left;
                     width: 10px;
                 }
-                /* 	.single_special_cource{
-		margin-left: 10px;
-	    margin-right: 10px;
-    } */
-            </style>
+		        .special_cource_text{
+		        height:40%;
+		        }
+		        .not_scroll{
+			    position: fixed;
+			    overflow: hidden;
+			    width: 100%;
+			    height: 100%
+				}
+				.not_scroll .cont {
+				    position: relative;
+				    top: 0;
+				}
+				a img{
+					padding:10px;
+				}
+	        </style>
         </head>
 
         <head>
@@ -72,6 +84,49 @@
                 ul li {
                     width: 90px;
                 }
+                /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: -200px;
+            width: 100%; /* Full width */
+            height: 150%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	        }
+	    
+	        /* Modal Content/Box */
+	        .modal-content {
+	            background-color: #fefefe;
+	            margin: 15% auto; /* 15% from the top and centered */
+	            padding: 20px;
+	            border: 1px solid #888;
+	            width: 50%; /* Could be more or less, depending on screen size */                          
+	        }
+	        /* The Close Button */
+	        .close {
+	            color: #aaa;
+	            float: right;
+	            text-align:right;
+	            font-size: 28px;
+	            font-weight: bold;
+	        }
+	        .close:hover,
+	        .close:focus {
+	            color: black;
+	            text-decoration: none;
+	            cursor: pointer;
+	        }
+	        table{
+	        	text-align:center;
+	        }
+	        table td input{
+	        	width:100%;
+	        }
+           
             </style>
         </head>
 
@@ -90,32 +145,36 @@
 
                                 <div class="collapse navbar-collapse main-menu-item justify-content-end" id="navbarSupportedContent">
                                     <ul class="navbar-nav align-items-center" align="center" width="100%">
-                                        <li class="nav-item" style="margin-right:-30px; width : 23%;">
-                                            <c:if test="${ !empty sessionScope.loginUser }">
-                                                <input type="text" style="font-size: 11px" class="form-control" placeholder='${ loginUser.memName }님 무엇을 배우고 싶으세요?' onclick="gohome();">
+                                        <li class="nav-item" style="margin-right:-30px; width : 23%; margin-right:60px;" >
+                                       		<c:if test="${ !empty sessionScope.loginUser }">
+                                                <input type="text" style="font-size: 11px" class="form-control" placeholder='${ loginUser.memName }님 무엇을 배우고 싶으세요?' id="myBtn">
                                             </c:if>
                                             <c:if test="${ empty sessionScope.loginUser }">
-                                                <input type="text" style="font-size: 11px" class="form-control" placeholder='무엇을 배우고 싶으세요?' onclick="gohome();">
+                                                <input type="text" style="font-size: 11px" class="form-control" placeholder="무엇을 배우고 싶으세요?" id="myBtn">
                                             </c:if>
                                         </li>
-                                        <li style="margin-right : 60px;">
-                                            <button class="btn btn_1 primary small button-image" type="button"><i class="ti-search"></i></button>
+                                       <!--  <li style="margin-right : 60px;">
+                                            <button class="btn btn_1 primary small button-image" type="button" id="myBtn"><i class="ti-search" ></i></button>
+                                        </li> -->
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">공지사항</a>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="noticeListView.do">공지사항</a>
+                                                <a class="dropdown-item" href="userFaqListView.do">자주 묻는 질문</a>
+                                            </div>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="about.html">서비스 소개</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="cource.html" margin-top="10px">인기/추천<br>강의</a>
+                                            <a class="nav-link" href="introduce.do" margin-top="10px">서비스 소개</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="categoryList.do" margin-top="10px">카테고리</a>
 
                                         </li>
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 강의</a>
+                                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">클래스</a>
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                <a class="dropdown-item" href="single-blog.html">온라인 강의</a>
-                                                <a class="dropdown-item" href="elements.html">오프라인 강의</a>
+                                                <a class="dropdown-item" href="goOnline.do">온라인 클래스</a>
+                                                <a class="dropdown-item" href="goOffline.do">오프라인 클래스</a>
                                             </div>
                                         </li>
                                         <c:if test="${ empty sessionScope.loginUser }">
@@ -142,11 +201,149 @@
                                             </li>
                                         </c:if>
                                     </ul>
+                                    </div>
+                					</nav>
                                 </div>
                         </div>
                     </div>
-                </div>
-                </div>
+
+                
+                
+			    <!-- The Modal -->
+			    <div id="myModal" class="modal">
+			 	<!-- Modal content -->
+		      	<div class="modal-content">
+			        <span class="close">&times;</span>                                                               
+        		<form action="searchmodal.do"> <!-- 검색하기 주소로 이동  -->
+			        <table width="100%" align="center" class="covera">
+			        	<tr><td><h2 align="left">검색하기</h2></td></tr>
+			        	<tr>
+			        		<td></td>
+			        		<td colspan="2"><input type="text" name="search" id="search" style="border-radius:10px;"></td>
+			        		<td colspan="1"><input type="submit" class="btn_2" style="padding-top:8px; padding-bottom:8px;"value="검색하기"></td>
+			        		<td></td>
+			        	</tr>
+						<tr><td colspan="2"><h2  align="left">카테고리별 검색</h2></td></tr>
+			        	<tr>
+			        		<td colspan="5">
+				        		<div class="valueCheck">
+				        			<input type="hidden" name="categoryNum" value="8">
+					        		<img src="resources/user/img/logo.png">
+					        		<h3 style="color:black;">시그니쳐</h3>
+				        		</div>
+			        		</td>
+			        	</tr>
+				        <tr>
+				        	<td style="align:center;">
+					        	<div class="valueCheck">
+					        		<input type="hidden" name="categoryNum" value="1">
+						        	<img src="resources/user/img/categoryImg/crafts.png">
+						        	<h5 style="color:black;">공예</h5>
+				        		</div>
+				        	</td>
+				        	<td>
+					        	<div class="valueCheck">
+					        		<input type="hidden" name="categoryNum" value="2">
+						        	<img src="resources/user/img/categoryImg/design.png">
+						        	<h5 style="color:black;">디자인</h5>
+					        	</div>
+				        	</td>
+				        	<td>
+					        	<div class="valueCheck">
+				        			<input type="hidden" name="categoryNum" value="3">
+						        	<img src="resources/user/img/categoryImg/development.png">
+						        	<h5 style="color:black;">개발</h5>
+					        	</div>
+				        	</td>
+				        	<td>
+					        	<div class="valueCheck">
+					        		<input type="hidden" name="categoryNum" value="4">
+						        	<img src="resources/user/img/categoryImg/digitaldrawing.png">
+						        	<h5 style="color:black;">디지털 드로잉</h5>
+					        	</div>
+				        	</td>
+				        	<td>
+					        	<div class="valueCheck">
+					        		<input type="hidden" name="categoryNum" value="5">
+						        	<img src="resources/user/img/categoryImg/lifestyle.png">
+						        	<h5 style="color:black;">라이프 스타일</h5>
+					        	</div>
+				        	</td>
+				        </tr>
+				        <tr>
+				        	<td>
+				        		<div class="valueCheck">
+				        		<input type="hidden" name="categoryNum" value="6">
+					        	<img src="resources/user/img/categoryImg/art.png">
+					        	<h5 style="color:black;">미술</h5>
+				        	</div>
+				        	</td>
+				        	<td>
+					        	<div class="valueCheck">
+					        		<input type="hidden" name="categoryNum" value="7">
+						        	<img src="resources/user/img/categoryImg/camera.png">
+						        	<h5 style="color:black;">사진, 영상</h5>
+					        	</div>
+				        	</td>
+				        	<td>
+					        	<div class="valueCheck">
+					        		<input type="hidden" name="categoryNum" value="9">
+						        	<img src="resources/user/img/categoryImg/food.png">
+						        	<h5 style="color:black;">요리, 음료</h5>
+					        	</div>
+				        	</td>
+				        	<td>
+					        	<div class="valueCheck">
+					        		<input type="hidden" name="categoryNum" value="10">
+						        	<img src="resources/user/img/categoryImg/music.png">
+						        	<h5 style="color:black;">음악</h5>
+					        	</div>
+				        	</td>
+				        	<td>
+					        	<div class="valueCheck">
+					        		<input type="hidden" name="categoryNum" value="11">
+						        	<img src="resources/user/img/categoryImg/career.png">
+						        	<h5 style="color:black;">커리어</h5>
+					        	</div>
+				        	</td>
+				        </tr>
+			        </table>
+			        </form>
+
+			      </div>
+			 
+			    </div>
+                <script>
+                
+	                // Get the modal
+	                var modal = document.getElementById('myModal');
+	         
+	                // Get the button that opens the modal
+	                var btn = document.getElementById("myBtn");
+	                // Get the <span> element that closes the modal
+	                var span = document.getElementsByClassName("close")[0];                                          
+	         
+	                // When the user clicks on the button, open the modal 
+	                btn.onclick = function() {
+	                	 $("html, body").addClass("not_scroll");
+	                    modal.style.display = "block";
+	                    $("#search").focus();
+	                }
+	         
+	                // When the user clicks on <span> (x), close the modal
+	                span.onclick = function() {
+	                	 $("html, body").removeClass("not_scroll");
+	                    modal.style.display = "none";
+	                }
+	         
+	                // When the user clicks anywhere outside of the modal, close it
+	                window.onclick = function(event) {
+	                    if (event.target == modal) {
+		                	$("html, body").removeClass("not_scroll");
+	                        modal.style.display = "none";
+	                    }
+                }
+                </script>
             </header>
             <script>
                 function loginCheck() {
@@ -159,10 +356,6 @@
                         return true;
                     }
 
-                }
-
-                function gohome() {
-                    alert('안뇽');
                 }
             </script>
             <!-- jquery plugins here-->
@@ -187,7 +380,18 @@
             <script src="resources/user/js/waypoints.min.js"></script>
             <!-- custom js -->
             <script src="resources/user/js/custom.js"></script>
+		<script>
+		$(function(){
+        	
+        	$(".valueCheck").click(function(){
+        		var categoryNum = $(this).children().eq(0).val();
+  
+        		console.log(categoryNum);
+        		location.href="searchCategory.do?categoryNum="+categoryNum;
+        	});
 
+        });
+		</script>
         </body>
 
         </html>

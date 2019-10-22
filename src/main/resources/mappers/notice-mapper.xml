@@ -101,4 +101,12 @@
 		values(notice_reply_seq.nextval, #{noticeNum}, #{memNum}, #{nreplyParentNum}, #{nreplyDepth}, #{nreplyContent}, sysdate, sysdate, 'Y')
 	</insert>
  -->
+	<select id="getUserFaqListCount" resultType="_int">
+		select count(*)
+		from faq
+	</select>
+	<select id="selectUserFaqList" resultMap="FAQResultSet">
+		select *
+		from faq
+	</select>
 </mapper>
