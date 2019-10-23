@@ -29,7 +29,7 @@ public class CreatorCenterController {
 	
 	@RequestMapping("editor.do")
 	public String editor() {
-		return "creator/write";
+		return "creator/creChart";
 	}
 	
 

@@ -11,6 +11,7 @@
 <body class="animsition">
 	<c:import url="../common/cMenubar.jsp"/>
 	
+	
 	<div class="page-wrapper">
         <!-- START NOTICE TABLE -->
             <section class="main-content">
@@ -58,6 +59,15 @@
 		                                                <td>${i.inquiryEnrollDate}</td>
 		                                                <td>이름?</td>
 		                                            </tr>
+		                                            <c:if test="${i.answerStatus == 'Y' }">
+			                                            <tr>
+				                                            <td><i class="fas fa-arrow-right" style="color:blue"></i></td>
+			                                                <td style="color:blue">답변이 완료되었습니다. </td>
+			                                                <td></td>
+			                                                <td>${i.answerEnrollDate}</td>
+			                                                <td>관리자</td>
+			                                            </tr>
+		                                            </c:if>
 		                                        </tbody>
 	                                        </c:forEach>
                                         </c:if>

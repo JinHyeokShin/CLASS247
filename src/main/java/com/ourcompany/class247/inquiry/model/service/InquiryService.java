@@ -19,5 +19,8 @@ public interface InquiryService {
 	//문의글 상세보기 
 	Inquiry selectInquiry(int inquiryNum);
 
+	//문의글 삭제하기 
+	int deleteInquiry(int inquiryNum);
+
 
 }

@@ -97,7 +97,6 @@ public class InquiryController {
 	@RequestMapping("idetail.do")
 	public ModelAndView selectInquiryDetail(@RequestParam int inquiryNum, ModelAndView mv) {
 		Inquiry inquiry = iService.selectInquiry(inquiryNum);
-		System.out.println(inquiry);
 		if(inquiry != null) {
 			mv.addObject("inq", inquiry);
 			mv.setViewName("creator/inquiry/inquiryDetail");
@@ -148,6 +147,21 @@ public class InquiryController {
 		
 		
 		return renameFileName;
+	}
+	
+	
+	@RequestMapping("deleteInquiry.do")
+	public ModelAndView deleteInquiry(@RequestParam int inquiryNum, ModelAndView mv) {
+		System.out.println(inquiryNum);
+		int result = iService.deleteInquiry(inquiryNum);
+		
+		if(result > 0) {
+			 mv.setViewName("redirect:inquiryList.do");
+		} else {
+			 mv.setViewName("common/errorPage");
+		}
+		
+		return mv;
 	}
 	
 	

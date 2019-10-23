@@ -39,8 +39,8 @@
 		                     					<li class="nav-item dropdown">
 													<a class="nav-link dropdown-toggle" style="color:gray" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
 													<div class="dropdown-menu">
-														<a class="dropdown-item" href="#">수정하기</a>
-														<a class="dropdown-item" href="#">삭제하기</a>
+														<a class="dropdown-item" href="updateInquiry.do?inquiryNum='${inq.inquiryNum}'">수정하기</a>
+														<a class="dropdown-item" onclick="deleteInquiry()">삭제하기</a>
 													</div>
 												</li>
 											</ul>
@@ -76,6 +76,14 @@
 </div>
 </div>
 <script>
+
+	function deleteInquiry() {
+		if(confirm('정말 삭제하시겠습니까?')){
+			var num = ${inq.inquiryNum};
+			location.href= '<%= request.getContextPath() %>/deleteInquiry.do?inquiryNum=' + num; 
+		}
+	}
+	
 	$(document).ready(function() {
 		
 		$('#summernote').summernote({

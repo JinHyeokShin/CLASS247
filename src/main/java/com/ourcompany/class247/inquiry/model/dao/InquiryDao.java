@@ -40,4 +40,11 @@ public class InquiryDao {
 	public Inquiry selectInquiry(int inquiryNum) {
 		return sqlSession.selectOne("inquiryMapper.selectInquiry", inquiryNum);
 	}
+
+	//문의글 삭제하게 
+	public int deleteInquiry(int inquiryNum) {
+		int result =  sqlSession.update("inquiryMapper.deleteInquiry", inquiryNum);
+		System.out.println(result);
+		return result;
+	}
 }

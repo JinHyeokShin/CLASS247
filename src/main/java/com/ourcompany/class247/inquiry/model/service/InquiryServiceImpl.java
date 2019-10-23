@@ -39,8 +39,19 @@ public class InquiryServiceImpl implements InquiryService {
 		return iDao.insertInquiry(inq);
 	}
 
+	/** 문의글 상세보기 
+	 *
+	 */
 	@Override
 	public Inquiry selectInquiry(int inquiryNum) {
 		return iDao.selectInquiry(inquiryNum);
+	}
+
+	/** 문의글 삭제하기 
+	 *
+	 */
+	@Override
+	public int deleteInquiry(int inquiryNum) {
+		return iDao.deleteInquiry(inquiryNum);
 	}
 }
