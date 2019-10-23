@@ -86,6 +86,24 @@ public class CreatorDao {
 	}
 	
 	
+	public ArrayList<Creator> awaitSelectList() {
+		return (ArrayList)sqlSession.selectList("creatorMapper.awaitSelectList");
+	}
 	
+	public int allowCreator(int creNum) {
+		return sqlSession.update("creatorMapper.allowCreator", creNum);
+	}
+	
+	public int rejectCreator(int creNum) {
+		return sqlSession.update("creatorMapper.rejectCreator", creNum);
+	}
+	
+	public ArrayList<Creator> creSelectList() {
+		return (ArrayList)sqlSession.selectList("creatorMapper.creSelectList");
+	}
+	
+	public CreatorAttachment selectMyProFile(int creNum) {
+		return sqlSession.selectOne("creatorMapper.selectMyProFile", creNum);
+	}
 
 }

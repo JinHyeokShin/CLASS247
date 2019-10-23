@@ -3,6 +3,7 @@ package com.ourcompany.class247.creator.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ourcompany.class247.creator.model.service.CreatorService;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
+import com.ourcompany.class247.member.model.service.MemberService;
 import com.ourcompany.class247.member.model.vo.Member;
 
 @SessionAttributes("creator")
@@ -28,6 +30,9 @@ public class CreatorController {
 	
 	@Autowired
 	private CreatorService creService;
+	
+	@Autowired
+	private MemberService mService;
 	
 	
 	/** 크리에이터 메인페이지로 이동
@@ -168,6 +173,17 @@ public class CreatorController {
 	}
 	
 	
+	@RequestMapping("aAwaitCreatorList.do")
+	public ModelAndView aSelectList() {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		ArrayList<Creator> list = creService.awaitSelectList();
+		
+		mv.addObject("list", list).setViewName("admin/creator/awaitCreatorList");
+				
+		return mv;
+	}
 	/** 5. 크리에이터 정보 수정
 	 * 
 	 */
@@ -190,6 +206,32 @@ public class CreatorController {
 		return mv;
 	}
 	
+	@RequestMapping("aAwaitCreatorDetail.do")
+	public ModelAndView aCreatorDetail(ModelAndView mv, Creator creator) {
+		
+		Member m = mService.selectMember(creator.getMemNum());
+		
+		ArrayList<CreatorAttachment> craList = creService.selectCreatorAttachmentList(creator.getCreNum());
+		
+		mv.addObject("cre", creator).addObject("craList", craList).addObject("m", m).setViewName("admin/creator/awaitCreatorDetail");
+		
+		return mv;
+		
+	}
+	
+	@RequestMapping("aApprovalCreator.do")
+	public String aApprovalCreator(int creNum) {
+		
+		int result = creService.allowCreator(creNum);
+		
+		if(result > 0 ) {
+		
+			return "redirect:aAwaitCreatorList.do";
+		}else {
+			return "common/errorPage";
+		}
+
+	}
 	
 	/** 해당 크리에이터의 클래스가 존재하는지 확인하는 서비스 
 	 * @param request
@@ -206,7 +248,32 @@ public class CreatorController {
 		} else {
 			return "fail";
 		}
+	
+	
 		
+	}
+	
+	@RequestMapping("aRejectCreator.do")
+	public String aRejectCourse(int creNum) {
+		
+		int result = creService.rejectCreator(creNum);
+		
+		if(result > 0 ) {
+		
+			return "redirect:aAwaitCreatorList.do";
+		}else {
+			return "common/errorPage";
+		}
+	}
+	
+	@RequestMapping("aCreatorList.do")
+	public ModelAndView aCreatorList(ModelAndView mv) {
+		
+		ArrayList<Creator> list = creService.creSelectList();
+		
+		mv.addObject("list", list).setViewName("admin/creator/creatorList");
+		
+		return mv;
 	}
 	
 	@RequestMapping("deleteCreator.do")

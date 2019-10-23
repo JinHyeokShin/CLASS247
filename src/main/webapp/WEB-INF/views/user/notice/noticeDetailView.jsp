@@ -62,7 +62,6 @@
 		</div>
 		<br><br>
 		
-<!-- 	 댓글 등록 부분 
 		<table align="center" width="500" border="1" cellspacing="0">
 			<tr>
 				<td><textarea cols="55" rows="3" id="rContent"></textarea></td>
@@ -71,7 +70,7 @@
 		</table>
 		
 		
-		댓글 목록 부분
+<!-- 		댓글 목록 부분
 		<table align="center" width="500" border="1" cellspacing="0" id="rtb">
 		<thead>
 			<tr>
@@ -84,8 +83,7 @@
 			</tr>
 		</tbody>
 		</table> -->
-		
-<!-- 		<script>
+		 		<script>
 			$(function(){
 				getReplyList();
 			},10000);
@@ -115,7 +113,7 @@
 			function getReplyList(){
 				$.ajax({
 					url:"rlist.do",
-					data:{ bId : ${b.bId} },
+					data:{ nId : ${n.nId} },
 					dataType:"json",
 					success:function(data){
 						$("#rCount").text("댓글 (" + data.length + ")");

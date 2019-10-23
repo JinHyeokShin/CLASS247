@@ -50,6 +50,9 @@
 				    position: relative;
 				    top: 0;
 				}
+				a img{
+					padding:10px;
+				}
 	        </style>
         </head>
 
@@ -87,9 +90,9 @@
             position: fixed; /* Stay in place */
             z-index: 1; /* Sit on top */
             left: 0;
-            top: 0;
+            top: -200px;
             width: 100%; /* Full width */
-            height: 100%; /* Full height */
+            height: 150%; /* Full height */
             overflow: auto; /* Enable scroll if needed */
             background-color: rgb(0,0,0); /* Fallback color */
             background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
@@ -123,7 +126,7 @@
 	        table td input{
 	        	width:100%;
 	        }
-                
+           
             </style>
         </head>
 
@@ -153,8 +156,12 @@
                                        <!--  <li style="margin-right : 60px;">
                                             <button class="btn btn_1 primary small button-image" type="button" id="myBtn"><i class="ti-search" ></i></button>
                                         </li> -->
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="noticeListView.do">공지사항</a>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">공지사항</a>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="noticeListView.do">공지사항</a>
+                                                <a class="dropdown-item" href="userFaqListView.do">자주 묻는 질문</a>
+                                            </div>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="introduce.do" margin-top="10px">서비스 소개</a>
@@ -207,8 +214,8 @@
 			 	<!-- Modal content -->
 		      	<div class="modal-content">
 			        <span class="close">&times;</span>                                                               
-        		<form action=""> <!-- 검색하기 주소로 이동  -->
-			        <table width="100%" align="center">
+        		<form action="searchmodal.do"> <!-- 검색하기 주소로 이동  -->
+			        <table width="100%" align="center" class="covera">
 			        	<tr><td><h2 align="left">검색하기</h2></td></tr>
 			        	<tr>
 			        		<td></td>
@@ -218,24 +225,91 @@
 			        	</tr>
 						<tr><td colspan="2"><h2  align="left">카테고리별 검색</h2></td></tr>
 			        	<tr>
-			        		<td colspan="5"><a href="#"><img src="resources/user/img/categoryImg/signiture.png"></a></td>
+			        		<td colspan="5">
+				        		<div class="valueCheck">
+				        			<input type="hidden" name="categoryNum" value="8">
+					        		<img src="resources/user/img/logo.png">
+					        		<h3 style="color:black;">시그니쳐</h3>
+				        		</div>
+			        		</td>
 			        	</tr>
 				        <tr>
-				        	<td><a href="#"><img src="resources/user/img/categoryImg/crafts.png">&nbsp;</a></td>
-				        	<td><a href="#"><img src="resources/user/img/categoryImg/designdevelopment.png">&nbsp;</a></td>
-				        	<td><a href="#"><img src="resources/user/img/categoryImg/designdevelopment.png">&nbsp;</a></td>
-				        	<td><a href="#"><img src="resources/user/img/categoryImg/digitaldrawing.png">&nbsp;</a></td>
-				        	<td><a href="#"><img src="resources/user/img/categoryImg/lifestyle.png"></a>&nbsp;</td>
+				        	<td style="align:center;">
+					        	<div class="valueCheck">
+					        		<input type="hidden" name="categoryNum" value="1">
+						        	<img src="resources/user/img/categoryImg/crafts.png">
+						        	<h5 style="color:black;">공예</h5>
+				        		</div>
+				        	</td>
+				        	<td>
+					        	<div class="valueCheck">
+					        		<input type="hidden" name="categoryNum" value="2">
+						        	<img src="resources/user/img/categoryImg/design.png">
+						        	<h5 style="color:black;">디자인</h5>
+					        	</div>
+				        	</td>
+				        	<td>
+					        	<div class="valueCheck">
+				        			<input type="hidden" name="categoryNum" value="3">
+						        	<img src="resources/user/img/categoryImg/development.png">
+						        	<h5 style="color:black;">개발</h5>
+					        	</div>
+				        	</td>
+				        	<td>
+					        	<div class="valueCheck">
+					        		<input type="hidden" name="categoryNum" value="4">
+						        	<img src="resources/user/img/categoryImg/digitaldrawing.png">
+						        	<h5 style="color:black;">디지털 드로잉</h5>
+					        	</div>
+				        	</td>
+				        	<td>
+					        	<div class="valueCheck">
+					        		<input type="hidden" name="categoryNum" value="5">
+						        	<img src="resources/user/img/categoryImg/lifestyle.png">
+						        	<h5 style="color:black;">라이프 스타일</h5>
+					        	</div>
+				        	</td>
 				        </tr>
 				        <tr>
-				        	<td><a href="#"><img src="resources/user/img/categoryImg/art.png"></a></td>
-				        	<td><a href="#"><img src="resources/user/img/categoryImg/camera.png"></a></td>
-				        	<td><a href="#"><img src="resources/user/img/categoryImg/food.png"></a></td>
-				        	<td><a href="#"><img src="resources/user/img/categoryImg/music.png"></a></td>
-				        	<td><a href="#"><img src="resources/user/img/categoryImg/career.png"></a></td>
+				        	<td>
+				        		<div class="valueCheck">
+				        		<input type="hidden" name="categoryNum" value="6">
+					        	<img src="resources/user/img/categoryImg/art.png">
+					        	<h5 style="color:black;">미술</h5>
+				        	</div>
+				        	</td>
+				        	<td>
+					        	<div class="valueCheck">
+					        		<input type="hidden" name="categoryNum" value="7">
+						        	<img src="resources/user/img/categoryImg/camera.png">
+						        	<h5 style="color:black;">사진, 영상</h5>
+					        	</div>
+				        	</td>
+				        	<td>
+					        	<div class="valueCheck">
+					        		<input type="hidden" name="categoryNum" value="9">
+						        	<img src="resources/user/img/categoryImg/food.png">
+						        	<h5 style="color:black;">요리, 음료</h5>
+					        	</div>
+				        	</td>
+				        	<td>
+					        	<div class="valueCheck">
+					        		<input type="hidden" name="categoryNum" value="10">
+						        	<img src="resources/user/img/categoryImg/music.png">
+						        	<h5 style="color:black;">음악</h5>
+					        	</div>
+				        	</td>
+				        	<td>
+					        	<div class="valueCheck">
+					        		<input type="hidden" name="categoryNum" value="11">
+						        	<img src="resources/user/img/categoryImg/career.png">
+						        	<h5 style="color:black;">커리어</h5>
+					        	</div>
+				        	</td>
 				        </tr>
 			        </table>
 			        </form>
+
 			      </div>
 			 
 			    </div>
@@ -253,6 +327,7 @@
 	                btn.onclick = function() {
 	                	 $("html, body").addClass("not_scroll");
 	                    modal.style.display = "block";
+	                    $("#search").focus();
 	                }
 	         
 	                // When the user clicks on <span> (x), close the modal
@@ -305,7 +380,18 @@
             <script src="resources/user/js/waypoints.min.js"></script>
             <!-- custom js -->
             <script src="resources/user/js/custom.js"></script>
+		<script>
+		$(function(){
+        	
+        	$(".valueCheck").click(function(){
+        		var categoryNum = $(this).children().eq(0).val();
+  
+        		console.log(categoryNum);
+        		location.href="searchCategory.do?categoryNum="+categoryNum;
+        	});
 
+        });
+		</script>
         </body>
 
         </html>

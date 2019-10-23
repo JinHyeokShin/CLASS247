@@ -94,26 +94,8 @@
                         <div class="tab-content" >    
                             <div class="tab-pane fade show active" id="Objectives">
                                 <h4 class="title_top">Objectives</h4>
-                            When you enter into any new area of science, you almost always find yourself with a
-                            baffling new language of
-                            technical terms to learn before you can converse with the experts. This is certainly
-                            true in astronomy both in
-                            terms of terms that refer to the cosmos and terms that describe the tools of the trade,
-                            the most prevalent
-                            being the telescope.
-                            <br>
-                            <br>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore
-                            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut aliquip ex ea
-                            commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum. Lorem ipsum dolor sit
-                            amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim
-                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                            commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit esse cillum.
+                           	
+                            
                         </div>
                         <!-- 패키지    -->
                         <!-- 크리에이터 -->
@@ -192,25 +174,25 @@
                             <li>
                                 <a class="justify-content-between d-flex">
                                     <p>Trainer’s Name</p>
-                                    <span class="color"></span>
+                                    <span class="color">${ c.creNum }</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>Title </p>
-                                    <span></span>
+                                    <span>${ c.courseTitle }</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>Category</p>
-                                    <span></span>
+                                    <span>${ c.categoryName}</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>Course Fee </p>
-                                    <span></span>
+                                    <span>${ c.coursePrice }+${c.courseMaterialPrice }</span>
                                 </a>
                             </li>
                             <li>
@@ -220,11 +202,56 @@
                                 </a>
                             </li>
 							  <li>
-                                <a class="justify-content-between d-flex" href="#">
+                                <a cl ass="justify-content-between d-flex" href="#">
                                     
-                                    <span><input type="image" src="resources/creator/images/love1.png" style="background-size: 30px;" alt=""></span>
-                                    
+                                    <span> <input type="image" src="resources/creator/images/love1.png" style="background-size: 30px;" onclick="return validate();"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <span> <input type="image" src="resources/creator/images/love.png" style="background-size: 30px;" onclick="return validate();"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                   <input type="hidden" id="loveButton" value="0">
+                                   <script>
+									$(function(){
+										$("#listArea").click(function(){
+											var bId=$(this).parent().children().eq(0).text();
+											location.href="detail.bo?bId="+bId;
+										});
+									});
+								   </script>
+                                      <script>
+                                      function validate(){
+                              			// 아이디 중복체크 여부
+                              			if($("#loveButton").val() == 0){ // 현재 아이디 사용 불가능
+                              				
+                              				alert("사용가능한 아이디를 입력해주세요!");
+                              				$("#userId").focus();
+                              				
+                              				return false; // submit 기능 안되게 
+                              			}else{ // 사용 가능
+                              				return true;
+                              			}
+                              		}
+                                      $.ajax({
+                      					url:"love.do",
+                      					data:{id:userId},
+                      					type:"post",
+                      					success:function(data){ // data에는 응답데이터 담김
+                      						
+                      						if(data == "ok"){ // 사용가능
+                      							$(".error").hide();
+                      							$(".ok").show();
+                      							$("#idDuplicateCheck").val(1);
+                      							
+                      						}else{ // 사용불가능
+                      							$(".ok").hide();
+                      							$(".error").show();
+                      							$("#idDuplicateCheck").val(0);
+                      						}
+                      					},
+                      					error:function(){
+                      						console.log("서버와의 통신 실패");
+                      					}
+                      				});
+                                      </script>
                                       <span>
+                            
                                         <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
                                         <script type="text/javascript">
                                         new ShareNaver.makeButton({"type": "c"});
@@ -242,9 +269,7 @@
 
                                         <script>
                                         $(document).ready(function(){
-                                            var linkString="sms";
-                                            linkString += "?body=이 블로그 참고하세요. https://ojava.tistory.com";
-
+                                          
                                             $("#btnSendSms").on("click",function(){
                                                 location.href=linkString;
 
@@ -268,7 +293,11 @@
 							
 
                         </ul>
-                        <a href="#" class="btn_1 d-block">수강하기</a>
+	                        <c:url  value="coBuy.do" var="coBuy">
+								<c:param name="courseNum" value="${ co.courseNum }"/>
+								<c:param name="courseKind" value="${ co.courseKind}"/>
+							</c:url>		
+                        	<a href="${ coBuy }" class="btn_1 d-block">수강하기</a>
                     </div>
 
                     <!-- 레이팅 -->

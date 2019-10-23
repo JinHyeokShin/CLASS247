@@ -8,6 +8,8 @@ public class Notice {
 	private int memNum;				//회원번호
 	private String noticeTitle;		//공지사항제목
 	private String noticeContent;	//공지사항내용
+	private String noticePath;		//공지사항경로
+	private String noticeFileName;	//공지사항사진
 	private int noticeCount;		//공지사항조회수
 	private Date noticeEnrollDate;	//작성날짜
 	private Date noticeModifyDate;	//수정날짜
@@ -17,19 +19,20 @@ public class Notice {
 		
 	}
 
-	public Notice(int noticeNum, int memNum, String noticeTitle, String noticeContent, int noticeCount,
-			Date noticeEnrollDate, Date noticeModifyDate, String noticeStatus) {
+	public Notice(int noticeNum, int memNum, String noticeTitle, String noticeContent, String noticePath,
+			String noticeFileName, int noticeCount, Date noticeEnrollDate, Date noticeModifyDate, String noticeStatus) {
 		super();
 		this.noticeNum = noticeNum;
 		this.memNum = memNum;
 		this.noticeTitle = noticeTitle;
 		this.noticeContent = noticeContent;
+		this.noticePath = noticePath;
+		this.noticeFileName = noticeFileName;
 		this.noticeCount = noticeCount;
 		this.noticeEnrollDate = noticeEnrollDate;
 		this.noticeModifyDate = noticeModifyDate;
 		this.noticeStatus = noticeStatus;
 	}
-
 
 	public int getNoticeNum() {
 		return noticeNum;
@@ -61,6 +64,22 @@ public class Notice {
 
 	public void setNoticeContent(String noticeContent) {
 		this.noticeContent = noticeContent;
+	}
+
+	public String getNoticePath() {
+		return noticePath;
+	}
+
+	public void setNoticePath(String noticePath) {
+		this.noticePath = noticePath;
+	}
+
+	public String getNoticeFileName() {
+		return noticeFileName;
+	}
+
+	public void setNoticeFileName(String noticeFileName) {
+		this.noticeFileName = noticeFileName;
 	}
 
 	public int getNoticeCount() {
@@ -98,10 +117,9 @@ public class Notice {
 	@Override
 	public String toString() {
 		return "Notice [noticeNum=" + noticeNum + ", memNum=" + memNum + ", noticeTitle=" + noticeTitle
-				+ ", noticeContent=" + noticeContent + ", noticeCount=" + noticeCount + ", noticeEnrollDate="
-				+ noticeEnrollDate + ", noticeModifyDate=" + noticeModifyDate + ", noticeStatus=" + noticeStatus + "]";
+				+ ", noticeContent=" + noticeContent + ", noticePath=" + noticePath + ", noticeFileName="
+				+ noticeFileName + ", noticeCount=" + noticeCount + ", noticeEnrollDate=" + noticeEnrollDate
+				+ ", noticeModifyDate=" + noticeModifyDate + ", noticeStatus=" + noticeStatus + "]";
 	}
-	
-	
 	
 }

@@ -2,14 +2,18 @@ package com.ourcompany.class247.course.model.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
+import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
+import com.ourcompany.class247.course.model.vo.SingleCourse;
 
 @Repository("coDao")
 public class CourseDao {
@@ -79,15 +83,7 @@ public class CourseDao {
 		return sqlSession.selectOne("courseMapper.selectCover", courseNum);
 	}
 
-	public Course selectCourse(int courseNum, String courseKind) {
-		Course co;
-		if (courseKind.equals("online")) { // 온라인 클래스일경우
-			co = sqlSession.selectOne("courseMapper.selectOnline", courseNum);
-		} else { // 오프라인클래스일 경우
-			co = sqlSession.selectOne("courseMapper.selectOffline", courseNum);
-		}
-		return co;
-	}
+
 
 	// 관리자용
 	public ArrayList<Course> selectAwaitCourseList() {
@@ -114,19 +110,115 @@ public class CourseDao {
 		return sqlSession.update("courseMapper.allowCourse", courseNum);
 	}
 
-	// 김은
-	public ArrayList<Course> selectList() {
-		return (ArrayList) sqlSession.selectList("courseMapper.selectList");
+
+	
+	
+	
+	
+	
+	
+	public int rejectCourse(int courseNum) {
+		
+		return sqlSession.update("courseMapper.rejectCourse", courseNum);
+	}
+	
+	
+	//김은기
+	public ArrayList<Course> selectList(){
+		return (ArrayList)sqlSession.selectList("courseMapper.selectList");
+	}
+	
+	
+	public int countLove(int courseNum) {
+		return sqlSession.selectOne("courseMapper.countLove", courseNum);
+	}
+	
+	public Course selectCourse(int courseNum) {
+		return sqlSession.selectOne("courseMapper.selectCourse", courseNum);
+	}
+	
+	
+	public Course selectCourse(int courseNum, String courseKind) {
+	      Course co;
+	      if(courseKind.equals("online")) { //온라인 클래스일경우
+	         co = sqlSession.selectOne("courseMapper.selectOnline", courseNum);
+	      } else { //오프라인클래스일 경우 
+	         co = sqlSession.selectOne("courseMapper.selectOffline", courseNum);
+
+		  }
+			 return co;
+	}
+	
+	public ArrayList<Love> selectLove() {
+		
+		return (ArrayList)sqlSession.selectList("courseMapper.selectLove");
+	}
+	
+	public ArrayList<SingleCourse> awaitSelectList() {
+		
+		return (ArrayList)sqlSession.selectList("courseMapper.awaitCourseList");
+	
+	
+	}
+	
+	public ArrayList<SingleCourse> selectMyTakeCourse(int memNum) {
+		
+		return (ArrayList)sqlSession.selectList("courseMapper.selectMyTakeCourse", memNum);
+	}
+	
+	
+	
+	//사용자 단
+	
+	
+	public int getListCount() {
+
+		return sqlSession.selectOne("courseMapper.getListCount");
+	}
+	
+	public ArrayList<Love> lovelist(int memNum, PageInfo pi) {
+		
+
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("courseMapper.selectLove", memNum, rowBounds );
+
+	}
+	
+	public int deleteLove(Love i) {
+		
+		return sqlSession.delete("courseMapper.deleteLove", i );
+		
 	}
 
-	/*
-	 * public Course selectCourse(int cId) { return
-	 * sqlSession.selectOne("courseMapper.selectCourse", cId); }
-	 * 
-	 * public Course selectCourse(int courseNum, String courseKind) { Course co;
-	 * if(courseKind.equals("online")) { //온라인 클래스일경우 co =
-	 * sqlSession.selectOne("courseMapper.selectOnline", courseNum); } else {
-	 * //오프라인클래스일 경우 co = sqlSession.selectOne("courseMapper.selectOffline",
-	 * courseNum); } return co; }
-	 */
+		public Course coursePayment(int courseNum, String courseKind) {
+	      Course co;
+	      if(courseKind.equals("online")) { //온라인 클래스일경우
+	         co = sqlSession.selectOne("courseMapper.selectOnlinePayment", courseNum);
+	      } else { //오프라인클래스일 경우 
+	         co = sqlSession.selectOne("courseMapper.selectOfflinePayment", courseNum);
+	      }
+	     
+	      return co;
+	   }
+//	public Course coursePayment(int courseNum, String courseKind) {
+//	      Course co;
+//	      if(courseKind.equals("online")) { //온라인 클래스일경우
+//	         co = sqlSession.insert("courseMapper.selectOnlinePayment", courseNum);
+//	      } else { //오프라인클래스일 경우 
+//	         co = sqlSession.insert("courseMapper.selectOfflinePayment", courseNum);
+//	      }
+//	     
+//	      return co;
+//	   }
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> modalsearchList(String search){
+		return (ArrayList)sqlSession.selectList("courseMapper.modalsearchList",search);
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> modalsearchCategory(int categoryNum){
+		return (ArrayList)sqlSession.selectList("courseMapper.modalsearchCategory",categoryNum);
+	}
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.notice.model.dao.NoticeDao;
+import com.ourcompany.class247.notice.model.vo.FAQ;
 import com.ourcompany.class247.notice.model.vo.Notice;
 
 @Service("nService")
@@ -35,6 +36,16 @@ public class NoticeServiceImpl implements NoticeService{
 		}else {
 			return null;
 		}
+	}
+
+	@Override
+	public int getUserFaqListCount() {
+		return nDao.getUserFaqListCount();
+	}
+
+	@Override
+	public ArrayList<FAQ> selectUserFaqList(PageInfo pi) {
+		return nDao.selectUserFaqList(pi);
 	}
 
 }
