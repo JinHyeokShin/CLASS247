@@ -163,8 +163,8 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public ArrayList<Course> modalsearchCategory(int categoryNum) {
-		return coDao.modalsearchCategory(categoryNum);
+	public ArrayList<Course> modalsearchCategory(String categoryName) {
+		return coDao.modalsearchCategory(categoryName);
 	}
 	
 	@Override
@@ -201,8 +201,63 @@ public class CourseServiceImpl implements CourseService {
 	
 	@Override
 	public int deleteLove(Love i) {
-		// TODO Auto-generated method stub
 		return coDao.deleteLove(i);
+	}
+
+
+	@Override
+	public ArrayList<Course> categoryCraftsList() {
+		return coDao.categoryCraftsList();
+	}
+
+	@Override
+	public ArrayList<Course> categoryDesignList() {
+		return coDao.categoryDesignList();
+	}
+
+	@Override
+	public ArrayList<Course> categoryDevelopList() {
+		return coDao.categoryDevelopList();
+	}
+
+	@Override
+	public ArrayList<Course> categoryDigitalList() {
+		return coDao.categoryDigitalList();
+	}
+
+	@Override
+	public ArrayList<Course> categoryLifeList() {
+		return coDao.categoryLifeList();
+	}
+
+	@Override
+	public ArrayList<Course> categoryArtList() {
+		return coDao.categoryArtList();
+	}
+
+	@Override
+	public ArrayList<Course> categoryCameraList() {
+		return coDao.categoryCameraList();
+	}
+
+	@Override
+	public ArrayList<Course> categorySigitureList() {
+		return coDao.categorySigitureList();
+	}
+
+	@Override
+	public ArrayList<Course> categoryFoodList() {
+		return coDao.categoryFoodList();
+	}
+
+	@Override
+	public ArrayList<Course> categoryMusicList() {
+		return coDao.categoryMusicList();
+	}
+
+	@Override
+	public ArrayList<Course> categoryCareerList() {
+		return coDao.categoryCareerList();
 	}
 
 

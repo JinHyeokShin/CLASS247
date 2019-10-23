@@ -75,11 +75,23 @@ public interface CourseService {
 //	Course coursePayment(int courseNum,String courseKind);
 	ArrayList<Course> modalsearchList(String search);
 	
-	ArrayList<Course> modalsearchCategory(int categoryNum);
+	ArrayList<Course> modalsearchCategory(String categoryName);
 
 	Online selectOnline(int courseNum);
 
 	Course creSelectCourse(int courseNum, String courseKind);
 	
+	/* categoryList.do에 적용되는 서비스 */
+	ArrayList<Course> categoryCraftsList();
+	ArrayList<Course> categoryDesignList();
+	ArrayList<Course> categoryDevelopList();
+	ArrayList<Course> categoryDigitalList();
+	ArrayList<Course> categoryLifeList();
+	ArrayList<Course> categoryArtList();
+	ArrayList<Course> categoryCameraList();
+	ArrayList<Course> categorySigitureList();
+	ArrayList<Course> categoryFoodList();
+	ArrayList<Course> categoryMusicList();
+	ArrayList<Course> categoryCareerList();
 
 }

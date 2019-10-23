@@ -214,7 +214,7 @@
 			 	<!-- Modal content -->
 		      	<div class="modal-content">
 			        <span class="close">&times;</span>                                                               
-        		<form action="searchmodal.do"> <!-- 검색하기 주소로 이동  -->
+        		<form action="searchmodal.do" method="post"> <!-- 검색하기 주소로 이동  -->
 			        <table width="100%" align="center" class="covera">
 			        	<tr><td><h2 align="left">검색하기</h2></td></tr>
 			        	<tr>
@@ -227,7 +227,7 @@
 			        	<tr>
 			        		<td colspan="5">
 				        		<div class="valueCheck">
-				        			<input type="hidden" name="categoryNum" value="8">
+				        			<input type="hidden" name="categoryName" value="시그니처">
 					        		<img src="resources/user/img/logo.png">
 					        		<h3 style="color:black;">시그니쳐</h3>
 				        		</div>
@@ -236,35 +236,35 @@
 				        <tr>
 				        	<td style="align:center;">
 					        	<div class="valueCheck">
-					        		<input type="hidden" name="categoryNum" value="1">
+					        		<input type="hidden" name="categoryName" value="공예">
 						        	<img src="resources/user/img/categoryImg/crafts.png">
 						        	<h5 style="color:black;">공예</h5>
 				        		</div>
 				        	</td>
 				        	<td>
 					        	<div class="valueCheck">
-					        		<input type="hidden" name="categoryNum" value="2">
+					        		<input type="hidden" name="categoryName" value="디자인">
 						        	<img src="resources/user/img/categoryImg/design.png">
 						        	<h5 style="color:black;">디자인</h5>
 					        	</div>
 				        	</td>
 				        	<td>
 					        	<div class="valueCheck">
-				        			<input type="hidden" name="categoryNum" value="3">
+				        			<input type="hidden" name="categoryName" value="개발">
 						        	<img src="resources/user/img/categoryImg/development.png">
 						        	<h5 style="color:black;">개발</h5>
 					        	</div>
 				        	</td>
 				        	<td>
 					        	<div class="valueCheck">
-					        		<input type="hidden" name="categoryNum" value="4">
+					        		<input type="hidden" name="categoryName" value="디지털 드로잉">
 						        	<img src="resources/user/img/categoryImg/digitaldrawing.png">
 						        	<h5 style="color:black;">디지털 드로잉</h5>
 					        	</div>
 				        	</td>
 				        	<td>
 					        	<div class="valueCheck">
-					        		<input type="hidden" name="categoryNum" value="5">
+					        		<input type="hidden" name="categoryName" value="라이프 스타일">
 						        	<img src="resources/user/img/categoryImg/lifestyle.png">
 						        	<h5 style="color:black;">라이프 스타일</h5>
 					        	</div>
@@ -273,35 +273,35 @@
 				        <tr>
 				        	<td>
 				        		<div class="valueCheck">
-				        		<input type="hidden" name="categoryNum" value="6">
+				        		<input type="hidden" name="categoryName" value="미술">
 					        	<img src="resources/user/img/categoryImg/art.png">
 					        	<h5 style="color:black;">미술</h5>
 				        	</div>
 				        	</td>
 				        	<td>
 					        	<div class="valueCheck">
-					        		<input type="hidden" name="categoryNum" value="7">
+					        		<input type="hidden" name="categoryName" value="사진, 영상">
 						        	<img src="resources/user/img/categoryImg/camera.png">
 						        	<h5 style="color:black;">사진, 영상</h5>
 					        	</div>
 				        	</td>
 				        	<td>
 					        	<div class="valueCheck">
-					        		<input type="hidden" name="categoryNum" value="9">
+					        		<input type="hidden" name="categoryName" value="요리, 음료">
 						        	<img src="resources/user/img/categoryImg/food.png">
 						        	<h5 style="color:black;">요리, 음료</h5>
 					        	</div>
 				        	</td>
 				        	<td>
 					        	<div class="valueCheck">
-					        		<input type="hidden" name="categoryNum" value="10">
+					        		<input type="hidden" name="categoryName" value="음악">
 						        	<img src="resources/user/img/categoryImg/music.png">
 						        	<h5 style="color:black;">음악</h5>
 					        	</div>
 				        	</td>
 				        	<td>
 					        	<div class="valueCheck">
-					        		<input type="hidden" name="categoryNum" value="11">
+					        		<input type="hidden" name="categoryName" value="커리어">
 						        	<img src="resources/user/img/categoryImg/career.png">
 						        	<h5 style="color:black;">커리어</h5>
 					        	</div>
@@ -384,10 +384,10 @@
 		$(function(){
         	
         	$(".valueCheck").click(function(){
-        		var categoryNum = $(this).children().eq(0).val();
+        		var categoryName = $(this).children().eq(0).val();
   
-        		console.log(categoryNum);
-        		location.href="searchCategory.do?categoryNum="+categoryNum;
+        		console.log(categoryName);
+        		location.href="searchCategory.do?categoryName="+categoryName;
         	});
 
         });
