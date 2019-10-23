@@ -121,7 +121,7 @@
                         <div class="row">
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
-                                    <h2 class="number">368</h2>
+                                    <h2 class="number">${totalStuCount}<span style="font-size:15px">명</span></h2>
                                     <span class="desc">total number of 
                                         students</span>
                                     <div class="icon">
@@ -131,7 +131,7 @@
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
-                                    <h2 class="number">2</h2>
+                                    <h2 class="number">${classCount}</h2>
                                     <span class="desc">current class</span>
                                     <div class="icon">
                                         <i class="zmdi zmdi-book"></i>
@@ -156,7 +156,7 @@
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item">
-                                    <h2 class="number">&#8361;160,386</h2>
+                                    <h2 class="number">&#8361;${totalAmount}</h2>
                                     <span class="desc">total earnings</span>
                                     <div class="icon">
                                         <i class="zmdi zmdi-money"></i>

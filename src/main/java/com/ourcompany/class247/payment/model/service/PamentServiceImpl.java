@@ -26,4 +26,12 @@ private PaymentDao pDao;
 		return pDao.payofflist(memNum);
 	}
 
+	/** 크리에이터센터 총 누적수익 구해오기 
+	 *
+	 */
+	@Override
+	public int getCreAmount(int creNum) {
+		return pDao.getCreAmount(creNum);
+	}
+
 }

@@ -31,6 +31,9 @@ public interface CourseService {
 	//-------------------- 크리에이터용 
 	//Course selectCourse(int courseNum, String courseKind);
 	
+	//크리에이터센터 - 승인대기중인 목록 
+	ArrayList<Course> selectAwaitByCreNum(int creNum);
+	
 	CourseAttachment selectCover(int courseNum);
 	
 	//--------------------- 관리용
@@ -80,6 +83,12 @@ public interface CourseService {
 	Online selectOnline(int courseNum);
 
 	Course creSelectCourse(int courseNum, String courseKind);
+	
+	//크리에이터센터 - 클래스 수 
+	int getCourseCount(int creNum);
+	
+	//크리에이터 메인페이지에 띄울 클래스 3개 
+	ArrayList<Course> selectMyClass3(int creNum);
 	
 
 }

@@ -74,7 +74,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    
+                                    <c:if test="${ !empty studentList }">
                                     <c:forEach items="${ studentList }" var="s">
 	                                    <c:url value="stuDetail.do" var="stuDetail">
 	                                    	<c:param name="memNum" value="${s.memNum}"/>
@@ -119,8 +119,14 @@
 	                                                </div>
 	                                            </td>
 	                                        </tr>
-	                                        <tr class="spacer"></tr>
                                         </c:forEach>
+                                        </c:if>
+	                                        <tr class="spacer"></tr>
+                                         <c:if test="${ empty studentList }">
+			                                 <tr class="tr-shadow">
+				                                <td colspan='8' style="text-align:center"> 현재 수강중인 학생이 없습니다</td>
+				                             </tr>
+			                             </c:if>
                                     </tbody>
                                 </table>
                             </div>

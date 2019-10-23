@@ -10,4 +10,7 @@ public interface PaymentService {
 
 	ArrayList<Payment> payofflist(int memNum);
 
+	//크리에이터센터 총 누적수익 구해오기 
+	int getCreAmount(int creNum);
+
 }

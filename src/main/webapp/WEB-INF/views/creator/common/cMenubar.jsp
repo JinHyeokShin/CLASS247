@@ -64,13 +64,18 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="cMainView.do">
-                    <img src="<%= request.getContextPath() %>/resources/creator/images/icon/logo.png" alt="Class247" />
+	               <img src="<%= request.getContextPath() %>/resources/creator/images/icon/class247logo.png" alt="Class247" />
                 </a>
             </div>
             <div class="menu-sidebar2__content js-scrollbar1">
                 <div class="account2">
-                    <div class="image img-cir img-120">
-                        <img src="<%= request.getContextPath() %>/resources/creator/images/icon/may.jpg" alt="Meseon Han" />
+                    <div class="image img-cir img-120 creProfile">
+                    <c:if test="${ !empty creator.creNum }">
+	                    <img id="creProfile" src="<%= request.getContextPath() %>/resources/creator/creatorImages/${creProfile}" alt="Class247" />
+	                </c:if>
+	                <c:if test="${ empty creator.creNum }">
+	                	<img id="creProfile" src="<%= request.getContextPath() %>/resources/creator/creatorImages/basic.png">
+	                </c:if>
                     </div>
                     <h4 class="name">${ loginUser.memName }</h4>
                     <a href="logout.do">Logout</a>

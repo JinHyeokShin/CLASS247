@@ -106,4 +106,8 @@ public class CreatorDao {
 		return sqlSession.selectOne("creatorMapper.selectMyProFile", creNum);
 	}
 
+	public String getCreProfile(int creNum) {
+		return sqlSession.selectOne("creatorMapper.getCreProfile", creNum);
+	}
+
 }

@@ -89,6 +89,33 @@ public class CourseServiceImpl implements CourseService {
 	public CourseAttachment selectCover(int courseNum) {
 		return coDao.selectCover(courseNum);
 	}
+	
+	/** 승인 대기중인 클래스 
+	 *
+	 */
+	@Override
+	public ArrayList<Course> selectAwaitByCreNum(int creNum) {
+		return coDao.selectAwaitByCreNum(creNum);
+	}
+	
+	
+	/** 개강중인 클래스 수 
+	 *
+	 */
+	@Override
+	public int getCourseCount(int creNum) {
+		return coDao.getCourseCount(creNum);
+	}
+	
+	/** 크리에이터센터 메인화면에 띄울 클래스 3개 
+	 *
+	 */
+	@Override
+	public ArrayList<Course> selectMyClass3(int creNum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 	// --------------------- 관리자-------------------
 
@@ -204,6 +231,11 @@ public class CourseServiceImpl implements CourseService {
 		// TODO Auto-generated method stub
 		return coDao.deleteLove(i);
 	}
+
+
+
+
+
 
 
 

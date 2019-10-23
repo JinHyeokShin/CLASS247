@@ -66,7 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertMember" parameterType="Member" >
 		insert into member 
 		values(MEMBER_SEQ.NEXTVAL,#{memId},#{memPwd},#{memNickName},#{memName},#{memGender},
-				#{memPhone},#{memAddress}, null, null, default, default, sysdate, null)
+				#{memPhone},#{memAddress}, null, null, 'U', default, sysdate, null)
 	</insert>
 	
 	<!-- 3. 회원 정보 수정 -->

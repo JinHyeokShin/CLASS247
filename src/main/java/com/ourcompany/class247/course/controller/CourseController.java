@@ -194,15 +194,18 @@ public class CourseController {
 	public ModelAndView coManageView(HttpServletRequest request, ModelAndView mv) {
 		int creNum = ((Creator)request.getSession().getAttribute("creator")).getCreNum();
 		ArrayList<Course> list = coService.selectMyCoList(creNum);
+		//승인 대기중인 클래스 불러오기 
+		ArrayList<Course> awaitList = coService.selectAwaitByCreNum(creNum);
 		
 		
-		for (Course c : list) {
-			/* System.out.println(c); */
+		for (Course c : awaitList) {
+			System.out.println(c);
 		}
 		
 		ArrayList<CourseAttachment> coverList = coService.selectCoverList(creNum);
 
 		mv.addObject("list", list);
+		mv.addObject("awaitList", awaitList);
 		mv.addObject("coverList", coverList);
 		mv.setViewName("creator/course/coManagement");
 		 return mv;
@@ -250,6 +253,7 @@ public class CourseController {
 		Creator creator = (Creator)request.getSession().getAttribute("creator");
 		if(creator != null) {
 			request.getSession().removeAttribute("creator");
+			request.getSession().removeAttribute("creProfile");
 		}
 		
 		

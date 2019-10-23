@@ -73,6 +73,13 @@ public class CourseDao {
 		return onlineList;
 
 	}
+	
+	// 크리에이터 센터 - 승인 대기중인 클래스 목록 
+	public ArrayList<Course> selectAwaitByCreNum(int creNum) {
+		ArrayList<Course> awaitList = (ArrayList) sqlSession.selectList("courseMapper.selectAwaitByCreNum", creNum);
+		
+		return awaitList;
+	}
 
 	// 크리에이터센터 - 마이 클래스 커버사진 불러오기
 	public ArrayList<CourseAttachment> selectCoverList(int creNum) {
@@ -81,6 +88,17 @@ public class CourseDao {
 
 	public CourseAttachment selectCover(int courseNum) {
 		return sqlSession.selectOne("courseMapper.selectCover", courseNum);
+	}
+	
+	
+	
+	/** 개강중인 클래스 수 
+	 * @param creNum
+	 * @return
+	 */
+	public int getCourseCount(int creNum) {
+		return sqlSession.selectOne("courseMapper.getCourseCount", creNum);
+		
 	}
 
 
@@ -221,4 +239,7 @@ public class CourseDao {
 	public ArrayList<Course> modalsearchCategory(int categoryNum){
 		return (ArrayList)sqlSession.selectList("courseMapper.modalsearchCategory",categoryNum);
 	}
+
+
+
 }

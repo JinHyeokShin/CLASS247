@@ -41,7 +41,7 @@
                                         
                                         <!-- 문의사항이 없을 때  -->
                                         <c:if test="${ empty iList }">
-                                        	<tbody>
+                                        	<tbody style="text-align:center">
                                         		<tr>
                                         			<td colspan='5'> 등록된 문의 글이 없습니다.</td>
                                         		</tr>
@@ -51,8 +51,8 @@
                                         <!-- 문의사항이 있을 떄  -->
                                         <c:if test="${ !empty iList }">
                                         	<c:forEach items="${ iList }" var="i">
-		                                        <tbody id="inquiryTable">
-		                                            <tr>	
+		                                        <tbody>
+		                                            <tr id="inquiryTable">	
 		                                                <td>${i.inquiryNum}</td>
 		                                                <td>${i.inquiryTitle}</td>
 		                                                <td>${i.answerStatus}</td>
@@ -60,7 +60,7 @@
 		                                                <td>이름?</td>
 		                                            </tr>
 		                                            <c:if test="${i.answerStatus == 'Y' }">
-			                                            <tr>
+			                                            <tr class="test">
 				                                            <td><i class="fas fa-arrow-right" style="color:blue"></i></td>
 			                                                <td style="color:blue">답변이 완료되었습니다. </td>
 			                                                <td></td>
@@ -73,6 +73,7 @@
                                         </c:if>
                                     </table>          
                                 </div>
+                                 <c:if test="${ !empty iList }">
 			                     <div id="pagingBarArea" style="text-align:center">
 			                        <!-- 이전 -->
 									<c:if test="${ pi.currentPage eq 1}">
@@ -108,7 +109,7 @@
 										</c:url>
 										<a href="${ next }" class="btn btn-primary">다음</a>
 									</c:if>
-
+									</c:if>
 		                         </div>
 		                      </div>
 		                  </div>
@@ -120,14 +121,19 @@
             <script>
 	            $(function() {
 	            	$('#inquiryTable td').mouseenter(function() {
-	            		$(this).parent().css({"background":"darkgray"}, {"cursor":"pointer"});
+	            		$(this).parent().css({"background":"pink", "cursor":"pointer"});
 	            	}).mouseout(function() {
-	            		$(this).parent().css({"background":"black"});
+	            		$(this).parent().css({"background":"white"});
 	            	}).click(function() {
 	            		var num = $(this).parent().children().eq(0).text();
 	            		alert(num);
 	            		location.href='<%= request.getContextPath() %>/idetail.do?inquiryNum=' + num; 
 	            	})
+	            	
+	            	$('.test td').click(function(){
+	            		var num = $(this).parent().prev().children().eq(0).text();
+	            		location.href='<%= request.getContextPath() %>/idetail.do?inquiryNum=' + num;
+	            	});
 	            });
             </script>
 
