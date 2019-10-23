@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,6 +30,7 @@ import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 import com.ourcompany.class247.member.model.service.MemberService;
 import com.ourcompany.class247.member.model.vo.Member;
+import com.ourcompany.class247.review.model.vo.Review;
 
 @Controller
 public class CourseController {
@@ -248,7 +250,9 @@ public class CourseController {
 	public ModelAndView selectList(ModelAndView mv) {
 		ArrayList<Course> list = coService.selectList();
 		
+		
 		mv.addObject("list", list);
+			
 		mv.setViewName("home");
 		
 		return mv;
@@ -260,6 +264,34 @@ public class CourseController {
 	 * @param mv
 	 * @return
 	 */
+	@RequestMapping("codetail.do")
+	public ModelAndView courseDetail(int courseNum, ModelAndView mv, HttpServletRequest request) {
+		
+		Member loginUser=(Member)request.getSession().getAttribute("loginUser");
+		ArrayList<Review> rlist = coService.selectRlist(courseNum); 
+		
+		System.out.println(rlist);
+		boolean checkLove=false;
+		if(loginUser !=null) {
+			Love love= new Love(courseNum, loginUser.getMemNum());
+			
+			checkLove= coService.checkLove(love); 
+		}
+		Course c = coService.selectCourse(courseNum);
+		
+		if(c != null) {
+			mv.addObject("c", c)
+			.addObject("checkLove", checkLove).addObject("rlist", rlist)
+			  .setViewName("creator/course/userCourseDetail");
+			
+		}else {
+			mv.addObject("msg", "게시글 상세조회실패!")
+			  .setViewName("common/errorPage");
+		}
+		
+		return mv;
+		
+	}
 
 	
 	
@@ -344,6 +376,7 @@ public class CourseController {
 	
 	
 	
+	
 	/*
 	 * 
 	 * SingleCourse
@@ -361,10 +394,6 @@ public class CourseController {
 		
 		return mv;
 	}
-	
-	
-	
-	
 	
 	
 	@RequestMapping("mZzim.do")
@@ -392,25 +421,6 @@ public class CourseController {
 		return mv;
 	}
 
-	//	@RequestMapping("coBuy.do")
-//	public ModelAndView coursePayment(int courseNum,String courseKind, ModelAndView mv) {
-//		
-//		Course c = coService.coursePayment(courseNum,courseKind );
-//	
-//		System.out.println(c);
-//		if(c != null) {
-//			mv.addObject("c", c)
-//			  .setViewName("creator/course/userCourseDetail2");
-//			
-//		}else {
-//			mv.addObject("msg", "게시글 상세조회실패!")
-//			  .setViewName("common/errorPage");
-//		}
-//		
-//		return mv;
-//		
-//	}
-	
 	/**  검색창에서 텍스트로 검색하는 메소드
 	 * @param search
 	 * @param mv
@@ -435,7 +445,92 @@ public class CourseController {
 		return mv;
 		
 	}
-
+	@ResponseBody
+	@RequestMapping("insertLove.do")
+	public String insertLove(@RequestParam int memNum, @RequestParam int courseNum   ) {
 	
-
+		Love iLove=new Love(memNum, courseNum);
+		
+			int result = coService.insertLove(iLove);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "common/errorPage";
+		}
+		
+	}
+	@ResponseBody
+	@RequestMapping("cancelLove.do")
+	public String cancelLove(@RequestParam int memNum, @RequestParam int courseNum   ) {
+	
+		Love dLove=new Love(memNum, courseNum);
+		
+			int result = coService.cancelLove(dLove);
+		
+		if(result > 0) {
+			return "success";
+			
+		}else {
+			return "common/errorPage";
+		}
+		
+	}
+	
+	@RequestMapping("coBuy.do")
+	public ModelAndView coursePayment(HttpServletRequest request,int courseNum, String courseKind, ModelAndView mv) {
+		Course c;
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+		
+			if(loginUser ==null) {
+				mv.setViewName("user/member/loginForm");
+			}else {
+			
+			if(courseKind.equals("online")) {
+				 c = coService.selectOnline(courseNum);
+			}else {
+				 c = coService.selectOffline(courseNum);
+			}
+			System.out.print(c);
+			
+			if(c != null) {
+				mv.addObject("c", c)
+				.setViewName("creator/course/userCourseDetail2");
+				
+			}else {
+				mv.addObject("msg", "게시글 상세조회실패!")
+				.setViewName("common/errorPage");
+			}
+		}
+		
+		return mv;
+		
+	}
+	
+//	@RequestMapping("codetail.do")
+//	public ModelAndView courseDetail(int courseNum, ModelAndView mv, HttpServletRequest request) {
+//		
+//		Member loginUser=(Member)request.getSession().getAttribute("loginUser");
+//		boolean checkLove=false;
+//		if(loginUser !=null) {
+//			Love love= new Love(courseNum, loginUser.getMemNum());
+//			
+//			checkLove= coService.checkLove(love); 
+//		}
+//		Course c = coService.selectCourse(courseNum);
+//		
+//		if(c != null) {
+//			mv.addObject("c", c)
+//			.addObject("checkLove", checkLove)
+//			  .setViewName("creator/course/userCourseDetail");
+//			
+//		}else {
+//			mv.addObject("msg", "게시글 상세조회실패!")
+//			  .setViewName("common/errorPage");
+//		}
+//		
+//		return mv;
+//		
+//	}
 }
+

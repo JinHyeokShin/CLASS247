@@ -13,6 +13,7 @@ import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.review.model.vo.Review;
 
 @Service("coService")
 public class CourseServiceImpl implements CourseService{
@@ -78,11 +79,6 @@ public class CourseServiceImpl implements CourseService{
 	
 	//-------------------- 크리에이터 -------------------
 	
-	@Override
-	public Course selectCourse(int courseNum, String courseKind) {
-		return coDao.selectCourse(courseNum, courseKind);
-	
-	}
 	
 	@Override
 	public CourseAttachment selectCover(int courseNum) {
@@ -121,6 +117,7 @@ public class CourseServiceImpl implements CourseService{
 	@Override
 	public Course selectCourse(int courseNum) {
 		return coDao.selectCourse(courseNum);
+	}
 	public ArrayList<Course> selectList() {
 		
 		return coDao.selectList();
@@ -158,7 +155,7 @@ public class CourseServiceImpl implements CourseService{
 	public ArrayList<SingleCourse> awaitSelectList() {
 		
 		return coDao.awaitSelectList();
-	
+	}
 	
 	//사용자 단
 
@@ -180,6 +177,46 @@ public class CourseServiceImpl implements CourseService{
 		return coDao.deleteLove(i);
 	}
 
+	@Override
+	public Offline selectOffline(int courseNum) {
+		return coDao.selectOffline(courseNum);
+	}
+
+	@Override
+	public boolean checkLove(Love love) {
+		
+		return coDao.checkLove(love);
+	}
+
+	@Override
+	public int insertLove(Love iLove) {
+		
+		return coDao.insertLove(iLove);
+	}
+
+	@Override
+	public int cancelLove(Love dLove) {
+		
+		return coDao.cancelLove(dLove);
+	}
+
+	@Override
+	public Course coursePayment(int courseNum) {
+		
+		return coDao.coursePayment(courseNum);
+	}
+	// 수강페이지를 위한 온라인상세페이지
+	@Override
+	public Course selectOnline(int courseNum) {
+		return coDao.selectOnline(courseNum);
+	}
+
+	@Override
+	public ArrayList<Review> selectRlist(int courseNum) {
+		return coDao.selectRlist(courseNum);
+	}
+
+	
 
 	
 

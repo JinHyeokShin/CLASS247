@@ -84,9 +84,10 @@ public class MemberController {
 	 * @param m
 	 * @param model
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("login.do")
-	public ModelAndView loginMember(Member m, HttpServletRequest request) {
+	public ModelAndView loginMember(Member m, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		HttpSession session = request.getSession();
 		
@@ -98,6 +99,7 @@ public class MemberController {
 			
 			session.setAttribute("loginUser", loginUser);
 			System.out.println(session);
+//			PrintWriter out;
 			
 			if(loginUser.getMemType().equals("A") ) {
 				
@@ -105,6 +107,9 @@ public class MemberController {
 				
 			}else {
 				mv.setViewName("redirect:home.do");
+//				out = response.getWriter();
+//				out.println("<script>history.go(-2);</script>");
+//				out.flush();
 			}
 			
 		}else {
@@ -252,20 +257,7 @@ public class MemberController {
 		
 	}
 	
-	@RequestMapping("aMemberList.do")
-	public ModelAndView memberList() {
-		
-		ModelAndView mv = new ModelAndView();
-		
-		ArrayList<Member> list = mService.selectMemberList();
-		
-		mv.addObject("list", list).setViewName("admin/member/memberList");
 	
-
-		
-		return mv;
-		
-	}
 	
 	@RequestMapping("memDetail.do")
 	public ModelAndView memberDetail(int memNum) {

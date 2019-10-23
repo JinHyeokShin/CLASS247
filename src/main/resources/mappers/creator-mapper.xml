@@ -23,10 +23,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="craPath" column="cra_Path" />
 	</resultMap>
 	
-	<resultMap id="signleCreatorResultSet" type="Creator">
+	<resultMap id="singleCreatorResultSet" type="Creator">
 		<id property="creNum" column="cre_num"/>
 		<result property="memNum" column="mem_num"/>
-		<result property="mem_NickName" column="mem_nick_name"/>
+		<result property="memNickName" column="mem_nick_name"/>
 		<result property="introduction" column="introduction"/>
 		<result property="career" column="career"/>
 		<result property="education" column="education"/>

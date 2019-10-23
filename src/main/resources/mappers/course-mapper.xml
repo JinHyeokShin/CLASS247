@@ -74,6 +74,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             </case>
          </discriminator>
    </resultMap>
+   <resultMap id="ReviewResultSet" type="Review">
+      <id property="reviewNum" column="review_num"/>
+      <result property="courseNum" column="course_num"/>
+      <result property="memNum" column="mem_num"/>
+      <result property="reviewContent" column="review_content"/>
+      <result property="reviewEnrollDate" column="review_eroll_date"/>
+      <result property="reviewModifyDate" column="review_modify_date"/>
+      <result property="reviewStatus" column="review_status"/>   
+   </resultMap>
+   <resultMap id="ReviewAttachmentResultSet" type="ReviewAttachment">
+		<id property="raNum" column="ra_num"/>
+		<result property="reviewNum" column="review_num"/>
+		<result property="revReplyNum" column="rev_reply_num"/>
+		<result property="raOName" column="ra_pname"/>
+		<result property="raRName" column="ra_rname"/>
+		<result property="raPath" column="ra_path"/>
+	</resultMap>
 	
    <resultMap id="SingleCourseResultSet" type="SingleCourse">
       <id property="courseNum" column="course_num"/>
@@ -188,22 +205,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 온라인 클래스 상세보기 불러오기 by courseNum -->
-	<select id="selectOnline" parameterType="_int" resultMap="CourseResultSet">
-		select *
-		from course
-		join online_course using(course_num)
-		join category using (category_num)
-		where course_num = #{courseNum}
-	</select>
-	<!-- 오프라인 클래스 상세보기 불러오기 by courseNum -->
-	<select id="selectOffline" parameterType="_int" resultMap="CourseResultSet">
-		select *
-		from course
-		join offline_course using(course_num)
-		join category using (category_num)
-		where course_num = #{courseNum}
-	</select>
-	 -->
+	
+	 
 	<select id="selectCourseAttachmentList" parameterType="CourseAttachment" resultMap="CourseAttachmentResultSet">
 		select *
 		from course_attachment
@@ -315,21 +318,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
  <!-- 온라인 클래스 상세보기 불러오기 by courseNum -->
-	<insert id="selectOnlinePayment" parameterType="_int">
+	<select id="selectOnlinePayment" parameterType="_int">
 		select *      
 		from payment 
         join course using(course_num)
 		join online_course using(course_num)
 		join category using (category_num)
 		where course_num = #{courseNum}
-	</insert>
+	</select>
 	<!-- 오프라인 클래스 상세보기 불러오기 by courseNum -->
-	<insert id="selectOfflinePayment" parameterType="_int" >
+	<select id="selectOfflinePayment" parameterType="_int" >
 		select *      
 		from payment 
         join course using(course_num)
 		join online_course using(course_num)
 		join category using (category_num)
 		where course_num = #{courseNum}
+	</select>
+	<select id="checkLove" parameterType="Love" resultType="_int">
+		select count(*)
+		from love
+		where  course_num = #{courseNum} and mem_num=#{memNum}
+	</select>
+	<insert id="insertLove"  parameterType="Love">
+		insert into love 
+		values(#{memNum},#{courseNum},default)
 	</insert>
+	<delete id="cancelLove" parameterType="Love">
+		delete from love
+    	where mem_num=#{memNum} and course_num=#{courseNum}
+	</delete>
+	
+	<select id="selectRlist" resultMap="ReviewResultSet">
+		select * from review
+        where review_status='Y' and course_num=#{courseNum}
+	</select>
+	
 </mapper>
