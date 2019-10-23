@@ -72,7 +72,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 3. 회원 정보 수정 -->
 	<update id="updateMember" parameterType="Member">
 		update member
-		set mem_pwd=#{memPwd}, mem_nickname=#{memNickName}, mem_phone=#{memPhone}, mem_address=#{memAddress}
+		set mem_pwd=#{memPwd}, mem_nickname=#{memNickName}, mem_phone=#{memPhone}, mem_address=#{memAddress}, mem_gender=#{memGender}
 		where mem_id=#{memId}
 	</update>
 	

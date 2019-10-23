@@ -39,8 +39,23 @@
 		 width : 80%;
 	 }
 	 .form-group mt-6{
-		 width : 40%;
+		 
 	 }
+.postcodify_postcode5, .postcodify_address, .postcodify_extra_info{
+	display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s
+    }
 </style>
 
 </head>
@@ -59,16 +74,16 @@
       		 <div class="col-lg-12">
 	      			<form action="updateMemProfile.do" method="post" enctype="multipart/form-data">
       		 	<div class="col-sm-9">
-	      				<div class="profileImg" align="left">
+	      				<div class="profileImg" align="left" >
 	      					<img src="<%= request.getContextPath() %>/resources/user/img/profile/${loginUser.memProfileName}" width="30%" height="30%">
 	      				</div>
 	      				<div id="fileArea" style="display:none">
 	      					<input type="file" name="profile" class="thumbnailImg1">
 	      				</div>
 	      			</div>
-	      				<br>
+	      			<br><br>
 	      				<div class="col-sm-3" align="right">
-	      					<button class="genric-btn primary-border radius" name="log-btn" type="submit">사진 수정하기</button>
+	      					<button class="genric-btn primary-border radius" name="log-btn" type="submit" style="font-size: 15">사진 수정하기</button>
 	      				<br><br>
 	      				</div>
 	      			</form>
@@ -142,72 +157,97 @@
 		                <h4>성별</h4>
 		                   </div>
 		              </div>
-		              <div class="col-sm-9">
-		                <div class="form-group">
 		                  <c:choose>
 					<c:when test="${ loginUser.memGender eq 'M' }">
-						<td>
-							<input type="radio" name="gender" value="M" checked> 남 
-								            	&nbsp;&nbsp;&nbsp;&nbsp; 
+		              <div class="col-sm-2" style="display:inline-block" align="center">
+		                <div class="form-group">
+							<input type="radio" name="gender" value="M" checked><h5>남</h5>
+						  </div>
+		              </div>
+		              <div class="col-sm-7" style="display:inline-block">
+		                <div class="form-group">
 							<input type="radio" name="gender" value="F"> 여
-						</td>
+						  </div>
+		              </div>
 					</c:when>
 					<c:when test="${ loginUser.memGender eq 'F' }">
-						<td>
+					<div class="col-sm-2" style="display:inline-block" align="center">
+		                <div class="form-group">
 							<input type="radio" name="gender" value="M"> 남 
-								            	&nbsp;&nbsp;&nbsp;&nbsp; 
+						  </div>
+		              </div>
+		              <div class="col-sm-7" style="display:inline-block">
+		                <div class="form-group">
 							<input type="radio" name="gender" value="F" checked> 여
-						</td>
+						  </div>
+		              </div>
 					</c:when>
 					<c:otherwise>
-						<td>
+					<div class="col-sm-2" style="display:inline-block" align="center">
+		                <div class="form-group">
 							<input type="radio" name="gender" value="M"> 남 
-								            	&nbsp;&nbsp;&nbsp;&nbsp; 
+						  </div>
+		              </div>
+		              <div class="col-sm-7" style="display:inline-block">
+		                <div class="form-group">
 							<input type="radio" name="gender" value="F"> 여
-						</td>
+						  </div>
+					  </div>
 					</c:otherwise>
 				</c:choose>	
-		                </div>
-		              </div>
-             
-          
-
-     			<c:if test="${ empty loginUser.memAddress }">
-				<tr>
-					<td>우편번호</td>
-					<td>
-						<input type="text" name="post" size="6" class="postcodify_postcode5">
-							&nbsp;&nbsp;&nbsp;&nbsp; 
-						<button type="button" id="post_search_btn">검색</button>
-					</td>
-					
-				</tr>
-				
-				<tr>
-					<td>도로명 주소</td>
-					<td><input type="text" name="address1" class="postcodify_address"></td>
-				</tr>
-				<tr>
-					<td>상세 주소</td>
-					<td><input type="text" name="address2" class="postcodify_extra_info"></td>
-				</tr>
-			</c:if>
-			<c:if test="${ !empty loginUser.memAddress }">
-				<c:forTokens items="${ loginUser.memAddress }" delims="," var="addr" varStatus="status">
-					<c:if test="${ status.index eq 0 }">
-						<div class="col-sm-4" style="display:inline-block">
+		     <c:if test="${ empty loginUser.memAddress }">
+					<div class="col-sm-3" style="display:inline-block">
 		               	 <div class="form-group">
 		                	<h4>우편번호</h4>
 		                  </div>
 		              	</div>
 		               <div class="col-sm-4" style="display:inline-block">
 		                <div class="form-group">
-		                  <input class="form-control" type="text" size="6" name="post" value="${ addr }" >
+		                  <input class="postcodify_postcode5" type="text" size="6" name="post">
 		                </div>
 		              </div>
+		               <div class="col-sm-5" style="display:inline-block">
+		                <div class="form-group">
+						<input class="genric-btn primary-border radius" name="log-btn" type="button" id="post_search_btn" value="검색"  style="font-size: 15">
+						</div>
+		              </div>
+					 <div class="col-sm-3">
+		                <div class="form-group">
+		                <h4>도로명 주소</h4>
+		                   </div>
+		              </div>
+		              <div class="col-sm-9">
+		                <div class="form-group">
+		                  <input class="postcodify_address" type="text" name="address1">
+		                </div>
+		              </div>
+				 <div class="col-sm-3">
+		                <div class="form-group">
+		                <h4>상세 주소</h4>
+		                   </div>
+		              </div>
+		              <div class="col-sm-9" style="display:inline-block">
+		                <div class="form-group">
+		                  <input class="postcodify_extra_info" type="text" name="address2">
+		                </div>
+		              </div>
+			</c:if>
+			<c:if test="${ !empty loginUser.memAddress }">
+				<c:forTokens items="${ loginUser.memAddress }" delims="," var="addr" varStatus="status">
+					<c:if test="${ status.index eq 0 }">
+						<div class="col-sm-3" style="display:inline-block">
+		               	 <div class="form-group">
+		                	<h4>우편번호</h4>
+		                  </div>
+		              	</div>
 		               <div class="col-sm-4" style="display:inline-block">
 		                <div class="form-group">
-						<button class="genric-btn primary-border radius" name="log-btn" type="button" id="post_search_btn">검색</button>
+		                  <input class="postcodify_postcode5" type="text" size="6" name="post" value="${ addr }" >
+		                </div>
+		              </div>
+		               <div class="col-sm-5" style="display:inline-block">
+		                <div class="form-group">
+						<input class="genric-btn primary-border radius" name="log-btn" type="button" id="post_search_btn" value="검색"  style="font-size: 15">
 						</div>
 		              </div>
 					</c:if>
@@ -219,7 +259,7 @@
 		              </div>
 		              <div class="col-sm-9">
 		                <div class="form-group">
-		                  <input class="form-control" type="text" name="address1" value="${ addr }">
+		                  <input class="postcodify_address" type="text" name="address1" value="${ addr }">
 		                </div>
 		              </div>
 					</c:if>
@@ -229,22 +269,26 @@
 		                <h4>상세 주소</h4>
 		                   </div>
 		              </div>
-		              <div class="col-sm-9">
+		              <div class="col-sm-9" style="display:inline-block">
 		                <div class="form-group">
-		                  <input class="form-control" type="text" name="address2" value="${ addr }">
+		                  <input class="postcodify_extra_info" type="text" name="address2" value="${ addr }">
 		                </div>
 		              </div>
 		             </c:if>
 				</c:forTokens>
 			</c:if>
 		
-			<br>
-			<div class="form-group mt-6">
-              <button class="genric-btn primary-border radius" name="log-btn" type="submit">수정완료</button>
-            </div>   
-            <div class="form-group mt-6">
-             <button class="genric-btn primary-border radius" name="log-btn" type="reset">취소</button>
+			<br>	<br>	<br>	<br>	<br>
+			<div class="col-sm-6" style="display:inline-block" align="right">
+			 <div class="form-group">
+              <input class="genric-btn primary-border radius" name="log-btn" type="submit" style="font-size: 15" value="수정완료">
+            </div>  
             </div> 
+            <div class="col-sm-6" style="display:inline-block">
+             <div class="form-group">
+             <input class="genric-btn primary-border radius" name="log-btn" type="reset" style="font-size: 15" value="취소">
+            </div> 
+            </div>
               </div> 
           </form>
             </div>
@@ -276,7 +320,7 @@
 	 		});
 	 	</script>
 	 </c:if>
-    <br><br>
+ 
 	<jsp:include page="/WEB-INF/views/user/common/footer.jsp"></jsp:include>
 </body>
 </html>

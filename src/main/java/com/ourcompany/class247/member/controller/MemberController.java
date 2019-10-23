@@ -166,12 +166,17 @@ public class MemberController {
 	@RequestMapping("mUpdate.do")
 	public String mUpdate(Member m, Model model, HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("post") String post, 
-			@RequestParam("address1") String address1, @RequestParam("address2") String address2) {
+			@RequestParam("address1") String address1, @RequestParam("address2") String address2,
+			@RequestParam("gender") String gender) {
 		
 		HttpSession session = request.getSession();
 		
 		if(!post.equals("")) { //주소 작성해서 값이 넘어왔을 경우
 			m.setMemAddress(post+","+address1+","+address2);	
+		}
+		
+		if(!gender.equals("")) { //성별 작성해서 값이 넘어왔을 경우
+			m.setMemGender(gender);	
 		}
 		
 
