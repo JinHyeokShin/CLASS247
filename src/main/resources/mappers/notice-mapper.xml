@@ -7,33 +7,78 @@
 		<result property="memNum" column="mem_num"/>
 		<result property="noticeTitle" column="notice_title"/>
 		<result property="noticeContent" column="notice_content"/>
+		<result property="noticePath" column="notice_path"/>
+		<result property="noticeFileName" column="notice_filename"/>
 		<result property="noticeCount" column="notice_count"/>
 		<result property="noticeEnrollDate" column="notice_enroll_date"/>
 		<result property="noticeModifyDate" column="notice_modify_date"/>
 		<result property="noticeStatus" column="notice_status"/>
 	</resultMap>
+	 
 	<resultMap type="FAQ" id="FAQResultSet">
-      <id property="faqNum" column="faq_num"/>
-      <result property="faqTitle" column="faq_title"/>
-      <result property="faqContent" column="faq_content"/>
-   </resultMap>
+		<id property="faqNum" column="faq_num"/>
+		<result property="faqTitle" column="faq_title"/>
+		<result property="faqContent" column="faq_content"/>
+	</resultMap>
+	
+
+<!--  
+	<retultMap type="NoticeReply" id="noitceReplyResultSet">
+		<id property="nreplyNum" column="nreply_num"/>
+		<result property="noticeNum" column="notice_num"/>
+		<result property="memNum" column="mem_num"/>
+		<result property="nreplyParentNum" column="nreply_parnet_num"/>
+		<result property="nreplyDepth" column="nreply_depth"/>
+		<result property="nreplyContent" column="nreply_content"/>
+		<result property="nreplyEnrollDate" column="nreply_enroll_date"/>
+		<result property="nreplyModifyDate" column="nreply_modify_date"/>
+		<result property="nreplyStatus" column="nreply_status"/>
+	</retultMap>
+-->
+	 <select id="getListCountf" resultType="_int">
+		select count(*)
+		from faq	 
+	</select>
+	
+	<select id="selectListf" resultMap="FAQResultSet">
+		select *
+		from faq
+	</select>
+	
+	<insert id="insertFAQ" parameterType="FAQ">
+		insert into FAQ
+		values(faq_seq.nextval, #{faqTitle}, #{faqContent})
+	</insert>
+		
+	<insert id="insertNotice" parameterType="Notice">
+		insert into Notice 
+		values(notice_seq.nextval, #{memNum}, #{noticeTitle}, #{noticeContent}, null, #{noticeFileName}, default, sysdate, sysdate, 'Y')
+	</insert>
+	
+	<update id="updateNotice">
+		update notice
+		set	
+	</update>
 	
 	<select id="getListCount" resultType="_int">
 		select count(*)
 		from notice
 		where notice_status='Y'
 	</select>
+	
 	<select id="selectList" resultMap="noticeResultSet">
 		select *
 		from notice
 		where notice_status='Y'
 		order by notice_num desc
 	</select>
-	<update id="updateCount" parameterType="_int">
+	
+	<update id="updateCount">
 		update notice
 		set notice_count=notice_count+1
 		where notice_num=#{noticeNum}
 	</update>
+	
 	<select id="selectNotice" parameterType="_int" resultMap="noticeResultSet">
 		select *
 		from notice
@@ -41,6 +86,28 @@
 		and notice_Num=#{noticeNum}
 	</select>
 	
+	<update id="deleteNotice" parameterType="_int">
+		update notice
+		set notice_status='N'
+		where noitce_Num=#{noticeNum}
+	</update>
+	
+	
+	
+
+	
+<!--  
+	<select id="selectNoticeReply" parameterType="_int" resultMap="noitceReplyResultSet">
+		select *
+		from notice_reply
+		where nreply_status='Y'
+	</select>
+	
+	<insert id="insertNoticeReply" parameterType="NoticeReply">
+		insert into notice_reply
+		values(notice_reply_seq.nextval, #{noticeNum}, #{memNum}, #{nreplyParentNum}, #{nreplyDepth}, #{nreplyContent}, sysdate, sysdate, 'Y')
+	</insert>
+ -->
 	<select id="getUserFaqListCount" resultType="_int">
 		select count(*)
 		from faq

@@ -44,4 +44,22 @@ public class InquiryController {
 		
 		return mv;
 	}
+	
+	@RequestMapping("adminInquriyList.do")
+	public ModelAndView selectList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+		
+		
+		int listCount = iService.getAdminInquiryList();
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Inquiry> list = iService.selectAdminInquiryList(pi);
+
+		mv.addObject("pi", pi)
+		  .addObject("list", list)
+		  .setViewName("admin/inquiry/aInquiryList");
+		
+		return mv;
+		
+	}
 }

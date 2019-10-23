@@ -26,4 +26,15 @@ public class InquiryDao {
 	public int getInquiryCount(int creNum) {
 		return sqlSession.selectOne("inquiryMapper.getInquiryCount", creNum);
 	}
+	
+	public int getAdminInquiryCount(){
+		return sqlSession.selectOne("inquiryMapper.getAdminInquiryList");
+	}
+	
+	public ArrayList<Inquiry> selectAdminInquiryList(PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit(); 
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("inquiryMapper.getAdminInquiryList", null, rowBounds);
+	}
 }
