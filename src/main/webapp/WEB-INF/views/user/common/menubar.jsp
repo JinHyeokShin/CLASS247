@@ -156,8 +156,12 @@
                                        <!--  <li style="margin-right : 60px;">
                                             <button class="btn btn_1 primary small button-image" type="button" id="myBtn"><i class="ti-search" ></i></button>
                                         </li> -->
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="noticeListView.do">공지사항</a>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">공지사항</a>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="noticeListView.do">공지사항</a>
+                                                <a class="dropdown-item" href="userFaqListView.do">자주 묻는 질문</a>
+                                            </div>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="introduce.do" margin-top="10px">서비스 소개</a>

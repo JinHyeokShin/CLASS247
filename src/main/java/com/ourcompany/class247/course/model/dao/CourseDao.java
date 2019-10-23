@@ -85,6 +85,7 @@ public class CourseDao {
 	}
 
 
+
 	// 관리자용
 	public ArrayList<Course> selectAwaitCourseList() {
 
@@ -141,6 +142,14 @@ public class CourseDao {
 	}
 	
 	
+	public int countLove(int courseNum) {
+		return sqlSession.selectOne("courseMapper.countLove", courseNum);
+	}
+	
+	public Course selectCourse(int courseNum) {
+		return sqlSession.selectOne("courseMapper.selectCourse", courseNum);
+	}
+	
 	
 	public Course selectCourse(int courseNum, String courseKind) {
 	      Course co;
@@ -163,6 +172,11 @@ public class CourseDao {
 		return (ArrayList)sqlSession.selectList("courseMapper.awaitCourseList");
 	
 	
+	}
+	
+	public ArrayList<SingleCourse> selectMyTakeCourse(int memNum) {
+		
+		return (ArrayList)sqlSession.selectList("courseMapper.selectMyTakeCourse", memNum);
 	}
 	
 	

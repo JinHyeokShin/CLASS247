@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<resultMap id="creatorResultSet" type="Creator">
 		<id property="creNum" column="cre_num"/>
+		<result property="creName" column="mem_name"/>
 		<result property="memNum" column="mem_num"/>
 		<result property="introduction" column="introduction"/>
 		<result property="career" column="career"/>
@@ -37,7 +38,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectCreator" parameterType="_int" resultMap="creatorResultSet">
 		select *
 		from creator 
-		where mem_num=#{memNum}
+		join member using(mem_num)
+		where mem_num=#{memNum} and cre_status!='D'
 	</select>
 
 	<select id="selectCreNum" parameterType="_int" resultType="_int">
@@ -78,7 +80,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select *
 		from creator
 		join member using(mem_num)
-		where cre_approved = 'N'
+		where cre_status = 'N'
 	</select>
 	
 	<update id="allowCreator" parameterType="_int">
@@ -99,6 +101,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		join member using(mem_num)
 		where cre_approved = 'Y'
 	</select>
-
-
+	
+	<select id="selectMyProFile" resultMap="creatorAttachmentResultSet">
+		select *
+		from creator_attachment
+		where cre_num = #{creNum} and cra_level = 0
+	</select>
+	
+	<update id="updateCreator" parameterType="Creator">
+		update creator
+		set introduction=#{introduction}, career=#{career}, education=#{education}, certification=#{certification}
+		where cre_num = #{creNum}
+	</update>
+	
+	<update id="deleteCreator" parameterType="_int">
+		update creator
+		set cre_status = 'D' 
+		where cre_num=#{creNum}
+	</update>
+	
+	<select id="getCourseCount" parameterType="_int" resultType="_int">
+		select count(*)
+		from course 
+		where cre_num=#{creNum}
+		and course_status = 'Y' 
+	</select>
 </mapper>

@@ -16,99 +16,125 @@ import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.review.model.vo.Review;
 
 @Service("coService")
-public class CourseServiceImpl implements CourseService{
-	
+public class CourseServiceImpl implements CourseService {
+
 	@Autowired
 	private CourseDao coDao;
 
 	/**
-	 * 1. 온라인 클래스 추가 
+	 * 1. 온라인 클래스 추가
 	 */
 	@Override
 	public int insertCourse(Course co, Online online) {
-		
-		int result = coDao.insertCourse(co); 
-		
+
+		int result = coDao.insertCourse(co);
+
 		int result2 = 0;
 		if (result > 0) {
-			result2 = coDao.insertOnline(online);			
+			result2 = coDao.insertOnline(online);
 		}
-		
-		if(result > 0 && result2 > 0) {
+
+		if (result > 0 && result2 > 0) {
 			return 1;
 		} else {
 			return 0;
 		}
-		
+
 	}
-	
+
 	/**
-	 * 1_1. 오프라인 클래스 추가 
+	 * 1_1. 오프라인 클래스 추가
 	 */
 	public int insertCourse(Course co, Offline offline) {
 		return coDao.insertCourse(co, offline);
 	}
-	
 
 	/**
-	 * 1_2. 클래스 커버사진 추가 
+	 * 1_2. 클래스 커버사진 추가
 	 */
 	@Override
 	public int insertCoverImage(CourseAttachment cover) {
 		return coDao.insertCoverImage(cover);
 	}
- 
+
 	/**
-	 * 2. 내 클래스 리스트 가져오기 
-	 * @return 
+	 * 2. 내 클래스 리스트 가져오기
+	 * 
+	 * @return
 	 */
 	@Override
 	public ArrayList<Course> selectMyCoList(int creNum) {
 		return coDao.selectMyCoList(creNum);
-		
+
 	}
 
 	/**
-	 * 3. 클래스 메인커버사진리스트 가져오기 
+	 * 3. 클래스 메인커버사진리스트 가져오기
 	 */
 	@Override
 	public ArrayList<CourseAttachment> selectCoverList(int creNum) {
 		return coDao.selectCoverList(creNum);
 	}
+
+	// -------------------- 크리에이터 -------------------
+
 	
 	
 	//-------------------- 크리에이터 -------------------
 	
 	
+	  @Override
+	  
+	  public Course creSelectCourse(int courseNum, String courseKind) { 
+		  return coDao.selectCourse(courseNum, courseKind);
+	 
+	  }
+
 	@Override
 	public CourseAttachment selectCover(int courseNum) {
 		return coDao.selectCover(courseNum);
 	}
 
-	//--------------------- 관리자-------------------
-	
-	
+	// --------------------- 관리자-------------------
+
 	/**
 	 *
 	 */
 	@Override
 	public ArrayList<Course> selectAwaitCourseList() {
-		
+
 		return coDao.selectAwaitCourseList();
 	}
 
 	@Override
+	public Online selectOnline(int courseNum) {
+
+		return coDao.selectOnline(courseNum);
+	}
+
+	@Override
+	public Offline selectOffline(int courseNum) {
+
+		return coDao.selectOffline(courseNum);
+	}
+
+	@Override
 	public ArrayList<CourseAttachment> selectCourseAttachmentList(int courseNum) {
-		
+
 		return coDao.selectCourseAttachmentList(courseNum);
 	}
-	
+
 	@Override
 	public int allowCourse(int courseNum) {
-				return coDao.allowCourse(courseNum);
+		return coDao.allowCourse(courseNum);
 	}
-	
+
 	@Override
+	public Course selectCourse(int cId, String courseKind) {
+
+		return coDao.selectCourse(cId, courseKind);
+	}
+
 	public int rejectCourse(int courseNum) {
 		return coDao.rejectCourse(courseNum);
 	}
@@ -120,15 +146,19 @@ public class CourseServiceImpl implements CourseService{
 	}
 	public ArrayList<Course> selectList() {
 		
-		return coDao.selectList();
+		Course c = coDao.selectCourse(courseNum);
+		c.setLoveCount(coDao.countLove(courseNum));
+		
+		return c;
+		
 	}
 	
 	@Override
-	public Course selectCourse(int courseNum,String courseKind) {
-		
-		return coDao.selectCourse(courseNum, courseKind);
-	
+	public ArrayList<Course> selectList() {
+
+		return coDao.selectList();
 	}
+	
 
 //	@Override
 //	public int coursePayment(int courseNum, String courseKind) {
@@ -155,6 +185,12 @@ public class CourseServiceImpl implements CourseService{
 	public ArrayList<SingleCourse> awaitSelectList() {
 		
 		return coDao.awaitSelectList();
+	
+	}
+	
+	@Override
+	public ArrayList<SingleCourse> selectMyTakeCourse(int memNum) {
+		return coDao.selectMyTakeCourse(memNum);
 	}
 	
 	//사용자 단
@@ -217,9 +253,6 @@ public class CourseServiceImpl implements CourseService{
 	}
 
 	
-
-	
-
 
 
 }

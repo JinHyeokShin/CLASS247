@@ -19,6 +19,14 @@ public interface CreatorService {
 	Creator selectCreatorCourse(int courseNum);
 	
 	ArrayList<CreatorAttachment> selectCreatorAttachmentList(int creNum);
+
+	int updateCreator(Creator newCre);
+
+	int deleteCreator(int creNum);
+
+	int getCourseCount(int creNum);
+	
+	
 	
 	ArrayList<Creator> awaitSelectList();
 	
@@ -28,5 +36,6 @@ public interface CreatorService {
 	
 	ArrayList<Creator> creSelectList();
 	
+	CreatorAttachment selectMyProFile(int creNum);
 
 }

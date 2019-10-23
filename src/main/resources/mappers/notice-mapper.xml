@@ -12,7 +12,11 @@
 		<result property="noticeModifyDate" column="notice_modify_date"/>
 		<result property="noticeStatus" column="notice_status"/>
 	</resultMap>
-	
+	<resultMap type="FAQ" id="FAQResultSet">
+      <id property="faqNum" column="faq_num"/>
+      <result property="faqTitle" column="faq_title"/>
+      <result property="faqContent" column="faq_content"/>
+   </resultMap>
 	
 	<select id="getListCount" resultType="_int">
 		select count(*)
@@ -35,5 +39,14 @@
 		from notice
 		where notice_status='Y'
 		and notice_Num=#{noticeNum}
+	</select>
+	
+	<select id="getUserFaqListCount" resultType="_int">
+		select count(*)
+		from faq
+	</select>
+	<select id="selectUserFaqList" resultMap="FAQResultSet">
+		select *
+		from faq
 	</select>
 </mapper>

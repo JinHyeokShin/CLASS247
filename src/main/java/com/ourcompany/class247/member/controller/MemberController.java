@@ -16,7 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ourcompany.class247.course.model.service.CourseService;
+import com.ourcompany.class247.course.model.vo.Course;
+import com.ourcompany.class247.course.model.vo.CourseAttachment;
+import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.creator.model.service.CreatorService;
+import com.ourcompany.class247.common.PageInfo;
+import com.ourcompany.class247.common.Pagination;
 import com.ourcompany.class247.creator.model.vo.Creator;
+import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 import com.ourcompany.class247.member.model.service.MemberService;
 import com.ourcompany.class247.member.model.vo.Member;
 
@@ -28,6 +36,12 @@ public class MemberController {
 	
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
+	@Autowired
+	private CreatorService creService;
+	
+	@Autowired
+	private CourseService coService;
 	
 	/**
 	 * 1. 로그인폼으로 이동.
@@ -130,7 +144,7 @@ public class MemberController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		session.removeAttribute("loginUser");
+		session.invalidate();
 		
 		mv.setViewName("redirect:home.do");
 		return mv;
@@ -266,14 +280,23 @@ public class MemberController {
 		
 		Member m = mService.selectMember(memNum);
 		
-		mv.addObject("m", m).setViewName("admin/member/memberDetail");
+		Creator cre = creService.getCreator(memNum);
+		
+		ArrayList<Course> coList = coService.selectMyCoList(cre.getCreNum());
+		
+		CreatorAttachment cra = creService.selectMyProFile(cre.getCreNum());
+		
+		ArrayList<CreatorAttachment> craList = creService.selectCreatorAttachmentList(cre.getCreNum());
+		
+		ArrayList<CourseAttachment> coaList = coService.selectCoverList(cre.getCreNum());
+		
+		ArrayList<SingleCourse> coListU = coService.selectMyTakeCourse(memNum);
+		
+		mv.addObject("m", m).addObject("cre", cre).addObject("coList", coList).addObject("cra", cra).addObject("craList", craList).addObject("coaList", coaList).setViewName("admin/member/memDetail");
 		
 		return mv;
 		
 	}
-	
-	
-	
 	
 	
 	
@@ -286,15 +309,7 @@ public class MemberController {
 	 * 
 	 * 
 	 */
-	@RequestMapping("aMemberList.do")
-	public ModelAndView aMemberList(ModelAndView mv) {
-		
-		ArrayList<Member> list = mService.selectMemberList();
-		
-		mv.addObject("list", list).setViewName("admin/member/memberList");
-		
-		return mv;
-	}
+
 
 	
 	@RequestMapping("aBlackList")
@@ -310,16 +325,6 @@ public class MemberController {
 	
 	
 	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	//----------------------------------------------------------------------------------
 	/*
@@ -332,9 +337,15 @@ public class MemberController {
 	 * @return
 	 */
 	@RequestMapping("studentManage.do")
-	public ModelAndView studentManage(HttpServletRequest request, ModelAndView mv) {
+	public ModelAndView studentManage(@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage, 
+									HttpServletRequest request, ModelAndView mv) {
 		int creNum = ((Creator)request.getSession().getAttribute("creator")).getCreNum();
-		ArrayList<Member> studentList = mService.selectStuList(creNum);
+		int stuCount = mService.getStuCount(creNum);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, stuCount);
+		ArrayList<Member> studentList = mService.selectStuList(pi, creNum);
+		System.out.println("count : " + stuCount);
+		System.out.println(pi);
 		
 		mv.addObject("studentList", studentList);
 		mv.setViewName("creator/student/studentManage");

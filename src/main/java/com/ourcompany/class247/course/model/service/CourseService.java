@@ -58,9 +58,7 @@ public interface CourseService {
 	
 	ArrayList<Review> selectRlist(int courseNum);
 
-	
-	
-	
+	ArrayList<SingleCourse> selectMyTakeCourse(int memNum);
 	
 	/*사용자 페이지*/
 	
@@ -82,6 +80,10 @@ public interface CourseService {
 	ArrayList<Course> modalsearchList(String search);
 	
 	ArrayList<Course> modalsearchCategory(int categoryNum);
+
+	Online selectOnline(int courseNum);
+
+	Course creSelectCourse(int courseNum, String courseKind);
 	
 	boolean checkLove(Love love);
 	

@@ -11,9 +11,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,19 +41,22 @@ public class CreatorController {
 	 * @return
 	 */
 	@RequestMapping("cMainView.do")
-	public String goToMain(HttpSession session, Model model) { 
-		int userId = ((Member)session.getAttribute("loginUser")).getMemNum();
-		Creator creator = creService.getCreator(userId);
-		if(creator != null) {
-			model.addAttribute("creator", creator);
-			return "creator/creatorCenter";
-		} else {
-			return "creator/noCreatorPage";
-		}
+	public ModelAndView goToMain(HttpServletRequest request, HttpSession session, ModelAndView mv) { 
+		int memNum = ((Member)session.getAttribute("loginUser")).getMemNum();
+		Creator creator = creService.getCreator(memNum);
 		
+		System.out.println(creator);
+
+		if(creator != null) { //크리에이터 존재 시 
+			mv.addObject("creator", creator);
+			mv.setViewName("creator/creatorCenter");
+		} else { //크리에이터가 아닐 때 
+			mv.addObject("creator", creator);
+			mv.setViewName("creator/creatorCenter");
+		}
+		return mv;
 		
 	}
-
 	
 	/** 1. 크리에이터 신청 폼으로 이동 
 	 * @return
@@ -92,6 +95,7 @@ public class CreatorController {
 			}
 		}
 		
+		
 		if(!creID.getOriginalFilename().equals("")) {
 			String idRename = saveFile(creID, request);
 			
@@ -117,8 +121,18 @@ public class CreatorController {
 	}
 	
 	
+	/** 3. 크리에이터 마이페이지로 이동 
+	 * @return
+	 */
+	@RequestMapping("creatorInfo.do")
+	public String creatorInfo() {
+		
+		return "creator/creator/creInfoPage";
+	}
 	
-	/** 3. 파일 저장하기 
+	
+	
+	/** 4. 파일 저장하기 
 	 * @param file
 	 * @param request
 	 * @return
@@ -167,6 +181,27 @@ public class CreatorController {
 		ArrayList<Creator> list = creService.awaitSelectList();
 		
 		mv.addObject("list", list).setViewName("admin/creator/awaitCreatorList");
+				
+		return mv;
+	}
+	/** 5. 크리에이터 정보 수정
+	 * 
+	 */
+	@RequestMapping("creUpdate.do")
+	public ModelAndView updateCreator(Creator newCre, HttpServletRequest request, ModelAndView mv) {
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+		if(loginUser.getMemNum() == newCre.getMemNum()) {
+			System.out.println(newCre);
+			
+			int result = creService.updateCreator(newCre);
+			if(result > 0) {
+				System.out.println(result);
+				mv.addObject("creator", newCre);
+				mv.addObject("msg", "정보수정이 완료되었습니다.");
+				mv.setViewName("creator/creatorCenter");
+			}
+			
+		}
 		
 		return mv;
 	}
@@ -195,6 +230,26 @@ public class CreatorController {
 		}else {
 			return "common/errorPage";
 		}
+
+	}
+	
+	/** 해당 크리에이터의 클래스가 존재하는지 확인하는 서비스 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("existCourse.do")
+	public String getCourseCount(HttpServletRequest request) {
+		int creNum = ((Creator)request.getSession().getAttribute("creator")).getCreNum();
+		
+		int courseCount = creService.getCourseCount(creNum);
+		if(courseCount == 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	
+	
 		
 	}
 	
@@ -221,5 +276,24 @@ public class CreatorController {
 		return mv;
 	}
 	
+	@RequestMapping("deleteCreator.do")
+	public ModelAndView deleteCreator(HttpServletRequest request, ModelAndView mv) {
+		int creNum = ((Creator)request.getSession().getAttribute("creator")).getCreNum();
+		
+		int result = creService.deleteCreator(creNum);
+		if(result > 0) {
+			request.getSession().removeAttribute("creator");
+			request.getSession().setAttribute("msg", "크리에이터 탈퇴가 완료되었습니다. class247 사용자 정보는 유지됩니다 :)");
+			mv.setViewName("redirect:home.do");
+		} else {
+			mv.addObject("msg", "탈퇴 실패");
+			mv.setViewName("creator/creatorCenter");
+		}
+		
+		return mv;
+		
+	}
+	
+
 
 }

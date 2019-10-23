@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.ourcompany.class247.creator.model.dao.CreatorDao;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
-import com.ourcompany.class247.member.model.vo.Member;
 
 @Service("creService")
 public class CreatorServiceImpl implements CreatorService{
@@ -80,6 +79,13 @@ public class CreatorServiceImpl implements CreatorService{
 		
 		return creDao.awaitSelectList();
 	}
+	/** 크리에이터 정보 수정
+	 *
+	 */
+	@Override
+	public int updateCreator(Creator newCre) {
+		return creDao.updateCreator(newCre);
+	}
 
 
 
@@ -87,6 +93,13 @@ public class CreatorServiceImpl implements CreatorService{
 	public int allowCreator(int creNum) {
 		
 		return creDao.allowCreator(creNum);
+	}
+	/** 크리에이터 탈퇴하기 
+	 *
+	 */
+	@Override
+	public int deleteCreator(int creNum) {
+		return creDao.deleteCreator(creNum);
 	}
 
 
@@ -100,6 +113,19 @@ public class CreatorServiceImpl implements CreatorService{
 	@Override
 	public ArrayList<Creator> creSelectList() {
 		return creDao.creSelectList();
+	}
+
+
+	@Override
+	public CreatorAttachment selectMyProFile(int creNum) {
+		return creDao.selectMyProFile(creNum);
+	}
+	/** 해당 크리에이터의 클래스가 존재하는지 확인하는 서비스 
+	 *
+	 */
+	@Override
+	public int getCourseCount(int creNum) {
+		return creDao.getCourseCount(creNum);
 	}
 
 

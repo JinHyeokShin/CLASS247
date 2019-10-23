@@ -15,14 +15,18 @@
 		<typeAlias type="com.ourcompany.class247.course.model.vo.Course" alias="Course"/>
 		<typeAlias type="com.ourcompany.class247.course.model.vo.Love" alias="Love"/>
 		<typeAlias type="com.ourcompany.class247.inquiry.model.vo.Inquiry" alias="Inquiry"/>
+		<typeAlias type="com.ourcompany.class247.notice.model.vo.FAQ" alias="Faq"/>
+		<typeAlias type="com.ourcompany.class247.course.model.vo.Love" alias="Love"/>
 		<typeAlias type="com.ourcompany.class247.course.model.vo.SingleCourse" alias="SingleCourse"/>
 		<typeAlias type="com.ourcompany.class247.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="com.ourcompany.class247.coupon.model.vo.Coupon" alias="Coupon"/>
-		<typeAlias type="com.ourcompany.class247.creator.model.vo.Creator" alias="Creator"/>
 		<typeAlias type="com.ourcompany.class247.creator.model.vo.CreatorAttachment" alias="CreatorAttachment"/>
 		<typeAlias type="com.ourcompany.class247.review.model.vo.Review" alias="Review"/>
 		<typeAlias type="com.ourcompany.class247.review.model.vo.ReviewAttachment" alias="ReviewAttachment"/>
 		<typeAlias type="com.ourcompany.class247.review.model.vo.ReviewReply" alias="ReviewReply"/>
+		<typeAlias type="com.ourcompany.class247.payment.model.vo.TakeCourse" alias="TakeCourse"/>
+		<typeAlias type="com.ourcompany.class247.creator.model.vo.Creator" alias="Creator"/>
+		<typeAlias type="com.ourcompany.class247.payment.model.vo.Payment" alias="Payment"/>
 	</typeAliases>
 	
 	
