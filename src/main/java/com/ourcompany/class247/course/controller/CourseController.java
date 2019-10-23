@@ -216,7 +216,7 @@ public class CourseController {
 	@RequestMapping("myCourseDetail.do")
 	public ModelAndView myCourseDetail(int courseNum, String courseKind, ModelAndView mv) {
 		
-		Course course = coService.selectCourse(courseNum, courseKind); 
+		Course course = coService.selectCourse(courseNum, courseKind);
 		CourseAttachment cover = coService.selectCover(courseNum);
 		ArrayList<Member> stuList = mService.selectStuByCo(courseNum);
 		
@@ -254,7 +254,7 @@ public class CourseController {
 		
 		
 		ArrayList<Course> list = coService.selectList();
-		
+
 		mv.addObject("list", list);
 		mv.setViewName("home");
 		
@@ -428,21 +428,57 @@ public class CourseController {
 		
 		ArrayList<Course> list = coService.modalsearchList(search);
 		
-		mv.addObject("list", list).setViewName("user/course/searchList");
+		mv.addObject("list", list).addObject("search",search).setViewName("user/course/searchList");
 		
 		return mv;
 	}
 	
 	@RequestMapping("searchCategory.do")
-	public ModelAndView modalsearchCategory(int categoryNum, ModelAndView mv){
-		ArrayList<Course> list = coService.modalsearchCategory(categoryNum);
-		System.out.println(list);
-		mv.addObject("list", list).setViewName("user/course/searchCateList");
+	public ModelAndView modalsearchCategory(String categoryName, ModelAndView mv){
+		ArrayList<Course> list = coService.modalsearchCategory(categoryName);
+		mv.addObject("list", list).addObject("categoryName",categoryName).setViewName("user/course/searchCateList");
 		
 		return mv;
 		
 	}
 
+	@RequestMapping("categoryList.do")
+	public ModelAndView categoryList(ModelAndView mv) {
+		ArrayList<Course> craftsList = coService.categoryCraftsList();
+		ArrayList<Course> designList = coService.categoryDesignList();
+		ArrayList<Course> developList = coService.categoryDevelopList();
+		ArrayList<Course> digitalList = coService.categoryDigitalList();
+		ArrayList<Course> lifeList = coService.categoryLifeList();
+		ArrayList<Course> artList = coService.categoryArtList();
+		ArrayList<Course> cameraList = coService.categoryCameraList();
+		ArrayList<Course> signitureList = coService.categorySigitureList();
+		ArrayList<Course> foodList = coService.categoryFoodList();
+		ArrayList<Course> musicList = coService.categoryMusicList();
+		ArrayList<Course> careerList = coService.categoryCareerList();
+
+		/*
+		 * System.out.println(craftsList); System.out.println(designList);
+		 * System.out.println(developList); System.out.println(digitalList);
+		 * System.out.println(lifeList); System.out.println(artList);
+		 * System.out.println(cameraList); System.out.println(signitureList);
+		 * System.out.println(foodList); System.out.println(musicList);
+		 * System.out.println(careerList);
+		 */
+		
+		mv.addObject("craftsList",craftsList)
+		  .addObject("designList", designList)
+		  .addObject("developList", developList)
+		  .addObject("digitalList", digitalList)
+		  .addObject("lifeList", lifeList)
+		  .addObject("artList", artList)
+		  .addObject("cameraList", cameraList)
+		  .addObject("signitureList", signitureList)
+		  .addObject("foodList", foodList)
+		  .addObject("musicList", musicList)
+		  .addObject("careerList", careerList)
+		.setViewName("user/course/categoryList");
 	
+		return mv;
+	}
 
 }

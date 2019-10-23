@@ -218,8 +218,63 @@ public class CourseDao {
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public ArrayList<Course> modalsearchCategory(int categoryNum){
-		return (ArrayList)sqlSession.selectList("courseMapper.modalsearchCategory",categoryNum);
+	public ArrayList<Course> modalsearchCategory(String categoryName){
+		return (ArrayList)sqlSession.selectList("courseMapper.modalsearchCategory",categoryName);
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> categoryCraftsList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.categoryCraftsList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> categoryDesignList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.categoryDesignList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> categoryDevelopList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.categoryDevelopList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> categoryDigitalList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.categoryDigitalList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> categoryLifeList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.categoryLifeList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> categoryArtList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.categoryArtList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> categoryCameraList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.categoryCameraList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> categorySigitureList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.categorySigitureList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> categoryFoodList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.categoryFoodList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> categoryMusicList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.categoryMusicList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> categoryCareerList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.categoryCareerList");
 	}
 	
 	public ArrayList<SingleCourse> mySingleCourseList(int creNum) {

@@ -118,14 +118,18 @@
 							<c:param name="courseKind" value="${ co.courseKind}"/>
 						</c:url>
                         <div class="item" >
-                        
                             <div class="single_special_cource">
                                 <img src="resources/user/img/test1.jpeg" class="special_img" alt="" onclick="location.href=${codetail}">
                                 <div class="special_cource_text">
-                                    <a class="btn_4">카테고리</a>
-                                    <h4>가격</h4>
+                                    <a class="btn_4">${ co.categoryName }</a>
+                                    <c:if test="${ co.courseKind eq 'online'}">
+                                    <h4>${ co.coursePrice } &#8361;</h4>
+                                    </c:if>
+                                    <c:if test="${ co.courseKind eq 'offline'}">
+                                    <h4>시간당 <br>${ co.courseHourPrice } &#8361;</h4>
+                                    </c:if>
                                     <a href="${ codetail }">
-                                        <h3>${co.courseTitle }</h3>
+                                    <h3>${co.courseTitle }</h3>
                                     </a>
                                     <p></p>
                                     <div class="author_info">
