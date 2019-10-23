@@ -87,8 +87,6 @@ public interface CourseService {
 	//크리에이터센터 - 클래스 수 
 	int getCourseCount(int creNum);
 	
-	//크리에이터 메인페이지에 띄울 클래스 3개 
-	ArrayList<Course> selectMyClass3(int creNum);
-	
+
 
 }

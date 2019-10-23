@@ -19,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ourcompany.class247.course.model.service.CourseService;
+import com.ourcompany.class247.course.model.vo.Course;
+import com.ourcompany.class247.course.model.vo.CourseAttachment;
 import com.ourcompany.class247.creator.model.service.CreatorService;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
@@ -61,8 +63,9 @@ public class CreatorController {
 			String totalAmount = String.format("%,d", pService.getCreAmount(creNum));
 			String creProfile = creService.getCreProfile(creNum);
 			request.getSession().setAttribute("creProfile", creProfile);
-			ArrayList<Course> myClass3 = coService.selectMyClass3(creNum);
-			
+			ArrayList<Course> list = coService.selectMyCoList(creNum);
+			ArrayList<CourseAttachment> coverList = coService.selectCoverList(creNum);
+			mv.addObject("list", list).addObject("coverList", coverList);
 			mv.addObject("creator", creator).addObject("totalStuCount", totalStuCount).addObject("classCount", classCount).addObject("totalAmount",totalAmount);
 			mv.setViewName("creator/creatorCenter");
 		} else { //크리에이터가 아닐 때 
@@ -220,6 +223,15 @@ public class CreatorController {
 		
 		return mv;
 	}
+	
+	@ResponseBody
+	@RequestMapping("updateProfile.do")
+	public String updateCreatorProfile(@RequestParam(name="file", required=false) MultipartFile profile) {
+		System.out.println(profile.getOriginalFilename());
+		
+		return "오케이";
+	}
+	
 	
 	@RequestMapping("aAwaitCreatorDetail.do")
 	public ModelAndView aCreatorDetail(ModelAndView mv, Creator creator) {

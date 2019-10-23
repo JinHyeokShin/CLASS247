@@ -196,12 +196,7 @@ public class CourseController {
 		ArrayList<Course> list = coService.selectMyCoList(creNum);
 		//승인 대기중인 클래스 불러오기 
 		ArrayList<Course> awaitList = coService.selectAwaitByCreNum(creNum);
-		
-		
-		for (Course c : awaitList) {
-			System.out.println(c);
-		}
-		
+
 		ArrayList<CourseAttachment> coverList = coService.selectCoverList(creNum);
 
 		mv.addObject("list", list);

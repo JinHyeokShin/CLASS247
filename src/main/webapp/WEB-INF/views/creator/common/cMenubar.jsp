@@ -92,7 +92,7 @@
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
                                     <a href="creatorInfo.do">
-                                    <i class="fas fas fa-user"></i>크리에이터 정보</a>
+                                    <i class="fas fas fa-user"></i>크리에이터 정보 수정</a>
                                 </li>
                                 <li>
                                     <a href="#" onclick="checkCre();">

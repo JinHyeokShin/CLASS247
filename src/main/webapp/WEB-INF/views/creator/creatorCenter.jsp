@@ -169,44 +169,58 @@
             </section>
             <!-- END STATISTIC-->
 
-            <section>
+            <section >
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <h3 class="title-3 m-b-30">
                             <i class="zmdi zmdi-book"></i>my class
                         </h3>
                         <div class="row">
-                            <!-- <div class="col-xl-16"> -->
-                                <!-- RECENT REPORT 2-->
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <img class="card-img-top" src="<%= request.getContextPath() %>/resources/creator/images/class-sample-01.PNG" alt="Card image cap">
-                                        <div class="card-body">
-                                            <h4 class="card-title mb-3">라이트룸과 포토샵으로 만드는 인생 여행 사진</h4>
-                                             <p class="card-text"> 강남 : 2019-10-01 <br> 수강생 : 3명</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                      <img class="card-img-top" src="<%= request.getContextPath() %>/resources/creator/images/class-sample-02.PNG" alt="Card image cap">
-                                        <div class="card-body">
-                                           <h4 class="card-title mb-3">포토샵으로 손그림처럼 표현하는 소녀의 설렘</h4>
-                                            <p class="card-text">홍대 : 2019-10-04 ~ 2019-10-28 <br> 수강생 : 15명</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                        <div class="card">
-                                          <img class="card-img-top" src="<%= request.getContextPath() %>/resources/creator/images/class-default-01.png" alt="Card image cap">
-                                            <div class="card-body" style="text-align:center;">
-                                               <h4 class="card-title mb-3">새로운 클래스를 추가하세요.</h4>
-                                                <p class="card-text" style="text-align:center;"> 
-                                                    <img class="" src="<%= request.getContextPath() %>/resources/creator/images/icon/plus.png" style="width:65px; height:65px;">
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                
+                                <c:if test="${ !empty list }">
+	                                <c:forEach items="${list}" var="c" begin="1" end="3">
+		                                <c:forEach items="${coverList}" var="cover">
+			                               	<c:if test="${ cover.courseNum == c.courseNum}"> 
+				                                <c:url value="myCourseDetail.do" var="classDetail">
+													<c:param name="courseNum" value="${ c.courseNum }"/>
+													<c:param name="courseKind" value="${ c.courseKind }"/>
+												</c:url>
+			                                
+				                                <div class="col-md-4">
+				                                    <div class="card" onclick="location.href='${classDetail}';">
+														<img style="height:250px" class="card-img-top" src="resources/course/images/${ cover.coaRName }" alt="Card image cap">                                        <div class="card-body">
+				                                           <c:if test="${ c.courseKind == 'offline' }">
+				                                          	 	<h4 style="display:inline;" class="card-title mb-3">${c.courseTitle}</h4> <span class="badge badge-danger">offline</span>
+				                                            	<p class="card-text"> ${ c.courseArea } : ${c.courseStartDate} ~ ${c.courseEndDate} <br> 수강생 : ${c.courseCurrentNum}명</p>
+				                                            </c:if> 
+				                                            <c:if test="${ c.courseKind == 'online' }">
+				                                            	<h4 style="display:inline;" class="card-title mb-3">${c.courseTitle}</h4><span class="badge badge-primary"> online</span>
+				                                            	<p class="card-text"> ${ c.courseKind } : ${c.courseStartDate} ~ ${c.courseEndDate} <br> 수강생 : ${c.courseCurrentNum}명</p>
+				                                            </c:if> 
+				                                        </div>
+				                                    </div>
+				                                </div>
+			                                
+			                                </c:if>
+		                                </c:forEach>
+	                                </c:forEach>
+                                </c:if>
+                                
+                                
+                                
+                                <c:if test="${ empty list }">
+	                                <div class="col-md-4">
+	                                        <div class="card">
+	                                          <img class="card-img-top" src="<%= request.getContextPath() %>/resources/creator/images/class-default-01.png" alt="Card image cap">
+	                                            <div class="card-body" style="text-align:center;">
+	                                               <h4 class="card-title mb-3">새로운 클래스를 추가하세요.</h4>
+	                                                <p class="card-text" style="text-align:center;"> 
+	                                                    <img class="" src="<%= request.getContextPath() %>/resources/creator/images/icon/plus.png" style="width:65px; height:65px;">
+	                                                </p>
+	                                            </div>
+	                                        </div>
+	                                   </div>
+                                  </c:if>
                             <!-- </div> -->
                         </div>
                     </div>

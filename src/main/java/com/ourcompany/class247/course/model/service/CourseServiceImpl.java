@@ -106,15 +106,6 @@ public class CourseServiceImpl implements CourseService {
 	public int getCourseCount(int creNum) {
 		return coDao.getCourseCount(creNum);
 	}
-	
-	/** 크리에이터센터 메인화면에 띄울 클래스 3개 
-	 *
-	 */
-	@Override
-	public ArrayList<Course> selectMyClass3(int creNum) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 	// --------------------- 관리자-------------------

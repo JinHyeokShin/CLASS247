@@ -186,6 +186,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by course_num desc
 	</select>
 	
+	<!-- 크리에이터- 현재 개강중인 내 클래스 수  -->
 	<select id="getCourseCount" parameterType="_int" resultType="_int">
 		select count(*)
 		from course
@@ -193,7 +194,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		and course_status='Y'
 	</select>
 	
-	
+	<!-- 크리에이터 승인 대기중 클래스 목록  -->
 	<select id="selectAwaitByCreNum" parameterType="_int" resultMap="CourseResultSet">
 		select *
 		from course
