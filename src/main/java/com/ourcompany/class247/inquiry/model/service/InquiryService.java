@@ -11,5 +11,11 @@ public interface InquiryService {
 
 	int getInquiryCount(int creNum);
 
+	
+	// 관리자 답변 개수 조회
+	int getAdminInquiryList();
+		
+	// 관리자 답변 리스트 조회
+	ArrayList<Inquiry> selectAdminInquiryList(PageInfo pi);
 
 }

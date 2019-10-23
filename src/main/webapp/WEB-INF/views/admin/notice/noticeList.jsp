@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
 <title>공지사항 목록</title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 </head>
 
@@ -21,7 +22,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h2 class="title-1 m-b-25">Notice List</h2>
+                                <h2 class="title-1 m-b-25">공지사항</h2>
                                 <div class="table-responsive table--no-card m-b-40">
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>
@@ -45,10 +46,10 @@
 	                                                	${n.noticeTitle}
                                                 	</c:if>
                                                 	<c:if test="${!empty loginUser }">
-                                                		<c:url value="ndetail.do" var="ndetail">
+                                                		<c:url value="aNdetail.do" var="aNdetail">
                                                 			<c:param name="noticeNum" value="${ n.noticeNum }"/>
                                                 		</c:url>
-                                                		<a href="${ ndetail }">${n.noticeTitle }</a>
+                                                		<a href ="${ aNdetail }" style="color:black;">${n.noticeTitle } </a>
                                                 	</c:if>
                                                 </td>
                                                 <td>${n.noticeCount}</td>
@@ -103,7 +104,7 @@
 							    			</c:url>
 							    			<a href="${ next }"> [다음]</a>
 							    		</c:if>	
-                                        <input class="btn btn-outline-info" type="button" onclick="location.href='ninsertView.do';" value="글쓰기">
+                                        <input class="btn btn-outline-info" type="button" onclick="location.href='aNinsertView.do';" value="글쓰기">
                                    </div>
                             </div>
                         </div>   

@@ -6,6 +6,47 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 작성</title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/ckeditor/ckeditor.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			CKEDITOR.replace('bo_content',{
+				filebrowserUploadUrl: '${pageContext.request.contextPath }/adm/fileupload.do'
+			});
+		});
+	</script>
+
+<style>
+	.button {
+	
+	    width:100px;
+	
+	    background-color: #f8585b;
+	
+	    border: none;
+	
+	    color:#fff;
+	
+	    padding: 15px 0;
+	
+	    text-align: center;
+	
+	    text-decoration: none;
+	
+	    display: inline-block;
+	
+	    font-size: 15px;
+	
+	    margin: 4px;
+	
+	    cursor: pointer;
+	    
+	    border-radius: 10px;
+	
+	}
+</style>
+
+
 </head>
 <body class="animsition">
    <c:import url="../common/aMenubar.jsp"/>
@@ -26,29 +67,29 @@
                                             <h3><strong>공지사항 작성</strong></h3>
                                         </div>
                                         <div class="card-body card-block">
-                                            	<form action="ninsert.do" method="post" encType="multipart/form-data">
+                                            	<form action="aNinsert.do" method="post" encType="multipart/form-data">
 												  <div class="form-group">
 													<table align="center">
+														<tr>												
+															<td>제목 : </td>
+															<td><input type="text" name="noticeTitle"><hr></td>								
+														</tr>															
 														<tr>
-															<td>제목</td>
-															<td><input type="text" name="noticeTitle"></td>
+															<td>작성자 : </td>
+															<td><input type="text" readonly name="memNum" value="${ loginUser.memNum }"><hr></td>
 														</tr>
 														<tr>
-															<td>작성자</td>
-															<td><input type="text" readonly name="memNum" value="${ loginUser.memNum }"></td>
+															<td>내용 : </td>
+															<td><textarea cols="50" rows="7" name="noticeContent"></textarea><hr></td>
 														</tr>
 														<tr>
-															<td>내용</td>
-															<td><textarea cols="50" rows="7" name="noticeContent"></textarea></td>
+															<td>첨부파일 &nbsp; </td>															
+															<td><input type="file" name="uploadFile"><hr></td>
 														</tr>
 														<tr>
-															<td>첨부파일</td>
-															<td><input type="file" name="uploadFile"></td>
-														</tr>
-														<tr>
-															<td colspan="2">
-																<button type="submit">등록하기</button>
-																<button type="button" onclick="location.href='aNoticeList.do';">목록으로</button>
+															<td colspan="2" align="center">	
+																<button type="submit" class="button">등록하기</button>&nbsp;&nbsp;
+																<button type="button" onclick="location.href='aNoticeList.do'; "class="button">목록으로</button>
 															</td>
 														</tr>
 														

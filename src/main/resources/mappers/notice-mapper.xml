@@ -20,6 +20,8 @@
 		<result property="faqTitle" column="faq_title"/>
 		<result property="faqContent" column="faq_content"/>
 	</resultMap>
+	
+
 <!--  
 	<retultMap type="NoticeReply" id="noitceReplyResultSet">
 		<id property="nreplyNum" column="nreply_num"/>
@@ -50,7 +52,7 @@
 		
 	<insert id="insertNotice" parameterType="Notice">
 		insert into Notice 
-		values(notice_seq.nextval, #{memNum}, #{noticeTitle}, #{noticeContent}, null, null, default, sysdate, sysdate, 'Y')
+		values(notice_seq.nextval, #{memNum}, #{noticeTitle}, #{noticeContent}, null, #{noticeFileName}, default, sysdate, sysdate, 'Y')
 	</insert>
 	
 	<update id="updateNotice">
@@ -71,14 +73,14 @@
 		order by notice_num desc
 	</select>
 	
-	<update id="updateCount" parameterType="_int">
+	<update id="updateCount">
 		update notice
 		set notice_count=notice_count+1
 		where notice_num=#{noticeNum}
 	</update>
 	
 	<select id="selectNotice" parameterType="_int" resultMap="noticeResultSet">
-		select count(*)
+		select *
 		from notice
 		where notice_status='Y'
 		and notice_Num=#{noticeNum}
@@ -89,6 +91,11 @@
 		set notice_status='N'
 		where noitce_Num=#{noticeNum}
 	</update>
+	
+	
+	
+
+	
 <!--  
 	<select id="selectNoticeReply" parameterType="_int" resultMap="noitceReplyResultSet">
 		select *

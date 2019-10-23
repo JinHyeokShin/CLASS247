@@ -14,7 +14,7 @@ import com.ourcompany.class247.notice.model.vo.NoticeReply;
 
 		
 import com.ourcompany.class247.notice.model.vo.FAQ;
-import com.ourcompany.class247.notice.model.vo.Notice;
+
 
 @Repository("nDao")
 public class NoticeDao {
@@ -25,22 +25,13 @@ public class NoticeDao {
 	public int getListCount() {
 		return sqlSession.selectOne("noticeMapper.getListCount");
 	}
-	
-	public ArrayList<Notice> selectList(PageInfo pi){
-		
-		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
-		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("noticeMapper.selectList",null,rowBounds);
-	}
+
 		
 	public int insertNotice(Notice n) {
 		return sqlSession.insert("noticeMapper.insertNotice", n);
 		
 	}
 	
-
-	
-
 	
 	public int deleteBoard(int noticeNum) {
 		return sqlSession.update("noticeMapper.deleteNotice", noticeNum);

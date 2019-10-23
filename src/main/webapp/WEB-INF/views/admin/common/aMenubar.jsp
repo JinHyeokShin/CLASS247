@@ -105,7 +105,7 @@
 							<li><a href="aFAQList.do">FAQ</a></li>
 						</ul></li>
 
-					<li><a href="aInqiredList.do"> <i class="fas fa-table"></i>Iquired
+					<li><a href="adminInquriyList.do"> <i class="fas fa-table"></i>Iquired
 					</a></li>
 
 					<li><a href="aPayment.do"> <i class="fas fa-table"></i>Payment

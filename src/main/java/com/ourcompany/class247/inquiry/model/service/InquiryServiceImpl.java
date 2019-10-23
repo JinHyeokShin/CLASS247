@@ -24,4 +24,17 @@ public class InquiryServiceImpl implements InquiryService {
 	public int getInquiryCount(int creNum) {
 		return iDao.getInquiryCount(creNum);
 	}
+
+	@Override
+	public int getAdminInquiryList() { 
+		return iDao.getAdminInquiryCount();
+	}
+
+	@Override
+	public ArrayList<Inquiry> selectAdminInquiryList(PageInfo pi) {
+		return iDao.selectAdminInquiryList(pi);
+	}
+	
+	
+
 }

@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 상세보기</title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 </head>
 <body>
 
@@ -31,7 +32,7 @@
 				<td>첨부파일</td>
 				<td>
 					<c:if test="${ !empty n.noticeFileName }">
-						<a href="${ contextPath }/resources/bupload/${ n.renameFileName }" download="${ n.noticeFileName }">${ n.noticeFileName }</a>
+						<a href="${ contextPath }/resources/admin/images/noticeupload/${ n.renameFileName }" download="${ n.noticeFileName }">${ n.noticeFileName }</a>
 					</c:if>
 				</td>
 			</tr>

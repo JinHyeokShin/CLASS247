@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.notice.model.dao.NoticeDao;
+import com.ourcompany.class247.notice.model.vo.FAQ;
 import com.ourcompany.class247.notice.model.vo.Notice;
-import com.ourcompany.class247.notice.model.vo.NoticeReply;
 
 	
 @Service("nService")

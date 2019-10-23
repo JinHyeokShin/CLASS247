@@ -47,8 +47,9 @@ public class NoticeController {
 	@Autowired
 	private FAQService fService;
 	
+	
 	@RequestMapping("aFAQList.do")
-	public ModelAndView selectList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1")int currentPage) {
+	public ModelAndView selectFAQList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1")int currentPage) {
 		
 		
 		int listCount = fService.getListCountf();
@@ -62,8 +63,8 @@ public class NoticeController {
 		return mv;
 		
 	}
-	@Autowired
-	private NoticeService nService;
+
+
 	
 	@RequestMapping("aNoticeList.do")
 	public ModelAndView noticeList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1")int currentPage) {
@@ -82,14 +83,14 @@ public class NoticeController {
 		
 	}
 	
-	@RequestMapping("ninsertView.do")
+	@RequestMapping("aNinsertView.do")
 	public String noticeinsertView() {
 		return "admin/notice/noticeInsert";
 	}
 	
-	@RequestMapping("ninsert.do")
+	@RequestMapping("aNinsert.do")
 	public String insertNotice(Notice n, HttpServletRequest request, Model model,
-								@RequestParam(name="uploadFile", required=false)MultipartFile file) {
+								@RequestParam(name="uploadFile", required=false)MultipartFile file) throws IllegalStateException, IOException {
 		
 
 			 if( !file.getOriginalFilename().equals("")) {
@@ -97,7 +98,6 @@ public class NoticeController {
 			 String renameFileName = saveFile(file, request);
 			 
 			 if(renameFileName != null) {
-			 n.setNoticeFileName(file.getOriginalFilename());
 			 n.setNoticeFileName(renameFileName); }
 			 
 			 }
@@ -114,10 +114,10 @@ public class NoticeController {
 		
 	}
 
-	private String saveFile(MultipartFile file, HttpServletRequest request) {
+	private String saveFile(MultipartFile file, HttpServletRequest request) throws IllegalStateException, IOException {
 		
 		String root = request.getSession().getServletContext().getRealPath("resources");
-		String savePath = root + "\\bupload";
+		String savePath = root + "\\admin\\images\\noticeupload";
 		
 		File folder = new File(savePath);
 		
@@ -134,12 +134,10 @@ public class NoticeController {
 		
 		String renamePath = savePath + "\\" + renameFileName;
 		
-		try {
+
 			file.transferTo(new File(renamePath));
 			
-		} catch (IllegalStateException | IOException e) {
-			e.printStackTrace();
-		}
+		
 		
 		return renameFileName;
 	}
@@ -162,7 +160,7 @@ public class NoticeController {
 		return mv;
 	}
 	
-	@RequestMapping("ndelete.do")
+	@RequestMapping("aNdelete.do")
 	public String noticeDelete(int noticeNum, HttpServletRequest request) {
 		
 		Notice n = nService.selectNotice(noticeNum);

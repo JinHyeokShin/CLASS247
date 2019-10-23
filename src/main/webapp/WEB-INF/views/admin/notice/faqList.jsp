@@ -71,7 +71,7 @@
                                  <c:forEach items="${ flist }" var="f">
                                  <ul>
 							        <li class="collapsible">
-							            <h2 class="title"><a href="#html5">&nbsp; ${ f.faqNum}.  ${ f.faqTitle}</a></h2>
+							            <h2 class="title"><a href="#html5" style="color:gray;">&nbsp; ${ f.faqNum}.  ${ f.faqTitle}</a></h2>
 							            <hr>     
 							            <h3 class="content">${ f.faqContent }</h3>
 							        </li>
@@ -79,8 +79,8 @@
 							    </ul>
 							    
 							     </c:forEach>
-							    
-							    <tr align="center" height="20">
+							     
+							        <tr align="center" height="20">
 							    	<td colspan="6">
 							    		
 							    		<!-- 이전버튼 -->
@@ -121,8 +121,9 @@
 							    		
 							    	</td>
 							   	 </tr>
+							 						
 							   	 
-                                </div>
+                                </div>                               
                             </div>
                         </div>   
                     </div>
