@@ -41,10 +41,12 @@
                                                
                                                 <td>${ m.memNum }</td>
                                                 <td></td>
-                                                 <c:url value="aMemDetail.do" var="memDetail">
+                                                 
+                                        		<td>
+												  <c:url value="aMemDetail.do" var="memDetail">
                                                 	<c:param name="memNum" value="${ m.memNum }"/>
                                                   </c:url>
-                                        		<td>${ m.memId }</td>
+                                                  <a style="color:black" href="${memDetail}">${m.memId }</a></td>
                                                 
                                                 <td class="text-right">${ m.memNickName }</td>
                                                 <td class="text-right">${ m.memType }</td>

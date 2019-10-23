@@ -293,13 +293,25 @@ public class MemberController {
 		
 		Creator cre = creService.getCreator(memNum);
 		
-		ArrayList<SingleCourse> coList = coService.mySingleCourseList(cre.getCreNum());
+		ArrayList<SingleCourse> coList = null;
 		
-		ArrayList<SingleCourse> coListU = coService.selectMyTakeCourse(m.getMemNum());
+		ArrayList<SingleCourse> coListU = null;
+
+		CreatorAttachment cra = null;
 		
-		CreatorAttachment cra = creService.selectMyProFile(cre.getCreNum());
+		ArrayList<CreatorAttachment> craList = null;
 		
-		ArrayList<CreatorAttachment> craList = creService.selectCreatorAttachmentList(cre.getCreNum());
+		if(cre != null) {
+		
+		coList = coService.mySingleCourseList(cre.getCreNum());
+		
+		coListU = coService.selectMyTakeCourse(m.getMemNum());
+		
+		cra = creService.selectMyProFile(cre.getCreNum());
+		
+		craList = creService.selectCreatorAttachmentList(cre.getCreNum());
+		
+		}
 		
 		ArrayList<Payment> pList = pService.selectMyPaymentList(memNum);
 		

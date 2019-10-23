@@ -259,9 +259,7 @@ public class CreatorController {
 	@RequestMapping("aRejectCreator.do")
 	public String aRejectCourse(int creNum) {
 		
-		
 		int result = creService.rejectCreator(creNum);
-		
 		
 		if(result > 0 ) {
 			return "redirect:aAwaitCreatorList.do";
