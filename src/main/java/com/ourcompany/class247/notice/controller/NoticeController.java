@@ -25,6 +25,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.common.Pagination;
+import com.ourcompany.class247.common.ReplyPagination;
 import com.ourcompany.class247.member.model.vo.Member;
 import com.ourcompany.class247.notice.model.service.FAQService;
 import com.ourcompany.class247.notice.model.service.NoticeService;
@@ -144,14 +145,19 @@ public class NoticeController {
 
 	
 	@RequestMapping("aNdetail.do")
-	public ModelAndView noticeDetail(int noticeNum, ModelAndView mv) {
+	public ModelAndView noticeDetail(int noticeNum, ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="0")int currentPage) {
 		
 		Notice n = nService.selectNotice(noticeNum);
 		
+		int listCount = nService.getNoticeReplyListCount(noticeNum);
+		
+		PageInfo pi = ReplyPagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<NoticeReply> nrList = nService.selectNReplyList(pi, noticeNum);
+		
 		
 		if(n != null) {
-			mv.addObject("n", n)
-			.setViewName("admin/notice/noticeDetail");
+			mv.addObject("n", n).addObject("pi", pi).setViewName("admin/notice/noticeDetail");
 			
 		}else {
 			mv.addObject("msg", "게시글 상세조회실패!")

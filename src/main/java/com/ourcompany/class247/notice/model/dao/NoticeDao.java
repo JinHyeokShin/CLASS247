@@ -74,5 +74,18 @@ public class NoticeDao {
 		return (ArrayList)sqlSession.selectList("noticeMapper.selectUserFaqList", null, rowBounds);
 	}
 	
+	public int getNoticeReplyListCount(int noticeNum) {
+		
+		return sqlSession.selectOne("noticeMapper.getNoticeReplyListCount", noticeNum);
+	}
+	
+	public ArrayList<NoticeReply> selectNReplyList(PageInfo pi, int noticeNum) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("notcieMapper.selectNReplyList", noticeNum, rowBounds); 
+	}
+	
 	
 }

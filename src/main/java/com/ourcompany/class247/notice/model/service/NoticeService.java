@@ -3,9 +3,9 @@ package com.ourcompany.class247.notice.model.service;
 import java.util.ArrayList;
 
 import com.ourcompany.class247.common.PageInfo;
-import com.ourcompany.class247.inquiry.model.vo.Inquiry;
 import com.ourcompany.class247.notice.model.vo.FAQ;
 import com.ourcompany.class247.notice.model.vo.Notice;
+import com.ourcompany.class247.notice.model.vo.NoticeReply;
 
 
 
@@ -39,4 +39,7 @@ public interface NoticeService {
 	
 	int deleteNotice(int noticeNum);
 	
+	int getNoticeReplyListCount(int noticeNum);
+	
+	ArrayList<NoticeReply> selectNReplyList(PageInfo pi, int noticeNum);
 }

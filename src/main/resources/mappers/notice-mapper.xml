@@ -21,6 +21,19 @@
 		<result property="faqContent" column="faq_content"/>
 	</resultMap>
 	
+	<resultMap type="NoticeReply" id="noticeReplyResultSet">
+		<id property="nReplyNum" column=""/>
+		<result property="noticeNum" column="notice_num"/>
+		<result property="memNickName" column="mem_nickname"/>
+		<result property="memProfileName" column="mem_profile_name"/>
+		<result property="nReplyParentNum" column="nreply_parent_num"/>
+		<result property="nReplyDepth" column="nreply_depth"/>
+		<result property="nReplyContent" column="nreply_content"/>
+		<result property="nReplyEnrollDate" column="nreply_enroll_date"/>
+		<result property="nReplyModifyDate" column="nreply_modify_date"/>
+		<result property="nReplyStatus" column="nreply_status"/>
+	</resultMap>
+	
 
 <!--  
 	<retultMap type="NoticeReply" id="noitceReplyResultSet">
@@ -92,8 +105,20 @@
 		where noitce_Num=#{noticeNum}
 	</update>
 	
+	<select id="getNoticeReplyListCount" parameterType="_int" resultMap="noticeReplyResultSet">
+		select count(*)
+		from notice_reply
+		where notice_num = #{notice_num}
+	</select>
 	
-	
+	<select id="selectNReplyList" resultMap="noticeReplyResultSet">
+		
+		select *
+		from notice_reply
+		join member using(mem_num)
+		where notice_num = #{notice_num}
+		order by nreply_parent_num, nreply_depth;
+	</select>
 
 	
 <!--  
@@ -112,8 +137,11 @@
 		select count(*)
 		from faq
 	</select>
+	
 	<select id="selectUserFaqList" resultMap="FAQResultSet">
 		select *
 		from faq
 	</select>
+	
+
 </mapper>
