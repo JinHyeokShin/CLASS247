@@ -18,7 +18,7 @@
 		border: 1px solid #954CBC;
 		padding: 10px;
 		width: 80%;
-		height:120%;  
+		height:100%;  
 		border-radius: 10px;
 	}
 	.progress-table-wrap{
@@ -91,7 +91,17 @@
 							<div class="COURSE_TITLE">${ de.courseTitle }</div>
 							<div class="COURSE_MATERIAL">${ de.courseMaterial }</div>
 							<div class="PAY_PRICE">${ de.payPrice }</div>
-							<div class="DELIVERY_STATUS">${ de.deliveryStatus }</div>
+							<div class="DELIVERY_STATUS">
+							<c:if test="${ de.deliveryStatus eq 'S'}">
+							준비물출발
+							</c:if>
+							<c:if test="${ de.deliveryStatus eq 'I'}">
+							배송중
+							</c:if>
+							<c:if test="${ de.deliveryStatus eq 'E'}">
+							배송완료
+							</c:if>
+							</div>
 							<div class="MEM_NAME">${ de.memName }</div>
 							<div class="DELIVERY_detail"><input type="button" value="상세보기"></div>
 						</div>
