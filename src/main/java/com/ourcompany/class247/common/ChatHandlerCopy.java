@@ -2,9 +2,6 @@ package com.ourcompany.class247.common;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,12 +10,12 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.ourcompany.class247.creator.model.vo.Creator;
 
 
 public class ChatHandler extends TextWebSocketHandler{
 
 private static Logger logger = LoggerFactory.getLogger(ChatHandler.class);
-
 
     
 
@@ -32,8 +29,6 @@ private static Logger logger = LoggerFactory.getLogger(ChatHandler.class);
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-    	
-    	
        
         sessionList.add(session);
 
@@ -49,12 +44,12 @@ private static Logger logger = LoggerFactory.getLogger(ChatHandler.class);
     @Override
 
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-     
+       int creNum = ((Creator)session.getAttributes().get("creator")).getCreNum();
 
        
 
-       logger.info("{}로 부터 {} 받음", session.getId(), message.getPayload());
- 
+        logger.info("{}로 부터 {} 받음", session.getId(), message.getPayload());
+        
         for(WebSocketSession sess : sessionList){
            if(session.getAttributes().get("bId") == null) {   // 방에 안들어왔으면
               if(session.getId().equals(sess.getId())) {      // 보낸사람 id와 보내야되는 사람 id 가 같을때
@@ -77,7 +72,6 @@ private static Logger logger = LoggerFactory.getLogger(ChatHandler.class);
         }
 
     }
-    
 
     /**
 

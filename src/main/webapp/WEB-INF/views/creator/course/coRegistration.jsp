@@ -71,7 +71,7 @@
                                                   	      <option value="입문자">입문자</option>
                                                   	      <option value="초급자">초급자</option>
                                                  	       <option value="중급자">중급자</option>
-                                                 	       <option value="준전문가">고급자</option>
+                                                 	       <option value="고급자">고급자</option>
                                                  	       <option value="전문가">전문가</option>
                                                  	       <option value="무관">무관</option>
                                                  	   </select>

@@ -137,4 +137,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where cre_num = #{creNum}
 		and cra_level = 1
 	</select>
+	
+	<update id="updateProfile" parameterType="CreatorAttachment">
+		update creator_attachment 
+		set cra_rname = #{craRname}, cra_oname=#{craOname}
+		where cre_num = #{creNum}
+	</update>
+	
+	
+	
 </mapper>

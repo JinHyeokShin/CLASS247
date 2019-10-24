@@ -103,14 +103,6 @@
                                                 
                                                 <div class="form-group">
                                                     <label class=" form-control-label">수업 참원 인원</label><br>
-                                                    <div class="form-check-inline form-check">
-                                                        <label for="courseMinPax" class="form-check-label ">
-                                                            <input type="radio"  name="courseType" value="oneToOne" class="form-check-input">1:1 수업 &nbsp;&nbsp;
-                                                        </label>
-                                                        <label for="offline" class="form-check-label ">
-                                                            <input type="radio" name="courseType" value="group" class="form-check-input">그룹 수업
-                                                        </label>
-                                                    </div>
                                                     <div>
                                                     	<input type="number" name="courseMinPax" placeholder="최소인원수" class="form-control" style="width:200px; display:inline-block">명 ~ 
                                                     	<input type="number" name="courseMaxPax" placeholder="최대인원수" class="form-control" style="width:200px;display:inline-block">명 

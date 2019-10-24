@@ -140,6 +140,16 @@ public class CreatorServiceImpl implements CreatorService{
 
 
 
+	/** 크리에이터 프로필 사진 업데이트 
+	 *
+	 */
+	@Override
+	public int updateProfile(CreatorAttachment updateProfile) {
+		return creDao.updateProfile(updateProfile);
+	}
+
+
+
 
 	
 	

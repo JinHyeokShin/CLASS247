@@ -23,6 +23,13 @@ public class CreatorAttachment {
 		this.craPath = craPath;
 	}
 
+	public CreatorAttachment(int creNum, String craOname, String craRname) {
+		super();
+		this.creNum = creNum;
+		this.craOname = craOname;
+		this.craRname = craRname;
+	}
+
 	public int getCraNum() {
 		return craNum;
 	}

@@ -37,7 +37,12 @@ public interface CreatorService {
 	ArrayList<Creator> creSelectList();
 	
 	CreatorAttachment selectMyProFile(int creNum);
-
+	
+	//크리에이터 프로필 사진명 가져오기
 	String getCreProfile(int creNum);
+
+	//크리에이터 프로필 사진 변경 
+	int updateProfile(CreatorAttachment update);
+
 
 }

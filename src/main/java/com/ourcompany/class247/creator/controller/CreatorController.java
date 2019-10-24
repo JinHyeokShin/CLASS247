@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ourcompany.class247.chat.model.vo.Chat;
 import com.ourcompany.class247.course.model.service.CourseService;
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
@@ -45,6 +46,23 @@ public class CreatorController {
 	private PaymentService pService;
 	
 	
+	@ResponseBody
+	@RequestMapping("send.do")
+	public String sendMessage(HttpServletRequest request) {
+		String msg = request.getParameter("msg");
+		Chat chat = new Chat();
+		String[] message = msg.split("->");
+		String fromId = message[0];
+		String content = message[1];
+		String toId = message[2];
+		chat.setFromId(fromId);
+		chat.setToId(toId);
+		chat.setChatContent(content);
+		//System.out.println(chat);
+		return "success";
+	}
+	
+	
 	/** 크리에이터 메인페이지로 이동
 	 * @param session
 	 * @param model
@@ -64,6 +82,10 @@ public class CreatorController {
 			String creProfile = creService.getCreProfile(creNum);
 			request.getSession().setAttribute("creProfile", creProfile);
 			ArrayList<Course> list = coService.selectMyCoList(creNum);
+			
+			for(Course c : list) {
+				System.out.println(c);
+			}
 			ArrayList<CourseAttachment> coverList = coService.selectCoverList(creNum);
 			mv.addObject("list", list).addObject("coverList", coverList);
 			mv.addObject("creator", creator).addObject("totalStuCount", totalStuCount).addObject("classCount", classCount).addObject("totalAmount",totalAmount);
@@ -215,8 +237,8 @@ public class CreatorController {
 			if(result > 0) {
 				System.out.println(result);
 				mv.addObject("creator", newCre);
-				mv.addObject("msg", "정보수정이 완료되었습니다.");
-				mv.setViewName("creator/creatorCenter");
+				request.getSession().setAttribute("msg", "정보수정이 완료되었습니다.");
+				mv.setViewName("redirect:creatorInfo.do");
 			}
 			
 		}
@@ -224,12 +246,26 @@ public class CreatorController {
 		return mv;
 	}
 	
+	/** 크리에이터 프로필 사진 변경 
+	 * @param profile
+	 * @param request
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("updateProfile.do")
-	public String updateCreatorProfile(@RequestParam(name="file", required=false) MultipartFile profile) {
-		System.out.println(profile.getOriginalFilename());
+	public String updateCreatorProfile(@RequestParam(name="file", required=false) MultipartFile profile,
+										HttpServletRequest request) {
+		Creator creator = (Creator)request.getSession().getAttribute("creator");
+		String rename = saveFile(profile, request);
+		CreatorAttachment update = new CreatorAttachment(creator.getCreNum(), profile.getOriginalFilename(), rename);
+		int result = creService.updateProfile(update);
 		
-		return "오케이";
+		if( result > 0) {
+			request.getSession().setAttribute("creProfile", rename);
+			return rename;
+		} else {
+			return "fail";
+		}
 	}
 	
 	

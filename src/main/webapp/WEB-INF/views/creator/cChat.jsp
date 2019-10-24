@@ -11,14 +11,14 @@
 </head>
 <body class="animsition">
 	<c:import url="common/cMenubar.jsp"/>
-	
+
 	<div class="page-wrapper">
             <!-- MAIN CONTENT-->
                  <session class="main-content">
                     <div class="section__content section__content--p30">
                         <div class="container-fluid">
                             <h3 class="title-3 m-b-30"><br>
-                                <i class="fas fa-comment-alt"></i>실시간 톡
+                                <i class="fas fa-comment-alt"></i>실시간 톡  
                             </h3>
                             <div class="row">
                                 <div class="col-lg-6" style="margin-right:auto; margin-left:auto;">
@@ -56,6 +56,12 @@
                                                         </div>
                                                         <span class="nick">
                                                             <a href="#">John Smith</a>
+                                                            <c:if test="${!empty creator.creNum}">
+                                                            	<input type="hidden" id="userId" value="C${creator.creNum}">
+                                                            </c:if>
+                                                            <c:if test="${ empty creator.creNum }">
+                                                            	<input type="hidden" id="userId" value="${loginUser.memNum}">
+                                                            </c:if>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -101,7 +107,74 @@
                     </div>
                 </session>
                 
-                	<script>
+        
+       <!--  회원 -> 튜터  메세지를 보낼 경우 (즉, 회원일경우 로그인 )  -->         	
+		<c:if test='${ !empty creator}'> 
+			<script>
+				function sendMessage() {
+				
+				  if($("#message").val() == ""){   // 메세지 내용이 없으면 실행되는 부분
+				     alert("메세지를 입력하세요.");
+				  }else{                     // 메세지 내용이 있으면
+				       /*소켓으로 보내겠다.  */
+				       var text =  $("#userId").val() + "->" + $("#message").val() + "->2";
+				       sock.send(text);   // 메세지를 소켓에 보내고
+				       
+				       
+				       $.ajax({
+					    	  url:'send.do',
+					    	  type:'post',
+					    	  dataType:'text',
+					    	  data:{'msg':text},
+					    	  success:function(data){
+					    		  alert(data);
+					    	  },
+					    	  error:function(){
+					    		  console.log('서버 통신 실패');
+					    	  }
+					       });
+				       $("#message").val("");         // 메세지 내용을 비운다.
+				     
+				  }
+			
+				}
+			</script>
+		</c:if>
+		<!--  튜터 -> 회원  메세지를 보낼 경우 (즉, 튜터로 로그인 )  -->     
+		<c:if test='${ empty creator}'>
+		<script>
+				function sendMessage() {
+				
+				  if($("#message").val() == ""){   // 메세지 내용이 없으면 실행되는 부분
+				     alert("메세지를 입력하세요.");
+				  }else{                     // 메세지 내용이 있으면
+				       /*소켓으로 보내겠다.  */
+				       var text = $("#userId").val() +  "->" + $("#message").val() + "->C3";
+				       sock.send(text);   // 메세지를 소켓에 보내고
+				       
+				       $.ajax({
+				    	  url:'send.do',
+				    	  type:'post',
+				    	  dataType:'text',
+				    	  data:{'msg':text},
+				    	  success:function(data){
+				    		  alert(data);
+				    	  },
+				    	  error:function(){
+				    		  console.log('서버 통신 실패');
+				    	  }
+				       });
+				       $("#message").val("");         // 메세지 내용을 비운다.
+				     
+				  }
+				    
+			
+				}
+			</script>
+		</c:if>
+	
+                
+          <script>
 			$(document).ready(function() {
 			      
 		        $("#sendBtn").on("click", function() {   // 전송 버튼을 누를때
@@ -144,20 +217,7 @@
 		
 		}; */
 		
-		function sendMessage() {
-		
-		  if($("#message").val() == ""){   // 메세지 내용이 없으면 실행되는 부분
-		     
-		  }else{                     // 메세지 내용이 있으면
-		       /*소켓으로 보내겠다.  */
-		       $("#message").val() + "//" +  $("#userName").val()
-		       sock.send($("#message").val());   // 메세지를 소켓에 보내고
-		       $("#message").val("");         // 메세지 내용을 비운다.
-		     
-		  }
-		    
-	
-		}
+
 		
 		//evt 파라미터는 웹소켓을 보내준 데이터다.(자동으로 들어옴)
 		

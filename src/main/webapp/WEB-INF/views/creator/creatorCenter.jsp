@@ -49,7 +49,7 @@
                                         </div>
                                       	<br>
                                         <div align="center" style="font-family:Noto Serif KR">
-	                                        <button type="button" class="btn btn-primary" onclick="location.href='#';">문의하기</button>
+	                                        <button type="button" class="btn btn-primary" onclick="location.href='inquiryList.do';">문의하기</button>
 	                                        <button type="button" class="btn btn-secondary" onclick="location.href='home.do';">메인으로 돌아가기</button>
                                         </div>
                                     </div>
@@ -176,9 +176,8 @@
                             <i class="zmdi zmdi-book"></i>my class
                         </h3>
                         <div class="row">
-                                
                                 <c:if test="${ !empty list }">
-	                                <c:forEach items="${list}" var="c" begin="1" end="3">
+	                                <c:forEach items="${list}" var="c">
 		                                <c:forEach items="${coverList}" var="cover">
 			                               	<c:if test="${ cover.courseNum == c.courseNum}"> 
 				                                <c:url value="myCourseDetail.do" var="classDetail">
@@ -210,7 +209,7 @@
                                 
                                 <c:if test="${ empty list }">
 	                                <div class="col-md-4">
-	                                        <div class="card">
+	                                        <div class="card" onclick="location.href='courseFormView.do';">
 	                                          <img class="card-img-top" src="<%= request.getContextPath() %>/resources/creator/images/class-default-01.png" alt="Card image cap">
 	                                            <div class="card-body" style="text-align:center;">
 	                                               <h4 class="card-title mb-3">새로운 클래스를 추가하세요.</h4>

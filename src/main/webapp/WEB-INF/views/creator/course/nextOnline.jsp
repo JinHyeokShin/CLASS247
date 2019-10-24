@@ -65,7 +65,7 @@
                                                 			var $tr = $('<tr>');
                                                 			var $meName = $('<td>').html('<input type="text" name="courseMaterial" placeholder="준비물 이름" class="form-control">'); 
                                                     		var $meBtn = $('<td>').html('<buttn onclick="add()" class="btn btn-primary btn-sm">추가</button>');
-                                                    		var $MaPrice = $('<td>').html('<input type="number" name="courseMaterialPrice" placeholder="준비물 총 가격 입력" class="form-control" required>원');
+                                                    		var $MaPrice = $('<td>').html('<input type="number" name="courseMaterialPrice" placeholder="준비물 총 가격 입력" class="form-control">원');
                                                     		$tr.append($meName);
                                                     		$tr.append($meBtn);
                                                     		$tr.append($MaPrice);

@@ -106,8 +106,20 @@ public class CreatorDao {
 		return sqlSession.selectOne("creatorMapper.selectMyProFile", creNum);
 	}
 
+	/** 크리에이터 프로필 사진명 가져오기 
+	 * @param creNum
+	 * @return
+	 */
 	public String getCreProfile(int creNum) {
 		return sqlSession.selectOne("creatorMapper.getCreProfile", creNum);
+	}
+
+	/** 크리에이터 프로필 사진 변경 
+	 * @param updateProfile
+	 * @return
+	 */
+	public int updateProfile(CreatorAttachment updateProfile) {
+		return sqlSession.update("creatorMapper.updateProfile", updateProfile);
 	}
 
 }
