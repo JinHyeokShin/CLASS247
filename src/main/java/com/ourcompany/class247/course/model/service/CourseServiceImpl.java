@@ -102,17 +102,7 @@ public class CourseServiceImpl implements CourseService {
 		return coDao.selectAwaitCourseList();
 	}
 
-	@Override
-	public Online selectOnline(int courseNum) {
 
-		return coDao.selectOnline(courseNum);
-	}
-
-	@Override
-	public Offline selectOffline(int courseNum) {
-
-		return coDao.selectOffline(courseNum);
-	}
 
 	@Override
 	public ArrayList<CourseAttachment> selectCourseAttachmentList(int courseNum) {
@@ -140,14 +130,8 @@ public class CourseServiceImpl implements CourseService {
 	public Course selectCourse(int courseNum) {
 		return coDao.selectCourse(courseNum);
 	}
-	public ArrayList<Course> selectList() {
-		
-		Course c = coDao.selectCourse(courseNum);
-		c.setLoveCount(coDao.countLove(courseNum));
-		
-		return c;
-		
-	}
+	
+
 	
 	@Override
 	public ArrayList<Course> selectList() {
@@ -238,7 +222,7 @@ public class CourseServiceImpl implements CourseService {
 	}
 	// 수강페이지를 위한 온라인상세페이지
 	@Override
-	public Course selectOnline(int courseNum) {
+	public Online selectOnline(int courseNum) {
 		return coDao.selectOnline(courseNum);
 	}
 
@@ -412,6 +396,12 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public ArrayList<Course> offlinecategoryCareerList() {
 		return coDao.offlinecategoryCareerList();
+	}
+
+	@Override
+	public ArrayList<Course> modalsearchCategory(int categoryNum) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

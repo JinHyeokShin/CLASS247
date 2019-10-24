@@ -96,7 +96,7 @@ public class CourseDao {
 		return sqlSession.selectOne("courseMapper.selectOffline", courseNum);
 	}
 
-	public Course selectOnline(int courseNum) {
+	public Online selectOnline(int courseNum) {
 		return sqlSession.selectOne("courseMapper.selectOnline", courseNum);
 	}
 
@@ -145,9 +145,6 @@ public class CourseDao {
 		return sqlSession.selectOne("courseMapper.countLove", courseNum);
 	}
 	
-	public Course selectCourse(int courseNum) {
-		return sqlSession.selectOne("courseMapper.selectCourse", courseNum);
-	}
 	
 	
 	public Course selectCourse(int courseNum, String courseKind) {
@@ -302,7 +299,7 @@ public class CourseDao {
 	public ArrayList<Review> selectRlist(int courseNum) {
 		
 		return (ArrayList)sqlSession.selectList("courseMapper.selectRlist",courseNum);
-	
+	}
 	/* 온라인 카테고리 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ArrayList<Course> onlinecategoryCraftsList() {

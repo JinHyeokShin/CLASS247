@@ -202,41 +202,6 @@ public class TakeCourse {
 		this.courseApproved = courseApproved;
 	}
 
-
-
-
-	public int getTakeNum() {
-		return takeNum;
-	}
-
-	public void setTakeNum(int takeNum) {
-		this.takeNum = takeNum;
-	}
-
-	public int getPayNum() {
-		return payNum;
-	}
-
-	public void setPayNum(int payNum) {
-		this.payNum = payNum;
-	}
-
-	public int getMemNum() {
-		return memNum;
-	}
-
-	public void setMemNum(int memNum) {
-		this.memNum = memNum;
-	}
-	
-	public int getCourseNum() {
-		return courseNum;
-	}
-
-	public void setCourseNum(int courseNum) {
-		this.courseNum = courseNum;
-	}
-
 	public String getTakePrice() {
 		return takePrice;
 	}
@@ -271,6 +236,9 @@ public class TakeCourse {
 				+ courseArea + ", courseHourPrice=" + courseHourPrice + ", courseApproved=" + courseApproved
 				+ ", takePrice=" + takePrice + ", takeDate=" + takeDate + ", takeStatus=" + takeStatus + "]";
 	}
+
+
+
 
 	
 	

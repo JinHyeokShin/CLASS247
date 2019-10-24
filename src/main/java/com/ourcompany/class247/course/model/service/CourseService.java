@@ -44,8 +44,6 @@ public interface CourseService {
 	// 3. 오프라인 클래스 가지고 오기
 	public Offline selectOffline(int courseNum);
 	
-	public Course selectOnline(int courseNum);
-	
 	int rejectCourse(int courseNum);
 	
 	Course selectCourse(int courseNum, String courseKind);
