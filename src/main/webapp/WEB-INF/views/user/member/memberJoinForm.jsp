@@ -129,7 +129,7 @@
 				</script>
 			<br>
 			<div>
-            	<input type="checkbox">  <a href="#">이용악관</a>및   <a href="#">개인정보 처리방침</a>에 동의해주세요
+            	<input type="checkbox" required>  <a href="https://docs.google.com/document/d/1QfM61dBfDRfiL_7E7dbMqSpzcJO6MF0eOEpFgnpVO10/edit">이용악관</a>및   <a href="https://docs.google.com/document/d/1QvEx-SVtIJOTIvDKFBPBhc_NVbvQTDkYK1XA-RXz1gE/edit">개인정보 처리방침</a>에 동의해주세요
             </div>
       		
       		<table width="600">
