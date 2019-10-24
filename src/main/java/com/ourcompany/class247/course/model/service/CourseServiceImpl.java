@@ -304,6 +304,116 @@ public class CourseServiceImpl implements CourseService {
 		return coDao.categoryCareerList();
 	}
 
+	@Override
+	public ArrayList<Course> onlinecategoryCraftsList() {
+		return coDao.onlinecategoryCraftsList();
+	}
+
+	@Override
+	public ArrayList<Course> onlinecategoryDesignList() {
+		return coDao.onlinecategoryDesignList();
+	}
+
+	@Override
+	public ArrayList<Course> onlinecategoryDevelopList() {
+		return coDao.onlinecategoryDevelopList();
+	}
+
+	@Override
+	public ArrayList<Course> onlinecategoryDigitalList() {
+		return coDao.onlinecategoryDigitalList();
+	}
+
+	@Override
+	public ArrayList<Course> onlinecategoryLifeList() {
+		return coDao.onlinecategoryLifeList();
+	}
+
+	@Override
+	public ArrayList<Course> onlinecategoryArtList() {
+		return coDao.onlinecategoryArtList();
+	}
+
+	@Override
+	public ArrayList<Course> onlinecategoryCameraList() {
+		return coDao.onlinecategoryCameraList();
+	}
+
+	@Override
+	public ArrayList<Course> onlinecategorySigitureList() {
+		return coDao.onlinecategorySigitureList();
+	}
+
+	@Override
+	public ArrayList<Course> onlinecategoryFoodList() {
+		return coDao.onlinecategoryFoodList();
+	}
+
+	@Override
+	public ArrayList<Course> onlinecategoryMusicList() {
+		return coDao.onlinecategoryMusicList();
+	}
+
+	@Override
+	public ArrayList<Course> onlinecategoryCareerList() {
+		return coDao.onlinecategoryCareerList();
+	}
+
+	@Override
+	public ArrayList<Course> offlinecategoryCraftsList() {
+		return coDao.offlinecategoryCraftsList();
+	}
+
+	@Override
+	public ArrayList<Course> offlinecategoryDesignList() {
+		return coDao.offlinecategoryDesignList();
+	}
+
+	@Override
+	public ArrayList<Course> offlinecategoryDevelopList() {
+		return coDao.offlinecategoryDevelopList();
+	}
+
+	@Override
+	public ArrayList<Course> offlinecategoryDigitalList() {
+		return coDao.offlinecategoryDigitalList();
+	}
+
+	@Override
+	public ArrayList<Course> offlinecategoryLifeList() {
+		return coDao.offlinecategoryLifeList();
+	}
+
+	@Override
+	public ArrayList<Course> offlinecategoryArtList() {
+		return coDao.offlinecategoryArtList();
+	}
+
+	@Override
+	public ArrayList<Course> offlinecategoryCameraList() {
+		return coDao.offlinecategoryCameraList();
+	}
+
+	@Override
+	public ArrayList<Course> offlinecategorySigitureList() {
+		return coDao.offlinecategorySigitureList();
+	}
+
+	@Override
+	public ArrayList<Course> offlinecategoryFoodList() {
+		return coDao.offlinecategoryFoodList();
+	}
+
+	@Override
+	public ArrayList<Course> offlinecategoryMusicList() {
+		return coDao.offlinecategoryMusicList();
+	}
+
+	@Override
+	public ArrayList<Course> offlinecategoryCareerList() {
+		return coDao.offlinecategoryCareerList();
+	}
+
 
 
 }

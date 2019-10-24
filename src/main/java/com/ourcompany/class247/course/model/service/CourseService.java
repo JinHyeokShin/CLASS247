@@ -97,6 +97,32 @@ public interface CourseService {
 	ArrayList<Course> categoryFoodList();
 	ArrayList<Course> categoryMusicList();
 	ArrayList<Course> categoryCareerList();
+	
+	/* onlineCategoryList.do에 적용되는 서비스 */
+	ArrayList<Course> onlinecategoryCraftsList();
+	ArrayList<Course> onlinecategoryDesignList();
+	ArrayList<Course> onlinecategoryDevelopList();
+	ArrayList<Course> onlinecategoryDigitalList();
+	ArrayList<Course> onlinecategoryLifeList();
+	ArrayList<Course> onlinecategoryArtList();
+	ArrayList<Course> onlinecategoryCameraList();
+	ArrayList<Course> onlinecategorySigitureList();
+	ArrayList<Course> onlinecategoryFoodList();
+	ArrayList<Course> onlinecategoryMusicList();
+	ArrayList<Course> onlinecategoryCareerList();
+	
+	/* offlineCategoryList.do에 적용되는 서비스 */
+	ArrayList<Course> offlinecategoryCraftsList();
+	ArrayList<Course> offlinecategoryDesignList();
+	ArrayList<Course> offlinecategoryDevelopList();
+	ArrayList<Course> offlinecategoryDigitalList();
+	ArrayList<Course> offlinecategoryLifeList();
+	ArrayList<Course> offlinecategoryArtList();
+	ArrayList<Course> offlinecategoryCameraList();
+	ArrayList<Course> offlinecategorySigitureList();
+	ArrayList<Course> offlinecategoryFoodList();
+	ArrayList<Course> offlinecategoryMusicList();
+	ArrayList<Course> offlinecategoryCareerList();
 
 	ArrayList<Course> modalsearchCategory(int categoryNum);
 	
