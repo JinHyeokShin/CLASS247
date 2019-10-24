@@ -57,6 +57,7 @@ public interface CourseService {
 	//클래스 상세보기
 	Course selectCourse(int courseNum);
 	
+	
 	ArrayList<Review> selectRlist(int courseNum);
 
 	ArrayList<SingleCourse> selectMyTakeCourse(int memNum);

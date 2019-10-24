@@ -134,18 +134,6 @@ public class CourseDao {
 	  public Course selectCourse(int courseNum) {
 		  return sqlSession.selectOne("courseMapper.selectCourse", courseNum); 
 		  }
-	/* 
-	 * public Course selectCourse(int courseNum, String courseKind) { Course co;
-	 * if(courseKind.equals("online")) { //온라인 클래스일경우 co =
-	 * sqlSession.selectOne("courseMapper.selectOnline", courseNum); } else {
-	 * //오프라인클래스일 경우 co = sqlSession.selectOne("courseMapper.selectOffline",
-	 * courseNum); } return co; }
-	 */
-	
-	
-	
-	
-	
 	
 	public int rejectCourse(int courseNum) {
 		
@@ -162,7 +150,6 @@ public class CourseDao {
 	public int countLove(int courseNum) {
 		return sqlSession.selectOne("courseMapper.countLove", courseNum);
 	}
-	
 	
 	
 	public Course selectCourse(int courseNum, String courseKind) {
