@@ -21,17 +21,17 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ourcompany.class247.course.model.service.CourseService;
-import com.ourcompany.class247.course.model.vo.Course;
-import com.ourcompany.class247.course.model.vo.CourseAttachment;
-import com.ourcompany.class247.course.model.vo.SingleCourse;
-import com.ourcompany.class247.creator.model.service.CreatorService;
 import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.common.Pagination;
+import com.ourcompany.class247.course.model.service.CourseService;
+import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.creator.model.service.CreatorService;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 import com.ourcompany.class247.member.model.service.MemberService;
 import com.ourcompany.class247.member.model.vo.Member;
+import com.ourcompany.class247.payment.model.service.PaymentService;
+import com.ourcompany.class247.payment.model.vo.Payment;
 
 @Controller
 public class MemberController {
@@ -46,6 +46,9 @@ public class MemberController {
 	
 	@Autowired
 	private CourseService coService;
+	
+	@Autowired
+	private PaymentService pService;
 	
 	/**
 	 * 1. 로그인폼으로 이동.
@@ -282,7 +285,7 @@ public class MemberController {
 	
 	
 	
-	@RequestMapping("memDetail.do")
+	@RequestMapping("aMemDetail.do")
 	public ModelAndView memberDetail(int memNum) {
 		
 		ModelAndView mv = new ModelAndView();
@@ -291,17 +294,29 @@ public class MemberController {
 		
 		Creator cre = creService.getCreator(memNum);
 		
-		ArrayList<Course> coList = coService.selectMyCoList(cre.getCreNum());
+		ArrayList<SingleCourse> coList = null;
 		
-		CreatorAttachment cra = creService.selectMyProFile(cre.getCreNum());
+		ArrayList<SingleCourse> coListU = null;
+
+		CreatorAttachment cra = null;
 		
-		ArrayList<CreatorAttachment> craList = creService.selectCreatorAttachmentList(cre.getCreNum());
+		ArrayList<CreatorAttachment> craList = null;
 		
-		ArrayList<CourseAttachment> coaList = coService.selectCoverList(cre.getCreNum());
+		if(cre != null) {
 		
-		ArrayList<SingleCourse> coListU = coService.selectMyTakeCourse(memNum);
+		coList = coService.mySingleCourseList(cre.getCreNum());
 		
-		mv.addObject("m", m).addObject("cre", cre).addObject("coList", coList).addObject("cra", cra).addObject("craList", craList).addObject("coaList", coaList).setViewName("admin/member/memDetail");
+		coListU = coService.selectMyTakeCourse(m.getMemNum());
+		
+		cra = creService.selectMyProFile(cre.getCreNum());
+		
+		craList = creService.selectCreatorAttachmentList(cre.getCreNum());
+		
+		}
+		
+		ArrayList<Payment> pList = pService.selectMyPaymentList(memNum);
+		
+		mv.addObject("m", m).addObject("pList", pList).addObject("coListU", coListU).addObject("cre", cre).addObject("coList", coList).addObject("cra", cra).addObject("craList", craList).setViewName("admin/member/memDetail");
 		
 		return mv;
 		

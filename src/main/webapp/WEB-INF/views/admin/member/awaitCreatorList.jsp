@@ -28,8 +28,6 @@
                                                 <tr>
                                                     <th>No</th>
                                                     <th>제목</th>
-                                                    <th>타입</th>
-                                                    <th>수강자대상</th>
                                                     <th>작성자</th>
                                                     <th>등록날짜</th>
                                                 </tr>
@@ -40,15 +38,16 @@
                                                     
                                                     <tr>
                                                         <td>${cre.creNum }</td>
-  
-                                                       
-                                                        <td>
-                                                         <c:url value="aAwaitCourseDetail.do" var="awaitCourseDetail">
-                                                        	<c:param name="creator" value="${ list }"/>
+                                                                                                              <td>
+                                                         <c:url value="aAwaitCreatorDetail.do" var="awaitCreatorDetail">
+                                                        	<c:param name="creNum" value="${ cre.creNum }"/>
                                                          </c:url>
                                                          <a style="color:black" href="${awaitCreatorDetail}">${cre.introduction }</a>
                                                         </td>
-                                                        
+                                                        <td>
+                                                        	${ cre.memNickName }
+                                                        </td>
+														                                                        
                                                         <td>${cre.enrollDate }</td>
                                                     </tr>
                                                     

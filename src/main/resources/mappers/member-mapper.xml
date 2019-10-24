@@ -164,4 +164,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where mem_id=#{memId}
 	</update>
 	
+	<select id="selectAMember" parameterType="Member" resultMap="memberResultSet">
+		select *
+		from member
+		join creator using(mem_num)
+		where cre_num = #{creNum}
+	</select>
+	
+	<select id="allowCreator" parameterType="_int" resultType="_int">
+		update member
+		set mem_status = 'C'
+		where mem_num = #{memNum}
+	</select>
 </mapper>

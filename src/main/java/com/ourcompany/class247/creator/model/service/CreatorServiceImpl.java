@@ -142,6 +142,10 @@ public class CreatorServiceImpl implements CreatorService{
 
 
 	
+	@Override
+	public Creator selectACreator(int creNum) {
+		return creDao.selectACreator(creNum);
+	}
 	
 
 

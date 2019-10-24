@@ -54,4 +54,16 @@ public class InquiryServiceImpl implements InquiryService {
 	public int deleteInquiry(int inquiryNum) {
 		return iDao.deleteInquiry(inquiryNum);
 	}
+	@Override
+	public int getAdminInquiryList() { 
+		return iDao.getAdminInquiryCount();
+	}
+
+	@Override
+	public ArrayList<Inquiry> selectAdminInquiryList(PageInfo pi) {
+		return iDao.selectAdminInquiryList(pi);
+	}
+	
+	
+
 }

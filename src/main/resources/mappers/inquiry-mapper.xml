@@ -53,5 +53,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set inquiry_status = 'N'
 		where inquiry_num=#{inquiryNum}
 	</update>
+	<!-- 관리자 -->
+	<select id="getAdminInquiryList" resultType="_int">
+		select count(*)
+		from inquiry
+		where inquiry_status='Y' and answer_status='N'
+	</select>
+	
+	<select id="selectAdminInquiryList" resultMap="InquiryResultSet">
+		select *
+		from inquiry
+		where inquiry_status='Y' and answer_status='N'
+	</select>
 
 </mapper>

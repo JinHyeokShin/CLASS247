@@ -399,6 +399,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where course_num = #{courseNum}
 	</select>
 	
+	<select id="mySingleCourseList" parameterType="_int" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where cre_num = #{creNum} and course_status in ('Y', 'E', 'N')
+        
+	</select>
+	
 	<select id="categoryCraftsList" resultMap="SingleCourseResultSet">
 		select *
 		from single_course_view

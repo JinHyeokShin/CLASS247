@@ -8,8 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ourcompany.class247.common.PageInfo;
-import com.ourcompany.class247.notice.model.vo.FAQ;
 import com.ourcompany.class247.notice.model.vo.Notice;
+import com.ourcompany.class247.notice.model.vo.NoticeReply;
+
+
+		
+import com.ourcompany.class247.notice.model.vo.FAQ;
+
 
 @Repository("nDao")
 public class NoticeDao {
@@ -20,7 +25,27 @@ public class NoticeDao {
 	public int getListCount() {
 		return sqlSession.selectOne("noticeMapper.getListCount");
 	}
+
+		
+	public int insertNotice(Notice n) {
+		return sqlSession.insert("noticeMapper.insertNotice", n);
+		
+	}
 	
+	
+	public int deleteBoard(int noticeNum) {
+		return sqlSession.update("noticeMapper.deleteNotice", noticeNum);
+	}
+	
+/* 댓글
+	public ArrayList<NoticeReply> selectReplyList(int noticeNum){
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectReplyList", noticeNum);
+	}
+	
+	public int insertReply(NoticeReply nr) {
+		return sqlSession.insert("noticeMapper.insertReply", nr);
+	}
+*/
 	@SuppressWarnings( { "unchecked", "rawtypes" } )
 	public ArrayList<Notice> selectList(PageInfo pi){
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();

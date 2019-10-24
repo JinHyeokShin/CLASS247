@@ -432,4 +432,8 @@ public class CourseDao {
 
 
 
+	
+	public ArrayList<SingleCourse> mySingleCourseList(int creNum) {
+		return (ArrayList)sqlSession.selectList("courseMapper.mySingleCourseList", creNum);
+	}
 }

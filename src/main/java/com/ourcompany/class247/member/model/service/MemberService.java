@@ -61,4 +61,7 @@ public interface MemberService {
 	//---------------- 관리자용 -------------------
 	ArrayList<Member> selectBlackList();
 	
+	Member selectAMember(int creNum);
+	
+	int allowCreator(int memNum);
 }

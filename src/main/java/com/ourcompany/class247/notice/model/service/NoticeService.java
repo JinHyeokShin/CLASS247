@@ -3,8 +3,18 @@ package com.ourcompany.class247.notice.model.service;
 import java.util.ArrayList;
 
 import com.ourcompany.class247.common.PageInfo;
+import com.ourcompany.class247.inquiry.model.vo.Inquiry;
 import com.ourcompany.class247.notice.model.vo.FAQ;
 import com.ourcompany.class247.notice.model.vo.Notice;
+
+
+
+/*	댓글
+	ArrayList<NoticeReply> selectReplyList(int noticeNum);
+	
+	int insertReply(NoticeReply nr);
+*/
+
 
 public interface NoticeService {
 
@@ -22,4 +32,11 @@ public interface NoticeService {
 	
 	// 5. faq 리스트 조회
 	ArrayList<FAQ> selectUserFaqList(PageInfo pi);
+		
+	int insertNotice(Notice n);
+	
+	Notice selectNotice(int noticeNum);
+	
+	int deleteNotice(int noticeNum);
+	
 }

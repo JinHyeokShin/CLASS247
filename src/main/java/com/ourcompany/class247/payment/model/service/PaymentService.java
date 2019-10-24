@@ -10,6 +10,8 @@ public interface PaymentService {
 	ArrayList<Payment> payonlist(int memNum);
 
 	ArrayList<Payment> payofflist(int memNum);
+	
+	ArrayList<Payment> selectMyPaymentList(int memNum);
 
 	ArrayList<Delivery> memdelivery(int memNum);
 	//크리에이터센터 총 누적수익 구해오기 

@@ -74,4 +74,12 @@ public class MemberDao {
 	public ArrayList<Member> selectBlackList() {
 		return (ArrayList)sqlSession.selectList("memberMapper.selectBlackList");
 	}
+	
+	public Member selectAMember(int creNum) {
+		return sqlSession.selectOne("memberMapper.selectAMember", creNum);
+	}
+	
+	public int allowCreator(int memNum) {
+		return sqlSession.update("memberMapper.allowCreator", memNum);
+	}
 }
