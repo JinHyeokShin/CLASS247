@@ -296,7 +296,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from single_course_view
 		where course_approved = 'Y'
 	</select>
-
+	
+	<select id="selectPopList" resultMap="SingleCourseResultSet">
+	
+		SELECT *
+		FROM (SELECT * FROM single_course_view ORDER BY love_count DESC)
+		<!--[CDATA[
+		 where ROWNUM<=10
+ 		]]-->
+		
+	</select>
+	
 	<!-- 1. 페이지처리 구문 -->
 	<select id="getListCount" resultType="_int">
 		select count(*)
@@ -625,5 +635,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from single_course_view
 		where category_name='커리어'
 		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
+	
+	<select id="selectMemberCount" parameterType="_int" resultType="_int">
+		select count(*)
+		from member
+	</select>
+	<select id="selectCreCount" parameterType="_int" resultType="_int">
+		select count(*)
+		from creator
+	</select>
+	<select id="onlineCourseCount" parameterType="_int" resultType="_int">
+		select count(*)
+		from course
+		where course_kind ='online'
+	</select>
+	<select id="offlineCourseCount" parameterType="_int" resultType="_int">
+		select count(*)
+		from course
+		where course_kind = 'offline'
 	</select>
 </mapper>

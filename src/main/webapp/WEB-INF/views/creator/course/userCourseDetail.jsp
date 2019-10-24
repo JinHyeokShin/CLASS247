@@ -251,19 +251,21 @@ star-input>.input.focus{outline:1px dotted #ddd;}
                                     <p>Title </p>
                                     <span>${ c.courseTitle }</span>
                                 </a>
-                            </li style="width: 100%;">
+                            </li>
                             <li style="width: 100%;">
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>Category</p>
                                     <span>${ c.categoryName}</span>
                                 </a>
                             </li>
+                            <c:if test="${ c.courseKind eq 'online' }">
                             <li style="width: 100%;">
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>Course Fee </p>
                                     <span>${ c.coursePrice }+${c.courseMaterialPrice }</span>
                                 </a>
                             </li>
+                            </c:if>
                             <li style="width: 100%;">
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>Available Seats </p>

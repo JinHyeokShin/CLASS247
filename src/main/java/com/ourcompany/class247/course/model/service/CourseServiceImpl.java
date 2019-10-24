@@ -428,12 +428,30 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public ArrayList<Course> modalsearchCategory(int categoryNum) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<SingleCourse> selectPopList() {
+		return coDao.selectPopList();
+	}
+
+	@Override
+	public int selectMemberCount() {
+		return coDao.selectMemberCount();
 	}
 
 
+	@Override
+	public int selectCreCount() {
+		return coDao.selectCreCount();
+	}
+
+	@Override
+	public int onlineCourseCount() {
+		return coDao.onlineCourseCount();
+	}
+
+	@Override
+	public int offlineCourseCount() {
+		return coDao.offlineCourseCount();
+	}
 
 
 

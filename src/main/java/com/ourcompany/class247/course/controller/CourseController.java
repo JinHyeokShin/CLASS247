@@ -245,11 +245,20 @@ public class CourseController {
 			request.getSession().removeAttribute("creProfile");
 		}
 		
+		ArrayList<SingleCourse> poplist = coService.selectPopList(); // 인기 강의 조회
+		ArrayList<Course> list = coService.selectList();			 // MD 추천 조회
 		
-		ArrayList<Course> list = coService.selectList();
+		int memberCount = coService.selectMemberCount();			 // 멤버 숫자
+		int creCount = coService.selectCreCount();					 // 크리에이터 숫자
+		int onlineCourseCount = coService.onlineCourseCount();			 // 온라인 강의 숫자
+		int offlineCourseCount = coService.offlineCourseCount();			 // 온라인 강의 숫자
 
 		mv.addObject("list", list);
-			
+		mv.addObject("poplist", poplist);
+		mv.addObject("memberCount",memberCount);
+		mv.addObject("creCount",creCount);
+		mv.addObject("onlineCourseCount",onlineCourseCount);
+		mv.addObject("offlineCourseCount",offlineCourseCount);
 		mv.setViewName("home");
 		
 		return mv;
@@ -262,12 +271,11 @@ public class CourseController {
 	 * @return
 	 */
 	@RequestMapping("codetail.do")
-	public ModelAndView courseDetail(int courseNum, ModelAndView mv, HttpServletRequest request) {
+	public ModelAndView courseDetail(int courseNum, String courseKind, ModelAndView mv, HttpServletRequest request) {
 		
 		Member loginUser=(Member)request.getSession().getAttribute("loginUser");
 		ArrayList<Review> rlist = coService.selectRlist(courseNum); 
 		
-		System.out.println(rlist);
 		boolean checkLove=false;
 		if(loginUser !=null) {
 			Love love= new Love(courseNum, loginUser.getMemNum());
@@ -279,7 +287,8 @@ public class CourseController {
 		if(c != null) {
 			mv.addObject("c", c)
 			.addObject("checkLove", checkLove).addObject("rlist", rlist)
-			  .setViewName("creator/course/userCourseDetail");
+		    .setViewName("creator/course/userCourseDetail");
+			System.out.println(c);
 			
 		}else {
 			mv.addObject("msg", "게시글 상세조회실패!")
@@ -602,7 +611,7 @@ public class CourseController {
 		  .addObject("foodList", foodList)
 		  .addObject("musicList", musicList)
 		  .addObject("careerList", careerList)
-		.setViewName("user/course/offlineList");
+		.setViewName("user/course/onlineList");
 	
 		return mv;
 	}

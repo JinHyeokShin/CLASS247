@@ -15,6 +15,7 @@ import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.review.model.vo.Review;
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Single;
 
 @Repository("coDao")
 public class CourseDao {
@@ -196,7 +197,9 @@ public class CourseDao {
 	
 	
 	//사용자 단
-	
+	public ArrayList<SingleCourse> selectPopList(){
+		return (ArrayList)sqlSession.selectList("courseMapper.selectPopList");
+	}
 	
 	public int getListCount() {
 
@@ -430,10 +433,22 @@ public class CourseDao {
 		return (ArrayList)sqlSession.selectList("courseMapper.offlinecategoryCareerList");
 	}
 
-
-
 	
 	public ArrayList<SingleCourse> mySingleCourseList(int creNum) {
 		return (ArrayList)sqlSession.selectList("courseMapper.mySingleCourseList", creNum);
+	}
+	
+	public int selectMemberCount() {
+		return sqlSession.selectOne("courseMapper.selectMemberCount");
+	}
+	public int selectCreCount() {
+		return sqlSession.selectOne("courseMapper.selectCreCount");
+	}
+	public int onlineCourseCount() {
+		return sqlSession.selectOne("courseMapper.onlineCourseCount");
+	}
+	
+	public int offlineCourseCount() {
+		return sqlSession.selectOne("courseMapper.offlineCourseCount");
 	}
 }

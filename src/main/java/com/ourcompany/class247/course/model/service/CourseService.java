@@ -88,6 +88,8 @@ public interface CourseService {
 
 	Course creSelectCourse(int courseNum, String courseKind);
 	
+	ArrayList<SingleCourse> selectPopList();
+	
 	/* categoryList.do에 적용되는 서비스 */
 	ArrayList<Course> categoryCraftsList();
 	ArrayList<Course> categoryDesignList();
@@ -129,10 +131,6 @@ public interface CourseService {
 	//크리에이터센터 - 클래스 수 
 	int getCourseCount(int creNum);
 	
-
-
-	ArrayList<Course> modalsearchCategory(int categoryNum);
-	
 	boolean checkLove(Love love);
 	
 	int insertLove(Love iLove);
@@ -140,6 +138,15 @@ public interface CourseService {
 	int cancelLove(Love dLove);
 	
 	Course coursePayment(int courseNum);
+	
+	int selectMemberCount();
+	
+	int selectCreCount();
+
+	int onlineCourseCount();
+	
+	int offlineCourseCount();
+	
 	
 	
 }
