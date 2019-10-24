@@ -9,6 +9,7 @@ import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.review.model.vo.Review;
 
 public interface CourseService {
 
@@ -43,15 +44,19 @@ public interface CourseService {
 	// 3. 오프라인 클래스 가지고 오기
 	public Offline selectOffline(int courseNum);
 	
+	public Course selectOnline(int courseNum);
+	
 	int rejectCourse(int courseNum);
 	
-	Course selectCourse(int courseNum);
+	Course selectCourse(int courseNum, String courseKind);
 
 	//클래스리스트 가지고 오기	
 	ArrayList<Course> selectList();
 	
 	//클래스 상세보기
-	Course selectCourse(int courseNum,String courseKind);
+	Course selectCourse(int courseNum);
+	
+	ArrayList<Review> selectRlist(int courseNum);
 
 	ArrayList<SingleCourse> selectMyTakeCourse(int memNum);
 	
@@ -72,7 +77,6 @@ public interface CourseService {
 	
 	ArrayList<SingleCourse> awaitSelectList();
 	
-//	Course coursePayment(int courseNum,String courseKind);
 	ArrayList<Course> modalsearchList(String search);
 	
 	ArrayList<Course> modalsearchCategory(String categoryName);
@@ -94,4 +98,15 @@ public interface CourseService {
 	ArrayList<Course> categoryMusicList();
 	ArrayList<Course> categoryCareerList();
 
+	ArrayList<Course> modalsearchCategory(int categoryNum);
+	
+	boolean checkLove(Love love);
+	
+	int insertLove(Love iLove);
+	
+	int cancelLove(Love dLove);
+	
+	Course coursePayment(int courseNum);
+	
+	
 }

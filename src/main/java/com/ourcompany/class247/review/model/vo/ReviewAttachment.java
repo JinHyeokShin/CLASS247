@@ -2,12 +2,12 @@ package com.ourcompany.class247.review.model.vo;
 
 public class ReviewAttachment {
 	
-	private int raNum;
-	private int reviewNum;
-	private int revReplyNum;
-	private String raOName;
-	private String raRName;
-	private String raPath;
+	private int raNum;	//리뷰파일번호
+	private int reviewNum;	//리뷰번호
+	private int revReplyNum;	//리뷰댓글번호
+	private String raOName;	//파일원본이름
+	private String raRName;	//파일저장이름
+	private String raPath;	//저장경로
 	
 	public ReviewAttachment() {
 		

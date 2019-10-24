@@ -115,7 +115,6 @@
                      <c:forEach items="${ list }" var="co">
                      	<c:url value="codetail.do" var="codetail">
 							<c:param name="courseNum" value="${ co.courseNum }"/>
-							<c:param name="courseKind" value="${ co.courseKind}"/>
 						</c:url>
                         <div class="item" >
                             <div class="single_special_cource">
