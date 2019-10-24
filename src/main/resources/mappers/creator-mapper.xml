@@ -139,6 +139,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from creator_attachment
 		where cre_num = #{creNum}
 		and cra_level = 1
+	</select>	
+		
 	<select id="selectACreator" parameterType="_int" resultMap="singleCreatorResultSet">
 		select *
 		from creator

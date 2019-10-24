@@ -38,6 +38,7 @@ private PaymentDao pDao;
 	@Override
 	public int getCreAmount(int creNum) {
 		return pDao.getCreAmount(creNum);
+	}
 	public ArrayList<Payment> selectMyPaymentList(int memNum) {
 		
 		return pDao.selectMyPaymentList(memNum);

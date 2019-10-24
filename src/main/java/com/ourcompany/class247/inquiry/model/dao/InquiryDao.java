@@ -44,8 +44,9 @@ public class InquiryDao {
 	//문의글 삭제하게 
 	public int deleteInquiry(int inquiryNum) {
 		int result =  sqlSession.update("inquiryMapper.deleteInquiry", inquiryNum);
-		System.out.println(result);
 		return result;
+	}
+	
 	public int getAdminInquiryCount(){
 		return sqlSession.selectOne("inquiryMapper.getAdminInquiryList");
 	}
