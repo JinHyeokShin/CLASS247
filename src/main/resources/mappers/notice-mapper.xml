@@ -21,27 +21,14 @@
 		<result property="faqContent" column="faq_content"/>
 	</resultMap>
 	
-	<resultMap type="NoticeReply" id="noticeReplyResultSet">
-		<id property="nReplyNum" column=""/>
-		<result property="noticeNum" column="notice_num"/>
-		<result property="memNickName" column="mem_nickname"/>
-		<result property="memProfileName" column="mem_profile_name"/>
-		<result property="nReplyParentNum" column="nreply_parent_num"/>
-		<result property="nReplyDepth" column="nreply_depth"/>
-		<result property="nReplyContent" column="nreply_content"/>
-		<result property="nReplyEnrollDate" column="nreply_enroll_date"/>
-		<result property="nReplyModifyDate" column="nreply_modify_date"/>
-		<result property="nReplyStatus" column="nreply_status"/>
-	</resultMap>
-	
-
 
 	<resultMap type="NoticeReply" id="noticeReplyResultSet">
 		<id property="nReplyNum" column="nreply_num"/>
 		<result property="noticeNum" column="notice_num"/>
 		<result property="memNickname" column="mem_nickname"/>
 		<result property="memNum" column="mem_num"/>
-		<result property="nReplyParentNum" column="nreply_parnet_num"/>
+		<result property="memProfileName" column="mem_profile_name"/>
+		<result property="nReplyParentNum" column="nreply_parent_num"/>
 		<result property="nReplyDepth" column="nreply_depth"/>
 		<result property="nReplyContent" column="nreply_content"/>
 		<result property="nReplyEnrollDate" column="nreply_enroll_date"/>
@@ -130,5 +117,10 @@
 		from notice_reply
 		where notice_num = #{noticeNum}
 	</select>
+	
+	<insert id="insertNoticeReply" parameterType="NoticeReply">
+		insert into notice_reply
+		values(notice_reply_seq.nextval, #{noticeNum}, #{memNum}, notice_reply_seq.currval, 1, #{nReplyContent}, sysdate, sysdate, 'Y')
+	</insert>
 	
 </mapper>

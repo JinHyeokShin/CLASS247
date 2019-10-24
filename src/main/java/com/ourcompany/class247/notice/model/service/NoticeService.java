@@ -42,4 +42,6 @@ public interface NoticeService {
 	ArrayList<NoticeReply> selectNReplyList(int noticeNum, PageInfo rpi); 
 	
 	int getNoticeReplyListCount(int noticeNum);
+	
+	int insertNoticeReply(NoticeReply nr);
 }

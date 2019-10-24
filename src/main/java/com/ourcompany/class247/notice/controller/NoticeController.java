@@ -6,7 +6,6 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -144,9 +144,6 @@ public class NoticeController {
 		
 		PageInfo pi = ReplyPagination.getPageInfo(currentPage, listCount);
 		
-		ArrayList<NoticeReply> nrList = nService.selectNReplyList(pi, noticeNum);
-		
-		
 		if(n != null) {
 			mv.addObject("n", n).addObject("pi", pi).setViewName("admin/notice/noticeDetail");
 			
@@ -268,18 +265,13 @@ public class NoticeController {
 	public void selectNoticeReply(@RequestParam(value="currentPage", required=false, defaultValue="0") int currentPage,  HttpServletResponse response, int noticeNum) throws JsonIOException, IOException {
 		
 		int listCount = nService.getNoticeReplyListCount(noticeNum);
-		
-		System.out.println(listCount);
-		
+			
 		PageInfo rpi = ReplyPagination.getPageInfo(currentPage, listCount);
 		
-		System.out.println(rpi);
+		System.out.println(rpi.getCurrentPage() + "마지막");
 		
 		ArrayList<NoticeReply> nrList = nService.selectNReplyList(noticeNum, rpi);
 		
-		System.out.print(nrList);
-		
-		//System.out.println(list);
 		
 		response.setContentType("application/json; charset=utf-8");
 		
@@ -289,6 +281,27 @@ public class NoticeController {
 		map.put("rpi", rpi);
 		gson.toJson(map, response.getWriter());
 			
+	}
+	
+	@ResponseBody
+	@RequestMapping("aNRInsert.do")
+	public String aNRInsert(int memNum, String rContent, int noticeNum) {
+		
+		NoticeReply nr = new NoticeReply();
+		
+		nr.setMemNum(memNum);
+		nr.setnReplyContent(rContent);
+		nr.setNoticeNum(noticeNum);
+		
+		
+		int result = nService.insertNoticeReply(nr);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+		
 	}
 	
 }

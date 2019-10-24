@@ -87,4 +87,10 @@ public class NoticeDao {
 		return (ArrayList)sqlSession.selectList("noticeMapper.selectNReplyList", noticeNum, rowBounds);
 	}
 	
+	public int insertNoticeReply(NoticeReply nr) {
+		
+		System.out.println(nr);
+		
+		return sqlSession.insert("noticeMapper.insertNoticeReply", nr);
+	}
 }

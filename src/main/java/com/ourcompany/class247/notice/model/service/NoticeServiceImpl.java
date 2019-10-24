@@ -85,10 +85,7 @@ public class NoticeServiceImpl implements NoticeService{
 		return nDao.selectUserFaqList(pi);
 	}
 	
-	@Override
-	public ArrayList<NoticeReply> selectNReplyList(PageInfo pi, int noticeNum) {
-		return nDao.selectNReplyList(pi, noticeNum);
-	}
+
 	
 	
 
@@ -97,12 +94,13 @@ public class NoticeServiceImpl implements NoticeService{
 		
 		return nDao.selectNReplyList(noticeNum, rpi);
 	}
-
+	
 	@Override
-	public int getNoticeReplyListCount(int noticeNum) {
-		
-		return nDao.getNoticeReplyListCount(noticeNum);
+	public int insertNoticeReply(NoticeReply nr) {
+		return nDao.insertNoticeReply(nr);
 	}
+
+
 	
 
 
