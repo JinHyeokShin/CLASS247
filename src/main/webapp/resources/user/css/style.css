@@ -1,5 +1,6 @@
 /**************** extend css start ****************/
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:800|Poppins:300,400,500,600,700,800|Roboto:300,400,500");
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap');
 /* line 2, E:/172 Etrain Education/172_Etrain_Education_html/sass/_extends.scss */
 .btn_1, .btn_2:hover, .main_menu .navbar-toggler:after, .banner_part .banner_text .btn_1, .feature_part .single_feature:hover span {
   background-image: linear-gradient(to left, rgb(182, 151, 199) 0%, #954CBC 51%,rgb(182, 151, 199) 100%);
@@ -152,7 +153,9 @@ a:hover {
 /* line 72, E:/172 Etrain Education/172_Etrain_Education_html/sass/_common.scss */
 h1, h2, h3, h4, h5, h6 {
   color: #954CBC;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Noto Serif KR', serif;
+  font-weight: 700;
+  /* font-family: 'Noto Sans KR', sans-serif; */
 }
 
 /* line 76, E:/172 Etrain Education/172_Etrain_Education_html/sass/_common.scss */
@@ -2191,6 +2194,7 @@ ul {
   font-size: 13px;
   padding-right: 9px;
   padding-left: 9px;
+  /* font-family: 'Noto Serif KR', serif; */
   font-family: 'Noto Sans KR', sans-serif;
 }
 
@@ -6882,7 +6886,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 100%;
   background-color: #000;
   content: "";
-  opacity: 0.8;
+  opacity: 0.38;
   z-index: -1;
 }
 

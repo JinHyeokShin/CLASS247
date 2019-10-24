@@ -37,6 +37,7 @@
                             <div class="breadcrumb_iner text-center">
                                 <div class="breadcrumb_iner_item">
                                     <div class="banner_text_iner">
+                                    <br><br><br><br><br><br><br><br>
                                         <h5 style="color:white;">당신의 모든 취미를 클래스로 개설할 수 있습니다.</h5>
                                         <h1> 당신의 클래스를 <br>개설하세요 !</h1>
                                         <a href="introduce.do" class="btn_1">서비스 소개 </a> &nbsp;&nbsp;&nbsp;&nbsp;
