@@ -397,4 +397,139 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where category_name='커리어'
 		and course_approved='Y' and course_status='Y'
 	</select>
+	
+	<!-- 온라인 카테고리  -->
+	<select id="onlinecategoryCraftsList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='공예'
+		and course_approved='Y' and course_status='Y' and course_kind='online'
+	</select>
+	<select id="onlinecategoryDesignList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='디자인'
+		and course_approved='Y' and course_status='Y' and course_kind='online'
+	</select>
+	<select id="onlinecategoryDevelopList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='개발'
+		and course_approved='Y' and course_status='Y' and course_kind='online'
+	</select>
+	<select id="onlinecategoryDigitalList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='디지털 드로잉'
+		and course_approved='Y' and course_status='Y' and course_kind='online'
+	</select>
+	<select id="onlinecategoryLifeList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='라이프 스타일'
+		and course_approved='Y' and course_status='Y' and course_kind='online'
+	</select>
+	<select id="onlinecategoryArtList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='미술'
+		and course_approved='Y' and course_status='Y' and course_kind='online'
+	</select>
+	<select id="onlinecategoryCameraList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='사진, 영상'
+		and course_approved='Y' and course_status='Y' and course_kind='online'
+	</select>
+	<select id="onlinecategorySigitureList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='시그니처'
+		and course_approved='Y' and course_status='Y' and course_kind='online'
+	</select>
+	<select id="onlinecategoryFoodList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='요리, 음료'
+		and course_approved='Y' and course_status='Y' and course_kind='online'
+	</select>
+	<select id="onlinecategoryMusicList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='음악'
+		and course_approved='Y' and course_status='Y' and course_kind='online'
+	</select>
+	<select id="onlinecategoryCareerList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='커리어'
+		and course_approved='Y' and course_status='Y' and course_kind='online'
+	</select>
+	<!-- 오프라인 카테고리  -->
+	<select id="offlinecategoryCraftsList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='공예'
+		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
+	<select id="offlinecategoryDesignList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='디자인'
+		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
+	<select id="offlinecategoryDevelopList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='개발'
+		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
+	<select id="offlinecategoryDigitalList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='디지털 드로잉'
+		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
+	<select id="offlinecategoryLifeList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='라이프 스타일'
+		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
+	<select id="offlinecategoryArtList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='미술'
+		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
+	<select id="offlinecategoryCameraList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='사진, 영상'
+		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
+	<select id="offlinecategorySigitureList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='시그니처'
+		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
+	<select id="offlinecategoryFoodList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='요리, 음료'
+		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
+	<select id="offlinecategoryMusicList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='음악'
+		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
+	<select id="offlinecategoryCareerList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='커리어'
+		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
 </mapper>

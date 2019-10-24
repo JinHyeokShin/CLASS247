@@ -229,15 +229,7 @@ public class CourseController {
 		
 		return mv;
 	}
-	@RequestMapping("goOnline.do")
-	public String goOnline() {
-		return "user/course/onlineList";
-	}
-	
-	@RequestMapping("goOffline.do")
-	public String goOffline() {
-		return "user/course/offlineList";
-	}
+
 	//김은기
 	
 	/**home에 강의리스트 불러오기
@@ -481,4 +473,80 @@ public class CourseController {
 		return mv;
 	}
 
+	@RequestMapping("goOnline.do")
+	public ModelAndView onlinecategoryList(ModelAndView mv) {
+		ArrayList<Course> craftsList = coService.onlinecategoryCraftsList();
+		ArrayList<Course> designList = coService.onlinecategoryDesignList();
+		ArrayList<Course> developList = coService.onlinecategoryDevelopList();
+		ArrayList<Course> digitalList = coService.onlinecategoryDigitalList();
+		ArrayList<Course> lifeList = coService.onlinecategoryLifeList();
+		ArrayList<Course> artList = coService.onlinecategoryArtList();
+		ArrayList<Course> cameraList = coService.onlinecategoryCameraList();
+		ArrayList<Course> signitureList = coService.onlinecategorySigitureList();
+		ArrayList<Course> foodList = coService.onlinecategoryFoodList();
+		ArrayList<Course> musicList = coService.onlinecategoryMusicList();
+		ArrayList<Course> careerList = coService.onlinecategoryCareerList();
+
+		/*
+		 * System.out.println(craftsList); System.out.println(designList);
+		 * System.out.println(developList); System.out.println(digitalList);
+		 * System.out.println(lifeList); System.out.println(artList);
+		 * System.out.println(cameraList); System.out.println(signitureList);
+		 * System.out.println(foodList); System.out.println(musicList);
+		 * System.out.println(careerList);
+		 */
+		
+		mv.addObject("craftsList",craftsList)
+		  .addObject("designList", designList)
+		  .addObject("developList", developList)
+		  .addObject("digitalList", digitalList)
+		  .addObject("lifeList", lifeList)
+		  .addObject("artList", artList)
+		  .addObject("cameraList", cameraList)
+		  .addObject("signitureList", signitureList)
+		  .addObject("foodList", foodList)
+		  .addObject("musicList", musicList)
+		  .addObject("careerList", careerList)
+		.setViewName("user/course/offlineList");
+	
+		return mv;
+	}
+	@RequestMapping("goOffline.do")
+	public ModelAndView offlineCategoryList(ModelAndView mv) {
+		ArrayList<Course> craftsList = coService.offlinecategoryCraftsList();
+		ArrayList<Course> designList = coService.offlinecategoryDesignList();
+		ArrayList<Course> developList = coService.offlinecategoryDevelopList();
+		ArrayList<Course> digitalList = coService.offlinecategoryDigitalList();
+		ArrayList<Course> lifeList = coService.offlinecategoryLifeList();
+		ArrayList<Course> artList = coService.offlinecategoryArtList();
+		ArrayList<Course> cameraList = coService.offlinecategoryCameraList();
+		ArrayList<Course> signitureList = coService.offlinecategorySigitureList();
+		ArrayList<Course> foodList = coService.offlinecategoryFoodList();
+		ArrayList<Course> musicList = coService.offlinecategoryMusicList();
+		ArrayList<Course> careerList = coService.offlinecategoryCareerList();
+
+		/*
+		 * System.out.println(craftsList); System.out.println(designList);
+		 * System.out.println(developList); System.out.println(digitalList);
+		 * System.out.println(lifeList); System.out.println(artList);
+		 * System.out.println(cameraList); System.out.println(signitureList);
+		 * System.out.println(foodList); System.out.println(musicList);
+		 * System.out.println(careerList);
+		 */
+		
+		mv.addObject("craftsList",craftsList)
+		  .addObject("designList", designList)
+		  .addObject("developList", developList)
+		  .addObject("digitalList", digitalList)
+		  .addObject("lifeList", lifeList)
+		  .addObject("artList", artList)
+		  .addObject("cameraList", cameraList)
+		  .addObject("signitureList", signitureList)
+		  .addObject("foodList", foodList)
+		  .addObject("musicList", musicList)
+		  .addObject("careerList", careerList)
+		.setViewName("user/course/offlineList");
+	
+		return mv;
+	}
 }
