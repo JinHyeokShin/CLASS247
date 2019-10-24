@@ -9,6 +9,7 @@ import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.notice.model.dao.NoticeDao;
 import com.ourcompany.class247.notice.model.vo.FAQ;
 import com.ourcompany.class247.notice.model.vo.Notice;
+import com.ourcompany.class247.notice.model.vo.NoticeReply;
 
 	
 @Service("nService")
@@ -78,5 +79,19 @@ public class NoticeServiceImpl implements NoticeService{
 	public ArrayList<FAQ> selectUserFaqList(PageInfo pi) {
 		return nDao.selectUserFaqList(pi);
 	}
+
+	@Override
+	public ArrayList<NoticeReply> selectNReplyList(int noticeNum, PageInfo rpi) {
+		
+		return nDao.selectNReplyList(noticeNum, rpi);
+	}
+
+	@Override
+	public int getNoticeReplyListCount(int noticeNum) {
+		
+		return nDao.getNoticeReplyListCount(noticeNum);
+	}
+	
+
 
 }

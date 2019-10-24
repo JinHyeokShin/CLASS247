@@ -5,19 +5,17 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,24 +23,18 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.common.Pagination;
-import com.ourcompany.class247.member.model.vo.Member;
+import com.ourcompany.class247.common.ReplyPagination;
 import com.ourcompany.class247.notice.model.service.FAQService;
 import com.ourcompany.class247.notice.model.service.NoticeService;
 import com.ourcompany.class247.notice.model.vo.FAQ;
 import com.ourcompany.class247.notice.model.vo.Notice;
 import com.ourcompany.class247.notice.model.vo.NoticeReply;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.ourcompany.class247.common.PageInfo;
-import com.ourcompany.class247.common.Pagination;
-import com.ourcompany.class247.notice.model.service.NoticeService;
-import com.ourcompany.class247.notice.model.vo.FAQ;
-import com.ourcompany.class247.notice.model.vo.Notice;
 
 @Controller
 public class NoticeController {
 	@Autowired
 	private NoticeService nService;
+	
 	
 	@Autowired
 	private FAQService fService;
@@ -265,6 +257,33 @@ public class NoticeController {
 		
 		mv.addObject("pi",pi).addObject("flist", flist).setViewName("user/notice/faqListView");
 		return mv;
+	}
+	
+	@RequestMapping("noticeReplyList.do")
+	public void selectNoticeReply(@RequestParam(value="currentPage", required=false, defaultValue="0") int currentPage,  HttpServletResponse response, int noticeNum) throws JsonIOException, IOException {
+		
+		int listCount = nService.getNoticeReplyListCount(noticeNum);
+		
+		System.out.println(listCount);
+		
+		PageInfo rpi = ReplyPagination.getPageInfo(currentPage, listCount);
+		
+		System.out.println(rpi);
+		
+		ArrayList<NoticeReply> nrList = nService.selectNReplyList(noticeNum, rpi);
+		
+		System.out.print(nrList);
+		
+		//System.out.println(list);
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new Gson();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("nrList", nrList);
+		map.put("rpi", rpi);
+		gson.toJson(map, response.getWriter());
+			
 	}
 	
 }
