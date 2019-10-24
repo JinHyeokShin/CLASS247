@@ -76,7 +76,7 @@
 			                                        <img style="height:250px" class="card-img-top" src="resources/course/images/${ cover.coaRName }" alt="Card image cap">
 			                                        <div class="card-body">
 			                                            <c:if test="${ c.courseKind == 'offline' }">
-			                                            	<h4 style="display:inline; class="card-title mb-3">${c.courseTitle}</h4> <span class="badge badge-danger">offline</span>
+			                                            	<h4 style="display:inline;" class="card-title mb-3">${c.courseTitle}</h4> <span class="badge badge-danger">offline</span>
 			                                             	<p class="card-text"> ${ c.courseArea } : ${c.courseStartDate} ~ ${c.courseEndDate} <br> 수강생 : ${c.courseCurrentNum}명</p>
 			                                             </c:if> 
 			                                             <c:if test="${ c.courseKind == 'online' }">
@@ -91,15 +91,51 @@
                                 </c:forEach>
                         </div>
                     </div>
+                    
+                    
+                    <!-- 승인 대기중인 클래스가 존재할때 -->
+                    <c:if test="${ !empty awaitList }">
+                     <div class="container-fluid">
+                        <h3 class="title-3 m-b-30">
+                            <i class="zmdi zmdi-book"></i>승인 대기 중인 클래스 
+                        </h3>
+                        <div class="row">
+
+                                
+                                <c:forEach items="${ awaitList }" var="a">
+                                	<c:forEach items="${ coverList }" var="cover">
+                                		<c:if test="${ cover.courseNum == a.courseNum}"> 
+	                                		<c:url value="myCourseDetail.do" var="classDetail">
+												<c:param name="courseNum" value="${ a.courseNum }"/>
+												<c:param name="courseKind" value="${ a.courseKind }"/>
+											</c:url>
+											
+			                                <div class="col-md-4">
+			                                    <div class="card" onclick="location.href='${classDetail}';">
+			                                        <img style="height:250px" class="card-img-top" src="resources/course/images/${ cover.coaRName }" alt="Card image cap">
+			                                        <div class="card-body">
+			                                            <c:if test="${ a.courseKind == 'offline' }">
+			                                            	<h4 style="display:inline;" class="card-title mb-3">${a.courseTitle}</h4> <span class="badge badge-danger">offline</span>
+			                                             	<p class="card-text"> ${ a.courseArea } : ${a.courseStartDate} ~ ${a.courseEndDate} <br> 수강생 : ${a.courseCurrentNum}명</p>
+			                                             </c:if> 
+			                                             <c:if test="${ a.courseKind == 'online' }">
+			                                             	<h4 style="display:inline;" class="card-title mb-3">${a.courseTitle}</h4><span class="badge badge-primary"> online</span>
+			                                             	<p class="card-text"> ${ a.courseKind } : ${a.courseStartDate} ~ ${a.courseEndDate} <br> 수강생 : ${a.courseCurrentNum}명</p>
+			                                             </c:if> 
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                                </c:if>
+			                          </c:forEach>
+                                </c:forEach>
+	                        </div>
+	                    </div>
+                   </c:if> 
+                    
+                    
                 </div>
             </section>
-            
-            <script>
-            	function hello(){
-            		
-            		alert('세이하이!');
-            	}
-            </script>
+
 
 
             <section>

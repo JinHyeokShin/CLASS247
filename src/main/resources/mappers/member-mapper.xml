@@ -141,10 +141,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by mem_name
 	</select>
 	
+	<select id="selectBlackList" resultMap="memberResultSet">
+		select *
+		where member
+		where mem_status = 'N' and out_date is not null
+	</select> 
+	
+	<select id="getStuCount" parameterType="_int" resultType="_int">
+		select count(*)
+		from member
+		join payment using(mem_num)
+		join takecourse using(pay_num)
+		join course using(course_num)
+		where course_num in ( select course_num
+		                        from course 
+		                        where cre_num = #{creNum})
+		and course_status='Y' and mem_status='Y'
+	</select>
 	<update id="updateMemProfile" parameterType="Member">
 		update member
 		set mem_profile_name=#{memProfileName}, mem_profile_path=#{memProfilePath}
 		where mem_id=#{memId}
 	</update>
 	
+	<select id="selectAMember" parameterType="Member" resultMap="memberResultSet">
+		select *
+		from member
+		join creator using(mem_num)
+		where cre_num = #{creNum}
+	</select>
+	
+	<select id="allowCreator" parameterType="_int" resultType="_int">
+		update member
+		set mem_status = 'C'
+		where mem_num = #{memNum}
+	</select>
 </mapper>

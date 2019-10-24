@@ -6,28 +6,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<resultMap id="creatorResultSet" type="Creator">
 		<id property="creNum" column="cre_num"/>
+		<result property="creName" column="mem_name"/>
 		<result property="memNum" column="mem_num"/>
+		<result property="mem_NickName" column="mem_nick_name"/>
 		<result property="introduction" column="introduction"/>
 		<result property="career" column="career"/>
 		<result property="education" column="education"/>
 		<result property="certification" column="certification"/>
+		<result property="enrollDate" column="enroll_date"/>
+		<result property="approvedDate" column="approved_date"/>
+		<result property="endDate" column="end_date"/>
 		<result property="creStatus" column="cre_status"/>	
 	</resultMap>
 	
-	
 	<resultMap id="creatorAttachmentResultSet" type="CreatorAttachment">
-	      <id property="craNum" column="cre_num"/>
-	      <result property="creNum" column="cre_num" />
-	      <result property="craOname" column="cra_oname" />
-	      <result property="craRname" column="cra_rname" />
-	      <result property="craLevel" column="cra_Level" />
-	      <result property="craPath" column="cra_Path" />
-   </resultMap>
+		<id property="craNum" column="cre_num"/>
+		<result property="creNum" column="cre_num" />
+		<result property="craOname" column="cra_oname" />
+		<result property="craRname" column="cra_rname" />
+		<result property="craLevel" column="cra_Level" />
+		<result property="craPath" column="cra_Path" />
+	</resultMap>
+	
+	<resultMap id="singleCreatorResultSet" type="Creator">
+		<id property="creNum" column="cre_num"/>
+		<result property="memNum" column="mem_num"/>
+		<result property="memNickName" column="mem_nickname"/>
+		<result property="introduction" column="introduction"/>
+		<result property="career" column="career"/>
+		<result property="education" column="education"/>
+		<result property="certification" column="certification"/>
+		<result property="enrollDate" column="enroll_date"/>
+		<result property="approvedDate" column="approved_date"/>
+		<result property="endDate" column="endDate"/>
+		<result property="creStatus" column="cre_status"/>	
+	</resultMap>
 
 	<select id="selectCreator" parameterType="_int" resultMap="creatorResultSet">
 		select *
 		from creator 
-		where mem_num=#{memNum}
+		join member using(mem_num)
+		where mem_num=#{memNum} and cre_status!='D'
 	</select>
 
 	<select id="selectCreNum" parameterType="_int" resultType="_int">
@@ -38,7 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="insertCreator" parameterType="Creator">
 		insert into creator 
-		values(creator_seq.nextval, #{memNum}, #{introduction}, #{career}, #{education}, #{certification}, default)
+		values(creator_seq.nextval, #{memNum}, #{introduction}, #{career}, #{education}, #{certification}, sysdate, null, null, 'N')
 	</insert>
 
 	<insert id="insertProfile" parameterType="CreatorAttachment">
@@ -55,14 +74,76 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select *
 		from creator
 		join course using(cre_num)
-		where courseNum = #{courseNum}
+		where course_num = #{courseNum}
 	</select>
 	
 	<select id="selectCreatorAttachmentList" parameterType="_int" resultMap="creatorAttachmentResultSet">
 		select *
 		from creator_attachment
-		where cre_num = #{creNum}
+		where cre_num = #{creNum} and cra_level = 1
 	</select>
-
-
+	
+	<select id="awaitSelectList" resultMap="singleCreatorResultSet">
+		select *
+		from creator
+		join member using(mem_num)
+		where cre_status = 'N'
+	</select>
+	
+	<update id="allowCreator" parameterType="_int">
+		update creator
+		set approved_date=sysdate, cre_status='Y'
+		where cre_num = #{creNum}
+	</update>
+	
+	<update id="rejectCreator" parameterType="_int">
+		update creator
+		set cre_status= 'R'
+		where cre_num = #{creNum}
+	</update>
+	
+	<select id="creSelectList" resultMap="singleCreatorResultSet">
+		select *
+		from creator
+		join member using(mem_num)
+		where cre_approved = 'Y'
+	</select>
+	
+	<select id="selectMyProFile" resultMap="creatorAttachmentResultSet">
+		select *
+		from creator_attachment
+		where cre_num = #{creNum} and cra_level = 0
+	</select>
+	
+	<update id="updateCreator" parameterType="Creator">
+		update creator
+		set introduction=#{introduction}, career=#{career}, education=#{education}, certification=#{certification}
+		where cre_num = #{creNum}
+	</update>
+	
+	<update id="deleteCreator" parameterType="_int">
+		update creator
+		set cre_status = 'D' 
+		where cre_num=#{creNum}
+	</update>
+	
+	<select id="getCourseCount" parameterType="_int" resultType="_int">
+		select count(*)
+		from course 
+		where cre_num=#{creNum}
+		and course_status = 'Y' 
+	</select>
+	
+	<select id="getCreProfile" parameterType="_int" resultType="string">
+		select cra_rname
+		from creator_attachment
+		where cre_num = #{creNum}
+		and cra_level = 1
+	</select>	
+		
+	<select id="selectACreator" parameterType="_int" resultMap="singleCreatorResultSet">
+		select *
+		from creator
+		where cre_num=#{creNum}
+	</select>
 </mapper>

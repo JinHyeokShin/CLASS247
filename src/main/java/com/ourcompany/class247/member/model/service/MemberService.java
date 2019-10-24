@@ -2,6 +2,7 @@ package com.ourcompany.class247.member.model.service;
 
 import java.util.ArrayList;
 
+import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.member.model.vo.Member;
 
 public interface MemberService {
@@ -48,10 +49,19 @@ public interface MemberService {
 	
 	
 	//---------------- 크리에이터센터용 -----------------------
-	ArrayList<Member> selectStuList(int creNum);
+	ArrayList<Member> selectStuList(PageInfo pi, int creNum);
 	
 	ArrayList<Member> selectStuByCo(int courseNum);
-
+	
+	//페이징 처리를 위한 학생 수 구하기 
+	int getStuCount(int creNum);  
 	
 	
+	
+	//---------------- 관리자용 -------------------
+	ArrayList<Member> selectBlackList();
+	
+	Member selectAMember(int creNum);
+	
+	int allowCreator(int memNum);
 }

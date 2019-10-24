@@ -237,6 +237,9 @@ public class TakeCourse {
 				+ ", takePrice=" + takePrice + ", takeDate=" + takeDate + ", takeStatus=" + takeStatus + "]";
 	}
 
+
+
+
 	
 	
 }

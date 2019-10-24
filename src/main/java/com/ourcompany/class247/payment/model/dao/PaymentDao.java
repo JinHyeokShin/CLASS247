@@ -23,10 +23,27 @@ public class PaymentDao {
 
 		return (ArrayList)sqlSession.selectList("courseMapper.payoffList",memNum);
 	}
+	
+	public ArrayList<Payment> selectMyPaymentList(int memNum) {
+		
+		return (ArrayList)sqlSession.selectList("paymentMapper.selectMyPaymentList", memNum);
+	}
 
 	public ArrayList<Delivery> memdelivery(int memNum) {
 		
 		return (ArrayList)sqlSession.selectList("courseMapper.memdelivery",memNum);
+	}
+	/** 크리에이터 센터 누적 금액 구해오기 
+	 * @param creNum
+	 * @return
+	 */
+	public int getCreAmount(int creNum) {
+		 int amount =  0;
+		 if(sqlSession.selectOne("courseMapper.getCreAmount", creNum) != null) {
+			amount = sqlSession.selectOne("courseMapper.getCreAmount", creNum);
+		 }
+		 
+		 return amount;
 	}
 
 }

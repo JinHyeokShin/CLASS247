@@ -21,9 +21,17 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ourcompany.class247.common.PageInfo;
+import com.ourcompany.class247.common.Pagination;
+import com.ourcompany.class247.course.model.service.CourseService;
+import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.creator.model.service.CreatorService;
 import com.ourcompany.class247.creator.model.vo.Creator;
+import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 import com.ourcompany.class247.member.model.service.MemberService;
 import com.ourcompany.class247.member.model.vo.Member;
+import com.ourcompany.class247.payment.model.service.PaymentService;
+import com.ourcompany.class247.payment.model.vo.Payment;
 
 @Controller
 public class MemberController {
@@ -32,6 +40,15 @@ public class MemberController {
 	
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
+	@Autowired
+	private CreatorService creService;
+	
+	@Autowired
+	private CourseService coService;
+	
+	@Autowired
+	private PaymentService pService;
 	
 	/**
 	 * 1. 로그인폼으로 이동.
@@ -88,9 +105,10 @@ public class MemberController {
 	 * @param m
 	 * @param model
 	 * @return
+	 * @throws IOException 
 	 */
 	@RequestMapping("login.do")
-	public ModelAndView loginMember(Member m, HttpServletRequest request) {
+	public ModelAndView loginMember(Member m, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		HttpSession session = request.getSession();
 		
@@ -102,6 +120,7 @@ public class MemberController {
 			
 			session.setAttribute("loginUser", loginUser);
 			System.out.println(session);
+//			PrintWriter out;
 			
 			if(loginUser.getMemType().equals("A") ) {
 				
@@ -109,6 +128,9 @@ public class MemberController {
 				
 			}else {
 				mv.setViewName("redirect:home.do");
+//				out = response.getWriter();
+//				out.println("<script>history.go(-2);</script>");
+//				out.flush();
 			}
 			
 		}else {
@@ -261,27 +283,40 @@ public class MemberController {
 		
 	}
 	
-	@RequestMapping("aMemberList.do")
-	public ModelAndView memberList() {
-		
-		ModelAndView mv = new ModelAndView();
-		
-		ArrayList<Member> list = mService.selectMemberList();
-		
-		mv.addObject("list", list);
-		
-		return mv;
-		
-	}
 	
-	@RequestMapping("memDetail.do")
+	
+	@RequestMapping("aMemDetail.do")
 	public ModelAndView memberDetail(int memNum) {
 		
 		ModelAndView mv = new ModelAndView();
 		
 		Member m = mService.selectMember(memNum);
 		
-		mv.addObject("m", m).setViewName("admin/member/memberDetail");
+		Creator cre = creService.getCreator(memNum);
+		
+		ArrayList<SingleCourse> coList = null;
+		
+		ArrayList<SingleCourse> coListU = null;
+
+		CreatorAttachment cra = null;
+		
+		ArrayList<CreatorAttachment> craList = null;
+		
+		if(cre != null) {
+		
+		coList = coService.mySingleCourseList(cre.getCreNum());
+		
+		coListU = coService.selectMyTakeCourse(m.getMemNum());
+		
+		cra = creService.selectMyProFile(cre.getCreNum());
+		
+		craList = creService.selectCreatorAttachmentList(cre.getCreNum());
+		
+		}
+		
+		ArrayList<Payment> pList = pService.selectMyPaymentList(memNum);
+		
+		mv.addObject("m", m).addObject("pList", pList).addObject("coListU", coListU).addObject("cre", cre).addObject("coList", coList).addObject("cra", cra).addObject("craList", craList).setViewName("admin/member/memDetail");
 		
 		return mv;
 		
@@ -351,9 +386,6 @@ public class MemberController {
 	   }
 	
 	
-	
-	
-	
 	/*
 	 * 
 	 * 
@@ -362,14 +394,19 @@ public class MemberController {
 	 * 
 	 * 
 	 */
-	
+
 
 	
-	
-	
-	
-	
-	
+	@RequestMapping("aBlackList")
+	public ModelAndView aBlacklist(ModelAndView mv) {
+		
+		ArrayList<Member> list = mService.selectBlackList();
+		
+		mv.addObject("list", list).setViewName("admin/member/blackList");
+		
+		
+		return mv;
+	}
 	
 	
 	
@@ -385,9 +422,15 @@ public class MemberController {
 	 * @return
 	 */
 	@RequestMapping("studentManage.do")
-	public ModelAndView studentManage(HttpServletRequest request, ModelAndView mv) {
+	public ModelAndView studentManage(@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage, 
+									HttpServletRequest request, ModelAndView mv) {
 		int creNum = ((Creator)request.getSession().getAttribute("creator")).getCreNum();
-		ArrayList<Member> studentList = mService.selectStuList(creNum);
+		int stuCount = mService.getStuCount(creNum);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, stuCount);
+		ArrayList<Member> studentList = mService.selectStuList(pi, creNum);
+		System.out.println("count : " + stuCount);
+		System.out.println(pi);
 		
 		mv.addObject("studentList", studentList);
 		mv.setViewName("creator/student/studentManage");

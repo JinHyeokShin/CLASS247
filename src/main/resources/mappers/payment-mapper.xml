@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="paymentMapper">
+	
+	<resultMap type="Payment" id="PaymentResultSet">
+	<id property="payNum" column="pay_num"/>
+	<result property="memNum" column="mem_num"/>
+	<result property="courseNum" column="course_num"/>
+	<result property="courseTitle" column="course_title"/>
+	<result property="payPrice" column="payPrice"/>
+	<result property="payMethod" column="pay_method"/>
+	<result property="payCancel" column="pay_cancel"/>
+	<result property="payDate" column="pay_Date"/>
+	<result property="payCancelDate" column="pay_cancel_date"/>
+	</resultMap>
+	
+	<select id="selectPaymentList" resultMap="PaymentResultSet">
+		select *
+		from payment
+		join course using(course_num)
+		where mem_num = #{memNum}
+	</select>
+	
+</mapper>

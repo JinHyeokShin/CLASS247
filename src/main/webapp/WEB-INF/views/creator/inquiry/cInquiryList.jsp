@@ -5,16 +5,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <title>크리에이터 공지사항</title>
 </head>
 <body class="animsition">
 	<c:import url="../common/cMenubar.jsp"/>
+	
 	
 	<div class="page-wrapper">
         <!-- START NOTICE TABLE -->
             <section class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
+                        <div align="right" style="float:right">
+				         	<button type="button" class="btn btn-success" onclick="location.href='iwrite.do';">글쓰기</button>
+				         </div>
                          <h3 class="title-3 m-b-30">
                             <i class="fas fa-question-circle"></i>INQUIRY
                         </h3>
@@ -22,98 +27,115 @@
                             <div class="col-md-12">
                                 <!-- DATA TABLE-->
                                 <div class="table-responsive m-b-40">
-                                    <table id="noticeTable" class="table table-borderless table-data3" style="text-align:center">
+                                    <table class="table table-borderless table-data3" style="text-align:center">
                                         <thead>
                                             <tr>
                                                 <th>no</th>
-                                                <th width=50%>title</th>
-                                                <th>count</th>
-                                                <th>date</th>
-                                                <th>writer</th>
+                                                <th width=50%>제목</th>
+                                                <th>답변현황</th>
+                                                <th>작성일</th>
+                                                <th>작성자</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>8</td>
-                                                <td>첫번째 공지사항입니다.</td>
-                                                <td>0</td>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>관리자</td>
-                                            </tr>
-                                            <tr>
-                                                <td>7</td>
-                                                <td>두번째 공지사항입니다.</td>
-                                                <td>0</td>
-                                                <td>2018-09-28 01:22</td>
-                                                <td>관리자</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>세번째 공지사항입니다.</td>
-                                                <td>0</td>
-                                                <td>2018-09-27 02:12</td>
-                                                <td>관리자</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>네번째 공지사항입니다.</td>
-                                                <td>0</td>
-                                                <td>2018-09-26 23:06</td>
-                                                <td>관리자</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>다섯번째 공지사항입니다.</td>
-                                                <td>0</td>
-                                                <td>2018-09-25 19:03</td>
-                                                <td>관리자</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>여섯번째 공지사항입니다.</td>
-                                                <td>0</td>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>관리자</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>일곱번째 공지사항입니다.</td>
-                                                <td>0</td>
-                                                <td>2018-09-24 19:10</td>
-                                                <td>관리자</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>여덟번째 공지사항입니다.</td>
-                                                <td>0</td>
-                                                <td>2018-09-22 00:43</td>
-                                                <td>관리자</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                        
+                                        
+                                        <!-- 문의사항이 없을 때  -->
+                                        <c:if test="${ empty iList }">
+                                        	<tbody style="text-align:center">
+                                        		<tr>
+                                        			<td colspan='5'> 등록된 문의 글이 없습니다.</td>
+                                        		</tr>
+                                        	</tbody>
+                                        </c:if>
+                                        
+                                        <!-- 문의사항이 있을 떄  -->
+                                        <c:if test="${ !empty iList }">
+                                        	<c:forEach items="${ iList }" var="i">
+		                                        <tbody>
+		                                            <tr id="inquiryTable">	
+		                                                <td>${i.inquiryNum}</td>
+		                                                <td>${i.inquiryTitle}</td>
+		                                                <td>${i.answerStatus}</td>
+		                                                <td>${i.inquiryEnrollDate}</td>
+		                                                <td>이름?</td>
+		                                            </tr>
+		                                            <c:if test="${i.answerStatus == 'Y' }">
+			                                            <tr class="test">
+				                                            <td><i class="fas fa-arrow-right" style="color:blue"></i></td>
+			                                                <td style="color:blue">답변이 완료되었습니다. </td>
+			                                                <td></td>
+			                                                <td>${i.answerEnrollDate}</td>
+			                                                <td>관리자</td>
+			                                            </tr>
+		                                            </c:if>
+		                                        </tbody>
+	                                        </c:forEach>
+                                        </c:if>
+                                    </table>          
                                 </div>
-                                <div id="pagingBarArea" style="text-align:center">
-                                    <button type="button" class="btn btn-primary">&lt;&lt;</button>
-                                    <button type="button" class="btn btn-primary">&lt;</button>
-                                    <button type="button" class="btn btn-primary">1</button>
-                                    <button type="button" class="btn btn-primary">2</button>
-                                    <button type="button" class="btn btn-primary">3</button>
-                                    <button type="button" class="btn btn-primary">4</button>
-                                    <button type="button" class="btn btn-primary">5</button>
-                                    <button type="button" class="btn btn-primary">6</button>
-                                    <button type="button" class="btn btn-primary">7</button>
-                                    <button type="button" class="btn btn-primary">8</button>
-                                    <button type="button" class="btn btn-primary">9</button>
-                                    <button type="button" class="btn btn-primary">10</button>
-                                    <button type="button" class="btn btn-primary">&gt;</button>
-                                    <button type="button" class="btn btn-primary">&gt;&gt;</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                 <c:if test="${ !empty iList }">
+			                     <div id="pagingBarArea" style="text-align:center">
+			                        <!-- 이전 -->
+									<c:if test="${ pi.currentPage eq 1}">
+										<button class="btn btn-secondary" disabled>이전</button>
+									</c:if>
+									<c:if test="${ pi.currentPage ne 1 }">
+										<c:url value="inquiryList.do" var="before">
+											<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+										</c:url>
+										<a href="${ before }" class="btn btn-primary">이전</a>
+									</c:if>
+									
+									<!-- 번호들 -->
+									<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
+										<c:if test="${ p eq pi.currentPage }">
+											<button class="btn btn-secondary" disabled>${ p }</button>	
+										</c:if>
+										<c:if test="${ p ne pi.currentPage }">
+											<c:url value="inquiryList.do" var="page">
+												<c:param name="currentPage" value="${ p }"/>
+											</c:url>
+											<a href="${ page }" class="btn btn-primary">${ p }</a>
+										</c:if>
+									</c:forEach>
+									
+									<!-- 다음 -->
+									<c:if test="${ pi.currentPage eq pi.maxPage }">
+										<button class="btn btn-secondary" disabled>다음</button>
+									</c:if>
+									<c:if test="${ pi.currentPage ne pi.maxPage }">
+										<c:url value="inquiryList.do" var="next">
+											<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+										</c:url>
+										<a href="${ next }" class="btn btn-primary">다음</a>
+									</c:if>
+									</c:if>
+		                         </div>
+		                      </div>
+		                  </div>
+		              </div>
+		         </div>
             </section>
-            <!-- END NOTICE TABLE-->
+            <!-- END INQUIRY TABLE-->
+            
+            <script>
+	            $(function() {
+	            	$('#inquiryTable td').mouseenter(function() {
+	            		$(this).parent().css({"background":"pink", "cursor":"pointer"});
+	            	}).mouseout(function() {
+	            		$(this).parent().css({"background":"white"});
+	            	}).click(function() {
+	            		var num = $(this).parent().children().eq(0).text();
+	            		alert(num);
+	            		location.href='<%= request.getContextPath() %>/idetail.do?inquiryNum=' + num; 
+	            	})
+	            	
+	            	$('.test td').click(function(){
+	            		var num = $(this).parent().prev().children().eq(0).text();
+	            		location.href='<%= request.getContextPath() %>/idetail.do?inquiryNum=' + num;
+	            	});
+	            });
+            </script>
 
 
             <section>

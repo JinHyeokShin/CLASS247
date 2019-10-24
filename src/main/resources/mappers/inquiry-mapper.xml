@@ -4,23 +4,66 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="inquiryMapper">
 
+
 	<resultMap id="InquiryResultSet" type="Inquiry">
 		<id property="inquiryNum" column="inquiry_num"/>
-		<result property="memNum" column="mem_num"/>
+		<result property="creNum" column="cre_num"/>
+		<result property="inquiryTitle" column="inquiry_title"/>
 		<result property="inquiryContent" column="inquiry_content"/>
 		<result property="inquiryPath" column="inquiry_path"/>
 		<result property="inquiryFileName" column="inquiry_filename"/>
-		<result property="answerContent" column="answer_content"/>
-		<result property="answerStatus" column="answer_status"/>
 		<result property="inquiryEnrollDate" column="inquiry_enroll_date"/>
 		<result property="inquiryStatus" column="inquiry_status"/>
+		<result property="answerContent" column="answer_content"/>
+		<result property="answerEnrollDate" column="answer_eroll_date"/>
+		<result property="answerStatus" column="answer_status"/>
 	</resultMap>
 
 
 	<select id="getInquiryList" parameterType="_int" resultMap="InquiryResultSet">
 		select *
-		from inquiry 
-		where mem_num = #{creNum}
+		from inquiry
+		where cre_num = #{creNum} and inquiry_status='Y'
+		order by inquiry_num desc
+	</select>
+	
+	<select id="getInquiryCount" parameterType="_int" resultType="_int">
+		select count(*)
+		from inquiry
+		where cre_num = #{creNum}
+		and inquiry_status='Y'
+	</select>
+	
+	<insert id="insertInquiry" parameterType="Inquiry">
+		insert into inquiry 
+		values(inquiry_seq.nextval, #{creNum}, #{inquiryTitle}, #{inquiryContent}, #{inquiryPath}, 
+		#{inquiryFileName}, sysdate, default, null, null, default)
+	</insert>
+	
+	<select id="selectInquiry" parameterType="Inquiry" resultMap="InquiryResultSet">
+		select *
+		from inquiry
+		where inquiry_num = #{inquiryNum} 
+		and inquiry_status='Y'
+	</select>
+	
+	
+	<update id="deleteInquiry" parameterType="_int">
+		update inquiry
+		set inquiry_status = 'N'
+		where inquiry_num=#{inquiryNum}
+	</update>
+	<!-- 관리자 -->
+	<select id="getAdminInquiryList" resultType="_int">
+		select count(*)
+		from inquiry
+		where inquiry_status='Y' and answer_status='N'
+	</select>
+	
+	<select id="selectAdminInquiryList" resultMap="InquiryResultSet">
+		select *
+		from inquiry
+		where inquiry_status='Y' and answer_status='N'
 	</select>
 
 </mapper>

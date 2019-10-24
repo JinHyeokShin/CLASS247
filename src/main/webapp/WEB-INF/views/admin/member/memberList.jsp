@@ -36,17 +36,22 @@
                                         	
                                         </thead>
                                         <tbody>
-                                        	<c:forEach items="list" var="m">
+                                        	<c:forEach items="${list}" var="m">
                                             <tr>
-                                                <c:url value="memDetail.do" var="memDetail">
+                                               
                                                 <td>${ m.memNum }</td>
                                                 <td></td>
-                                                <td>${ m.memId }</td>
+                                                 
+                                        		<td>
+												  <c:url value="aMemDetail.do" var="memDetail">
+                                                	<c:param name="memNum" value="${ m.memNum }"/>
+                                                  </c:url>
+                                                  <a style="color:black" href="${memDetail}">${m.memId }</a></td>
+                                                
                                                 <td class="text-right">${ m.memNickName }</td>
                                                 <td class="text-right">${ m.memType }</td>
                                                 <td class="text-right">${ m.memStatus }</td>
-                                               		<c:param name="memNum" value="${ m.memNum }"/>
-                                        		</c:url>
+                                               	
                                             </tr>
                                             </c:forEach>
                                         </tbody>

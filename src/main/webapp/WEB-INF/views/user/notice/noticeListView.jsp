@@ -40,6 +40,7 @@
 					<th width="60px">작성자</th>
 					<th width="60px">조회수</th>
 				</tr>
+		<c:if test="${ !empty list }">
 			<c:forEach items="${ list }" var="n">
 				<tr class="trclick">
 					<td align="center">${ n.noticeNum }</td>
@@ -53,16 +54,16 @@
 					<td align="center">${ n.noticeModifyDate }</td>
 					<td align="center">관리자</td>
 					<td align="center">${ n.noticeCount }</td>
-<%-- 					<td align="center">
-						<c:if test="${ !empty n.originalFileName }">
-<!-- 							◎ -->
-						</c:if>
-						<c:if test="${ empty n.originalFileName }">
-<!-- 							&nbsp; -->
-						</c:if>
-					</td> --%>
-				</tr>
+				 </tr>
 			</c:forEach>
+		</c:if>
+		<c:if test="${ empty list }">
+					<tr>
+						<td colspan="6">
+							등록된 공지사항이 없습니다.
+						</td>
+					</tr>
+		</c:if>
 		<tr align="center" height="20" style="background-color:#954CBC;cursor:default;">
 			<td colspan="6">
 				<!-- 이전 -->

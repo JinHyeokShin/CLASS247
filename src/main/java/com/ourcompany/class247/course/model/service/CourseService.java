@@ -8,6 +8,8 @@ import com.ourcompany.class247.course.model.vo.CourseAttachment;
 import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
+import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.review.model.vo.Review;
 
 public interface CourseService {
 
@@ -30,32 +32,36 @@ public interface CourseService {
 	//-------------------- 크리에이터용 
 	//Course selectCourse(int courseNum, String courseKind);
 	
+	//크리에이터센터 - 승인대기중인 목록 
+	ArrayList<Course> selectAwaitByCreNum(int creNum);
+	
 	CourseAttachment selectCover(int courseNum);
 	
 	//--------------------- 관리용
 	// 1. 대기중인 클래스 리스트 추가 
-	public ArrayList<Course> selectAwaitCourseList();
+	ArrayList<Course> selectAwaitCourseList();
 	
-	// 2. 온라인 클래스 가지고 오기
-	public Online selectOnline(int courseNum);
+	ArrayList<CourseAttachment> selectCourseAttachmentList(int courseNum);
 	
+	int allowCourse(int courseNum);
 	// 3. 오프라인 클래스 가지고 오기
 	public Offline selectOffline(int courseNum);
 	
-	public ArrayList<CourseAttachment> selectCourseAttachmentList(int courseNum);
+	int rejectCourse(int courseNum);
 	
-
-	public int allowCourse(int courseNum);
+	Course selectCourse(int courseNum, String courseKind);
 
 	//클래스리스트 가지고 오기	
 	ArrayList<Course> selectList();
 	
 	//클래스 상세보기
-	Course selectCourse(int courseNum,String courseKind);
+	Course selectCourse(int courseNum);
+	
+	ArrayList<Review> selectRlist(int courseNum);
 
+	ArrayList<SingleCourse> selectMyTakeCourse(int memNum);
 	
-	
-	
+	ArrayList<SingleCourse> mySingleCourseList(int creNum);
 	
 	/*사용자 페이지*/
 	
@@ -70,5 +76,70 @@ public interface CourseService {
 
 
 	
+	ArrayList<Love> selectLove();
+	
+	ArrayList<SingleCourse> awaitSelectList();
+	
+	ArrayList<Course> modalsearchList(String search);
+	
+	ArrayList<Course> modalsearchCategory(String categoryName);
 
+	Online selectOnline(int courseNum);
+
+	Course creSelectCourse(int courseNum, String courseKind);
+	
+	/* categoryList.do에 적용되는 서비스 */
+	ArrayList<Course> categoryCraftsList();
+	ArrayList<Course> categoryDesignList();
+	ArrayList<Course> categoryDevelopList();
+	ArrayList<Course> categoryDigitalList();
+	ArrayList<Course> categoryLifeList();
+	ArrayList<Course> categoryArtList();
+	ArrayList<Course> categoryCameraList();
+	ArrayList<Course> categorySigitureList();
+	ArrayList<Course> categoryFoodList();
+	ArrayList<Course> categoryMusicList();
+	ArrayList<Course> categoryCareerList();
+	
+	/* onlineCategoryList.do에 적용되는 서비스 */
+	ArrayList<Course> onlinecategoryCraftsList();
+	ArrayList<Course> onlinecategoryDesignList();
+	ArrayList<Course> onlinecategoryDevelopList();
+	ArrayList<Course> onlinecategoryDigitalList();
+	ArrayList<Course> onlinecategoryLifeList();
+	ArrayList<Course> onlinecategoryArtList();
+	ArrayList<Course> onlinecategoryCameraList();
+	ArrayList<Course> onlinecategorySigitureList();
+	ArrayList<Course> onlinecategoryFoodList();
+	ArrayList<Course> onlinecategoryMusicList();
+	ArrayList<Course> onlinecategoryCareerList();
+	
+	/* offlineCategoryList.do에 적용되는 서비스 */
+	ArrayList<Course> offlinecategoryCraftsList();
+	ArrayList<Course> offlinecategoryDesignList();
+	ArrayList<Course> offlinecategoryDevelopList();
+	ArrayList<Course> offlinecategoryDigitalList();
+	ArrayList<Course> offlinecategoryLifeList();
+	ArrayList<Course> offlinecategoryArtList();
+	ArrayList<Course> offlinecategoryCameraList();
+	ArrayList<Course> offlinecategorySigitureList();
+	ArrayList<Course> offlinecategoryFoodList();
+	ArrayList<Course> offlinecategoryMusicList();
+	ArrayList<Course> offlinecategoryCareerList();
+	//크리에이터센터 - 클래스 수 
+	int getCourseCount(int creNum);
+	
+
+
+	ArrayList<Course> modalsearchCategory(int categoryNum);
+	
+	boolean checkLove(Love love);
+	
+	int insertLove(Love iLove);
+	
+	int cancelLove(Love dLove);
+	
+	Course coursePayment(int courseNum);
+	
+	
 }

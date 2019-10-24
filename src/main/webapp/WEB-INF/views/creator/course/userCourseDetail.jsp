@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
+
+
 <html>
 
 <head>
@@ -12,6 +14,28 @@
     <title>CLASS 247</title>
     <link rel="icon" href="resources/user/img/favicon.png">
 </head>
+<style>
+	
+	.star-input>.input,
+.star-input>.input>label:hover,
+.star-input>.input>input:focus+label,
+.star-input>.input>input:checked+label{display: inline-block;vertical-align:middle;background:url('resources/creator/images/grade_img.png')no-repeat;}
+.star-input{display:inline-block; white-space:nowrap;width:225px;height:40px;padding:25px;line-height:30px;}
+.star-input>.input{display:inline-block;width:150px;background-size:150px;height:28px;white-space:nowrap;overflow:hidden;position: relative;}
+.star-input>.input>input{position:absolute;width:1px;height:1px;opacity:0;}
+star-input>.input.focus{outline:1px dotted #ddd;}
+.star-input>.input>label{width:30px;height:0;padding:28px 0 0 0;overflow: hidden;float:left;cursor: pointer;position: absolute;top: 0;left: 0;}
+.star-input>.input>label:hover,
+.star-input>.input>input:focus+label,
+.star-input>.input>input:checked+label{background-size: 150px;background-position: 0 bottom;}
+.star-input>.input>label:hover~label{background-image: none;}
+.star-input>.input>label[for="p1"]{width:30px;z-index:5;}
+.star-input>.input>label[for="p2"]{width:60px;z-index:4;}
+.star-input>.input>label[for="p3"]{width:90px;z-index:3;}
+.star-input>.input>label[for="p4"]{width:120px;z-index:2;}
+.star-input>.input>label[for="p5"]{width:150px;z-index:1;}
+.star-input>output{display:inline-block;width:60px; font-size:18px;text-align:right; vertical-align:middle;}
+</style>
 <script>
     function share() {
       var url = encodeURI(encodeURIComponent(myform.url.value));
@@ -82,7 +106,7 @@
                             <!-- 탭 만들기 -->
                                 <ul class="nav nav-tabs">
                                     <li class="nav-item">
-                                      <a class="nav-link active" data-toggle="tab" href="#Objectives">Objectives</a>
+                                      <a class="nav-link active" data-toggle="tab" href="#Review">Review</a>
                                     </li>
                                     <li class="nav-item">
                                       <a class="nav-link" data-toggle="tab" href="#Eligibility">Eligibility</a>
@@ -92,28 +116,55 @@
                                     </li>
                                   </ul>
                         <div class="tab-content" >    
-                            <div class="tab-pane fade show active" id="Objectives">
-                                <h4 class="title_top">Objectives</h4>
-                            When you enter into any new area of science, you almost always find yourself with a
-                            baffling new language of
-                            technical terms to learn before you can converse with the experts. This is certainly
-                            true in astronomy both in
-                            terms of terms that refer to the cosmos and terms that describe the tools of the trade,
-                            the most prevalent
-                            being the telescope.
-                            <br>
-                            <br>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore
-                            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut aliquip ex ea
-                            commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum. Lorem ipsum dolor sit
-                            amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim
-                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                            commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit esse cillum.
+                            <div class="tab-pane fade show active" id="Review">
+                                <h4 class="title_top">Review</h4>
+	                           <div class="comments-area mb-30">
+	                         <c:forEach items="${ rlist }" var="rv">
+	                     	
+                            <div class="comment-list">
+                                <div class="single-comment single-reviews justify-content-between d-flex">
+                                    <div class="user justify-content-between d-flex">
+                                        <div class="thumb">
+                                            <img src="resources/user/img/cource/cource_1.png" alt="">
+                                        </div>
+                                        <div class="desc">
+                                            <h5>${rv.memNum}</h5>
+                                            
+                                            <p class="comment">
+                                                ${rv.reviewContent }
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+	                       </c:forEach>
+                        </div>
+								<span class="star-input">
+								<span class="input">
+							    	<input type="radio" name="star-input" value="1" id="p1">
+							    	<label for="p1">1</label>
+							    	<input type="radio" name="star-input" value="2" id="p2">
+							    	<label for="p2">2</label>
+							    	<input type="radio" name="star-input" value="3" id="p3">
+							    	<label for="p3">3</label>
+							    	<input type="radio" name="star-input" value="4" id="p4">
+							    	<label for="p4">4</label>
+							    	<input type="radio" name="star-input" value="5" id="p5">
+							    	<label for="p5">5</label>
+							  	</span>
+							  	<output for="star-input"><b>0</b>점</output>						
+							</span>
+							<script src="resources/user/js/jquery-1.11.3.min.js"></script>
+							<script src="resources/user/js/star.js"></script>
+							<br><br><br>
+							 <div class="feedeback">
+                            <h6>Your Feedback</h6>
+                            <textarea name="feedback" class="form-control" cols="10" rows="10"></textarea>
+                            <div class="mt-10 text-right">
+                                <a href="#" class="btn_1">Read more</a>
+                            </div>
+                            
+                        </div>
                         </div>
                         <!-- 패키지    -->
                         <!-- 크리에이터 -->
@@ -189,86 +240,113 @@
                 <div class="col-lg-4 right-contents">
                     <div class="sidebar_top">
                         <ul>
-                            <li>
+                            <li style="width: 100%;">
                                 <a class="justify-content-between d-flex">
                                     <p>Trainer’s Name</p>
-                                    <span class="color"></span>
+                                    <span class="color">${ c.creNum }</span>
                                 </a>
                             </li>
-                            <li>
+                            <li style="width: 100%;">
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>Title </p>
-                                    <span></span>
+                                    <span>${ c.courseTitle }</span>
                                 </a>
-                            </li>
-                            <li>
+                            </li style="width: 100%;">
+                            <li style="width: 100%;">
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>Category</p>
-                                    <span></span>
+                                    <span>${ c.categoryName}</span>
                                 </a>
                             </li>
-                            <li>
+                            <li style="width: 100%;">
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>Course Fee </p>
-                                    <span></span>
+                                    <span>${ c.coursePrice }+${c.courseMaterialPrice }</span>
                                 </a>
                             </li>
-                            <li>
+                            <li style="width: 100%;">
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>Available Seats </p>
                                     <span></span>
                                 </a>
                             </li>
-							  <li>
-                                <a class="justify-content-between d-flex" href="#">
-                                    
-                                    <span><input type="image" src="resources/creator/images/love1.png" style="background-size: 30px;" alt=""></span>
-                                    
-                                      <span>
+							  <li style="width: 100%;">
+		                               <c:if test="${!empty loginUser }"> 
+                                    <c:if  test="${checkLove == true }">
+                                    <span><img src="resources/creator/images/like.png" id="love" onclick="cancelLove();"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </c:if>
+                                     <c:if  test="${checkLove == false }">
+                                    <span><img src="resources/creator/images/nlike.png" id="love" onclick="insertLove();"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                      </c:if>
+                                      </c:if>
+	                                      <script>
+	                                      	function insertLove(){
+	                                      		var memNum='${loginUser.memNum}';
+	                                      		var courseNum='${c.courseNum}';
+	                                      		console.log(memNum + ", " + courseNum);
+	                                      		$.ajax({
+	                                      			url:"insertLove.do",
+	                                      			data:{memNum:memNum,
+	                                      				courseNum:courseNum},
+	                                      				type:"post",
+	                                					success:function(data){
+	                                						if(data == 'success'){
+	                                							
+	                                							$('#love').attr("src","resources/creator/images/like.png");
+	                                							$('#love').attr("onclick","cancelLove();");
+	                                						}
+	                                					},error:function(){
+	                                						console.log("실패");
+	                                					}
+	                                      				
+	                                      		})
+	                                      		
+	                                      	}
+	                                      	function cancelLove(){
+	                                      		var memNum='${loginUser.memNum}';
+	                                      		var courseNum='${c.courseNum}';	
+	                                      		console.log(memNum + ", " + courseNum);
+	                                      		$.ajax({
+	                                      			url:"cancelLove.do",
+	                                      			data:{memNum:memNum,
+	                                      				courseNum:courseNum},
+	                                      				type:"post",
+	                                					success:function(data){
+	                                						if(data == 'success'){
+	                                							
+	                                							$('#love').attr("src","resources/creator/images/nlike.png");
+	                                							$('#love').attr("onclick","insertLove();");
+	                                						}
+	                                					},error:function(){
+	                                						console.log("실패");
+	                                					}
+	                                      				
+	                                      		})
+	                                      	
+	                                      	}
+	                                      </script>
+          
+                                    <span>
+                            
                                         <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
                                         <script type="text/javascript">
-                                        new ShareNaver.makeButton({"type": "c"});
+                                        new ShareNaver.makeButton({"type": "e"});
                                         </script>
-                                        <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-
-    
-                                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
-                                         
-                                    
-                                        <button id="btnSendSms">SMS로 공유하기</button>
-
-                                        <button id="btnCopy" data-clipboard-target="#tagetText">URL 복사하기</button>
-
-                                        <script>
-                                        $(document).ready(function(){
-                                            var linkString="sms";
-                                            linkString += "?body=이 블로그 참고하세요. https://ojava.tistory.com";
-
-                                            $("#btnSendSms").on("click",function(){
-                                                location.href=linkString;
-
-                                            });
-                                            //클릭시 복사가 되도록 이벤트 지정하는 부분
-                                            var copyLink= new clipboardJS("#btnCopy");
-
-                                            copyLink.on("success",function(){
-                                                alert("클립보드에 복사되었습니다.");
-
-                                                //복사되면 블록지정이 되어있는데 이를 초기화시키는 부분
-                                                window.getSelection().removeAllRanges();
-                                            });
-
-                                        });
-                                       
-                                        </script>
+                                        
                                     </span>
-                                </a>
+                               
                             </li>
 							
 
                         </ul>
-                        <a href="#" class="btn_1 d-block">수강하기</a>
+                        	
+                        	 
+	                        <c:url  value="coBuy.do" var="coBuy">
+								<c:param name="courseNum" value="${ c.courseNum }"/>
+								<c:param name="courseKind" value="${c.courseKind }"/>					
+							</c:url>		
+							
+                        	<a href="${ coBuy }" class="btn_1 d-block">수강하기</a>
                     </div>
 
                     <!-- 레이팅 -->
@@ -279,40 +357,23 @@
                                 <h6 class="mb-15">Provide Your Rating</h6>
                                 <div class="d-flex flex-row reviews justify-content-between">
                                     <span>Quality</span>
-                                    <div class="rating">
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/star.svg" alt=""></a>
-                                        </div>
+                                   
                                     <span>Outstanding</span>
                                 </div>
                                 <div class="d-flex flex-row reviews justify-content-between">
                                     <span>Puncuality</span>
-                                    <div class="rating">
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/star.svg" alt=""></a>
-                                        </div>
+                                   	
                                     <span>Outstanding</span>
                                 </div>
                                 <div class="d-flex flex-row reviews justify-content-between">
                                     <span>Quality</span>
-                                    <div class="rating">
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/star.svg" alt=""></a>
-                                        </div>
+                                   
                                     <span>Outstanding</span>
                                 </div>
 
                             </div>
                         </div>
+                        
                         <div class="feedeback">
                             <h6>Your Feedback</h6>
                             <textarea name="feedback" class="form-control" cols="10" rows="10"></textarea>
@@ -322,31 +383,34 @@
                         </div>
 
                         <!-- reviews -->
+                        
                         <div class="comments-area mb-30">
+	                         <c:forEach items="${ rlist }" var="rv">
+	                     	
                             <div class="comment-list">
                                 <div class="single-comment single-reviews justify-content-between d-flex">
                                     <div class="user justify-content-between d-flex">
                                         <div class="thumb">
-                                            <img src="img/cource/cource_1.png" alt="">
+                                            <img src="resources/user/img/cource/cource_1.png" alt="">
                                         </div>
                                         <div class="desc">
-                                            <h5>${m.member_name}</h5>
+                                            <h5>${rv.memNum}</h5>
                                             
                                             <div class="rating">
-                                                <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                                <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                                <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                                <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                                <a href="#"><img src="img/icon/star.svg" alt=""></a>
+                                                <a href="#"><img src="resources/user/img/icon/color_star.svg" alt=""></a>
+                                                <a href="#"><img src="resources/user/img/icon/color_star.svg" alt=""></a>
+                                                <a href="#"><img src="resources/user/img/icon/color_star.svg" alt=""></a>
+                                                <a href="#"><img src="resources/user/img/icon/color_star.svg" alt=""></a>
+                                                <a href="#"><img src="resources/user/img/icon/star.svg" alt=""></a>
                                             </div>
                                             <p class="comment">
-                                                Blessed made of meat doesn't lights doesn't was dominion and sea earth
-                                                form(글자 늘어나면 사진 사이즈 알아서 줌) 
+                                                ${rv.reviewContent }
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+	                       </c:forEach>
                         </div>
                     </div>
                 </div>
@@ -361,7 +425,26 @@
 
     <!-- jquery plugins here-->
     <!-- jquery -->
-    
+    <script src="resources/user/js/jquery-1.12.1.min.js"></script>
+    <!-- popper js -->
+    <script src="resources/user/js/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="resources/user/js/bootstrap.min.js"></script>
+    <!-- easing js -->
+    <script src="resources/user/js/jquery.magnific-popup.js"></script>
+    <!-- swiper js -->
+    <script src="resources/user/js/swiper.min.js"></script>
+    <!-- swiper js -->
+    <script src="resources/user/js/masonry.pkgd.js"></script>
+    <script src="resources/user/js/jquery.nice-select.min.js"></script>
+    <!-- particles js -->
+    <script src="resources/user/js/owl.carousel.min.js"></script>
+    <!-- swiper js -->
+    <script src="resources/user/js/slick.min.js"></script>
+    <script src="resources/user/js/jquery.counterup.min.js"></script>
+    <script src="resources/user/js/waypoints.min.js"></script>
+    <!-- custom js -->
+    <script src="resources/user/js/custom.js"></script>
 </body>
 
 </html>
