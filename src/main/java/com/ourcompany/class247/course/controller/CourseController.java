@@ -527,7 +527,6 @@ public class CourseController {
 			}else {
 				 c = coService.selectOffline(courseNum);
 			}
-			System.out.print(c);
 			
 			if(c != null) {
 				mv.addObject("c", c)
