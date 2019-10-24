@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +10,7 @@
 </head>
 <body>
 
-	 <c:import url="../common/aMenubar.jsp"/>
+	<c:import url="../common/aMenubar.jsp"/>
     <div class="page-container2" style="">
    
                   <!-- FORM START -->
@@ -26,7 +25,7 @@
                                 <div class="col-lg-10">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h3><strong>공지사항 상세보기</strong></h3>
+                                            <h3><strong>inquiry 상세보기</strong></h3>
                                         </div>
                                         <div class="card-body card-block">
                                             	<form action="aNinsert.do" method="post" encType="multipart/form-data">
@@ -37,20 +36,20 @@
 											<table align="center">
 													<tr>
 														<td>제목 : </td>														
-														<td>${ n.noticeTitle} <hr></td>												
+														<td>${ ai.inquiryTitle} <hr></td>												
 													</tr>
 													<tr>
 														<td>작성자 : </td>
-														<td>${ n.memNum } <hr></td>
+														<td>${ ai.creNum } <hr></td>
 													</tr>
 													<tr>
 														<td>내용 : </td>
-														<td>${ n.noticeContent } <hr></td>
+														<td>${ ai.inquiryContent } <hr></td>
 													</tr>
 													<tr>
 														<td>첨부파일  &nbsp;</td>
 														<td>
-															<c:if test="${ !empty n.noticeFileName }">
+															<c:if test="${ !empty ai.inquiryFileName }">
 																<a href="${ contextPath }/resources/admin/images/noticeupload/${ n.noticeFileName }" download="${ n.noticeFileName }">${ n.noticeFileName }</a>
 															</c:if>												
 														</td>
@@ -58,17 +57,13 @@
 													<tr align="center">
 														<td colspan="2">
 															<c:url var="bupView" value="bupView.do">
-																<c:param name="noticeNum" value="${ n.noticeNum }"/>
+																<c:param name="inquiryNum" value="${ ai.inquiryNum }"/>
 															</c:url>
 															<c:url var="bdelete" value="bdelete.do">
-																<c:param name="noticeNum" value="${ n.noticeNum }"/>
+																<c:param name="inquiryNum" value="${ ai.inquiryNum }"/>
 															</c:url>
 															
-															<c:if test="${ loginUser.memNum eq n.memNum }">
-															<hr>
-																<a href="${ bupView }">수정하기</a>
-																<a href="${ bdelete }">삭제하기</a>
-															</c:if>
+													
 														</td>
 													</tr>
 												</table>
@@ -94,7 +89,9 @@
 														</tbody>
 										
 														
-													</table>	
+													</table>
+													
+													
 															
 												</div>
 												</form>
@@ -106,29 +103,6 @@
                        </div>
                    </section>
                 </div>
-<!-- 댓글 
-		<script>
-			$(function(){
-				 getReplyList();
-			});
-			
-			function getReplyList();
-			
-				var noitceNum= ${n.noticeNum};
-			
-				$.ajax({
-					url:"rnlist.do",
-					data:{noticeNum:${n.noticeNum}},
-					dataType:"json",
-					success:function(data){
-						
-					},
-					error:function(){
-						console.log("ajax 통신 실패");
-					}
-				})
-			 
-		</script>
- -->
+
 </body>
 </html>

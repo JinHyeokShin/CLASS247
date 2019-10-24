@@ -127,19 +127,14 @@ public class NoticeController {
 		
 		String noticeFileName = file.getOriginalFilename();
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-		
-		String renameFileName = sdf.format(new Date(System.currentTimeMillis()))
-							 	+ noticeFileName.substring(noticeFileName.lastIndexOf("."));
-		
-		String renamePath = savePath + "\\" + renameFileName;
+		String renamePath = savePath + "\\" + noticeFileName;
 		
 
 			file.transferTo(new File(renamePath));
 			
 		
 		
-		return renameFileName;
+		return noticeFileName;
 	}
 
 	

@@ -24,9 +24,9 @@
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>
                                             <tr>
-                                                <th>공지번호</th>
-                                                <th>공지사항</th>
-                                                <th>조회수</th>
+                                                <th>문의번호</th>
+                                                <th>회원번호</th>
+                                                <th>문의제목</th>
                                                 <th class="text-right">작성날짜</th>
                                                 <th class="text-right">첨부파일</th>
                                                
@@ -34,22 +34,22 @@
                                         </thead>
                                         <tbody>
                                       
-                                        <c:forEach items="${ nlist }" var="n">
+                                        <c:forEach items="${ aiList }" var="ai">
                                         
                                             <tr>
-                                            <td>${n.noticeNum}</td>
+                                            <td>${ai.inquiryNum}</td>
+                                            <td>${ai.creNum}</td>
                                                 <td>
 	                                                <c:if test="${empty loginUser }">
-	                                                	${n.noticeTitle}
+	                                                	${ai.inquiryTitle}
                                                 	</c:if>
                                                 	<c:if test="${!empty loginUser }">
-                                                		<c:url value="aNdetail.do" var="aNdetail">
-                                                			<c:param name="noticeNum" value="${ n.noticeNum }"/>
+                                                		<c:url value="aIdetail.do" var="aIdetail">
+                                                			<c:param name="inquiryNum" value="${ ai.inquiryNum }"/>
                                                 		</c:url>
-                                                		<a href ="${ aNdetail }" style="color:black;">${n.noticeTitle } </a>
+                                                		<a href ="${ aIdetail }" style="color:black;">${ai.inquiryTitle } </a>
                                                 	</c:if>
-                                                </td>
-                                                <td>${n.noticeCount}</td>
+                                                </td>                                          
                                                 <td class="text-right">${n.noticeEnrollDate}</td>
                                                 <td>
                                                 	<c:if test="${ !empty n.noticeFileName }">
@@ -72,7 +72,7 @@
 							    			[이전]
 							    		</c:if>
 							    		<c:if test="${ pi.currentPage ne 1 }">
-											<c:url value="aNoticeList.do" var='before'>
+											<c:url value="adminInquriyList.do" var='before'>
 												<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
 											</c:url>
 							    			<a href="${ before }">[이전]</a>
@@ -84,7 +84,7 @@
 							    				<font color="black" size="4">[${ p }]</font>
 							    			</c:if>
 							    			<c:if test="${ p ne pi.currentPage }">
-							    				<c:url value="aNoticeList.do" var="page">
+							    				<c:url value="adminInquriyList.do" var="page">
 							    					<c:param name="currentPage" value="${ p }"/>
 							    				</c:url>
 							    				<a href="${ page }">${ p }</a>
@@ -96,12 +96,12 @@
 							    			[다음]
 							    		</c:if>
 							    		<c:if test="${ pi.currentPage ne pi.maxPage}">
-							    			<c:url value="aNoticeList.do" var="next">
+							    			<c:url value="adminInquriyList.do" var="next">
 							    				<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 							    			</c:url>
 							    			<a href="${ next }"> [다음]</a>
 							    		</c:if>	
-                                        <input class="btn btn-outline-info" type="button" onclick="location.href='aNinsertView.do';" value="글쓰기">
+                                       
                                    </div>
                             </div>
                         </div>   

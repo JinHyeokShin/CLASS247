@@ -67,7 +67,7 @@
                                             <h3><strong>공지사항 작성</strong></h3>
                                         </div>
                                         <div class="card-body card-block">
-                                            	<form action="aNinsert.do" method="post" encType="multipart/form-data">
+                                            	<form action="aNdetail.do" method="post" encType="multipart/form-data">
 												  <div class="form-group">
 													<table align="center">
 														<tr>												

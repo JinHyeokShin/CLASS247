@@ -34,6 +34,22 @@ public class InquiryServiceImpl implements InquiryService {
 	public ArrayList<Inquiry> selectAdminInquiryList(PageInfo pi) {
 		return iDao.selectAdminInquiryList(pi);
 	}
+
+	@Override
+	public Inquiry aInquiryDetail(int inquiryNum) {
+		
+		return null;
+	}
+
+	@Override
+	public Inquiry selectaInquiry(int inquiryNum) {
+		return iDao.aInquiryDetail(inquiryNum);
+	}
+
+	@Override
+	public int insertaInquriy(Inquiry i) {
+		return iDao.insertaInquriy(i);
+	}
 	
 	
 
