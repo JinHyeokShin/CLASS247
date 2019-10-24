@@ -109,7 +109,7 @@
 		              </div>
 		              <div class="col-sm-9">
 		                <div class="form-group">
-		                  <input class="form-control" type="password" name="memPwd" required>
+		                  <input class="form-control" type="password" name="memPwd" id="memPwd" required>
 		                </div>
 		              </div>
 		               <div class="col-sm-3">
@@ -119,7 +119,8 @@
 		              </div>
 		              <div class="col-sm-9">
 		                <div class="form-group">
-		                  <input class="form-control" type="password" name="memPwd2" required >
+		                  <input class="form-control" type="password" name="memPwd2" id="memPwd2" required >
+		                  <font name="check"size="2" color="red"></font>
 		                </div>
 		              </div>
 		              <div class="col-sm-3">
@@ -311,6 +312,21 @@
 						});
 					});
 					
+					   $(function() {
+				            $('#memPwd').keyup(function() {
+				               $('font[name=check]').text('');
+				            });
+				            
+				            $('#memPwd2').keyup(function() {
+				               if ($('#memPwd').val() != $('#memPwd2').val()) {
+				                  $('font[name=check]').text('');
+				                  $('font[name=check]').html("암호틀림");
+				               } else {
+				                  $('font[name=check]').text('');
+				                  $('font[name=check]').html("암호맞음");
+				               }
+				            });
+				         });
 				</script>
 					 <c:if test="${!empty msg }">
 	 	<script>

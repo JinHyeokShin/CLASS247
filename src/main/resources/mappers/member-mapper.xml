@@ -79,7 +79,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 4. 회원 정보 탈퇴 -->
 	<update id="deleteMember" parameterType="Member">
 		update member
-		set mem_address=#{memAddress}, mem_status='N'
+		set mem_address=#{memAddress}, mem_status='N', out_date=sysdate
 		where mem_id=#{memId} 
 	</update>
 	

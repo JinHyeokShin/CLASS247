@@ -64,7 +64,7 @@
       		 <form action="mZzim.do" method="post">
       		<c:if test="${ !empty lovelist }">
 	      		<h4 align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	      		${ loginUser.memName } 님의 총 클래스 찜한 갯수 : ${ pi.listCount }
+	      		${ loginUser.memName } 님의 총 클래스 찜한 갯수 : ${ lovelist.size() }
 	      		</h4>
 	      		<h4 align="right"><button class="genric-btn primary-border radius" name="log-btn" type="submit">삭제하기</button>	<br>
 	      		</h4>

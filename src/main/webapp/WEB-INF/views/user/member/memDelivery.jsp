@@ -13,14 +13,7 @@
             <title>CLASS 247</title>
             <style>
 
-	.login{
-		margin: 9% auto;
-		border: 1px solid #954CBC;
-		padding: 10px;
-		width: 80%;
-		height:100%;  
-		border-radius: 10px;
-	}
+	
 	.progress-table-wrap{
 	width: 90%;
 	
@@ -63,14 +56,15 @@
         </head>
 <c:import url="/WEB-INF/views/user/common/menubar.jsp" />
 <body>
-      <br>
-	<div class="login" align="center">
-	  		<br>
-	  		 <h1>${ loginUser.memName }님의 주문 및 배송 목록</h1>
-                                 <br>
-	  		<hr>
-	  		
-		<div class="section-top-border">
+  
+	    <section class="contact-section section_padding">
+    <div class="container">
+	  	<br>
+      		<h1>${ loginUser.memName }님의 주문 및 배송 목록 </h1>
+      		<br>
+      		<hr>
+      		<br>
+	<div class="section-top-border">
 				<h3 class="mb-30"></h3>
 				<div class="progress-table-wrap">
 					<div class="progress-table">
@@ -107,10 +101,12 @@
 						</div>
 						</c:forEach>
 						
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			</section>
+
 		
 </body>
  <c:import url="/WEB-INF/views/user/common/footer.jsp" />

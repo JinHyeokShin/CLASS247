@@ -357,12 +357,19 @@ public class CourseController {
 	 * @return
 	 */
 	@RequestMapping("memZzim.do")
-	public ModelAndView memZzim(HttpServletRequest request, ModelAndView mv, @RequestParam(value="currentpage", required=false, defaultValue="1")int currentPage ) {
+	public ModelAndView memZzim(HttpServletRequest request, ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1")int currentPage ) {
+		
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+		
 		int memNum = loginUser.getMemNum();
 		int listCount = coService.getListCount();
+		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
 		ArrayList<Love> lovelist = coService.lovelist(memNum, pi);
+		
+		System.out.println(pi);
+		System.out.println(lovelist);
 
 		mv.addObject("pi",pi).addObject("lovelist", lovelist);
 		mv.setViewName("user/member/memZzim");
@@ -392,7 +399,7 @@ public class CourseController {
 		return mv;
 	}
 	
-	
+	/*
 	@RequestMapping("mZzim.do")
 	public ModelAndView mZzim(HttpServletRequest request, ModelAndView mv, @RequestParam(name="check") int check
 			, @RequestParam(value="currentpage", required=false, defaultValue="1")int currentPage) {
@@ -417,6 +424,39 @@ public class CourseController {
 		mv.setViewName("user/member/memZzim");
 		return mv;
 	}
+	*/
+	
+	
+	@RequestMapping("mZzim.do")
+	public String mZzim(HttpServletRequest request, @RequestParam(name="check") int check
+		) {
+	
+	Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+	
+	//String[] checklist = check.split(",");
+	//for(String c : checklist) { }
+		int memNum = loginUser.getMemNum();
+		
+		Love i = new Love();
+		
+		i.setMemNum(memNum);
+		i.setCourseNum(check);
+		
+		int result = coService.deleteLove(i);
+
+		if(result > 0) {
+			return "redirect:memZzim.do";
+		}else {
+			return "common/errorPage";
+		}
+			
+	
+			
+	
+
+	
+	}
+	
 
 	/**  검색창에서 텍스트로 검색하는 메소드
 	 * @param search

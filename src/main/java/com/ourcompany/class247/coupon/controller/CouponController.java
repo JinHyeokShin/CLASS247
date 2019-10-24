@@ -23,14 +23,14 @@ public class CouponController {
 	
 	
 	@RequestMapping("memCoupon.do")
-	public ModelAndView memCoupon(HttpServletRequest request, ModelAndView mv,@RequestParam(value="currentpage", required=false, defaultValue="1")int currentPage){
+	public ModelAndView memCoupon(HttpServletRequest request, ModelAndView mv,@RequestParam(value="currentPage", required=false, defaultValue="1")int currentPage){
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		int memNum = loginUser.getMemNum();
 		int listCount = cService.getListCount();
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		ArrayList<Coupon> couponlist = cService.listCoupon(memNum, pi);
 		
-		mv.addObject("pi",pi).addObject("couponlist", 	couponlist);
+		mv.addObject("pi",pi).addObject("couponlist",couponlist);
 		mv.setViewName("user/member/memCoupon");
 		
 		return mv;

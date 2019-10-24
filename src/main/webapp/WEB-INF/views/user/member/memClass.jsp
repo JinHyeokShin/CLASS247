@@ -13,14 +13,6 @@
             <title>CLASS 247</title>
             <style>
 
-	.login{
-		margin: 9% auto;
-		border: 1px solid #954CBC;
-		padding: 10px;
-		width: 80%;
-		height:220%;  
-		border-radius: 10px;
-	}
 	.owl-stage-outer{
 	height:45%;
 	
@@ -35,24 +27,21 @@
         <c:import url="/WEB-INF/views/user/common/menubar.jsp" />
 
         <body>
-        <br>
-	<div class="login" align="center">
-	  		<br>
-	  		
-            <section class="special_cource padding_top" id="Mdrecom">
+     <section class="contact-section section_padding">
+    <div class="container">
+	  	<br>
+      		<h1>${ loginUser.memName }님의 수강내역</h1>
+      		<br>
+      		<hr>
+      		<br>
+	 <section class="special_cource padding_top" id="Mdrecom">
                 <div class="container" id="Mdrecom">
                     <div class="row justify-content-left">
                         <div class="col-xl-5">
                             <div class="section_tittle text-left">
-                                 <h2>${ loginUser.memName }님의 수강내역</h2>
-                                 <br>
-	  		<hr>
-	  		<br>
 	  		<h3>온라인</h3>
 	  		<br>
-	  		
-                              
-                            </div>
+	  		 </div>
                         </div>
                     </div>
                     
@@ -157,7 +146,9 @@
                    
                 </div>
             </section>
-                </div>
+            </div>
+            </section>
+
           
             <c:import url="/WEB-INF/views/user/common/footer.jsp" />
             <script>
@@ -165,7 +156,7 @@
                     var owl = $('.owl-carousel');
                     owl.owlCarousel({
                         items: 4,
-                        loop: true,
+                       // loop: true,
                         margin: 10,
 
                        // autoplay: true,

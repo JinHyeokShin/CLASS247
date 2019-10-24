@@ -247,6 +247,8 @@ public class MemberController {
 		if(!why.equals("")) { //주소 작성해서 값이 넘어왔을 경우
 			m.setMemAddress(why);	
 		}
+		
+		
 
 		
 	Member loginUser = mService.loginMember(m);
