@@ -35,19 +35,20 @@
 	</resultMap>
 	
 
-<!--  
-	<retultMap type="NoticeReply" id="noitceReplyResultSet">
-		<id property="nreplyNum" column="nreply_num"/>
+
+	<resultMap type="NoticeReply" id="noticeReplyResultSet">
+		<id property="nReplyNum" column="nreply_num"/>
 		<result property="noticeNum" column="notice_num"/>
+		<result property="memNickname" column="mem_nickname"/>
 		<result property="memNum" column="mem_num"/>
-		<result property="nreplyParentNum" column="nreply_parnet_num"/>
-		<result property="nreplyDepth" column="nreply_depth"/>
-		<result property="nreplyContent" column="nreply_content"/>
-		<result property="nreplyEnrollDate" column="nreply_enroll_date"/>
-		<result property="nreplyModifyDate" column="nreply_modify_date"/>
-		<result property="nreplyStatus" column="nreply_status"/>
-	</retultMap>
--->
+		<result property="nReplyParentNum" column="nreply_parnet_num"/>
+		<result property="nReplyDepth" column="nreply_depth"/>
+		<result property="nReplyContent" column="nreply_content"/>
+		<result property="nReplyEnrollDate" column="nreply_enroll_date"/>
+		<result property="nReplyModifyDate" column="nreply_modify_date"/>
+		<result property="nReplyStatus" column="nreply_status"/>
+	</resultMap>
+
 	 <select id="getListCountf" resultType="_int">
 		select count(*)
 		from faq	 
@@ -105,34 +106,7 @@
 		where noitce_Num=#{noticeNum}
 	</update>
 	
-	<select id="getNoticeReplyListCount" parameterType="_int" resultMap="noticeReplyResultSet">
-		select count(*)
-		from notice_reply
-		where notice_num = #{notice_num}
-	</select>
-	
-	<select id="selectNReplyList" resultMap="noticeReplyResultSet">
-		
-		select *
-		from notice_reply
-		join member using(mem_num)
-		where notice_num = #{notice_num}
-		order by nreply_parent_num, nreply_depth;
-	</select>
 
-	
-<!--  
-	<select id="selectNoticeReply" parameterType="_int" resultMap="noitceReplyResultSet">
-		select *
-		from notice_reply
-		where nreply_status='Y'
-	</select>
-	
-	<insert id="insertNoticeReply" parameterType="NoticeReply">
-		insert into notice_reply
-		values(notice_reply_seq.nextval, #{noticeNum}, #{memNum}, #{nreplyParentNum}, #{nreplyDepth}, #{nreplyContent}, sysdate, sysdate, 'Y')
-	</insert>
- -->
 	<select id="getUserFaqListCount" resultType="_int">
 		select count(*)
 		from faq
@@ -143,5 +117,18 @@
 		from faq
 	</select>
 	
-
+	<select id="selectNReplyList" parameterType="_int" resultMap="noticeReplyResultSet">
+		select *
+		from notice_reply
+		join member using(mem_num)
+		where notice_num = #{noticeNum}
+		order by nreply_parent_num, nreply_depth
+	</select>
+	
+	<select id="getNoticeReplyListCount" parameterType="_int" resultType="_int">
+		select count(*)
+		from notice_reply
+		where notice_num = #{noticeNum}
+	</select>
+	
 </mapper>

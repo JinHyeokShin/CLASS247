@@ -3,15 +3,6 @@ package com.ourcompany.class247.common;
 public class ReplyPagination {
 	
 	public static PageInfo getPageInfo(int currentPage, int listCount) {
-		
-		boolean temp = true;
-		
-		if(currentPage == 0) {
-			temp = false;
-			currentPage = 1;
-		}
-		
-		
 		int pageLimit = 10;
 		int maxPage;
 		int startPage;
@@ -20,7 +11,7 @@ public class ReplyPagination {
 		
 		maxPage = (int)Math.ceil((double)listCount/boardLimit);
 		
-		if(temp==false) {
+		if(currentPage == 0) {
 			currentPage = maxPage;
 		}
 		

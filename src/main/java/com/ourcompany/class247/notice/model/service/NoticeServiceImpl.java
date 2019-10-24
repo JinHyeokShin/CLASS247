@@ -92,4 +92,18 @@ public class NoticeServiceImpl implements NoticeService{
 	
 	
 
+	@Override
+	public ArrayList<NoticeReply> selectNReplyList(int noticeNum, PageInfo rpi) {
+		
+		return nDao.selectNReplyList(noticeNum, rpi);
+	}
+
+	@Override
+	public int getNoticeReplyListCount(int noticeNum) {
+		
+		return nDao.getNoticeReplyListCount(noticeNum);
+	}
+	
+
+
 }

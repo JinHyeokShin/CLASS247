@@ -75,29 +75,43 @@
 				
 			</table>			
 		</table>
-<!-- 댓글 
+
 		<script>
-			$(function(){
-				 getReplyList();
+		$(function(){
+			getReplyList();
+			
+		
+			
+			
+
+			
+		});
+		
+		function getReplyList(){
+			
+			var noticeNum= ${n.noticeNum};
+			
+			$.ajax({
+				url:"noticeReplyList.do",
+				data:{noticeNum:noticeNum},
+				dataType:"json",
+				success:function(data){
+					
+					console.log(data);
+	
+					
+					
+					
+					
+					
+				},
+				error:function(){
+					console.log("ajax 통신 실패");
+				}
 			});
-			
-			function getReplyList();
-			
-				var noitceNum= ${n.noticeNum};
-			
-				$.ajax({
-					url:"rnlist.do",
-					data:{noticeNum:${n.noticeNum}},
-					dataType:"json",
-					success:function(data){
-						
-					},
-					error:function(){
-						console.log("ajax 통신 실패");
-					}
-				})
+		}
 			 
 		</script>
- -->
+
 </body>
 </html>

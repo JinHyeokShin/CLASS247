@@ -79,13 +79,12 @@ public class NoticeDao {
 		return sqlSession.selectOne("noticeMapper.getNoticeReplyListCount", noticeNum);
 	}
 	
-	public ArrayList<NoticeReply> selectNReplyList(PageInfo pi, int noticeNum) {
-		
-		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
-		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		
-		return (ArrayList)sqlSession.selectList("notcieMapper.selectNReplyList", noticeNum, rowBounds); 
-	}
 	
+	public ArrayList<NoticeReply> selectNReplyList(int noticeNum, PageInfo rpi) {
+		int offset = (rpi.getCurrentPage() - 1) *rpi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, rpi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectNReplyList", noticeNum, rowBounds);
+	}
 	
 }

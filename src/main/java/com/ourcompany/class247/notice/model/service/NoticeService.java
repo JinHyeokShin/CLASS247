@@ -39,7 +39,7 @@ public interface NoticeService {
 	
 	int deleteNotice(int noticeNum);
 	
-	int getNoticeReplyListCount(int noticeNum);
+	ArrayList<NoticeReply> selectNReplyList(int noticeNum, PageInfo rpi); 
 	
-	ArrayList<NoticeReply> selectNReplyList(PageInfo pi, int noticeNum);
+	int getNoticeReplyListCount(int noticeNum);
 }
