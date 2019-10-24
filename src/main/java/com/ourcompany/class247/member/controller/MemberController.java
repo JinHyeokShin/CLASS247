@@ -242,7 +242,7 @@ public class MemberController {
 				return "redirect:logout.do";
 			}else {
 				model.addAttribute("msg", "회원정보수정실패");
-				return "common/errorPage";
+				return "user/common/errorPage";
 			}
 		}else {
 			response.setContentType("text/html; charset=UTF-8");

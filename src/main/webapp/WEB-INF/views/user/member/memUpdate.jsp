@@ -161,36 +161,36 @@
 					<c:when test="${ loginUser.memGender eq 'M' }">
 		              <div class="col-sm-2" style="display:inline-block" align="center">
 		                <div class="form-group">
-							<input type="radio" name="gender" value="M" checked><h5>남</h5>
+							<h5><input type="radio" name="gender" value="M" checked>&nbsp;&nbsp;남자</h5>
 						  </div>
 		              </div>
 		              <div class="col-sm-7" style="display:inline-block">
 		                <div class="form-group">
-							<input type="radio" name="gender" value="F"> 여
+							<h5><input type="radio" name="gender" value="F">&nbsp;&nbsp; 여자</h5>
 						  </div>
 		              </div>
 					</c:when>
 					<c:when test="${ loginUser.memGender eq 'F' }">
 					<div class="col-sm-2" style="display:inline-block" align="center">
 		                <div class="form-group">
-							<input type="radio" name="gender" value="M"> 남 
+							<h5><input type="radio" name="gender" value="M">&nbsp;&nbsp; 남자</h5>
 						  </div>
 		              </div>
 		              <div class="col-sm-7" style="display:inline-block">
 		                <div class="form-group">
-							<input type="radio" name="gender" value="F" checked> 여
+							<h5><input type="radio" name="gender" value="F" checked>&nbsp;&nbsp;여자</h5>
 						  </div>
 		              </div>
 					</c:when>
 					<c:otherwise>
 					<div class="col-sm-2" style="display:inline-block" align="center">
 		                <div class="form-group">
-							<input type="radio" name="gender" value="M"> 남 
+							<h5><input type="radio" name="gender" value="M"> &nbsp;&nbsp;남자</h5>
 						  </div>
 		              </div>
 		              <div class="col-sm-7" style="display:inline-block">
 		                <div class="form-group">
-							<input type="radio" name="gender" value="F"> 여
+							<h5><input type="radio" name="gender" value="F">&nbsp;&nbsp;여자</h5>
 						  </div>
 					  </div>
 					</c:otherwise>
