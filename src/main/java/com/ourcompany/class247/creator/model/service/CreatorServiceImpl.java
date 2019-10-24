@@ -130,6 +130,16 @@ public class CreatorServiceImpl implements CreatorService{
 
 
 
+	/** 크리에이터 프로필 사진 가져오기 
+	 *
+	 */
+	@Override
+	public String getCreProfile(int creNum) {
+		return creDao.getCreProfile(creNum);
+	}
+
+
+
 
 	
 	

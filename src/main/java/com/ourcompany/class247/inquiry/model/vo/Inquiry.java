@@ -38,6 +38,8 @@ public class Inquiry {
 		this.answerStatus = answerStatus;
 	}
 
+	
+	
 
 	public int getInquiryNum() {
 		return inquiryNum;

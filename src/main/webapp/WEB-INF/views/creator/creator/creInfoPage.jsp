@@ -24,17 +24,60 @@
                                         <strong class="card-title mb-3">${loginUser.memName}님의 크리에이터 정보</strong>
                                     </div>
                                     <div class="card-body">
-                                    <form action="creUpdate.do" method="post" enctype="multipart/form-data">
-                                        <div class="mx-auto d-block">
-                                           	<img class="rounded-circle mx-auto d-block img-120" src="<%= request.getContextPath() %>/resources/creator/images/icon/may.jpg" alt="Card image cap">
-                                            <br><h5 class="text-sm-center mt-2 mb-1">${ loginUser.memName }</h5>
-                                            <div class="location text-sm-center">
-                                                <i class="fa fa-quote-left"></i> ${ loginUser.memId }<i class="fa fa-quote-right"></i></div>
-                                        </div>
+	                                    <form action="" id="profileUpdateForm" method="post" enctype="multipart/form-data">
+	                                        <div class="mx-auto d-block" align="center">
+	                                        	<div class="image img-cir img-120 creProfile">
+	                                           		<img id="creProfile" src="<%= request.getContextPath() %>/resources/creator/creatorImages/${creProfile}" alt="Class247" />
+	                                           	</div>
+	                                            <br><h5 class="text-sm-center mt-2 mb-1">${ loginUser.memName }</h5>
+	                                            <div class="location text-sm-center">
+	                                                <i class="fa fa-quote-left"></i> ${ loginUser.memId }<i class="fa fa-quote-right"></i>
+	                                            </div>
+	                                        </div>
+	                                        <div style="display:hidden">
+		                                        <input type="file" id="creProfileBtn" onchange="updateProfile(this)">
+		                                        <button type="submit" id="submitProfileBtn">사진바꾸기</button>
+	                                        </div>
+                                        </form>
                                         <hr>
                                         <br>
+                                        
+                                        <script>
+                                        	$(function() {
+                                        		$('.creProfile').click(function(){
+                                        			if(confirm("크리에이터 프로필 사진을 변경하시겠습니까?")){
+	                                        			$('#creProfileBtn').click();
+                                        			}
+                                        		})
+                                        		
+                                        	})
+                                        		
+                                        	
+                                        	//프로필 사진 업데이트 
+                                        	function updateProfile(value) {
+                                        		alert(value);
+                                        	
+                                        		
+                                        		$.ajax({
+                                        			url:"updateProfile.do",
+                                        			type:"post",
+                                        			enctype: 'multipart/form-data',
+                                        			data:{file:value},
+                                        			success:function(data){
+                                        				alert(data);
+                                        			}
+                                        			, error:function(){
+                                        				console.log("서버통신실패");
+                                        			}
+                                        		});
+                                        		
+                                        	
+                                        	}
+                                        </script>
+                                        
+	                                    <form action="creUpdate.do" method="post" enctype="multipart/form-data">
                                         <div class="card-text">
-										<div class="col-7">
+										<div class="col-7" style="margin-left:auto;margin-right:auto;">
                                             <div class="form-group">
                                                 <label for="phone" class="control-label mb-1">전화번호 인증</label>
                                                 <input id="phone" name="phone" type="text" class="form-control" aria-required="true" aria-invalid="false" value="${ loginUser.memPhone }">

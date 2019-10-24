@@ -212,14 +212,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by course_num desc
 	</select>
 	
+	<!-- 크리에이터- 현재 개강중인 내 클래스 수  -->
+	<select id="getCourseCount" parameterType="_int" resultType="_int">
+		select count(*)
+		from course
+		where cre_num = #{creNum}
+		and course_status='Y'
+	</select>
+	
+	<!-- 크리에이터 승인 대기중 클래스 목록  -->
+	<select id="selectAwaitByCreNum" parameterType="_int" resultMap="CourseResultSet">
+		select *
+		from course
+		left join offline_course using(course_num)
+		left join online_course using(course_num)
+		join category using(category_num)
+		where course_approved ='N'
+		and cre_num = #{creNum}
+		order by course_num
+	</select>
+	
 	<!-- 클래스 메인 커버리스트 가져오기  -->
 	<select id="selectCoverList" parameterType="_int" resultMap="CourseAttachmentResultSet">
 		select coa_num, course_num, coa_oname, coa_rname, coa_level, coa_path
 		from course_attachment 
 		join course using(course_num)
 		where cre_num = #{creNum}
-		and course_approved = 'Y'
-		and course_status='Y'
 		and coa_level = 1
 	</select>
 	
@@ -362,6 +380,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		join online_course using(course_num)
 		join category using (category_num)
 		where course_num = #{courseNum}
+	</select>
+	
+	<!-- 크리에이터센터 총 누적 수익 구해오기 by CreNum -->
+	<select id="getCreAmount" parameterType="_int" resultType="_int">
+		select sum(take_price)
+		from takecourse 
+		where pay_num in (select pay_num
+		                    from payment
+		                    where course_num in (select course_num
+		                                            from course 
+		                                            where cre_num=#{creNum}))
 	</select>
 	
 	<select id="countLove" parameterType="_int" resultType="_int">

@@ -18,11 +18,15 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ourcompany.class247.course.model.service.CourseService;
+import com.ourcompany.class247.course.model.vo.Course;
+import com.ourcompany.class247.course.model.vo.CourseAttachment;
 import com.ourcompany.class247.creator.model.service.CreatorService;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 import com.ourcompany.class247.member.model.service.MemberService;
 import com.ourcompany.class247.member.model.vo.Member;
+import com.ourcompany.class247.payment.model.service.PaymentService;
 
 @SessionAttributes("creator")
 @Controller
@@ -34,6 +38,12 @@ public class CreatorController {
 	@Autowired
 	private MemberService mService;
 	
+	@Autowired
+	private CourseService coService;
+	
+	@Autowired 
+	private PaymentService pService;
+	
 	
 	/** 크리에이터 메인페이지로 이동
 	 * @param session
@@ -44,11 +54,19 @@ public class CreatorController {
 	public ModelAndView goToMain(HttpServletRequest request, HttpSession session, ModelAndView mv) { 
 		int memNum = ((Member)session.getAttribute("loginUser")).getMemNum();
 		Creator creator = creService.getCreator(memNum);
-		
 		System.out.println(creator);
 
 		if(creator != null) { //크리에이터 존재 시 
-			mv.addObject("creator", creator);
+			int creNum = creator.getCreNum();
+			int totalStuCount = mService.getStuCount(creNum);
+			int classCount = coService.getCourseCount(creNum);
+			String totalAmount = String.format("%,d", pService.getCreAmount(creNum));
+			String creProfile = creService.getCreProfile(creNum);
+			request.getSession().setAttribute("creProfile", creProfile);
+			ArrayList<Course> list = coService.selectMyCoList(creNum);
+			ArrayList<CourseAttachment> coverList = coService.selectCoverList(creNum);
+			mv.addObject("list", list).addObject("coverList", coverList);
+			mv.addObject("creator", creator).addObject("totalStuCount", totalStuCount).addObject("classCount", classCount).addObject("totalAmount",totalAmount);
 			mv.setViewName("creator/creatorCenter");
 		} else { //크리에이터가 아닐 때 
 			mv.addObject("creator", creator);
@@ -205,6 +223,15 @@ public class CreatorController {
 		
 		return mv;
 	}
+	
+	@ResponseBody
+	@RequestMapping("updateProfile.do")
+	public String updateCreatorProfile(@RequestParam(name="file", required=false) MultipartFile profile) {
+		System.out.println(profile.getOriginalFilename());
+		
+		return "오케이";
+	}
+	
 	
 	@RequestMapping("aAwaitCreatorDetail.do")
 	public ModelAndView aCreatorDetail(ModelAndView mv, Creator creator) {

@@ -11,11 +11,15 @@
 <body class="animsition">
 	<c:import url="../common/cMenubar.jsp"/>
 	
+	
 	<div class="page-wrapper">
         <!-- START NOTICE TABLE -->
             <section class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
+                        <div align="right" style="float:right">
+				         	<button type="button" class="btn btn-success" onclick="location.href='iwrite.do';">글쓰기</button>
+				         </div>
                          <h3 class="title-3 m-b-30">
                             <i class="fas fa-question-circle"></i>INQUIRY
                         </h3>
@@ -37,7 +41,7 @@
                                         
                                         <!-- 문의사항이 없을 때  -->
                                         <c:if test="${ empty iList }">
-                                        	<tbody>
+                                        	<tbody style="text-align:center">
                                         		<tr>
                                         			<td colspan='5'> 등록된 문의 글이 없습니다.</td>
                                         		</tr>
@@ -47,22 +51,29 @@
                                         <!-- 문의사항이 있을 떄  -->
                                         <c:if test="${ !empty iList }">
                                         	<c:forEach items="${ iList }" var="i">
-		                                        <tbody id="inquiryTable">
-		                                            <tr>
-		                                            	<c:url value="idetail.do" var="idetail">
-		                                            		<c:param name="inquiryNum" value="${i.inquiryNum}"/>
-		                                            	</c:url>	
+		                                        <tbody>
+		                                            <tr id="inquiryTable">	
 		                                                <td>${i.inquiryNum}</td>
 		                                                <td>${i.inquiryTitle}</td>
 		                                                <td>${i.answerStatus}</td>
 		                                                <td>${i.inquiryEnrollDate}</td>
 		                                                <td>이름?</td>
 		                                            </tr>
+		                                            <c:if test="${i.answerStatus == 'Y' }">
+			                                            <tr class="test">
+				                                            <td><i class="fas fa-arrow-right" style="color:blue"></i></td>
+			                                                <td style="color:blue">답변이 완료되었습니다. </td>
+			                                                <td></td>
+			                                                <td>${i.answerEnrollDate}</td>
+			                                                <td>관리자</td>
+			                                            </tr>
+		                                            </c:if>
 		                                        </tbody>
 	                                        </c:forEach>
                                         </c:if>
                                     </table>          
                                 </div>
+                                 <c:if test="${ !empty iList }">
 			                     <div id="pagingBarArea" style="text-align:center">
 			                        <!-- 이전 -->
 									<c:if test="${ pi.currentPage eq 1}">
@@ -98,9 +109,7 @@
 										</c:url>
 										<a href="${ next }" class="btn btn-primary">다음</a>
 									</c:if>
-		                         <div align="right">
-						         	<button type="button" class="btn btn-success" onclick="location.href='iwrite.do';">글쓰기</button>
-						         </div>
+									</c:if>
 		                         </div>
 		                      </div>
 		                  </div>
@@ -112,14 +121,19 @@
             <script>
 	            $(function() {
 	            	$('#inquiryTable td').mouseenter(function() {
-	            		$(this).parent().css({"background":"darkgray"}, {"cursor":"pointer"});
+	            		$(this).parent().css({"background":"pink", "cursor":"pointer"});
 	            	}).mouseout(function() {
-	            		$(this).parent().css({"background":"black"});
+	            		$(this).parent().css({"background":"white"});
 	            	}).click(function() {
 	            		var num = $(this).parent().children().eq(0).text();
 	            		alert(num);
-	            		location.href='binsertView.do?inquiryNum=' + num; 
+	            		location.href='<%= request.getContextPath() %>/idetail.do?inquiryNum=' + num; 
 	            	})
+	            	
+	            	$('.test td').click(function(){
+	            		var num = $(this).parent().prev().children().eq(0).text();
+	            		location.href='<%= request.getContextPath() %>/idetail.do?inquiryNum=' + num;
+	            	});
 	            });
             </script>
 

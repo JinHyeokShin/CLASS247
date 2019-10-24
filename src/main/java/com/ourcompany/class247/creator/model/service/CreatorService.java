@@ -38,4 +38,6 @@ public interface CreatorService {
 	
 	CreatorAttachment selectMyProFile(int creNum);
 
+	String getCreProfile(int creNum);
+
 }

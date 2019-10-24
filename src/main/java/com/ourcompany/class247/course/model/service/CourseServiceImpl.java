@@ -90,6 +90,24 @@ public class CourseServiceImpl implements CourseService {
 	public CourseAttachment selectCover(int courseNum) {
 		return coDao.selectCover(courseNum);
 	}
+	
+	/** 승인 대기중인 클래스 
+	 *
+	 */
+	@Override
+	public ArrayList<Course> selectAwaitByCreNum(int creNum) {
+		return coDao.selectAwaitByCreNum(creNum);
+	}
+	
+	
+	/** 개강중인 클래스 수 
+	 *
+	 */
+	@Override
+	public int getCourseCount(int creNum) {
+		return coDao.getCourseCount(creNum);
+	}
+
 
 	// --------------------- 관리자-------------------
 
@@ -403,6 +421,11 @@ public class CourseServiceImpl implements CourseService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
+
+
 
 
 
