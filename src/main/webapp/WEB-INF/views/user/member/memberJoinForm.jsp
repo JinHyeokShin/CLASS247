@@ -129,7 +129,10 @@
 				</script>
 			<br>
 			<div>
-            	<input type="checkbox" required>  <a href="https://docs.google.com/document/d/1QfM61dBfDRfiL_7E7dbMqSpzcJO6MF0eOEpFgnpVO10/edit">이용악관</a>및   <a href="https://docs.google.com/document/d/1QvEx-SVtIJOTIvDKFBPBhc_NVbvQTDkYK1XA-RXz1gE/edit">개인정보 처리방침</a>에 동의해주세요
+            	<input type="checkbox" required>  
+            	<a href="#" onClick="userPopupOpen();">이용악관</a>
+            	및   
+            	<a href="#" onClick="userPopupOpen2();">개인정보 처리방침</a>에 동의해주세요
             </div>
       		
       		<table width="600">
@@ -144,7 +147,14 @@
             
             </form>
             </div>
-    	
+    		<script>
+   				function userPopupOpen(){  
+   				    window.open("https://docs.google.com/document/d/1QfM61dBfDRfiL_7E7dbMqSpzcJO6MF0eOEpFgnpVO10/edit", "이용약관", "width=1200, height=1200, toolbar=yes, menubar=yes, scrollbars=yes, resizable=yes" );  
+   				}  
+   				function userPopupOpen2(){  
+   				    window.open("https://docs.google.com/document/d/1QvEx-SVtIJOTIvDKFBPBhc_NVbvQTDkYK1XA-RXz1gE/edit", "개인정보 처리방침", "width=1200, height=1200, toolbar=yes, menubar=yes, scrollbars=yes, resizable=yes" );  
+   				}  
+			</script>
     
 	<jsp:include page="/WEB-INF/views/user/common/footer.jsp"></jsp:include>
 </body>

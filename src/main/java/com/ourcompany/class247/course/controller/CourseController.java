@@ -245,6 +245,7 @@ public class CourseController {
 			request.getSession().removeAttribute("creProfile");
 		}
 		
+		
 		ArrayList<SingleCourse> poplist = coService.selectPopList(); // 인기 강의 조회
 		ArrayList<Course> list = coService.selectList();			 // MD 추천 조회
 		
