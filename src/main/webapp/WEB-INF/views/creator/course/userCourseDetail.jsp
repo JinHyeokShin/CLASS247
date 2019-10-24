@@ -59,9 +59,6 @@ star-input>.input.focus{outline:1px dotted #ddd;}
 	                            <div class="banner_text_iner">
 	                            <h5 style="color:white;">당신의 모든 취미를 클래스로 개설할 수 있습니다.</h5>
 	                            <h1> 당신의 클래스를 <br>개설하세요 !</h1>
-	                            <p>Replenish seasons may male hath fruit beast were seas saw you arrie said man beast whales
-	                                his void unto last session for bite. Set have great you'll male grass yielding yielding
-	                                man</p>
 	                            <a href="#" class="btn_1">View Course </a>
 	                            <a href="cMainView.do" class="btn_2" onclick="return loginCheck()">Get Started </a>
 	                        	</div>
@@ -95,6 +92,7 @@ star-input>.input.focus{outline:1px dotted #ddd;}
             <div class="row">
                 <div class="col-lg-8 course_details_left">
                     <div class="main_image">
+                    	<h1>${ c.courseTitle }</h1>			
                         <img class="img-fluid" src="resources/creator/images/test1.jpeg" alt="">
                     </div>
                     <br>
@@ -119,6 +117,7 @@ star-input>.input.focus{outline:1px dotted #ddd;}
                             <div class="tab-pane fade show active" id="Review">
                                 <h4 class="title_top">Review</h4>
 	                           <div class="comments-area mb-30">
+	                           <!-- 수업을 이용한 고객들의 리뷰랑 평점 불러오기 (1)-->
 	                         <c:forEach items="${ rlist }" var="rv">
 	                     	
                             <div class="comment-list">
@@ -129,7 +128,21 @@ star-input>.input.focus{outline:1px dotted #ddd;}
                                         </div>
                                         <div class="desc">
                                             <h5>${rv.memNum}</h5>
-                                            
+                                            <span class="star-input">
+												<span class="input">
+											    	<input type="radio" name="star-input" value="1" id="p1">
+											    	<label for="p1">1</label>
+											    	<input type="radio" name="star-input" value="2" id="p2">
+											    	<label for="p2">2</label>
+											    	<input type="radio" name="star-input" value="3" id="p3">
+											    	<label for="p3">3</label>
+											    	<input type="radio" name="star-input" value="4" id="p4">
+											    	<label for="p4">4</label>
+											    	<input type="radio" name="star-input" value="5" id="p5">
+											    	<label for="p5">5</label>
+											  	</span>
+											  	<output for="star-input"><b>${rv.reviewScore }</b>점</output>						
+											</span>
                                             <p class="comment">
                                                 ${rv.reviewContent }
                                             </p>
@@ -139,6 +152,7 @@ star-input>.input.focus{outline:1px dotted #ddd;}
                             </div>
 	                       </c:forEach>
                         </div>
+                      
 								<span class="star-input">
 								<span class="input">
 							    	<input type="radio" name="star-input" value="1" id="p1">
@@ -154,12 +168,13 @@ star-input>.input.focus{outline:1px dotted #ddd;}
 							  	</span>
 							  	<output for="star-input"><b>0</b>점</output>						
 							</span>
+							
 							<script src="resources/user/js/jquery-1.11.3.min.js"></script>
 							<script src="resources/user/js/star.js"></script>
 							<br><br><br>
 							 <div class="feedeback">
                             <h6>Your Feedback</h6>
-                            <textarea name="feedback" class="form-control" cols="10" rows="10"></textarea>
+                            <textarea name="feedback" class="form-control" cols="5" rows="5"></textarea>
                             <div class="mt-10 text-right">
                                 <a href="#" class="btn_1">Read more</a>
                             </div>
@@ -251,7 +266,7 @@ star-input>.input.focus{outline:1px dotted #ddd;}
                                     <p>Title </p>
                                     <span>${ c.courseTitle }</span>
                                 </a>
-                            </li style="width: 100%;">
+                            </li>
                             <li style="width: 100%;">
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>Category</p>
@@ -261,13 +276,24 @@ star-input>.input.focus{outline:1px dotted #ddd;}
                             <li style="width: 100%;">
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>Course Fee </p>
-                                    <span>${ c.coursePrice }+${c.courseMaterialPrice }</span>
+                                   
+                                    <c:if test="${ c.courseKind eq 'online' }">
+                                   <span>${ c.coursePrice }+ ${c.courseMaterialPrice }</span>
+                                   </c:if>
+                                   <c:if test="${ c.courseKind eq 'offline' }">
+                                     <span>${ c.courseHourPrice } </span>
+                                     </c:if>
                                 </a>
                             </li>
                             <li style="width: 100%;">
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>Available Seats </p>
-                                    <span></span>
+                                     <c:if test="${ c.courseKind eq 'offline' }">
+                                    <span>${c.courseCurrentNum}</span>
+                                    </c:if>
+                                    <c:if test="${ c.courseKind eq 'online' }">
+                                  <span>${c.courseCurrentNum}</span>
+                                   </c:if>
                                 </a>
                             </li>
 							  <li style="width: 100%;">
@@ -339,80 +365,26 @@ star-input>.input.focus{outline:1px dotted #ddd;}
 							
 
                         </ul>
-                        	
-                        	 
-	                        <c:url  value="coBuy.do" var="coBuy">
+                        	  
+                        	 <c:if test="${ c.courseKind eq 'online' }">
+	                        <c:url  value="coBuyOn.do" var="coBuyOn">
 								<c:param name="courseNum" value="${ c.courseNum }"/>
-								<c:param name="courseKind" value="${c.courseKind }"/>					
+								
 							</c:url>		
-							
-                        	<a href="${ coBuy }" class="btn_1 d-block">수강하기</a>
+								<a href="${ coBuyOn }" class="btn_1 d-block">수강하기</a>					
+							</c:if>
+							<c:if test="${ c.courseKind eq 'offline' }">
+                                    <c:url  value="coBuyOff.do" var="coBuyOff">
+								<c:param name="courseNum" value="${ c.courseNum }"/>
+								
+							</c:url>	
+								<a href="${ coBuyOff }" class="btn_1 d-block">수강하기</a>				
+                                    </c:if>
+                        	
                     </div>
 
                     <!-- 레이팅 -->
-                    <h4 class="title">Reviews</h4>
-                    <div class="content">
-                        <div class="review-top row pt-40">
-                            <div class="col-lg-12">
-                                <h6 class="mb-15">Provide Your Rating</h6>
-                                <div class="d-flex flex-row reviews justify-content-between">
-                                    <span>Quality</span>
-                                   
-                                    <span>Outstanding</span>
-                                </div>
-                                <div class="d-flex flex-row reviews justify-content-between">
-                                    <span>Puncuality</span>
-                                   	
-                                    <span>Outstanding</span>
-                                </div>
-                                <div class="d-flex flex-row reviews justify-content-between">
-                                    <span>Quality</span>
-                                   
-                                    <span>Outstanding</span>
-                                </div>
-
-                            </div>
-                        </div>
-                        
-                        <div class="feedeback">
-                            <h6>Your Feedback</h6>
-                            <textarea name="feedback" class="form-control" cols="10" rows="10"></textarea>
-                            <div class="mt-10 text-right">
-                                <a href="#" class="btn_1">Read more</a>
-                            </div>
-                        </div>
-
-                        <!-- reviews -->
-                        
-                        <div class="comments-area mb-30">
-	                         <c:forEach items="${ rlist }" var="rv">
-	                     	
-                            <div class="comment-list">
-                                <div class="single-comment single-reviews justify-content-between d-flex">
-                                    <div class="user justify-content-between d-flex">
-                                        <div class="thumb">
-                                            <img src="resources/user/img/cource/cource_1.png" alt="">
-                                        </div>
-                                        <div class="desc">
-                                            <h5>${rv.memNum}</h5>
-                                            
-                                            <div class="rating">
-                                                <a href="#"><img src="resources/user/img/icon/color_star.svg" alt=""></a>
-                                                <a href="#"><img src="resources/user/img/icon/color_star.svg" alt=""></a>
-                                                <a href="#"><img src="resources/user/img/icon/color_star.svg" alt=""></a>
-                                                <a href="#"><img src="resources/user/img/icon/color_star.svg" alt=""></a>
-                                                <a href="#"><img src="resources/user/img/icon/star.svg" alt=""></a>
-                                            </div>
-                                            <p class="comment">
-                                                ${rv.reviewContent }
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-	                       </c:forEach>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>

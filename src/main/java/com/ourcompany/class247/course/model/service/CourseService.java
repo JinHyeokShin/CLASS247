@@ -142,5 +142,5 @@ public interface CourseService {
 	
 	Course coursePayment(int courseNum);
 	
-	
+	int insertPayment(int courseNum);
 }

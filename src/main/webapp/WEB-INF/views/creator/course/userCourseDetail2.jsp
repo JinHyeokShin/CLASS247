@@ -57,9 +57,6 @@ header {
 	                            <div class="banner_text_iner">
 	                            <h5 style="color:white;">당신의 모든 취미를 클래스로 개설할 수 있습니다.</h5>
 	                            <h1> 당신의 클래스를 <br>개설하세요 !</h1>
-	                            <p>Replenish seasons may male hath fruit beast were seas saw you arrie said man beast whales
-	                                his void unto last session for bite. Set have great you'll male grass yielding yielding
-	                                man</p>
 	                            <a href="#" class="btn_1">View Course </a>
 	                            <a href="cMainView.do" class="btn_2" onclick="return loginCheck()">Get Started </a>
 	                        	</div>
@@ -97,9 +94,9 @@ header {
                           
                                <c:if test="${c.courseKind =='online' }">
                                	
-                                      <input type="checkbox"class="title_top" value="HTML">패키지 구매하기
-									<input type="checkbox" class="title_top" value="CSS">수강권만 구매하기
-                                     
+                                      <input type="radio"class="title_top" name="packbtn" id="packbtn" value="${c.coursePrice +c.courseMaterialPrice }" checked="checked" required>패키지 구매하기
+									<input type="radio" class="title_top" name="packbtn" id="packbtn" value="${c.coursePrice }">수강권만 구매하기
+                                     $('input[name="packbtn":checked').val();
                                   	 <h4 class="title_top" >준비물 :${c.courseMaterial }</h4>
                                   	 <h6 class="title_top" >준비물가격:${c.courseMaterialPrice }</h6>
                                       
@@ -112,7 +109,7 @@ header {
                                                 <h3>강의제목:${ c.courseTitle }</h3>
                                             
                                             <p>수업 소개</p>
-                                         
+                                         <span>${c.courseContent }</span>
                                         </div>
                 
                                     </div>
@@ -121,10 +118,17 @@ header {
             
                     <nav class="active" id="bprice" style="background: white;">
                         <p>
-                           5개월 할부 가격     <h4>${ c.coursePrice +c.courseMaterialPrice }</h4>
-                        </p>
+                           5개월 할부 가격     
+                           <h4></h4>
                         
-                        <button type="button" class="genric-btn primary-border radius" style="border-radius: 5px; padding: 10px 0px; width: 100%; height: 50px; text-align: center; line-height: 1" id="next_btn">다음</button>
+                        </p>
+                       
+                       <c:url value="coBuy2.do" var="coBuy2">
+								<c:param name="courseNum" value="${ c.courseNum }"/>
+								<c:param name="courseKind" value="${c.courseKind }"/>
+													
+							</c:url>
+                        <button type="button" class="genric-btn primary-border radius" style="border-radius: 5px; padding: 10px 0px; width: 100%; height: 50px; text-align: center; line-height: 1" id="next_btn" location.href="${ coBuy2 }">다음</button>
                     </nav>
                     
                 <script>
