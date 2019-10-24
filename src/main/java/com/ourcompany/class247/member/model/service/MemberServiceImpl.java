@@ -47,6 +47,12 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 
+	@Override
+	public int updateMemProfile(Member loginUser) {
+		
+		return mDao.updateMemProfile(loginUser);
+	}
+
 	
 	
 	
@@ -87,5 +93,6 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.selectBlackList();
 	}
 	
+
 
 }

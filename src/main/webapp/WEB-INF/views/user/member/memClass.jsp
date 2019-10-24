@@ -18,9 +18,14 @@
 		border: 1px solid #954CBC;
 		padding: 10px;
 		width: 80%;
-		height:150%;  
+		height:220%;  
 		border-radius: 10px;
 	}
+	.owl-stage-outer{
+	height:45%;
+	
+	}
+	
 	</style>
             <link rel="icon" href="resources/user/img/favicon.png">
             <script src="resources/user/js/jquery.counterup.min.js"></script>
@@ -40,7 +45,7 @@
                         <div class="col-xl-5">
                             <div class="section_tittle text-left">
                                  <h2>${ loginUser.memName }님의 수강내역</h2>
-                                 <br><br>
+                                 <br>
 	  		<hr>
 	  		<br>
 	  		<h3>온라인</h3>
@@ -61,7 +66,7 @@
                             <div class="single_special_cource">
                                 <img src="resources/user/img/test1.jpeg" class="special_img" alt="" >
                                 <div class="special_cource_text">
-                                    <a href="codetail.do" class="btn_4">${pon.categoryName }</a>
+                                    <a href="${ codetail }" class="btn_4">${pon.categoryName }</a>
                                     <h4>가격</h4>
                                     <a>
                                         <h3>${pon.courseTitle }</h3>
@@ -72,7 +77,7 @@
                                             <img src="resources/user/img/author/author_1.png" alt="">
                                             <div class="author_info_text">
                                                 <p>튜터 : </p>
-                                                <h5><a href="#">${pon.memNickname }</a></h5>
+                                                <h5><a href="#">${pon.creNickname }</a></h5>
                                             </div>
                                         </div>
                                         <div class="author_rating">
@@ -100,7 +105,7 @@
                     <div class="row justify-content-left">
                         <div class="col-xl-5">
                             <div class="section_tittle text-left">
-	  		<br>
+	  	
 	  		<h3>오프라인</h3>
 	  		<br>
 	  		
@@ -119,7 +124,7 @@
                             <div class="single_special_cource">
                                 <img src="resources/user/img/test1.jpeg" class="special_img" alt="" >
                                 <div class="special_cource_text">
-                                    <a href="codetail.do" class="btn_4">${poff.categoryName }</a>
+                                    <a href="${ codetail }" class="btn_4">${poff.categoryName }</a>
                                     <h4>가격</h4>
                                     <a>
                                         <h3>${poff.courseTitle }</h3>
@@ -130,7 +135,7 @@
                                             <img src="resources/user/img/author/author_1.png" alt="">
                                             <div class="author_info_text">
                                                 <p>튜터 : </p>
-                                                <h5><a href="#">${poff.memNickname }</a></h5>
+                                                <h5><a href="#">${poff.creNickname }</a></h5>
                                             </div>
                                         </div>
                                         <div class="author_rating">
@@ -165,7 +170,7 @@
 
                        // autoplay: true,
                         //autoplayTimeout: 3000,
-                        autoplayHoverPause: true
+                        //autoplayHoverPause: true
                     });
                 });
             </script>

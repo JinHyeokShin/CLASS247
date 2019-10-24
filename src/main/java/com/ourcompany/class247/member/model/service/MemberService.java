@@ -43,7 +43,7 @@ public interface MemberService {
 	
 	ArrayList<Member> selectMemberList();
 	
-	
+	int updateMemProfile(Member loginUser);  
 	
 	
 	

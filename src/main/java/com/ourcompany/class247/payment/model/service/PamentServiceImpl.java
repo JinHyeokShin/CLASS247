@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ourcompany.class247.payment.model.dao.PaymentDao;
+import com.ourcompany.class247.payment.model.vo.Delivery;
 import com.ourcompany.class247.payment.model.vo.Payment;
 
 @Service("pService")
@@ -24,6 +25,12 @@ private PaymentDao pDao;
 	public ArrayList<Payment> payofflist(int memNum) {
 		
 		return pDao.payofflist(memNum);
+	}
+
+	@Override
+	public ArrayList<Delivery> memdelivery(int memNum) {
+
+		return pDao.memdelivery(memNum);
 	}
 
 }

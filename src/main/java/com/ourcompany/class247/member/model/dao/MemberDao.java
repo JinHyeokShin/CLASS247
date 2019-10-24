@@ -40,6 +40,11 @@ public class MemberDao {
 	public ArrayList<Member> selectMemberList() {
 		return (ArrayList)sqlSession.selectList("memberMapper.selectMemberList");
 	}
+
+	public int updateMemProfile(Member loginUser) {
+		
+		return sqlSession.update("memberMapper.updateMemProfile", loginUser);
+	}
 	
 	
 	

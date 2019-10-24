@@ -38,164 +38,289 @@
 	 td input{
 		 width : 80%;
 	 }
+	 .form-group mt-6{
+		 
+	 }
+.postcodify_postcode5, .postcodify_address, .postcodify_extra_info{
+	display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s
+    }
 </style>
 
 </head>
 
 <body>
+
 	<jsp:include page="/WEB-INF/views/user/common/menubar.jsp"></jsp:include>
-	
-	 
-	  
-	  	<div class="login" align="center">
-        <form action="mUpdate.do" method="post">
+	    <section class="contact-section section_padding">
+    <div class="container">
+        
         	<br>
       		<h1>회원 정보 수정</h1>
+      		<br>
       		<hr>
-      		<table width="600">
-      			<tr>
-      				<td>이메일(아이디)</td>
-      			</tr>
-      			<tr><input type="hidden" name="memId" value="${ loginUser.memId }">
-      				<td>${ loginUser.memId }</td>
-      			</tr>
-      			<tr>
-      			
-      				<td>비밀번호 </td>
-   				</tr>
-   				<tr>
-      				<td><input type="password" name="memPwd" style="border-radius: 5px;" required></td>
-      			</tr>
-      			
-      			
-      			
-      			<tr>
-      				<td>비밀번호 확인 </td>
-   				</tr>
-   				<tr>
-      				<td><input type="password" name="memPwd2" style="border-radius: 5px;" required></td>
-      			</tr>
-      			<tr>
-      				<td>이름 </td>
-   				</tr>
-   				<tr>
-      				<td>${ loginUser.memName }</td>
-      			</tr>
-      			<tr>
-      				<td>별명 </td>
-      			</tr>
-      			<tr>
-      				<td><input type="text" name="memNickName" style="border-radius: 5px;" value="${ loginUser.memNickName }" required></td>
-      			</tr>
-      			<tr>
-      				<td>휴대폰번호 </td>
-   				</tr>
-   				<tr>
-      				<td><input type="text" name="memPhone" style="border-radius: 5px;" value="${ loginUser.memPhone }" required></td>
-      			</tr>
-      			<tr>
-      				<td><br>성별<br></td>
-   				</tr>
-      			 </table>
-	            <div style="text-align : left;">
-	            	  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   	
-	           		<c:choose>
-						<c:when test="${ loginUser.memGender eq 'M' }">
-							<td>
-								<input type="radio" name="gender" value="M" checked> 남 
-									            	&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="gender" value="F"> 여
-							</td>
-						</c:when>
-						<c:when test="${ loginUser.memGender eq 'F' }">
-							<td>
-								<input type="radio" name="gender" value="M"> 남 
-									            	&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="gender" value="F" checked> 여
-							</td>
-						</c:when>
-						<c:otherwise>
-							<td>
-								<input type="radio" name="gender" value="M"> 남 
-									            	&nbsp;&nbsp;&nbsp;&nbsp; 
-								<input type="radio" name="gender" value="F"> 여
-							</td>
-						</c:otherwise>
-					</c:choose>	
-	            </div>  
-	           
-	            <table width="600">
-      			<c:if test="${ empty loginUser.memAddress }">
-					<tr>
-						<td>우편번호</td>
-						<td>
-							<input type="text" name="post" size="6" class="postcodify_postcode5">
-								&nbsp;&nbsp;&nbsp;&nbsp; 
-							<button type="button" id="post_search_btn">검색</button>
-						</td>
-						
-					</tr>
-					
-					<tr>
-						<td>도로명 주소</td>
-						<td><input type="text" name="address1" class="postcodify_address"></td>
-					</tr>
-					<tr>
-						<td>상세 주소</td>
-						<td><input type="text" name="address2" class="postcodify_extra_info"></td>
-					</tr>
-				</c:if>
-				<c:if test="${ !empty loginUser.memAddress }">
-					<c:forTokens items="${ loginUser.memAddress }" delims="," var="addr" varStatus="status">
-						<c:if test="${ status.index eq 0 }">
-							<tr>
-								<td>우편번호</td>
-								<td>
-									<input type="text" name="post" size="6" value="${ addr }" class="postcodify_postcode5">
-									&nbsp;&nbsp;
-									<button type="button" id="post_search_btn">검색</button>
-								</td>
-							</tr>
-						</c:if>
-						<c:if test="${ status.index eq 1 }">
-							<tr>
-								<td>도로명 주소</td>
-								<td><input type="text" name="address1" value="${ addr }"  class="postcodify_address"></td>
-							</tr>
-						</c:if>
-						<c:if test="${ status.index eq 2 }">
-							<tr>
-								<td>상세 주소</td>
-								<td><input type="text" name="address2" value="${ addr }"  class="postcodify_extra_info"></td>
-							</tr>
-						</c:if>
-					</c:forTokens>
-				</c:if>
-				</table> 
-				<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+      		<br>
+      		 <div class="col-lg-12">
+	      			<form action="updateMemProfile.do" method="post" enctype="multipart/form-data">
+      		 	<div class="col-sm-9">
+	      				<div class="profileImg" align="left" >
+	      					<img src="<%= request.getContextPath() %>/resources/user/img/profile/${loginUser.memProfileName}" width="30%" height="30%">
+	      				</div>
+	      				<div id="fileArea" style="display:none">
+	      					<input type="file" name="profile" class="thumbnailImg1">
+	      				</div>
+	      			</div>
+	      			<br><br>
+	      				<div class="col-sm-3" align="right">
+	      					<button class="genric-btn primary-border radius" name="log-btn" type="submit" style="font-size: 15">사진 수정하기</button>
+	      				<br><br>
+	      				</div>
+	      			</form>
+	      				<br>
+	      		
+	      		<form action="mUpdate.do" method="post">
+		           <div class="row">
+		              <div class="col-sm-3">
+		                <div class="form-group">
+		                		<h4> 이메일(아이디)</h4>
+		                </div>
+		              </div>
+		              <div class="col-sm-9">
+		                <div class="form-group">
+		                  <input type="hidden" name="memId" value="${ loginUser.memId }">
+		                  <input class="form-control" value= "${ loginUser.memId }" readonly>
+		                </div>
+		              </div>
+		              <div class="col-sm-3">
+		                <div class="form-group">
+		                <h4>비밀번호</h4>
+		                   </div>
+		              </div>
+		              <div class="col-sm-9">
+		                <div class="form-group">
+		                  <input class="form-control" type="password" name="memPwd" required>
+		                </div>
+		              </div>
+		               <div class="col-sm-3">
+		                <div class="form-group">
+		                <h4>비밀번호 확인</h4>
+		                   </div>
+		              </div>
+		              <div class="col-sm-9">
+		                <div class="form-group">
+		                  <input class="form-control" type="password" name="memPwd2" required >
+		                </div>
+		              </div>
+		              <div class="col-sm-3">
+		                <div class="form-group">
+		                <h4>이름</h4>
+		                   </div>
+		              </div>
+		              <div class="col-sm-9">
+		                <div class="form-group">
+		                  <input class="form-control" value="${ loginUser.memName }" readonly>
+		                </div>
+		              </div>
+		              <div class="col-sm-3">
+		                <div class="form-group">
+		                <h4>별명</h4>
+		                   </div>
+		              </div>
+		              <div class="col-sm-9">
+		                <div class="form-group">
+		                  <input class="form-control" type="text" name="memNickName" value="${ loginUser.memNickName }">
+		                </div>
+		              </div>
+		               <div class="col-sm-3">
+		                <div class="form-group">
+		                <h4>휴대폰번호</h4>
+		                   </div>
+		              </div>
+		              <div class="col-sm-9">
+		                <div class="form-group">
+		                  <input class="form-control" type="text" name="memPhone" value="${ loginUser.memPhone }">
+		                </div>
+		              </div>
+		              <div class="col-sm-3">
+		                <div class="form-group">
+		                <h4>성별</h4>
+		                   </div>
+		              </div>
+		                  <c:choose>
+					<c:when test="${ loginUser.memGender eq 'M' }">
+		              <div class="col-sm-2" style="display:inline-block" align="center">
+		                <div class="form-group">
+							<input type="radio" name="gender" value="M" checked><h5>남</h5>
+						  </div>
+		              </div>
+		              <div class="col-sm-7" style="display:inline-block">
+		                <div class="form-group">
+							<input type="radio" name="gender" value="F"> 여
+						  </div>
+		              </div>
+					</c:when>
+					<c:when test="${ loginUser.memGender eq 'F' }">
+					<div class="col-sm-2" style="display:inline-block" align="center">
+		                <div class="form-group">
+							<input type="radio" name="gender" value="M"> 남 
+						  </div>
+		              </div>
+		              <div class="col-sm-7" style="display:inline-block">
+		                <div class="form-group">
+							<input type="radio" name="gender" value="F" checked> 여
+						  </div>
+		              </div>
+					</c:when>
+					<c:otherwise>
+					<div class="col-sm-2" style="display:inline-block" align="center">
+		                <div class="form-group">
+							<input type="radio" name="gender" value="M"> 남 
+						  </div>
+		              </div>
+		              <div class="col-sm-7" style="display:inline-block">
+		                <div class="form-group">
+							<input type="radio" name="gender" value="F"> 여
+						  </div>
+					  </div>
+					</c:otherwise>
+				</c:choose>	
+		     <c:if test="${ empty loginUser.memAddress }">
+					<div class="col-sm-3" style="display:inline-block">
+		               	 <div class="form-group">
+		                	<h4>우편번호</h4>
+		                  </div>
+		              	</div>
+		               <div class="col-sm-4" style="display:inline-block">
+		                <div class="form-group">
+		                  <input class="postcodify_postcode5" type="text" size="6" name="post">
+		                </div>
+		              </div>
+		               <div class="col-sm-5" style="display:inline-block">
+		                <div class="form-group">
+						<input class="genric-btn primary-border radius" name="log-btn" type="button" id="post_search_btn" value="검색"  style="font-size: 15">
+						</div>
+		              </div>
+					 <div class="col-sm-3">
+		                <div class="form-group">
+		                <h4>도로명 주소</h4>
+		                   </div>
+		              </div>
+		              <div class="col-sm-9">
+		                <div class="form-group">
+		                  <input class="postcodify_address" type="text" name="address1">
+		                </div>
+		              </div>
+				 <div class="col-sm-3">
+		                <div class="form-group">
+		                <h4>상세 주소</h4>
+		                   </div>
+		              </div>
+		              <div class="col-sm-9" style="display:inline-block">
+		                <div class="form-group">
+		                  <input class="postcodify_extra_info" type="text" name="address2">
+		                </div>
+		              </div>
+			</c:if>
+			<c:if test="${ !empty loginUser.memAddress }">
+				<c:forTokens items="${ loginUser.memAddress }" delims="," var="addr" varStatus="status">
+					<c:if test="${ status.index eq 0 }">
+						<div class="col-sm-3" style="display:inline-block">
+		               	 <div class="form-group">
+		                	<h4>우편번호</h4>
+		                  </div>
+		              	</div>
+		               <div class="col-sm-4" style="display:inline-block">
+		                <div class="form-group">
+		                  <input class="postcodify_postcode5" type="text" size="6" name="post" value="${ addr }" >
+		                </div>
+		              </div>
+		               <div class="col-sm-5" style="display:inline-block">
+		                <div class="form-group">
+						<input class="genric-btn primary-border radius" name="log-btn" type="button" id="post_search_btn" value="검색"  style="font-size: 15">
+						</div>
+		              </div>
+					</c:if>
+					<c:if test="${ status.index eq 1 }">
+					 <div class="col-sm-3">
+		                <div class="form-group">
+		                <h4>도로명 주소</h4>
+		                   </div>
+		              </div>
+		              <div class="col-sm-9">
+		                <div class="form-group">
+		                  <input class="postcodify_address" type="text" name="address1" value="${ addr }">
+		                </div>
+		              </div>
+					</c:if>
+					<c:if test="${ status.index eq 2 }">
+						 <div class="col-sm-3">
+		                <div class="form-group">
+		                <h4>상세 주소</h4>
+		                   </div>
+		              </div>
+		              <div class="col-sm-9" style="display:inline-block">
+		                <div class="form-group">
+		                  <input class="postcodify_extra_info" type="text" name="address2" value="${ addr }">
+		                </div>
+		              </div>
+		             </c:if>
+				</c:forTokens>
+			</c:if>
+		
+			<br>	<br>	<br>	<br>	<br>
+			<div class="col-sm-6" style="display:inline-block" align="right">
+			 <div class="form-group">
+              <input class="genric-btn primary-border radius" name="log-btn" type="submit" style="font-size: 15" value="수정완료">
+            </div>  
+            </div> 
+            <div class="col-sm-6" style="display:inline-block">
+             <div class="form-group">
+             <input class="genric-btn primary-border radius" name="log-btn" type="reset" style="font-size: 15" value="취소">
+            </div> 
+            </div>
+              </div> 
+          </form>
+            </div>
+    	</div>  
+          </section>
+             
+    	
+    	
+    	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 				<script>
 					$(function(){
 						// 검색 버튼 누르면 팝업 레이어가 열리도록 설정
 						$("#post_search_btn").postcodifyPopUp();
 					});
+					$(function(){
+						
+						
+						$(".profileImg").click(function(){
+							$(".thumbnailImg1").click();
+						});
+					});
+					
 				</script>
-				
-			<br>
-			
-      		
-      		<table width="600">
-      			<tr>
-      				<td><button class="genric-btn primary-border radius" name="log-btn" type="submit">수정완료</button></td>
-      				
-      				<td><button class="genric-btn primary-border radius" name="log-btn" type="reset">취소</button></td>
-      			</tr>
-      		</table>
-            <br><hr>
-            
-            </form>
-            </div>
-    	
-    
+					 <c:if test="${!empty msg }">
+	 	<script>
+	 		$(function(){
+	 			alert('${msg}');
+	 			<% request.removeAttribute("msg"); %>
+	 		});
+	 	</script>
+	 </c:if>
+ 
 	<jsp:include page="/WEB-INF/views/user/common/footer.jsp"></jsp:include>
 </body>
 </html>
