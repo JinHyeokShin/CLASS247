@@ -254,9 +254,7 @@ public class CourseController {
 			request.getSession().removeAttribute("creator");
 		}
 		
-		
 		ArrayList<Course> list = coService.selectList();
-		
 		
 		mv.addObject("list", list);
 			
@@ -277,15 +275,14 @@ public class CourseController {
 		Member loginUser=(Member)request.getSession().getAttribute("loginUser");
 		ArrayList<Review> rlist = coService.selectRlist(courseNum); 
 		
-		System.out.println(rlist);
 		boolean checkLove=false;
+		Course c = coService.selectCourse(courseNum);
+		
 		if(loginUser !=null) {
 			Love love= new Love(courseNum, loginUser.getMemNum());
 			
 			checkLove= coService.checkLove(love); 
 		}
-		Course c = coService.selectCourse(courseNum);
-		
 		if(c != null) {
 			mv.addObject("c", c)
 			.addObject("checkLove", checkLove).addObject("rlist", rlist)
@@ -489,26 +486,36 @@ public class CourseController {
 		Course c;
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		
-			if(loginUser ==null) {
-				mv.setViewName("user/member/loginForm");
-			}else {
+		
+		if (loginUser == null) {
+			request.getSession().setAttribute("coNumNext", courseNum);
+			mv.setViewName("user/member/loginForm");
+		} else {
+
+//			if (courseKind.equals("online")) {
+//				c = coService.selectOnline(courseNum);
+//				mv.addObject("c", c).setViewName("creator/course/userCourseDetail2");
+//				System.out.print(c);
+//				
+//			} else {
+//				c = coService.selectOffline(courseNum);
+//				mv.addObject("c", c).setViewName("creator/course/userCourseDetail2");
+//				System.out.print(c);
+//			}
 			
-			if(courseKind.equals("online")) {
-				 c = coService.selectOnline(courseNum);
-			}else {
-				 c = coService.selectOffline(courseNum);
-			}
-			System.out.print(c);
+			c = coService.selectCourse(courseNum, courseKind);
 			
-			if(c != null) {
-				mv.addObject("c", c)
-				.setViewName("creator/course/userCourseDetail2");
-				
-			}else {
-				mv.addObject("msg", "게시글 상세조회실패!")
-				.setViewName("common/errorPage");
-			}
+			mv.addObject("c", c).setViewName("creator/course/userCourseDetail2");
+			
+			
 		}
+
+//		if (c != null) {
+//
+//		} else {
+//			mv.addObject("msg", "게시글 상세조회실패!").setViewName("common/errorPage");
+//		}
+		
 		
 		return mv;
 		

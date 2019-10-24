@@ -107,7 +107,7 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public Online selectOnline(int courseNum) {
+	public Course selectOnline(int courseNum) {
 
 		return coDao.selectOnline(courseNum);
 	}
@@ -144,27 +144,12 @@ public class CourseServiceImpl implements CourseService {
 	public Course selectCourse(int courseNum) {
 		return coDao.selectCourse(courseNum);
 	}
-	public ArrayList<Course> selectList() {
-		
-		Course c = coDao.selectCourse(courseNum);
-		c.setLoveCount(coDao.countLove(courseNum));
-		
-		return c;
-		
-	}
 	
 	@Override
 	public ArrayList<Course> selectList() {
-
 		return coDao.selectList();
-	}
+		}
 	
-
-//	@Override
-//	public int coursePayment(int courseNum, String courseKind) {
-//		return coDao.coursePayment(courseNum, courseKind);
-//	}
-
 	@Override
 	public ArrayList<Course> modalsearchList(String search) {
 		return coDao.modalsearchList(search);
@@ -212,12 +197,8 @@ public class CourseServiceImpl implements CourseService {
 		// TODO Auto-generated method stub
 		return coDao.deleteLove(i);
 	}
-
-	@Override
-	public Offline selectOffline(int courseNum) {
-		return coDao.selectOffline(courseNum);
-	}
-
+	// 수강페이지를 위한 온라인상세페이지
+	
 	@Override
 	public boolean checkLove(Love love) {
 		
@@ -240,11 +221,6 @@ public class CourseServiceImpl implements CourseService {
 	public Course coursePayment(int courseNum) {
 		
 		return coDao.coursePayment(courseNum);
-	}
-	// 수강페이지를 위한 온라인상세페이지
-	@Override
-	public Course selectOnline(int courseNum) {
-		return coDao.selectOnline(courseNum);
 	}
 
 	@Override
