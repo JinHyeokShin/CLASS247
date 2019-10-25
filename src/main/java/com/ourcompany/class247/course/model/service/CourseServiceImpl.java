@@ -194,9 +194,9 @@ public class CourseServiceImpl implements CourseService {
 	//사용자 단
 
 	@Override
-	public int getListCount() {
+	public int getListCount(int memNum) {
 		
-		return coDao.getListCount();
+		return coDao.getListCount(memNum);
 	}
 
 	@Override

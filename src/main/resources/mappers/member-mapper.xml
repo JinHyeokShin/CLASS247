@@ -93,7 +93,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 6. 페이지처리 구문 -->
-	<select id="getListCount" resultType="_int" resultMap="couponResultSet">
+	<select id="getListCount" parameterType="_int" resultType="_int" >
 		select count(*)
 		from givecoupon
 		where mem_num=#{memNum} and givecoupon_status='Y'

@@ -362,7 +362,7 @@ public class CourseController {
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		
 		int memNum = loginUser.getMemNum();
-		int listCount = coService.getListCount();
+		int listCount = coService.getListCount(memNum);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		

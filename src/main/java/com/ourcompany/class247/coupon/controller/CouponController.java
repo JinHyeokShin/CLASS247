@@ -27,7 +27,6 @@ public class CouponController {
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		int memNum = loginUser.getMemNum();
 		int listCount = cService.getListCount(memNum);
-		System.out.println(memNum);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		ArrayList<Coupon> couponlist = cService.listCoupon(memNum, pi);
 		mv.addObject("pi",pi).addObject("couponlist",couponlist);
