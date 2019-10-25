@@ -9,7 +9,7 @@ public interface CouponService {
 
 	ArrayList<Coupon> listCoupon(int memNum ,PageInfo pi);
 
-	int getListCount();
+	int getListCount(int memNum);
 	
 
 }

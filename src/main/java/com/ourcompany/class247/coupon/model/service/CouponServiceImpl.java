@@ -24,8 +24,8 @@ public ArrayList<Coupon> listCoupon(int memNum, PageInfo pi) {
 }
 
 @Override
-public int getListCount() {
+public int getListCount(int memNum) {
 	
-	return cDao.getListCount();
+	return cDao.getListCount(memNum);
 	}
 }
