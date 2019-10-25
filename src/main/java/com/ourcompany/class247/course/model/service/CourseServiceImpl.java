@@ -13,6 +13,7 @@ import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
 
 @Service("coService")
@@ -453,9 +454,15 @@ public class CourseServiceImpl implements CourseService {
 		return coDao.offlineCourseCount();
 	}
 
+  @Override
+   public ArrayList<Course> modalsearchCategory(int categoryNum) {
+      // TODO Auto-generated method stub
+      return null;
+   }
 
-
-
-
+	@Override
+	public int insertPayment(Payment payment) {
+		return coDao.insertPayment(payment);
+	}
 
 }

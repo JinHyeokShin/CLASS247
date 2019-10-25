@@ -57,9 +57,6 @@ header {
 	                            <div class="banner_text_iner">
 	                            <h5 style="color:white;">당신의 모든 취미를 클래스로 개설할 수 있습니다.</h5>
 	                            <h1> 당신의 클래스를 <br>개설하세요 !</h1>
-	                            <p>Replenish seasons may male hath fruit beast were seas saw you arrie said man beast whales
-	                                his void unto last session for bite. Set have great you'll male grass yielding yielding
-	                                man</p>
 	                            <a href="#" class="btn_1">View Course </a>
 	                            <a href="cMainView.do" class="btn_2" onclick="return loginCheck()">Get Started </a>
 	                        	</div>
@@ -79,7 +76,7 @@ header {
     			} else {
     				location.href="<%= request.getContextPath() %>/cMainView.do";
     				return true;
-    			
+    			}
     		
     		}
     	</script>
@@ -88,23 +85,24 @@ header {
 
     <!--================ Start Course Details Area =================-->
     <section class="course_details_area section_padding" style="  background: rgb(248, 248, 249);">
+      
         <div class="container" >
+            <!-- insert -->
+   			 <form action="coBuyOn.do" method="post">
             <div class="row" >
                 <div class="col-lg-8 course_details_left" style=" display: inline-block; background: white; margin-left: auto; margin-right: auto; margin-top:20px; margin-bottom:20px;">
                     
                         
                         <div class="tab-content" >    
                           
-                               <c:if test="${c.courseKind =='online' }">
-                               	
-                                      <input type="checkbox"class="title_top" value="HTML">패키지 구매하기
-									<input type="checkbox" class="title_top" value="CSS">수강권만 구매하기
+                                      <input type="radio"class="title_top" name="price" id="packbtn" value="${c.coursePrice +c.courseMaterialPrice }" checked="checked" required>패키지 구매하기
+									<input type="radio" class="title_top" name="price" id="packbtn" value="${c.coursePrice }">수강권만 구매하기
                                      
                                   	 <h4 class="title_top" >준비물 :${c.courseMaterial }</h4>
                                   	 <h6 class="title_top" >준비물가격:${c.courseMaterialPrice }</h6>
-                                      
-                                </c:if>
-									
+                                  	 
+                                  	 	 <input type="radio"class="title_top" name="paymethod" id="paywaybtn" value="인터넷 뱅킹" checked="checked" required>인터넷 뱅킹
+									<input type="radio" class="title_top" name="paymethod" id="paywaybtn" value="신용카드">신용카드
                                 <div class="single_special_cource">
                                         <img src="resources/user/img/special_cource_1.png" class="special_img" alt="">
                                         <div class="special_cource_text">
@@ -112,22 +110,26 @@ header {
                                                 <h3>강의제목:${ c.courseTitle }</h3>
                                             
                                             <p>수업 소개</p>
-                                         
+                                         <span>${c.courseContent }</span>
                                         </div>
                 
                                     </div>
-                </div>
-            </div>
+				                </div>
+				            </div>
             
+           <%--  var payPrice=${c.coursePrice +c.courseMaterialPrice } --%>
                     <nav class="active" id="bprice" style="background: white;">
                         <p>
-                           5개월 할부 가격     <h4>${ c.coursePrice +c.courseMaterialPrice }</h4>
-                        </p>
+                           5개월 할부 가격     
+                           <h4></h4>
                         
-                        <button type="button" class="genric-btn primary-border radius" style="border-radius: 5px; padding: 10px 0px; width: 100%; height: 50px; text-align: center; line-height: 1" id="next_btn">다음</button>
+                        </p>
+                       <!-- insert -->
+                       
+                        <button type="button" class="genric-btn primary-border radius" style="border-radius: 5px; padding: 10px 0px; width: 100%; height: 50px; text-align: center; line-height: 1" id="next_btn" location.href="${ coBuy2 }">다음</button>
                     </nav>
-                    
-                <script>
+                   
+               <!--  <script>
                     $(document).ready(function() {
                     var navOffset = $('#bprice').offset();
                     $(window).scroll(function() {
@@ -139,12 +141,13 @@ header {
                         }
                     });
                     });
-                </script>
+                </script> -->
 
 
                 <!-- 오른쪽 간단 설명 -->
                 
             </div>
+            </form>
         </div>
     </section>
     

@@ -116,21 +116,24 @@ public class MemberController {
 		
 		ModelAndView mv = new ModelAndView();
 		
+		
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) { // 로그인에 성공했을 경우
 			
 			session.setAttribute("loginUser", loginUser);
-			System.out.println(session);
-//			PrintWriter out;
+			
+			
 			
 			if(loginUser.getMemType().equals("A") ) {
 				
 				mv.setViewName("redirect:adminMain.do");
 				
-			}else {
+			}else if(session.getAttribute("coNumNext") != null){
+				mv.setViewName("redirect:codetail.do?courseNum=" + session.getAttribute("coNumNext"));
+				session.removeAttribute("coNumNext");
+			}
+			else{	
 				mv.setViewName("redirect:home.do");
-//				out = response.getWriter();
-//				out.println("<script>history.go(-2);</script>");
-//				out.flush();
+				
 			}
 			
 		}else {

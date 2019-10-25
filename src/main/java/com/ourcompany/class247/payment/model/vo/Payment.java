@@ -35,6 +35,18 @@ public class Payment {
 	}
 
 
+//	payment insert용
+	public Payment(int memNum, int courseNum, int payPrice, String payMethod) {
+		super();
+		
+		this.memNum = memNum;
+		this.courseNum = courseNum;
+		this.payPrice = payPrice;
+		this.payMethod = payMethod;
+		
+	}
+
+
 
 	public int getPayNum() {
 		return payNum;

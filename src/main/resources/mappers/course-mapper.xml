@@ -79,6 +79,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="courseNum" column="course_num"/>
       <result property="memNum" column="mem_num"/>
       <result property="reviewContent" column="review_content"/>
+      <result property="reviewScore" column="review_score"/>
       <result property="reviewEnrollDate" column="review_eroll_date"/>
       <result property="reviewModifyDate" column="review_modify_date"/>
       <result property="reviewStatus" column="review_status"/>   
@@ -91,7 +92,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="raRName" column="ra_rname"/>
 		<result property="raPath" column="ra_path"/>
 	</resultMap>
-	
+	 <resultMap id="ReviewReplyResultSet" type="ReviewReply">
+		<id property="revReplyNum" column="rev_reply_num"/>
+		<result property="reviewNum" column="review_num"/>
+		<result property="memNum" column="mem_num"/>
+		<result property="revReplyParentNum" column="rev_reply_parent_num"/>
+		<result property="revReplyDepth" column="rev_reply_depth"/>
+		<result property="revReplyContent" column="rev_reply_content"/>
+		<result property="revReplyEnrollDate" column="rev_reply_enroll_date"/>
+		<result property="revReplyModifyDate" column="rev_reply_modify_date"/>
+		<result property="revReplyStatus" column="rev_reply_status"/>
+	</resultMap>
    <resultMap id="SingleCourseResultSet" type="SingleCourse">
       <id property="courseNum" column="course_num"/>
       <result property="courseTitle" column="course_title"/>
@@ -145,7 +156,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="courseMaterial" column="course_material"/>
 		<result property="memNum" column="mem_num"/>
 	</resultMap>
-	
+	<resultMap type="Payment" id="PaymentResultSet">
+	<id property="payNum" column="pay_num"/>
+	<result property="memNum" column="mem_num"/>
+	<result property="courseNum" column="course_num"/>
+	<result property="courseTitle" column="course_title"/>
+	<result property="payPrice" column="pay_price"/>
+	<result property="payMethod" column="pay_method"/>
+	<result property="payCancel" column="pay_cancel"/>
+	<result property="payDate" column="pay_date"/>
+	<result property="payCancelDate" column="pay_cancel_date"/>
+	</resultMap>
 	
 
 
@@ -501,6 +522,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where review_status='Y' and course_num=#{courseNum}
 	</select>
 	
+	<insert id="insertPayment" parameterType="Payment">
+		insert into payment
+		values(payment_seq.nextval, #{memNum},#{courseNum},#{payPrice},#{payMethod},default,sysdate,default)
+	</insert>
+
 	
 	<!-- 온라인 카테고리  -->
 	<select id="onlinecategoryCraftsList" resultMap="SingleCourseResultSet">

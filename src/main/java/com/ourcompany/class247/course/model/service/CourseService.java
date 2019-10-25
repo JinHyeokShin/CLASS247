@@ -9,6 +9,7 @@ import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
 
 public interface CourseService {
@@ -56,6 +57,7 @@ public interface CourseService {
 	
 	//클래스 상세보기
 	Course selectCourse(int courseNum);
+	
 	
 	ArrayList<Review> selectRlist(int courseNum);
 
@@ -147,6 +149,5 @@ public interface CourseService {
 	
 	int offlineCourseCount();
 	
-	
-	
+	int insertPayment(Payment payment);
 }

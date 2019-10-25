@@ -44,4 +44,5 @@ private PaymentDao pDao;
 		return pDao.selectMyPaymentList(memNum);
 	}
 
+
 }

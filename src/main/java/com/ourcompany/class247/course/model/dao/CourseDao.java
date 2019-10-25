@@ -14,6 +14,7 @@ import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Single;
 
@@ -451,4 +452,8 @@ public class CourseDao {
 	public int offlineCourseCount() {
 		return sqlSession.selectOne("courseMapper.offlineCourseCount");
 	}
+
+	public int insertPayment(Payment payment) {
+	   return sqlSession.insert("courseMapper.insertPayment", payment);
+   }
 }
