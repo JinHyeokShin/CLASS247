@@ -116,6 +116,7 @@ public class MemberController {
 		
 		ModelAndView mv = new ModelAndView();
 		
+		
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getMemPwd(), loginUser.getMemPwd())) { // 로그인에 성공했을 경우
 			
 			session.setAttribute("loginUser", loginUser);

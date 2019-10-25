@@ -14,6 +14,7 @@ import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
 
 @Repository("coDao")
@@ -319,6 +320,9 @@ public class CourseDao {
       
       return (ArrayList)sqlSession.selectList("courseMapper.selectRlist",courseNum);
    }
+   public int insertPayment(Payment payment) {
+	   return sqlSession.insert("courseMapper.insertPayment", payment);
+   }
    /* 온라인 카테고리 */
    @SuppressWarnings({ "unchecked", "rawtypes" })
    public ArrayList<Course> onlinecategoryCraftsList() {
@@ -437,7 +441,5 @@ public class CourseDao {
    public ArrayList<SingleCourse> mySingleCourseList(int creNum) {
       return (ArrayList)sqlSession.selectList("courseMapper.mySingleCourseList", creNum);
    }
-   public int insertPayment(int courseNum) {
-	     return sqlSession.insert("courseMapper.insertPayemnt", courseNum);
-	   }
+   
 }

@@ -89,6 +89,8 @@ header {
 	<section class="course_details_area section_padding"
 		style="background: rgb(248, 248, 249);">
 		<div class="container">
+			<!-- insert -->
+   			 <form action="insertpayment.do" method="post">
 			<div class="row">
 				<div class="col-lg-8 course_details_left"
 					style="display: inline-block; background: white; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px;">
@@ -97,37 +99,38 @@ header {
 					<div class="tab-content">
 
 
-						<h4 class="title_top">패키지 구매하기</h4>
-						<h4 class="title_top">수강권만 구매하기</h4>
+						
 
 
 						<div class="single_special_cource">
 							<img src="img/special_cource_1.png" class="special_img" alt="">
 							<div class="special_cource_text">
-								<a class="btn_4">Web Development</a>
-								<h4>$130.00</h4>
-								<h3>Web Development</h3>
-								<p>Which whose darkness saying were life unto fish wherein
-									all fish of together called</p>
-								<button
-									style="display: block; background: rgb(248, 248, 249); text-align: center; padding: 10px 0px; width: 100%;">
-									옵션 구성품 수정하기</button>
-								<p>5개월 할부 가격
-								<h4>$130.00</h4>
-								</p>
-									<c:url value="payment.do" var="payment">
-										<c:param name="courseNum" value="${ c.courseNum }"/>
-										
-									</c:url>
-								<button type="button" class="genric-btn primary-border radius"
+							  
+									 <input type="radio"class="title_top" name="paymethod" id="paywaybtn" value="K" checked="checked" required>카카오페이
+									 
+									<input type="radio" class="title_top" name="paymethod" id="paywaybtn" value="C">일반결제
+                                <div class="single_special_cource">
+                                        <img src="resources/user/img/special_cource_1.png" class="special_img" alt="">
+                                        <div class="special_cource_text">
+                                            <h4>강의료:${ c.courseHourPrice }</h4>
+                                                <h3>강의제목:${ c.courseTitle }</h3>
+                                            
+                                            <p>수업 소개</p>
+                                         <span>${c.courseContent }</span>
+                                        </div>
+                
+                                    </div>
+                                <input type="hidden" name="offline" value="${ c }"/>
+								<button type="submit" class="genric-btn primary-border radius"
 									style="border-radius: 5px; width: 150px; float: right; height: 50px; text-align: center; line-height: 1"
-									id="pay_btn" location.href="${ payment }">결제하기</button>
+									id="pay_btn">결제하기</button>
 							</div>
 
 						</div>
 					</div>
 				</div>
 			</div>
+				</form>
 		</div>
 	</section>
 	<!--================ End Course Details Area =================-->

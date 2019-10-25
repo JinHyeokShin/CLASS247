@@ -13,6 +13,7 @@ import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
 
 @Service("coService")
@@ -434,15 +435,8 @@ public class CourseServiceImpl implements CourseService {
    }
 
 @Override
-public int insertPayment(int courseNum) {
-	return coDao.insertPayment(courseNum);
+public int insertPayment(Payment payment) {
+	return coDao.insertPayment(payment);
 }
-
-
-
-
-
-
-
 
 }

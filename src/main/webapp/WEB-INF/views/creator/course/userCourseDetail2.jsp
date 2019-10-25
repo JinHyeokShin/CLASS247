@@ -76,7 +76,7 @@ header {
     			} else {
     				location.href="<%= request.getContextPath() %>/cMainView.do";
     				return true;
-    			
+    			}
     		
     		}
     	</script>
@@ -85,23 +85,24 @@ header {
 
     <!--================ Start Course Details Area =================-->
     <section class="course_details_area section_padding" style="  background: rgb(248, 248, 249);">
+      
         <div class="container" >
+            <!-- insert -->
+   			 <form action="coBuyOn.do" method="post">
             <div class="row" >
                 <div class="col-lg-8 course_details_left" style=" display: inline-block; background: white; margin-left: auto; margin-right: auto; margin-top:20px; margin-bottom:20px;">
                     
                         
                         <div class="tab-content" >    
                           
-                               <c:if test="${c.courseKind =='online' }">
-                               	
-                                      <input type="radio"class="title_top" name="packbtn" id="packbtn" value="${c.coursePrice +c.courseMaterialPrice }" checked="checked" required>패키지 구매하기
-									<input type="radio" class="title_top" name="packbtn" id="packbtn" value="${c.coursePrice }">수강권만 구매하기
-                                     $('input[name="packbtn":checked').val();
+                                      <input type="radio"class="title_top" name="price" id="packbtn" value="${c.coursePrice +c.courseMaterialPrice }" checked="checked" required>패키지 구매하기
+									<input type="radio" class="title_top" name="price" id="packbtn" value="${c.coursePrice }">수강권만 구매하기
+                                     
                                   	 <h4 class="title_top" >준비물 :${c.courseMaterial }</h4>
                                   	 <h6 class="title_top" >준비물가격:${c.courseMaterialPrice }</h6>
-                                      
-                                </c:if>
-									
+                                  	 
+                                  	 	 <input type="radio"class="title_top" name="paymethod" id="paywaybtn" value="인터넷 뱅킹" checked="checked" required>인터넷 뱅킹
+									<input type="radio" class="title_top" name="paymethod" id="paywaybtn" value="신용카드">신용카드
                                 <div class="single_special_cource">
                                         <img src="resources/user/img/special_cource_1.png" class="special_img" alt="">
                                         <div class="special_cource_text">
@@ -113,25 +114,22 @@ header {
                                         </div>
                 
                                     </div>
-                </div>
-            </div>
+				                </div>
+				            </div>
             
+           <%--  var payPrice=${c.coursePrice +c.courseMaterialPrice } --%>
                     <nav class="active" id="bprice" style="background: white;">
                         <p>
                            5개월 할부 가격     
                            <h4></h4>
                         
                         </p>
+                       <!-- insert -->
                        
-                       <c:url value="coBuy2.do" var="coBuy2">
-								<c:param name="courseNum" value="${ c.courseNum }"/>
-								<c:param name="courseKind" value="${c.courseKind }"/>
-													
-							</c:url>
                         <button type="button" class="genric-btn primary-border radius" style="border-radius: 5px; padding: 10px 0px; width: 100%; height: 50px; text-align: center; line-height: 1" id="next_btn" location.href="${ coBuy2 }">다음</button>
                     </nav>
-                    
-                <script>
+                   
+               <!--  <script>
                     $(document).ready(function() {
                     var navOffset = $('#bprice').offset();
                     $(window).scroll(function() {
@@ -143,12 +141,13 @@ header {
                         }
                     });
                     });
-                </script>
+                </script> -->
 
 
                 <!-- 오른쪽 간단 설명 -->
                 
             </div>
+            </form>
         </div>
     </section>
     

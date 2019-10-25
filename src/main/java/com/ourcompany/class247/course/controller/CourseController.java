@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,6 +31,7 @@ import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 import com.ourcompany.class247.member.model.service.MemberService;
 import com.ourcompany.class247.member.model.vo.Member;
+import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
 
 @Controller
@@ -289,6 +291,7 @@ public class CourseController {
       return mv;
       
    }
+   
 
    
    
@@ -541,13 +544,13 @@ public class CourseController {
    }
    @RequestMapping("coBuyOff.do")
    public ModelAndView coursePaymentOff(HttpServletRequest request,int courseNum, String courseKind, ModelAndView mv) {
-      Course c;
-      Member loginUser = (Member)request.getSession().getAttribute("loginUser");
-      
-         if(loginUser ==null) {
-            mv.setViewName("user/member/loginForm");
-         }else {
-           c = coService.selectOffline(courseNum);
+	   Course c;
+	      Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+	      
+	         if(loginUser ==null) {
+	            mv.setViewName("user/member/loginForm");
+	         }else {
+	            	c = coService.selectOffline(courseNum);
          
          System.out.print(c);
          
@@ -559,7 +562,7 @@ public class CourseController {
             mv.addObject("msg", "게시글 상세조회실패!")
             .setViewName("common/errorPage");
          }
-      }
+	   }
       
       return mv;
       
@@ -588,9 +591,12 @@ public class CourseController {
    }
    @ResponseBody
    @RequestMapping("insertpayment.do")
-   public String Payment(@RequestParam int courseNum) {
-	  
-	   int result = coService.insertPayment(courseNum);
+   public String insertPayment(HttpServletRequest request,Course c, Offline offline, Model model,
+		   				@RequestParam("paymethod") String payMethod) {
+	   Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+	   Payment payment= new Payment(loginUser.getMemNum(),c.getCourseNum(),offline.getCourseHourPrice(),payMethod);
+	  System.out.println(payment);
+	   int result = coService.insertPayment(payment);
 	      
 	      if(result > 0) {
 	         return "success";
@@ -600,32 +606,6 @@ public class CourseController {
 	      
 	   }
    
-
-//   @RequestMapping("codetail.do")
-//   public ModelAndView courseDetail(int courseNum, ModelAndView mv, HttpServletRequest request) {
-//      
-//      Member loginUser=(Member)request.getSession().getAttribute("loginUser");
-//      boolean checkLove=false;
-//      if(loginUser !=null) {
-//         Love love= new Love(courseNum, loginUser.getMemNum());
-//         
-//         checkLove= coService.checkLove(love); 
-//      }
-//      Course c = coService.selectCourse(courseNum);
-//      
-//      if(c != null) {
-//         mv.addObject("c", c)
-//         .addObject("checkLove", checkLove)
-//           .setViewName("creator/course/userCourseDetail");
-//         
-//      }else {
-//         mv.addObject("msg", "게시글 상세조회실패!")
-//           .setViewName("common/errorPage");
-//      }
-//      
-//      return mv;
-//      
-//   }
    @RequestMapping("goOnline.do")
    public ModelAndView onlinecategoryList(ModelAndView mv) {
       ArrayList<Course> craftsList = coService.onlinecategoryCraftsList();
