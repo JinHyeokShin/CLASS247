@@ -43,5 +43,22 @@ public interface NoticeService {
 	
 	int getNoticeReplyListCount(int noticeNum);
 	
+	// 댓글작성
 	int insertNoticeReply(NoticeReply nr);
+	
+	// 대댓글 작성
+	int insertRNoticeReply(NoticeReply nr);
+	
+	// 부모찾기
+	NoticeReply selectParentReply(int nReplyNum);
+	
+	// 자식찾기
+	int selectChild(int nReplyNum);
+	
+	// 자식이 있을 때
+	int updateReplyY(int nReplyNum);
+	
+	// 자식이 없을 때
+	int updateReplyN(int nReplyNum);
+	
 }

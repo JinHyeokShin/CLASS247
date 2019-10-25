@@ -99,6 +99,31 @@ public class NoticeServiceImpl implements NoticeService{
 	public int insertNoticeReply(NoticeReply nr) {
 		return nDao.insertNoticeReply(nr);
 	}
+	
+	@Override
+	public int insertRNoticeReply(NoticeReply nr) {
+		return nDao.insertRNoticeReply(nr);
+	}
+	
+	@Override
+	public NoticeReply selectParentReply(int nReplyNum) {
+		return nDao.selectParentReply(nReplyNum);
+	}
+	
+	@Override
+	public int selectChild(int nReplyNum) {
+		return nDao.selectChild(nReplyNum);
+	}
+	
+	@Override
+	public int updateReplyY(int nReplyNum) {
+		return nDao.updateReplyY(nReplyNum);
+	}
+	
+	@Override
+	public int updateReplyN(int nReplyNum) {
+		return nDao.updateReplyN(nReplyNum);
+	}
 
 
 	

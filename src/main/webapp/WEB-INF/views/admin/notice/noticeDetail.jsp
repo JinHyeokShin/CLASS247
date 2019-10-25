@@ -81,7 +81,7 @@
 													<!-- 댓글 목록 부분-->
 													<table align="center" width="500" border="1" cellspacing="0" id="rtb">
 														
-														<tbody>
+														<tbody class="ttbody">
 														
 														</tbody>
 														<tfoot>
@@ -101,13 +101,19 @@
                        </div>
                    </section>
                 </div>
+        
             <script>
 		$(function(){
 			getReplyList(rPage);
 			
 			
+			
+			
 		});
 		
+		
+		
+		// 댓글작성
 		$("#rSubmit").on("click",function(){
 			var rContent = $("#rContent").val();
 			if(rContent != "") {
@@ -142,6 +148,7 @@
 		});
 		
 		
+		// 페이징바
 		function rPage(num) {
 			
 			var currentPage = num;
@@ -150,7 +157,9 @@
 			
 		}
 		
+
 		
+		// 리스트 가지고오기
 		function getReplyList(rPage){
 			
 			var currentPage;
@@ -167,6 +176,7 @@
 			$.ajax({
 				url:"noticeReplyList.do",
 				data:{noticeNum:noticeNum, currentPage:currentPage},
+				type:"post",
 				success:function(data){
 					
 					
@@ -177,12 +187,16 @@
 					
 							$.each(data.nrList, function(index, value){
 								
-								var $tr = $("<tr>");
+								var $tr = $("<tr id='n"+value.nReplyNum+"'>");
 								var $profile = $("<td width='50'>");
-								var $profileDiv = $("<div>");
-								var $rNReply = $("<a onlick='rNReply("+value.nReplyNum+")'>").text("[답글]");
+								var $profileDiv = $("<div class='img'>");
+								var $rNReply;
+								if(value.nReplyStatus == 'Y') {
+									$rNReply = $("<a class='rNRDiv' id="+value.nReplyNum+" onlick='rNReply()'>").text("[답글]");
+								}else{
+									$rNReply = $("<a class='rNRDiv' id="+value.nReplyNum+" onlick='rNReply()'>");
+								}
 								
-			
 								var $rWriter = $("<td width='100'>").text(value.memNickname);
 								
 								var	$rContent = $("<td>");
@@ -206,9 +220,15 @@
 									var $rCreateDate = $("<td width='200'>").text(value.nReplyModifyDate + '(수정됨)');
 								}
 								
-								var $deleteTd = $("<td width='50' align='center'>")
+								var $deleteTd = $("<td width='50' align='center'>");
 								
-								var $deleteA = $("<a onclick='rdelete("+value.nReplyNum+")'>").text("X");
+								var $updateA;
+								var $deleteA;
+								
+								if(value.nReplyStatus == 'Y') {
+									$deleteA = $("<div id=d"+value.nReplyNum+" class='rD'>").text("[삭제]");
+									$updateA = $("<div id=d"+value.nReplyNum+" class='rU'>").text("[수정]")
+								}
 								
 								$profileDiv.prepend('<img src='+value.memProfileName+'>');
 								$profile.append($profileDiv);
@@ -218,6 +238,7 @@
 								$tr.append($rWriter);
 								$tr.append($rContent);
 								$tr.append($rCreateDate);
+								$deleteTd.append($updateA);
 								$deleteTd.append($deleteA);
 								$tr.append($deleteTd);
 								
@@ -229,6 +250,7 @@
 						var $rCountent = $("<td colspan='3'>").text('등록된 댓글이 없습니다.');
 						
 						$tr.append($rCount); // <tr><td>~~</td></tr>
+						
 						
 						$tableBody.append($tr);
 					}
@@ -247,27 +269,172 @@
 							$aNum = $("<a style='padding-right:3em' onclick='rPage("+i+")'>").text(i);
 						}
 						
-						
-						
+
 						$("#footTd").append($aNum);
 	
-						
-							
+
 					}
 					
-					
-					
-					
-					
-					
+
 				},
 				error:function(){
 					console.log("ajax 통신 실패");
 				}
 			});
+			
+			
 		}
+		
+		// 대댓글 폼 보여주기
+		$(".ttbody").on("click", ".rNRDiv", function(e) {
+			
+			$(".nnrreply").html("");
+			
+			
+			if(e.target.text == '[답글]') {
+				
+				$(".rNRDiv").html("[답글]");
+				
+				var rNum = "#n"+ e.target.id;
+						
+				var $tr = $("<tr class='nnrreply'>");
+				var $td1 = $("<td colspan='4'>");
+				
+				var $rtextarea = $("<textarea cols='55' row='3' id='rContent2'>");
+				
+				var $td2 = $("<td>");
+				var $rButton = $("<button id='rSubmit2'>").text('등록하기');
+				
+				$td1.append($rtextarea);
+				$td2.append($rButton);
+				
+				$tr.append($td1);
+				$tr.append($td2);
+				$(rNum).after($tr);
+				
+
+				
+				$(e.target).html("[닫기]");
+			
+			}else{
+				
+				
+				$(".nnrreply").html("");
+				
+				$(e.target).html("[답글]");
+			}
+		});
+		
+		
+		
+		// 대댓글 작성
+		$(".ttbody").on("click", "#rSubmit2", function(e){
+			var rContent = $("#rContent2").val();
+			
+			var memNum = ${n.memNum};
+				
+			var noticeNum= ${n.noticeNum};
+			
+			var parentId = ($('#rContent2').parent().parent().prev().attr('id')).substring(1);
+			
+			
+			$.ajax({
+				url:"aRNRInsert.do",
+				data:{rContent:rContent, memNum:memNum, noticeNum:noticeNum, parentId:parentId},
+				type:"post",
+				success:function(data){
+					var $tableBody = $("#rtb tbody");
+					var currentPage;
+					
+	
+					
+					if(data == "success"){
+						$tableBody.html("");
+						getReplyList(currentPage); // 댓글 등록 성공시 다시 댓글 리스트 불러오기
+						$("#rConteent").val();
+					}else{
+						alert("댓글 작성 실패 !");
+					}
+				},
+				error:function(){
+					console.log("서버와의 통신 실패");
+				}
+			
+			});
+			
+			
+			
+		});
+		
+		
+		// 삭제하기
+		$(".ttbody").on("click", ".rNRDiv", function(e) {
+			
+			var nReplyNum = (e.target.id).substring(1);
+			
+			$.ajax({
+				url:"aNRDelete.do",
+				data:{nReplyNum:nReplyNum},
+				type:"post",
+				success:function(data){
+					var $tableBody = $("#rtb tbody");
+					var currentPage;
+					
+					console.log(data);
+					
+					if(data == "success"){
+						$tableBody.html("");
+						getReplyList(currentPage); // 댓글 등록 성공시 다시 댓글 리스트 불러오기
+					}else{
+						alert("댓글 작성 실패 !");
+					}
+				},
+				error:function(){
+					console.log("서버와의 통신 실패");
+				}
+			
+			});
+			
+		});
+		
+		
+
+		
+		
+		$(".ttbody").on("click", ".rU", function(e) {
+			
+			var rNum = "#n"+(e.target.id).substring(1);
+			
+			
+			console.log(rNum);
+			
+			
+			var $tr = $("<tr class='nnrreply'>");
+			var $td1 = $("<td colspan='4'>");
+			
+			var $rtextarea = $("<textarea cols='55' row='3' id='rContent2'>");
+			
+			var $td2 = $("<td>");
+			var $rButton = $("<button id='rSubmit2'>").text('등록하기');
+			
+			$td1.append($rtextarea);
+			$td2.append($rButton);
+			
+			$tr.append($td1);
+			$tr.append($td2);
+			
+			$(rNum).after($tr);
+			
+	
+			
+		});
+	
 			 
 		</script>
+		        
+	<c:import url="../common/aImportJs.jsp" />
+		
+		
 
 </body>
 </html>

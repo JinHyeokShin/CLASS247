@@ -108,14 +108,14 @@
 		select *
 		from notice_reply
 		join member using(mem_num)
-		where notice_num = #{noticeNum}
+		where notice_num = #{noticeNum} and nreply_status!='N'
 		order by nreply_parent_num, nreply_depth
 	</select>
 	
 	<select id="getNoticeReplyListCount" parameterType="_int" resultType="_int">
 		select count(*)
 		from notice_reply
-		where notice_num = #{noticeNum}
+		where notice_num = #{noticeNum} and nreply_status='Y'
 	</select>
 	
 	<insert id="insertNoticeReply" parameterType="NoticeReply">
@@ -123,4 +123,37 @@
 		values(notice_reply_seq.nextval, #{noticeNum}, #{memNum}, notice_reply_seq.currval, 1, #{nReplyContent}, sysdate, sysdate, 'Y')
 	</insert>
 	
+	<insert id="insertRNoticeReply" parameterType="NoticeReply">
+		insert into notice_reply
+		values(notice_reply_seq.nextval, #{noticeNum}, #{memNum}, #{nReplyParentNum}, #{nReplyDepth}, #{nReplyContent}, sysdate, sysdate, 'Y')
+	</insert>
+	
+	<select id="selectParentReply" parameterType="_int" resultMap="noticeReplyResultSet">
+		select *
+		from notice_reply
+		where nReply_Num = #{nReplyNum}
+	</select>
+	
+	<select id="selectChild" parameterType="_int" resultType="_int">
+		select count(*)
+		from ( select nreply_depth
+		       from notice_reply
+		       where nreply_parent_num = ( select nreply_parent_num from notice_reply where nreply_num = #{nReplyNum}) and nreply_status != 'N' )
+		where nreply_depth > (select nreply_depth "NREPLY_DAPTH" from notice_reply where nreply_num = #{nReplyNum})
+	
+	</select>
+	
+	<update id="updateReplyY" parameterType="_int">
+		update notice_reply
+		set nreply_content='삭제된 댓글입니다.', nreply_modify_date=sysdate, nreply_status='D'
+		where nreply_num = #{nReplyNum}
+	</update>
+	
+	<update id="updateReplyN" parameterType="_int">
+		update notice_reply
+		set nreply_status='N'
+		where nreply_num = #{nReplyNum}
+	</update>
+	
+
 </mapper>

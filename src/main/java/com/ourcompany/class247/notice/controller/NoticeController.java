@@ -261,6 +261,15 @@ public class NoticeController {
 		return mv;
 	}
 	
+	/**
+	 * 댓글 리스트 불러오기
+	 * @param currentPage
+	 * @param response
+	 * @param noticeNum
+	 * @throws JsonIOException
+	 * @throws IOException
+	 */
+	@ResponseBody
 	@RequestMapping("noticeReplyList.do")
 	public void selectNoticeReply(@RequestParam(value="currentPage", required=false, defaultValue="0") int currentPage,  HttpServletResponse response, int noticeNum) throws JsonIOException, IOException {
 		
@@ -283,6 +292,13 @@ public class NoticeController {
 			
 	}
 	
+	/**
+	 * 단순 댓글작성
+	 * @param memNum
+	 * @param rContent
+	 * @param noticeNum
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("aNRInsert.do")
 	public String aNRInsert(int memNum, String rContent, int noticeNum) {
@@ -304,4 +320,69 @@ public class NoticeController {
 		
 	}
 	
+	/**
+	 * 
+	 * 대댓글 작성
+	 * @param memNum
+	 * @param rContent
+	 * @param noticeNum
+	 * @param parentId
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("aRNRInsert.do")
+	public String aRNRInsert(int memNum, String rContent, int noticeNum, int parentId) {
+		
+		NoticeReply nr = new NoticeReply();
+		
+		nr.setMemNum(memNum);
+		nr.setnReplyContent(rContent);
+		nr.setNoticeNum(noticeNum);
+		
+		NoticeReply parent = nService.selectParentReply(parentId);
+		
+		
+		nr.setnReplyParentNum(parent.getnReplyParentNum());
+		nr.setnReplyDepth(parent.getnReplyDepth()+1);
+		
+		System.out.println(nr);
+		
+		int result = nService.insertRNoticeReply(nr);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+		
+	}
+	
+	/**
+	 * 댓글 삭제
+	 * @param nReplyNum
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("aNRDelete.do")
+	public String aNRDelete(int nReplyNum) {
+		
+		int count = nService.selectChild(nReplyNum);
+		
+		System.out.println(count);
+		
+		int result;
+		
+		if(count > 0 ) {
+			result = nService.updateReplyY(nReplyNum);
+		}else {
+			result = nService.updateReplyN(nReplyNum);
+		}
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+			
+	}
 }
