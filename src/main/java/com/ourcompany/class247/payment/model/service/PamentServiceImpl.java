@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ourcompany.class247.payment.model.dao.PaymentDao;
 import com.ourcompany.class247.payment.model.vo.Delivery;
 import com.ourcompany.class247.payment.model.vo.Payment;
+import com.ourcompany.class247.payment.model.vo.TakeCourse;
 
 @Service("pService")
 public class PamentServiceImpl implements PaymentService{
@@ -16,13 +17,13 @@ private PaymentDao pDao;
 	
 	
 	@Override
-	public ArrayList<Payment> payonlist(int memNum) {
+	public ArrayList<TakeCourse> payonlist(int memNum) {
 		
 		return pDao.payonlist(memNum);
 	}
 
 	@Override
-	public ArrayList<Payment> payofflist(int memNum) {
+	public ArrayList<TakeCourse> payofflist(int memNum) {
 		
 		return pDao.payofflist(memNum);
 	}

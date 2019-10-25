@@ -19,7 +19,8 @@
 	
 	}
 	.table-head{
-	font-size: 25;
+	font-size: 18;
+	text-align: center;
 	}
 	.DELIVERY_NUM{
 	width: 10%;
@@ -47,6 +48,7 @@
 	}
 	.table-row{
 	font-size: 15;
+	text-align: center;
 	}
 	</style>
             <link rel="icon" href="resources/user/img/favicon.png">
@@ -78,6 +80,7 @@
 							<div class="MEM_NAME">주문자</div>
 							<div class="DELIVERY_detail">상세조회</div>
 						</div>
+					<c:if test="${ !empty delist }">
 						<c:forEach items="${ delist }" var="de">
 						<div class="table-row">
 							<div class="DELIVERY_NUM">${ de.deliveryNum }</div>
@@ -100,12 +103,25 @@
 							<div class="DELIVERY_detail"><input type="button" value="상세보기"></div>
 						</div>
 						</c:forEach>
-						
+						</c:if>
+						<c:if test="${ empty delist }">
+							<div class="table-row">
+								<div class="DELIVERY_NUM"></div>
+								<div class="PAY_DATE"></div>
+								<div class="COURSE_TITLE"></div>
+								<div class="COURSE_MATERIAL">주문 및 배송 내역이</div>
+								<div class="PAY_PRICE"> 없습니다</div>
+								<div class="DELIVERY_STATUS"></div>
+								<div class="MEM_NAME"></div>
+								<div class="DELIVERY_detail"></div>
+							</div>
+						</c:if>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
+			
 
 		
 </body>

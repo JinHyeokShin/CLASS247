@@ -14,6 +14,7 @@ import com.ourcompany.class247.payment.model.service.PamentServiceImpl;
 import com.ourcompany.class247.payment.model.service.PaymentService;
 import com.ourcompany.class247.payment.model.vo.Delivery;
 import com.ourcompany.class247.payment.model.vo.Payment;
+import com.ourcompany.class247.payment.model.vo.TakeCourse;
 
 @Controller
 public class PaymentController {
@@ -37,8 +38,8 @@ public class PaymentController {
 		
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		int memNum = loginUser.getMemNum();
-		ArrayList<Payment> payonlist = pService.payonlist(memNum);
-		ArrayList<Payment> payofflist = pService.payofflist(memNum);
+		ArrayList<TakeCourse> payonlist = pService.payonlist(memNum);
+		ArrayList<TakeCourse> payofflist = pService.payofflist(memNum);
 		
 		mv.addObject("payonlist",payonlist);
 		mv.addObject("payofflist", payofflist);

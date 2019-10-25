@@ -15,32 +15,12 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <style>
-	.login{
-		margin: 9% auto;
-		border: 1px solid #954CBC;
-		padding: 10px;
-		width: 50%;
-		height:120%;  
-		border-radius: 10px;
-	}
-	table td{
-		text-align: left;
-	}
-	td a, td button{
-		width : 70%;
-	}	
 	.genric-btn{
 	padding: 9 9 10 9;
 	}
 	.genderForm{
 		align : left;
 	}
-	 td input{
-		 width : 80%;
-	 }
-	 .form-group mt-6{
-		 
-	 }
 .postcodify_postcode5, .postcodify_address, .postcodify_extra_info{
 	display: block;
     width: 100%;
@@ -313,6 +293,7 @@
 					});
 					
 					   $(function() {
+						 
 				            $('#memPwd').keyup(function() {
 				               $('font[name=check]').text('');
 				            });
@@ -321,7 +302,7 @@
 				               if ($('#memPwd').val() != $('#memPwd2').val()) {
 				                  $('font[name=check]').text('');
 				                  $('font[name=check]').html("암호틀림");
-				               } else {
+				               }else {
 				                  $('font[name=check]').text('');
 				                  $('font[name=check]').html("암호맞음");
 				               }

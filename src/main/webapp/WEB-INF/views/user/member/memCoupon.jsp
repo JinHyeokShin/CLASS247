@@ -15,180 +15,95 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <style>
-	.login{
-		margin: 9% auto;
-		border: 1px solid #954CBC;
-		padding: 10px;
-		width: 50%;
-		height:120%;  
-		border-radius: 10px;
-	}
-	table td{
-		text-align: center;
-	}
-	td a, td button{
-		width : 70%;
-	}	
 	.genric-btn{
 	padding: 9 9 10 9;
 	}
 	.genderForm{
 		align : left;
 	}
-	 td input{
-		 width : 80%;
-	 }
-	  .jb-default-1 { font-size: 12px; }
-	  
-	    .jb-default-2 { font-size: 16px; }
-	    
-	    	table tr{
-		height:30px;
-	}
-	table th:hover{
-		cursor:default;
-	}
 	
+	.table-row{
+	font-size: 15;
+	text-align:center;
+	}
+	.table-head{
+	font-size: 18;
+	text-align: center;
+	}
+	.pagebar{
+	text-align: center;
+	}
+	.no{
+	width:15%;
+	}
+	.COUPON_NAME{
+	width:25%;
+	}
+	.COUPON_DISCOUNT{
+	width:20%;
+	}
+	.COUPON_START_DATE{
+	width:20%;
+	}
+	.COUPON_END_DATE{
+	width:20%;
+	}
 </style>
 
 </head>
 
 <body>
 	<jsp:include page="/WEB-INF/views/user/common/menubar.jsp"></jsp:include>
-<div class="section-top-border">
-				<h3 class="mb-30">Table</h3>
-				<div class="progress-table-wrap">
-					<div class="progress-table">
-						<div class="table-head">
-							<div class="serial">#</div>
-							<div class="country">Countries</div>
-							<div class="visit">Visits</div>
-							<div class="percentage">Percentages</div>
-						</div>
-						<div class="table-row">
-							<div class="serial">01</div>
-							<div class="country"> <img src="img/elements/f1.jpg" alt="flag">Canada</div>
-							<div class="visit">645032</div>
-							<div class="percentage">
-								<div class="progress">
-									<div class="progress-bar color-1" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-								</div>
-							</div>
-						</div>
-						<div class="table-row">
-							<div class="serial">02</div>
-							<div class="country"> <img src="img/elements/f2.jpg" alt="flag">Canada</div>
-							<div class="visit">645032</div>
-							<div class="percentage">
-								<div class="progress">
-									<div class="progress-bar color-2" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-								</div>
-							</div>
-						</div>
-						<div class="table-row">
-							<div class="serial">03</div>
-							<div class="country"> <img src="img/elements/f3.jpg" alt="flag">Canada</div>
-							<div class="visit">645032</div>
-							<div class="percentage">
-								<div class="progress">
-									<div class="progress-bar color-3" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-								</div>
-							</div>
-						</div>
-						<div class="table-row">
-							<div class="serial">04</div>
-							<div class="country"> <img src="img/elements/f4.jpg" alt="flag">Canada</div>
-							<div class="visit">645032</div>
-							<div class="percentage">
-								<div class="progress">
-									<div class="progress-bar color-4" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-								</div>
-							</div>
-						</div>
-						<div class="table-row">
-							<div class="serial">05</div>
-							<div class="country"> <img src="img/elements/f5.jpg" alt="flag">Canada</div>
-							<div class="visit">645032</div>
-							<div class="percentage">
-								<div class="progress">
-									<div class="progress-bar color-5" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-								</div>
-							</div>
-						</div>
-						<div class="table-row">
-							<div class="serial">06</div>
-							<div class="country"> <img src="img/elements/f6.jpg" alt="flag">Canada</div>
-							<div class="visit">645032</div>
-							<div class="percentage">
-								<div class="progress">
-									<div class="progress-bar color-6" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-								</div>
-							</div>
-						</div>
-						<div class="table-row">
-							<div class="serial">07</div>
-							<div class="country"> <img src="img/elements/f7.jpg" alt="flag">Canada</div>
-							<div class="visit">645032</div>
-							<div class="percentage">
-								<div class="progress">
-									<div class="progress-bar color-7" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-								</div>
-							</div>
-						</div>
-						<div class="table-row">
-							<div class="serial">08</div>
-							<div class="country"> <img src="img/elements/f8.jpg" alt="flag">Canada</div>
-							<div class="visit">645032</div>
-							<div class="percentage">
-								<div class="progress">
-									<div class="progress-bar color-8" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-	  	<div class="login" align="center">
+	    <section class="contact-section section_padding">
+    <div class="container">
         	<br>
       		<h1>${ loginUser.memName }님의 쿠폰 목록</h1>
-      		<hr>
       		<br>
-      		<c:if test="${ !empty couponlist }">
-	      		<h4 align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      		<hr>
+        	<div class="section-top-border">
+				<h3 class="mb-30">
+				<c:if test="${ !empty couponlist }">
+	      		<h4 align="left">&nbsp;&nbsp;&nbsp;
 	      		${ loginUser.memName } 님의 총 쿠폰 갯수 : ${ couponlist.size() }</h4>	
 	      	</c:if>
       		<c:if test="${ empty couponlist }">
-	      		<h4 align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	      		<h4 align="left">&nbsp;&nbsp;&nbsp;
 	      		${ loginUser.memName } 님의 총 쿠폰 갯수 : 0 </h4>	
-      		</c:if>
+      		</c:if></h3>
       		<br>
- 			<table align="center" border="1" cellspacing="0" width="90%">
-				<tr style="color:white;background-color:#954CBC;">
-					<th>No.</th> 
-					<th>쿠폰 이름</th>
-					<th>쿠폰 발급 날짜</th>
-					<th>쿠폰 할인 가격</th>
-					<th>쿠폰 종료 날짜</th>
-				</tr>
-				<c:if test="${ !empty couponlist }">
-		<c:forEach items="${ couponlist }" var="c">
-		<tr>
-			<td align="center">${ c.rNum }</td>
-			<td align="center">${ c.couponName }</td>
-			<td align="center">${ c.givecouponEnrolledDate }</td>
-			<td align="center">${ c.couponDiscount }%</td>
-			<td align="center">${ c.couponEndDate }</td>
-		</tr>
-		</c:forEach>
-				</c:if>
-				<c:if test="${ empty couponlist }">
-				<tr>
-					<td colspan="5" align="center">발급된 쿠폰이 없습니다.</td>
-					</tr>
-				</c:if>
-				
-			</table>	
-			<br>	
+				<div class="progress-table-wrap" align="center">
+					<div class="progress-table">
+						<div class="table-head">
+							<div class="no">No.</div>
+							<div class="COUPON_NAME">쿠폰 이름</div>
+							<div class="COUPON_DISCOUNT">쿠폰 발급 날짜</div>
+							<div class="COUPON_START_DATE">쿠폰 할인 가격</div>
+							<div class="COUPON_END_DATE">쿠폰 종료 날짜</div>
+						</div>
+						<c:if test="${ !empty couponlist }">
+							<c:forEach items="${ couponlist }" var="c">
+								<div class="table-row">
+									<div class="no">${ c.rNum }</div>
+									<div class="COUPON_NAME">${ c.couponName }</div>
+									<div class="COUPON_DISCOUNT">${ c.givecouponEnrolledDate }</div>
+									<div class="COUPON_START_DATE">${ c.couponDiscount }%</div>
+									<div class="COUPON_END_DATE">${ c.couponEndDate }</div>
+								</div>
+							</c:forEach>
+					</c:if>
+					<c:if test="${ empty couponlist }">
+						<div class="table-row">
+							<div class="no"></div>
+							<div class="COUPON_NAME"></div>
+							<div class="COUPON_DISCOUNT">발급된 쿠폰이 없습니다</div>
+							<div class="COUPON_START_DATE"></div>
+							<div class="COUPON_END_DATE"></div>
+						</div>
+					</c:if>
+					</div>
+				</div>
+			</div>
+			<div class="pagebar">
 				<!-- [이전] -->	
 				<c:if test="${ pi.currentPage eq 1 }">
 					[이전] 
@@ -222,9 +137,11 @@
 						<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 					</c:url>
 					<a href="${ next }"> [다음]</a>
-				</c:if>  
-				      <br><br><hr>  
+				</c:if> 
+				 </div>
             </div>
+           
+            </section>
 	<jsp:include page="/WEB-INF/views/user/common/footer.jsp"></jsp:include>
 </body>
 </html>
