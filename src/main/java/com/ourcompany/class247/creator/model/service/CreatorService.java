@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 import com.ourcompany.class247.member.model.vo.Member;
+import com.ourcompany.class247.payment.model.vo.Chart;
 
 public interface CreatorService {
 	
@@ -43,6 +44,10 @@ public interface CreatorService {
 
 	//크리에이터 프로필 사진 변경 
 	int updateProfile(CreatorAttachment update);
+	
+	
+	//차트 구하기 
+	ArrayList<Chart> getChart(Chart chart);
 
 
 }

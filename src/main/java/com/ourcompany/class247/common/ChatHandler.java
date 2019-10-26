@@ -2,16 +2,17 @@ package com.ourcompany.class247.common;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+import com.ourcompany.class247.chat.model.service.ChatService;
+import com.ourcompany.class247.chat.model.vo.Chat;
 
 
 
@@ -23,6 +24,9 @@ private static Logger logger = LoggerFactory.getLogger(ChatHandler.class);
     
 
     private static List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
+    
+    @Autowired
+    private ChatService chService;
 
     /**
 
@@ -51,16 +55,26 @@ private static Logger logger = LoggerFactory.getLogger(ChatHandler.class);
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
      
 
-       
 
        logger.info("{}로 부터 {} 받음", session.getId(), message.getPayload());
+       Chat chat = new Chat();
+       String[] msg = (message.getPayload()).split("->");
+       String fromId = msg[0];
+       String content = msg[1];
+       String toId = msg[2];
+       chat.setChatContent(content);
+       chat.setFromId(fromId);
+       chat.setToId(toId);
+       chService.sendMsg(chat);
+       
+       
  
         for(WebSocketSession sess : sessionList){
            if(session.getAttributes().get("bId") == null) {   // 방에 안들어왔으면
               if(session.getId().equals(sess.getId())) {      // 보낸사람 id와 보내야되는 사람 id 가 같을때
-                 sess.sendMessage(new TextMessage("나:"+ message.getPayload()));   // 나 : 메세지 내용 출력
+                 sess.sendMessage(new TextMessage("나:"+ content));   // 나 : 메세지 내용 출력
               }else {                                 // 다를때
-                 sess.sendMessage(new TextMessage("상대방:"+ message.getPayload()));// 아이디 : 메세지 내용 출력              
+                 sess.sendMessage(new TextMessage("상대방:"+ content));// 아이디 : 메세지 내용 출력              
               }
               
            }else {                                    // 방에 들어왔으면

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ourcompany.class247.creator.model.dao.CreatorDao;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
+import com.ourcompany.class247.payment.model.vo.Chart;
 
 @Service("creService")
 public class CreatorServiceImpl implements CreatorService{
@@ -146,6 +147,16 @@ public class CreatorServiceImpl implements CreatorService{
 	@Override
 	public int updateProfile(CreatorAttachment updateProfile) {
 		return creDao.updateProfile(updateProfile);
+	}
+
+
+
+	/**
+	 * 차트값 구하기 
+	 */
+	@Override
+	public ArrayList<Chart> getChart(Chart chart) {
+		return creDao.getChart(chart);
 	}
 
 

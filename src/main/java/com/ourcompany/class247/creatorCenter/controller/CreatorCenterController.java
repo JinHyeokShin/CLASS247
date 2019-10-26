@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class CreatorCenterController {
 	
-	@Autowired
-	//private CtreatorCenterService ccService;
 
 	
-	@RequestMapping("courseFormView.do")
-	public String courceFormView() {
-		return "creator/course/coRegistration";
+
+	  @RequestMapping("courseFormView.do") 
+	  public String courseFormView() {
+		  return "creator/course/coRegistration"; 
 	}
+
 	
 	
 	@RequestMapping("cChattingView.do")

@@ -11,6 +11,32 @@
 	<c:import url="common/cMenubar.jsp"/>
 
     <div class="page-wrapper">
+    
+    <script>
+    $(function(){
+    	
+	    var d = new Date();
+	    var thisMonth = (d.getMonth() + 1);
+	
+		$.ajax({
+			url:'getChart.do',
+			type:'post',
+			dataType:'json',
+			data:{"month":thisMonth},
+			success:function(data) {
+				
+			}, 
+			error:function(){
+				console.log('ajax 통신 실패');
+			}
+		});
+    	
+    	
+    	
+    });
+
+    
+    </script>
 
 
         <!-- PAGE CONTAINER-->

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="chatMapper">
+
+	<resultMap id="chatResultMap" type="Chat">
+		<id property="" column=""/>
+		<result property="chatNum" column="chat_num"/>
+		<result property="chatroomNum" column="chatroom_num"/>
+		<result property="fromId" column="from_id"/>
+		<result property="fromName" column="from_name"/>
+		<result property="toId" column="to_id"/>
+		<result property="toName" column="to_name"/>
+		<result property="chatContent" column="chat_content"/>
+		<result property="chatTime" column="chat_time"/>
+	</resultMap>
+	
+	<insert id="insertMessage" parameterType="Chat">
+		insert into chat 
+		values(chat_seq.nextval, 1, #{fromId}, #{fromName}, #{toId}, #{toName}, #{chatContent}, sysdate)
+	</insert>
+
+	
+	<select id="selectChatList" parameterType="_int" resultMap="chatResultMap">
+		select * 
+		from chat 
+		where chatroom_num = #{roomId}
+	</select>
+
+</mapper>

@@ -38,6 +38,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="certification" column="certification"/>
 		<result property="creStatus" column="cre_status"/>	
 	</resultMap>
+	
+	<resultMap id="chartResultMap" type="Chart">
+		<id property="salaryNum" column="salary_num"/>
+		<result property="creNum" column="cre_num"/>
+		<result property="courseNum" column="course_num"/>
+		<result property="amount" column="amount"/>
+		<result property="forMonth" column="for_month"/>
+		<result property="paidDate" column="paid_date"/>
+		<result property="salaryStatus" column="salary_status"/>
+	</resultMap>
 
 	<select id="selectCreator" parameterType="_int" resultMap="creatorResultSet">
 		select *
@@ -143,6 +153,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set cra_rname = #{craRname}, cra_oname=#{craOname}
 		where cre_num = #{creNum}
 	</update>
+	
+	<select id="selectChart" parameterType="Chart" resultMap="chartResultMap">
+		select for_month, amount
+		from salary_record 
+		where cre_num = #{creNum}
+		and for_month between #{forMonth}-5 and #{forMonth}
+		order by for_month
+	</select>
 	
 	
 	

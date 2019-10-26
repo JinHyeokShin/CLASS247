@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.ourcompany.class247.creator.model.vo.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% Creator creator = (Creator)request.getSession().getAttribute("creator"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,6 +108,87 @@
                     </div>
                 </session>
                 
+                	<script>
+		$(function(){
+			var roomId = 1;
+			
+			$.ajax({
+				url:"getChatList.do",
+				data:{roomId:roomId},
+ 				dataType:"json", 
+				success:function(data){
+					
+					if(data.length > 0) {
+						$.each(data, function(index, value){
+							<% if(creator == null) { %>
+						    	if(value.fromId == ${loginUser.memNum}) {
+						    <% } else { %>	
+						    	if(value.fromId == 'C${creator.creNum}') {
+						    <% } %>
+						    
+							    var $div = $('<div class="send-mess-wrap">');
+							    //var $time = $('<span class="mess-time">').text('1 Sec ago');
+							    var $div2 = $('<div class="send-mess__inner"">');
+							    var $div3 = $('<div class="send-mess-list">');
+							    var $div4 = $('<div class="send-mess">').text(value.chatContent);
+							    
+
+				                
+				                
+							    //$div.append($time);
+							    $div.append($div2);
+							    $div2.append($div3);
+							    $div3.append($div4); 
+							    
+
+							    
+							    $("#chatBox").append($div);
+								
+						    } else {
+						    	
+							    var $div = $('<div class="recei-mess-wrap">');
+							    var $time = $('<span class="mess-time">').text('1 Sec ago');
+							    var $div2 = $('<div class="recei-mess__inner">');
+							    var $div3 = $('<div class="recei-mess-list">');
+							    var $div4 = $('<div class="recei-mess">').text(value.chatContent);
+							    
+
+				                var $profile = $('<div class="avatar avatar--tiny">');
+				                var $profile1 =  $('<img src="resources/creator/images/icon/avatar-02.jpg">');
+
+							    
+					 		    //$div.append($time);
+							    $div.append($div2);
+							    $div2.append($profile);
+							    $div2.append($div3); 
+							    $profile.append($profile1);
+							    $div3.append($div4); 
+							    
+							    $("#chatBox").append($div);
+						    	
+						    	
+						    	
+						    	
+						    	
+						    }
+						});
+						
+					} else {
+						// data가 0개 일 경우 
+						
+						
+					}
+				    $('.au-chat__content').scrollTop(9999999);
+				    
+				    document.body.scrollIntoView(false);
+				},
+				error:function(){
+					console.log("ajax 통신 실패 ");
+				}
+			})
+		});
+	</script>
+                
         
        <!--  회원 -> 튜터  메세지를 보낼 경우 (즉, 회원일경우 로그인 )  -->         	
 		<c:if test='${ !empty creator}'> 
@@ -119,20 +201,6 @@
 				       /*소켓으로 보내겠다.  */
 				       var text =  $("#userId").val() + "->" + $("#message").val() + "->2";
 				       sock.send(text);   // 메세지를 소켓에 보내고
-				       
-				       
-				       $.ajax({
-					    	  url:'send.do',
-					    	  type:'post',
-					    	  dataType:'text',
-					    	  data:{'msg':text},
-					    	  success:function(data){
-					    		  alert(data);
-					    	  },
-					    	  error:function(){
-					    		  console.log('서버 통신 실패');
-					    	  }
-					       });
 				       $("#message").val("");         // 메세지 내용을 비운다.
 				     
 				  }
@@ -151,26 +219,17 @@
 				       /*소켓으로 보내겠다.  */
 				       var text = $("#userId").val() +  "->" + $("#message").val() + "->C3";
 				       sock.send(text);   // 메세지를 소켓에 보내고
-				       
-				       $.ajax({
-				    	  url:'send.do',
-				    	  type:'post',
-				    	  dataType:'text',
-				    	  data:{'msg':text},
-				    	  success:function(data){
-				    		  alert(data);
-				    	  },
-				    	  error:function(){
-				    		  console.log('서버 통신 실패');
-				    	  }
-				       });
+
 				       $("#message").val("");         // 메세지 내용을 비운다.
 				     
 				  }
 				    
 			
 				}
+				
 			</script>
+			
+			
 		</c:if>
 	
                 
@@ -187,6 +246,7 @@
 		                sendMessage();   // 메소드 실행
 		            }
 		        });
+		       
 		});
 			
 	
@@ -282,13 +342,11 @@
 		    $("#chatBox").append("연결 끊김");
 		
 		}
+		
+
 	</script>
 
             <!-- END PAGE CONTAINER-->
-            
-
-
-
             <section>
                 <div class="container-fluid">
                     <div class="row">

@@ -13,7 +13,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import com.ourcompany.class247.creator.model.vo.Creator;
 
 
-public class ChatHandler extends TextWebSocketHandler{
+public class ChatHandlerCopy extends TextWebSocketHandler{
 
 private static Logger logger = LoggerFactory.getLogger(ChatHandler.class);
 

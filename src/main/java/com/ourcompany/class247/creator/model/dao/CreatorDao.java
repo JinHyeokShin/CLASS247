@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
+import com.ourcompany.class247.payment.model.vo.Chart;
 
 @Repository("creDao")
 public class CreatorDao {
@@ -120,6 +121,11 @@ public class CreatorDao {
 	 */
 	public int updateProfile(CreatorAttachment updateProfile) {
 		return sqlSession.update("creatorMapper.updateProfile", updateProfile);
+	}
+
+	public ArrayList<Chart> getChart(Chart chart) {
+		ArrayList<Chart> list = (ArrayList)sqlSession.selectList("creatorMapper.selectChart", chart);
+		return list;
 	}
 
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ourcompany.class247.chat.model.vo.Chat;
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
 import com.ourcompany.class247.course.model.service.CourseService;
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
@@ -28,6 +30,7 @@ import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 import com.ourcompany.class247.member.model.service.MemberService;
 import com.ourcompany.class247.member.model.vo.Member;
 import com.ourcompany.class247.payment.model.service.PaymentService;
+import com.ourcompany.class247.payment.model.vo.Chart;
 
 @SessionAttributes("creator")
 @Controller
@@ -44,23 +47,6 @@ public class CreatorController {
 	
 	@Autowired 
 	private PaymentService pService;
-	
-	
-	@ResponseBody
-	@RequestMapping("send.do")
-	public String sendMessage(HttpServletRequest request) {
-		String msg = request.getParameter("msg");
-		Chat chat = new Chat();
-		String[] message = msg.split("->");
-		String fromId = message[0];
-		String content = message[1];
-		String toId = message[2];
-		chat.setFromId(fromId);
-		chat.setToId(toId);
-		chat.setChatContent(content);
-		//System.out.println(chat);
-		return "success";
-	}
 	
 	
 	/** 크리에이터 메인페이지로 이동
@@ -355,6 +341,29 @@ public class CreatorController {
 		
 		return mv;
 		
+	}
+	
+	
+	
+	/** 차트 구하기 
+	 * @param month
+	 */
+	@RequestMapping("getChart.do")
+	public void getChart(@RequestParam(name="month") int month, HttpServletResponse response) throws JsonIOException, IOException{
+		Chart chart = new Chart();
+		chart.setCourseNum(113);
+		chart.setCreNum(3);
+		chart.setForMonth(month);
+		ArrayList<Chart> list = creService.getChart(chart);
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		for(Chart c: list) {
+			System.out.println(c);
+		}
+		
+		Gson gson = new Gson();
+		gson.toJson(list, response.getWriter());
 	}
 	
 
