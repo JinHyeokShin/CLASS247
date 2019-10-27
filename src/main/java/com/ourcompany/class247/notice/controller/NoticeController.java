@@ -277,8 +277,6 @@ public class NoticeController {
 			
 		PageInfo rpi = ReplyPagination.getPageInfo(currentPage, listCount);
 		
-		System.out.println(rpi.getCurrentPage() + "마지막");
-		
 		ArrayList<NoticeReply> nrList = nService.selectNReplyList(noticeNum, rpi);
 		
 		
@@ -384,5 +382,24 @@ public class NoticeController {
 			return "fail";
 		}
 			
+	}
+	
+	@ResponseBody
+	@RequestMapping("aRNRUpdate.do")
+	public String aRNRUpdate(String rContent, int nReplyNum) {
+		
+		NoticeReply nr = new NoticeReply();
+		
+		nr.setnReplyContent(rContent);
+		nr.setnReplyNum(nReplyNum);
+		
+		int result = nService.updateReply(nr);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+		
 	}
 }

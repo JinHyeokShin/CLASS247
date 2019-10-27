@@ -207,10 +207,7 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public ArrayList<SingleCourse> mySingleCourseList(int creNum) {
 		
-		
 		ArrayList<SingleCourse> coList = coDao.mySingleCourseList(creNum);
-		
-		System.out.println(coList);
 		
 		return coList;
 	}

@@ -78,6 +78,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <resultMap id="SingleCourseResultSet" type="SingleCourse">
       <id property="courseNum" column="course_num"/>
       <result property="courseTitle" column="course_title"/>
+      <result property="courseContent" column="coruse_content"/>
       <result property="categoryName" column="category_name"/>
       <result property="memNickName" column="mem_nickname"/>
       <result property="courseKind" column="course_kind"/>
@@ -338,6 +339,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         
 	</select>
 	
+	<select id="selectMyTakeCourse" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where course_num in (select course_num
+		                     from takecourse tc
+		                     join payment p using(pay_num)
+		                     where tc.mem_num = #{memNum} and pay_cancel != 'Y')
+	</select>
+	
+	<select id="courseMemberList" parameterType="_int" resultMap="TakeCourseResultSet">
+		    select tc.mem_num
+		    from takecourse tc
+		    join payment using(pay_num)
+		    where take_status ='Y'
+		    group by tc.mem_num
+	</select>
+	
 	<select id="categoryCraftsList" resultMap="SingleCourseResultSet">
 		select *
 		from single_course_view
@@ -404,4 +422,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where category_name='커리어'
 		and course_approved='Y' and course_status='Y'
 	</select>
+	
+
 </mapper>

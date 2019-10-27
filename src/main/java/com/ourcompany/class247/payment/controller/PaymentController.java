@@ -45,6 +45,19 @@ public class PaymentController {
 		return mv;
 	}
 	
+	@RequestMapping("aPayment.do")
+	public ModelAndView paymentView(ModelAndView mv) {
+		
+		ArrayList<Payment> pList = pService.selectPaymentList();
+		
+		ArrayList<Payment> poList = pService.selectPowerList();
+		
+		mv.addObject("pList", pList).addObject("poList", poList).setViewName("admin/payment/paymentList");
+		
+		return mv;
+		
+	}
+	
 	
 	
 }

@@ -38,4 +38,8 @@ public interface CreatorService {
 	
 	CreatorAttachment selectMyProFile(int creNum);
 
+	ArrayList<Creator> selectCreatorList();
+	
+	ArrayList<CreatorAttachment> selectCreatorAttachmentList();
+
 }

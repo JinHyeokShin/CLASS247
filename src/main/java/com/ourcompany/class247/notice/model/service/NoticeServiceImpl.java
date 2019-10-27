@@ -124,6 +124,11 @@ public class NoticeServiceImpl implements NoticeService{
 	public int updateReplyN(int nReplyNum) {
 		return nDao.updateReplyN(nReplyNum);
 	}
+	
+	@Override
+	public int updateReply(NoticeReply nr) {
+		return nDao.updateReply(nr);
+	}
 
 
 	

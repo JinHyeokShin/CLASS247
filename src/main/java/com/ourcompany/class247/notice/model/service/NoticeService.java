@@ -61,4 +61,7 @@ public interface NoticeService {
 	// 자식이 없을 때
 	int updateReplyN(int nReplyNum);
 	
+	// 댓글 수정
+	int updateReply(NoticeReply nr);
+	
 }

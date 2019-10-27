@@ -155,5 +155,10 @@
 		where nreply_num = #{nReplyNum}
 	</update>
 	
+	<update id="updateReply" parameterType="NoticeReply">
+		update notice_reply
+		set nreply_content=#{nReplyContent}, nreply_modify_date=sysdate
+		where nreply_num = #{nReplyNum}
+	</update>
 
 </mapper>

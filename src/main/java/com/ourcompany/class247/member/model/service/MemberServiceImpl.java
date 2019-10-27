@@ -98,5 +98,14 @@ public class MemberServiceImpl implements MemberService{
 		
 		return mDao.allowCreator(memNum);
 	}
+	
+	@Override
+	public int updateBlackList(int memNum) {
+		
+		return mDao.updateBlackList(memNum);
+	}
+	
+
+
 
 }

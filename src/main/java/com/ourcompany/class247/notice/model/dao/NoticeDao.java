@@ -112,6 +112,10 @@ public class NoticeDao {
 	public int updateReplyN(int nReplyNum) {
 		return sqlSession.update("noticeMapper.updateReplyN", nReplyNum);
 	}
+	
+	public int updateReply(NoticeReply nr) {
+		return sqlSession.update("noticeMapper.updateReply", nr);
+	}
 
 	
 }

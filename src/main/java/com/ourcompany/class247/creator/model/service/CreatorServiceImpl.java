@@ -134,6 +134,18 @@ public class CreatorServiceImpl implements CreatorService{
 		return creDao.selectACreator(creNum);
 	}
 	
+	@Override
+	public ArrayList<Creator> selectCreatorList() {
+		return creDao.selectCreatorList();
+	}
+	
+	@Override
+	public ArrayList<CreatorAttachment> selectCreatorAttachmentList() {
+		
+		return creDao.selectCreatorAttachmentList();
+		
+	}
+	
 
 
 }

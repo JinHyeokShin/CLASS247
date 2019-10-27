@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ourcompany.class247.payment.model.dao.PaymentDao;
 import com.ourcompany.class247.payment.model.vo.Payment;
+import com.ourcompany.class247.payment.model.vo.TakeCourse;
 
 @Service("pService")
 public class PamentServiceImpl implements PaymentService{
@@ -31,5 +32,29 @@ private PaymentDao pDao;
 		
 		return pDao.selectMyPaymentList(memNum);
 	}
+	
+	@Override
+	public int getListCount(int memNum) {
+		return pDao.getListCount(memNum);
+	}
+	
+	@Override
+	public ArrayList<TakeCourse> courseMemberList(int courseNum) {
+		return pDao.courseMemberList(courseNum);
+	}
+
+	@Override
+	public ArrayList<Payment> selectPaymentList() {
+
+		return pDao.selectPaymentList();
+	}
+
+	@Override
+	public ArrayList<Payment> selectPowerList() {
+		
+		return pDao.selectPowerList();
+	}
+
+
 
 }
