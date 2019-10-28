@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+
 
 <html>
 <head>
@@ -64,7 +66,7 @@
 				<h3 class="mb-30">
 				<c:if test="${ !empty couponlist }">
 	      		<h4 align="left">&nbsp;&nbsp;&nbsp;
-	      		${ loginUser.memName } 님의 총 쿠폰 갯수 : ${ couponlist.size() }</h4>	
+	      		${ loginUser.memName } 님의 총 쿠폰 갯수 : ${fn:length(couponlist)} </h4>	
 	      	</c:if>
       		<c:if test="${ empty couponlist }">
 	      		<h4 align="left">&nbsp;&nbsp;&nbsp;

@@ -55,10 +55,10 @@
 	      			<form action="updateMemProfile.do" method="post" enctype="multipart/form-data">
       		 	<div class="col-sm-9">
 	      				<div class="profileImg" align="left" >
-	      					<img src="<%= request.getContextPath() %>/resources/user/img/profile/${loginUser.memProfileName}" width="30%" height="30%">
+	      					<img src="<%= request.getContextPath() %>/resources/user/img/profile/${loginUser.memProfileName}" width="30%" height="30%" id="contentImg1">
 	      				</div>
 	      				<div id="fileArea" style="display:none">
-	      					<input type="file" name="profile" class="thumbnailImg1">
+	      					<input type="file" name="profile" class="thumbnailImg1" id="thumbnailImg1" onchange="loadImg(this, 1);">
 	      				</div>
 	      			</div>
 	      			<br><br>
@@ -291,6 +291,26 @@
 							$(".thumbnailImg1").click();
 						});
 					});
+					/* function loadImg(value, num){
+						
+						if(value.files){
+							// 파일을 읽어들일 FileReader객체 생성
+							var reader = new FileReader();
+							// 파일 읽기가 다 완료되었을 때 실행되는 메소드
+							reader.onload = function(e){
+								
+								switch(num){
+								case 1: $("#contentImg1").attr("src", e.target.result); break;
+								}
+								
+							}
+							
+							// 파일 읽어주는 메소드
+							reader.readAsDataURL(value.files);
+							
+							
+						}
+					}; */
 					
 					   $(function() {
 						 

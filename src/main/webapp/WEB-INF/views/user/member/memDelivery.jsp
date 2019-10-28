@@ -12,12 +12,6 @@
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
             <title>CLASS 247</title>
             <style>
-
-	
-	.progress-table-wrap{
-	width: 90%;
-	
-	}
 	.table-head{
 	font-size: 18;
 	text-align: center;
@@ -100,7 +94,14 @@
 							</c:if>
 							</div>
 							<div class="MEM_NAME">${ de.memName }</div>
-							<div class="DELIVERY_detail"><input type="button" value="상세보기"></div>
+							<div class="DELIVERY_detail">
+							<c:url value="memDeliverydetail.do" var="memDeliverydetail">
+								<c:param name="deliveryNum" value="${ de.deliveryNum }"/>
+							</c:url>
+							<a href="${ memDeliverydetail }">
+							 <input class="genric-btn primary-border radius" name="log-btn" type="button" style="font-size: 15" value="상세보기">
+							</a>
+							</div>
 						</div>
 						</c:forEach>
 						</c:if>

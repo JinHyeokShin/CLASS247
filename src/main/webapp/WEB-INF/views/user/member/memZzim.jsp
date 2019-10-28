@@ -43,6 +43,10 @@
 	.pagebar{
 	text-align: center;
 	}
+	.COUPON_NAME{
+	width:30%;
+	height:30%;
+	}
 	
 </style>
 
@@ -82,7 +86,9 @@
 		<c:forEach items="${ lovelist }" var="l">
 		<tr>
 			<td align="center"><input type="checkbox" name="check" value="${ l.courseNum }"></td>
-			<td align="center" width="30%"><img src="resources/user/img/test1.jpeg" alt="" class="img-fluid"></td>
+			<td align="center" width="20%">
+				<img src="resources/user/img/${ l.coaRName }" alt="" class="img-fluid">
+			</td>
 			<td align="left" colspan="3">
 						${ l.wishedDate }<br>
 						${ l.courseTitle }<br>
