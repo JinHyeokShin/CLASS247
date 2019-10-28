@@ -6,7 +6,9 @@ public class NoticeReply {
 	
 	private int nReplyNum;			//공지사항리뷰번호
 	private int noticeNum;			//공지사항번호
-	private int memNum;				//작성자번호
+	private String memProfileName;	//댓글 작성자 프로필
+	private int memNum;				
+	private String memNickname;		//작성자번호
 	private int nReplyParentNum;	//댓글리뷰번호
 	private int nReplyDepth;		//댓글깊이
 	private String nReplyContent;	//댓글내용
@@ -17,23 +19,7 @@ public class NoticeReply {
 	public NoticeReply() {
 		
 	}
-	
-	public NoticeReply(int nReplyNum, int noticeNum, int memNum, int nReplyParentNum, int nReplyDepth,
-			String nReplyContent, Date nReplyEnrollDate, Date nReplyModifyDate, String nReplyStatus) {
-		super();
-		this.nReplyNum = nReplyNum;
-		this.noticeNum = noticeNum;
-		this.memNum = memNum;
-		this.nReplyParentNum = nReplyParentNum;
-		this.nReplyDepth = nReplyDepth;
-		this.nReplyContent = nReplyContent;
-		this.nReplyEnrollDate = nReplyEnrollDate;
-		this.nReplyModifyDate = nReplyModifyDate;
-		this.nReplyStatus = nReplyStatus;
-	}
-	
-	
-	
+
 	public int getnReplyNum() {
 		return nReplyNum;
 	}
@@ -50,12 +36,28 @@ public class NoticeReply {
 		this.noticeNum = noticeNum;
 	}
 
+	public String getMemProfileName() {
+		return memProfileName;
+	}
+
+	public void setMemProfileName(String memProfileName) {
+		this.memProfileName = memProfileName;
+	}
+
 	public int getMemNum() {
 		return memNum;
 	}
 
 	public void setMemNum(int memNum) {
 		this.memNum = memNum;
+	}
+
+	public String getMemNickname() {
+		return memNickname;
+	}
+
+	public void setMemNickname(String memNickname) {
+		this.memNickname = memNickname;
 	}
 
 	public int getnReplyParentNum() {
@@ -108,12 +110,12 @@ public class NoticeReply {
 
 	@Override
 	public String toString() {
-		return "NoticeReply [nReplyNum=" + nReplyNum + ", noticeNum=" + noticeNum + ", memNum=" + memNum
-				+ ", nReplyParentNum=" + nReplyParentNum + ", nReplyDepth=" + nReplyDepth + ", nReplyContent="
-				+ nReplyContent + ", nReplyEnrollDate=" + nReplyEnrollDate + ", nReplyModifyDate=" + nReplyModifyDate
-				+ ", nReplyStatus=" + nReplyStatus + "]";
+		return "NoticeReply [nReplyNum=" + nReplyNum + ", noticeNum=" + noticeNum + ", memProfileName=" + memProfileName
+				+ ", memNum=" + memNum + ", memNickname=" + memNickname + ", nReplyParentNum=" + nReplyParentNum
+				+ ", nReplyDepth=" + nReplyDepth + ", nReplyContent=" + nReplyContent + ", nReplyEnrollDate="
+				+ nReplyEnrollDate + ", nReplyModifyDate=" + nReplyModifyDate + ", nReplyStatus=" + nReplyStatus + "]";
 	}
 	
-	
+		
 
 }

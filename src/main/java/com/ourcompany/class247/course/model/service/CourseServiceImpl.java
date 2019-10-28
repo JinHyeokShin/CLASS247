@@ -450,5 +450,29 @@ public class CourseServiceImpl implements CourseService {
 public int insertPayment(Payment payment) {
 	return coDao.insertPayment(payment);
 }
+@Override
+	public ArrayList<SingleCourse> selectPopList() {
+		return coDao.selectPopList();
+	}
 
+	@Override
+	public int selectMemberCount() {
+		return coDao.selectMemberCount();
+	}
+
+
+	@Override
+	public int selectCreCount() {
+		return coDao.selectCreCount();
+	}
+
+	@Override
+	public int onlineCourseCount() {
+		return coDao.onlineCourseCount();
+	}
+
+	@Override
+	public int offlineCourseCount() {
+		return coDao.offlineCourseCount();
+	}
 }

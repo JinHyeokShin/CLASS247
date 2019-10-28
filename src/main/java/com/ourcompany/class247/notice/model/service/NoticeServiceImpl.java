@@ -9,6 +9,7 @@ import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.notice.model.dao.NoticeDao;
 import com.ourcompany.class247.notice.model.vo.FAQ;
 import com.ourcompany.class247.notice.model.vo.Notice;
+import com.ourcompany.class247.notice.model.vo.NoticeReply;
 
 	
 @Service("nService")
@@ -55,6 +56,11 @@ public class NoticeServiceImpl implements NoticeService{
 	public int deleteNotice(int noticeNum) {
 		return nDao.deleteBoard(noticeNum);
 	}
+	
+	@Override
+	public int getNoticeReplyListCount(int noticeNum) {
+		return nDao.getNoticeReplyListCount(noticeNum);
+	}
 /* 댓글
 	@Override
 	public ArrayList<NoticeReply> selectReplyList(int noticeNum) {
@@ -78,5 +84,54 @@ public class NoticeServiceImpl implements NoticeService{
 	public ArrayList<FAQ> selectUserFaqList(PageInfo pi) {
 		return nDao.selectUserFaqList(pi);
 	}
+	
+
+	
+	
+
+	@Override
+	public ArrayList<NoticeReply> selectNReplyList(int noticeNum, PageInfo rpi) {
+		
+		return nDao.selectNReplyList(noticeNum, rpi);
+	}
+	
+	@Override
+	public int insertNoticeReply(NoticeReply nr) {
+		return nDao.insertNoticeReply(nr);
+	}
+	
+	@Override
+	public int insertRNoticeReply(NoticeReply nr) {
+		return nDao.insertRNoticeReply(nr);
+	}
+	
+	@Override
+	public NoticeReply selectParentReply(int nReplyNum) {
+		return nDao.selectParentReply(nReplyNum);
+	}
+	
+	@Override
+	public int selectChild(int nReplyNum) {
+		return nDao.selectChild(nReplyNum);
+	}
+	
+	@Override
+	public int updateReplyY(int nReplyNum) {
+		return nDao.updateReplyY(nReplyNum);
+	}
+	
+	@Override
+	public int updateReplyN(int nReplyNum) {
+		return nDao.updateReplyN(nReplyNum);
+	}
+	
+	@Override
+	public int updateReply(NoticeReply nr) {
+		return nDao.updateReply(nr);
+	}
+
+
+	
+
 
 }

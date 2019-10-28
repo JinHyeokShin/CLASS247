@@ -146,4 +146,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from creator
 		where cre_num=#{creNum}
 	</select>
+	
+	<select id="selectCreatorList" resultMap="singleCreatorResultSet">
+		select *
+		from creator
+		order by cre_num desc
+	</select>
+	
+	<select id="selectCreatorAttachmentList" resultMap="creatorAttachmentResultSet">
+		select *
+		from creator_attachment
+		where coa_level = 1
+		order by cre_num desc
+	</select>
 </mapper>

@@ -236,66 +236,75 @@ public class CourseController {
       return mv;
    }
 
-   //김은기
-   
-   /**home에 강의리스트 불러오기
-    * @param mv
-    * @return
-    */
-   @RequestMapping("home.do")
-   public ModelAndView selectList(ModelAndView mv, HttpServletRequest request) {
-      //크리에이터 센터 나가면서 세션에 올려둔 크리에이터 객체 삭제. 
-      Creator creator = (Creator)request.getSession().getAttribute("creator");
-      if(creator != null) {
-         request.getSession().removeAttribute("creator");
-         request.getSession().removeAttribute("creProfile");
-      }
-      
-      
-      ArrayList<Course> list = coService.selectList();
+	//김은기
+	
+	/**home에 강의리스트 불러오기
+	 * @param mv
+	 * @return
+	 */
+	@RequestMapping("home.do")
+	public ModelAndView selectList(ModelAndView mv, HttpServletRequest request) {
+		//크리에이터 센터 나가면서 세션에 올려둔 크리에이터 객체 삭제. 
+		Creator creator = (Creator)request.getSession().getAttribute("creator");
+		if(creator != null) {
+			request.getSession().removeAttribute("creator");
+			request.getSession().removeAttribute("creProfile");
+		}
+		
+		
+		ArrayList<SingleCourse> poplist = coService.selectPopList(); // 인기 강의 조회
+		ArrayList<Course> list = coService.selectList();			 // MD 추천 조회
+		
+		int memberCount = coService.selectMemberCount();			 // 멤버 숫자
+		int creCount = coService.selectCreCount();					 // 크리에이터 숫자
+		int onlineCourseCount = coService.onlineCourseCount();			 // 온라인 강의 숫자
+		int offlineCourseCount = coService.offlineCourseCount();			 // 온라인 강의 숫자
 
-      mv.addObject("list", list);
-         
-      mv.setViewName("home");
-      
-      return mv;
-   }
-   
-   /**
-    * 강의 클릭시 불러오기
-    * @param cId
-    * @param mv
-    * @return
-    */
-   @RequestMapping("codetail.do")
-   public ModelAndView courseDetail(int courseNum, ModelAndView mv, HttpServletRequest request) {
-      
-      Member loginUser=(Member)request.getSession().getAttribute("loginUser");
-      ArrayList<Review> rlist = coService.selectRlist(courseNum); 
-      
-     
-      boolean checkLove=false;
-      if(loginUser !=null) {
-         Love love= new Love(courseNum, loginUser.getMemNum());
-         
-         checkLove= coService.checkLove(love); 
-      }
-      Course c = coService.selectCourse(courseNum);
-      
-      if(c != null) {
-         mv.addObject("c", c)
-         .addObject("checkLove", checkLove).addObject("rlist", rlist)
-           .setViewName("creator/course/userCourseDetail");
-         
-      }else {
-         mv.addObject("msg", "게시글 상세조회실패!")
-           .setViewName("common/errorPage");
-      }
-      
-      return mv;
-      
-   }
-   
+		mv.addObject("list", list);
+		mv.addObject("poplist", poplist);
+		mv.addObject("memberCount",memberCount);
+		mv.addObject("creCount",creCount);
+		mv.addObject("onlineCourseCount",onlineCourseCount);
+		mv.addObject("offlineCourseCount",offlineCourseCount);
+		mv.setViewName("home");
+		
+		return mv;
+	}
+	
+	/**
+	 * 강의 클릭시 불러오기
+	 * @param cId
+	 * @param mv
+	 * @return
+	 */
+	@RequestMapping("codetail.do")
+	public ModelAndView courseDetail(int courseNum, String courseKind, ModelAndView mv, HttpServletRequest request) {
+		
+		Member loginUser=(Member)request.getSession().getAttribute("loginUser");
+		ArrayList<Review> rlist = coService.selectRlist(courseNum); 
+		
+		boolean checkLove=false;
+		if(loginUser !=null) {
+			Love love= new Love(courseNum, loginUser.getMemNum());
+			
+			checkLove= coService.checkLove(love); 
+		}
+		Course c = coService.selectCourse(courseNum);
+		
+		if(c != null) {
+			mv.addObject("c", c)
+			.addObject("checkLove", checkLove).addObject("rlist", rlist)
+		    .setViewName("creator/course/userCourseDetail");
+			System.out.println(c);
+			
+		}else {
+			mv.addObject("msg", "게시글 상세조회실패!")
+			  .setViewName("common/errorPage");
+		}
+		
+		return mv;
+		
+	}
 
    
    
@@ -373,6 +382,8 @@ public class CourseController {
 
       mv.addObject("pi",pi).addObject("lovelist", lovelist);
       mv.setViewName("user/member/memZzim");
+
+      
    
       
       return mv;
@@ -653,6 +664,43 @@ public class CourseController {
       ArrayList<Course> musicList = coService.onlinecategoryMusicList();
       ArrayList<Course> careerList = coService.onlinecategoryCareerList();
 
+		/*
+		 * System.out.println(craftsList); System.out.println(designList);
+		 * System.out.println(developList); System.out.println(digitalList);
+		 * System.out.println(lifeList); System.out.println(artList);
+		 * System.out.println(cameraList); System.out.println(signitureList);
+		 * System.out.println(foodList); System.out.println(musicList);
+		 * System.out.println(careerList);
+		 */
+		
+		mv.addObject("craftsList",craftsList)
+		  .addObject("designList", designList)
+		  .addObject("developList", developList)
+		  .addObject("digitalList", digitalList)
+		  .addObject("lifeList", lifeList)
+		  .addObject("artList", artList)
+		  .addObject("cameraList", cameraList)
+		  .addObject("signitureList", signitureList)
+		  .addObject("foodList", foodList)
+		  .addObject("musicList", musicList)
+		  .addObject("careerList", careerList)
+		.setViewName("user/course/onlineList");
+	
+		return mv;
+	}
+	@RequestMapping("goOffline.do")
+	public ModelAndView offlineCategoryList(ModelAndView mv) {
+		ArrayList<Course> craftsList = coService.offlinecategoryCraftsList();
+		ArrayList<Course> designList = coService.offlinecategoryDesignList();
+		ArrayList<Course> developList = coService.offlinecategoryDevelopList();
+		ArrayList<Course> digitalList = coService.offlinecategoryDigitalList();
+		ArrayList<Course> lifeList = coService.offlinecategoryLifeList();
+		ArrayList<Course> artList = coService.offlinecategoryArtList();
+		ArrayList<Course> cameraList = coService.offlinecategoryCameraList();
+		ArrayList<Course> signitureList = coService.offlinecategorySigitureList();
+		ArrayList<Course> foodList = coService.offlinecategoryFoodList();
+		ArrayList<Course> musicList = coService.offlinecategoryMusicList();
+		ArrayList<Course> careerList = coService.offlinecategoryCareerList();
       /*
        * System.out.println(craftsList); System.out.println(designList);
        * System.out.println(developList); System.out.println(digitalList);
@@ -677,42 +725,5 @@ public class CourseController {
    
       return mv;
    }
-   @RequestMapping("goOffline.do")
-   public ModelAndView offlineCategoryList(ModelAndView mv) {
-      ArrayList<Course> craftsList = coService.offlinecategoryCraftsList();
-      ArrayList<Course> designList = coService.offlinecategoryDesignList();
-      ArrayList<Course> developList = coService.offlinecategoryDevelopList();
-      ArrayList<Course> digitalList = coService.offlinecategoryDigitalList();
-      ArrayList<Course> lifeList = coService.offlinecategoryLifeList();
-      ArrayList<Course> artList = coService.offlinecategoryArtList();
-      ArrayList<Course> cameraList = coService.offlinecategoryCameraList();
-      ArrayList<Course> signitureList = coService.offlinecategorySigitureList();
-      ArrayList<Course> foodList = coService.offlinecategoryFoodList();
-      ArrayList<Course> musicList = coService.offlinecategoryMusicList();
-      ArrayList<Course> careerList = coService.offlinecategoryCareerList();
 
-      /*
-       * System.out.println(craftsList); System.out.println(designList);
-       * System.out.println(developList); System.out.println(digitalList);
-       * System.out.println(lifeList); System.out.println(artList);
-       * System.out.println(cameraList); System.out.println(signitureList);
-       * System.out.println(foodList); System.out.println(musicList);
-       * System.out.println(careerList);
-       */
-      
-      mv.addObject("craftsList",craftsList)
-        .addObject("designList", designList)
-        .addObject("developList", developList)
-        .addObject("digitalList", digitalList)
-        .addObject("lifeList", lifeList)
-        .addObject("artList", artList)
-        .addObject("cameraList", cameraList)
-        .addObject("signitureList", signitureList)
-        .addObject("foodList", foodList)
-        .addObject("musicList", musicList)
-        .addObject("careerList", careerList)
-      .setViewName("user/course/offlineList");
-   
-      return mv;
-   }
 }

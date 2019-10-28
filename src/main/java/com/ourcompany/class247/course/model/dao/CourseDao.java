@@ -17,6 +17,7 @@ import com.ourcompany.class247.course.model.vo.Reply;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Single;
 
 @Repository("coDao")
 public class CourseDao {
@@ -129,7 +130,9 @@ public class CourseDao {
 
       return sqlSession.update("courseMapper.allowCourse", courseNum);
    }
-
+	public ArrayList<SingleCourse> selectPopList(){
+		return (ArrayList)sqlSession.selectList("courseMapper.selectPopList");
+	}
    // --------------------------------------------------김은기--------------------------------------------------
    
 
@@ -324,12 +327,143 @@ public class CourseDao {
    public Course coursePayment(int courseNum) {
     
     return sqlSession.selectOne("courseMapper.coursePayment", courseNum);
-   }
-   public ArrayList<Review> selectRlist(int courseNum) {
-      
-      return (ArrayList)sqlSession.selectList("courseMapper.selectRlist",courseNum);
-   }
-   public int insertPayment(Payment payment) {
+	}
+	public ArrayList<Review> selectRlist(int courseNum) {
+		
+		return (ArrayList)sqlSession.selectList("courseMapper.selectRlist",courseNum);
+	}
+	/* 온라인 카테고리 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> onlinecategoryCraftsList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.onlinecategoryCraftsList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> onlinecategoryDesignList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.onlinecategoryDesignList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> onlinecategoryDevelopList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.onlinecategoryDevelopList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> onlinecategoryDigitalList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.onlinecategoryDigitalList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> onlinecategoryLifeList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.onlinecategoryLifeList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> onlinecategoryArtList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.onlinecategoryArtList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> onlinecategoryCameraList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.onlinecategoryCameraList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> onlinecategorySigitureList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.onlinecategorySigitureList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> onlinecategoryFoodList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.onlinecategoryFoodList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> onlinecategoryMusicList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.onlinecategoryMusicList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> onlinecategoryCareerList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.onlinecategoryCareerList");
+	}
+	
+	/* 오프라인 카테고리 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> offlinecategoryCraftsList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.offlinecategoryCraftsList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> offlinecategoryDesignList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.offlinecategoryDesignList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> offlinecategoryDevelopList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.offlinecategoryDevelopList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> offlinecategoryDigitalList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.offlinecategoryDigitalList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> offlinecategoryLifeList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.offlinecategoryLifeList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> offlinecategoryArtList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.offlinecategoryArtList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> offlinecategoryCameraList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.offlinecategoryCameraList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> offlinecategorySigitureList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.offlinecategorySigitureList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> offlinecategoryFoodList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.offlinecategoryFoodList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> offlinecategoryMusicList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.offlinecategoryMusicList");
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Course> offlinecategoryCareerList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.offlinecategoryCareerList");
+	}
+
+	
+	public ArrayList<SingleCourse> mySingleCourseList(int creNum) {
+		return (ArrayList)sqlSession.selectList("courseMapper.mySingleCourseList", creNum);
+	}
+	
+	public int selectMemberCount() {
+		return sqlSession.selectOne("courseMapper.selectMemberCount");
+	}
+	public int selectCreCount() {
+		return sqlSession.selectOne("courseMapper.selectCreCount");
+	}
+	public int onlineCourseCount() {
+		return sqlSession.selectOne("courseMapper.onlineCourseCount");
+	}
+	
+	public int offlineCourseCount() {
+		return sqlSession.selectOne("courseMapper.offlineCourseCount");
+	}
+
+	public int insertPayment(Payment payment) {
 	   return sqlSession.insert("courseMapper.insertPayment", payment);
    }
    /* 온라인 카테고리 */

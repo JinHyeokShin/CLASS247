@@ -423,11 +423,12 @@
 					<c:url value="aApprovalCourse.do" var="aApprovalCourse">
 						<c:param value="${ co.courseNum }" name="courseNum"/>
 					</c:url>
-						<input type="button" class="btn btn-outline-primary" onclick="location.href='${aApprovalCourse}'" value="승인하기">
-						<input type="button" class="btn btn-outline-danger" onclick="location.href='${aRejectCourse}'" value="거부하기">
 					<c:url value="aRejectCourse.do" var="aRejectCourse">
 						<c:param value="${ co.courseNum }" name="courseNum"/>
 					</c:url>
+						<input type="button" class="btn btn-outline-primary" onclick="location.href='${aApprovalCourse}'" value="승인하기">
+						<input type="button" class="btn btn-outline-danger" onclick="location.href='${aRejectCourse}'" value="거부하기">
+					
 				</div>
 			</div>
 			<nav class="navbar-sidebar">

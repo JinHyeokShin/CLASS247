@@ -50,6 +50,9 @@ public class MemberController {
 	@Autowired
 	private PaymentService pService;
 	
+	@Autowired
+	private CreatorAttachment craService;
+	
 	/**
 	 * 1. 로그인폼으로 이동.
 	 * @return
@@ -288,6 +291,34 @@ public class MemberController {
 	
 	
 	
+
+	
+	
+	
+	
+	/*
+	 * 
+	 * 
+	 * 관리자용
+	 * 
+	 * 
+	 * 
+	 */
+
+
+	
+	@RequestMapping("aBlackList.do")
+	public ModelAndView aBlacklist(ModelAndView mv) {
+		
+		ArrayList<Member> list = mService.selectBlackList();
+		
+		mv.addObject("list", list).setViewName("admin/member/blackList");
+		
+		
+		return mv;
+	}
+	
+	
 	@RequestMapping("aMemDetail.do")
 	public ModelAndView memberDetail(int memNum) {
 		
@@ -317,7 +348,16 @@ public class MemberController {
 		
 		}
 		
-		ArrayList<Payment> pList = pService.selectMyPaymentList(memNum);
+		int countList = pService.getListCount(memNum);
+		
+		ArrayList<Payment> pList = null;
+		
+		if(countList > 0) {
+		
+			pList = pService.selectMyPaymentList(memNum);
+		
+		}
+	
 		
 		mv.addObject("m", m).addObject("pList", pList).addObject("coListU", coListU).addObject("cre", cre).addObject("coList", coList).addObject("cra", cra).addObject("craList", craList).setViewName("admin/member/memDetail");
 		
@@ -325,6 +365,22 @@ public class MemberController {
 		
 	}
 	
+	@RequestMapping("goBlack.do")
+	public String updateBlackList(int memNum) {
+		
+		int result = mService.updateBlackList(memNum);
+		
+		if(result > 0) {
+			
+			return "redirect:blackList.do";
+			
+		}else {
+			
+			return "common/errorPage";
+			
+		}
+		
+	}
 	
 	@RequestMapping("updateMemProfile.do")
 	public ModelAndView updateMemProfile(@RequestParam(name="profile", required=false) MultipartFile profile,
@@ -387,31 +443,30 @@ public class MemberController {
 	      
 	      return renameFileName;
 	   }
+	   
+	@RequestMapping("aCreatorList.do")
+	public ModelAndView selectCreatorList(ModelAndView mv) {
+		
+		ArrayList<Creator> crList = creService.selectCreatorList();
+		
+		ArrayList<CreatorAttachment> craList = creService.selectCreatorAttachmentList();
+		
+		mv.addObject("crlist", crList).addObject("craList", craList).setViewName("admin/member/creatorList");
+		
+		return mv;
+		
+	}
 	
-	
-	/*
-	 * 
-	 * 
-	 * 관리자용
-	 * 
-	 * 
-	 * 
-	 */
-
-
-	
-	@RequestMapping("aBlackList")
-	public ModelAndView aBlacklist(ModelAndView mv) {
+	@RequestMapping("aBlackList.do")
+	public ModelAndView selectBlackList(ModelAndView mv) {
 		
 		ArrayList<Member> list = mService.selectBlackList();
 		
 		mv.addObject("list", list).setViewName("admin/member/blackList");
 		
-		
 		return mv;
+		
 	}
-	
-	
 	
 	
 	//----------------------------------------------------------------------------------
