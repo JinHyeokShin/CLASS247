@@ -3,6 +3,7 @@ package com.ourcompany.class247.member.model.service;
 import java.util.ArrayList;
 
 import com.ourcompany.class247.common.PageInfo;
+import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.member.model.vo.Member;
 
 public interface MemberService {
@@ -64,4 +65,9 @@ public interface MemberService {
 	Member selectAMember(int creNum);
 	
 	int allowCreator(int memNum);
+	
+	int updateBlackList(int memNum);
+	
+
+	
 }

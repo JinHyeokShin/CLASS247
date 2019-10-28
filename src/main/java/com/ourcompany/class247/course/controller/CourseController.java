@@ -378,6 +378,8 @@ public class CourseController {
 
       mv.addObject("pi",pi).addObject("lovelist", lovelist);
       mv.setViewName("user/member/memZzim");
+
+      
    
       
       return mv;
