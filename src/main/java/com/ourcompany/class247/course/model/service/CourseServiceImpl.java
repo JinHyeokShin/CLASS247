@@ -12,7 +12,6 @@ import com.ourcompany.class247.course.model.vo.CourseAttachment;
 import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
-import com.ourcompany.class247.course.model.vo.Reply;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
@@ -438,12 +437,6 @@ public class CourseServiceImpl implements CourseService {
    @Override
    public ArrayList<Course> offlinecategoryCareerList() {
       return coDao.offlinecategoryCareerList();
-   }
-
-   @Override
-   public ArrayList<Course> modalsearchCategory(int categoryNum) {
-      // TODO Auto-generated method stub
-      return null;
    }
 
 @Override
