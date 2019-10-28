@@ -31,14 +31,14 @@
 		where mem_num = #{memNum} and pay_cancel != 'Y'
 	</select>
 	
-	<select id="selectPaymentList" resultType="PaymentResultSet">
+	<select id="selectPaymentList" resultMap="PaymentResultSet">
 		select pay_num, mem_num, mem_name, course_num, course_title, pay_price, pay_method, pay_cancel, pay_date, pay_cancel_date
 		from payment
 		join course using(course_num)
 		join member using(mem_num)
 	</select>
 	
-	<select id="selectPowerList" resultType="PaymentResultSet">
+	<select id="selectPowerList" resultMap="PaymentResultSet">
 		select pay_num, p.mem_num, mem_name, p.course_num, course_title,pay_code, pay_price, pay_method, pay_cancel, pay_date, pay_cancel_date
 		from payment p
 		join course c on(p.course_num = c.course_num)

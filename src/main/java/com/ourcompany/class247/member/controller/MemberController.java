@@ -17,7 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -50,8 +49,6 @@ public class MemberController {
 	@Autowired
 	private PaymentService pService;
 	
-	@Autowired
-	private CreatorAttachment craService;
 	
 	/**
 	 * 1. 로그인폼으로 이동.
@@ -318,6 +315,8 @@ public class MemberController {
 		return mv;
 	}
 	
+
+	
 	
 	@RequestMapping("aMemDetail.do")
 	public ModelAndView memberDetail(int memNum) {
@@ -444,29 +443,9 @@ public class MemberController {
 	      return renameFileName;
 	   }
 	   
-	@RequestMapping("aCreatorList.do")
-	public ModelAndView selectCreatorList(ModelAndView mv) {
-		
-		ArrayList<Creator> crList = creService.selectCreatorList();
-		
-		ArrayList<CreatorAttachment> craList = creService.selectCreatorAttachmentList();
-		
-		mv.addObject("crlist", crList).addObject("craList", craList).setViewName("admin/member/creatorList");
-		
-		return mv;
-		
-	}
+
 	
-	@RequestMapping("aBlackList.do")
-	public ModelAndView selectBlackList(ModelAndView mv) {
-		
-		ArrayList<Member> list = mService.selectBlackList();
-		
-		mv.addObject("list", list).setViewName("admin/member/blackList");
-		
-		return mv;
-		
-	}
+
 	
 	
 	//----------------------------------------------------------------------------------

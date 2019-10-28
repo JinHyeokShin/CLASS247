@@ -296,13 +296,16 @@ public class CreatorController {
 	}
 	
 	@RequestMapping("aCreatorList.do")
-	public ModelAndView aCreatorList(ModelAndView mv) {
+	public ModelAndView selectCreatorList(ModelAndView mv) {
 		
-		ArrayList<Creator> list = creService.creSelectList();
+		ArrayList<Creator> crList = creService.selectCreatorList();
 		
-		mv.addObject("list", list).setViewName("admin/creator/creatorList");
+		ArrayList<CreatorAttachment> craList = creService.selectCreatorAttachmentList();
+		
+		mv.addObject("crlist", crList).addObject("craList", craList).setViewName("admin/member/creatorList");
 		
 		return mv;
+		
 	}
 	
 	@RequestMapping("deleteCreator.do")
