@@ -21,7 +21,8 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h2 class="title-1 m-b-25">Member List</h2>
+                                <h2 class="title-1 m-b-25" style="display:inline-block">쿠폰 리스트</h2>
+                                <input class="btn btn-outline-primary" style="float:right" type="button" value="쿠폰  생성하기" onclick="location.href='aCreateCouponView.do'">
                                 <div class="table-responsive table--no-card m-b-40">
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>
@@ -43,9 +44,9 @@
                                                  
                                         		<td>
 												  <c:url value="aCouponDetail.do" var="coDetail">
-                                                	<c:param name="memNum" value="${ co.couponName }"/>
+                                                	<c:param name="couponType" value="${ co.couponType }"/>
                                                   </c:url>
-                                                  <a style="color:black" href="${coDetail}">${co.couponDiscount }</a></td>
+                                                  <a style="color:black" href="${coDetail}">${co.couponName }</a></td>
                                                 <td> ${co.couponDiscount }</td>
                                                 <td class="text-right">${ co.couponStartDate}</td>
                                                 <td class="text-right">${ co.couponEndDate }</td>

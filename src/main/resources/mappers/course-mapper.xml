@@ -74,6 +74,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             </case>
          </discriminator>
    </resultMap>
+   
    <resultMap id="ReviewResultSet" type="Review">
       <id property="reviewNum" column="review_num"/>
       <result property="courseNum" column="course_num"/>

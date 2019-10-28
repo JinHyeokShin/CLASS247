@@ -47,7 +47,7 @@ public class CouponController {
 		
 		ArrayList<Coupon> list = cService.selectCouponList();
 		
-		mv.addObject("list", list).setViewName("admin/course/couponList");
+		mv.addObject("list", list).setViewName("admin/member/couponList");
 		
 		return mv;
 	}
@@ -97,6 +97,13 @@ public class CouponController {
 			return "common/errorPage";
 		}
 		
+		
+	}
+	
+	@RequestMapping("aCreateCouponView.do")
+	public String aCreateCouponView() {
+		
+		return "admin/member/createCoupon";
 		
 	}
 	

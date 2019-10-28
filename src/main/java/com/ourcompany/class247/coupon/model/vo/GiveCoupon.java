@@ -7,6 +7,7 @@ public class GiveCoupon {
 	private int rNum; //리스트 번호
 	private int givecouponNum; //발급쿠폰번호
 	private int memNum; //회원번호
+	private String memId; // 회원 이름
 	private Date givecouponEnrolledDate; //쿠폰발급날짜
 	private Date givecouponUsingDate; //쿠폰사용날짜
 	private String givecouponStatus; //발급쿠폰상태 Y,N
@@ -33,6 +34,30 @@ public class GiveCoupon {
 		this.rNum = rNum;
 		this.givecouponNum = givecouponNum;
 		this.memNum = memNum;
+		this.givecouponEnrolledDate = givecouponEnrolledDate;
+		this.givecouponUsingDate = givecouponUsingDate;
+		this.givecouponStatus = givecouponStatus;
+		this.couponType = couponType;
+		this.couponName = couponName;
+		this.couponDiscount = couponDiscount;
+		this.couponStartDate = couponStartDate;
+		this.couponEndDate = couponEndDate;
+	}
+	
+	
+
+
+
+
+
+	public GiveCoupon(int rNum, int givecouponNum, int memNum, String memId, Date givecouponEnrolledDate,
+			Date givecouponUsingDate, String givecouponStatus, int couponType, String couponName, int couponDiscount,
+			Date couponStartDate, Date couponEndDate) {
+		super();
+		this.rNum = rNum;
+		this.givecouponNum = givecouponNum;
+		this.memNum = memNum;
+		this.memId = memId;
 		this.givecouponEnrolledDate = givecouponEnrolledDate;
 		this.givecouponUsingDate = givecouponUsingDate;
 		this.givecouponStatus = givecouponStatus;
@@ -131,6 +156,24 @@ public class GiveCoupon {
 	public void setMemNum(int memNum) {
 		this.memNum = memNum;
 	}
+	
+	
+
+
+	public String getMemId() {
+		return memId;
+	}
+
+
+
+
+
+	public void setMemId(String memId) {
+		this.memId = memId;
+	}
+
+
+
 
 
 	public Date getGivecouponEnrolledDate() {

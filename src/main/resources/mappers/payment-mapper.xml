@@ -32,14 +32,14 @@
 	</select>
 	
 	<select id="selectPaymentList" resultMap="PaymentResultSet">
-		select pay_num, mem_num, mem_name, course_num, course_title, pay_price, pay_method, pay_cancel, pay_date, pay_cancel_date
+		select pay_num, mem_num, mem_name, course_num, course_title, pay_code, pay_price, pay_method, pay_cancel, pay_date, pay_cancel_date
 		from payment
 		join course using(course_num)
 		join member using(mem_num)
 	</select>
 	
 	<select id="selectPowerList" resultMap="PaymentResultSet">
-		select pay_num, p.mem_num, mem_name, p.course_num, course_title,pay_code, pay_price, pay_method, pay_cancel, pay_date, pay_cancel_date
+		select pay_num, p.mem_num, mem_name, p.course_num, course_title, pay_code, pay_price, pay_method, pay_cancel, pay_date, pay_cancel_date
 		from payment p
 		join course c on(p.course_num = c.course_num)
 		join member m on(p.mem_num = m.mem_num)
