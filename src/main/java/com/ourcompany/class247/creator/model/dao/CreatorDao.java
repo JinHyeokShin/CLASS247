@@ -109,6 +109,17 @@ public class CreatorDao {
 	public Creator selectACreator(int creNum) {
 		return sqlSession.selectOne("creatorMapper.selectACreator", creNum);
 	}
+	
+	public ArrayList<CreatorAttachment> selectCreatorAttachmentList() {
+		
+		return (ArrayList)sqlSession.selectList("creatorMapper.selectCreatorAttachmentList");
+		
+	}
+	
+	public ArrayList<Creator> selectCreatorList() {
+		
+		return (ArrayList)sqlSession.selectList("creatorMapper.selectCreatorList");
+	}
 
 	public String getCreProfile(int creNum) {
 		return sqlSession.selectOne("creatorMapper.getCreProfile", creNum);

@@ -74,5 +74,48 @@ public class NoticeDao {
 		return (ArrayList)sqlSession.selectList("noticeMapper.selectUserFaqList", null, rowBounds);
 	}
 	
+	public int getNoticeReplyListCount(int noticeNum) {
+		
+		return sqlSession.selectOne("noticeMapper.getNoticeReplyListCount", noticeNum);
+	}
+	
+	
+	public ArrayList<NoticeReply> selectNReplyList(int noticeNum, PageInfo rpi) {
+		int offset = (rpi.getCurrentPage() - 1) *rpi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, rpi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectNReplyList", noticeNum, rowBounds);
+	}
+	
+	public int insertNoticeReply(NoticeReply nr) {
+		
+		return sqlSession.insert("noticeMapper.insertNoticeReply", nr);
+	}
+	
+	public NoticeReply selectParentReply(int nReplyNum) {
+		
+		return sqlSession.selectOne("noticeMapper.selectParentReply", nReplyNum);
+	}
+	
+	public int insertRNoticeReply(NoticeReply nr) {
+		return sqlSession.insert("noticeMapper.insertRNoticeReply", nr);
+	}
+	
+	public int selectChild(int nReplyNum) {
+		return sqlSession.selectOne("noticeMapper.selectChild", nReplyNum);
+	}
+
+	public int updateReplyY(int nReplyNum) {
+		return sqlSession.update("noticeMapper.updateReplyY", nReplyNum);
+	}
+	
+	public int updateReplyN(int nReplyNum) {
+		return sqlSession.update("noticeMapper.updateReplyN", nReplyNum);
+	}
+	
+	public int updateReply(NoticeReply nr) {
+		return sqlSession.update("noticeMapper.updateReply", nr);
+	}
+
 	
 }

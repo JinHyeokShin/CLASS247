@@ -41,7 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="courseLevel" column="course_level"/>
 	</resultMap>
 	
-		<resultMap type="Coupon" id="couponResultSet">
+	<resultMap type="GiveCoupon" id="giveCouponResultSet">
 		<id property="rNum" column="rownum"/>
 		<result property="givecouponNum" column="givecoupon_Num"/>
 		<result property="memNum" column="mem_num"/>
@@ -53,6 +53,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="couponDiscount" column="coupon_discount"/>
 		<result property="couponStartDate" column="coupon_start_date"/>
 		<result property="couponEndDate" column="coupon_end_date"/>
+	</resultMap>
+	
+	<resultMap type="Coupon" id="couponResultSet">
+		<id property="couponType" column="coupon_type" />
+		<result property="couponName" column="coupon_name"/>
+		<result property="couponDiscount" column="coupon_discount"/>
+		<result property="couponStartDate" column="coupon_start_date"/>
+		<result property="couponEndDate" column="coupon_end_date"/>
+		<result property="amount" column="amount"/>
 	</resultMap>
 	
 	 <!-- 1. 로그인 -->
@@ -84,7 +93,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	 <!-- 5. 쿠폰 리스트 불러오기 -->
-	<select id="couponList" parameterType="_int" resultMap="couponResultSet">
+	<select id="couponList" parameterType="_int" resultMap="giveCouponResultSet">
 		select rownum, c.*
 		from (select *
 		from givecoupon
@@ -143,7 +152,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="selectBlackList" resultMap="memberResultSet">
 		select *
-		where member
+		from member
 		where mem_status = 'N' and out_date is not null
 	</select> 
 	
@@ -176,4 +185,62 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set mem_status = 'C'
 		where mem_num = #{memNum}
 	</select>
+	
+	<select id="updateBlackList" resultType="_int">
+		update member
+		set mem_status = 'N', out_date = sysdate
+		where mem_num = #{memNum}
+	</select>
+	
+	<select id="selectCouponList" resultMap="Coupon">
+		        select coupon_type, coupon_name, coupon_discount, coupon_start_date, coupon_end_date, count(*) "C_COUNT"
+        from (            
+            select coupon_type, coupon_name, coupon_discount, coupon_start_date, coupon_end_date, count(*) "C_COUNT"
+            from coupon
+            join givecoupon using(coupon_type)
+            where givecoupon_status = 'Y'
+            group by coupon_type, coupon_name, coupon_discount, coupon_start_date, coupon_end_date
+            order by C_COUNT DESC
+            )
+        group by coupon_type, coupon_name, coupon_discount, coupon_start_date, coupon_end_date
+            
+
+        UNION
+        select coupon_type, coupon_name, coupon_discount, coupon_start_date, coupon_end_date, count(*) "C_COUNT"
+        from (
+            select coupon_type, coupon_name, coupon_discount, coupon_start_date, coupon_end_date, count(*) "C_COUNT"
+            from coupon
+            join givecoupon using(coupon_type)
+            where givecoupon_status = 'N'
+            group by coupon_type, coupon_name, coupon_discount, coupon_start_date, coupon_end_date
+            order by coupon_start_date desc
+            )
+        group by coupon_type, coupon_name, coupon_discount, coupon_start_date, coupon_end_date
+	</select>
+	
+	<select id="selectCoupon" parameterType="_int" resultMap="CouponResultSet">
+		select *
+		from coupon
+		where coupon_type = #{couponType}
+	</select>
+	
+	<select id="selectGiveCouponList" parameterType="_int" resultMap="giveCouponResultSet">
+		select *
+		from givecoupon
+		where coupon_type = #{couponType}
+		order by givecoupon_status desc
+	</select>
+	
+	<insert id="insertCoupon" parameterType="Coupon">
+		insert into coupon
+		values(coupon_seq.nextval, #{couponName}, #{couponDiscount}, #{couponStartDate}, #{couponEndDate})
+	</insert>
+	
+	<insert id="insertGiveCouponCourse" parameterType="GiveCoupon">
+		insert into givecoupon
+		values(givecoupon_seq.nextval, #{memNum}, #{couponType}, sysdate, null, 'Y')
+		
+	</insert>
+	
+
 </mapper>
