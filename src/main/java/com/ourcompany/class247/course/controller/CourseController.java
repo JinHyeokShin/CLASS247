@@ -290,7 +290,7 @@ public class CourseController {
 		if(c != null) {
 			mv.addObject("c", c)
 			.addObject("checkLove", checkLove).addObject("rlist", rlist)
-		    .setViewName("creator/course/userCourseDetail");
+		    .setViewName("user/course/userCourseDetail");
 			System.out.println(c);
 			
 		}else {
@@ -553,19 +553,18 @@ public class CourseController {
    }
    @RequestMapping("coBuyOff.do")
    public ModelAndView coursePaymentOff(HttpServletRequest request,int courseNum, String courseKind, ModelAndView mv) {
-	   Course c;
-	      Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+	   		Course c;
+	   		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 	      
 	         if(loginUser ==null) {
 	            mv.setViewName("user/member/loginForm");
 	         }else {
-	            	c = coService.selectOffline(courseNum);
-         
-         System.out.print(c);
+	            	c = coService.selectCourse(courseNum);
+	            	System.out.println(c);
          
          if(c != null) {
             mv.addObject("c", c)
-            .setViewName("creator/course/userCourseDetailOff");
+            .setViewName("user/course/userCourseDetailOff");
             
          }else {
             mv.addObject("msg", "게시글 상세조회실패!")
@@ -588,7 +587,7 @@ public class CourseController {
          
          if(c != null) {
             mv.addObject("c", c)
-            .setViewName("creator/course/userCourseDetail3");
+            .setViewName("user/course/userCourseDetail3");
             
          }else {
             mv.addObject("msg", "게시글 상세조회실패!")
@@ -598,22 +597,6 @@ public class CourseController {
       return mv;
       
    }
-   @ResponseBody
-   @RequestMapping("insertpayment.do")
-   public String insertPayment(HttpServletRequest request,Course c, Offline offline, Model model,
-		   				@RequestParam("paymethod") String payMethod) {
-	   Member loginUser = (Member)request.getSession().getAttribute("loginUser");
-	   Payment payment= new Payment(loginUser.getMemNum(),c.getCourseNum(),offline.getCourseHourPrice(),payMethod);
-	  System.out.println(payment);
-	   int result = coService.insertPayment(payment);
-	      
-	      if(result > 0) {
-	         return "success";
-	      }else {
-	         return "common/errorPage";
-	      }
-	      
-	   }
    
    @RequestMapping("goOnline.do")
    public ModelAndView onlinecategoryList(ModelAndView mv) {

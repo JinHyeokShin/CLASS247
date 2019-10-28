@@ -258,7 +258,7 @@ star-input>.input.focus{outline:1px dotted #ddd;}
                             <li style="width: 100%;">
                                 <a class="justify-content-between d-flex">
                                     <p>Trainer’s Name</p>
-                                    <span class="color">${ c.creNum }</span>
+                                    <span class="color">${ c.memNickName }</span>
                                 </a>
                             </li>
                             <li style="width: 100%;">
@@ -273,20 +273,17 @@ star-input>.input.focus{outline:1px dotted #ddd;}
                                     <span>${ c.categoryName}</span>
                                 </a>
                             </li>
-                            <c:if test="${ c.courseKind eq 'online' }">
                             <li style="width: 100%;">
                                 <a class="justify-content-between d-flex" href="#">
-                                    <p>Course Fee </p>
-                                   
-                                    <c:if test="${ c.courseKind eq 'online' }">
-                                   <span>${ c.coursePrice }+ ${c.courseMaterialPrice }</span>
-                                   </c:if>
-                                   <c:if test="${ c.courseKind eq 'offline' }">
-                                     <span>${ c.courseHourPrice } </span>
-                                     </c:if>
+                                    <p>course fee</p>
+                                   <c:if test="${ c.courseKind eq 'online' }">
+										<span>${ c.coursePrice + c.courseMaterialPrice }</span>
+									</c:if> 
+									<c:if test="${ c.courseKind eq 'offline' }">
+										<span>${ c.courseHourPrice * 20 } </span>
+									</c:if>
                                 </a>
                             </li>
-                            </c:if>
                             <li style="width: 100%;">
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>Available Seats </p>
@@ -376,9 +373,8 @@ star-input>.input.focus{outline:1px dotted #ddd;}
 								<a href="${ coBuyOn }" class="btn_1 d-block">수강하기</a>					
 							</c:if>
 							<c:if test="${ c.courseKind eq 'offline' }">
-                                    <c:url  value="coBuyOff.do" var="coBuyOff">
+                              <c:url  value="coBuyOff.do" var="coBuyOff">
 								<c:param name="courseNum" value="${ c.courseNum }"/>
-								
 							</c:url>	
 								<a href="${ coBuyOff }" class="btn_1 d-block">수강하기</a>				
                                     </c:if>

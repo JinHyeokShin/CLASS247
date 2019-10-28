@@ -5,8 +5,9 @@ import java.sql.Date;
 public class Payment {
 	
 	private int payNum;				//결제번호
+	private String payCode;			// 결제코드
 	private int memNum;				//회원번호
-	private int courseNum;
+	private int courseNum;			// 클래스번호
 	private int courseTitle;		//클래스이름
 	private int payPrice;			//결제금액
 	private String payMethod;		//결제수단
@@ -18,12 +19,11 @@ public class Payment {
 		
 	}
 
-	
-
-	public Payment(int payNum, int memNum, int courseNum, int courseTitle, int payPrice, String payMethod,
-			String payCancel, Date payDate, Date payCancelDate) {
+	public Payment(int payNum, String payCode, int memNum, int courseNum, int courseTitle, int payPrice,
+			String payMethod, String payCancel, Date payDate, Date payCancelDate) {
 		super();
 		this.payNum = payNum;
+		this.payCode = payCode;
 		this.memNum = memNum;
 		this.courseNum = courseNum;
 		this.courseTitle = courseTitle;
@@ -34,26 +34,20 @@ public class Payment {
 		this.payCancelDate = payCancelDate;
 	}
 
-
-//	payment insert용
-	public Payment(int memNum, int courseNum, int payPrice, String payMethod) {
-		super();
-		
-		this.memNum = memNum;
-		this.courseNum = courseNum;
-		this.payPrice = payPrice;
-		this.payMethod = payMethod;
-		
-	}
-
-
-
 	public int getPayNum() {
 		return payNum;
 	}
 
 	public void setPayNum(int payNum) {
 		this.payNum = payNum;
+	}
+
+	public String getPayCode() {
+		return payCode;
+	}
+
+	public void setPayCode(String payCode) {
+		this.payCode = payCode;
 	}
 
 	public int getMemNum() {
@@ -63,20 +57,14 @@ public class Payment {
 	public void setMemNum(int memNum) {
 		this.memNum = memNum;
 	}
-	
-	
 
 	public int getCourseNum() {
 		return courseNum;
 	}
 
-
-
 	public void setCourseNum(int courseNum) {
 		this.courseNum = courseNum;
 	}
-
-
 
 	public int getCourseTitle() {
 		return courseTitle;
@@ -126,16 +114,12 @@ public class Payment {
 		this.payCancelDate = payCancelDate;
 	}
 
-
-
 	@Override
 	public String toString() {
-		return "Payment [payNum=" + payNum + ", memNum=" + memNum + ", courseNum=" + courseNum + ", courseTitle="
-				+ courseTitle + ", payPrice=" + payPrice + ", payMethod=" + payMethod + ", payCancel=" + payCancel
-				+ ", payDate=" + payDate + ", payCancelDate=" + payCancelDate + "]";
+		return "Payment [payNum=" + payNum + ", payCode=" + payCode + ", memNum=" + memNum + ", courseNum=" + courseNum
+				+ ", courseTitle=" + courseTitle + ", payPrice=" + payPrice + ", payMethod=" + payMethod
+				+ ", payCancel=" + payCancel + ", payDate=" + payDate + ", payCancelDate=" + payCancelDate + "]";
 	}
-
-
 
 	
 	
