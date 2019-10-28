@@ -121,7 +121,6 @@ public class Course {
 		this.courseStatus = courseStatus;
 	}
 	
-	
 	public int getCourseNum() {
 		return courseNum;
 	}

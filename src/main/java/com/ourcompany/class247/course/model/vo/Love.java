@@ -62,6 +62,11 @@ public class Love {
 		this.coursePrice = coursePrice;
 	}
 
+	public Love(int courseNum, String memId) {
+		
+	}
+
+
 	public int getMemNum() {
 		return memNum;
 	}

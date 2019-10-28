@@ -106,6 +106,21 @@ public class CreatorDao {
 	public CreatorAttachment selectMyProFile(int creNum) {
 		return sqlSession.selectOne("creatorMapper.selectMyProFile", creNum);
 	}
+	
+	public Creator selectACreator(int creNum) {
+		return sqlSession.selectOne("creatorMapper.selectACreator", creNum);
+	}
+	
+	public ArrayList<CreatorAttachment> selectCreatorAttachmentList() {
+		
+		return (ArrayList)sqlSession.selectList("creatorMapper.selectCreatorAttachmentList");
+		
+	}
+	
+	public ArrayList<Creator> selectCreatorList() {
+		
+		return (ArrayList)sqlSession.selectList("creatorMapper.selectCreatorList");
+	}
 
 	/** 크리에이터 프로필 사진명 가져오기 
 	 * @param creNum

@@ -7,33 +7,79 @@
 		<result property="memNum" column="mem_num"/>
 		<result property="noticeTitle" column="notice_title"/>
 		<result property="noticeContent" column="notice_content"/>
+		<result property="noticePath" column="notice_path"/>
+		<result property="noticeFileName" column="notice_filename"/>
 		<result property="noticeCount" column="notice_count"/>
 		<result property="noticeEnrollDate" column="notice_enroll_date"/>
 		<result property="noticeModifyDate" column="notice_modify_date"/>
 		<result property="noticeStatus" column="notice_status"/>
 	</resultMap>
+	 
 	<resultMap type="FAQ" id="FAQResultSet">
-      <id property="faqNum" column="faq_num"/>
-      <result property="faqTitle" column="faq_title"/>
-      <result property="faqContent" column="faq_content"/>
-   </resultMap>
+		<id property="faqNum" column="faq_num"/>
+		<result property="faqTitle" column="faq_title"/>
+		<result property="faqContent" column="faq_content"/>
+	</resultMap>
+	
+
+	<resultMap type="NoticeReply" id="noticeReplyResultSet">
+		<id property="nReplyNum" column="nreply_num"/>
+		<result property="noticeNum" column="notice_num"/>
+		<result property="memNickname" column="mem_nickname"/>
+		<result property="memNum" column="mem_num"/>
+		<result property="memProfileName" column="mem_profile_name"/>
+		<result property="nReplyParentNum" column="nreply_parent_num"/>
+		<result property="nReplyDepth" column="nreply_depth"/>
+		<result property="nReplyContent" column="nreply_content"/>
+		<result property="nReplyEnrollDate" column="nreply_enroll_date"/>
+		<result property="nReplyModifyDate" column="nreply_modify_date"/>
+		<result property="nReplyStatus" column="nreply_status"/>
+	</resultMap>
+
+	 <select id="getListCountf" resultType="_int">
+		select count(*)
+		from faq	 
+	</select>
+	
+	<select id="selectListf" resultMap="FAQResultSet">
+		select *
+		from faq
+	</select>
+	
+	<insert id="insertFAQ" parameterType="FAQ">
+		insert into FAQ
+		values(faq_seq.nextval, #{faqTitle}, #{faqContent})
+	</insert>
+		
+	<insert id="insertNotice" parameterType="Notice">
+		insert into Notice 
+		values(notice_seq.nextval, #{memNum}, #{noticeTitle}, #{noticeContent}, null, #{noticeFileName}, default, sysdate, sysdate, 'Y')
+	</insert>
+	
+	<update id="updateNotice">
+		update notice
+		set	
+	</update>
 	
 	<select id="getListCount" resultType="_int">
 		select count(*)
 		from notice
 		where notice_status='Y'
 	</select>
+	
 	<select id="selectList" resultMap="noticeResultSet">
 		select *
 		from notice
 		where notice_status='Y'
 		order by notice_num desc
 	</select>
-	<update id="updateCount" parameterType="_int">
+	
+	<update id="updateCount">
 		update notice
 		set notice_count=notice_count+1
 		where notice_num=#{noticeNum}
 	</update>
+	
 	<select id="selectNotice" parameterType="_int" resultMap="noticeResultSet">
 		select *
 		from notice
@@ -41,12 +87,78 @@
 		and notice_Num=#{noticeNum}
 	</select>
 	
+	<update id="deleteNotice" parameterType="_int">
+		update notice
+		set notice_status='N'
+		where noitce_Num=#{noticeNum}
+	</update>
+	
+
 	<select id="getUserFaqListCount" resultType="_int">
 		select count(*)
 		from faq
 	</select>
+	
 	<select id="selectUserFaqList" resultMap="FAQResultSet">
 		select *
 		from faq
 	</select>
+	
+	<select id="selectNReplyList" parameterType="_int" resultMap="noticeReplyResultSet">
+		select *
+		from notice_reply
+		join member using(mem_num)
+		where notice_num = #{noticeNum} and nreply_status!='N'
+		order by nreply_parent_num, nreply_depth
+	</select>
+	
+	<select id="getNoticeReplyListCount" parameterType="_int" resultType="_int">
+		select count(*)
+		from notice_reply
+		where notice_num = #{noticeNum} and nreply_status='Y'
+	</select>
+	
+	<insert id="insertNoticeReply" parameterType="NoticeReply">
+		insert into notice_reply
+		values(notice_reply_seq.nextval, #{noticeNum}, #{memNum}, notice_reply_seq.currval, 1, #{nReplyContent}, sysdate, sysdate, 'Y')
+	</insert>
+	
+	<insert id="insertRNoticeReply" parameterType="NoticeReply">
+		insert into notice_reply
+		values(notice_reply_seq.nextval, #{noticeNum}, #{memNum}, #{nReplyParentNum}, #{nReplyDepth}, #{nReplyContent}, sysdate, sysdate, 'Y')
+	</insert>
+	
+	<select id="selectParentReply" parameterType="_int" resultMap="noticeReplyResultSet">
+		select *
+		from notice_reply
+		where nReply_Num = #{nReplyNum}
+	</select>
+	
+	<select id="selectChild" parameterType="_int" resultType="_int">
+		select count(*)
+		from ( select nreply_depth
+		       from notice_reply
+		       where nreply_parent_num = ( select nreply_parent_num from notice_reply where nreply_num = #{nReplyNum}) and nreply_status != 'N' )
+		where nreply_depth > (select nreply_depth "NREPLY_DAPTH" from notice_reply where nreply_num = #{nReplyNum})
+	
+	</select>
+	
+	<update id="updateReplyY" parameterType="_int">
+		update notice_reply
+		set nreply_content='삭제된 댓글입니다.', nreply_modify_date=sysdate, nreply_status='D'
+		where nreply_num = #{nReplyNum}
+	</update>
+	
+	<update id="updateReplyN" parameterType="_int">
+		update notice_reply
+		set nreply_status='N'
+		where nreply_num = #{nReplyNum}
+	</update>
+	
+	<update id="updateReply" parameterType="NoticeReply">
+		update notice_reply
+		set nreply_content=#{nReplyContent}, nreply_modify_date=sysdate
+		where nreply_num = #{nReplyNum}
+	</update>
+
 </mapper>

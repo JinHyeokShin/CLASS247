@@ -47,6 +47,12 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 
+	@Override
+	public int updateMemProfile(Member loginUser) {
+		
+		return mDao.updateMemProfile(loginUser);
+	}
+
 	
 	
 	
@@ -87,5 +93,26 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.selectBlackList();
 	}
 	
+	@Override
+	public Member selectAMember(int creNum) {
+		
+		return mDao.selectAMember(creNum);
+	}
+	
+	@Override
+	public int allowCreator(int memNum) {
+		
+		return mDao.allowCreator(memNum);
+	}
+	
+	@Override
+	public int updateBlackList(int memNum) {
+		
+		return mDao.updateBlackList(memNum);
+	}
+	
+
+
+
 
 }

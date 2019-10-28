@@ -89,13 +89,7 @@
 										<div class="col-12 col-md-4 user">
 											<label for="creID" class=" form-control-label text">${ m.memEnrollDate }</label>
 										</div>
-										<div class="col col-md-2">
-											<label for="creID" class=" form-control-label text">크리에이터승격날짜</label>
-											
-										</div>
-										<div class="col-12 col-md-4 user">
-											<label for="creID" class=" form-control-label text">승격날짜</label>
-										</div>
+
 									</div>
 									<div class="row form-group">
 										<div class="col col-md-2">
@@ -196,14 +190,16 @@
 				
 				<br>
 				<div>
-					<c:url value="aApprovalCourse.do" var="aApprovalCourse">
+					<c:url value="aApprovalCreator.do" var="aApprovalCreator">
+						<c:param value="${ cre.creNum }" name="creNum"/>
+						<c:param value="${ m.memNum }" name="memNum"/>
+					</c:url>
+					<c:url value="aRejectCreator.do" var="aRejectCreator">
 						<c:param value="${ cre.creNum }" name="creNum"/>
 					</c:url>
-						<input type="button" class="btn btn-outline-primary" onclick="location.href='${aApprovalCreator.do}'" value="승인하기">
-						<input type="button" class="btn btn-outline-danger" onclick="location.href='${aRejectCreator.do}'" value="거부하기">
-					<c:url value="aRejectCourse.do" var="aRejectCourse">
-						<c:param value="${ cre.creNum }" name="creNum"/>
-					</c:url>
+						<input type="button" class="btn btn-outline-primary" onclick="location.href='${aApprovalCreator}'" value="승인하기">
+						<input type="button" class="btn btn-outline-danger" onclick="location.href='${aRejectCreator}'" value="거부하기">
+
 				</div>
 			</div>
 			<nav class="navbar-sidebar">

@@ -22,5 +22,11 @@ public interface InquiryService {
 	//문의글 삭제하기 
 	int deleteInquiry(int inquiryNum);
 
+	
+	// 관리자 답변 개수 조회
+	int getAdminInquiryList();
+		
+	// 관리자 답변 리스트 조회
+	ArrayList<Inquiry> selectAdminInquiryList(PageInfo pi);
 
 }

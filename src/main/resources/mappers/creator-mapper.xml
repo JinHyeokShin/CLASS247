@@ -31,11 +31,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap id="singleCreatorResultSet" type="Creator">
 		<id property="creNum" column="cre_num"/>
 		<result property="memNum" column="mem_num"/>
-		<result property="mem_NickName" column="mem_nick_name"/>
+		<result property="memNickName" column="mem_nickname"/>
 		<result property="introduction" column="introduction"/>
 		<result property="career" column="career"/>
 		<result property="education" column="education"/>
 		<result property="certification" column="certification"/>
+		<result property="enrollDate" column="enroll_date"/>
+		<result property="approvedDate" column="approved_date"/>
+		<result property="endDate" column="endDate"/>
 		<result property="creStatus" column="cre_status"/>	
 	</resultMap>
 	
@@ -104,8 +107,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<update id="rejectCreator" parameterType="_int">
-		update course
-		set approved_date=sysdate, cre_status='R'
+		update creator
+		set cre_status= 'R'
 		where cre_num = #{creNum}
 	</update>
 	
@@ -146,6 +149,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from creator_attachment
 		where cre_num = #{creNum}
 		and cra_level = 1
+	</select>	
+		
+	<select id="selectACreator" parameterType="_int" resultMap="singleCreatorResultSet">
+		select *
+		from creator
+		where cre_num=#{creNum}
+	</select>
+	
+	<select id="selectCreatorList" resultMap="singleCreatorResultSet">
+		select *
+		from creator
+		order by cre_num desc
+	</select>
+	
+	<select id="aSelectCreatorAttachmentList" resultMap="creatorAttachmentResultSet">
+		select *
+		from creator_attachment
+		where coa_level = 1
+		order by cre_num desc
 	</select>
 	
 	<update id="updateProfile" parameterType="CreatorAttachment">

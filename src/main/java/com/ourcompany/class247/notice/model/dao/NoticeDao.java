@@ -8,8 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ourcompany.class247.common.PageInfo;
-import com.ourcompany.class247.notice.model.vo.FAQ;
 import com.ourcompany.class247.notice.model.vo.Notice;
+import com.ourcompany.class247.notice.model.vo.NoticeReply;
+
+
+		
+import com.ourcompany.class247.notice.model.vo.FAQ;
+
 
 @Repository("nDao")
 public class NoticeDao {
@@ -20,7 +25,27 @@ public class NoticeDao {
 	public int getListCount() {
 		return sqlSession.selectOne("noticeMapper.getListCount");
 	}
+
+		
+	public int insertNotice(Notice n) {
+		return sqlSession.insert("noticeMapper.insertNotice", n);
+		
+	}
 	
+	
+	public int deleteBoard(int noticeNum) {
+		return sqlSession.update("noticeMapper.deleteNotice", noticeNum);
+	}
+	
+/* 댓글
+	public ArrayList<NoticeReply> selectReplyList(int noticeNum){
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectReplyList", noticeNum);
+	}
+	
+	public int insertReply(NoticeReply nr) {
+		return sqlSession.insert("noticeMapper.insertReply", nr);
+	}
+*/
 	@SuppressWarnings( { "unchecked", "rawtypes" } )
 	public ArrayList<Notice> selectList(PageInfo pi){
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
@@ -49,5 +74,48 @@ public class NoticeDao {
 		return (ArrayList)sqlSession.selectList("noticeMapper.selectUserFaqList", null, rowBounds);
 	}
 	
+	public int getNoticeReplyListCount(int noticeNum) {
+		
+		return sqlSession.selectOne("noticeMapper.getNoticeReplyListCount", noticeNum);
+	}
+	
+	
+	public ArrayList<NoticeReply> selectNReplyList(int noticeNum, PageInfo rpi) {
+		int offset = (rpi.getCurrentPage() - 1) *rpi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, rpi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectNReplyList", noticeNum, rowBounds);
+	}
+	
+	public int insertNoticeReply(NoticeReply nr) {
+		
+		return sqlSession.insert("noticeMapper.insertNoticeReply", nr);
+	}
+	
+	public NoticeReply selectParentReply(int nReplyNum) {
+		
+		return sqlSession.selectOne("noticeMapper.selectParentReply", nReplyNum);
+	}
+	
+	public int insertRNoticeReply(NoticeReply nr) {
+		return sqlSession.insert("noticeMapper.insertRNoticeReply", nr);
+	}
+	
+	public int selectChild(int nReplyNum) {
+		return sqlSession.selectOne("noticeMapper.selectChild", nReplyNum);
+	}
+
+	public int updateReplyY(int nReplyNum) {
+		return sqlSession.update("noticeMapper.updateReplyY", nReplyNum);
+	}
+	
+	public int updateReplyN(int nReplyNum) {
+		return sqlSession.update("noticeMapper.updateReplyN", nReplyNum);
+	}
+	
+	public int updateReply(NoticeReply nr) {
+		return sqlSession.update("noticeMapper.updateReply", nr);
+	}
+
 	
 }

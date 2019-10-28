@@ -40,6 +40,11 @@ public class MemberDao {
 	public ArrayList<Member> selectMemberList() {
 		return (ArrayList)sqlSession.selectList("memberMapper.selectMemberList");
 	}
+
+	public int updateMemProfile(Member loginUser) {
+		
+		return sqlSession.update("memberMapper.updateMemProfile", loginUser);
+	}
 	
 	
 	
@@ -69,4 +74,19 @@ public class MemberDao {
 	public ArrayList<Member> selectBlackList() {
 		return (ArrayList)sqlSession.selectList("memberMapper.selectBlackList");
 	}
+	
+	public Member selectAMember(int creNum) {
+		return sqlSession.selectOne("memberMapper.selectAMember", creNum);
+	}
+	
+	public int allowCreator(int memNum) {
+		return sqlSession.update("memberMapper.allowCreator", memNum);
+	}
+	
+	public int updateBlackList(int memNum) {
+		return sqlSession.update("memberMapper.updateBlackList", memNum);
+	}
+	
+
+	
 }

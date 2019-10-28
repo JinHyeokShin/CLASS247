@@ -71,25 +71,25 @@
                     <div class="row">
                         <div class="col-lg-3 col-sm-6">
                             <div class="single_member_counter">
-                                <span class="counter">1024</span>
+                                <span class="counter">${ creCount }</span>
                                 <h4>모든 튜터</h4>
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6">
                             <div class="single_member_counter">
-                                <span class="counter">123</span>
+                                <span class="counter">${ memberCount }</span>
                                 <h4>모든 회원</h4>
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6">
                             <div class="single_member_counter">
-                                <span class="counter">1020</span>
+                                <span class="counter">${ onlineCourseCount }</span>
                                 <h4>온라인 강의</h4>
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6">
                             <div class="single_member_counter">
-                                <span class="counter">820</span>
+                                <span class="counter">${ offlineCourseCount }</span>
                                 <h4>오프라인 강의</h4>
                             </div>
                         </div>
@@ -117,17 +117,21 @@
                      <c:forEach items="${ list }" var="co">
                      	<c:url value="codetail.do" var="codetail">
 							<c:param name="courseNum" value="${ co.courseNum }"/>
-							<c:param name="courseKind" value="${ co.courseKind}"/>
+							<c:param name="courseKind" value="${ co.courseKind}" />
 						</c:url>
                         <div class="item" >
-                        
                             <div class="single_special_cource">
                                 <img src="resources/user/img/test1.jpeg" class="special_img" alt="" onclick="location.href=${codetail}">
                                 <div class="special_cource_text">
-                                    <a class="btn_4">카테고리</a>
-                                    <h4>가격</h4>
+                                    <a class="btn_4">${ co.categoryName }</a>
+                                    <c:if test="${ co.courseKind eq 'online'}">
+                                    <h4>${ co.coursePrice }&#8361;</h4>
+                                    </c:if>
+                                    <c:if test="${ co.courseKind eq 'offline'}">
+                                    <h4>시간당 <br>${ co.courseHourPrice }&#8361;</h4>
+                                    </c:if>
                                     <a href="${ codetail }">
-                                        <h3>${co.courseTitle }</h3>
+                                    <h3>${co.courseTitle }</h3>
                                     </a>
                                     <p></p>
                                     <div class="author_info">
@@ -158,33 +162,44 @@
                    
                 </div>
             </section>
-            <section class="special_cource padding_top">
-                <div class="container" style="padding-bottom:80px">
+            <section class="special_cource padding_top" id="Mdrecom">
+                <div class="container" id="Mdrecom">
                     <div class="row justify-content-left">
                         <div class="col-xl-5">
                             <div class="section_tittle text-left">
-                                <p>실시간 TOP 10</p>
-                                <h2>인기 강의 TOP 10</h2>
+                                <p>실시간 인기 강의</p>
+                                <h2>인기 TOP 10</h2>
                             </div>
                         </div>
                     </div>
+                    
                     <div class="owl-carousel">
-                        <div class="item">
+                     <c:forEach items="${ poplist }" var="po">
+                     	<c:url value="codetail.do" var="codetail">
+							<c:param name="courseNum" value="${ po.courseNum }"/>
+							<c:param name="courseKind" value="${ po.courseKind}" />
+						</c:url>
+                        <div class="item" >
                             <div class="single_special_cource">
-                                <img src="resources/user/img/special_cource_1.png" class="special_img" alt="">
+                                <img src="resources/user/img/test1.jpeg" class="special_img" alt="" onclick="location.href=${codetail}">
                                 <div class="special_cource_text">
-                                    <a href="course-details.html" class="btn_4">라이프 스타일</a>
-                                    <h4>$130.00</h4>
-                                    <a href="course-details.html">
-                                        <h3>Web Development</h3>
+                                    <a class="btn_4">${ po.categoryName }</a>
+                                    <c:if test="${ po.courseKind eq 'online'}">
+                                    <h4>${ po.coursePrice }&#8361;</h4>
+                                    </c:if>
+                                    <c:if test="${ po.courseKind eq 'offline'}">
+                                    <h4>시간당 <br>${ po.courseHourPrice }&#8361;</h4>
+                                    </c:if>
+                                    <a href="${ codetail }">
+                                    <h3>${po.courseTitle }</h3>
                                     </a>
-                                    <p>Which whose darkness saying were life unto fish wherein all fish of together called</p>
+                                    <p></p>
                                     <div class="author_info">
                                         <div class="author_img">
-                                            <img src="resources/user/img/author/author_1.png" alt="">
+                                            <img src="resources/user/img/author/author_1.png" alt="" onclick="location.href=${codetail}">
                                             <div class="author_info_text">
                                                 <p>Conduct by:</p>
-                                                <h5><a href="#">James Well</a></h5>
+                                                <h5><a href="${ codetail }">James Well</a></h5>
                                             </div>
                                         </div>
                                         <div class="author_rating">
@@ -200,71 +215,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <div class="single_special_cource">
-                                <img src="resources/user/img/special_cource_3.png" class="special_img" alt="">
-                                <div class="special_cource_text">
-                                    <a href="course-details.html" class="btn_4">미술</a>
-                                    <h4>300,000&#8361;</h4>
-                                    <a href="course-details.html">
-                                        <h3>Wordpress Development</h3>
-                                    </a>
-                                    <p>Which whose darkness saying were life unto fish wherein all fish of together called</p>
-                                    <div class="author_info">
-                                        <div class="author_img">
-                                            <img src="resources/user/img/author/author_3.png" alt="">
-                                            <div class="author_info_text">
-                                                <p>Conduct by:</p>
-                                                <h5><a href="#">James Well</a></h5>
-                                            </div>
-                                        </div>
-                                        <div class="author_rating">
-                                            <div class="rating">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/star.svg" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="single_special_cource">
-                                <img src="resources/user/img/special_cource_3.png" class="special_img" alt="">
-                                <div class="special_cource_text">
-                                    <a href="course-details.html" class="btn_4">사진, 영상</a>
-                                    <h4>$140.00</h4>
-                                    <a href="course-details.html">
-                                        <h3>보람쌤과 함께하는 쉬운 아이티</h3>
-                                    </a>
-                                    <p>Which whose darkness saying were life unto fish wherein all fish of together called</p>
-                                    <div class="author_info">
-                                        <div class="author_img">
-                                            <img src="resources/user/img/author/author_3.png" alt="">
-                                            <div class="author_info_text">
-                                                <p>Conduct by:</p>
-                                                <h5><a href="#">James Well</a></h5>
-                                            </div>
-                                        </div>
-                                        <div class="author_rating">
-                                            <div class="rating">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/star.svg" alt="">
-                                            </div>
-                                            <p>3.8 Ratings</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                          
+                        </div>  
+                        </c:forEach>
                     </div>
+                   
                 </div>
             </section>
             <c:import url="/WEB-INF/views/user/common/footer.jsp" />

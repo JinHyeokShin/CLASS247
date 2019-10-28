@@ -36,33 +36,7 @@
 		border-radius: 10px;
 	
 	}	
-	
-/*	.loginform{
-		width:250px;
-			
-	}
-	.login-in{
-		width:250px;
-		heigth:100px;
-	}
-	.login-group{
-		width:250px;
-		
-	}
-	
-	label{
-		float:left;
-	}
-	.genric-btn.primary-border:hover {
-	    color: #fff;
-	    background: #954CBC;
-	    border: 1px solid transparent;
-	    
-	}
-	.genric-btn{
-		width:250px;
-	    height:50px;
-	} */
+
 	
 	
 	
@@ -71,46 +45,96 @@
 </head>
 
 <body>
-	<c:import url="/WEB-INF/views/user/common/menubar.jsp"/>
-
-	
-	 	
-	  
-	  		<div class="login" align="center">
-	  		<br>
+	<c:import url="/WEB-INF/views/user/common/menubar.jsp"/>         	
+            <section class="feature_part single_feature_padding">
+            <br>
 			<h1 align="center">&nbsp;${ loginUser.memName }님의 마이페이지</h1>
+			
 			<br>
-			<h4 align="center">&nbsp;${ loginUser.memId }</h4>
-			<hr>
-        	
-			<br>
-            <table width="70%" height="80%">
-            
-            <tr>
-            	<td><a href="memUpdate.do"><img src="resources/user/img/notepad.png"></a><br><br>회원 정보 수정</td>
-            	<td><a href="memDelete.do"><img src="resources/user/img/exit.png"></a><br><br>회원 정보 탈퇴</td>
-            	<td><a href="memClass.do"><img src="resources/user/img/presentation.png"></a><br><br>나의  수강 내역</td>
-            </tr>
-           
-      
-            <tr>
-         
-            	<td><a href="memCoupon.do"><img src="resources/user/img/voucher.png"></a><br><br>나의 쿠폰 목록</td>
-            	<td><a href="memZzim.do"><img src="resources/user/img/heart.png"></a><br><br>나의 찜하기 목록</td>
-            	<td><a href="memDelivary.do"><img src="resources/user/img/truck.png"></a><br><br>주문 및 배송 목록</td>
-            </tr>
-          
-            
-            </table>
-         
-
-    
-          
-
-
-    	
-      
+			<br><br>
+        <div class="container" align="center">
+            <div class="row" >
+            <div class="col-sm-6 col-xl-2"></div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="single_feature">
+                        <div class="single_feature_part">
+                            <a href="memUpdate.do">
+                            <img src="resources/user/img/notepad.png"></a>
+                            <br><br> <br><br> 
+                            <h4>회원 정보 수정</h4>
+                            <br><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="single_feature">
+                        <div class="single_feature_part">
+                            <a href="memDelete.do">
+                            <img src="resources/user/img/exit.png"></a>
+                            <br><br> <br><br> 
+                            <h4>회원 정보 탈퇴</h4>
+                            <br><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="single_feature">
+                        <div class="single_feature_part single_feature_part_2">
+                            <a href="memClass.do">
+                            <img src="resources/user/img/presentation.png"></a>
+                             <br><br> <br><br> 
+                            <h4>나의 수강 내역</h4>
+                            <br><br>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+        <br>
+        <br>
+   <!--  </section>
+      <section class="feature_part single_feature_padding">  -->
+        <div class="container" align="center">
+            <div class="row" >
+            <div class="col-sm-6 col-xl-2"></div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="single_feature">
+                        <div class="single_feature_part">
+                            <a href="memCoupon.do">
+                            <img src="resources/user/img/voucher.png"></a>
+                            <br><br> <br><br> 
+                            <h4>나의 쿠폰 목록</h4>
+                            <br><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="single_feature">
+                        <div class="single_feature_part">
+                            <a href="memZzim.do">
+                            <img src="resources/user/img/heart.png"></a>
+                            <br><br> <br><br> 
+                            <h4>나의 찜하기 목록</h4>
+                            <br><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="single_feature">
+                        <div class="single_feature_part single_feature_part_2">
+                           <a href="memDelivery.do">
+                           <img src="resources/user/img/truck.png"></a>
+                             <br><br> <br><br> 
+                            <h4>주문 및 배송 목록</h4>
+                            <br><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br><br><br><br><br>
+    	
     	
     
 	<c:import url="/WEB-INF/views/user/common/footer.jsp"/>

@@ -44,7 +44,17 @@ public class InquiryDao {
 	//문의글 삭제하게 
 	public int deleteInquiry(int inquiryNum) {
 		int result =  sqlSession.update("inquiryMapper.deleteInquiry", inquiryNum);
-		System.out.println(result);
 		return result;
+	}
+	
+	public int getAdminInquiryCount(){
+		return sqlSession.selectOne("inquiryMapper.getAdminInquiryList");
+	}
+	
+	public ArrayList<Inquiry> selectAdminInquiryList(PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit(); 
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("inquiryMapper.getAdminInquiryList", null, rowBounds);
 	}
 }

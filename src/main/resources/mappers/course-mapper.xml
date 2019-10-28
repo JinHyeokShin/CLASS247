@@ -74,10 +74,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             </case>
          </discriminator>
    </resultMap>
-	
+   <resultMap id="ReviewResultSet" type="Review">
+      <id property="reviewNum" column="review_num"/>
+      <result property="courseNum" column="course_num"/>
+      <result property="memNum" column="mem_num"/>
+      <result property="reviewContent" column="review_content"/>
+      <result property="reviewScore" column="review_score"/>
+      <result property="reviewEnrollDate" column="review_eroll_date"/>
+      <result property="reviewModifyDate" column="review_modify_date"/>
+      <result property="reviewStatus" column="review_status"/>   
+   </resultMap>
+   <resultMap id="ReviewAttachmentResultSet" type="ReviewAttachment">
+		<id property="raNum" column="ra_num"/>
+		<result property="reviewNum" column="review_num"/>
+		<result property="revReplyNum" column="rev_reply_num"/>
+		<result property="raOName" column="ra_pname"/>
+		<result property="raRName" column="ra_rname"/>
+		<result property="raPath" column="ra_path"/>
+	</resultMap>
+	 <resultMap id="ReviewReplyResultSet" type="ReviewReply">
+		<id property="revReplyNum" column="rev_reply_num"/>
+		<result property="reviewNum" column="review_num"/>
+		<result property="memNum" column="mem_num"/>
+		<result property="revReplyParentNum" column="rev_reply_parent_num"/>
+		<result property="revReplyDepth" column="rev_reply_depth"/>
+		<result property="revReplyContent" column="rev_reply_content"/>
+		<result property="revReplyEnrollDate" column="rev_reply_enroll_date"/>
+		<result property="revReplyModifyDate" column="rev_reply_modify_date"/>
+		<result property="revReplyStatus" column="rev_reply_status"/>
+	</resultMap>
    <resultMap id="SingleCourseResultSet" type="SingleCourse">
       <id property="courseNum" column="course_num"/>
       <result property="courseTitle" column="course_title"/>
+      <result property="courseContent" column="coruse_content"/>
       <result property="categoryName" column="category_name"/>
       <result property="memNickName" column="mem_nickname"/>
       <result property="courseKind" column="course_kind"/>
@@ -87,26 +116,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="courseEndDate" column="course_end_date"/>
       <result property="coaRName" column="course_rname"/>
       <result property="loveCount" column="love_count"/>
-      <discriminator javaType="string" column="course_kind">
-            <case value="online" resultType="SingleCourse" >
-               <result property="coursePrice" column="course_hour_price"/>
-            
-            </case>
-            <case value="offline" resultType="SingleCourse">
+         <result property="courseHourPrice" column="course_hour_price"/>
                <result property="coursePrice" column="course_price"/>
                <result property="courseArea" column="courseArea"/>
-            </case>
-         </discriminator>
+            
    </resultMap>
    
    <resultMap id="TakeCourseResultSet" type="TakeCourse">
 		<id property="takeNum" column="take_num"/>
 		<result property="memNum" column="mem_num"/>
+		<result property="memNickName" column="mem_nick_name"/>
 		<result property="payNum" column="pay_num"/>
 		<result property="courseNum" column="course_num"/>
 		<result property="courseTitle" column="course_title"/>
 		<result property="categoryName" column="category_name"/>
-		<result property="memNickname" column="mem_nickname"/>
+		<result property="creNickname" column="cre_nickname"/>
 		<result property="courseKind" column="course_kind"/>
 		<result property="courseLevel" column="course_level"/>
 		<result property="courseStartDate" column="course_start_date"/>
@@ -118,8 +142,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="courseHourPrice" column="course_hour_price"/>
 		<result property="courseApproved" column="course_approved"/>
 		<result property="takeDate" column="take_date"/>
+		<result property="takeStatus" column="take_status"/>
 	</resultMap>
 	
+	 <resultMap id="DeliveryResultSet" type="Delivery">
+		<id property="deliveryNum" column="delivery_num"/>
+		<result property="payNum" column="pay_num"/>
+		<result property="deliveryAddress" column="delivery_address"/>
+		<result property="deliveryStatus" column="delivery_status"/>
+		<result property="payDate" column="pay_date"/>
+		<result property="payPrice" column="pay_price"/>
+		<result property="memName" column="mem_name"/>
+		<result property="courseTitle" column="course_title"/>
+		<result property="courseMaterial" column="course_material"/>
+		<result property="memNum" column="mem_num"/>
+	</resultMap>
+	<resultMap type="Payment" id="PaymentResultSet">
+	<id property="payNum" column="pay_num"/>
+	<result property="memNum" column="mem_num"/>
+	<result property="courseNum" column="course_num"/>
+	<result property="courseTitle" column="course_title"/>
+	<result property="payPrice" column="pay_price"/>
+	<result property="payMethod" column="pay_method"/>
+	<result property="payCancel" column="pay_cancel"/>
+	<result property="payDate" column="pay_date"/>
+	<result property="payCancelDate" column="pay_cancel_date"/>
+	</resultMap>
 	
 
 
@@ -270,55 +318,45 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from single_course_view
 		where course_approved = 'Y'
 	</select>
-
+	
+	<select id="selectPopList" resultMap="SingleCourseResultSet">
+	
+		SELECT *
+		FROM (SELECT * FROM single_course_view ORDER BY love_count DESC)
+		<!--[CDATA[
+		 where ROWNUM<=10
+ 		]]-->
+		
+	</select>
+	
 	<!-- 1. 페이지처리 구문 -->
 	<select id="getListCount" resultType="_int">
 		select count(*)
 		from love_view
 	</select>
 	
-	<select id="modalsearchList" parameterType="String" resultMap="CourseResultSet">
-			select c.course_num, category.category_name, cre_num, c.course_title, c.course_content, c.course_kind, 
-                c.course_level, c.course_current_num, c.course_enroll_date, c.course_approved_date, c.course_start_date,
-                c.course_end_date, c.course_approved, c.course_status, member.mem_nickname
-			from course c
-	        join category using (category_num)
-	        join creator using(cre_num)
-	        join member using(mem_num)
+	<select id="modalsearchList" parameterType="String" resultMap="SingleCourseResultSet">
+			select *
+			from single_course_view
 			where course_title like '%'||#{search}||'%'
             
             UNION
             
-			select c.course_num, category.category_name, cre_num, c.course_title, c.course_content, c.course_kind, 
-                c.course_level, c.course_current_num, c.course_enroll_date, c.course_approved_date, c.course_start_date,
-                c.course_end_date, c.course_approved, c.course_status, member.mem_nickname
-			from course c
-	        join category using (category_num)
-	        join creator using(cre_num)
-	        join member using(mem_num)
+			select *
+			from single_course_view
 			where mem_nickname like '%'||#{search}||'%'
             
             UNION
             
-			select c.course_num, category.category_name, cre_num, c.course_title, c.course_content, c.course_kind, 
-                c.course_level, c.course_current_num, c.course_enroll_date, c.course_approved_date, c.course_start_date,
-                c.course_end_date, c.course_approved, c.course_status, member.mem_nickname
-			from course c
-	        join category using (category_num)
-	        join creator using(cre_num)
-	        join member using(mem_num)
+			select *
+			from single_course_view
 			where category_name like '%'||#{search}||'%'
 	</select>
 	
-	<select id="modalsearchCategory" parameterType="_int" resultMap="CourseResultSet">
-			select c.course_num, category.category_name, cre_num, c.course_title, c.course_content, c.course_kind, 
-                c.course_level, c.course_current_num, c.course_enroll_date, c.course_approved_date, c.course_start_date,
-                c.course_end_date, c.course_approved, c.course_status, member.mem_nickname
-			from course c
-	        join category using (category_num)
-	        join creator using(cre_num)
-	        join member using(mem_num)
-			where category_num = #{categoryNum} and course_approved='Y'
+	<select id="modalsearchCategory" parameterType="String" resultMap="SingleCourseResultSet">
+			select *
+			from single_course_view
+			where category_name = #{categoryName} and course_approved='Y' and course_status='Y'
 	</select>
 	
 	<!-- 찜하기  -->
@@ -339,14 +377,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="payonList" resultMap="TakeCourseResultSet">
 	select *
 	from user_course_view
-	where course_kind = 'online'
+	where course_kind = 'online' and mem_num = #{memNum} and take_status = 'Y'
 	</select>
 	
 	<!-- 오프라인 클래스만 리스트 보여주기 -->
 	<select id="payoffList" resultMap="TakeCourseResultSet">
 	select *
 	from user_course_view
-	where course_kind = 'offline'
+	where course_kind = 'offline' and mem_num = #{memNum} and take_status = 'Y'
+	</select>
+	
+	<!-- 배송정보 리스트 보여주기 -->
+	<select id="memdelivery" resultMap="DeliveryResultSet">
+	select *
+	from user_delivery_view
+	where mem_num= #{memNum}
 	</select>
    
 	
@@ -386,5 +431,272 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where course_num = #{courseNum}
 	</select>
 	
+	<select id="mySingleCourseList" parameterType="_int" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where cre_num = #{creNum} and course_status in ('Y', 'E', 'N')
+        
+	</select>
 	
+	<select id="selectMyTakeCourse" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where course_num in (select course_num
+		                     from takecourse tc
+		                     join payment p using(pay_num)
+		                     where tc.mem_num = #{memNum} and pay_cancel != 'Y')
+	</select>
+	
+	<select id="courseMemberList" parameterType="_int" resultMap="TakeCourseResultSet">
+		    select tc.mem_num
+		    from takecourse tc
+		    join payment using(pay_num)
+		    where take_status ='Y'
+		    group by tc.mem_num
+	</select>
+	
+	<select id="categoryCraftsList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='공예'
+		and course_approved='Y' and course_status='Y'
+	</select>
+	<select id="categoryDesignList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='디자인'
+		and course_approved='Y' and course_status='Y'
+	</select>
+	<select id="categoryDevelopList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='개발'
+		and course_approved='Y' and course_status='Y'
+	</select>
+	<select id="categoryDigitalList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='디지털 드로잉'
+		and course_approved='Y' and course_status='Y'
+	</select>
+	<select id="categoryLifeList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='라이프 스타일'
+		and course_approved='Y' and course_status='Y'
+	</select>
+	<select id="categoryArtList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='미술'
+		and course_approved='Y' and course_status='Y'
+	</select>
+	<select id="categoryCameraList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='사진, 영상'
+		and course_approved='Y' and course_status='Y'
+	</select>
+	<select id="categorySigitureList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='시그니처'
+		and course_approved='Y' and course_status='Y'
+	</select>
+	<select id="categoryFoodList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='요리, 음료'
+		and course_approved='Y' and course_status='Y'
+	</select>
+	<select id="categoryMusicList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='음악'
+		and course_approved='Y' and course_status='Y'
+	</select>
+	<select id="categoryCareerList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='커리어'
+		and course_approved='Y' and course_status='Y'
+	</select>
+	<select id="checkLove" parameterType="Love" resultType="_int">
+		select count(*)
+		from love
+		where  course_num = #{courseNum} and mem_num=#{memNum}
+	</select>
+	<insert id="insertLove"  parameterType="Love">
+		insert into love 
+		values(#{memNum},#{courseNum},default)
+	</insert>
+	<delete id="cancelLove" parameterType="Love">
+		delete from love
+    	where mem_num=#{memNum} and course_num=#{courseNum}
+	</delete>
+	
+	<select id="selectRlist" resultMap="ReviewResultSet">
+		select * from review
+        where review_status='Y' and course_num=#{courseNum}
+	</select>
+	
+	<insert id="insertPayment" parameterType="Payment">
+		insert into payment
+		values(payment_seq.nextval, #{memNum},#{courseNum},#{payPrice},#{payMethod},default,sysdate,default)
+	</insert>
+
+	
+	<!-- 온라인 카테고리  -->
+	<select id="onlinecategoryCraftsList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='공예'
+		and course_approved='Y' and course_status='Y' and course_kind='online'
+	</select>
+	<select id="onlinecategoryDesignList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='디자인'
+		and course_approved='Y' and course_status='Y' and course_kind='online'
+	</select>
+	<select id="onlinecategoryDevelopList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='개발'
+		and course_approved='Y' and course_status='Y' and course_kind='online'
+	</select>
+	<select id="onlinecategoryDigitalList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='디지털 드로잉'
+		and course_approved='Y' and course_status='Y' and course_kind='online'
+	</select>
+	<select id="onlinecategoryLifeList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='라이프 스타일'
+		and course_approved='Y' and course_status='Y' and course_kind='online'
+	</select>
+	<select id="onlinecategoryArtList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='미술'
+		and course_approved='Y' and course_status='Y' and course_kind='online'
+	</select>
+	<select id="onlinecategoryCameraList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='사진, 영상'
+		and course_approved='Y' and course_status='Y' and course_kind='online'
+	</select>
+	<select id="onlinecategorySigitureList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='시그니처'
+		and course_approved='Y' and course_status='Y' and course_kind='online'
+	</select>
+	<select id="onlinecategoryFoodList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='요리, 음료'
+		and course_approved='Y' and course_status='Y' and course_kind='online'
+	</select>
+	<select id="onlinecategoryMusicList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='음악'
+		and course_approved='Y' and course_status='Y' and course_kind='online'
+	</select>
+	<select id="onlinecategoryCareerList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='커리어'
+		and course_approved='Y' and course_status='Y' and course_kind='online'
+	</select>
+	<!-- 오프라인 카테고리  -->
+	<select id="offlinecategoryCraftsList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='공예'
+		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
+	<select id="offlinecategoryDesignList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='디자인'
+		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
+	<select id="offlinecategoryDevelopList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='개발'
+		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
+	<select id="offlinecategoryDigitalList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='디지털 드로잉'
+		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
+	<select id="offlinecategoryLifeList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='라이프 스타일'
+		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
+	<select id="offlinecategoryArtList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='미술'
+		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
+	<select id="offlinecategoryCameraList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='사진, 영상'
+		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
+	<select id="offlinecategorySigitureList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='시그니처'
+		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
+	<select id="offlinecategoryFoodList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='요리, 음료'
+		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
+	<select id="offlinecategoryMusicList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='음악'
+		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
+	<select id="offlinecategoryCareerList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		where category_name='커리어'
+		and course_approved='Y' and course_status='Y' and course_kind='offline'
+	</select>
+	
+	<select id="selectMemberCount" parameterType="_int" resultType="_int">
+		select count(*)
+		from member
+	</select>
+	<select id="selectCreCount" parameterType="_int" resultType="_int">
+		select count(*)
+		from creator
+	</select>
+	<select id="onlineCourseCount" parameterType="_int" resultType="_int">
+		select count(*)
+		from course
+		where course_kind ='online'
+	</select>
+	<select id="offlineCourseCount" parameterType="_int" resultType="_int">
+		select count(*)
+		from course
+		where course_kind = 'offline'
+	</select>
 </mapper>

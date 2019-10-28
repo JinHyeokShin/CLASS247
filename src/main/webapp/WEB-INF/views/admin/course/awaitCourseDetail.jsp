@@ -254,6 +254,7 @@
 									 </strong>
 								</h3>
 							</div>
+							<c:if test="${co.courseKind eq 'online' }">		
 							<div class="card-body card-block">
 								<div class="form-group">
 									<label class=" form-control-label">준비물 여부</label><br>
@@ -309,17 +310,92 @@
 									
 								</div>
 								<hr>
-								<div class="form-group">
+							
+								
+								
+								<hr>
+							</div>
+							</c:if>		
+							<c:if test="${co.courseKind eq 'offline' }">
+							<div class="card-body card-block">
+                                           
+                                                <div class="form-group">
+                                              	  <label for="categoryNum" class=" form-control-label">수업등록지역(대표)</label> <br>
+                                                  <div class="col-md-5" style="display:inline-block">
+                                                 	   <select name="area" id="area" class="form-control" disabled>
+                                                 	 	  <option value="">${co.courseArea }</option>
+                                                  	     
+                                                 	   </select>
+                                               	 </div>
+                                               	 
+                                               	 
+                                               	
+                                         	   </div>                              
+                                                <hr>
+                                                
+                                                <div class="form-group">
+                                                    <label class=" form-control-label">수업 참원 인원</label><br>
+                                                    <div class="form-check-inline form-check">
+                                                        <label for="courseMinPax" class="form-check-label ">
+                                                            <input type="radio"  name="courseType" value="oneToOne" class="form-check-input" disabled <c:if test="${courseMinPax eq 1}"> checked</c:if>>1:1 수업 &nbsp;&nbsp;
+                                                        </label>
+                                                        <label for="offline" class="form-check-label ">
+                                                            <input type="radio" name="courseType" value="group" class="form-check-input" disabled <c:if test="${courseMinPax ne 1}">checked</c:if>>그룹 수업
+                                                        </label>
+                                                    </div>
+                                                    <c:if test="${courseMinPax ne 1}">
+                                                    <div>
+                                                    	<input type="number" class="form-control" style="width:200px; display:inline-block" value="${ co.courseMinPax }">명 ~ 
+                                                    	<input type="number" class="form-control" style="width:200px;display:inline-block" value="${ co.courseMaxPax }">명 
+                                                    </div>
+                                                    </c:if>
+                                                </div>                                                
+                                                <hr>
+                                                <div class="form-group">
+                                                    <label class=" form-control-label">수업 날짜/시간</label><br>
+                                                   <div class="form-group">
+														<label class=" form-control-label">* 수업 날짜/시간</label><br>
+														<div>
+															${co.courseStartDate } ~ ${co.courseEndDate }
+														</div>
+													</div>
+													<hr>
+                                                    
+     
+                                                    
+                                                </div>                                                
+                                                <hr> 
+                                              
+                                                <div class="form-group">
+                                                    <label class=" form-control-label">수업 가격*</label><br>
+                                                    <div>
+                                                    	<small class="help-block form-text">1회당 수업 시간</small><br>
+                                                    	<input type="number" class="form-control" style="width:300px; display:inline-block" value="${co.courseHours} }"> 원 &nbsp;&nbsp;
+                                                 	    <small class="help-block form-text">가격</small><br>
+                                                  	   <input type="number" class="form-control" style="width:300px; display:inline-block" value="${ co.courseHourPrice }"> 시간                              
+                                                  	   <small class="help-block form-text">수업 일수</small><br>
+                                                  	   <input type="text" class="form-control" style="width:300px; display:inline-block" value="${ co.courseDay }">                         
+                                                  	   
+                                                    </div>
+                                                    
+                                                                                    
+                                                </div>                 
+                                                <hr>
+                                                <div class="form-group">
+                                                	<img src="resources/creator/images/offline.jpg">
+                                                </div> 
+									</div>
+							
+							
+							 </c:if>
+							 	<div class="form-group">
 									<div class="col col-md-5">
 										<label for="text-input" class=" form-control-label">
 											클래스 커버 사진</label> 
 										<img src="">
 									</div>
 								</div>
-								<hr>
-							</div>
-						
-
+							
 						</div>
 					</div>
 				</div>
@@ -347,11 +423,12 @@
 					<c:url value="aApprovalCourse.do" var="aApprovalCourse">
 						<c:param value="${ co.courseNum }" name="courseNum"/>
 					</c:url>
-						<input type="button" class="btn btn-outline-primary" onclick="location.href='${aApprovalCourse}'" value="승인하기">
-						<input type="button" class="btn btn-outline-danger" onclick="location.href='${aRejectCourse}'" value="거부하기">
 					<c:url value="aRejectCourse.do" var="aRejectCourse">
 						<c:param value="${ co.courseNum }" name="courseNum"/>
 					</c:url>
+						<input type="button" class="btn btn-outline-primary" onclick="location.href='${aApprovalCourse}'" value="승인하기">
+						<input type="button" class="btn btn-outline-danger" onclick="location.href='${aRejectCourse}'" value="거부하기">
+					
 				</div>
 			</div>
 			<nav class="navbar-sidebar">

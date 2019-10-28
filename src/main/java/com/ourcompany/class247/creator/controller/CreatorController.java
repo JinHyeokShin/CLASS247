@@ -206,7 +206,7 @@ public class CreatorController {
 		
 		ArrayList<Creator> list = creService.awaitSelectList();
 		
-		mv.addObject("list", list).setViewName("admin/creator/awaitCreatorList");
+		mv.addObject("list", list).setViewName("admin/member/awaitCreatorList");
 				
 		return mv;
 	}
@@ -256,24 +256,27 @@ public class CreatorController {
 	
 	
 	@RequestMapping("aAwaitCreatorDetail.do")
-	public ModelAndView aCreatorDetail(ModelAndView mv, Creator creator) {
+	public ModelAndView aCreatorDetail(ModelAndView mv, int creNum) {
 		
-		Member m = mService.selectMember(creator.getMemNum());
+		Creator cre = creService.selectACreator(creNum);
 		
-		ArrayList<CreatorAttachment> craList = creService.selectCreatorAttachmentList(creator.getCreNum());
+		Member m = mService.selectAMember(creNum);
 		
-		mv.addObject("cre", creator).addObject("craList", craList).addObject("m", m).setViewName("admin/creator/awaitCreatorDetail");
+		ArrayList<CreatorAttachment> craList = creService.selectCreatorAttachmentList(creNum);
+		
+		mv.addObject("cre", cre).addObject("craList", craList).addObject("m", m).setViewName("admin/member/awaitCreatorDetail");
 		
 		return mv;
 		
 	}
 	
 	@RequestMapping("aApprovalCreator.do")
-	public String aApprovalCreator(int creNum) {
+	public String aApprovalCreator(int creNum, int memNum) {
 		
-		int result = creService.allowCreator(creNum);
-		
-		if(result > 0 ) {
+		int result1 = creService.allowCreator(creNum);
+		int result2 = mService.allowCreator(memNum);
+				
+		if(result1+result2 > 1 ) {
 		
 			return "redirect:aAwaitCreatorList.do";
 		}else {
@@ -308,7 +311,6 @@ public class CreatorController {
 		int result = creService.rejectCreator(creNum);
 		
 		if(result > 0 ) {
-		
 			return "redirect:aAwaitCreatorList.do";
 		}else {
 			return "common/errorPage";
@@ -316,13 +318,16 @@ public class CreatorController {
 	}
 	
 	@RequestMapping("aCreatorList.do")
-	public ModelAndView aCreatorList(ModelAndView mv) {
+	public ModelAndView selectCreatorList(ModelAndView mv) {
 		
-		ArrayList<Creator> list = creService.creSelectList();
+		ArrayList<Creator> crList = creService.selectCreatorList();
 		
-		mv.addObject("list", list).setViewName("admin/creator/creatorList");
+		ArrayList<CreatorAttachment> craList = creService.selectCreatorAttachmentList();
+		
+		mv.addObject("crlist", crList).addObject("craList", craList).setViewName("admin/member/creatorList");
 		
 		return mv;
+		
 	}
 	
 	@RequestMapping("deleteCreator.do")

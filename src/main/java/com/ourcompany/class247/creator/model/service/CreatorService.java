@@ -27,7 +27,7 @@ public interface CreatorService {
 
 	int getCourseCount(int creNum);
 	
-	
+	Creator selectACreator(int creNum);
 	
 	ArrayList<Creator> awaitSelectList();
 	
@@ -41,6 +41,10 @@ public interface CreatorService {
 	
 	//크리에이터 프로필 사진명 가져오기
 	String getCreProfile(int creNum);
+	
+	ArrayList<Creator> selectCreatorList();
+	
+	ArrayList<CreatorAttachment> selectCreatorAttachmentList();
 
 	//크리에이터 프로필 사진 변경 
 	int updateProfile(CreatorAttachment update);

@@ -5,9 +5,13 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="408480087071-isgvm5bedj36u0tmbmlsf9v7dq30v7ic.apps.googleusercontent.com">
+    
     <title>CLASS 247 - 당신을 무엇을 팔 수 있습니까?</title>
     
+<script src="https://apis.google.com/js/platform.js" async defer></script>    
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <style>
@@ -16,7 +20,7 @@
 		border: 1px solid #954CBC;
 		padding: 10px;
 		width: 40%;
-		height:42%;  
+		height:52%;  
 		border-radius: 10px;
 	}
 	table td{
@@ -74,11 +78,11 @@
 			<hr>
         	<table width="400">
 	        	<tr>
-	        		<td width="150">이메일</td>
-	        		<td class="mt-10"><input type="text" name="memId" class="primary-border" style="border-radius: 5px;"></td>
+	        		<td width="150">이메일 :</td>
+	        		<td><input type="text" name="memId" class="primary-border" style="border-radius: 5px;"></td>
 	            </tr>
 	            <tr>
-	        		<td>비밀번호</td>
+	        		<td>비밀번호 :</td>
 	        		<td><input type="password" name="memPwd" class="primary-border" style="border-radius: 5px;"></td>
 	            </tr>
             </table>
@@ -116,11 +120,25 @@
 			    };
 			  //]]>
 			</script>
-            <a href="${google_url}">
-            	<button id="btnJoinGoogle" class="btn btn-primary btn-round">
-                     <i class="fa fa-google" aria-hidden="true" ></i> 구글로 로그인하기
-         		</button>
-            </a>
+           
+           
+	    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="width:300px">구글로 로그인하기</div>
+	    <script>
+	        function onSignIn(googleUser) {
+	            // Useful data for your client-side scripts:
+	            var profile = googleUser.getBasicProfile();
+	            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+	            console.log('Full Name: ' + profile.getName());
+	            console.log('Given Name: ' + profile.getGivenName());
+	            console.log('Family Name: ' + profile.getFamilyName());
+	            console.log("Image URL: " + profile.getImageUrl());
+	            console.log("Email: " + profile.getEmail());
+	
+	            // The ID token you need to pass to your backend:
+	            var id_token = googleUser.getAuthResponse().id_token;
+	            console.log("ID Token: " + id_token);
+	        };
+	    </script>
 
             <br>
     	
