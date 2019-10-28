@@ -112,7 +112,7 @@ header {
                                 <div class="single_special_cource">
                                         <img src="resources/user/img/special_cource_1.png" class="special_img" alt="">
                                         <div class="special_cource_text">
-                                            <h4>강의료:${ c.courseHourPrice }</h4>
+                                            <h4>강의료:${ c.courseHourPrice*c.courseHour*c.courseCount }</h4>
                                                 <h3>강의제목:${ c.courseTitle }</h3>
                                             
                                             <p>수업 소개</p>
@@ -121,6 +121,7 @@ header {
                 
                                     </div>
                                 <input type="hidden" name="offline" value="${ c }"/>
+                                <input type="hidden" name="payPrice" value="${ c.courseHourPrice*c.courseHour*c.courseCount }"/>
 								<button type="submit" class="genric-btn primary-border radius"
 									style="border-radius: 5px; width: 150px; float: right; height: 50px; text-align: center; line-height: 1"
 									id="pay_btn">결제하기</button>

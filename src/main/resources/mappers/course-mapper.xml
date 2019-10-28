@@ -206,8 +206,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 클래스 상세정보 불러오기 -->
 	<select id="selectCourse" parameterType="_int" resultMap="CourseResultSet">
 		select *
-		from course 
-		join category using(category_num)
+		from single_course_view
 		where course_num = #{courseNum}
 	</select>
 	
@@ -294,7 +293,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 
 	<select id="selectCourseAttachmentList" parameterType="CourseAttachment" resultMap="CourseAttachmentResultSet">
 		select *
-		from course_attachment
+		from single_course_view
 		where course_num = #{courseNum}
 		and coa_Level = 1
 	</select>
@@ -361,7 +360,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where mem_num = #{memNum}
 		and course_num = #{courseNum}
 	</delete>
+	<!--  댓글 -->
+	 
+	<select id="selectReviewList" parameterType="_int" resultMap="ReviewResultSet">
+		select *
+		from review
+		where review_num=#{reviewNum}
+		order by reviewNum desc
+	</select>
 	
+	<insert id="insertReview" parameterType="Review">
+		insert into review
+		values(review_seq.nextval, #{reviewNum}, #{courseNum}, #{memNum}, #{reviewContent}, #{reviewScore}, default,default,default)
+	</insert>
 	<!-- 온라인 클래스만 리스트 보여주기 -->
 	<select id="payonList" resultMap="TakeCourseResultSet">
 	select *

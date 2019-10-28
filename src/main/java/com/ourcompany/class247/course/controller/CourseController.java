@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
 import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.common.Pagination;
 import com.ourcompany.class247.course.model.service.CourseService;
@@ -420,6 +424,37 @@ public class CourseController {
       mv.setViewName("user/member/memZzim");
       return mv;
    }
+   @ResponseBody
+	@RequestMapping("rinsert.do")
+	public String insertReply(Review r, HttpSession session) {
+		
+		int id = ((Member)session.getAttribute("loginUser")).getMemNum();
+		
+		r.setMemNum(id); // 작성한 회원 아이디 담기
+		
+		int result = coService.insertReview(r);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+		
+	}
+   @RequestMapping("rlist.do")
+	public void getReplyList(int rId, HttpServletResponse response) throws JsonIOException, IOException {
+		
+		ArrayList<Review> list = coService.selectReviewList(rId);
+		
+		//System.out.println(list);
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new Gson();
+		gson.toJson(list, response.getWriter());
+		
+		
+	}
 
    /**  검색창에서 텍스트로 검색하는 메소드
     * @param search
@@ -568,13 +603,11 @@ public class CourseController {
       
    }
    @RequestMapping("coBuy2.do")
-   public ModelAndView coursePayment2(HttpServletRequest request,int courseNum, String courseKind, ModelAndView mv) {
+   public ModelAndView coursePayment2(Online online,int courseNum, ModelAndView mv) {
       Course c;
-         if(courseKind.equals("online")) {
+      
              c = coService.selectOnline(courseNum);
-         }else {
-             c = coService.selectOffline(courseNum);
-         }
+        
          System.out.print(c);
          
          if(c != null) {
@@ -592,9 +625,9 @@ public class CourseController {
    @ResponseBody
    @RequestMapping("insertpayment.do")
    public String insertPayment(HttpServletRequest request,Course c, Offline offline, Model model,
-		   				@RequestParam("paymethod") String payMethod) {
+		   				@RequestParam("paymethod") String payMethod,@RequestParam("payPrice") int payPrice) {
 	   Member loginUser = (Member)request.getSession().getAttribute("loginUser");
-	   Payment payment= new Payment(loginUser.getMemNum(),c.getCourseNum(),offline.getCourseHourPrice(),payMethod);
+	   Payment payment= new Payment(loginUser.getMemNum(),c.getCourseNum(),payPrice ,payMethod);
 	  System.out.println(payment);
 	   int result = coService.insertPayment(payment);
 	      

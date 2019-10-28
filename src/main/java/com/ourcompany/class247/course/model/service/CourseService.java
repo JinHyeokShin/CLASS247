@@ -8,6 +8,7 @@ import com.ourcompany.class247.course.model.vo.CourseAttachment;
 import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
+import com.ourcompany.class247.course.model.vo.Reply;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
@@ -144,4 +145,11 @@ public interface CourseService {
 	Course coursePayment(int courseNum);
 	
 	int insertPayment(Payment payment);
+	
+	// 7. 게시글에 딸려있는 댓글 리스트 조회
+		ArrayList<Review> selectReviewList(int rId);
+		
+		
+		// 8. 댓글 작성하기 
+		int insertReview(Review r);
 }

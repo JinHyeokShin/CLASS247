@@ -12,6 +12,7 @@ import com.ourcompany.class247.course.model.vo.CourseAttachment;
 import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
+import com.ourcompany.class247.course.model.vo.Reply;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
@@ -250,6 +251,17 @@ public class CourseServiceImpl implements CourseService {
       
       return coDao.coursePayment(courseNum);
    }
+   
+   @Override
+	public ArrayList<Review> selectReviewList(int rId) {
+		return coDao.selectReviewList(rId);
+	}
+
+	@Override
+	public int insertReview(Review r) {
+		return coDao.insertReview(r);
+	}	
+	
    // 수강페이지를 위한 온라인상세페이지
    @Override
    public Online selectOnline(int courseNum) {

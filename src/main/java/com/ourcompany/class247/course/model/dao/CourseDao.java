@@ -13,6 +13,7 @@ import com.ourcompany.class247.course.model.vo.CourseAttachment;
 import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
+import com.ourcompany.class247.course.model.vo.Reply;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
@@ -129,7 +130,8 @@ public class CourseDao {
       return sqlSession.update("courseMapper.allowCourse", courseNum);
    }
 
-   // 김은
+   // --------------------------------------------------김은기--------------------------------------------------
+   
 
    
      public Course selectCourse(int courseNum) {
@@ -194,7 +196,14 @@ public class CourseDao {
       return (ArrayList)sqlSession.selectList("courseMapper.selectMyTakeCourse", memNum);
    }
    
-   
+   public ArrayList<Review> selectReviewList(int rId){
+		return (ArrayList)sqlSession.selectList("courseMapper.selectReviewList", rId);
+	}
+	
+	public int insertReview(Review r) {
+		return sqlSession.insert("courseMapper.insertReview", r);
+	}
+	
    
    //사용자 단
    
@@ -435,9 +444,6 @@ public class CourseDao {
       return (ArrayList)sqlSession.selectList("courseMapper.offlinecategoryCareerList");
    }
 
-
-
-   
    public ArrayList<SingleCourse> mySingleCourseList(int creNum) {
       return (ArrayList)sqlSession.selectList("courseMapper.mySingleCourseList", creNum);
    }
