@@ -153,7 +153,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by cre_num desc
 	</select>
 	
-	<select id="aselectCreatorAttachmentList" resultMap="creatorAttachmentResultSet">
+	<select id="aSelectCreatorAttachmentList" resultMap="creatorAttachmentResultSet">
 		select *
 		from creator_attachment
 		where coa_level = 1
