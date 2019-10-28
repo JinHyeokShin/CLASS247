@@ -207,8 +207,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 클래스 상세정보 불러오기 -->
 	<select id="selectCourse" parameterType="_int" resultMap="CourseResultSet">
 		select *
-		from course 
-		join category using(category_num)
+		from single_course_view 
 		where course_num = #{courseNum}
 	</select>
 	

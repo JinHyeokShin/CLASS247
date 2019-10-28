@@ -67,6 +67,16 @@ private PaymentDao pDao;
 		return pDao.selectPowerList();
 	}
 
+	@Override
+	public int jhinsertPayment(Payment p) {
+		return pDao.jhinsertPayment(p);
+	}
+
+	@Override
+	public int jhinsertTakeCoruse(TakeCourse t) {
+		return pDao.jhinsertTakeCourse(t);
+	}
+
 
 
 

@@ -365,19 +365,13 @@ star-input>.input.focus{outline:1px dotted #ddd;}
 
                         </ul>
                         	  
-                        	 <c:if test="${ c.courseKind eq 'online' }">
-	                        <c:url  value="coBuyOn.do" var="coBuyOn">
+                        	
+	                        <c:url  value="coBuy.do" var="coBuyOn">
 								<c:param name="courseNum" value="${ c.courseNum }"/>
-								
 							</c:url>		
 								<a href="${ coBuyOn }" class="btn_1 d-block">수강하기</a>					
-							</c:if>
-							<c:if test="${ c.courseKind eq 'offline' }">
-                              <c:url  value="coBuyOff.do" var="coBuyOff">
-								<c:param name="courseNum" value="${ c.courseNum }"/>
-							</c:url>	
-								<a href="${ coBuyOff }" class="btn_1 d-block">수강하기</a>				
-                                    </c:if>
+							
+							
                         	
                     </div>
 

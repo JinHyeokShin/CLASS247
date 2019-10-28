@@ -527,34 +527,8 @@ public class CourseController {
       
    }
    
-   @RequestMapping("coBuyOn.do")
-   public ModelAndView coursePaymentOn(HttpServletRequest request,int courseNum, String courseKind, ModelAndView mv) {
-      Course c;
-      Member loginUser = (Member)request.getSession().getAttribute("loginUser");
-      
-         if(loginUser ==null) {
-            mv.setViewName("user/member/loginForm");
-         }else {
-         
-             c = coService.selectOnline(courseNum);
-         
-         System.out.print(c);
-         
-         if(c != null) {
-            mv.addObject("c", c)
-            .setViewName("creator/course/userCourseDetail2");
-            
-         }else {
-            mv.addObject("msg", "게시글 상세조회실패!")
-            .setViewName("common/errorPage");
-         }
-      }
-      
-      return mv;
-      
-   }
-   @RequestMapping("coBuyOff.do")
-   public ModelAndView coursePaymentOff(HttpServletRequest request,int courseNum, String courseKind, ModelAndView mv) {
+   @RequestMapping("coBuy.do")
+   public ModelAndView coursePayment(HttpServletRequest request,int courseNum, String courseKind, ModelAndView mv) {
 	   		Course c;
 	   		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 	      
@@ -563,38 +537,20 @@ public class CourseController {
 	         }else {
 	            	c = coService.selectCourse(courseNum);
 	            	System.out.println(c);
+	            	
          
-         if(c != null) {
+         if(c != null && c.getCourseKind().equals("offline")) {
             mv.addObject("c", c)
             .setViewName("user/course/userCourseDetailOff");
             
+         }else if(c != null && c.getCourseKind().equals("online")){
+        	 mv.addObject("c", c)
+             .setViewName("user/course/userCourseDetailOn");
          }else {
-            mv.addObject("msg", "게시글 상세조회실패!")
-            .setViewName("common/errorPage");
+        	 mv.addObject("msg", "게시글 상세조회실패!")
+             .setViewName("common/errorPage");
          }
 	   }
-      
-      return mv;
-      
-   }
-   @RequestMapping("coBuy2.do")
-   public ModelAndView coursePayment2(HttpServletRequest request,int courseNum, String courseKind, ModelAndView mv) {
-      Course c;
-         if(courseKind.equals("online")) {
-             c = coService.selectOnline(courseNum);
-         }else {
-             c = coService.selectOffline(courseNum);
-         }
-         System.out.print(c);
-         
-         if(c != null) {
-            mv.addObject("c", c)
-            .setViewName("user/course/userCourseDetail3");
-            
-         }else {
-            mv.addObject("msg", "게시글 상세조회실패!")
-            .setViewName("common/errorPage");
-         }
       
       return mv;
       

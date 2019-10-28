@@ -61,11 +61,11 @@ public class PaymentController {
 	
 	@ResponseBody
 	@RequestMapping("payment.do")
-	public String payment(ModelAndView mv, Payment p, TakeCourse t) {
-		System.out.println(p);
-		System.out.println(t);
+	public String payment(Payment p, TakeCourse t) {
+		pService.jhinsertPayment(p);
+		pService.jhinsertTakeCoruse(t);
 		
-		return "home.do";
+		return t.getTakeCode();
 	}
 	
 	@RequestMapping("aPayment.do")

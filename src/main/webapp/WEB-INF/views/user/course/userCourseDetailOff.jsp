@@ -12,6 +12,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>CLASS 247</title>
 <link rel="icon" href="resources/user/img/favicon.png">
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <!-- JavaScript -->
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/alertify.min.js"></script>
@@ -108,7 +109,8 @@ header {
 										<img src="resources/user/img/special_cource_1.png"
 											class="special_img" alt="">
 											<h3>강의제목:${ c.courseTitle }</h3>
-
+											
+											<h3>강의료 : ${ c.courseHourPrice }</h3>
 											<p>수업 소개</p>
 											<span>${c.courseContent }</span>
 										</div>
@@ -117,8 +119,10 @@ header {
 									<input type="hidden" name="offline" value="${ c }" />
 									<button type="button" class="genric-btn primary-border radius"
 									 style="border-radius: 5px; width: 150px; float: right; height: 50px; text-align: center; line-height: 1;"
-									 
-									 id="pay_btn" onclick="kakao();">결제하기</button>
+									 id="pay_btn" onclick="inicis();">일반 결제</button>
+									 <button type="button" class="genric-btn primary-border radius"
+									 style="border-radius: 5px; width: 150px; float: right; height: 50px; text-align: center; line-height: 1;"
+									 id="pay_btn" onclick="kakao();">카카오페이로 결제하기</button>
 								</div>
 							</div>
 						</div>
@@ -126,7 +130,50 @@ header {
 				</div>
 	</section>
 	<script>
-				
+	function inicis() {
+
+    	IMP.init('imp79990634');
+    
+    	IMP.request_pay({
+    	    pg : 'inicis',	/* 결제PG사 */
+    	    pay_method : 'card',/* 결제방법 */
+    	    merchant_uid : 'T' + new Date().getTime(),	/* 주문번호 */
+    	    name : '${c.courseTitle}',	/* 주문이름 */
+    	    amount : 100,		/* 결제 가격 */
+    	    buyer_email : '${loginUser.memId}',	/* 구매자 이멜 */
+    	    buyer_name :  '${loginUser.memName}',			/* 구매자 이름 */
+    	    buyer_tel :  '${loginUser.memPhone}',	
+    	}, function(rsp) {
+    		
+    		console.log(rsp.apply_num);
+    		if ( rsp.success ) {
+    		$.ajax({
+    			url:"payment.do",
+    			type:"post",
+    			data:{payCode:rsp.imp_uid,
+    				  reservNum:rsp.merchant_uid,
+    				  payPrice:rsp.paid_amount,
+    				  confirmNum:rsp.apply_num,
+    				  payMethod:'C',
+    				  takeCode:rsp.merchant_uid,
+    				  confirmNum:rsp.apply_num,
+    				  memNum:'${loginUser.memNum}',
+    				  courseNum:'${c.courseNum}',
+    				  payPrice:'${ c.courseHourPrice }',
+    				  takePrice:'${ c.courseHourPrice }'
+    				 },
+    			success:function(data){
+    				location.href="complete.do?takeCode=" + data;
+    			},
+    			error:function(){
+    				alertify.alert('', '결제 실패');
+    			}
+    		});/* ajax close */
+    		}else{
+    			alertify.alert('', '결제를 취소하셨습니다.');
+    		}/* ajax close */
+    	});		/* function(rsp) close */
+}
 			
 				function kakao() {
 
@@ -144,16 +191,15 @@ header {
 				    	}, function(rsp) {
 				    		
 				    		console.log(rsp.apply_num);
-				    		
+				    		if ( rsp.success ) {
 				    		$.ajax({
 				    			url:"payment.do",
 				    			type:"post",
-				    			data:{payNum:rsp.imp_uid,
+				    			data:{payCode:rsp.imp_uid,
 				    				  reservNum:rsp.merchant_uid,
 				    				  payPrice:rsp.paid_amount,
 				    				  confirmNum:rsp.apply_num,
-				    				  payMethod:$("input[name=payMethod]").val(),
-				    				  payCode:rsp.imp_uid,
+				    				  payMethod:'K',
 				    				  takeCode:rsp.merchant_uid,
 				    				  confirmNum:rsp.apply_num,
 				    				  memNum:'${loginUser.memNum}',
@@ -162,17 +208,16 @@ header {
 				    				  takePrice:'${ c.courseHourPrice }'
 				    				 },
 				    			success:function(data){
-				    				location.href="home.do?reservNum=" + data;
+				    				location.href="complete.do?takeCode=" + data;
 				    			},
 				    			error:function(){
 				    				alertify.alert('', '결제 실패');
-				    			}			    			
-				    			
-				    		});	/* ajax close */
+				    			}
+				    		});/* ajax close */
+				    		}else{
+				    			alertify.alert('', '결제를 취소하셨습니다.');
+				    		}/* ajax close */
 				    	});		/* function(rsp) close */
-				    
-				    
-				    
 				}
 				</script>
 	<!--================ End Course Details Area =================-->

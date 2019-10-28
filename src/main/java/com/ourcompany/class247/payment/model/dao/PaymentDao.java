@@ -66,4 +66,11 @@ public class PaymentDao {
 		return (ArrayList)sqlSession.selectList("paymentMapper.selectPowerList");
 	}
 	
+	public int jhinsertPayment(Payment p) {
+		return sqlSession.insert("paymentMapper.jhinsertPayment", p);
+	}
+	
+	public int jhinsertTakeCourse(TakeCourse t) {
+		return sqlSession.insert("paymentMapper.jhinsertTakeCourse",t);
+	}
 }
