@@ -24,6 +24,7 @@
 		<typeAlias type="com.ourcompany.class247.course.model.vo.Course" alias="Course"/>
 		<typeAlias type="com.ourcompany.class247.payment.model.vo.Payment" alias="Payment"/>	
 		<typeAlias type="com.ourcompany.class247.chat.model.vo.Chat" alias="Chat"/>
+		<typeAlias type="com.ourcompany.class247.chat.model.vo.ChatList" alias="ChatList"/>
 		<typeAlias type="com.ourcompany.class247.payment.model.vo.Chart" alias="Chart"/>
 	</typeAliases>
 	

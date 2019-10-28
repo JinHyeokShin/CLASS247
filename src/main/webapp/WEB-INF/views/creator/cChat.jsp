@@ -110,7 +110,8 @@
                 
                 	<script>
 		$(function(){
-			var roomId = 1;
+		var roomId = ${roomId};
+			
 			
 			$.ajax({
 				url:"getChatList.do",
