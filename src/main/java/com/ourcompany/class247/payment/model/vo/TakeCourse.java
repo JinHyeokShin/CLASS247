@@ -5,6 +5,7 @@ import java.sql.Date;
 public class TakeCourse {
 	
 	   private int takeNum;
+	   private String takeCode;
 	   private int memNum;
 	   private String memNickName;//new
 	   private int payNum;
@@ -30,12 +31,13 @@ public class TakeCourse {
 		
 	}
 
-	public TakeCourse(int takeNum, int memNum, String memNickName, int payNum, int courseNum, String courseTitle,
-			String categoryName, String creNickname, String courseKind, String courseLevel, Date courseStartDate,
-			Date courseEndDate, String coaRname, int coursePrice, int payPrice, String courseArea, int courseHourPrice,
-			String courseApproved, String takePrice, Date takeDate, String takeStatus) {
+	public TakeCourse(int takeNum, String takeCode, int memNum, String memNickName, int payNum, int courseNum,
+			String courseTitle, String categoryName, String creNickname, String courseKind, String courseLevel,
+			Date courseStartDate, Date courseEndDate, String coaRname, int coursePrice, int payPrice, String courseArea,
+			int courseHourPrice, String courseApproved, String takePrice, Date takeDate, String takeStatus) {
 		super();
 		this.takeNum = takeNum;
+		this.takeCode = takeCode;
 		this.memNum = memNum;
 		this.memNickName = memNickName;
 		this.payNum = payNum;
@@ -64,6 +66,14 @@ public class TakeCourse {
 
 	public void setTakeNum(int takeNum) {
 		this.takeNum = takeNum;
+	}
+
+	public String getTakeCode() {
+		return takeCode;
+	}
+
+	public void setTakeCode(String takeCode) {
+		this.takeCode = takeCode;
 	}
 
 	public int getMemNum() {
@@ -228,15 +238,17 @@ public class TakeCourse {
 
 	@Override
 	public String toString() {
-		return "TakeCourse [takeNum=" + takeNum + ", memNum=" + memNum + ", memNickName=" + memNickName + ", payNum="
-				+ payNum + ", courseNum=" + courseNum + ", courseTitle=" + courseTitle + ", categoryName="
-				+ categoryName + ", creNickname=" + creNickname + ", courseKind=" + courseKind + ", courseLevel="
-				+ courseLevel + ", courseStartDate=" + courseStartDate + ", courseEndDate=" + courseEndDate
-				+ ", coaRname=" + coaRname + ", coursePrice=" + coursePrice + ", payPrice=" + payPrice + ", courseArea="
-				+ courseArea + ", courseHourPrice=" + courseHourPrice + ", courseApproved=" + courseApproved
-				+ ", takePrice=" + takePrice + ", takeDate=" + takeDate + ", takeStatus=" + takeStatus + "]";
+		return "TakeCourse [takeNum=" + takeNum + ", takeCode=" + takeCode + ", memNum=" + memNum + ", memNickName="
+				+ memNickName + ", payNum=" + payNum + ", courseNum=" + courseNum + ", courseTitle=" + courseTitle
+				+ ", categoryName=" + categoryName + ", creNickname=" + creNickname + ", courseKind=" + courseKind
+				+ ", courseLevel=" + courseLevel + ", courseStartDate=" + courseStartDate + ", courseEndDate="
+				+ courseEndDate + ", coaRname=" + coaRname + ", coursePrice=" + coursePrice + ", payPrice=" + payPrice
+				+ ", courseArea=" + courseArea + ", courseHourPrice=" + courseHourPrice + ", courseApproved="
+				+ courseApproved + ", takePrice=" + takePrice + ", takeDate=" + takeDate + ", takeStatus=" + takeStatus
+				+ "]";
 	}
 
+	
 
 
 

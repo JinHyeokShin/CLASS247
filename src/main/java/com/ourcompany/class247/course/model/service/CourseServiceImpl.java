@@ -19,247 +19,240 @@ import com.ourcompany.class247.review.model.vo.Review;
 @Service("coService")
 public class CourseServiceImpl implements CourseService {
 
-   @Autowired
-   private CourseDao coDao;
+	@Autowired
+	private CourseDao coDao;
 
-   /**
-    * 1. 온라인 클래스 추가
-    */
-   @Override
-   public int insertCourse(Course co, Online online) {
+	/**
+	 * 1. 온라인 클래스 추가
+	 */
+	@Override
+	public int insertCourse(Course co, Online online) {
 
-      int result = coDao.insertCourse(co);
+		int result = coDao.insertCourse(co);
 
-      int result2 = 0;
-      if (result > 0) {
-         result2 = coDao.insertOnline(online);
-      }
+		int result2 = 0;
+		if (result > 0) {
+			result2 = coDao.insertOnline(online);
+		}
 
-      if (result > 0 && result2 > 0) {
-         return 1;
-      } else {
-         return 0;
-      }
+		if (result > 0 && result2 > 0) {
+			return 1;
+		} else {
+			return 0;
+		}
 
-   }
+	}
 
-   /**
-    * 1_1. 오프라인 클래스 추가
-    */
-   public int insertCourse(Course co, Offline offline) {
-      return coDao.insertCourse(co, offline);
-   }
+	/**
+	 * 1_1. 오프라인 클래스 추가
+	 */
+	public int insertCourse(Course co, Offline offline) {
+		return coDao.insertCourse(co, offline);
+	}
 
-   /**
-    * 1_2. 클래스 커버사진 추가
-    */
-   @Override
-   public int insertCoverImage(CourseAttachment cover) {
-      return coDao.insertCoverImage(cover);
-   }
+	/**
+	 * 1_2. 클래스 커버사진 추가
+	 */
+	@Override
+	public int insertCoverImage(CourseAttachment cover) {
+		return coDao.insertCoverImage(cover);
+	}
 
-   /**
-    * 2. 내 클래스 리스트 가져오기
-    * 
-    * @return
-    */
-   @Override
-   public ArrayList<Course> selectMyCoList(int creNum) {
-      return coDao.selectMyCoList(creNum);
+	/**
+	 * 2. 내 클래스 리스트 가져오기
+	 * 
+	 * @return
+	 */
+	@Override
+	public ArrayList<Course> selectMyCoList(int creNum) {
+		return coDao.selectMyCoList(creNum);
 
-   }
+	}
 
-   /**
-    * 3. 클래스 메인커버사진리스트 가져오기
-    */
-   @Override
-   public ArrayList<CourseAttachment> selectCoverList(int creNum) {
-      return coDao.selectCoverList(creNum);
-   }
+	/**
+	 * 3. 클래스 메인커버사진리스트 가져오기
+	 */
+	@Override
+	public ArrayList<CourseAttachment> selectCoverList(int creNum) {
+		return coDao.selectCoverList(creNum);
+	}
 
-   // -------------------- 크리에이터 -------------------
+	// -------------------- 크리에이터 -------------------
 
-   
-     @Override
-     
-     public Course creSelectCourse(int courseNum, String courseKind) { 
-        return coDao.selectCourse(courseNum, courseKind);
-    
-     }
+	
+	  @Override
+	  
+	  public Course creSelectCourse(int courseNum, String courseKind) { 
+		  return coDao.selectCourse(courseNum, courseKind);
+	 
+	  }
 
-   @Override
-   public CourseAttachment selectCover(int courseNum) {
-      return coDao.selectCover(courseNum);
-   }
-   
-   /** 승인 대기중인 클래스 
-    *
-    */
-   @Override
-   public ArrayList<Course> selectAwaitByCreNum(int creNum) {
-      return coDao.selectAwaitByCreNum(creNum);
-   }
-   
-   
-   /** 개강중인 클래스 수 
-    *
-    */
-   @Override
-   public int getCourseCount(int creNum) {
-      return coDao.getCourseCount(creNum);
-   }
-
-
-   // --------------------- 관리자-------------------
-
-   /**
-    *
-    */
-   @Override
-   public ArrayList<Course> selectAwaitCourseList() {
-
-      return coDao.selectAwaitCourseList();
-   }
+	@Override
+	public CourseAttachment selectCover(int courseNum) {
+		return coDao.selectCover(courseNum);
+	}
+	
+	/** 승인 대기중인 클래스 
+	 *
+	 */
+	@Override
+	public ArrayList<Course> selectAwaitByCreNum(int creNum) {
+		return coDao.selectAwaitByCreNum(creNum);
+	}
+	
+	
+	/** 개강중인 클래스 수 
+	 *
+	 */
+	@Override
+	public int getCourseCount(int creNum) {
+		return coDao.getCourseCount(creNum);
+	}
 
 
+	// --------------------- 관리자-------------------
 
-   @Override
-   public ArrayList<CourseAttachment> selectCourseAttachmentList(int courseNum) {
+	/**
+	 *
+	 */
+	@Override
+	public ArrayList<Course> selectAwaitCourseList() {
 
-      return coDao.selectCourseAttachmentList(courseNum);
-   }
+		return coDao.selectAwaitCourseList();
+	}
 
-   @Override
-   public int allowCourse(int courseNum) {
-      return coDao.allowCourse(courseNum);
-   }
 
-   @Override
-   public Course selectCourse(int cId, String courseKind) {
 
-      return coDao.selectCourse(cId, courseKind);
-   }
+	@Override
+	public ArrayList<CourseAttachment> selectCourseAttachmentList(int courseNum) {
 
-   public int rejectCourse(int courseNum) {
-      return coDao.rejectCourse(courseNum);
-   }
-   
-   
-   @Override
-   public Course selectCourse(int courseNum) {
-      return coDao.selectCourse(courseNum);
-   }
-   
-
-   
-   @Override
-   public ArrayList<Course> selectList() {
-
-      return coDao.selectList();
-   }
-   
-
-//   @Override
-//   public int coursePayment(int courseNum, String courseKind) {
-//      return coDao.coursePayment(courseNum, courseKind);
-//   }
-
-   @Override
-   public ArrayList<Course> modalsearchList(String search) {
-      return coDao.modalsearchList(search);
-   }
-
-   @Override
-   public ArrayList<Course> modalsearchCategory(String categoryName) {
-      return coDao.modalsearchCategory(categoryName);
-   }
-   
-   @Override
-   public ArrayList<Love> selectLove() {
-      
-      return coDao.selectLove();
-   }
-   
-   @Override
-   public ArrayList<SingleCourse> awaitSelectList() {
-      
-      return coDao.awaitSelectList();
-   
-   }
-   
-   @Override
-   public ArrayList<SingleCourse> selectMyTakeCourse(int memNum) {
-      return coDao.selectMyTakeCourse(memNum);
-   }
-   
-   //사용자 단
-
-   @Override
-   public int getListCount() {
-      
-      return coDao.getListCount();
-   }
-
-   @Override
-   public ArrayList<Love> lovelist(int memNum, PageInfo pi) {
-      
-      return coDao.lovelist(memNum, pi);
-   }
-   
-   @Override
-   public int deleteLove(Love i) {
-      return coDao.deleteLove(i);
-   }
-   
-   @Override
-   public ArrayList<SingleCourse> mySingleCourseList(int creNum) {
-      
-      
-      ArrayList<SingleCourse> coList = coDao.mySingleCourseList(creNum);
-      
-      System.out.println(coList);
-      
-      return coList;
-   }
-
-   @Override
-   public Offline selectOffline(int courseNum) {
-      return coDao.selectOffline(courseNum);
-   }
-
-   @Override
-   public boolean checkLove(Love love) {
-      
-      return coDao.checkLove(love);
-   }
-
-   @Override
-   public int insertLove(Love iLove) {
-      
-      return coDao.insertLove(iLove);
-   }
-
-   @Override
-   public int cancelLove(Love dLove) {
-      
-      return coDao.cancelLove(dLove);
-   }
-
-   @Override
-   public Course coursePayment(int courseNum) {
-      
-      return coDao.coursePayment(courseNum);
-   }
-   
-   @Override
-	public ArrayList<Review> selectReviewList(int rId) {
-		return coDao.selectReviewList(rId);
+		return coDao.selectCourseAttachmentList(courseNum);
 	}
 
 	@Override
-	public int insertReview(Review r) {
-		return coDao.insertReview(r);
-	}	
+	public int allowCourse(int courseNum) {
+		return coDao.allowCourse(courseNum);
+	}
+
+
+	public int rejectCourse(int courseNum) {
+		return coDao.rejectCourse(courseNum);
+	}
+	
+	
+	@Override
+	public Course selectCourse(int courseNum) {
+		return coDao.selectCourse(courseNum);
+	}
+	
+
+	
+	@Override
+	public ArrayList<Course> selectList() {
+
+		return coDao.selectList();
+	}
+	
+
+//	@Override
+//	public int coursePayment(int courseNum, String courseKind) {
+//		return coDao.coursePayment(courseNum, courseKind);
+//	}
+
+	@Override
+	public ArrayList<Course> modalsearchList(String search) {
+		return coDao.modalsearchList(search);
+	}
+
+	@Override
+	public ArrayList<Course> modalsearchCategory(String categoryName) {
+		return coDao.modalsearchCategory(categoryName);
+	}
+	
+	@Override
+	public ArrayList<Love> selectLove() {
+		
+		return coDao.selectLove();
+	}
+	
+	@Override
+	public ArrayList<SingleCourse> awaitSelectList() {
+		
+		return coDao.awaitSelectList();
+	
+	}
+	
+	@Override
+	public ArrayList<SingleCourse> selectMyTakeCourse(int memNum) {
+		return coDao.selectMyTakeCourse(memNum);
+	}
+	
+	//사용자 단
+
+	@Override
+	public int getListCount() {
+		
+		return coDao.getListCount();
+	}
+
+	@Override
+	public ArrayList<Love> lovelist(int memNum, PageInfo pi) {
+		
+		return coDao.lovelist(memNum, pi);
+	}
+	
+	@Override
+	public int deleteLove(Love i) {
+		return coDao.deleteLove(i);
+	}
+	
+	@Override
+	public ArrayList<SingleCourse> mySingleCourseList(int creNum) {
+		
+		ArrayList<SingleCourse> coList = coDao.mySingleCourseList(creNum);
+		
+		return coList;
+	}
+
+	@Override
+	public Offline selectOffline(int courseNum) {
+		return coDao.selectOffline(courseNum);
+	}
+
+	@Override
+	public boolean checkLove(Love love) {
+		
+		return coDao.checkLove(love);
+	}
+
+	@Override
+	public int insertLove(Love iLove) {
+		
+		return coDao.insertLove(iLove);
+	}
+
+	@Override
+	public int cancelLove(Love dLove) {
+		
+		return coDao.cancelLove(dLove);
+	}
+
+	@Override
+	public Course coursePayment(int courseNum) {
+		
+		return coDao.coursePayment(courseNum);
+	}
+	// 수강페이지를 위한 온라인상세페이지
+	@Override
+	public Online selectOnline(int courseNum) {
+		return coDao.selectOnline(courseNum);
+	}
+
+	@Override
+	public ArrayList<Review> selectRlist(int courseNum) {
+		return coDao.selectRlist(courseNum);
+	}
+
 	
    // 수강페이지를 위한 온라인상세페이지
    @Override
@@ -468,4 +461,15 @@ public int insertPayment(Payment payment) {
 	public int offlineCourseCount() {
 		return coDao.offlineCourseCount();
 	}
+
+	@Override
+	public int insertPayment(Payment payment) {
+		return coDao.insertPayment(payment);
+	}
+
+	@Override
+	public Course selectCourse(int courseNum, String courseKind) {
+		return null;
+	}
+
 }

@@ -19,6 +19,7 @@ import com.ourcompany.class247.payment.model.service.PamentServiceImpl;
 import com.ourcompany.class247.payment.model.service.PaymentService;
 import com.ourcompany.class247.payment.model.vo.Delivery;
 import com.ourcompany.class247.payment.model.vo.Payment;
+import com.ourcompany.class247.payment.model.vo.TakeCourse;
 
 @Controller
 public class PaymentController {
@@ -26,10 +27,6 @@ public class PaymentController {
 	
 	@Autowired
 	private PamentServiceImpl pService;
-	
-	
-	
-
 	
 	/**
 	 * 수강 중 온라인,오프라인 수업 리스트 뽑기
@@ -60,6 +57,15 @@ public class PaymentController {
 		mv.addObject("delist", delist);
 		mv.setViewName("user/member/memDelivery");
 		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping("payment.do")
+	public String payment(ModelAndView mv, Payment p, TakeCourse t) {
+		System.out.println(p);
+		System.out.println(t);
+		
+		return "home.do";
 	}
 	
 	@RequestMapping("aPayment.do")
