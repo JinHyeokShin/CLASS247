@@ -134,11 +134,6 @@ public class CourseServiceImpl implements CourseService {
 		return coDao.allowCourse(courseNum);
 	}
 
-	@Override
-	public Course selectCourse(int cId, String courseKind) {
-
-		return coDao.selectCourse(cId, courseKind);
-	}
 
 	public int rejectCourse(int courseNum) {
 		return coDao.rejectCourse(courseNum);
@@ -454,6 +449,11 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public int insertPayment(Payment payment) {
 		return coDao.insertPayment(payment);
+	}
+
+	@Override
+	public Course selectCourse(int courseNum, String courseKind) {
+		return null;
 	}
 
 }

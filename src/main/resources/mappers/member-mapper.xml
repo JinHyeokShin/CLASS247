@@ -64,6 +64,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="amount" column="amount"/>
 	</resultMap>
 	
+	
 	 <!-- 1. 로그인 -->
 	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
 		select *
@@ -192,7 +193,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where mem_num = #{memNum}
 	</select>
 	
-	<select id="selectCouponList" resultMap="Coupon">
+	<select id="selectCouponList" resultMap="couponResultSet">
 		        select coupon_type, coupon_name, coupon_discount, coupon_start_date, coupon_end_date, count(*) "C_COUNT"
         from (            
             select coupon_type, coupon_name, coupon_discount, coupon_start_date, coupon_end_date, count(*) "C_COUNT"
@@ -218,7 +219,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         group by coupon_type, coupon_name, coupon_discount, coupon_start_date, coupon_end_date
 	</select>
 	
-	<select id="selectCoupon" parameterType="_int" resultMap="CouponResultSet">
+	<select id="selectCoupon" parameterType="_int" resultMap="couponResultSet">
 		select *
 		from coupon
 		where coupon_type = #{couponType}
