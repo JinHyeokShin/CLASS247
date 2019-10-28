@@ -7,6 +7,7 @@ public class Payment {
 	private int payNum;				//결제번호
 	private int memNum;				//회원번호
 	private String memName;
+	private String payCode;
 	private int courseNum;
 	private int courseTitle;		//클래스이름
 	private int payPrice;			//결제금액
@@ -37,12 +38,18 @@ public class Payment {
 
 
 
-	public Payment(int payNum, int memNum, String memName, int courseNum, int courseTitle, int payPrice,
+	
+
+
+
+
+	public Payment(int payNum, int memNum, String memName, String payCode, int courseNum, int courseTitle, int payPrice,
 			String payMethod, String payCancel, Date payDate, Date payCancelDate) {
 		super();
 		this.payNum = payNum;
 		this.memNum = memNum;
 		this.memName = memName;
+		this.payCode = payCode;
 		this.courseNum = courseNum;
 		this.courseTitle = courseTitle;
 		this.payPrice = payPrice;
@@ -86,6 +93,23 @@ public class Payment {
 
 	public void setMemName(String memName) {
 		this.memName = memName;
+	}
+	
+	
+
+
+
+
+
+
+	public String getPayCode() {
+		return payCode;
+	}
+
+
+
+	public void setPayCode(String payCode) {
+		this.payCode = payCode;
 	}
 
 
@@ -176,11 +200,14 @@ public class Payment {
 
 	@Override
 	public String toString() {
-		return "Payment [payNum=" + payNum + ", memNum=" + memNum + ", memName=" + memName + ", courseNum=" + courseNum
-				+ ", courseTitle=" + courseTitle + ", payPrice=" + payPrice + ", payMethod=" + payMethod
-				+ ", payCancel=" + payCancel + ", payDate=" + payDate + ", payCancelDate=" + payCancelDate + "]";
+		return "Payment [payNum=" + payNum + ", memNum=" + memNum + ", memName=" + memName + ", payCode=" + payCode
+				+ ", courseNum=" + courseNum + ", courseTitle=" + courseTitle + ", payPrice=" + payPrice
+				+ ", payMethod=" + payMethod + ", payCancel=" + payCancel + ", payDate=" + payDate + ", payCancelDate="
+				+ payCancelDate + "]";
 	}
-	
+
+
+
 	
 
 

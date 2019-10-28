@@ -6,6 +6,7 @@
 	<id property="payNum" column="pay_num"/>
 	<result property="memNum" column="mem_num"/>
 	<result property="memName" column="mem_name"/>
+	<result property="payCode" column="pay_code"/>
 	<result property="courseNum" column="course_num"/>
 	<result property="courseTitle" column="course_title"/>
 	<result property="payPrice" column="pay_Price"/>
@@ -38,7 +39,7 @@
 	</select>
 	
 	<select id="selectPowerList" resultType="PaymentResultSet">
-		select pay_num, p.mem_num, mem_name, p.course_num, course_title, pay_price, pay_method, pay_cancel, pay_date, pay_cancel_date
+		select pay_num, p.mem_num, mem_name, p.course_num, course_title,pay_code, pay_price, pay_method, pay_cancel, pay_date, pay_cancel_date
 		from payment p
 		join course c on(p.course_num = c.course_num)
 		join member m on(p.mem_num = m.mem_num)

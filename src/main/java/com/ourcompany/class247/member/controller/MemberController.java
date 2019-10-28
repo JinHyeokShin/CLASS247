@@ -303,7 +303,7 @@ public class MemberController {
 
 
 	
-	@RequestMapping("aBlackList")
+	@RequestMapping("aBlackList.do")
 	public ModelAndView aBlacklist(ModelAndView mv) {
 		
 		ArrayList<Member> list = mService.selectBlackList();
