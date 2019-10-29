@@ -176,6 +176,7 @@ public class MemberController {
 	public String memUpdate() {
 		return "user/member/memUpdate";
 	}
+	
 	@RequestMapping("introduce.do")
 	public String intoduce() {
 		return "user/introduce/introduce";
@@ -385,7 +386,6 @@ public class MemberController {
 	@RequestMapping("updateMemProfile.do")
 	public ModelAndView updateMemProfile(@RequestParam(name="profile", required=false) MultipartFile profile,
 			HttpServletRequest request, ModelAndView mv) {
-		System.out.println(profile.getOriginalFilename());
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		
 		int result;

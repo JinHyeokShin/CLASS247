@@ -291,9 +291,9 @@
 							$(".thumbnailImg1").click();
 						});
 					});
-					/* function loadImg(value, num){
+					function loadImg(value, num){
 						
-						if(value.files){
+						if(value.files&&value.files[0]){
 							// 파일을 읽어들일 FileReader객체 생성
 							var reader = new FileReader();
 							// 파일 읽기가 다 완료되었을 때 실행되는 메소드
@@ -306,11 +306,11 @@
 							}
 							
 							// 파일 읽어주는 메소드
-							reader.readAsDataURL(value.files);
+							reader.readAsDataURL(value.files[0]);
 							
 							
 						}
-					}; */
+					}
 					
 					   $(function() {
 						 

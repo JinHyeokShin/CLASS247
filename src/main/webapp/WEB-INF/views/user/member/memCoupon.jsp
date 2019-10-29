@@ -66,7 +66,7 @@
 				<h3 class="mb-30">
 				<c:if test="${ !empty couponlist }">
 	      		<h4 align="left">&nbsp;&nbsp;&nbsp;
-	      		${ loginUser.memName } 님의 총 쿠폰 갯수 : ${fn:length(couponlist)} </h4>	
+	      		${ loginUser.memName } 님의 총 쿠폰 갯수 : ${listCount} </h4>	
 	      	</c:if>
       		<c:if test="${ empty couponlist }">
 	      		<h4 align="left">&nbsp;&nbsp;&nbsp;

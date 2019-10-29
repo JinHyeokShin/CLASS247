@@ -36,7 +36,7 @@ public class CouponController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		ArrayList<GiveCoupon> couponlist = cService.listCoupon(memNum, pi);
 		
-		mv.addObject("pi",pi).addObject("couponlist", 	couponlist);
+		mv.addObject("pi",pi).addObject("couponlist", 	couponlist).addObject("listCount",listCount);
 		mv.setViewName("user/member/memCoupon");
 		
 		return mv;

@@ -380,7 +380,7 @@ public class CourseController {
 		
 		ArrayList<Love> lovelist = coService.lovelist(memNum, pi);
 		
-		mv.addObject("pi",pi).addObject("lovelist", lovelist);
+		mv.addObject("pi",pi).addObject("lovelist", lovelist).addObject("listCount", listCount);
 		mv.setViewName("user/member/memZzim");
 	
 		
