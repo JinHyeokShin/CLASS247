@@ -8,11 +8,14 @@
             <meta charset="UTF-8">
             <title>Await</title>
 
+
         </head>
 
         <body class="animsition">
+                    <script src="http://unpkg.com/vue@2.5.16/dist/vue.js"></script>
 
             <c:import url="../common/aMenubar.jsp" />
+
             <div class="page-container2">
 
                 <!-- MAIN CONTENT-->
@@ -22,8 +25,13 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h2 class="title-1 m-b-25">Await List</h2>
-                                    <div class="table-responsive table--no-card m-b-40">
-                                        <table class="table table-borderless table-striped table-earning">
+                                    
+
+                                    <div class="table-responsive table--no-card m-b-40" id="example">
+                                    <p>
+                                    	<input type="text" v-model="courseName"/>
+                                    </p>
+                                        <table class="table table-borderless table-striped table-earning" id="list">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
@@ -37,52 +45,79 @@
                                                     <th>상태</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <c:forEach items="${ list }" var="co">
-                      
-                                                    
-                                                    <tr>
-                                                        <td>${co.courseNum }</td>
-                                                       
-                                                       
-                                                        <td>
-                                                         <c:url value="aAwaitCourseDetail.do" var="awaitCourseDetail">
-                                                        	<c:param name="courseNum" value="${ co.courseNum }"/>
-                                                        	<c:param name="courseKind" value="${ co.courseKind }"/>
-                                                         </c:url>
-                                                         <a style="color:black" href="${awaitCourseDetail}">${co.courseTitle }</a>
-                                                        </td>
-                                                        
-                                                        <td>
-                                              				${co.courseKind }
-                                                        </td>
-                                                        <td>${co.memNickName }</td>
-                                                        <td>${co.courseCurrentNum }</td>
-                                                        <td>${co.courseStartDate }</td>
-                                                        <td>${co.courseEndDate }</td>
-                                                        <td>${co.loveCount }</td>
-                                                        <td>${co.courseStatus }</td>
-                                                    </tr>
-                                                    
-                                                   
-                                                </c:forEach>
+                                            <tbody id="contacts">
+                                                <tr v-for="d in filtered">
+                                                	<td>{{d.nn}}</td>
+                                                	<td>{{d.tt}}</td>
+                                                </tr>
                                             </tbody>
+                                            <tfoot>
+                                            <tr>
+                                            <td id="tfoot" colspan="9">
+                                            		
+                                            	
+                                            </td>
+                                            <tr>
+                                            </tfoot>
+                                            
                                         </table>
                                     </div>
+                         
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+				
 
             </div>
+        
 
-            <script>
-            </script>
+            
             <c:import url="../common/aImportJs.jsp" />
+            <script>
+            var model={
+            		pageno : 1,
+            		pagesize : 10,
+            		totalcount : 10,
+            		courseName : "",
+            		course : [
 
+        				<c:forEach items="${list}" var="co">
+						 
+        				{nn:"${co.courseNum}", tt:"${co.courseTitle}", kk:"${co.courseKind}", ii:"${co.memNickName}", pp:"${co.courseCurrentNum}", dd:"${co.courseStartDate}", ee:"${co.courseEndDate}", ll:"${co.loveCount}", ss:"${co.courseStatus}"},
+        				
+        				</c:forEach>
+            			
+            		]
+            
+            		
+            }
+            
+            var list = new Vue({
+            	el:"#example",
+            	data:model,
+            	computed: {
+                    filtered: function() {
+                        var cname = this.courseName.trim();
+                        return this.course.filter(function(item, index) {
+                            if (item.tt.indexOf(cname) > -1) {
+                                return true;
+                            }
+                        });
+                    }
+                },
+            	
+            	methods : {
+            		nameChanged : function(e) {
+            			this.courseName = e.target.value;
+            		}
+            	}
+            });
+            
 
+            
+            </script>
 
         </body>
 
