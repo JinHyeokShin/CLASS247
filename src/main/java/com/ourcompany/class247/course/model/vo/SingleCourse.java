@@ -18,6 +18,8 @@ public class SingleCourse {
 	private String coaRName;
 	private String courseArea;
 	private int loveCount;
+	private String courseStatus;
+	private int courseCurrentNum;
 	
 	public SingleCourse() {
 		
@@ -80,6 +82,33 @@ public class SingleCourse {
 		this.coaRName = coaRName;
 		this.courseArea = courseArea;
 		this.loveCount = loveCount;
+	}
+	
+	
+
+
+
+	public SingleCourse(int courseNum, String courseTitle, String categoryName, String memNickName, String courseKind,
+			String courseLevel, Date courseEnrollDate, Date courseStartDate, Date courseEndDate, int courseHourPrice,
+			int coursePrice, String coaRName, String courseArea, int loveCount, String courseStatus,
+			int courseCurrentNum) {
+		super();
+		this.courseNum = courseNum;
+		this.courseTitle = courseTitle;
+		this.categoryName = categoryName;
+		this.memNickName = memNickName;
+		this.courseKind = courseKind;
+		this.courseLevel = courseLevel;
+		this.courseEnrollDate = courseEnrollDate;
+		this.courseStartDate = courseStartDate;
+		this.courseEndDate = courseEndDate;
+		this.courseHourPrice = courseHourPrice;
+		this.coursePrice = coursePrice;
+		this.coaRName = coaRName;
+		this.courseArea = courseArea;
+		this.loveCount = loveCount;
+		this.courseStatus = courseStatus;
+		this.courseCurrentNum = courseCurrentNum;
 	}
 
 	public int getCourseNum() {
@@ -193,6 +222,27 @@ public class SingleCourse {
 	public void setLoveCount(int loveCount) {
 		this.loveCount = loveCount;
 	}
+	
+	
+
+	public String getCourseStatus() {
+		return courseStatus;
+	}
+
+	public void setCourseStatus(String courseStatus) {
+		this.courseStatus = courseStatus;
+	}
+	
+	
+	
+
+	public int getCourseCurrentNum() {
+		return courseCurrentNum;
+	}
+
+	public void setCourseCurrentNum(int courseCurrentNum) {
+		this.courseCurrentNum = courseCurrentNum;
+	}
 
 	@Override
 	public String toString() {
@@ -201,8 +251,10 @@ public class SingleCourse {
 				+ courseLevel + ", courseEnrollDate=" + courseEnrollDate + ", courseStartDate=" + courseStartDate
 				+ ", courseEndDate=" + courseEndDate + ", courseHourPrice=" + courseHourPrice + ", coursePrice="
 				+ coursePrice + ", coaRName=" + coaRName + ", courseArea=" + courseArea + ", loveCount=" + loveCount
-				+ "]";
+				+ ", courseStatus=" + courseStatus + "]";
 	}
+
+
 	
 	
 	

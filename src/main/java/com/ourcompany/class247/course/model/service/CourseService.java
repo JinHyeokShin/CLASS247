@@ -51,7 +51,9 @@ public interface CourseService {
 	int rejectCourse(int courseNum);
 	
 	Course selectCourse(int courseNum, String courseKind);
-
+	
+	ArrayList<SingleCourse> allCourseList();
+	
 	//클래스리스트 가지고 오기	
 	ArrayList<Course> selectList();
 	

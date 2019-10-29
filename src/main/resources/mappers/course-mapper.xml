@@ -120,6 +120,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          <result property="courseHourPrice" column="course_hour_price"/>
                <result property="coursePrice" column="course_price"/>
                <result property="courseArea" column="courseArea"/>
+               <result property="courseStatus" column="course_status"/>
+               <result property="courseCurrentNum" column="course_current_num"/>
             
    </resultMap>
    
@@ -438,6 +440,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where cre_num = #{creNum} and course_status in ('Y', 'E', 'N')
         
 	</select>
+	
+	<select id="allCourseList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		order by
+		decode (course_approved,'N',1,'B',2)
+	
+	</select>
+	
 	
 	<select id="selectMyTakeCourse" resultMap="SingleCourseResultSet">
 		select *

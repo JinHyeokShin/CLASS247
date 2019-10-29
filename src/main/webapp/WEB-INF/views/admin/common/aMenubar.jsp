@@ -92,7 +92,7 @@
 							class="fas fa-users"></i>Class
 					</a>
 					<ul class="list-unstyled navbar__sub-list js-sub-list">
-							<li><a href="aFAQList.do">Class</a></li>
+							<li><a href="aCourseList.do">Class</a></li>
 							<li><a href="aAwaitCourseList.do">Await</a></li>
 							
 

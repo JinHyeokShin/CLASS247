@@ -358,6 +358,18 @@ public class CourseController {
       }
    }
    
+   @RequestMapping("aCourseList.do")
+   public ModelAndView aCourseList(ModelAndView mv) {
+	   
+	   ArrayList<SingleCourse> list = coService.allCourseList();
+	   
+	   mv.addObject("list", list).setViewName("admin/course/courseList");
+	   
+	   return mv;
+	   
+	   
+   }
+   
    
    
    

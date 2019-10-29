@@ -153,6 +153,11 @@ public class CourseServiceImpl implements CourseService {
 		return coDao.selectList();
 	}
 	
+	@Override
+	public ArrayList<SingleCourse> allCourseList() {
+		return coDao.allCourseList();
+	}
+	
 
 //	@Override
 //	public int coursePayment(int courseNum, String courseKind) {

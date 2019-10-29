@@ -72,7 +72,7 @@ public class CouponController {
 		
 		if(result > 0) {
 			
-			return "admin/member/couponList";
+			return "redirect:aCoupon.do";
 			
 		}else {
 			
@@ -82,15 +82,20 @@ public class CouponController {
 	}
 	
 	@RequestMapping("aGiveCouponCourse.do")
-	public String aGiveCouponCourse(int couponType, int courseNum) {
+	public String aGiveCouponCourse(String couponNum, int courseNum) {
+		
+		
+		int couponType = Integer.parseInt(couponNum);
 		
 		ArrayList<TakeCourse> list = pService.courseMemberList(courseNum);
+		
+		System.out.println(list);
 		
 		int result = cService.insertGiveCouponCourse(couponType, list);
 		
 		if(result > 0) {
 			
-			return "admin/member/couponList";
+			return "redirect:aCoupon.do";
 			
 		}else {
 			
