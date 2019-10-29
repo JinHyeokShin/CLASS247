@@ -13,6 +13,7 @@ import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
 
 @Service("coService")
@@ -133,11 +134,6 @@ public class CourseServiceImpl implements CourseService {
 		return coDao.allowCourse(courseNum);
 	}
 
-	@Override
-	public Course selectCourse(int cId, String courseKind) {
-
-		return coDao.selectCourse(cId, courseKind);
-	}
 
 	public int rejectCourse(int courseNum) {
 		return coDao.rejectCourse(courseNum);
@@ -213,10 +209,7 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public ArrayList<SingleCourse> mySingleCourseList(int creNum) {
 		
-		
 		ArrayList<SingleCourse> coList = coDao.mySingleCourseList(creNum);
-		
-		System.out.println(coList);
 		
 		return coList;
 	}
@@ -428,16 +421,39 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public ArrayList<Course> modalsearchCategory(int categoryNum) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<SingleCourse> selectPopList() {
+		return coDao.selectPopList();
+	}
+
+	@Override
+	public int selectMemberCount() {
+		return coDao.selectMemberCount();
 	}
 
 
+	@Override
+	public int selectCreCount() {
+		return coDao.selectCreCount();
+	}
 
+	@Override
+	public int onlineCourseCount() {
+		return coDao.onlineCourseCount();
+	}
 
+	@Override
+	public int offlineCourseCount() {
+		return coDao.offlineCourseCount();
+	}
 
+	@Override
+	public int insertPayment(Payment payment) {
+		return coDao.insertPayment(payment);
+	}
 
-
+	@Override
+	public Course selectCourse(int courseNum, String courseKind) {
+		return null;
+	}
 
 }

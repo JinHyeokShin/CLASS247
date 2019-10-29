@@ -42,15 +42,12 @@
                                             <tr>
                                             <td>${n.noticeNum}</td>
                                                 <td>
-	                                                <c:if test="${empty loginUser }">
-	                                                	${n.noticeTitle}
-                                                	</c:if>
-                                                	<c:if test="${!empty loginUser }">
+
                                                 		<c:url value="aNdetail.do" var="aNdetail">
                                                 			<c:param name="noticeNum" value="${ n.noticeNum }"/>
                                                 		</c:url>
                                                 		<a href ="${ aNdetail }" style="color:black;">${n.noticeTitle } </a>
-                                                	</c:if>
+     
                                                 </td>
                                                 <td>${n.noticeCount}</td>
                                                 <td class="text-right">${n.noticeEnrollDate}</td>

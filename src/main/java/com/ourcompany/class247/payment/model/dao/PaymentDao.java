@@ -46,5 +46,31 @@ public class PaymentDao {
 		 
 		 return amount;
 	}
+	
 
+	
+	public int getListCount(int memNum) {
+		
+		return sqlSession.selectOne("paymentMapper.getListCount", memNum);
+	}
+	
+	public ArrayList<TakeCourse> courseMemberList(int courseNum) {
+		return (ArrayList)sqlSession.selectList("courseMapper.courseMemberList", courseNum);
+	}
+	
+	public ArrayList<Payment> selectPaymentList() {
+		return (ArrayList)sqlSession.selectList("paymentMapper.selectPaymentList");
+	}
+	
+	public ArrayList<Payment> selectPowerList() {
+		return (ArrayList)sqlSession.selectList("paymentMapper.selectPowerList");
+	}
+	
+	public int jhinsertPayment(Payment p) {
+		return sqlSession.insert("paymentMapper.jhinsertPayment", p);
+	}
+	
+	public int jhinsertTakeCourse(TakeCourse t) {
+		return sqlSession.insert("paymentMapper.jhinsertTakeCourse",t);
+	}
 }

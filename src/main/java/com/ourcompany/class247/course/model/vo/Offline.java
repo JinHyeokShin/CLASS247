@@ -10,6 +10,7 @@ public class Offline extends Course{
 	private int courseMaxPax;		//최대인원수
 	private int courseHours;		//1회당수업시간
 	private int courseHourPrice;	//가격
+	private int coursePrice;
 	private String courseDay;		//수업일
 	private int courseCount;		//수업횟수(사용미정)
 	
@@ -46,6 +47,28 @@ public class Offline extends Course{
 		this.courseHourPrice = courseHourPrice;
 		this.courseDay = courseDay;
 		this.courseCount = courseCount;
+	}
+
+	public Offline(int offlineNum, String courseArea, int courseMinPax, int courseMaxPax, int courseHours,
+			int courseHourPrice, int coursePrice, String courseDay, int courseCount) {
+		super();
+		this.offlineNum = offlineNum;
+		this.courseArea = courseArea;
+		this.courseMinPax = courseMinPax;
+		this.courseMaxPax = courseMaxPax;
+		this.courseHours = courseHours;
+		this.courseHourPrice = courseHourPrice;
+		this.coursePrice = coursePrice;
+		this.courseDay = courseDay;
+		this.courseCount = courseCount;
+	}
+
+	public int getCoursePrice() {
+		return coursePrice;
+	}
+
+	public void setCoursePrice(int coursePrice) {
+		this.coursePrice = coursePrice;
 	}
 
 	public int getOfflineNum() {
@@ -114,16 +137,13 @@ public class Offline extends Course{
 
 	@Override
 	public String toString() {
-		return "Offline [courseNum=" + getCourseNum() + ",  categoryName=" + getCategoryName() + ", categoryNum=" + getCategoryNum() + ", creNum=" + getCreNum() 
-		
-		+ ", courseTitle" + getCourseTitle() + ", courseContent=" + getCourseContent() + ", courseKind=" + getCourseKind() +", courseLevel=" + getCourseLevel() 
-		+ ", loveCount=" + getLoveCount() + ", courseCurrentNum=" + getCourseCurrentNum() + ", courseEnrollDate=" + getCourseEnrollDate() 
-		+ ", courseApprovedDate= " + getCourseApprovedDate() + ", courseStartDate=" + getCourseStartDate() + ", courseEndDate=" + getCourseEndDate()
-		+ ", courseApproved=" + getCourseApproved() + ", courseStatus=" + getCourseStatus() + "offlineNum=" + offlineNum + ", courseArea=" + courseArea + ", courseMinPax=" + courseMinPax
+		return "Offline [offlineNum=" + offlineNum + ", courseArea=" + courseArea + ", courseMinPax=" + courseMinPax
 				+ ", courseMaxPax=" + courseMaxPax + ", courseHours=" + courseHours + ", courseHourPrice="
-				+ courseHourPrice + ", courseDay=" + courseDay + ", courseCount=" + courseCount + "]";
+				+ courseHourPrice + ", coursePrice=" + coursePrice + ", courseDay=" + courseDay + ", courseCount="
+				+ courseCount + "]";
 	}
-	
+
+
 	
 	
 

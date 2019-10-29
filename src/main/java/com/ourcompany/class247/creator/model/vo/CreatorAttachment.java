@@ -22,6 +22,7 @@ public class CreatorAttachment {
 		this.craLevel = craLevel;
 		this.craPath = craPath;
 	}
+	
 
 	public int getCraNum() {
 		return craNum;

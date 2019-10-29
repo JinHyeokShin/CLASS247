@@ -5,12 +5,10 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,24 +23,18 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.common.Pagination;
-import com.ourcompany.class247.member.model.vo.Member;
+import com.ourcompany.class247.common.ReplyPagination;
 import com.ourcompany.class247.notice.model.service.FAQService;
 import com.ourcompany.class247.notice.model.service.NoticeService;
 import com.ourcompany.class247.notice.model.vo.FAQ;
 import com.ourcompany.class247.notice.model.vo.Notice;
 import com.ourcompany.class247.notice.model.vo.NoticeReply;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.ourcompany.class247.common.PageInfo;
-import com.ourcompany.class247.common.Pagination;
-import com.ourcompany.class247.notice.model.service.NoticeService;
-import com.ourcompany.class247.notice.model.vo.FAQ;
-import com.ourcompany.class247.notice.model.vo.Notice;
 
 @Controller
 public class NoticeController {
 	@Autowired
 	private NoticeService nService;
+	
 	
 	@Autowired
 	private FAQService fService;
@@ -144,14 +136,16 @@ public class NoticeController {
 
 	
 	@RequestMapping("aNdetail.do")
-	public ModelAndView noticeDetail(int noticeNum, ModelAndView mv) {
+	public ModelAndView noticeDetail(int noticeNum, ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="0")int currentPage) {
 		
 		Notice n = nService.selectNotice(noticeNum);
 		
+		int listCount = nService.getNoticeReplyListCount(noticeNum);
+		
+		PageInfo pi = ReplyPagination.getPageInfo(currentPage, listCount);
 		
 		if(n != null) {
-			mv.addObject("n", n)
-			.setViewName("admin/notice/noticeDetail");
+			mv.addObject("n", n).addObject("pi", pi).setViewName("admin/notice/noticeDetail");
 			
 		}else {
 			mv.addObject("msg", "게시글 상세조회실패!")
@@ -267,4 +261,145 @@ public class NoticeController {
 		return mv;
 	}
 	
+	/**
+	 * 댓글 리스트 불러오기
+	 * @param currentPage
+	 * @param response
+	 * @param noticeNum
+	 * @throws JsonIOException
+	 * @throws IOException
+	 */
+	@ResponseBody
+	@RequestMapping("noticeReplyList.do")
+	public void selectNoticeReply(@RequestParam(value="currentPage", required=false, defaultValue="0") int currentPage,  HttpServletResponse response, int noticeNum) throws JsonIOException, IOException {
+		
+		int listCount = nService.getNoticeReplyListCount(noticeNum);
+			
+		PageInfo rpi = ReplyPagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<NoticeReply> nrList = nService.selectNReplyList(noticeNum, rpi);
+		
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new Gson();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("nrList", nrList);
+		map.put("rpi", rpi);
+		gson.toJson(map, response.getWriter());
+			
+	}
+	
+	/**
+	 * 단순 댓글작성
+	 * @param memNum
+	 * @param rContent
+	 * @param noticeNum
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("aNRInsert.do")
+	public String aNRInsert(int memNum, String rContent, int noticeNum) {
+		
+		NoticeReply nr = new NoticeReply();
+		
+		nr.setMemNum(memNum);
+		nr.setnReplyContent(rContent);
+		nr.setNoticeNum(noticeNum);
+		
+		
+		int result = nService.insertNoticeReply(nr);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+		
+	}
+	
+	/**
+	 * 
+	 * 대댓글 작성
+	 * @param memNum
+	 * @param rContent
+	 * @param noticeNum
+	 * @param parentId
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("aRNRInsert.do")
+	public String aRNRInsert(int memNum, String rContent, int noticeNum, int parentId) {
+		
+		NoticeReply nr = new NoticeReply();
+		
+		nr.setMemNum(memNum);
+		nr.setnReplyContent(rContent);
+		nr.setNoticeNum(noticeNum);
+		
+		NoticeReply parent = nService.selectParentReply(parentId);
+		
+		
+		nr.setnReplyParentNum(parent.getnReplyParentNum());
+		nr.setnReplyDepth(parent.getnReplyDepth()+1);
+		
+		System.out.println(nr);
+		
+		int result = nService.insertRNoticeReply(nr);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+		
+	}
+	
+	/**
+	 * 댓글 삭제
+	 * @param nReplyNum
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("aNRDelete.do")
+	public String aNRDelete(int nReplyNum) {
+		
+		int count = nService.selectChild(nReplyNum);
+		
+		System.out.println(count);
+		
+		int result;
+		
+		if(count > 0 ) {
+			result = nService.updateReplyY(nReplyNum);
+		}else {
+			result = nService.updateReplyN(nReplyNum);
+		}
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+			
+	}
+	
+	@ResponseBody
+	@RequestMapping("aRNRUpdate.do")
+	public String aRNRUpdate(String rContent, int nReplyNum) {
+		
+		NoticeReply nr = new NoticeReply();
+		
+		nr.setnReplyContent(rContent);
+		nr.setnReplyNum(nReplyNum);
+		
+		int result = nService.updateReply(nr);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+		
+	}
 }

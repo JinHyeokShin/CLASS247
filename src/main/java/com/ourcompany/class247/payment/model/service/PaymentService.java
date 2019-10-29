@@ -13,9 +13,22 @@ public interface PaymentService {
 	ArrayList<TakeCourse> payofflist(int memNum);
 	
 	ArrayList<Payment> selectMyPaymentList(int memNum);
+	
+	int getListCount(int memNum);
+	
+	ArrayList<TakeCourse> courseMemberList(int courseNum);
+	
+	ArrayList<Payment> selectPaymentList();
+	
+	ArrayList<Payment> selectPowerList();
 
 	ArrayList<Delivery> memdelivery(int memNum);
 	//크리에이터센터 총 누적수익 구해오기 
 	int getCreAmount(int creNum);
+	
+	int jhinsertPayment(Payment p);
+	
+	int jhinsertTakeCoruse(TakeCourse t);
 
+	
 }

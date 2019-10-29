@@ -82,4 +82,11 @@ public class MemberDao {
 	public int allowCreator(int memNum) {
 		return sqlSession.update("memberMapper.allowCreator", memNum);
 	}
+	
+	public int updateBlackList(int memNum) {
+		return sqlSession.update("memberMapper.updateBlackList", memNum);
+	}
+	
+
+	
 }

@@ -5,20 +5,51 @@
 	<resultMap type="Payment" id="PaymentResultSet">
 	<id property="payNum" column="pay_num"/>
 	<result property="memNum" column="mem_num"/>
+	<result property="memName" column="mem_name"/>
+	<result property="payCode" column="pay_code"/>
 	<result property="courseNum" column="course_num"/>
 	<result property="courseTitle" column="course_title"/>
-	<result property="payPrice" column="payPrice"/>
+	<result property="payPrice" column="pay_Price"/>
 	<result property="payMethod" column="pay_method"/>
 	<result property="payCancel" column="pay_cancel"/>
 	<result property="payDate" column="pay_Date"/>
 	<result property="payCancelDate" column="pay_cancel_date"/>
 	</resultMap>
 	
-	<select id="selectPaymentList" resultMap="PaymentResultSet">
+	
+	
+	<select id="selectMyPaymentList" resultMap="PaymentResultSet">
 		select *
 		from payment
 		join course using(course_num)
 		where mem_num = #{memNum}
 	</select>
 	
+	<select id="getListCount" parameterType="_int" resultType="_int">
+		select count(*)
+		from payment
+		where mem_num = #{memNum} and pay_cancel != 'Y'
+	</select>
+	
+	<select id="selectPaymentList" resultMap="PaymentResultSet">
+		select pay_num, mem_num, mem_name, course_num, course_title, pay_price, pay_method, pay_cancel, pay_date, pay_cancel_date
+		from payment
+		join course using(course_num)
+		join member using(mem_num)
+	</select>
+	
+	<select id="selectPowerList" resultMap="PaymentResultSet">
+		select pay_num, p.mem_num, mem_name, p.course_num, course_title,pay_code, pay_price, pay_method, pay_cancel, pay_date, pay_cancel_date
+		from payment p
+		join course c on(p.course_num = c.course_num)
+		join member m on(p.mem_num = m.mem_num)
+		join power using(pay_num)
+	</select>
+	
+	<insert id="jhinsertPayment">
+		insert into payment values(payment_seq.nextval,#{ payCode }, #{memNum}, #{courseNum}, #{payPrice},#{payMethod},null,sysdate,null)
+	</insert>
+	<insert id="jhinsertTakeCourse">
+		insert into takecourse values(takecourse_seq.nextval, payment_seq.currval, #{ memNum }, #{ takeCode }, ${ payPrice }, default, default)
+	</insert>
 </mapper>

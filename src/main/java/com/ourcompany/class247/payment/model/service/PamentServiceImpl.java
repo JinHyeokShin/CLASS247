@@ -44,5 +44,40 @@ private PaymentDao pDao;
 		
 		return pDao.selectMyPaymentList(memNum);
 	}
+	
+	@Override
+	public int getListCount(int memNum) {
+		return pDao.getListCount(memNum);
+	}
+	
+	@Override
+	public ArrayList<TakeCourse> courseMemberList(int courseNum) {
+		return pDao.courseMemberList(courseNum);
+	}
+
+	@Override
+	public ArrayList<Payment> selectPaymentList() {
+
+		return pDao.selectPaymentList();
+	}
+
+	@Override
+	public ArrayList<Payment> selectPowerList() {
+		
+		return pDao.selectPowerList();
+	}
+
+	@Override
+	public int jhinsertPayment(Payment p) {
+		return pDao.jhinsertPayment(p);
+	}
+
+	@Override
+	public int jhinsertTakeCoruse(TakeCourse t) {
+		return pDao.jhinsertTakeCourse(t);
+	}
+
+
+
 
 }

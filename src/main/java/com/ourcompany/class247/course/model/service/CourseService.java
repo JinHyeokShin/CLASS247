@@ -9,6 +9,7 @@ import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
 
 public interface CourseService {
@@ -57,11 +58,13 @@ public interface CourseService {
 	//클래스 상세보기
 	Course selectCourse(int courseNum);
 	
+	
 	ArrayList<Review> selectRlist(int courseNum);
 
 	ArrayList<SingleCourse> selectMyTakeCourse(int memNum);
 	
 	ArrayList<SingleCourse> mySingleCourseList(int creNum);
+	
 	
 	/*사용자 페이지*/
 	
@@ -87,6 +90,8 @@ public interface CourseService {
 	Online selectOnline(int courseNum);
 
 	Course creSelectCourse(int courseNum, String courseKind);
+	
+	ArrayList<SingleCourse> selectPopList();
 	
 	/* categoryList.do에 적용되는 서비스 */
 	ArrayList<Course> categoryCraftsList();
@@ -129,10 +134,6 @@ public interface CourseService {
 	//크리에이터센터 - 클래스 수 
 	int getCourseCount(int creNum);
 	
-
-
-	ArrayList<Course> modalsearchCategory(int categoryNum);
-	
 	boolean checkLove(Love love);
 	
 	int insertLove(Love iLove);
@@ -141,5 +142,13 @@ public interface CourseService {
 	
 	Course coursePayment(int courseNum);
 	
+	int selectMemberCount();
 	
+	int selectCreCount();
+
+	int onlineCourseCount();
+	
+	int offlineCourseCount();
+	
+	int insertPayment(Payment payment);
 }
