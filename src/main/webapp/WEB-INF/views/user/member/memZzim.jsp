@@ -67,7 +67,7 @@
 	      		<h4 align="left" style=>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	      		${ loginUser.memName } 님의 총 클래스 찜한 갯수 : ${listCount}
 	      		</h4>
-	      		<h4 align="right"><button class="genric-btn primary-border radius" name="log-btn" type="submit">삭제하기</button>	<br>
+	      		<h4 align="right"><button class="genric-btn primary-border radius" name="log-btn" type="submit" id="zzimDelete">삭제하기</button>	<br>
 	      		</h4>
 	      		<br>
 	      	</c:if>
@@ -87,7 +87,12 @@
 		<tr>
 			<td align="center"><input type="checkbox" name="check" value="${ l.courseNum }"></td>
 			<td align="center" width="20%">
-				<img src="resources/user/img/${ l.coaRName }" alt="" class="img-fluid">
+				<c:url value="codetail.do" var="codetail">
+					<c:param name="courseNum" value="${ l.courseNum }"/>
+				</c:url>
+				  <a href="${ codetail }">
+					<img src="resources/user/img/${ l.coaRName }" alt="" class="img-fluid"  onclick="location.href=${codetail}">
+                  </a>
 			</td>
 			<td align="left" colspan="3">
 						${ l.wishedDate }<br>
@@ -148,6 +153,22 @@
 				</div>
             </div>
            </section>
+           
+           <script>
+          $("#zzimDelete").click(function(){
+        	  
+        	  var check = ${check};
+        	  if(check == 0}){
+        		  
+        	  alert('"'+'${msg}'+'"');
+	 			<% request.removeAttribute("msg"); %>
+	 			check = 1;
+        	  }
+        	  
+          });
+          </script>
+           
+          
 	<jsp:include page="/WEB-INF/views/user/common/footer.jsp"></jsp:include>
 </body>
 </html>

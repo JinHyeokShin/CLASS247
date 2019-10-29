@@ -77,6 +77,11 @@ private PaymentDao pDao;
 		return pDao.jhinsertTakeCourse(t);
 	}
 
+	public ArrayList<Delivery> memdeliverydetail(int deliveryNum) {
+		
+		return pDao.memdeliverydetail(deliveryNum);
+	}
+
 
 
 

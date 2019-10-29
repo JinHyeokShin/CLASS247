@@ -34,6 +34,15 @@ public class PaymentDao {
 		
 		return (ArrayList)sqlSession.selectList("courseMapper.memdelivery",memNum);
 	}
+
+	public ArrayList<Delivery> memdeliverydetail(int deliveryNum) {
+		
+		return (ArrayList)sqlSession.selectList("courseMapper.selectmemdeliverydetailList",deliveryNum);
+	}
+	
+	
+	
+	
 	/** 크리에이터 센터 누적 금액 구해오기 
 	 * @param creNum
 	 * @return
@@ -73,4 +82,5 @@ public class PaymentDao {
 	public int jhinsertTakeCourse(TakeCourse t) {
 		return sqlSession.insert("paymentMapper.jhinsertTakeCourse",t);
 	}
+
 }

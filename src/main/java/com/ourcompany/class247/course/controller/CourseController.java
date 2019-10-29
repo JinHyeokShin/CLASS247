@@ -2,11 +2,13 @@ package com.ourcompany.class247.course.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -406,12 +408,16 @@ public class CourseController {
 	
 	
 	@RequestMapping("mZzim.do")
-	public String mZzim(HttpServletRequest request, @RequestParam(name="check") int check) {
+	public String mZzim(HttpServletRequest request, Model model, HttpServletResponse response , @RequestParam(name="check", defaultValue="0") int check) {
 	
 	Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 	
-	//String[] checklist = check.split(",");
-	//for(String c : checklist) { }
+	if(check == 0) {
+		model.addAttribute("msg", "삭제실패");
+		return "redirect:memZzim.do";
+		
+	}
+	
 		int memNum = loginUser.getMemNum();
 		
 		Love i = new Love();
@@ -422,9 +428,22 @@ public class CourseController {
 		int result = coService.deleteLove(i);
 
 		if(result > 0) {
+			model.addAttribute("msg", "삭제 성공!!");
 			return "redirect:memZzim.do";
 		}else {
-			return "common/errorPage";
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out;
+			try {
+				out = response.getWriter();
+				out.println("<script>alert('비밀번호가 틀렸습니다. 다시 입력해주세요!'); history.go(-1);</script>");
+				out.flush();
+				
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+			model.addAttribute("msg", "삭제실패");
+			return "redirect:memZzim.do";
 		}
 	}
 

@@ -20,25 +20,22 @@
 	width: 10%;
 	}
 	.PAY_DATE{
-	width: 12%;
+	width: 15%;
 	}
 	.COURSE_TITLE{
-	width: 16%;
+	width: 15%;
 	}
 	.COURSE_MATERIAL{
-	width: 16%;
+	width: 15%;
 	}
 	.PAY_PRICE{
-	width: 12%;
+	width: 15%;
 	}
 	.DELIVERY_STATUS{
-	width: 12%;
-	}
-	.MEM_NAME{
-	width: 12%;
+	width: 10%;
 	}
 	.DELIVERY_detail{
-	width: 10%;
+	width: 20%;
 	}
 	.table-row{
 	font-size: 15;
@@ -71,7 +68,6 @@
 							<div class="COURSE_MATERIAL">준비물내역</div>
 							<div class="PAY_PRICE">주문금액</div>
 							<div class="DELIVERY_STATUS">주문상태</div>
-							<div class="MEM_NAME">주문자</div>
 							<div class="DELIVERY_detail">상세조회</div>
 						</div>
 					<c:if test="${ !empty delist }">
@@ -93,7 +89,6 @@
 							배송완료
 							</c:if>
 							</div>
-							<div class="MEM_NAME">${ de.memName }</div>
 							<div class="DELIVERY_detail">
 							<c:url value="memDeliverydetail.do" var="memDeliverydetail">
 								<c:param name="deliveryNum" value="${ de.deliveryNum }"/>

@@ -359,6 +359,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			where category_name = #{categoryName} and course_approved='Y' and course_status='Y'
 	</select>
 	
+	<!-- 승은 -->
 	<!-- 찜하기  -->
  	<select id="selectLove" resultMap="LoveResultSet">
    select *
@@ -392,6 +393,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select *
 	from user_delivery_view
 	where mem_num= #{memNum}
+	</select>
+	
+	<!-- 배송정보 상세페이지 보여주기 -->
+	<select id="selectmemdeliverydetailList" resultMap="DeliveryResultSet">
+	select *
+	from user_delivery_view
+	where delivery_num= #{deliveryNum}
 	</select>
    
 	
