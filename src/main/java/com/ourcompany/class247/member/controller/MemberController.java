@@ -48,10 +48,7 @@ public class MemberController {
 	
 	@Autowired
 	private PaymentService pService;
-	
-	@Autowired
-	private CreatorAttachment craService;
-	
+
 	/**
 	 * 1. 로그인폼으로 이동.
 	 * @return
