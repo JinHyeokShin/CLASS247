@@ -58,7 +58,7 @@
                                                         <span class="nick">
                                                             <a href="#">John Smith</a>
                                                             <c:if test="${!empty creator.creNum}">
-                                                            	<input type="hidden" id="userId" value="C${creator.creNum}">
+                                                            	<input type="hidden" id="creNum" value="C${creator.creNum}">
                                                             </c:if>
                                                             <c:if test="${ empty creator.creNum }">
                                                             	<input type="hidden" id="userId" value="${loginUser.memNum}">
@@ -67,28 +67,7 @@
                                                     </div>
                                                 </div>
                                                 <div id="chatBox" class="au-chat__content">
-                                                    <div class="recei-mess-wrap">
-                                                        <span class="mess-time">12 Min ago</span>
-                                                        <div class="recei-mess__inner" >
-                                                            <div class="avatar avatar--tiny">
-                                                                <img src="resources/creator/images/icon/avatar-02.jpg" alt="John Smith">
-                                                            </div>
-                                                            <div class="recei-mess-list" id="receiveBox">
-                                                                <div class="recei-mess">Lorem ipsum dolor sit amet, consectetur adipiscing elit non iaculis</div>
-                                                                <div class="recei-mess">Donec tempor, sapien ac viverra</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="send-mess-wrap">
-                                                        <span class="mess-time">30 Sec ago</span>
-                                                        <div class="send-mess__inner">
-                                                            <div class="send-mess-list" id="talkingBox">
-                                                                <div class="send-mess">Lorem ipsum dolor sit amet, consectetur adipiscing elit non iaculis</div>
-                                                                 <div class="send-mess">Lorem ipsum dolor sit amet, consectetur adipiscing elit non iaculis</div>
-                                                                  <div class="send-mess">Lorem ipsum dolor sit amet, consectetur adipiscing elit non iaculis</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
                                                 </div>
                                                 
                                                 <div class="au-chat-textfield">
@@ -190,8 +169,7 @@
 		});
 	</script>
                 
-        
-       <!--  회원 -> 튜터  메세지를 보낼 경우 (즉, 회원일경우 로그인 )  -->         	
+        <!--  튜터 -> 회원  메세지를 보낼 경우 (즉, 튜터로 로그인 )  -->     
 		<c:if test='${ !empty creator}'> 
 			<script>
 				function sendMessage() {
@@ -200,7 +178,7 @@
 				     alert("메세지를 입력하세요.");
 				  }else{                     // 메세지 내용이 있으면
 				       /*소켓으로 보내겠다.  */
-				       var text =  $("#userId").val() + "->" + $("#message").val() + "->2";
+				       var text =  $("#creNum").val() + "->" + $("#message").val() + "->" + "${memNum}" + "->" + "${roomId}";
 				       sock.send(text);   // 메세지를 소켓에 보내고
 				       $("#message").val("");         // 메세지 내용을 비운다.
 				     
@@ -209,7 +187,7 @@
 				}
 			</script>
 		</c:if>
-		<!--  튜터 -> 회원  메세지를 보낼 경우 (즉, 튜터로 로그인 )  -->     
+		<!--  회원 -> 튜터  메세지를 보낼 경우 (즉, 회원일경우 로그인 )  -->     
 		<c:if test='${ empty creator}'>
 		<script>
 				function sendMessage() {
@@ -218,7 +196,7 @@
 				     alert("메세지를 입력하세요.");
 				  }else{                     // 메세지 내용이 있으면
 				       /*소켓으로 보내겠다.  */
-				       var text = $("#userId").val() +  "->" + $("#message").val() + "->C3";
+				       var text = $("#userId").val() +  "->" + $("#message").val() + "->${creNum}->${roomId}" ;
 				       sock.send(text);   // 메세지를 소켓에 보내고
 
 				       $("#message").val("");         // 메세지 내용을 비운다.
@@ -257,7 +235,11 @@
 		  sock = new SockJS("<c:url value='/chat'/>");
 		
 		
+		sock.onopen = onOpen;
+		function onOpen(){
+			sock.send("채팅방입장->${roomId}")
 		
+		}
 		//자바스크립트 안에 function을 집어넣을 수 있음.
 		
 		//데이터가 나한테 전달되읐을 때 자동으로 실행되는 function

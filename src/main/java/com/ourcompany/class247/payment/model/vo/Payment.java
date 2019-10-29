@@ -8,7 +8,6 @@ public class Payment {
 	private String payCode;			// 결제코드
 	private int memNum;				//회원번호
 	private String memName;
-	private String payCode;
 	private int courseNum;
 	private int courseTitle;		//클래스이름
 	private int payPrice;			//결제금액
@@ -83,13 +82,7 @@ public class Payment {
 		this.payNum = payNum;
 	}
 
-	public String getPayCode() {
-		return payCode;
-	}
 
-	public void setPayCode(String payCode) {
-		this.payCode = payCode;
-	}
 
 
 	public int getMemNum() {

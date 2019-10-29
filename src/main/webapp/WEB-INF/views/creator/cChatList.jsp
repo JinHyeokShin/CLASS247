@@ -44,6 +44,7 @@
                                             	<c:forEach items="${chatList}" var="ch">
 	                                                <div class="au-message__item unread">
 	                                                    <input type="hidden" id="chatListNum" value="${ch.chatListNum}">
+	                                                    <input type="hidden" id="fromId" value="${ch.fromId }">
 	                                                    <div class="au-message__item-inner">
 	                                                        <div class="au-message__item-text">
 	                                                            <div class="avatar-wrap">
@@ -91,8 +92,9 @@
                                               that.on('click', function(){
                                                 /*$(this).parent().parent().parent().toggleClass('show-chat-box');*/
                                             	  var chatListNum = $(this).children().eq(0).val();
+                                                  var fromId = $(this).children().eq(1).val();
                                             	  
-                                            	location.href='<%= request.getContextPath() %>/cChatDetailView.do?chatListNum=' + chatListNum;
+                                            	location.href='<%= request.getContextPath() %>/cChatDetailView.do?chatListNum=' + chatListNum + '&fromId=' + fromId;
                                             	  
                                               });
                                             });

@@ -34,7 +34,11 @@ public class ChatController {
 	 */
 
 	 @RequestMapping("cChatDetailView.do") public ModelAndView
-	 chattingView(@RequestParam(name="chatListNum") int roomId, ModelAndView mv) {
+	 chattingView(@RequestParam(value="chatListNum") int roomId, 
+			 		@RequestParam(value="fromId") int memNum, ModelAndView mv) {
+		 
+		 System.out.println(roomId + "    :  " + memNum);
+		 mv.addObject("memNum", memNum);
 		 mv.addObject("roomId", roomId).setViewName("creator/cChat"); 
 		 return mv; 
 	 }
@@ -102,12 +106,16 @@ public class ChatController {
 		if(result > 0) {
 			int roomId = chService.selectRoomdId(chatList);
 			System.out.println("채팅방 번호 : " + roomId);
+			mv.addObject("creNum", toId);
+			mv.addObject("mgs", "존재하는 채팅 창에 오신 것을 환영합니다!");
 			mv.addObject("roomId", roomId);
 			mv.setViewName("creator/cChat");
 		} else {
 			int result1 = chService.insertChatRoom(chatList);
 			int roomId = chService.selectRoomdId(chatList);
 			System.out.println("채팅방 번호 : " + roomId);
+			mv.addObject("creNum", toId);
+			mv.addObject("msg", "새로운 채팅방에 입장하셨습니다!");
 			mv.addObject("roomId", roomId);
 			mv.setViewName("creator/cChat");
 		}

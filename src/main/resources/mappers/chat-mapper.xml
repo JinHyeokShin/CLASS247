@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insertMessage" parameterType="Chat">
 		insert into chat 
-		values(chat_seq.nextval, 1, #{fromId}, #{fromName}, #{toId}, #{toName}, #{chatContent}, sysdate)
+		values(chat_seq.nextval, #{chatroomNum}, #{fromId}, #{fromName}, #{toId}, #{toName}, #{chatContent}, sysdate)
 	</insert>
 
 	
