@@ -63,8 +63,8 @@
       <tbody>
         <c:forEach items="${ delist }" var="d">
             <tr>
-            	<th>배송번호</th>
-                <td>${ d.payNum }</td>
+            	<th>주문번호</th>
+                <td>${ d.payCode }</td>
                 <th>주문일자</th>
                 <td>${ d.payDate }</td>
             </tr>

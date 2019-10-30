@@ -36,9 +36,9 @@ public class PaymentDao {
 		return (ArrayList)sqlSession.selectList("courseMapper.memdelivery",memNum);
 	}
 
-	public ArrayList<Delivery> memdeliverydetail(int payNum) {
+	public ArrayList<Delivery> memdeliverydetail(String payCode) {
 		
-		return (ArrayList)sqlSession.selectList("courseMapper.selectmemdeliverydetailList",payNum);
+		return (ArrayList)sqlSession.selectList("courseMapper.selectmemdeliverydetailList",payCode);
 	}
 	
 	

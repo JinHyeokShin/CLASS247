@@ -16,6 +16,7 @@ public class Delivery {
 	private int memNum;	
 	private String payMethod;
 	private int coursePrice;
+	private String payCode;
 	
 	public Delivery() {
 		
@@ -23,7 +24,7 @@ public class Delivery {
 
 	public Delivery(int deliveryNum, int payNum, String deliveryAddress, String deliveryStatus, Date payDate,
 			int payPrice, String memName, String courseMaterial, String courseTitle, int memNum, String payMethod,
-			int coursePrice) {
+			int coursePrice, String payCode) {
 		super();
 		this.deliveryNum = deliveryNum;
 		this.payNum = payNum;
@@ -37,6 +38,7 @@ public class Delivery {
 		this.memNum = memNum;
 		this.payMethod = payMethod;
 		this.coursePrice = coursePrice;
+		this.payCode = payCode;
 	}
 
 	public int getDeliveryNum() {
@@ -135,13 +137,23 @@ public class Delivery {
 		this.coursePrice = coursePrice;
 	}
 
+	public String getPayCode() {
+		return payCode;
+	}
+
+	public void setPayCode(String payCode) {
+		this.payCode = payCode;
+	}
+
 	@Override
 	public String toString() {
 		return "Delivery [deliveryNum=" + deliveryNum + ", payNum=" + payNum + ", deliveryAddress=" + deliveryAddress
 				+ ", deliveryStatus=" + deliveryStatus + ", payDate=" + payDate + ", payPrice=" + payPrice
 				+ ", memName=" + memName + ", courseMaterial=" + courseMaterial + ", courseTitle=" + courseTitle
-				+ ", memNum=" + memNum + ", payMethod=" + payMethod + ", coursePrice=" + coursePrice + "]";
+				+ ", memNum=" + memNum + ", payMethod=" + payMethod + ", coursePrice=" + coursePrice + ", payCode="
+				+ payCode + "]";
 	}
+
 
 	
 

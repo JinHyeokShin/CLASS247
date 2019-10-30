@@ -61,17 +61,18 @@ public class PaymentController {
 		int memNum = loginUser.getMemNum();
 		
 		ArrayList<Delivery> delist = pService.memdelivery(memNum);
+		
 		mv.addObject("delist", delist);
 		mv.setViewName("user/member/memDelivery");
 		return mv;
 	}
 	
 	@RequestMapping("memDeliverydetail.do")
-	public ModelAndView memDeliverydetail(HttpServletRequest request, ModelAndView mv, int payNum) {
+	public ModelAndView memDeliverydetail(HttpServletRequest request, ModelAndView mv, String payCode) {
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		int memNum = loginUser.getMemNum();
 		
-		ArrayList<Delivery> delist = pService.memdeliverydetail(payNum);
+		ArrayList<Delivery> delist = pService.memdeliverydetail(payCode);
 		mv.addObject("delist", delist);
 		mv.setViewName("user/member/memDeliverydetail");
 		return mv;

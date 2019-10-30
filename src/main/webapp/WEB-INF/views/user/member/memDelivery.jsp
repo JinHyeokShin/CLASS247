@@ -73,7 +73,7 @@
 					<c:if test="${ !empty delist }">
 						<c:forEach items="${ delist }" var="de">
 						<div class="table-row">
-							<div class="DELIVERY_NUM">${ de.payNum }</div>
+							<div class="DELIVERY_NUM">${ de.payCode }</div>
 							<div class="PAY_DATE">${ de.payDate }</div>
 							<div class="COURSE_TITLE">${ de.courseTitle }</div>
 							<div class="COURSE_MATERIAL">${ de.courseMaterial }</div>
@@ -91,7 +91,7 @@
 							</div>
 							<div class="DELIVERY_detail">
 							<c:url value="memDeliverydetail.do" var="memDeliverydetail">
-								<c:param name="payNum" value="${ de.payNum }"/>
+								<c:param name="payCode" value="${ de.payCode }"/>
 							</c:url>
 							<a href="${ memDeliverydetail }">
 							 <input class="genric-btn primary-border radius" name="log-btn" type="button" style="font-size: 15" value="상세보기">

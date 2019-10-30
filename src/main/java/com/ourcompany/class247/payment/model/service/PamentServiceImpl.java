@@ -78,9 +78,10 @@ private PaymentDao pDao;
 		return pDao.jhinsertTakeCourse(t);
 	}
 
-	public ArrayList<Delivery> memdeliverydetail(int payNum) {
+	@Override
+	public ArrayList<Delivery> memdeliverydetail(String payCode) {
 		
-		return pDao.memdeliverydetail(payNum);
+		return pDao.memdeliverydetail(payCode);
 	}
 	
 	@Override
