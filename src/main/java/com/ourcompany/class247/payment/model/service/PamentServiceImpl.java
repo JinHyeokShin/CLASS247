@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ourcompany.class247.payment.model.dao.PaymentDao;
+import com.ourcompany.class247.payment.model.vo.Complete;
 import com.ourcompany.class247.payment.model.vo.Delivery;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.payment.model.vo.TakeCourse;
@@ -80,6 +81,11 @@ private PaymentDao pDao;
 	public ArrayList<Delivery> memdeliverydetail(int payNum) {
 		
 		return pDao.memdeliverydetail(payNum);
+	}
+	
+	@Override
+	public Complete complete(String payCode) {
+		return pDao.complete(payCode);
 	}
 
 

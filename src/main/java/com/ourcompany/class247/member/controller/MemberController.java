@@ -48,7 +48,7 @@ public class MemberController {
 	
 	@Autowired
 	private PaymentService pService;
-
+	
 	/**
 	 * 1. 로그인폼으로 이동.
 	 * @return

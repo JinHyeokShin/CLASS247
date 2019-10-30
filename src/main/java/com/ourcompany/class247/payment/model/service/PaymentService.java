@@ -2,6 +2,7 @@ package com.ourcompany.class247.payment.model.service;
 
 import java.util.ArrayList;
 
+import com.ourcompany.class247.payment.model.vo.Complete;
 import com.ourcompany.class247.payment.model.vo.Delivery;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.payment.model.vo.TakeCourse;
@@ -32,5 +33,5 @@ public interface PaymentService {
 	
 	int jhinsertTakeCoruse(TakeCourse t);
 
-	
+	Complete complete(String payCode);
 }

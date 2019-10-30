@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ourcompany.class247.payment.model.vo.Complete;
 import com.ourcompany.class247.payment.model.vo.Delivery;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.payment.model.vo.TakeCourse;
@@ -82,5 +83,8 @@ public class PaymentDao {
 	public int jhinsertTakeCourse(TakeCourse t) {
 		return sqlSession.insert("paymentMapper.jhinsertTakeCourse",t);
 	}
-
+	
+	public Complete complete(String payCode) {
+		return sqlSession.selectOne("paymentMapper.complete",payCode);
+	}
 }
