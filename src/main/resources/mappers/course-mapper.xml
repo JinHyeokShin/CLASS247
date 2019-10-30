@@ -151,7 +151,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 <resultMap id="DeliveryResultSet" type="Delivery">
 		<id property="deliveryNum" column="delivery_num"/>
 		<result property="payNum" column="pay_num"/>
-		<result property="payCode" column="pay_coude"/>
+		<result property="payCode" column="pay_code"/>
 		<result property="deliveryAddress" column="delivery_address"/>
 		<result property="deliveryStatus" column="delivery_status"/>
 		<result property="payDate" column="pay_date"/>
@@ -365,6 +365,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			where category_name = #{categoryName} and course_approved='Y' and course_status='Y'
 	</select>
 	
+	<select id="aDeliverDetail" parameterType="_int" resultMap="DeliveryResultSet">
+		select *
+		from user_delivery_view
+		where delivery_num = #{deliveryNum}
+	</select>
+	
 	<!-- 찜하기  -->
  	<select id="selectLove" resultMap="LoveResultSet">
    select *
@@ -572,7 +578,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectDelivery" resultMap="DeliveryResultSet">
 		select *
 		from user_delivery_view
-		where delivery_status = #{status}
 	</select>
 
 

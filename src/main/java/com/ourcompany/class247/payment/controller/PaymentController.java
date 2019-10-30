@@ -104,6 +104,7 @@ public class PaymentController {
 		ArrayList<Delivery> list = pService.selectDeliveryList();
 		
 		int sizee = list.size();
+
 		
 		mv.addObject("list", list).addObject("sizee", sizee).setViewName("admin/payment/deliveryList");
 		
@@ -112,6 +113,34 @@ public class PaymentController {
 		
 	}
 	
+	@RequestMapping("aDeliverDetail.do")
+	public ModelAndView aDeliverDetail(int deliveryNum, ModelAndView mv) {
+		
+		Delivery d = pService.aDeliverDetail(deliveryNum);
+		
+		mv.addObject("d", d).setViewName("admin/payment/deliveryDetail");
+		
+		return mv;
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping("updateDeliStatus.do")
+	public String updateDeliStatus(String status, int deliveryNum) {
+		
+		System.out.println(status);
+		
+		Delivery d = new Delivery();
+		
+		d.setDeliveryNum(deliveryNum);
+		d.setDeliveryStatus(status);
+		
+		int result = pService.updateDeliStatus(d);
+		
+	
+		
+		return status;
+	}
 
 	
 	

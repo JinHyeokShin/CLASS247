@@ -79,6 +79,7 @@
             
             var lenght = ${sizee};
             
+            var vm;
             
             
             $(function () {
@@ -86,6 +87,15 @@
             	
             	PageBar(start);
             	Pageing(start);
+            	
+            	$('.divv').on('click', function(e) {
+            		
+            		
+            		var id = e.target.innerText;
+            		
+            		location.href="<c:url value='aDeliverDetail.do'/>?deliveryNum="+id;
+            		
+            	});
             	
             });
             
@@ -142,8 +152,10 @@
             	
             	
             	
-            	var $tr = $("<tr v-for='d in filtered'>");
-            	$tr.append($("<td>").text("{{d.nn}}"));
+            	var $tr = $("<tr v-for='d in filtered' class='tr'>");
+            	
+            	$tr.append($("<td>").append($("<div class='divv'>").text("{{d.nn}}")));
+            	
             	$tr.append($("<td>").text("{{d.tt}}"));
             	$tr.append($("<td>").text("{{d.kk}}"));
             	$tr.append($("<td>").text("{{d.ii}}"));
@@ -236,8 +248,15 @@
             
             
             
-
+      
+       		
+       		
+       		
+            	
             
+
+        
+            	
             </script>
 
         </body>

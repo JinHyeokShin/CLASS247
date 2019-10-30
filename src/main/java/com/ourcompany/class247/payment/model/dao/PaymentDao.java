@@ -77,4 +77,12 @@ public class PaymentDao {
 		return (ArrayList)sqlSession.selectList("courseMapper.selectDelivery");
 	}
 	
+	public Delivery aDeliverDetail(int deliveryNum) {
+		return sqlSession.selectOne("courseMapper.aDeliverDetail", deliveryNum);
+	}
+	
+	public int updateDeliStatus(Delivery d) {
+		return sqlSession.update("paymentMapper.updateDeliStatus", d);
+	}
+	
 }

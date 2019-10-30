@@ -37,7 +37,7 @@
 		from payment
 		join course using(course_num)
 		join member using(mem_num)
-		order by pay_num desc;
+		order by pay_num desc
 	</select>
 	
 	<select id="selectPowerList" resultMap="PaymentResultSet">
@@ -46,7 +46,13 @@
 		join course c on(p.course_num = c.course_num)
 		join member m on(p.mem_num = m.mem_num)
 		join power using(pay_num)
-		order by pay_num desc;
+		order by pay_num desc
 	</select>
+	
+	<update id="updateDeliStatus">
+		update delivery
+		set delivery_status = #{deliveryStatus}
+		where delivery_num = #{deliveryNum}
+	</update>
 	
 </mapper>

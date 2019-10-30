@@ -78,6 +78,16 @@ private PaymentDao pDao;
 	public ArrayList<Delivery> selectDeliveryList() {
 		return pDao.selectDeliveryList();
 	}
+	
+	@Override
+	public Delivery aDeliverDetail(int deliveryNum) {
+		return pDao.aDeliverDetail(deliveryNum);
+	}
+	
+	@Override
+	public int updateDeliStatus(Delivery d) {
+		return pDao.updateDeliStatus(d);
+	}
 
 
 

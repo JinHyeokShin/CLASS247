@@ -32,5 +32,9 @@ public interface PaymentService {
 	
 	ArrayList<Delivery> selectDeliveryList();
 	
+	Delivery aDeliverDetail(int deliveryNum);
+	
+	int updateDeliStatus(Delivery d);
+	
 		
 }
