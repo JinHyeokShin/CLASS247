@@ -2,6 +2,10 @@ package com.ourcompany.class247.payment.model.vo;
 
 import java.sql.Date;
 
+/**
+ * @author user1
+ *
+ */
 public class Delivery {
 	
 	private int deliveryNum;
@@ -13,14 +17,20 @@ public class Delivery {
 	private String memName;
 	private String courseMaterial;
 	private String courseTitle;
-	private int memNum;	
+	private int memNum;
+	private String payMethod;
+	private String payCode;
 	
 	public Delivery() {
 		
 	}
 
+
+
+	
 	public Delivery(int deliveryNum, int payNum, String deliveryAddress, String deliveryStatus, Date payDate,
-			int payPrice, String memName, String courseMaterial, String courseTitle, int memNum) {
+			int payPrice, String memName, String courseMaterial, String courseTitle, int memNum, String payMethod,
+			String payCode) {
 		super();
 		this.deliveryNum = deliveryNum;
 		this.payNum = payNum;
@@ -32,7 +42,11 @@ public class Delivery {
 		this.courseMaterial = courseMaterial;
 		this.courseTitle = courseTitle;
 		this.memNum = memNum;
+		this.payMethod = payMethod;
+		this.payCode = payCode;
 	}
+
+
 
 	public int getMemNum() {
 		return memNum;
@@ -113,16 +127,45 @@ public class Delivery {
 	public void setCourseTitle(String courseTitle) {
 		this.courseTitle = courseTitle;
 	}
+	
+	
+
+	public String getPayMethod() {
+		return payMethod;
+	}
+
+
+
+	public void setPayMethod(String payMethod) {
+		this.payMethod = payMethod;
+	}
+	
+	
+
+	public String getPayCode() {
+		return payCode;
+	}
+
+
+
+
+	public void setPayCode(String payCode) {
+		this.payCode = payCode;
+	}
+
+
+
 
 	@Override
 	public String toString() {
 		return "Delivery [deliveryNum=" + deliveryNum + ", payNum=" + payNum + ", deliveryAddress=" + deliveryAddress
 				+ ", deliveryStatus=" + deliveryStatus + ", payDate=" + payDate + ", payPrice=" + payPrice
 				+ ", memName=" + memName + ", courseMaterial=" + courseMaterial + ", courseTitle=" + courseTitle
-				+ ", memNum=" + memNum + "]";
+				+ ", memNum=" + memNum + ", payMethod=" + payMethod + ", payCode=" + payCode + "]";
 	}
 
-	
-	
+
+
+
 
 }

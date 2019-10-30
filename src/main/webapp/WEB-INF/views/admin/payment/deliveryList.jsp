@@ -36,15 +36,13 @@
                                         <table class="table table-borderless table-striped table-earning" id="list">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>제목</th>
-                                                    <th>타입</th>
-                                                    <th>크리에이터명</th>
-                                                    <th>인원수</th>
-                                                    <th>시작날짜</th>
-                                                    <th>종료날짜</th>
-                                                    <th>좋아요수</th>
-                                                    <th>상태</th>
+                                                    <th>No.</th>
+                                                    <th>결제번호</th>
+                                                    <th>결제자명</th>
+                                                    <th>클래스명</th>
+                                                    <th>가격</th>
+                                                    <th>결제날짜</th>
+                                                    <th>배송상태</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="contacts">
@@ -94,12 +92,12 @@
             
             
             var model={
-            		courseName : "",
+            		userName : "",
             		course : [
 
         				<c:forEach items="${list}" var="co">
 						 
-        				{nn:"${co.courseNum}", tt:"${co.courseTitle}", kk:"${co.courseKind}", ii:"${co.memNickName}", pp:"${co.courseCurrentNum}", dd:"${co.courseStartDate}", ee:"${co.courseEndDate}", ll:"${co.loveCount}", ss:"${co.courseStatus}"},
+        				{nn:"${co.deliveryNum}", tt:"${co.payCode}", kk:"${co.memName}", ii:"${co.courseTitle}", pp:"${co.payPrice}", dd:"${co.payDate}", ee:"${co.deliveryStatus}"},
         				
         				
         				</c:forEach>
@@ -134,7 +132,7 @@
             	var $tableBody = $("#list tbody");
             	var $pi = $("#p");
             	$pi.html("");
-            	$pi.append("<input type='text' id='vm' v-model='courseName' class='form-control' style='width:40%; display:inline-block;'/>")
+            	$pi.append("<input type='text' id='vm' v-model='userName' class='form-control' style='width:40%; display:inline-block;'/>")
             	$pi.append("<input type='hidden' id='di' value='"+$("#vm").val()+"'>")
             	$pi.append("<button onclick='test()' class='btn btn-primary btn-sm'>검색</button>")
             	
@@ -152,8 +150,7 @@
             	$tr.append($("<td>").text("{{d.pp}}"));
             	$tr.append($("<td>").text("{{d.dd}}"));
             	$tr.append($("<td>").text("{{d.ee}}"));
-            	$tr.append($("<td>").text("{{d.ll}}"));
-            	$tr.append($("<td>").text("{{d.ss}}"));
+
             	
             	
             	
@@ -182,7 +179,7 @@
                 	computed: {
                 	    
                         filtered: function() {
-                            var cname = this.courseName.trim();
+                            var cname = this.userName.trim();
                             lenght = this.course.filter(function(item, index) {
                                 if (item.tt.indexOf(cname) > -1) {
                                     return true;
@@ -201,7 +198,7 @@
                 	
                 	methods : {
                 		nameChanged : function(e) {
-                			this.courseName = e.target.value;
+                			this.userName = e.target.value;
                 		}
                 	}
                 });
@@ -218,7 +215,6 @@
             	
 				var $tfoot = $("#tfoot");
         		
-				console.log("실행");
 				
         		$tfoot.html("");
     			

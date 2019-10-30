@@ -363,7 +363,9 @@ public class CourseController {
 	   
 	   ArrayList<SingleCourse> list = coService.allCourseList();
 	   
-	   mv.addObject("list", list).setViewName("admin/course/courseList");
+	   int sizee = list.size();
+	   
+	   mv.addObject("list", list).addObject("sizee", sizee).setViewName("admin/course/courseList");
 	   
 	   return mv;
 	   

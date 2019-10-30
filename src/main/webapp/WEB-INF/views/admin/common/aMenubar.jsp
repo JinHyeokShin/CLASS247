@@ -115,6 +115,7 @@
 						<ul class="list-unstyled navbar__sub-list js-sub-list">
 							<li><a href="aPayment.do">Payment</a></li>
 							<li><a href="aPower.do">POWER</a></li>
+							<li><a href="aDelivery.do">Delivery</a></li>
 						</ul></li>
 					<li class="has-sub"><a class="js-arrow" href="#"> <i
 							class="fas fa-copy"></i>EVENT

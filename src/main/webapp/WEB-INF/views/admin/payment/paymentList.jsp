@@ -21,7 +21,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h2 class="title-1 m-b-25">Member List</h2>
+                                <h2 class="title-1 m-b-25">모든 결제 내역</h2>
                                 <div class="table-responsive table--no-card m-b-40">
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>

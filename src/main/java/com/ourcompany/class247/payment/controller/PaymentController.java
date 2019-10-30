@@ -1,22 +1,27 @@
 package com.ourcompany.class247.payment.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ourcompany.class247.course.model.vo.Course;
-import com.ourcompany.class247.course.model.vo.Offline;
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import com.ourcompany.class247.common.PageInfo;
+import com.ourcompany.class247.common.ReplyPagination;
+import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.member.model.vo.Member;
+import com.ourcompany.class247.notice.model.vo.NoticeReply;
 import com.ourcompany.class247.payment.model.service.PamentServiceImpl;
-import com.ourcompany.class247.payment.model.service.PaymentService;
 import com.ourcompany.class247.payment.model.vo.Delivery;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.payment.model.vo.TakeCourse;
@@ -81,6 +86,33 @@ public class PaymentController {
 		
 	}
 	
+	@RequestMapping("aPower.do")
+	public ModelAndView powerList(ModelAndView mv) {
+		
+		ArrayList<SingleCourse> list = pService.selectPowerListY();
+		
+		mv.addObject("list", list).setViewName("admin/payment/powerList");
+		
+		return mv;
+		
+	}
+	
+
+	@RequestMapping("aDelivery.do")
+	public ModelAndView aDeliveryList( @RequestParam(value="status", required=false, defaultValue="N")String status, ModelAndView mv) {
+		
+		ArrayList<Delivery> list = pService.selectDeliveryList();
+		
+		int sizee = list.size();
+		
+		mv.addObject("list", list).addObject("sizee", sizee).setViewName("admin/payment/deliveryList");
+		
+		return mv;
+		
+		
+	}
+	
+
 	
 	
 }

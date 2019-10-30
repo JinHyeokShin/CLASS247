@@ -29,6 +29,7 @@
 		select count(*)
 		from payment
 		where mem_num = #{memNum} and pay_cancel != 'Y'
+		
 	</select>
 	
 	<select id="selectPaymentList" resultMap="PaymentResultSet">
@@ -36,6 +37,7 @@
 		from payment
 		join course using(course_num)
 		join member using(mem_num)
+		order by pay_num desc;
 	</select>
 	
 	<select id="selectPowerList" resultMap="PaymentResultSet">
@@ -44,6 +46,7 @@
 		join course c on(p.course_num = c.course_num)
 		join member m on(p.mem_num = m.mem_num)
 		join power using(pay_num)
+		order by pay_num desc;
 	</select>
 	
 </mapper>
