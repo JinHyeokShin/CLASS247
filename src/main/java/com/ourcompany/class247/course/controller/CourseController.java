@@ -217,10 +217,11 @@ public class CourseController {
     */
    @RequestMapping("myCourseDetail.do")
    public ModelAndView myCourseDetail(int courseNum, String courseKind, ModelAndView mv) {
-      
       Course course = coService.selectCourse(courseNum, courseKind);
       CourseAttachment cover = coService.selectCover(courseNum);
       ArrayList<Member> stuList = mService.selectStuByCo(courseNum);
+      
+      
       
       /* System.out.println(course); */
       
@@ -231,6 +232,26 @@ public class CourseController {
       
       return mv;
    }
+   
+   // 온라인 동영상 추가하기 페이지로 이동 
+   @RequestMapping("goAddVideoPage.do")
+   public ModelAndView goAddVideoPage(@RequestParam(value="courseNum") int courseNum, ModelAndView mv) {
+	   mv.addObject("courseNum", courseNum).setViewName("creator/course/addVideoPage");	  
+	   
+	   return mv;
+   }
+   
+   @RequestMapping("addOnlineVideo.do")
+   public void insertOnlineVideo(String videoContent, String videoTitle, String videoUrl) {
+	   System.out.println(videoContent);
+	   System.out.println(videoTitle);
+	   System.out.println(videoUrl);
+	   
+	   String url = videoUrl.substring(17, videoUrl.length());
+	   System.out.println("url = " + url);
+   }
+   
+   
 
 	//김은기
 	

@@ -453,7 +453,7 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public Course selectCourse(int courseNum, String courseKind) {
-		return null;
+		return coDao.selectCourse(courseNum, courseKind);
 	}
 
 }
