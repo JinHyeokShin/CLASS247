@@ -414,18 +414,18 @@ public class CourseController {
 	
 	int memNum = loginUser.getMemNum();
 	int result = 0;
-	System.out.println(Integer.parseInt(s));
 
-	for(int a =1; a<check.length; a++) {
-
+	for(int a =0; a<check.length; a++) {
 		Love i = new Love();
-		
+
 		i.setMemNum(memNum);
+		
 		i.setCourseNum(Integer.parseInt(check[a]));
 		
 		result += coService.deleteLove(i);
 
 	};
+	
 
 		if(result == check.length) {
 			return "redirect:memZzim.do";
