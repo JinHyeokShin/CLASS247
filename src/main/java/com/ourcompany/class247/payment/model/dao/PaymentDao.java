@@ -16,12 +16,12 @@ public class PaymentDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public ArrayList<Payment> payonlist(int memNum) {
+	public ArrayList<TakeCourse> payonlist(int memNum) {
 
 		return (ArrayList)sqlSession.selectList("courseMapper.payonList",memNum);
 	}
 
-	public ArrayList<Payment> payofflist(int memNum) {
+	public ArrayList<TakeCourse> payofflist(int memNum) {
 
 		return (ArrayList)sqlSession.selectList("courseMapper.payoffList",memNum);
 	}

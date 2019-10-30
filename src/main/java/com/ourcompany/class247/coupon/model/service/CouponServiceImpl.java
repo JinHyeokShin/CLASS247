@@ -42,6 +42,11 @@ public class CouponServiceImpl implements CouponService {
 	}
 
 	@Override
+	public int getListCount(int memNum) {
+		
+		return cDao.getListCount(memNum);
+	}
+	@Override
 	public ArrayList<GiveCoupon> selectGiveCouponList(int couponType) {
 		
 		return cDao.selectGiveCouponList(couponType);

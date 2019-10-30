@@ -40,8 +40,8 @@ public class PaymentController {
 		
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		int memNum = loginUser.getMemNum();
-		ArrayList<Payment> payonlist = pService.payonlist(memNum);
-		ArrayList<Payment> payofflist = pService.payofflist(memNum);
+		ArrayList<TakeCourse> payonlist = pService.payonlist(memNum);
+		ArrayList<TakeCourse> payofflist = pService.payofflist(memNum);
 		
 		mv.addObject("payonlist",payonlist);
 		mv.addObject("payofflist", payofflist);
@@ -49,6 +49,12 @@ public class PaymentController {
 		return mv;
 	}
 	
+	
+	/**배달리스트 뽑기
+	 * @param request
+	 * @param mv
+	 * @return
+	 */
 	@RequestMapping("memDelivery.do")
 	public ModelAndView memDalivery(HttpServletRequest request, ModelAndView mv) {
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
@@ -60,6 +66,17 @@ public class PaymentController {
 		return mv;
 	}
 	
+	@RequestMapping("memDeliverydetail.do")
+	public ModelAndView memDeliverydetail(HttpServletRequest request, ModelAndView mv) {
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+		int memNum = loginUser.getMemNum();
+		
+		ArrayList<Delivery> delist = pService.memdelivery(memNum);
+		mv.addObject("delist", delist);
+		mv.setViewName("user/member/memDeliverydetail");
+		return mv;
+	}
+
 	@ResponseBody
 	@RequestMapping("payment.do")
 	public String payment(Payment p, TakeCourse t) {

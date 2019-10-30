@@ -249,6 +249,8 @@ public class MemberController {
 		if(!why.equals("")) { //주소 작성해서 값이 넘어왔을 경우
 			m.setMemAddress(why);	
 		}
+		
+		
 
 		
 	Member loginUser = mService.loginMember(m);
@@ -266,7 +268,7 @@ public class MemberController {
 				return "redirect:logout.do";
 			}else {
 				model.addAttribute("msg", "회원정보수정실패");
-				return "common/errorPage";
+				return "user/common/errorPage";
 			}
 		}else {
 			response.setContentType("text/html; charset=UTF-8");

@@ -18,13 +18,13 @@ private PaymentDao pDao;
 	
 	
 	@Override
-	public ArrayList<Payment> payonlist(int memNum) {
+	public ArrayList<TakeCourse> payonlist(int memNum) {
 		
 		return pDao.payonlist(memNum);
 	}
 
 	@Override
-	public ArrayList<Payment> payofflist(int memNum) {
+	public ArrayList<TakeCourse> payofflist(int memNum) {
 		
 		return pDao.payofflist(memNum);
 	}

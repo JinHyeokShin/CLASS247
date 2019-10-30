@@ -15,14 +15,6 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <style>
-	.login{
-		margin: 9% auto;
-		border: 1px solid #954CBC;
-		padding: 10px;
-		width: 50%;
-		height:120%;  
-		border-radius: 10px;
-	}
 	table td{
 		text-align: center;
 	}
@@ -48,6 +40,13 @@
 	table th:hover{
 		cursor:default;
 	}
+	.pagebar{
+	text-align: center;
+	}
+	.COUPON_NAME{
+	width:30%;
+	height:30%;
+	}
 	
 </style>
 
@@ -56,18 +55,21 @@
 <body>
 	<jsp:include page="/WEB-INF/views/user/common/menubar.jsp"></jsp:include>
 
-	  	<div class="login" align="center">
-        	<br>
-      		<h1>${ loginUser.memName }님의 찜한 클래스 목록</h1>
+ <section class="contact-section section_padding">
+	  <div class="container">
+	  	<br>
+      		<h1>${ loginUser.memName }님의 찜한 클래스 목록 </h1>
+      		<br>
       		<hr>
       		<br>
       		 <form action="mZzim.do" method="post">
       		<c:if test="${ !empty lovelist }">
-	      		<h4 align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	      		${ loginUser.memName } 님의 총 클래스 찜한 갯수 : ${ pi.listCount }
+	      		<h4 align="left" style=>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	      		${ loginUser.memName } 님의 총 클래스 찜한 갯수 : ${ lovelist.size() }
 	      		</h4>
 	      		<h4 align="right"><button class="genric-btn primary-border radius" name="log-btn" type="submit">삭제하기</button>	<br>
 	      		</h4>
+	      		<br>
 	      	</c:if>
       		<c:if test="${ empty lovelist }">
 	      		<h4 align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -84,7 +86,9 @@
 		<c:forEach items="${ lovelist }" var="l">
 		<tr>
 			<td align="center"><input type="checkbox" name="check" value="${ l.courseNum }"></td>
-			<td align="center" width="30%"><img src="resources/user/img/test1.jpeg" alt="" class="img-fluid"></td>
+			<td align="center" width="20%">
+				<img src="resources/user/img/${ l.coaRName }" alt="" class="img-fluid">
+			</td>
 			<td align="left" colspan="3">
 						${ l.wishedDate }<br>
 						${ l.courseTitle }<br>
@@ -106,12 +110,13 @@
 			
 			
 			<br>	
+				<div class="pagebar">
 				<!-- [이전] -->	
 				<c:if test="${ pi.currentPage eq 1 }">
 					[이전] 
 				</c:if>
 				<c:if test="${ pi.currentPage ne 1 }">
-					<c:url value="blist.do" var="before">
+					<c:url value="memZzim.do" var="before">
 						<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
 					</c:url>
 					<a href="${ before }">[이전] </a> 
@@ -123,7 +128,7 @@
 						<font color="#954CBC" size="4">[${ p }]</font>
 					</c:if>
 					<c:if test="${ p ne pi.currentPage }">
-						<c:url value="blist.do" var="page">
+						<c:url value="memZzim.do" var="page">
 							<c:param name="currentPage" value="${ p }"/>
 						</c:url>
 						<a href="${ page }">${ p }</a>
@@ -135,13 +140,14 @@
 					 [다음]
 				</c:if>
 				<c:if test="${ pi.currentPage ne pi.maxPage }">
-					<c:url value="blist.do" var="next">
+					<c:url value="memZzim.do" var="next">
 						<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 					</c:url>
 					<a href="${ next }"> [다음]</a>
 				</c:if>  
-				      <br><br><hr>  
+				</div>
             </div>
+           </section>
 	<jsp:include page="/WEB-INF/views/user/common/footer.jsp"></jsp:include>
 </body>
 </html>

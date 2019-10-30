@@ -202,9 +202,9 @@ public class CourseDao {
 		return (ArrayList)sqlSession.selectList("courseMapper.selectPopList");
 	}
 	
-	public int getListCount() {
+	public int getListCount(int memNum) {
 
-		return sqlSession.selectOne("courseMapper.getListCount");
+		return sqlSession.selectOne("courseMapper.getListCount",memNum);
 	}
 	
 	public ArrayList<Love> lovelist(int memNum, PageInfo pi) {
