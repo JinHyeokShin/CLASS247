@@ -408,43 +408,31 @@ public class CourseController {
 	
 	
 	@RequestMapping("mZzim.do")
-	public String mZzim(HttpServletRequest request, Model model, HttpServletResponse response , @RequestParam(name="check", defaultValue="0") int check) {
-	
+	public String mZzim(HttpServletRequest request, Model model, HttpServletResponse response , @RequestParam(name="check") String[] check) {
+		
 	Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 	
-	if(check == 0) {
-		model.addAttribute("msg", "삭제실패");
-		return "redirect:memZzim.do";
+	int memNum = loginUser.getMemNum();
 		
-	}
+	int result = 0;
 	
-		int memNum = loginUser.getMemNum();
-		
+
+	for(int a =0; a<check.length; a++) {
+
 		Love i = new Love();
 		
 		i.setMemNum(memNum);
-		i.setCourseNum(check);
-		
-		int result = coService.deleteLove(i);
+		i.setCourseNum(Integer.parseInt(check[a]));
+		result += coService.deleteLove(i);
 
-		if(result > 0) {
-			model.addAttribute("msg", "삭제 성공!!");
+	};
+
+		if(result == check.length) {
 			return "redirect:memZzim.do";
 		}else {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out;
-			try {
-				out = response.getWriter();
-				out.println("<script>alert('비밀번호가 틀렸습니다. 다시 입력해주세요!'); history.go(-1);</script>");
-				out.flush();
-				
-			} catch (IOException e) {
-				
-				e.printStackTrace();
-			}
-			model.addAttribute("msg", "삭제실패");
-			return "redirect:memZzim.do";
+			return "common/errorPage";
 		}
+		
 	}
 
    /**  검색창에서 텍스트로 검색하는 메소드

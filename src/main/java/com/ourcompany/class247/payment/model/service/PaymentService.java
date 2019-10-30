@@ -23,6 +23,8 @@ public interface PaymentService {
 	ArrayList<Payment> selectPowerList();
 
 	ArrayList<Delivery> memdelivery(int memNum);
+	
+	ArrayList<Delivery> memdeliverydetail(int payNum);
 	//크리에이터센터 총 누적수익 구해오기 
 	int getCreAmount(int creNum);
 	

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <html>
 <head>
@@ -62,12 +64,12 @@
       		<br>
       		<hr>
       		<br>
-      		 <form action="mZzim.do" method="post">
+      	<form action="mZzim.do" method="post" id="test">
       		<c:if test="${ !empty lovelist }">
 	      		<h4 align="left" style=>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	      		${ loginUser.memName } 님의 총 클래스 찜한 갯수 : ${listCount}
 	      		</h4>
-	      		<h4 align="right"><button class="genric-btn primary-border radius" name="log-btn" type="submit" id="zzimDelete">삭제하기</button>	<br>
+	      		<h4 align="right"><input class="genric-btn primary-border radius" name="log-btn" type="button" id="zzimDelete" value="삭제하기">	<br>
 	      		</h4>
 	      		<br>
 	      	</c:if>
@@ -76,7 +78,7 @@
 	      		${ loginUser.memName } 님의 총 클래스 찜한 갯수 : 0 </h4>	
 	      	</c:if>
  			<table align="center" border="1" cellspacing="0" width="90%">
-				<tr style="color:white;background-color:#954CBC;">
+				<tr style="color:white;background-color:#e0a9fc;">
 					<th width="10%"></th> 
 					<th></th>
 					<th colspan="3"></th>
@@ -85,7 +87,7 @@
 				<c:if test="${ !empty lovelist }">
 		<c:forEach items="${ lovelist }" var="l">
 		<tr>
-			<td align="center"><input type="checkbox" name="check" value="${ l.courseNum }"></td>
+			<td align="center"><input type="checkbox" name="check" class="check" value="${ l.courseNum }"></td>
 			<td align="center" width="20%">
 				<c:url value="codetail.do" var="codetail">
 					<c:param name="courseNum" value="${ l.courseNum }"/>
@@ -111,9 +113,6 @@
 				</c:if>
 				
 			</table>
-			</form>	
-			
-			
 			<br>	
 				<div class="pagebar">
 				<!-- [이전] -->	
@@ -151,20 +150,21 @@
 					<a href="${ next }"> [다음]</a>
 				</c:if>  
 				</div>
+				</form>
             </div>
            </section>
            
            <script>
           $("#zzimDelete").click(function(){
         	  
-        	  var check = ${check};
-        	  if(check == 0}){
-        		  
-        	  alert('"'+'${msg}'+'"');
-	 			<% request.removeAttribute("msg"); %>
-	 			check = 1;
-        	  }
-        	  
+        	 
+        	 if($("input:checkbox[class='check']").is(":checked") == true){
+        		 $("#test").submit();
+        		 alert("삭제가 성공적으로 되었습니다");
+        	 }else{
+        	
+	        	alert("삭제하고 싶은 클래스를 check해주세요");
+        	 }
           });
           </script>
            

@@ -156,6 +156,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="courseTitle" column="course_title"/>
 		<result property="courseMaterial" column="course_material"/>
 		<result property="memNum" column="mem_num"/>
+		<result property="payMethod" column="pay_method"/>
+		<result property="coursePrice" column="course_price"/>
 	</resultMap>
 	<resultMap type="Payment" id="PaymentResultSet">
 	<id property="payNum" column="pay_num"/>
@@ -371,7 +373,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteLove" parameterType="Love">
 		delete from love
 		where mem_num = #{memNum}
-		and course_num = #{courseNum}
+		and course_num = ${courseNum}
 	</delete>
 	
 	<!-- 온라인 클래스만 리스트 보여주기 -->
@@ -399,7 +401,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectmemdeliverydetailList" resultMap="DeliveryResultSet">
 	select *
 	from user_delivery_view
-	where delivery_num= #{deliveryNum}
+	where pay_num= #{payNum}
 	</select>
    
 	
