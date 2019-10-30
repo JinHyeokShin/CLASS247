@@ -19,6 +19,7 @@
 		<typeAlias type="com.ourcompany.class247.coupon.model.vo.GiveCoupon" alias="GiveCoupon"/>
 		<typeAlias type="com.ourcompany.class247.coupon.model.vo.Coupon" alias="Coupon"/>
 		<typeAlias type="com.ourcompany.class247.payment.model.vo.TakeCourse" alias="TakeCourse"/>
+				<typeAlias type="com.ourcompany.class247.payment.model.vo.Complete" alias="Complete"/>
 		<typeAlias type="com.ourcompany.class247.creator.model.vo.Creator" alias="Creator"/>
 		<typeAlias type="com.ourcompany.class247.creator.model.vo.CreatorAttachment" alias="CreatorAttachment"/>
 		<typeAlias type="com.ourcompany.class247.notice.model.vo.FAQ" alias="FAQ"/>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ourcompany.class247.payment.model.vo.Complete;
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.member.model.vo.Member;
@@ -65,7 +66,7 @@ public class PaymentController {
 		pService.jhinsertPayment(p);
 		pService.jhinsertTakeCoruse(t);
 		
-		return t.getTakeCode();
+		return p.getPayCode();
 	}
 	
 	@RequestMapping("aPayment.do")
@@ -81,6 +82,13 @@ public class PaymentController {
 		
 	}
 	
-	
+	@RequestMapping("complete.do")
+	public ModelAndView complete(ModelAndView mv,String payCode) {
+		Complete c = pService.complete(payCode);
+		System.out.println(c);
+		mv.addObject("c", c);
+		mv.setViewName("user/course/complete");
+		return mv;
+	}
 	
 }

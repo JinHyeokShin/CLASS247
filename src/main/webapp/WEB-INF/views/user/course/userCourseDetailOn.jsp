@@ -45,101 +45,92 @@ header {
   position: fixed;
   bottom: 0px;
 }
-
+.d-block{
+	align:center;
+}
 </style>
-<script>
-    function share() {
-      var url = encodeURI(encodeURIComponent(myform.url.value));
-      var title = encodeURI(myform.title.value);
-      var shareURL = "https://share.naver.com/web/shareView.nhn?url=" + url + "&title=" + title;
-      document.location = shareURL;
-    }
-  </script>
-  
 
 <body>
 <c:import url="/WEB-INF/views/user/common/menubar.jsp"/>
-
-  
-    <section class="breadcrumb breadcrumb_bg">
+    <section class="course_details_area section_padding">
         <div class="container">
+    <hr>
+    <h2>온라인 클래스 결제 페이지</h2>
+    <hr>
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb_iner text-center">
-                        <div class="breadcrumb_iner_item">
-	                            <div class="banner_text_iner">
-	                            <h5 style="color:white;">당신의 모든 취미를 클래스로 개설할 수 있습니다.</h5>
-	                            <h1> 당신의 클래스를 <br>개설하세요 !</h1>
-	                            <a href="#" class="btn_1">View Course </a>
-	                            <a href="cMainView.do" class="btn_2" onclick="return loginCheck()">Get Started </a>
-	                        	</div>
-                        </div>
+                <div class="col-lg-8 course_details_left">
+                    <div class="main_image">
+                    	<h1>${ c.courseTitle }</h1>			
+                        <img class="img-fluid" src="resources/creator/images/test1.jpeg" alt="">
                     </div>
-                </div>
+                    <br>
+                    <br>
+
+                    <!-- 클래스 소개 -->
+
+           
+            </div>
+
+                <!-- 오른쪽 간단 설명 -->
+                <div class="col-lg-4 right-contents">
+                    <div class="sidebar_top">
+                        <ul>
+                            <li style="width: 100%; cursor:default;">
+                                <a class="justify-content-between d-flex">
+                                    <p>크리에이터</p>
+                                    <span class="color">${ c.memNickName }</span>
+                                </a>
+                            </li>
+                            <li style="width: 100%; cursor:default;">
+                                <a class="justify-content-between d-flex" href="#">
+                                    <p>카테고리</p>
+                                    <span>${ c.categoryName }</span>
+                                </a>
+                            </li>
+                            <li style="width: 100%; cursor:default;">
+                           	    <a class="justify-content-between d-flex" href="#" style="cursor:default;">
+                           	    	<p>구매 유형</p>
+                            		<span><input type="radio" name="price" id="packbtn1" value="${c.coursePrice +c.courseMaterialPrice }" checked="checked" required><label for="packbtn1">패키지 구매하기</label></span>
+									<span><input type="radio" name="price" id="packbtn2" value="${c.coursePrice }"><label for="packbtn2">수강권만 구매하기</label></span>
+                           	    </a>
+                            </li>					
+                            <li style="width: 100%; text-align:right;">
+                            	<a class="justify-content-between d-flex" href="#" style="cursor:default;">
+                           	    	<p>준비물</p>
+                            		<span>${c.courseMaterial }</span>
+                           	    </a>
+                            </li>
+                            <li style="width: 100%; text-align:right;">
+                            	<a class="justify-content-between d-flex" href="#" style="cursor:default;">
+                           	    	<p>준비물 가격</p>
+                            		<span>${c.courseMaterialPrice }</span>
+                           	    </a>
+                            </li>
+                            <li style="width: 100%; text-align:right;">
+                            	<a class="justify-content-between d-flex" href="#" style="cursor:default;">
+                           	    	<p>총 결제 가격</p>
+                            		<span><h4><label id="totalPrice">${ c.coursePrice +c.courseMaterialPrice  }</label></h4></span>
+                           	    </a>
+                            </li>	
+                            
+                        </ul>
+							<input type="button" class="btn_1 d-block" value="일반 결제" style="width:100%;" onclick="inicis();">				
+							<input type="button" class="btn_1 d-block" value="카카오페이로 결제" style="width:100%;" onclick="kakao();">				
+							<a href="home.do" class="btn_1 d-block">홈으로</a>	
+					     	
+                    </div>
+
+                    <!-- 레이팅 -->
+                    
+                </div> 
             </div>
         </div>
     </section>
-    
-    <script>
-    		function loginCheck() {
-    			
-    			if ( '${ loginUser.memNum }' == "") {
-    				alert("로그인 후 사용할 수 있는 서비스입니다.");
-    				return false;
-    			} else {
-    				location.href="<%= request.getContextPath() %>/cMainView.do";
-    				return true;
-    			}
-    		
-    		}
-    	</script>
-   
-    
-
-    <!--================ Start Course Details Area =================-->
-    <section class="course_details_area section_padding" style="  background: rgb(248, 248, 249);">
-      
-        <div class="container" >
-            <!-- insert -->
-   			 <form action="coBuyOn.do" method="post">
-            <div class="row" >
-                <div class="col-lg-8 course_details_left" style=" display: inline-block; background: white; margin-left: auto; margin-right: auto; margin-top:20px; margin-bottom:20px;">
-                    
-                        
-                        <div class="tab-content" >    
-                          
-                                    <input type="radio"class="title_top" name="price" id="packbtn1" value="${c.coursePrice +c.courseMaterialPrice }" checked="checked" required>패키지 구매하기
-									<input type="radio" class="title_top" name="price" id="packbtn2" value="${c.coursePrice }">수강권만 구매하기
-                                     
-                                  	 <h4 class="title_top" >준비물 :${c.courseMaterial }</h4>
-                                  	 <h6 class="title_top" >준비물가격:${c.courseMaterialPrice }</h6>
-
-                                		<div class="single_special_cource">
-                                        <img src="resources/user/img/special_cource_1.png" class="special_img" alt="">
-                                        <div class="special_cource_text">
-                                            <h4>강의료:<label id="totalPrice">${ c.coursePrice +c.courseMaterialPrice  }</label></h4>
-                                            <h3>강의제목:${ c.courseTitle }</h3 >
-                                            <p>수업 소개</p>
-                                         <span>${c.courseContent }</span>
-                                        </div>
-                <button type="button" class="genric-btn primary-border radius"
-									 style="border-radius: 5px; width: 150px; float: right; height: 50px; text-align: center; line-height: 1;"
-									 id="pay_btn" onclick="inicis();">일반 결제</button>
-									 <button type="button" class="genric-btn primary-border radius"
-									 style="border-radius: 5px; width: 150px; float: right; height: 50px; text-align: center; line-height: 1;"
-									 id="pay_btn" onclick="kakao();">카카오페이로 결제하기</button>
-                                    </div>
-				                </div>
-				            </div>
 				            <script>
 				            	$("input[name=price]").change(function(){
 				            		$("#totalPrice").text($("input[name=price]:checked").val());
 				            	});
 				            </script>
-            </div>
-            </form>
-        </div>
-    </section>
     	<script>
 	function inicis() {
 
@@ -174,7 +165,7 @@ header {
     				  takePrice:$("#totalPrice").text()
     				 },
     			success:function(data){
-    				location.href="complete.do?takeCode=" + data;
+    				location.href="complete.do?payCode=" + data;
     			},
     			error:function(){
     				alertify.alert('', '결제 실패');
@@ -219,7 +210,7 @@ header {
 				    				  takePrice:$("#totalPrice").text()
 				    				 },
 				    			success:function(data){
-				    				location.href="complete.do?takeCode=" + data;
+				    				location.href="complete.do?payCode=" + data;
 				    			},
 				    			error:function(){
 				    				alertify.alert('', '결제 실패');

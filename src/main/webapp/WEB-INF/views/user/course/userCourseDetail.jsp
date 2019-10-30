@@ -257,25 +257,19 @@ star-input>.input.focus{outline:1px dotted #ddd;}
                         <ul>
                             <li style="width: 100%;">
                                 <a class="justify-content-between d-flex">
-                                    <p>Trainer’s Name</p>
+                                    <p>크리에이터</p>
                                     <span class="color">${ c.memNickName }</span>
                                 </a>
                             </li>
                             <li style="width: 100%;">
                                 <a class="justify-content-between d-flex" href="#">
-                                    <p>Title </p>
-                                    <span>${ c.courseTitle }</span>
-                                </a>
-                            </li>
-                            <li style="width: 100%;">
-                                <a class="justify-content-between d-flex" href="#">
-                                    <p>Category</p>
+                                    <p>카테고리</p>
                                     <span>${ c.categoryName}</span>
                                 </a>
                             </li>
                             <li style="width: 100%;">
                                 <a class="justify-content-between d-flex" href="#">
-                                    <p>course fee</p>
+                                    <p>가격</p>
                                    <c:if test="${ c.courseKind eq 'online' }">
 										<span>${ c.coursePrice + c.courseMaterialPrice }</span>
 									</c:if> 
@@ -286,12 +280,13 @@ star-input>.input.focus{outline:1px dotted #ddd;}
                             </li>
                             <li style="width: 100%;">
                                 <a class="justify-content-between d-flex" href="#">
-                                    <p>Available Seats </p>
                                      <c:if test="${ c.courseKind eq 'offline' }">
-                                    <span>${c.courseCurrentNum}</span>
+                                    <p>수강 가능 인원</p>
+                                    <span>${c.courseMaxPax - c.courseCurrentNum}</span>
                                     </c:if>
                                     <c:if test="${ c.courseKind eq 'online' }">
-                                  <span>${c.courseCurrentNum}</span>
+                                  	<p>현재 수강중인 인원</p>
+                                  	<span>${c.courseCurrentNum }</span>
                                    </c:if>
                                 </a>
                             </li>

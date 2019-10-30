@@ -456,4 +456,5 @@ public class CourseDao {
 	public int insertPayment(Payment payment) {
 	   return sqlSession.insert("courseMapper.insertPayment", payment);
    }
+	
 }
