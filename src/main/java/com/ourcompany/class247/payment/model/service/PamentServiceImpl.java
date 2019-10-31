@@ -98,6 +98,8 @@ private PaymentDao pDao;
 	@Override
 	public int powerCount() {
 		return pDao.powerCount();
+	}
+	
 	public int jhinsertPayment(Payment p) {
 		return pDao.jhinsertPayment(p);
 	}

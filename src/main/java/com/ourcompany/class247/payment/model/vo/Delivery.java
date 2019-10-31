@@ -26,9 +26,6 @@ public class Delivery {
 		
 	}
 
-
-
-	
 	public Delivery(int deliveryNum, int payNum, String deliveryAddress, String deliveryStatus, Date payDate,
 			int payPrice, String memName, String courseMaterial, String courseTitle, int memNum, String payMethod,
 			int coursePrice, String payCode) {
@@ -119,34 +116,6 @@ public class Delivery {
 	public void setCourseTitle(String courseTitle) {
 		this.courseTitle = courseTitle;
 	}
-	
-	
-
-	public String getPayMethod() {
-		return payMethod;
-	}
-
-
-
-	public void setPayMethod(String payMethod) {
-		this.payMethod = payMethod;
-	}
-	
-	
-
-	public String getPayCode() {
-		return payCode;
-	}
-
-
-
-
-	public void setPayCode(String payCode) {
-		this.payCode = payCode;
-	}
-
-
-
 
 	public int getMemNum() {
 		return memNum;
@@ -188,11 +157,7 @@ public class Delivery {
 				+ ", memNum=" + memNum + ", payMethod=" + payMethod + ", coursePrice=" + coursePrice + ", payCode="
 				+ payCode + "]";
 	}
-
-
 	
-
-	
-	
+		
 
 }

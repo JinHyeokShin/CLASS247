@@ -76,12 +76,16 @@
 		        from payment
 		        join power using(pay_num)
 		        )
+	</select>
+	
 	<insert id="jhinsertPayment">
 		insert into payment values(payment_seq.nextval,#{ payCode }, #{memNum}, #{courseNum}, #{payPrice},#{payMethod},null,sysdate,null)
 	</insert>
+	
 	<insert id="jhinsertTakeCourse">
 		insert into takecourse values(takecourse_seq.nextval, payment_seq.currval, #{ memNum }, #{ takeCode }, ${ payPrice }, default, default)
 	</insert>
+	
 	<select id="complete" parameterType="string" resultMap="CompleteResultSet">
 		select *
 		from payment_view
