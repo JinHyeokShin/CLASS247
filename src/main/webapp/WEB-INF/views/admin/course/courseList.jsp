@@ -157,7 +157,6 @@
             	
             	$tr.append($("<td>").append($("<div class='divv'>").text("{{d.nn}}")));
             	
-            	$tr.append($("<td>").text("{{d.nn}}"));
             	$tr.append($("<td>").text("{{d.tt}}"));
             	$tr.append($("<td>").text("{{d.kk}}"));
             	$tr.append($("<td>").text("{{d.ii}}"));

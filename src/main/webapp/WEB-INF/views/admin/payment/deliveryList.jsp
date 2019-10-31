@@ -50,7 +50,7 @@
                                             </tbody>
                                             <tfoot align="center">
                                             <tr>
-                                            <td id="tfoot" colspan="9">
+                                            <td id="tfoot" colspan="7">
                                           
                                             </td>
                                             <tr>

@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<id property="creNum" column="cre_num"/>
 		<result property="creName" column="mem_name"/>
 		<result property="memNum" column="mem_num"/>
-		<result property="mem_NickName" column="mem_nick_name"/>
+		<result property="memNickName" column="mem_nickname"/>
 		<result property="introduction" column="introduction"/>
 		<result property="career" column="career"/>
 		<result property="education" column="education"/>
@@ -147,9 +147,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where cre_num=#{creNum}
 	</select>
 	
-	<select id="selectCreatorList" resultMap="singleCreatorResultSet">
+	<select id="selectCreatorList" resultMap="creatorResultSet">
 		select *
 		from creator
+		join member using(mem_num)
 		order by cre_num desc
 	</select>
 	

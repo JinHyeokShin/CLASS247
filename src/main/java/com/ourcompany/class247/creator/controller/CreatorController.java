@@ -298,11 +298,28 @@ public class CreatorController {
 	@RequestMapping("aCreatorList.do")
 	public ModelAndView selectCreatorList(ModelAndView mv) {
 		
-		ArrayList<Creator> crList = creService.selectCreatorList();
+		ArrayList<Creator> list = creService.selectCreatorList();
 		
-		ArrayList<CreatorAttachment> craList = creService.selectCreatorAttachmentList();
+		String i;
 		
-		mv.addObject("crlist", crList).addObject("craList", craList).setViewName("admin/member/creatorList");
+		for(Creator c : list) {
+			
+			if((c.getIntroduction()).length() > 10) {
+			
+				i = c.getIntroduction();
+			
+				i.substring(0, 8);
+				
+				i = i+"..";
+				
+				c.setIntroduction(i);
+			}
+				
+		}
+		
+		int sizee = list.size();
+		
+		mv.addObject("list", list).addObject("sizee", sizee).setViewName("admin/member/creatorList");
 		
 		return mv;
 		
