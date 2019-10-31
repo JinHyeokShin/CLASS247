@@ -47,7 +47,7 @@ public class CouponController {
 		
 		ArrayList<Coupon> list = cService.selectCouponList();
 		
-		mv.addObject("list", list).setViewName("admin/course/couponList");
+		mv.addObject("list", list).setViewName("admin/member/couponList");
 		
 		return mv;
 	}
@@ -72,7 +72,7 @@ public class CouponController {
 		
 		if(result > 0) {
 			
-			return "admin/member/couponList";
+			return "redirect:aCoupon.do";
 			
 		}else {
 			
@@ -82,21 +82,33 @@ public class CouponController {
 	}
 	
 	@RequestMapping("aGiveCouponCourse.do")
-	public String aGiveCouponCourse(int couponType, int courseNum) {
+	public String aGiveCouponCourse(String couponNum, int courseNum) {
+		
+		
+		int couponType = Integer.parseInt(couponNum);
 		
 		ArrayList<TakeCourse> list = pService.courseMemberList(courseNum);
+		
+		System.out.println(list);
 		
 		int result = cService.insertGiveCouponCourse(couponType, list);
 		
 		if(result > 0) {
 			
-			return "admin/member/couponList";
+			return "redirect:aCoupon.do";
 			
 		}else {
 			
 			return "common/errorPage";
 		}
 		
+		
+	}
+	
+	@RequestMapping("aCreateCouponView.do")
+	public String aCreateCouponView() {
+		
+		return "admin/member/createCoupon";
 		
 	}
 	

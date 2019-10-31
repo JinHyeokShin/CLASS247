@@ -123,7 +123,7 @@
 	                            </div>
 	                            <hr>
 								<div>
-									<button type="button" class="btn btn-warning btn-lg btn-block">클래스 수정하기</button><br>
+									<button type="button" class="btn btn-warning btn-lg btn-block" onclick="location.href='<%= request.getContextPath() %>/goAddVideoPage.do?courseNum=${co.courseNum}';">동영상 추가하기</button><br>
 									<button type="button" class="btn btn-danger btn-lg btn-block">클래스 취소하기</button>
 								</div>
 	                          </div>
@@ -348,29 +348,8 @@
 
   </div>
 
-  <!-- Jquery JS-->
-  <script src="vendor/jquery-3.2.1.min.js"></script>
-  <!-- Bootstrap JS-->
-  <script src="vendor/bootstrap-4.1/popper.min.js"></script>
-  <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
-  <!-- Vendor JS       -->
-  <script src="vendor/slick/slick.min.js">
-  </script>
-  <script src="vendor/wow/wow.min.js"></script>
-  <script src="vendor/animsition/animsition.min.js"></script>
-  <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-  </script>
-  <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
-  <script src="vendor/counter-up/jquery.counterup.min.js">
-  </script>
-  <script src="vendor/circle-progress/circle-progress.min.js"></script>
-  <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-  <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-  <script src="vendor/select2/select2.min.js">
-  </script>
-
-  <!-- Main JS-->
-  <script src="js/main.js"></script>
+  
+  <c:import url="../common/cMenubar.jsp"/>
 
 </body>
 </html>

@@ -9,6 +9,7 @@ import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.course.model.vo.Video;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
 
@@ -51,7 +52,9 @@ public interface CourseService {
 	int rejectCourse(int courseNum);
 	
 	Course selectCourse(int courseNum, String courseKind);
-
+	
+	ArrayList<SingleCourse> allCourseList();
+	
 	//클래스리스트 가지고 오기	
 	ArrayList<Course> selectList();
 	
@@ -151,4 +154,6 @@ public interface CourseService {
 	int offlineCourseCount();
 	
 	int insertPayment(Payment payment);
+
+	int insertVideo(Video v);
 }

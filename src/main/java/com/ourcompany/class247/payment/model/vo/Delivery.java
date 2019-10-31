@@ -2,6 +2,10 @@ package com.ourcompany.class247.payment.model.vo;
 
 import java.sql.Date;
 
+/**
+ * @author user1
+ *
+ */
 public class Delivery {
 	
 	private int deliveryNum;
@@ -153,11 +157,7 @@ public class Delivery {
 				+ ", memNum=" + memNum + ", payMethod=" + payMethod + ", coursePrice=" + coursePrice + ", payCode="
 				+ payCode + "]";
 	}
-
-
 	
-
-	
-	
+		
 
 }

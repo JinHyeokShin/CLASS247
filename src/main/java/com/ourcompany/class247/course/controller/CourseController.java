@@ -2,7 +2,6 @@ package com.ourcompany.class247.course.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,12 +27,12 @@ import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.course.model.vo.Video;
 import com.ourcompany.class247.creator.model.service.CreatorService;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 import com.ourcompany.class247.member.model.service.MemberService;
 import com.ourcompany.class247.member.model.vo.Member;
-import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
 
 @Controller
@@ -218,11 +217,12 @@ public class CourseController {
     * 내 클래스관리 -> 클래스 디테일 (수강정보 + 수강생정보)
     */
    @RequestMapping("myCourseDetail.do")
-   public ModelAndView myCourseDetail(int courseNum, String courseKind, ModelAndView mv) {
-      
+   public ModelAndView myCourseDetail(@RequestParam(value="courseNum") int courseNum, String courseKind, ModelAndView mv) {
       Course course = coService.selectCourse(courseNum, courseKind);
       CourseAttachment cover = coService.selectCover(courseNum);
       ArrayList<Member> stuList = mService.selectStuByCo(courseNum);
+      
+      
       
       /* System.out.println(course); */
       
@@ -233,6 +233,50 @@ public class CourseController {
       
       return mv;
    }
+   
+   // 온라인 동영상 추가하기 페이지로 이동 
+   @RequestMapping("goAddVideoPage.do")
+   public ModelAndView goAddVideoPage(@RequestParam(value="courseNum") int courseNum, ModelAndView mv) {
+	   mv.addObject("courseNum", courseNum).setViewName("creator/course/addVideoPage");	  
+	   
+	   return mv;
+   }
+   
+   @RequestMapping("addOnlineVideo.do")
+   public ModelAndView insertOnlineVideo(@RequestParam(value="courseNum") int courseNum, @RequestParam(value="videoContent") String videoContent, 
+		   @RequestParam(value="videoTitle") String videoTitle,@RequestParam(value="videoUrl") String videoUrl,
+		   ModelAndView mv) {
+	   
+	   String[] contentArr = videoContent.split(",");
+	   String[] titleArr = videoTitle.split(",");
+	   String[] urlArr = videoUrl.split(",");
+	   String[] url = new String[urlArr.length];
+	   for(int i=0; i<urlArr.length; i++) {
+		   url[i] = urlArr[i].substring(17);
+	   }
+	   
+	   if(url.length > 0) {
+		   for(int i=0; i<url.length; i++) {
+			   Video v = new Video(courseNum, url[i], titleArr[i],  contentArr[i]);
+			   int result = coService.insertVideo(v);
+			   if(result > 0)  {
+				   
+				   System.out.println(url.length + "개 동영상 추가 완료!");
+				   mv.setViewName("creator/creatorCenter");
+		   }
+		   }
+		   
+	   } else {
+		   
+		   mv.setViewName("common/error");
+		   
+	   }
+	   return mv;
+	   //String url = videoUrl.substring(17, videoUrl.length());
+	   //System.out.println("url = " + url);
+   }
+   
+   
 
 	//김은기
 	
@@ -358,6 +402,40 @@ public class CourseController {
       }else {
          return "common/errorPage";
       }
+   }
+   
+   @RequestMapping("aCourseList.do")
+   public ModelAndView aCourseList(ModelAndView mv) {
+	   
+	   ArrayList<SingleCourse> list = coService.allCourseList();
+	   
+	   int sizee = list.size();
+	   
+	   mv.addObject("list", list).addObject("sizee", sizee).setViewName("admin/course/courseList");
+	   
+	   return mv;
+	   
+	   
+   }
+   
+   @RequestMapping("aCourseDetail.do")
+   public ModelAndView aCourseDetail(ModelAndView mv, int courseNum) {
+	   
+	   String courseKind = (coService.selectCourse(courseNum)).getCourseKind();
+	      
+	      Course course = coService.selectCourse(courseNum, courseKind);
+	      CourseAttachment cover = coService.selectCover(courseNum);
+	      ArrayList<Member> stuList = mService.selectStuByCo(courseNum);
+	      
+	      System.out.println(course);
+	      
+	      mv.addObject("co", course);
+	      mv.addObject("cover", cover);
+	      mv.addObject("stuList", stuList);
+	      mv.setViewName("admin/course/courseDetail");
+	      
+	      return mv;
+	   
    }
    
    

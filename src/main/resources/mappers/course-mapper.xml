@@ -74,6 +74,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             </case>
          </discriminator>
    </resultMap>
+   
    <resultMap id="ReviewResultSet" type="Review">
       <id property="reviewNum" column="review_num"/>
       <result property="courseNum" column="course_num"/>
@@ -119,6 +120,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          <result property="courseHourPrice" column="course_hour_price"/>
                <result property="coursePrice" column="course_price"/>
                <result property="courseArea" column="courseArea"/>
+               <result property="courseStatus" column="course_status"/>
+               <result property="courseCurrentNum" column="course_current_num"/>
             
    </resultMap>
    
@@ -160,6 +163,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="payMethod" column="pay_method"/>
 		<result property="coursePrice" column="course_price"/>
 	</resultMap>
+	
 	<resultMap type="Payment" id="PaymentResultSet">
 	<id property="payNum" column="pay_num"/>
 	<result property="memNum" column="mem_num"/>
@@ -362,7 +366,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			where category_name = #{categoryName} and course_approved='Y' and course_status='Y'
 	</select>
 	
-	<!-- 승은 -->
+	<select id="aDeliverDetail" parameterType="_int" resultMap="DeliveryResultSet">
+		select *
+		from user_delivery_view
+		where delivery_num = #{deliveryNum}
+	</select>
+	
 	<!-- 찜하기  -->
  	<select id="selectLove" resultMap="LoveResultSet">
    select *
@@ -448,6 +457,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where cre_num = #{creNum} and course_status in ('Y', 'E', 'N')
         
 	</select>
+	
+	<select id="allCourseList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		order by
+		decode (course_approved,'N',1,'B',2)
+	
+	</select>
+	
 	
 	<select id="selectMyTakeCourse" resultMap="SingleCourseResultSet">
 		select *
@@ -555,7 +573,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into payment
 		values(payment_seq.nextval, #{memNum},#{courseNum},#{payPrice},#{payMethod},default,sysdate,default)
 	</insert>
+	
+	<select id="selectPowerListY" parameterType="_int" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+        where course_num in (select course_num
+                             from power
+                             where power_status = 'n')
+    
+	</select>
+	
+	<select id="selectDelivery" resultMap="DeliveryResultSet">
+		select *
+		from user_delivery_view
+	</select>
 
+
+	
 	
 	<!-- 온라인 카테고리  -->
 	<select id="onlinecategoryCraftsList" resultMap="SingleCourseResultSet">
@@ -710,4 +744,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from course
 		where course_kind = 'offline'
 	</select>
+	
+	<insert id="insertVideo" parameterType="Video">
+		insert into video_course 
+		values(video_course_seq.nextval, #{onlineNum}, #{videoPath}, #{videoTitle}, #{videoContent})
+	</insert>
+	
+	
 </mapper>

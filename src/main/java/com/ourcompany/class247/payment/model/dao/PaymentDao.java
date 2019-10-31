@@ -6,9 +6,12 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.payment.model.vo.Complete;
 import com.ourcompany.class247.payment.model.vo.Delivery;
 import com.ourcompany.class247.payment.model.vo.Payment;
+import com.ourcompany.class247.payment.model.vo.Power;
+import com.ourcompany.class247.payment.model.vo.Power;
 import com.ourcompany.class247.payment.model.vo.TakeCourse;
 
 @Repository("pDao")
@@ -72,8 +75,32 @@ public class PaymentDao {
 		return (ArrayList)sqlSession.selectList("paymentMapper.selectPaymentList");
 	}
 	
+	public ArrayList<SingleCourse> selectPowerListY() {
+		return (ArrayList)sqlSession.selectList("courseMapper.selectPowerListY");
+	}
+	
 	public ArrayList<Payment> selectPowerList() {
 		return (ArrayList)sqlSession.selectList("paymentMapper.selectPowerList");
+	}
+	
+	public ArrayList<Delivery> selectDeliveryList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.selectDelivery");
+	}
+	
+	public Delivery aDeliverDetail(int deliveryNum) {
+		return sqlSession.selectOne("courseMapper.aDeliverDetail", deliveryNum);
+	}
+	
+	public int updateDeliStatus(Delivery d) {
+		return sqlSession.update("paymentMapper.updateDeliStatus", d);
+	}
+	
+	public int paymentCount() {
+		return sqlSession.selectOne("paymentMapper.paymentCount");
+	}
+	
+	public int powerCount() {
+		return sqlSession.selectOne("paymentMapper.powerCount");
 	}
 	
 	public int jhinsertPayment(Payment p) {

@@ -44,6 +44,7 @@
 								<div class="card-header">
 									<h3>
 										<strong>회원 기본 정보</strong>
+
 									</h3>
 								</div>
 								<div class="card-body card-block">
@@ -110,7 +111,7 @@
 									<hr>
 
 									<div id="creator-div"
-										<c:if test="${ m.memType eq 'U' }">style="display:none"</c:if>>
+										<c:if test="${ m.memType eq 'U' }"> style="display:none"</c:if>>
 										<div class="row form-group">
 											<div class="col col-md-2">
 												<label for="creID" class=" form-control-label">신분증
@@ -312,9 +313,7 @@
 							</div>
 						</div>
 
-
-
-
+						
 
 
 
@@ -343,12 +342,13 @@
 
 				<br>
 				<div>
-					<c:url value="goBlack.do" var="goBlack">
-						<c:param value="${ m.memNum }" name="goBlack"/>
-					</c:url>
-						<input type="button" class="btn btn-outline-primary" onclick="location.href='${goBlack}'" value="블랙하기">
-					<c:if test="${ m.status == 'N' }">
-						<input type="button" class="btn btn-outline-danger" onclick="location.href='${aRejectCourse}'" value="거부하기">
+					<c:if test="${ m.memStatus != 'B'}">
+						<input type="button" class="btn btn-outline-primary" onclick="location.href='goBlack.do?memNum=${m.memNum}';" value="블랙하기">
+					</c:if>
+					<c:if test="${ m.memStatus == 'B' }">
+
+							<input type="button" class="btn btn-outline-danger" onclick="location.href='goUnBlack.do?memNum=${m.memNum}'" value="블랙해제">
+
 					</c:if>
 				</div>
 			</div>

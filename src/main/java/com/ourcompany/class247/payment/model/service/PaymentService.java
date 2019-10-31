@@ -2,6 +2,7 @@ package com.ourcompany.class247.payment.model.service;
 
 import java.util.ArrayList;
 
+import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.payment.model.vo.Complete;
 import com.ourcompany.class247.payment.model.vo.Delivery;
 import com.ourcompany.class247.payment.model.vo.Payment;
@@ -22,6 +23,9 @@ public interface PaymentService {
 	ArrayList<Payment> selectPaymentList();
 	
 	ArrayList<Payment> selectPowerList();
+	
+	ArrayList<SingleCourse> selectPowerListY();
+
 
 	ArrayList<Delivery> memdelivery(int memNum);
 	
@@ -29,6 +33,17 @@ public interface PaymentService {
 	//크리에이터센터 총 누적수익 구해오기 
 	int getCreAmount(int creNum);
 	
+	ArrayList<Delivery> selectDeliveryList();
+	
+	Delivery aDeliverDetail(int deliveryNum);
+	
+	int updateDeliStatus(Delivery d);
+	
+	int paymentCount();
+	
+	int powerCount();
+	
+		
 	int jhinsertPayment(Payment p);
 	
 	int jhinsertTakeCoruse(TakeCourse t);

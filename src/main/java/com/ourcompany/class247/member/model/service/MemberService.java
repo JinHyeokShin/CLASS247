@@ -68,6 +68,8 @@ public interface MemberService {
 	
 	int updateBlackList(int memNum);
 	
+	int updateUnBlackList(int memNum);
+	
 
 	
 }

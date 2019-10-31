@@ -279,7 +279,6 @@ public class NoticeController {
 		
 		ArrayList<NoticeReply> nrList = nService.selectNReplyList(noticeNum, rpi);
 		
-		
 		response.setContentType("application/json; charset=utf-8");
 		
 		Gson gson = new Gson();

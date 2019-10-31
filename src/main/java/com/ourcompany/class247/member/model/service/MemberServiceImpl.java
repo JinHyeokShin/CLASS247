@@ -111,6 +111,12 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.updateBlackList(memNum);
 	}
 	
+	@Override
+	public int updateUnBlackList(int memNum) {
+		
+		return mDao.updateUnBlackList(memNum);
+	}
+	
 
 
 

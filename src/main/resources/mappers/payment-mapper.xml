@@ -37,29 +37,55 @@
 		select count(*)
 		from payment
 		where mem_num = #{memNum} and pay_cancel != 'Y'
+		
 	</select>
 	
 	<select id="selectPaymentList" resultMap="PaymentResultSet">
-		select pay_num, mem_num, mem_name, course_num, course_title, pay_price, pay_method, pay_cancel, pay_date, pay_cancel_date
+		select pay_num, mem_num, mem_name, course_num, course_title, pay_code, pay_price, pay_method, pay_cancel, pay_date, pay_cancel_date
 		from payment
 		join course using(course_num)
 		join member using(mem_num)
+		order by pay_num desc
 	</select>
 	
 	<select id="selectPowerList" resultMap="PaymentResultSet">
-		select pay_num, p.mem_num, mem_name, p.course_num, course_title,pay_code, pay_price, pay_method, pay_cancel, pay_date, pay_cancel_date
+		select pay_num, p.mem_num, mem_name, p.course_num, course_title, pay_code, pay_price, pay_method, pay_cancel, pay_date, pay_cancel_date
 		from payment p
 		join course c on(p.course_num = c.course_num)
 		join member m on(p.mem_num = m.mem_num)
 		join power using(pay_num)
+		order by pay_num desc
+	</select>
+	
+	<update id="updateDeliStatus">
+		update delivery
+		set delivery_status = #{deliveryStatus}
+		where delivery_num = #{deliveryNum}
+	</update>
+	
+	<select id="paymentCount" resultType="_int">
+		select count(*)
+		from payment
+	</select>
+	
+	<select id="powerCount" resultType="_int">
+		select count(*)
+		from payment
+		where pay_num in (
+		        select pay_num
+		        from payment
+		        join power using(pay_num)
+		        )
 	</select>
 	
 	<insert id="jhinsertPayment">
 		insert into payment values(payment_seq.nextval,#{ payCode }, #{memNum}, #{courseNum}, #{payPrice},#{payMethod},null,sysdate,null)
 	</insert>
+	
 	<insert id="jhinsertTakeCourse">
 		insert into takecourse values(takecourse_seq.nextval, payment_seq.currval, #{ memNum }, #{ takeCode }, ${ payPrice }, default, default)
 	</insert>
+	
 	<select id="complete" parameterType="string" resultMap="CompleteResultSet">
 		select *
 		from payment_view

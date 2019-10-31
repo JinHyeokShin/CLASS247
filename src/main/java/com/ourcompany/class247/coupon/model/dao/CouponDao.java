@@ -32,7 +32,7 @@ public class CouponDao {
 	}
 	
 	public ArrayList<Coupon> selectCouponList() {
-		return (ArrayList)sqlSession.selectList("memberMapper.selectCouponList()");
+		return (ArrayList)sqlSession.selectList("memberMapper.selectCouponList");
 	}
 	
 	public Coupon selectCoupon(int couponType) {

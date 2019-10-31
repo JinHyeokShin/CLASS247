@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.ourcompany.class247.creator.model.vo.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% Creator creator = (Creator)request.getSession().getAttribute("creator"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,14 +12,14 @@
 </head>
 <body class="animsition">
 	<c:import url="common/cMenubar.jsp"/>
-	
+
 	<div class="page-wrapper">
             <!-- MAIN CONTENT-->
                  <session class="main-content">
                     <div class="section__content section__content--p30">
                         <div class="container-fluid">
                             <h3 class="title-3 m-b-30"><br>
-                                <i class="fas fa-comment-alt"></i>실시간 톡
+                                <i class="fas fa-comment-alt"></i>실시간 톡  
                             </h3>
                             <div class="row">
                                 <div class="col-lg-6" style="margin-right:auto; margin-left:auto;">
@@ -56,32 +57,17 @@
                                                         </div>
                                                         <span class="nick">
                                                             <a href="#">John Smith</a>
+                                                            <c:if test="${!empty creator.creNum}">
+                                                            	<input type="hidden" id="creNum" value="C${creator.creNum}">
+                                                            </c:if>
+                                                            <c:if test="${ empty creator.creNum }">
+                                                            	<input type="hidden" id="userId" value="${loginUser.memNum}">
+                                                            </c:if>
                                                         </span>
                                                     </div>
                                                 </div>
                                                 <div id="chatBox" class="au-chat__content">
-                                                    <div class="recei-mess-wrap">
-                                                        <span class="mess-time">12 Min ago</span>
-                                                        <div class="recei-mess__inner" >
-                                                            <div class="avatar avatar--tiny">
-                                                                <img src="resources/creator/images/icon/avatar-02.jpg" alt="John Smith">
-                                                            </div>
-                                                            <div class="recei-mess-list" id="receiveBox">
-                                                                <div class="recei-mess">Lorem ipsum dolor sit amet, consectetur adipiscing elit non iaculis</div>
-                                                                <div class="recei-mess">Donec tempor, sapien ac viverra</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="send-mess-wrap">
-                                                        <span class="mess-time">30 Sec ago</span>
-                                                        <div class="send-mess__inner">
-                                                            <div class="send-mess-list" id="talkingBox">
-                                                                <div class="send-mess">Lorem ipsum dolor sit amet, consectetur adipiscing elit non iaculis</div>
-                                                                 <div class="send-mess">Lorem ipsum dolor sit amet, consectetur adipiscing elit non iaculis</div>
-                                                                  <div class="send-mess">Lorem ipsum dolor sit amet, consectetur adipiscing elit non iaculis</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
                                                 </div>
                                                 
                                                 <div class="au-chat-textfield">
@@ -102,6 +88,131 @@
                 </session>
                 
                 	<script>
+		$(function(){
+		var roomId = ${roomId};
+			
+			
+			$.ajax({
+				url:"getChatList.do",
+				data:{roomId:roomId},
+ 				dataType:"json", 
+				success:function(data){
+					
+					if(data.length > 0) {
+						$.each(data, function(index, value){
+							<% if(creator == null) { %>
+						    	if(value.fromId == ${loginUser.memNum}) {
+						    <% } else { %>	
+						    	if(value.fromId == 'C${creator.creNum}') {
+						    <% } %>
+						    
+							    var $div = $('<div class="send-mess-wrap">');
+							    //var $time = $('<span class="mess-time">').text('1 Sec ago');
+							    var $div2 = $('<div class="send-mess__inner"">');
+							    var $div3 = $('<div class="send-mess-list">');
+							    var $div4 = $('<div class="send-mess">').text(value.chatContent);
+							    
+
+				                
+				                
+							    //$div.append($time);
+							    $div.append($div2);
+							    $div2.append($div3);
+							    $div3.append($div4); 
+							    
+
+							    
+							    $("#chatBox").append($div);
+								
+						    } else {
+						    	
+							    var $div = $('<div class="recei-mess-wrap">');
+							    var $time = $('<span class="mess-time">').text('1 Sec ago');
+							    var $div2 = $('<div class="recei-mess__inner">');
+							    var $div3 = $('<div class="recei-mess-list">');
+							    var $div4 = $('<div class="recei-mess">').text(value.chatContent);
+							    
+
+				                var $profile = $('<div class="avatar avatar--tiny">');
+				                var $profile1 =  $('<img src="resources/creator/images/icon/avatar-02.jpg">');
+
+							    
+					 		    //$div.append($time);
+							    $div.append($div2);
+							    $div2.append($profile);
+							    $div2.append($div3); 
+							    $profile.append($profile1);
+							    $div3.append($div4); 
+							    
+							    $("#chatBox").append($div);
+						    	
+						    	
+						    	
+						    	
+						    	
+						    }
+						});
+						
+					} else {
+						// data가 0개 일 경우 
+						
+						
+					}
+				    $('.au-chat__content').scrollTop(9999999);
+				    
+				    document.body.scrollIntoView(false);
+				},
+				error:function(){
+					console.log("ajax 통신 실패 ");
+				}
+			})
+		});
+	</script>
+                
+        <!--  튜터 -> 회원  메세지를 보낼 경우 (즉, 튜터로 로그인 )  -->     
+		<c:if test='${ !empty creator}'> 
+			<script>
+				function sendMessage() {
+				
+				  if($("#message").val() == ""){   // 메세지 내용이 없으면 실행되는 부분
+				     alert("메세지를 입력하세요.");
+				  }else{                     // 메세지 내용이 있으면
+				       /*소켓으로 보내겠다.  */
+				       var text =  $("#creNum").val() + "->" + $("#message").val() + "->" + "${memNum}" + "->" + "${roomId}";
+				       sock.send(text);   // 메세지를 소켓에 보내고
+				       $("#message").val("");         // 메세지 내용을 비운다.
+				     
+				  }
+			
+				}
+			</script>
+		</c:if>
+		<!--  회원 -> 튜터  메세지를 보낼 경우 (즉, 회원일경우 로그인 )  -->     
+		<c:if test='${ empty creator}'>
+		<script>
+				function sendMessage() {
+				
+				  if($("#message").val() == ""){   // 메세지 내용이 없으면 실행되는 부분
+				     alert("메세지를 입력하세요.");
+				  }else{                     // 메세지 내용이 있으면
+				       /*소켓으로 보내겠다.  */
+				       var text = $("#userId").val() +  "->" + $("#message").val() + "->${creNum}->${roomId}" ;
+				       sock.send(text);   // 메세지를 소켓에 보내고
+
+				       $("#message").val("");         // 메세지 내용을 비운다.
+				     
+				  }
+				    
+			
+				}
+				
+			</script>
+			
+			
+		</c:if>
+	
+                
+          <script>
 			$(document).ready(function() {
 			      
 		        $("#sendBtn").on("click", function() {   // 전송 버튼을 누를때
@@ -114,6 +225,7 @@
 		                sendMessage();   // 메소드 실행
 		            }
 		        });
+		       
 		});
 			
 	
@@ -123,7 +235,11 @@
 		  sock = new SockJS("<c:url value='/chat'/>");
 		
 		
+		sock.onopen = onOpen;
+		function onOpen(){
+			sock.send("채팅방입장->${roomId}")
 		
+		}
 		//자바스크립트 안에 function을 집어넣을 수 있음.
 		
 		//데이터가 나한테 전달되읐을 때 자동으로 실행되는 function
@@ -144,20 +260,7 @@
 		
 		}; */
 		
-		function sendMessage() {
-		
-		  if($("#message").val() == ""){   // 메세지 내용이 없으면 실행되는 부분
-		     
-		  }else{                     // 메세지 내용이 있으면
-		       /*소켓으로 보내겠다.  */
-		       $("#message").val() + "//" +  $("#userName").val()
-		       sock.send($("#message").val());   // 메세지를 소켓에 보내고
-		       $("#message").val("");         // 메세지 내용을 비운다.
-		     
-		  }
-		    
-	
-		}
+
 		
 		//evt 파라미터는 웹소켓을 보내준 데이터다.(자동으로 들어옴)
 		
@@ -222,13 +325,11 @@
 		    $("#chatBox").append("연결 끊김");
 		
 		}
+		
+
 	</script>
 
             <!-- END PAGE CONTAINER-->
-            
-
-
-
             <section>
                 <div class="container-fluid">
                     <div class="row">

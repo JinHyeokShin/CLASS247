@@ -317,6 +317,20 @@ public class MemberController {
 		return mv;
 	}
 	
+	@RequestMapping("goUnBlack.do")
+	public String aUpdateUnBlack(int memNum) {
+		
+		int result = mService.updateUnBlackList(memNum);
+		
+		if(result > 0 ) {
+			return "redirect:aBlackList.do";
+		}else {
+			return "common/errorPage";
+		}
+		
+		
+	}
+	
 
 	
 	
@@ -373,13 +387,26 @@ public class MemberController {
 		
 		if(result > 0) {
 			
-			return "redirect:blackList.do";
+			return "redirect:aBlackList.do";
 			
 		}else {
 			
 			return "common/errorPage";
 			
 		}
+		
+	}
+	
+	@RequestMapping("aMemberList.do")
+	public ModelAndView selectMemberList(ModelAndView mv) {
+		
+		ArrayList<Member> list = mService.selectMemberList();
+		
+		int sizee = list.size();
+		
+		mv.addObject("list", list).addObject("sizee", sizee).setViewName("admin/member/memberList");
+		
+		return mv;
 		
 	}
 	

@@ -3848,13 +3848,13 @@ section {
     transition: all 0.5s ease;
 }
 
-.au-inbox-wrap.show-chat-box {
+ .au-inbox-wrap.show-chat-box {
     -webkit-transform: translateX(-50%);
     -moz-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     -o-transform: translateX(-50%);
     transform: translateX(-50%);
-}
+} 
 
 .au-message {
     width: 50%;
