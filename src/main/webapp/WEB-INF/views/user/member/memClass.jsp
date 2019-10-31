@@ -12,6 +12,12 @@
             #Mdrecom{
             width:90%;
             }
+            .nav-item{
+            width:30%;
+            }
+            .nav-link{
+            font-size:20;
+            }
 			</style>
             <link rel="icon" href="resources/user/img/favicon.png">
             <script src="resources/user/js/jquery.counterup.min.js"></script>
@@ -26,7 +32,22 @@
       		<br>
       		<hr>
       		<br>
-	 <section class="special_cource padding_top" id="Mdrecom">
+      		
+      		<div class="content_wrapper">
+                            <!-- 탭 만들기 -->
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item">
+                                      <a class="nav-link active" data-toggle="tab" href="#Review">온라인 클래스</a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a class="nav-link" data-toggle="tab" href="#Eligibility">오프라인 클래스</a>
+                                    </li>
+                                  </ul>
+                        <div class="tab-content">    
+                            <div class="tab-pane fade show active" id="Review">
+                               
+	                          
+	                            <section class="special_cource padding_top" id="Mdrecom">
                 <div class="container" id="Mdrecom">
                     <div class="row justify-content-left">
                         <div class="col-xl-5">
@@ -92,8 +113,15 @@
 						</blockquote>
 				  </c:forEach>
 				  </div>
-				  </section>
-				   <section class="special_cource padding_top" id="Mdrecom">
+				  </section><script src="resources/user/js/jquery-1.11.3.min.js"></script>
+							<script src="resources/user/js/star.js"></script>
+							
+                        </div>
+                        <!-- 패키지    -->
+                        <!-- 크리에이터 -->
+                        <div class="tab-pane fade" id="Eligibility">
+                         
+                <section class="special_cource padding_top" id="Mdrecom">
                 <div class="container" id="Mdrecom">
                     <div class="row justify-content-left">
                         <div class="col-xl-5">
@@ -160,6 +188,13 @@
 				  </c:forEach>
 				  </div>
 				  </section>
+                        </div>
+                    
+                    </div>    
+                </div>
+      		
+	
+				  
 				 </div>
 				 </section>
 			<c:import url="/WEB-INF/views/user/common/footer.jsp" />
