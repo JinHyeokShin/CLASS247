@@ -89,7 +89,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 4. 회원 정보 탈퇴 -->
 	<update id="deleteMember" parameterType="Member">
 		update member
-		set mem_address=#{memAddress}, mem_status='N'
+		set mem_address=#{memAddress}, mem_status='N', out_date=sysdate
 		where mem_id=#{memId} 
 	</update>
 	
@@ -103,10 +103,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 6. 페이지처리 구문 -->
-	<select id="getListCount" resultType="_int">
+	<select id="getListCount" parameterType="_int" resultType="_int" >
 		select count(*)
 		from givecoupon
-		where givecoupon_status='Y'
+		where mem_num=#{memNum} and givecoupon_status='Y'
 	</select>
 	
 	

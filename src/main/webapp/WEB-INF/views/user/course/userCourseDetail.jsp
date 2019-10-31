@@ -257,25 +257,19 @@ star-input>.input.focus{outline:1px dotted #ddd;}
                         <ul>
                             <li style="width: 100%;">
                                 <a class="justify-content-between d-flex">
-                                    <p>Trainer’s Name</p>
+                                    <p>크리에이터</p>
                                     <span class="color">${ c.memNickName }</span>
                                 </a>
                             </li>
                             <li style="width: 100%;">
                                 <a class="justify-content-between d-flex" href="#">
-                                    <p>Title </p>
-                                    <span>${ c.courseTitle }</span>
-                                </a>
-                            </li>
-                            <li style="width: 100%;">
-                                <a class="justify-content-between d-flex" href="#">
-                                    <p>Category</p>
+                                    <p>카테고리</p>
                                     <span>${ c.categoryName}</span>
                                 </a>
                             </li>
                             <li style="width: 100%;">
                                 <a class="justify-content-between d-flex" href="#">
-                                    <p>course fee</p>
+                                    <p>가격</p>
                                    <c:if test="${ c.courseKind eq 'online' }">
 										<span>${ c.coursePrice + c.courseMaterialPrice }</span>
 									</c:if> 
@@ -286,12 +280,13 @@ star-input>.input.focus{outline:1px dotted #ddd;}
                             </li>
                             <li style="width: 100%;">
                                 <a class="justify-content-between d-flex" href="#">
-                                    <p>Available Seats </p>
-                                     <c:if test="${ c.courseKind eq 'offline' }">
-                                    <span>${c.courseCurrentNum}</span>
+                                    <c:if test="${ c.courseKind eq 'offline' }">
+                                    <p>수강 가능 인원</p>
+                                    <span>${c.courseMaxPax - c.courseCurrentNum}</span>
                                     </c:if>
                                     <c:if test="${ c.courseKind eq 'online' }">
-                                  <span>${c.courseCurrentNum}</span>
+                                  	<p>현재 수강중인 인원</p>
+                                  	<span>${c.courseCurrentNum }</span>
                                    </c:if>
                                 </a>
                             </li>
@@ -365,19 +360,24 @@ star-input>.input.focus{outline:1px dotted #ddd;}
 
                         </ul>
                         	  
-                        	 <c:if test="${ c.courseKind eq 'online' }">
-	                        <c:url  value="coBuyOn.do" var="coBuyOn">
+                        	
+	                        <c:url  value="coBuy.do" var="coBuyOn">
 								<c:param name="courseNum" value="${ c.courseNum }"/>
-								
 							</c:url>		
-								<a href="${ coBuyOn }" class="btn_1 d-block">수강하기</a>					
-							</c:if>
-							<c:if test="${ c.courseKind eq 'offline' }">
-                              <c:url  value="coBuyOff.do" var="coBuyOff">
-								<c:param name="courseNum" value="${ c.courseNum }"/>
-							</c:url>	
-								<a href="${ coBuyOff }" class="btn_1 d-block">수강하기</a>				
-                                    </c:if>
+							 <c:if test="${ c.courseKind eq 'offline' }">
+							 	<c:if test="${ (c.courseMaxPax - c.courseCurrentNum) > 0 }">
+								<a href="${ coBuyOn }" class="btn_1 d-block">수강하기</a>		
+								</c:if>
+								<c:if test="${ (c.courseMaxPax - c.courseCurrentNum) <= 0 }">
+								<input type="button" onclick="takeAlert();" class="btn_1 d-block" value="수강하기" style="width:100%;">
+								</c:if>		
+                             </c:if>
+							<script>
+							function takeAlert(){
+								alert("이 강의는 꽉 찼어요 다음 기회에 뵈어요 !");
+							}
+							</script>
+							
                         	
                     </div>
 

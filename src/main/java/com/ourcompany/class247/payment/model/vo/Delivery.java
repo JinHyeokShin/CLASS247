@@ -17,8 +17,9 @@ public class Delivery {
 	private String memName;
 	private String courseMaterial;
 	private String courseTitle;
-	private int memNum;
+	private int memNum;	
 	private String payMethod;
+	private int coursePrice;
 	private String payCode;
 	
 	public Delivery() {
@@ -30,7 +31,7 @@ public class Delivery {
 	
 	public Delivery(int deliveryNum, int payNum, String deliveryAddress, String deliveryStatus, Date payDate,
 			int payPrice, String memName, String courseMaterial, String courseTitle, int memNum, String payMethod,
-			String payCode) {
+			int coursePrice, String payCode) {
 		super();
 		this.deliveryNum = deliveryNum;
 		this.payNum = payNum;
@@ -43,17 +44,8 @@ public class Delivery {
 		this.courseTitle = courseTitle;
 		this.memNum = memNum;
 		this.payMethod = payMethod;
+		this.coursePrice = coursePrice;
 		this.payCode = payCode;
-	}
-
-
-
-	public int getMemNum() {
-		return memNum;
-	}
-
-	public void setMemNum(int memNum) {
-		this.memNum = memNum;
 	}
 
 	public int getDeliveryNum() {
@@ -156,16 +148,51 @@ public class Delivery {
 
 
 
+	public int getMemNum() {
+		return memNum;
+	}
+
+	public void setMemNum(int memNum) {
+		this.memNum = memNum;
+	}
+
+	public String getPayMethod() {
+		return payMethod;
+	}
+
+	public void setPayMethod(String payMethod) {
+		this.payMethod = payMethod;
+	}
+
+	public int getCoursePrice() {
+		return coursePrice;
+	}
+
+	public void setCoursePrice(int coursePrice) {
+		this.coursePrice = coursePrice;
+	}
+
+	public String getPayCode() {
+		return payCode;
+	}
+
+	public void setPayCode(String payCode) {
+		this.payCode = payCode;
+	}
+
 	@Override
 	public String toString() {
 		return "Delivery [deliveryNum=" + deliveryNum + ", payNum=" + payNum + ", deliveryAddress=" + deliveryAddress
 				+ ", deliveryStatus=" + deliveryStatus + ", payDate=" + payDate + ", payPrice=" + payPrice
 				+ ", memName=" + memName + ", courseMaterial=" + courseMaterial + ", courseTitle=" + courseTitle
-				+ ", memNum=" + memNum + ", payMethod=" + payMethod + ", payCode=" + payCode + "]";
+				+ ", memNum=" + memNum + ", payMethod=" + payMethod + ", coursePrice=" + coursePrice + ", payCode="
+				+ payCode + "]";
 	}
 
 
+	
 
-
+	
+	
 
 }

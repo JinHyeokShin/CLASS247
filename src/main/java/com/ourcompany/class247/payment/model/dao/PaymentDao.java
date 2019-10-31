@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.payment.model.vo.Complete;
 import com.ourcompany.class247.payment.model.vo.Delivery;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.payment.model.vo.Power;
@@ -18,12 +19,12 @@ public class PaymentDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public ArrayList<Payment> payonlist(int memNum) {
+	public ArrayList<TakeCourse> payonlist(int memNum) {
 
 		return (ArrayList)sqlSession.selectList("courseMapper.payonList",memNum);
 	}
 
-	public ArrayList<Payment> payofflist(int memNum) {
+	public ArrayList<TakeCourse> payofflist(int memNum) {
 
 		return (ArrayList)sqlSession.selectList("courseMapper.payoffList",memNum);
 	}
@@ -37,6 +38,15 @@ public class PaymentDao {
 		
 		return (ArrayList)sqlSession.selectList("courseMapper.memdelivery",memNum);
 	}
+
+	public ArrayList<Delivery> memdeliverydetail(String payCode) {
+		
+		return (ArrayList)sqlSession.selectList("courseMapper.selectmemdeliverydetailList",payCode);
+	}
+	
+	
+	
+	
 	/** 크리에이터 센터 누적 금액 구해오기 
 	 * @param creNum
 	 * @return
@@ -93,4 +103,15 @@ public class PaymentDao {
 		return sqlSession.selectOne("paymentMapper.powerCount");
 	}
 	
+	public int jhinsertPayment(Payment p) {
+		return sqlSession.insert("paymentMapper.jhinsertPayment", p);
+	}
+	
+	public int jhinsertTakeCourse(TakeCourse t) {
+		return sqlSession.insert("paymentMapper.jhinsertTakeCourse",t);
+	}
+	
+	public Complete complete(String payCode) {
+		return sqlSession.selectOne("paymentMapper.complete",payCode);
+	}
 }

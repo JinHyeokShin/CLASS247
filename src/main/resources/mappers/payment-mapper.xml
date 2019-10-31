@@ -16,6 +16,14 @@
 	<result property="payCancelDate" column="pay_cancel_date"/>
 	</resultMap>
 	
+	<resultMap type="Complete" id="CompleteResultSet">
+	<result property="payCode" column="pay_code"/>
+	<result property="courseTitle" column="course_title"/>
+	<result property="memNickName" column="mem_nickname"/>
+	<result property="memNum" column="mem_num"/>
+	<result property="categoryName" column="category_name"/>
+	<result property="payPrice" column="pay_price"/>
+	</resultMap>
 	
 	
 	<select id="selectMyPaymentList" resultMap="PaymentResultSet">
@@ -68,5 +76,15 @@
 		        from payment
 		        join power using(pay_num)
 		        )
+	<insert id="jhinsertPayment">
+		insert into payment values(payment_seq.nextval,#{ payCode }, #{memNum}, #{courseNum}, #{payPrice},#{payMethod},null,sysdate,null)
+	</insert>
+	<insert id="jhinsertTakeCourse">
+		insert into takecourse values(takecourse_seq.nextval, payment_seq.currval, #{ memNum }, #{ takeCode }, ${ payPrice }, default, default)
+	</insert>
+	<select id="complete" parameterType="string" resultMap="CompleteResultSet">
+		select *
+		from payment_view
+		where pay_Code=#{payCode}
 	</select>
 </mapper>

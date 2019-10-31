@@ -71,7 +71,7 @@ public interface CourseService {
 	/*사용자 페이지*/
 	
 	//페이징처리
-	int getListCount();
+	int getListCount(int memNum);
 
 	//찜하기 리스트 가져오기
 	ArrayList<Love> lovelist(int memNum, PageInfo pi);

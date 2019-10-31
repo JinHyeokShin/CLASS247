@@ -2,11 +2,13 @@ package com.ourcompany.class247.course.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -402,26 +404,24 @@ public class CourseController {
     * 1. 찜하기폼으로 이동.
     * @return
     */
-   @RequestMapping("memZzim.do")
-   public ModelAndView memZzim(HttpServletRequest request, ModelAndView mv, @RequestParam(value="currentpage", required=false, defaultValue="1")int currentPage ) {
-      Member loginUser = (Member)request.getSession().getAttribute("loginUser");
-      int memNum = loginUser.getMemNum();
-      int listCount = coService.getListCount();
-      PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-      ArrayList<Love> lovelist = coService.lovelist(memNum, pi);
-
-      mv.addObject("pi",pi).addObject("lovelist", lovelist);
-      mv.setViewName("user/member/memZzim");
-
-      
-   
-      
-      return mv;
-   }
-   
-   
-   
-   
+	@RequestMapping("memZzim.do")
+	public ModelAndView memZzim(HttpServletRequest request, ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1")int currentPage ) {
+		
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+		
+		int memNum = loginUser.getMemNum();
+		int listCount = coService.getListCount(memNum);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Love> lovelist = coService.lovelist(memNum, pi);
+		
+		mv.addObject("pi",pi).addObject("lovelist", lovelist).addObject("listCount", listCount);
+		mv.setViewName("user/member/memZzim");
+	
+		
+		return mv;
+	}
    /*
     * 
     * SingleCourse
@@ -439,32 +439,35 @@ public class CourseController {
       
       return mv;
    }
-   
-   
-   @RequestMapping("mZzim.do")
-   public ModelAndView mZzim(HttpServletRequest request, ModelAndView mv, @RequestParam(name="check") int check
-         , @RequestParam(value="currentpage", required=false, defaultValue="1")int currentPage) {
-   
-   Member loginUser = (Member)request.getSession().getAttribute("loginUser");
-   
-   //String[] checklist = check.split(",");
-   //for(String c : checklist) { }
-      int memNum = loginUser.getMemNum();
-      int listCount = coService.getListCount();
-      PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-      ArrayList<Love> lovelist = coService.lovelist(memNum, pi);
+	
+	
+	@RequestMapping("mZzim.do")
+	public String mZzim(HttpServletRequest request, Model model, HttpServletResponse response , @RequestParam(name="check") String[] check) {
+		
+	Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+	
+	int memNum = loginUser.getMemNum();
+	int result = 0;
 
-      for(Love l : lovelist ) {
-          Love i = new Love();
-          i.setMemNum(memNum);
-          i.setCourseNum(check);
-          coService.deleteLove(i);
-         }
-   
+	for(int a =0; a<check.length; a++) {
+		Love i = new Love();
 
-      mv.setViewName("user/member/memZzim");
-      return mv;
-   }
+		i.setMemNum(memNum);
+		
+		i.setCourseNum(Integer.parseInt(check[a]));
+		
+		result += coService.deleteLove(i);
+
+	};
+	
+
+		if(result == check.length) {
+			return "redirect:memZzim.do";
+		}else {
+			return "common/errorPage";
+		}
+		
+	}
 
    /**  검색창에서 텍스트로 검색하는 메소드
     * @param search
@@ -561,34 +564,8 @@ public class CourseController {
       
    }
    
-   @RequestMapping("coBuyOn.do")
-   public ModelAndView coursePaymentOn(HttpServletRequest request,int courseNum, String courseKind, ModelAndView mv) {
-      Course c;
-      Member loginUser = (Member)request.getSession().getAttribute("loginUser");
-      
-         if(loginUser ==null) {
-            mv.setViewName("user/member/loginForm");
-         }else {
-         
-             c = coService.selectOnline(courseNum);
-         
-         System.out.print(c);
-         
-         if(c != null) {
-            mv.addObject("c", c)
-            .setViewName("creator/course/userCourseDetail2");
-            
-         }else {
-            mv.addObject("msg", "게시글 상세조회실패!")
-            .setViewName("common/errorPage");
-         }
-      }
-      
-      return mv;
-      
-   }
-   @RequestMapping("coBuyOff.do")
-   public ModelAndView coursePaymentOff(HttpServletRequest request,int courseNum, String courseKind, ModelAndView mv) {
+   @RequestMapping("coBuy.do")
+   public ModelAndView coursePayment(HttpServletRequest request,int courseNum, String courseKind, ModelAndView mv) {
 	   		Course c;
 	   		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 	      
@@ -597,38 +574,20 @@ public class CourseController {
 	         }else {
 	            	c = coService.selectCourse(courseNum);
 	            	System.out.println(c);
+	            	
          
-         if(c != null) {
+         if(c != null && c.getCourseKind().equals("offline")) {
             mv.addObject("c", c)
             .setViewName("user/course/userCourseDetailOff");
             
+         }else if(c != null && c.getCourseKind().equals("online")){
+        	 mv.addObject("c", c)
+             .setViewName("user/course/userCourseDetailOn");
          }else {
-            mv.addObject("msg", "게시글 상세조회실패!")
-            .setViewName("common/errorPage");
+        	 mv.addObject("msg", "게시글 상세조회실패!")
+             .setViewName("common/errorPage");
          }
 	   }
-      
-      return mv;
-      
-   }
-   @RequestMapping("coBuy2.do")
-   public ModelAndView coursePayment2(HttpServletRequest request,int courseNum, String courseKind, ModelAndView mv) {
-      Course c;
-         if(courseKind.equals("online")) {
-             c = coService.selectOnline(courseNum);
-         }else {
-             c = coService.selectOffline(courseNum);
-         }
-         System.out.print(c);
-         
-         if(c != null) {
-            mv.addObject("c", c)
-            .setViewName("user/course/userCourseDetail3");
-            
-         }else {
-            mv.addObject("msg", "게시글 상세조회실패!")
-            .setViewName("common/errorPage");
-         }
       
       return mv;
       
@@ -709,5 +668,6 @@ public class CourseController {
    
       return mv;
    }
+	
 
 }

@@ -1,60 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"
-	import="com.ourcompany.class247.member.model.vo.Member"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+    pageEncoding="UTF-8" import="com.ourcompany.class247.member.model.vo.Member"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 
 <html>
 
 <head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>CLASS 247</title>
-<link rel="icon" href="resources/user/img/favicon.png">
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<!-- JavaScript -->
-<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/alertify.min.js"></script>
-
-<!-- CSS -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/alertify.min.css"/>
-<!-- Default theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/default.min.css"/>
-<!-- Semantic UI theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/semantic.min.css"/>
-<!-- Bootstrap theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/bootstrap.min.css"/>
+    <!-- Required meta tags -->
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>CLASS 247</title>
+    <link rel="icon" href="resources/user/img/favicon.png">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	<!-- JavaScript -->
+	<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/alertify.min.js"></script>
+	
+	<!-- CSS -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/alertify.min.css"/>
+	<!-- Default theme -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/default.min.css"/>
+	<!-- Semantic UI theme -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/semantic.min.css"/>
+	<!-- Bootstrap theme -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/bootstrap.min.css"/>
 </head>
 <style>
-html, body {
-	margin: 0px;
-	padding: 0px;
+    html,body {
+  margin: 0px;
+  padding: 0px;
 }
 
 header {
-	text-align: center;
+  text-align: center;
 }
 
 #bprice {
-	text-align: center;
-	padding: 10px 0px;
-	width: 100%;
+  text-align: center;
+  
+  padding: 10px 0px;
+  width: 100%;
 }
-
 .active {
-	position: fixed;
-	bottom: 0px;
+  position: fixed;
+  bottom: 0px;
+}
+.d-block{
+	align:center;
 }
 </style>
-<body>
-	<c:import url="/WEB-INF/views/user/common/menubar.jsp" />
 
-   <section class="course_details_area section_padding">
+<body>
+<c:import url="/WEB-INF/views/user/common/menubar.jsp"/>
+    <section class="course_details_area section_padding">
         <div class="container">
     <hr>
-    <h2>오프라인 클래스 결제 페이지</h2>
+    <h2>온라인 클래스 결제 페이지</h2>
     <hr>
             <div class="row">
                 <div class="col-lg-8 course_details_left">
@@ -85,23 +86,30 @@ header {
                                     <p>카테고리</p>
                                     <span>${ c.categoryName }</span>
                                 </a>
+                            </li>
+                            <li style="width: 100%; cursor:default;">
+                           	    <a class="justify-content-between d-flex" href="#" style="cursor:default;">
+                           	    	<p>구매 유형</p>
+                            		<span><input type="radio" name="price" id="packbtn1" value="${c.coursePrice +c.courseMaterialPrice }" checked="checked" required><label for="packbtn1">패키지 구매하기</label></span>
+									<span><input type="radio" name="price" id="packbtn2" value="${c.coursePrice }"><label for="packbtn2">수강권만 구매하기</label></span>
+                           	    </a>
                             </li>					
                             <li style="width: 100%; text-align:right;">
                             	<a class="justify-content-between d-flex" href="#" style="cursor:default;">
                            	    	<p>준비물</p>
-                            		<%-- <span>${c.courseMaterial }</span> --%>
+                            		<span>${c.courseMaterial }</span>
                            	    </a>
                             </li>
                             <li style="width: 100%; text-align:right;">
                             	<a class="justify-content-between d-flex" href="#" style="cursor:default;">
                            	    	<p>준비물 가격</p>
-                            		<%-- <span>${c.courseMaterialPrice }</span> --%>
+                            		<span>${c.courseMaterialPrice }</span>
                            	    </a>
                             </li>
                             <li style="width: 100%; text-align:right;">
                             	<a class="justify-content-between d-flex" href="#" style="cursor:default;">
                            	    	<p>총 결제 가격</p>
-                            		<span><h4><label id="totalPrice"><fmt:formatNumber value="${ c.courseHourPrice * c.courseCount * c.courseHours }" pattern="#,###원" /></label></h4></span>
+                            		<span><h4><label id="totalPrice">${ c.coursePrice +c.courseMaterialPrice  }</label></h4></span>
                            	    </a>
                             </li>	
                             
@@ -118,7 +126,12 @@ header {
             </div>
         </div>
     </section>
-	<script>
+				            <script>
+				            	$("input[name=price]").change(function(){
+				            		$("#totalPrice").text($("input[name=price]:checked").val());
+				            	});
+				            </script>
+    	<script>
 	function inicis() {
 
     	IMP.init('imp79990634');
@@ -148,8 +161,8 @@ header {
     				  confirmNum:rsp.apply_num,
     				  memNum:'${loginUser.memNum}',
     				  courseNum:'${c.courseNum}',
-    				  payPrice:'${ c.courseHourPrice * c.courseCount * c.courseHours }',
-    				  takePrice:'${ c.courseHourPrice * c.courseCount * c.courseHours }'
+    				  payPrice:$("#totalPrice").text(),
+    				  takePrice:$("#totalPrice").text()
     				 },
     			success:function(data){
     				location.href="complete.do?payCode=" + data;
@@ -193,8 +206,8 @@ header {
 				    				  confirmNum:rsp.apply_num,
 				    				  memNum:'${loginUser.memNum}',
 				    				  courseNum:'${c.courseNum}',
-				    				  payPrice:'${ c.courseHourPrice * c.courseCount * c.courseHours }',
-				    				  takePrice:'${ c.courseHourPrice * c.courseCount * c.courseHours }'
+				    				  payPrice:$("#totalPrice").text(),
+				    				  takePrice:$("#totalPrice").text()
 				    				 },
 				    			success:function(data){
 				    				location.href="complete.do?payCode=" + data;
@@ -209,13 +222,16 @@ header {
 				    	});		/* function(rsp) close */
 				}
 				</script>
-	<!--================ End Course Details Area =================-->
+    
+    <!--================ End Course Details Area =================-->
 
-	<!-- footer part start-->
-	<c:import url="/WEB-INF/views/user/common/footer.jsp" />
-	<!-- footer part end-->
+    <!-- footer part start-->
+   <c:import url="/WEB-INF/views/user/common/footer.jsp"/>
+    <!-- footer part end-->
 
-
+    <!-- jquery plugins here-->
+    <!-- jquery -->
+   
 </body>
 
 </html>

@@ -49,7 +49,6 @@ public class MemberController {
 	@Autowired
 	private PaymentService pService;
 	
-
 	/**
 	 * 1. 로그인폼으로 이동.
 	 * @return
@@ -177,6 +176,7 @@ public class MemberController {
 	public String memUpdate() {
 		return "user/member/memUpdate";
 	}
+	
 	@RequestMapping("introduce.do")
 	public String intoduce() {
 		return "user/introduce/introduce";
@@ -250,6 +250,8 @@ public class MemberController {
 		if(!why.equals("")) { //주소 작성해서 값이 넘어왔을 경우
 			m.setMemAddress(why);	
 		}
+		
+		
 
 		
 	Member loginUser = mService.loginMember(m);
@@ -267,7 +269,7 @@ public class MemberController {
 				return "redirect:logout.do";
 			}else {
 				model.addAttribute("msg", "회원정보수정실패");
-				return "common/errorPage";
+				return "user/common/errorPage";
 			}
 		}else {
 			response.setContentType("text/html; charset=UTF-8");
@@ -411,7 +413,6 @@ public class MemberController {
 	@RequestMapping("updateMemProfile.do")
 	public ModelAndView updateMemProfile(@RequestParam(name="profile", required=false) MultipartFile profile,
 			HttpServletRequest request, ModelAndView mv) {
-		System.out.println(profile.getOriginalFilename());
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		
 		int result;

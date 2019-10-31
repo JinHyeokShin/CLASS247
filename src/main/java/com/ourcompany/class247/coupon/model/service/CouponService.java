@@ -11,7 +11,7 @@ public interface CouponService {
 
 	ArrayList<GiveCoupon> listCoupon(int memNum ,PageInfo pi);
 
-	int getListCount();
+	int getListCount(int memNum);
 	
 	ArrayList<Coupon> selectCouponList();
 	

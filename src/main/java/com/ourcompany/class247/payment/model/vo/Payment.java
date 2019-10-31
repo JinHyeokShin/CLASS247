@@ -20,6 +20,21 @@ public class Payment {
 		
 	}
 
+	public Payment(int payNum, String payCode, int memNum, int courseNum, String courseTitle, int payPrice,
+			String payMethod, String payCancel, Date payDate, Date payCancelDate) {
+		super();
+		this.payNum = payNum;
+		this.payCode = payCode;
+		this.memNum = memNum;
+		this.courseNum = courseNum;
+		this.courseTitle = courseTitle;
+		this.payPrice = payPrice;
+		this.payMethod = payMethod;
+		this.payCancel = payCancel;
+		this.payDate = payDate;
+		this.payCancelDate = payCancelDate;
+	}
+
 
 //	payment insert용
 	public Payment(int memNum, int courseNum, int payPrice, String payMethod) {
@@ -49,11 +64,9 @@ public class Payment {
 		this.payCancelDate = payCancelDate;
 	}
 
-
 	public int getPayNum() {
 		return payNum;
 	}
-
 
 	public void setPayNum(int payNum) {
 		this.payNum = payNum;
@@ -69,16 +82,13 @@ public class Payment {
 		this.payCode = payCode;
 	}
 
-
 	public int getMemNum() {
 		return memNum;
 	}
 
-
 	public void setMemNum(int memNum) {
 		this.memNum = memNum;
 	}
-
 
 	public String getMemName() {
 		return memName;
@@ -99,61 +109,37 @@ public class Payment {
 		this.courseNum = courseNum;
 	}
 
-
 	public String getCourseTitle() {
 		return courseTitle;
 	}
-
-
-	public void setCourseTitle(String courseTitle) {
-		this.courseTitle = courseTitle;
-	}
-
 
 	public int getPayPrice() {
 		return payPrice;
 	}
 
-
 	public void setPayPrice(int payPrice) {
 		this.payPrice = payPrice;
 	}
-
 
 	public String getPayMethod() {
 		return payMethod;
 	}
 
-
 	public void setPayMethod(String payMethod) {
 		this.payMethod = payMethod;
 	}
-
-
-	public String getPayCancel() {
-		return payCancel;
-	}
-
 
 	public void setPayCancel(String payCancel) {
 		this.payCancel = payCancel;
 	}
 
-
 	public Date getPayDate() {
 		return payDate;
 	}
 
-
-	public void setPayDate(Date payDate) {
-		this.payDate = payDate;
-	}
-
-
 	public Date getPayCancelDate() {
 		return payCancelDate;
 	}
-
 
 	public void setPayCancelDate(Date payCancelDate) {
 		this.payCancelDate = payCancelDate;

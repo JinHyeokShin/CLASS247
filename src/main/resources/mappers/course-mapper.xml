@@ -161,6 +161,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="courseMaterial" column="course_material"/>
 		<result property="memNum" column="mem_num"/>
 		<result property="payMethod" column="pay_method"/>
+		<result property="coursePrice" column="course_price"/>
 	</resultMap>
 	
 	<resultMap type="Payment" id="PaymentResultSet">
@@ -213,8 +214,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 클래스 상세정보 불러오기 -->
 	<select id="selectCourse" parameterType="_int" resultMap="CourseResultSet">
 		select *
-		from course 
-		join category using(category_num)
+		from single_course_view 
 		where course_num = #{courseNum}
 	</select>
 	
@@ -336,9 +336,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 1. 페이지처리 구문 -->
-	<select id="getListCount" resultType="_int">
+	<select id="getListCount" parameterType="_int" resultType="_int">
 		select count(*)
 		from love_view
+		where mem_num = #{memNum}
 	</select>
 	
 	<select id="modalsearchList" parameterType="String" resultMap="SingleCourseResultSet">
@@ -403,7 +404,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="memdelivery" resultMap="DeliveryResultSet">
 	select *
 	from user_delivery_view
-	where mem_num= #{memNum}
+	where mem_num=#{memNum}
+	</select>
+	
+	<!-- 배송정보 상세페이지 보여주기 -->
+	<select id="selectmemdeliverydetailList" resultMap="DeliveryResultSet">
+	select *
+	from user_delivery_view
+	where pay_code= #{payCode}
 	</select>
    
 	
