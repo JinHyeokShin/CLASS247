@@ -93,7 +93,7 @@
                <c:param name="courseNum" value="${ l.courseNum }"/>
             </c:url>
               <a href="${ codetail }">
-               <img src="resources/user/img/${ l.coaRName }" alt="" class="img-fluid" >
+               <img src="<%= request.getContextPath() %>/resources/user/img/cat/${ l.coaRName }" alt="" class="img-fluid" >
                   </a>
          </td>
          <td align="left" colspan="3">
