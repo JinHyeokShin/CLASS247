@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="chatMapper">
+
+	<resultMap id="chatResultMap" type="Chat">
+		<id property="" column=""/>
+		<result property="chatNum" column="chat_num"/>
+		<result property="chatroomNum" column="chatroom_num"/>
+		<result property="fromId" column="from_id"/>
+		<result property="fromName" column="from_name"/>
+		<result property="toId" column="to_id"/>
+		<result property="toName" column="to_name"/>
+		<result property="chatContent" column="chat_content"/>
+		<result property="chatTime" column="chat_time"/>
+	</resultMap>
+	
+	<resultMap id="chatListResultMap" type="ChatList">
+		<id property="chatListNum" column="chatlist_num"/>
+		<result property="courseNum" column="course_num"/>
+		<result property="fromId" column="from_id"/>
+		<result property="fromName" column="mem_name"/>
+		<result property="toId" column="to_id"/>
+		<result property="toName" column="to_name"/>
+		<result property="lastChatTime" column="last_chat_time"/>
+		<result property="lastChatContent" column="LAST_CHAT_CONTENT"/>
+		<result property="readStatus" column="READ_STATUS"/>
+		<result property="chatStatus" column="CHAT_STATUS"/>
+	</resultMap>
+	
+	
+	<insert id="insertMessage" parameterType="Chat">
+		insert into chat 
+		values(chat_seq.nextval, #{chatroomNum}, #{fromId}, #{fromName}, #{toId}, #{toName}, #{chatContent}, sysdate)
+	</insert>
+
+	
+	<select id="selectChatDetail" parameterType="_int" resultMap="chatResultMap">
+		select * 
+		from chat 
+		where chatroom_num = #{roomId}
+	</select>
+	
+	
+	<select id="getChatRoomExist" parameterType="ChatList" resultType="_int">
+		select count(*)
+		from chat_list 
+		where (from_id = #{fromId} or from_id = #{toId})
+		and (to_id = #{toId} or to_id = #{fromId})
+		and course_num = #{courseNum}
+		and chat_status= 'Y'
+	</select>
+	
+	
+	<select id="selectRoomId" parameterType="ChatList" resultType="_int">
+		select chatlist_num
+		from chat_list
+		where (from_id = #{fromId} or from_id = #{toId})
+		and (to_id = #{toId} or to_id = #{fromId})
+		and course_num = #{courseNum}
+		and chat_status='Y'
+	</select>
+	
+	<select id="selectChatList" parameterType="string" resultMap="chatListResultMap">
+		select c.*, mem_name 
+		from chat_list c
+		left join member on(from_id = mem_num)
+		where (from_id = #{creNum} or to_id=#{creNum})
+		and chat_status = 'Y'
+	</select>
+	
+	<insert id="insertChatRoom" parameterType="ChatList">
+		insert into chat_list 
+		values(chat_list_seq.nextval, #{courseNum}, #{fromId}, null, #{toId}, null, sysdate, '공백', default, default)
+	</insert>
+
+</mapper>

@@ -745,5 +745,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where course_kind = 'offline'
 	</select>
 	
-
+	<insert id="insertVideo" parameterType="Video">
+		insert into video_course 
+		values(video_course_seq.nextval, #{onlineNum}, #{videoPath}, #{videoTitle}, #{videoContent})
+	</insert>
+	
+	
 </mapper>

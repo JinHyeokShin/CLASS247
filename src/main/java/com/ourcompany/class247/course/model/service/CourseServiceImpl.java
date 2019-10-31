@@ -13,6 +13,7 @@ import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.course.model.vo.Video;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
 
@@ -459,6 +460,11 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public Course selectCourse(int courseNum, String courseKind) {
 		return coDao.selectCourse(courseNum, courseKind);
+	}
+
+	@Override
+	public int insertVideo(Video v) {
+		return coDao.insertVideo(v);
 	}
 
 }

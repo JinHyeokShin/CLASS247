@@ -71,7 +71,7 @@
                                                   	      <option value="입문자">입문자</option>
                                                   	      <option value="초급자">초급자</option>
                                                  	       <option value="중급자">중급자</option>
-                                                 	       <option value="준전문가">고급자</option>
+                                                 	       <option value="고급자">고급자</option>
                                                  	       <option value="전문가">전문가</option>
                                                  	       <option value="무관">무관</option>
                                                  	   </select>
@@ -88,8 +88,8 @@
 		                                            <button type="submit" class="btn btn-primary btn-sm">
 		                                           		다음
 		                                            </button>
-		                                            <button type="reset" class="btn btn-secondary btn-sm">
-		                                          		 취소하기
+		                                            <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='<%= request.getContextPath() %>/cMainView.do'">
+		                                          		취소하기
 		                                            </button>
 		                                        </div>
                                             </form>

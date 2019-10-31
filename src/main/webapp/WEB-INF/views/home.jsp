@@ -37,12 +37,14 @@
                             <div class="breadcrumb_iner text-center">
                                 <div class="breadcrumb_iner_item">
                                     <div class="banner_text_iner">
+                                    <br><br><br><br><br><br><br><br>
                                         <h5 style="color:white;">당신의 모든 취미를 클래스로 개설할 수 있습니다.</h5>
                                         <h1> 당신의 클래스를 <br>개설하세요 !</h1>
+                                        <a href="cChattingView.do" class="btn_2">채팅 테스트</a>
                                         <a href="introduce.do" class="btn_1">서비스 소개 </a> &nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="cMainView.do" class="btn_2" onclick="return loginCheck()">크리에이터 센터</a>
                                         <br><br>
-               	     <a class="btn_2" href="#Mdrecom" style="float:right;">인기/추천<br>클래스</a>
+               	     					<a class="btn_2" href="#Mdrecom" style="float:right;">인기/추천<br>클래스</a>
                                     </div>
                                 </div>
                             </div>
