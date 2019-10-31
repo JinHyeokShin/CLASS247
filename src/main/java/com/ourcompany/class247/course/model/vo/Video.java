@@ -1,39 +1,44 @@
 package com.ourcompany.class247.course.model.vo;
 
 public class Video {
+
 	
-	private int videoCourseNum;
+	private int videoCourse; 
 	private int onlineNum;
-	private String videoOName;
-	private String videoRName;
+	private String videoOname;
+	private String videoRname;
 	private String videoPath;
 	private String videoTitle;
 	private String videoContent;
-	private int videoDepth;
 	
-	public Video() {
-		
-	}
-
-	public Video(int videoCourseNum, int onlineNum, String videoOName, String videoRName, String videoPath,
-			String videoTitle, String videoContent, int videoDepth) {
+	public Video() {}
+	
+	public Video(int onlineNum, String videoPath, String videoTitle, String videoContent) {
 		super();
-		this.videoCourseNum = videoCourseNum;
 		this.onlineNum = onlineNum;
-		this.videoOName = videoOName;
-		this.videoRName = videoRName;
 		this.videoPath = videoPath;
 		this.videoTitle = videoTitle;
 		this.videoContent = videoContent;
-		this.videoDepth = videoDepth;
+	}
+	
+	public Video(int videoCourse, int onlineNum, String videoOname, String videoRname, String videoPath,
+			String videoTitle, String videoContent) {
+		super();
+		this.videoCourse = videoCourse;
+		this.onlineNum = onlineNum;
+		this.videoOname = videoOname;
+		this.videoRname = videoRname;
+		this.videoPath = videoPath;
+		this.videoTitle = videoTitle;
+		this.videoContent = videoContent;
 	}
 
-	public int getVideoCourseNum() {
-		return videoCourseNum;
+	public int getVideoCourse() {
+		return videoCourse;
 	}
 
-	public void setVideoCourseNum(int videoCourseNum) {
-		this.videoCourseNum = videoCourseNum;
+	public void setVideoCourse(int videoCourse) {
+		this.videoCourse = videoCourse;
 	}
 
 	public int getOnlineNum() {
@@ -44,20 +49,20 @@ public class Video {
 		this.onlineNum = onlineNum;
 	}
 
-	public String getVideoOName() {
-		return videoOName;
+	public String getVideoOname() {
+		return videoOname;
 	}
 
-	public void setVideoOName(String videoOName) {
-		this.videoOName = videoOName;
+	public void setVideoOname(String videoOname) {
+		this.videoOname = videoOname;
 	}
 
-	public String getVideoRName() {
-		return videoRName;
+	public String getVideoRname() {
+		return videoRname;
 	}
 
-	public void setVideoRName(String videoRName) {
-		this.videoRName = videoRName;
+	public void setVideoRname(String videoRname) {
+		this.videoRname = videoRname;
 	}
 
 	public String getVideoPath() {
@@ -84,20 +89,14 @@ public class Video {
 		this.videoContent = videoContent;
 	}
 
-	public int getVideoDepth() {
-		return videoDepth;
-	}
-
-	public void setVideoDepth(int videoDepth) {
-		this.videoDepth = videoDepth;
-	}
-
 	@Override
 	public String toString() {
-		return "Video [videoCourseNum=" + videoCourseNum + ", onlineNum=" + onlineNum + ", videoOName=" + videoOName
-				+ ", videoRName=" + videoRName + ", videoPath=" + videoPath + ", videoTitle=" + videoTitle
-				+ ", videoContent=" + videoContent + ", videoDepth=" + videoDepth + "]";
+		return "Video [videoCourse=" + videoCourse + ", onlineNum=" + onlineNum + ", videoOname=" + videoOname
+				+ ", videoRname=" + videoRname + ", videoPath=" + videoPath + ", videoTitle=" + videoTitle
+				+ ", videoContent=" + videoContent + "]";
 	}
+	
+	
 	
 	
 

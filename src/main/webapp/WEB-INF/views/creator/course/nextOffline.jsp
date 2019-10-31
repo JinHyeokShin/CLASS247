@@ -6,6 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Gugi&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Gaegu&display=swap" rel="stylesheet">
+<style>
+	.hr {
+		display:inline;
+		font-size : 20px;
+		color:gray;
+		font-family: 'Gaegu', cursive;
+	}
+</style>
 </head>
 <body>
 	<c:import url="../common/cMenubar.jsp"/>
@@ -140,16 +151,29 @@
                                                 <div class="form-group">
                                                     <div class="col col-md-5">
                                                         <label for="text-input" class=" form-control-label">* 클래스 커버 사진</label>
-                                                        <input class="" type="file" name="coverImage">
+                                                        <input class="" type="file" name="coverImage" onchange="loadImg(this)">
                                                     </div>
                                                     <div class="col-12 col-md-9" style="height:200px">
                                                         <small class="help-block form-text">클래스를 대표할 커버사진을 추가하세요.</small>
-                                                        <div style="width:40%; height:40%; margin-top: 10px; text-align: center">
-                                                            <img src="resources/creator/images/bg-title-02.jpg" alt="cover" />
+                                                        <div style="width:40%; height:40%; margin-top: 10px; text-align: center;">
+                                                            <img id="imgBox" src="resources/creator/images/bg-title-02.jpg" alt="cover" />
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <hr>
+                                                
+                                                <script>
+								                	function loadImg(value){
+								                		if(value.files && value.files[0]) {
+								                			var reader = new FileReader();
+								                			reader.onload = function(e) {
+								                				$('#imgBox').attr("src", e.target.result);
+								                			}
+								                			reader.readAsDataURL(value.files[0]);
+								                		}
+								                	}
+								                </script>
+                                                
                                                 <div class="form-group">
                                                     <label class=" form-control-label">수업 가격*</label><br>
                                                     <div class="">
@@ -160,16 +184,50 @@
                                                   	   <input type="number" placeholder="ex) 4" id="courseCount" name="courseCount" class="form-control" style="width:300px; display:inline-block"> 회                         
                                                   	   <small class="help-block form-text">총 수업횟수를 입력하세요</small><br>
                                                     </div>
-                                                    <div style="background-color:lightgray; width:90%; height:100px; align:center">
-                                                    	<span id="courseHourPrice"></span>원 X <span id="courseHours"></span>시간 X <span id="courseCount"></span>회
+                                                    <div style="background-color: #e6b3ff; width:90%; height:100px; text-align:center; margin-left:auto; margin-right:auto;">
+                                                    	<div>
+	                                                    	<p class="hr"><span id="courseHourSpan">0</span>원</p> X <p class="hr"><span id="courseHoursSpan">0</span>시간</p> X <p class="hr"><span id="courseCountSpan">0</span>회</p>
+	                                                    	<br><p class="hr"><span id="amount">0</span>원</p>
+                                                    	</div>
                                                     </div>
-                                                                                                        <input type="hidden" name="categoryNum" value="${ co.categoryNum }">
+                                                    <input type="hidden" name="categoryNum" value="${ co.categoryNum }">
                                                     <input type="hidden" name="creNum" value="${ co.creNum }">
                                                     <input type="hidden" name="courseTitle" value="${ co.courseTitle }">
                                                     <input type="hidden" name="courseContent" value="${ co.courseContent }">
                                                     <input type="hidden" name="courseKind" value="${ co.courseKind }"> 
                                                     <input type="hidden" name="courseLevel" value="${ co.courseLevel }">
-                                                </div>                 
+                                                </div>                
+                                                
+                                                <script>
+                                                	$(function(){
+                                                		$("#courseHourPrice").on("change keyup paste", function(){
+                                                			$('#courseHourSpan').text($(this).val());
+                                                			total();
+                                                		})
+                                                		$("#courseHours").on("change keyup paste", function(){
+                                                			$('#courseHoursSpan').text($(this).val());
+                                                			total();
+                                                		})
+                                                		
+                                                		$("#courseCount").on("change keyup paste", function(){
+                                                			$('#courseCountSpan').text($(this).val());
+                                                			total();
+                                                		})
+                                                	})
+                                                	// 총 클래스 가격 구하기 
+                                                	function total() {
+                                                		var hrPrice = $('#courseHourPrice').val();
+                                                		var hr = $('#courseHours').val();
+                                                		var count = $('#courseCount').val();
+                                                		var total = hrPrice * hr * count; 
+                                                		
+                                                		  var regexp = /\B(?=(\d{3})+(?!\d))/g;
+                                                		  total = total.toString().replace(regexp, ',');
+                                                		
+                                                		$('#amount').text(total);
+                                                	}
+                                                
+                                                </script> 
                                                 <hr>
                                                 <div class="form-group">
                                                 	<img src="resources/creator/images/offline.jpg">
@@ -178,8 +236,11 @@
 		                                            <button type="submit" class="btn btn-primary btn-sm">
 		                                           		클래스 신청하기
 		                                            </button>
-		                                            <button type="reset" class="btn btn-secondary btn-sm">
-		                                          		 취소하기
+		                                            <button type="button" class="btn btn-secondary btn-sm" onclick="history.back()">
+		                                          		뒤로가기
+		                                            </button>
+		                                            <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='<%= request.getContextPath() %>/cMainView.do'">
+		                                          		취소하기
 		                                            </button>
 		                                        </div>
                                             </form>
@@ -191,15 +252,6 @@
                     </div>
                 </section>
                 
-                <script>
-                	
-                $(function() {
-                	
-               
-                })
-                	
-                
-                </script>
 
 
             <!-- PAGE CONTAINER-->

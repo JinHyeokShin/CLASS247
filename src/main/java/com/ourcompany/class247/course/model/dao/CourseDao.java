@@ -14,6 +14,7 @@ import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.course.model.vo.Video;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Single;
@@ -456,4 +457,8 @@ public class CourseDao {
 	public int insertPayment(Payment payment) {
 	   return sqlSession.insert("courseMapper.insertPayment", payment);
    }
+
+	public int insertVideo(Video v) {
+		return sqlSession.insert("courseMapper.insertVideo", v);
+	}
 }

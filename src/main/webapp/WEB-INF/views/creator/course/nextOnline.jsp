@@ -39,15 +39,15 @@
                                                         </label>
                                                     </div>
                                                     <small class="help-block form-text">&nbsp;수업에 필요한 준비물이 있다면 입력해주세요.</small>
-                                                    <div class="form-group" id="meterialBox" style="display:none">
-                                                    	<table id="meterialTable">
+                                                    <div class="form-group" id="meterialBox">
+<!--                                                     	<table id="meterialTable">
                                                     		<tr> 
 	                                                    		<td><input type="text" name="courseMaterial" placeholder="준비물 이름" class="form-control"><td>
 	                                                    		<td><button type="button" onclick="add()" class="btn btn-primary btn-sm">추가</button><td>
 	                                                    		<td></td>
 	                                                    		<td width="300">&nbsp;&nbsp;&nbsp;<input type="number" name="courseMaterialPrice" placeholder="준비물 총 가격 입력" class="form-control" required>원</td>
                                                     		</tr>
-                                                    	</table>
+                                                    	</table> -->
                                                     </div>
                                                 </div>                                                
                                                 <hr>
@@ -57,10 +57,22 @@
                                                 	function check() {
                                                 		
                                                 		if( $('#material').is(":checked") ) {
-                                                			$('#meterialBox').css('display', 'inline');
+                                                			
+                                                			var $meterialTable = $('<table id="meterialTable">');
+                                                  			var $tr = $('<tr>');
+                                                			var $meName = $('<td>').html('<input type="text" name="courseMaterial" placeholder="준비물 이름" class="form-control">'); 
+                                                    		var $meBtn = $('<td>').html('<buttn onclick="add()" class="btn btn-primary btn-sm">추가</button>');
+                                                    		var $MaPrice = $('<td>').html('<input type="number" name="courseMaterialPrice" placeholder="준비물 총 가격 입력" class="form-control">원');
+                                                    		$tr.append($meName);
+                                                    		$tr.append($meBtn);
+                                                    		$tr.append($MaPrice);
+                                                    		$meterialTable.append($tr);
+                                                    		$('#meterialBox').append($meterialTable);
+                                                			
                                                 		} else {
-                                                			var $meterialTable = $('#meterialTable');
-                                                			$meterialTable.text('');
+                                                			
+                                                			$('#meterialTable').remove();
+/*                                                 			$meterialTable.text('');
                                                 			
                                                 			var $tr = $('<tr>');
                                                 			var $meName = $('<td>').html('<input type="text" name="courseMaterial" placeholder="준비물 이름" class="form-control">'); 
@@ -71,7 +83,7 @@
                                                     		$tr.append($MaPrice);
                                                     		$meterialTable.append($tr);
                                                     		
-                                                			$('#meterialBox').css('display', 'none');
+                                                			$('#meterialBox').css('display', 'none'); */
                                                 		}
                                                 		
                                                 	}
@@ -101,11 +113,11 @@
                                                 <div class="form-group">
                                                     <label class=" form-control-label">* 수업 날짜/시간</label><br>
                                                     <div>
-                                                    	<input type="date" name="courseStartDate" class="form-control" style="width:200px; display:inline-block"> ~ 
+                                                    	<input type="date" name="courseStartDate" id="courseStartDate" class="form-control" style="width:200px; display:inline-block"> ~ 
                                                     	<input type="date" name="courseEndDate" class="form-control" style="width:200px;display:inline-block">
                                                     </div>  
                                                     <small class="help-block form-text">수업 시작일과 종료일을 입력해주세요(최소 1개월)</small>
-                                                </div>                                                
+                                                </div> 
                                                 <hr> 
                                                 <div class="form-group">
                                                 	<label class=" form-control-label">* 온라인 수업 가격</label><br>
@@ -129,12 +141,12 @@
                                                 <div class="form-group">
                                                     <div class="col col-md-5">
                                                         <label for="text-input" class=" form-control-label">* 클래스 커버 사진</label>
-                                                        <input class="" type="file" name="coverImage" required>
+                                                        <input class="" type="file" name="coverImage" onchange="loadImg(this)" required>
                                                     </div>
                                                     <div class="col-12 col-md-9" style="height:200px">
                                                         <small class="help-block form-text">클래스를 대표할 커버사진을 추가하세요.</small>
                                                         <div style="width:40%; height:40%; margin-top: 10px; text-align: center">
-                                                            <img src="resources/creator/images/bg-title-02.jpg" alt="cover" />
+                                                            <img id="imgBox" src="resources/creator/images/bg-title-02.jpg" alt="cover" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -143,8 +155,11 @@
 		                                            <button type="submit" class="btn btn-primary btn-sm">
 		                                           		클래스 신청하기
 		                                            </button>
-		                                            <button type="reset" class="btn btn-secondary btn-sm">
-		                                          		 취소하기
+		                                            <button type="button" class="btn btn-secondary btn-sm" onclick="history.back()">
+		                                          		뒤로가기
+		                                            </button>		                                            
+		                                            <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='<%= request.getContextPath() %>/cMainView.do'">
+		                                          		취소하기
 		                                            </button>
 		                                        </div>
                                             </form>
@@ -155,6 +170,36 @@
                         </div>
                     </div>
                 </section>
+                
+                <script>
+                	function loadImg(value){
+                		
+                		if(value.files && value.files[0]) {
+                			var reader = new FileReader();
+                			reader.onload = function(e) {
+                				$('#imgBox').attr("src", e.target.result);
+                			}
+                			reader.readAsDataURL(value.files[0]);
+                		}
+                	}
+                	
+                	$(function() {
+                		
+                		$('#courseStartDate').on("change", function(){
+                			var today = new Date();
+                			var date = $('#courseStartDate').val();
+                			if(date < today) {
+                				alert("오늘 이전 날짜는 입력이 불가합니다.");
+                			} else {
+                				alert('시작 날짜 가능');
+                			}
+                			
+                		});
+                		
+                		
+                	})
+                
+                </script>
 
 
             <!-- PAGE CONTAINER-->

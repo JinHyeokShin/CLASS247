@@ -113,7 +113,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="introduction" class="control-label mb-1">자기소개</label>
-                                            	<textarea id="summernote" name="introduction"></textarea>
+                                            	<textarea id="summernote" rows="40" name="introduction"></textarea>
                                             </div>                                            
                                             <div>
                                                 <button type="submit" class="btn btn-lg btn-info btn-block">정보 수정</button>
@@ -133,6 +133,13 @@
              
              <script>
 	             $(document).ready(function() {
+	            	 
+	         		$('#summernote').summernote({
+	      			  height: 300,                 // set editor height
+	      			  minHeight: null,             // set minimum height of editor
+	      			  maxHeight: null, 
+	      			});
+	         		
 		             var markupStr = '${creator.introduction}';
 		             $('#summernote').summernote('code', markupStr);
 	             });

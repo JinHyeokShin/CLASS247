@@ -371,6 +371,12 @@ public class CreatorController {
 		gson.toJson(list, response.getWriter());
 	}
 	
+	@RequestMapping("powerLink.do")
+	public String goMDpage() {
+		
+		return "creator/MD/MDregister";
+	}
+	
 
 
 }

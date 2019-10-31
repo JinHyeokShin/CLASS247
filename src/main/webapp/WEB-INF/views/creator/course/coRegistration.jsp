@@ -88,8 +88,8 @@
 		                                            <button type="submit" class="btn btn-primary btn-sm">
 		                                           		다음
 		                                            </button>
-		                                            <button type="reset" class="btn btn-secondary btn-sm">
-		                                          		 취소하기
+		                                            <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='<%= request.getContextPath() %>/cMainView.do'">
+		                                          		취소하기
 		                                            </button>
 		                                        </div>
                                             </form>

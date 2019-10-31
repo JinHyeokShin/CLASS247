@@ -136,7 +136,7 @@
                             <i class="fas fa-chart-bar"></i>통계</a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="powerLink.do">
                             <i class="fas fa-trophy"></i>MD등록</a>
                         </li>
                         <li>
