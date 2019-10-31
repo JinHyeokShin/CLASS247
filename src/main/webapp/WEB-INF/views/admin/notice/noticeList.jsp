@@ -9,6 +9,36 @@
 <title>공지사항 목록</title>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
+<style>
+	.button {
+	
+	    width:80px;
+	
+	    background-color: #4272d7;
+	
+	    border: none;
+	
+	    color:#fff;
+	
+	    padding: 5px 0;
+	
+	    text-align: center;
+	
+	    text-decoration: none;
+	
+	    display: inline-block;
+	
+	    font-size: 15px;
+	
+	    margin: 4px;
+	
+	    cursor: pointer;
+	    
+	    border-radius: 10px;
+	
+	}
+</style>
+
 </head>
 
 <body>
@@ -40,7 +70,7 @@
                                         <c:forEach items="${ nlist }" var="n">
                                         
                                             <tr>
-                                            <td>${n.noticeNum}</td>
+                                            <td align="center">${n.noticeNum}</td>
                                                 <td>
 	                                                <c:if test="${empty loginUser }">
 	                                                	${n.noticeTitle}
@@ -52,9 +82,9 @@
                                                 		<a href ="${ aNdetail }" style="color:black;">${n.noticeTitle } </a>
                                                 	</c:if>
                                                 </td>
-                                                <td>${n.noticeCount}</td>
+                                                <td align="center">${n.noticeCount}</td>
                                                 <td class="text-right">${n.noticeEnrollDate}</td>
-                                                <td>
+                                                <td align="center">
                                                 	<c:if test="${ !empty n.noticeFileName }">
 														◎
 													</c:if>
@@ -67,9 +97,11 @@
                                          </c:forEach>
                                            
                                         </tbody>
+                                        
+                                        
                                     </table>
-                                </div>
-                                <div align="center">
+                                    <hr>
+                                    <div align="center">
                                 		<!-- 이전버튼 -->
 							    		<c:if test="${ pi.currentPage eq 1 }">
 							    			[이전]
@@ -78,7 +110,7 @@
 											<c:url value="aNoticeList.do" var='before'>
 												<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
 											</c:url>
-							    			<a href="${ before }">[이전]</a>
+							    			<a href="${ before }" style="color:black;">[이전]</a>
 							    		</c:if>
 							    		
 							    		<!-- 번호 -->
@@ -90,7 +122,7 @@
 							    				<c:url value="aNoticeList.do" var="page">
 							    					<c:param name="currentPage" value="${ p }"/>
 							    				</c:url>
-							    				<a href="${ page }">${ p }</a>
+							    				<a href="${ page }" style="color:black;">${ p }</a>
 							    			</c:if>
 							    		</c:forEach>
 							    		
@@ -102,10 +134,11 @@
 							    			<c:url value="aNoticeList.do" var="next">
 							    				<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 							    			</c:url>
-							    			<a href="${ next }"> [다음]</a>
+							    			<a href="${ next }" style="color:black;"> [다음]</a>
 							    		</c:if>	
-                                        <input class="btn btn-outline-info" type="button" onclick="location.href='aNinsertView.do';" value="글쓰기">
+                                        <input class="button" type="button" onclick="location.href='aNinsertView.do';" value="글쓰기" align="right">
                                    </div>
+                                </div>                             
                             </div>
                         </div>   
                     </div>

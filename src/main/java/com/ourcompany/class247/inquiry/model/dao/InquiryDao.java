@@ -42,7 +42,7 @@ public class InquiryDao {
 		return sqlSession.selectOne("inquiryMapper.selectaInquiry", inquiryNum);
 	}
 
-	public int insertaInquriy(Inquiry i) {
-		return sqlSession.insert("inquiryMapper.insertaInquriy", i);
+	public int insertaInquiry(Inquiry i) {
+		return sqlSession.update("inquiryMapper.insertaInquiry", i);
 	}
 }

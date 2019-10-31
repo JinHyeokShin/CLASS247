@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>문의사항 질문 답변</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
 </head>
 <body>
 
@@ -21,7 +22,7 @@
                             <div class="col-lg-12">
                                 <h2 class="title-1 m-b-25">문의사항 답변</h2>
                                 <div class="table-responsive table--no-card m-b-40">
-                                    <table class="table table-borderless table-striped table-earning">
+                                    <table class="table table-borderless table-striped table-earning" >
                                         <thead>
                                             <tr>
                                                 <th>문의번호</th>
@@ -29,16 +30,17 @@
                                                 <th>문의제목</th>
                                                 <th class="text-right">작성날짜</th>
                                                 <th class="text-right">첨부파일</th>
-                                               
+                                               	<th class="text-right">답변상태</th>
+                                               	<th class="text-right">답변날짜</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody >
                                       
                                         <c:forEach items="${ aiList }" var="ai">
                                         
                                             <tr>
-                                            <td>${ai.inquiryNum}</td>
-                                            <td>${ai.creNum}</td>
+                                            <td align="center">${ai.inquiryNum}</td>
+                                            <td align="center">${ai.creNum}</td>
                                                 <td>
 	                                                <c:if test="${empty loginUser }">
 	                                                	${ai.inquiryTitle}
@@ -50,23 +52,24 @@
                                                 		<a href ="${ aIdetail }" style="color:black;">${ai.inquiryTitle } </a>
                                                 	</c:if>
                                                 </td>                                          
-                                                <td class="text-right">${n.noticeEnrollDate}</td>
+                                                <td class="text-right">${ai.inquiryEnrollDate}</td>
                                                 <td>
-                                                	<c:if test="${ !empty n.noticeFileName }">
+                                                	<c:if test="${ !empty ai.inquiryFileName }">
 														◎
 													</c:if>
-													<c:if test="${ empty n.noticeFileName }">
+													<c:if test="${ empty ai.inquiryFileName }">
 														&nbsp;
 													</c:if>
                                                 </td>
-                                            
+                                            	<td align="center">${ai.answerStatus}</td>
+                                            	<td align="center">${ai.answerEnrollDate}</td>
                                             </tr>
                                          </c:forEach>
                                            
                                         </tbody>
                                     </table>
-                                </div>
-                                <div align="center">
+                                    <hr>
+                                    <div align="center">
                                 		<!-- 이전버튼 -->
 							    		<c:if test="${ pi.currentPage eq 1 }">
 							    			[이전]
@@ -75,7 +78,7 @@
 											<c:url value="adminInquriyList.do" var='before'>
 												<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
 											</c:url>
-							    			<a href="${ before }">[이전]</a>
+							    			<a href="${ before }" style="color:black;">[이전]</a>
 							    		</c:if>
 							    		
 							    		<!-- 번호 -->
@@ -87,7 +90,7 @@
 							    				<c:url value="adminInquriyList.do" var="page">
 							    					<c:param name="currentPage" value="${ p }"/>
 							    				</c:url>
-							    				<a href="${ page }">${ p }</a>
+							    				<a href="${ page }" style="color:black;">${ p }</a>
 							    			</c:if>
 							    		</c:forEach>
 							    		
@@ -99,17 +102,16 @@
 							    			<c:url value="adminInquriyList.do" var="next">
 							    				<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 							    			</c:url>
-							    			<a href="${ next }"> [다음]</a>
+							    			<a href="${ next }" style="color:black;"> [다음]</a>
 							    		</c:if>	
                                        
                                    </div>
+                                </div>        
                             </div>
                         </div>   
                     </div>
                 </div>
-            </div>
-            
-
+           	 </div>
             </div>
  	<c:import url="../common/aImportJs.jsp"/>
 	

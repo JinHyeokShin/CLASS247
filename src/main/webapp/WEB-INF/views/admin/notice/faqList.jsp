@@ -43,6 +43,46 @@
         });
     });
   </script>
+  <style>
+		#container {
+			width:960px;
+			margin:0 auto;
+			text-align:center;
+		}
+		.tab {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+		/* Float the list items side by side */
+		.tab li {
+			float: left;
+		}
+		/* Style the links inside the list items */
+		.tab li a {
+			display: inline-block;
+			color: #000;
+			text-align: center;
+			text-decoration: none;
+			padding: 14px 16px;
+			font-size: 17px;
+			transition:0.3s;
+		}
+		/* Style the tab content */
+		.tabcontent {
+			display: none;			
+			padding: 6px 12px;
+			color:#fff;
+		}
+		ul.tab li.current{
+			background-color: rgb(0,154,200);
+			color: #222;
+		}
+		.tabcontent.current {
+			display: block;
+		}
+	</style>
 </head>
 
 <body>
@@ -66,9 +106,72 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <h2 class="title-1 m-b-25" align="center">FAQ 자주 묻는 질문들!</h2>
-                                <div class="table-responsive table--no-card m-b-40">                        
-                                 
+                                <div id="container">
+                                <ul class="tab">
+									<li class="current" data-tab="tab1"><a href="#tab1">수강생</a></li>
+									<li data-tab="tab2"><a href="#tab2">크리에이터</a></li>
+								</ul>
+								        
+                                <div class="table-responsive table--no-card m-b-40">                                 
+                           
+                                 <div id="tab1" class="tabcontent current">
                                  <c:forEach items="${ flist }" var="f">
+                                 <ul>
+							        <li class="collapsible">
+							            <h2 class="title"><a href="#html5" style="color:gray;">&nbsp; ${ f.faqNum}.  ${ f.faqTitle}</a></h2>
+							            <hr>     
+							            <h3 class="content">${ f.faqContent }</h3>
+							        </li>
+							        <hr>							       
+							    </ul>
+							    
+							     </c:forEach>
+							     
+							        <tr align="center" height="20">
+							    	<td colspan="6">
+							    		
+							    		<!-- 이전버튼 -->
+							    		<c:if test="${ pi.currentPage eq 1 }">
+							    			[이전]
+							    		</c:if>
+							    		<c:if test="${ pi.currentPage ne 1 }">
+											<c:url value="aFAQList.do" var='before'>
+												<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+											</c:url>
+							    			<a href="${ before }" style="color:black;">[이전]</a>
+							    		</c:if>
+							    		
+							    		<!-- 번호 -->
+							    		<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
+							    			<c:if test="${ p eq pi.currentPage }">
+							    				<font color="black" size="4">[${ p }]</font>
+							    			</c:if>
+							    			<c:if test="${ p ne pi.currentPage }">
+							    				<c:url value="aFAQList.do" var="page">
+							    					<c:param name="currentPage" value="${ p }"/>
+							    				</c:url>
+							    				<a href="${ page }" style="color:black;">${ p }</a>
+							    			</c:if>
+							    		</c:forEach>
+							    		
+							    		<!-- 다음버튼 -->
+							    		<c:if test="${ pi.currentPage eq pi.maxPage }">
+							    			[다음]
+							    		</c:if>
+							    		<c:if test="${ pi.currentPage ne pi.maxPage}">
+							    			<c:url value="aFAQList.do" var="next">
+							    				<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+							    			</c:url>
+							    			<a href="${ next }" style="color:black;"> [다음]</a>
+							    		</c:if>
+		    						</td>
+							   	 </tr>
+							   	 </div>						   							  							   	 
+                                </div>
+                                
+                                 <div class="table-responsive table--no-card m-b-40">  
+                                 <div id="tab2" class="tabcontent">
+									<c:forEach items="${ flist }" var="f">
                                  <ul>
 							        <li class="collapsible">
 							            <h2 class="title"><a href="#html5" style="color:gray;">&nbsp; ${ f.faqNum}.  ${ f.faqTitle}</a></h2>
@@ -116,14 +219,13 @@
 							    				<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 							    			</c:url>
 							    			<a href="${ next }"> [다음]</a>
-							    		</c:if>
-							    		
-							    		
+							    		</c:if>				    									    		
 							    	</td>
 							   	 </tr>
-							 						
-							   	 
-                                </div>                               
+							   	 </div>						   
+								</div>
+							 						                               
+                            </div>
                             </div>
                         </div>   
                     </div>
@@ -131,6 +233,18 @@
             </div>
             
             </div>
+            
+     <script>
+		$(function() {
+			$('ul.tab li').click(function() {
+				var activeTab = $(this).attr('data-tab');
+				$('ul.tab li').removeClass('current');
+				$('.tabcontent').removeClass('current');
+				$(this).addClass('current');
+				$('#' + activeTab).addClass('current');
+			})
+		});
+	</script>
    
     
  	<c:import url="../common/aImportJs.jsp"/>

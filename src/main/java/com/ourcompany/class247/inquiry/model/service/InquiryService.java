@@ -24,7 +24,7 @@ public interface InquiryService {
 
 	Inquiry selectaInquiry(int inquiryNum);
 
-	int insertaInquriy(Inquiry i);
+	int insertaInquiry(Inquiry i);
 
 
 	

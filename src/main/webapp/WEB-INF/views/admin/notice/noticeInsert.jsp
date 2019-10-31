@@ -21,7 +21,7 @@
 	
 	    width:100px;
 	
-	    background-color: #f8585b;
+	    background-color: #4272d7;
 	
 	    border: none;
 	
@@ -67,7 +67,7 @@
                                             <h3><strong>공지사항 작성</strong></h3>
                                         </div>
                                         <div class="card-body card-block">
-                                            	<form action="aNdetail.do" method="post" encType="multipart/form-data">
+                                            	<form action="aNinsert.do" method="post" encType="multipart/form-data">
 												  <div class="form-group">
 													<table align="center">
 														<tr>												
@@ -76,7 +76,7 @@
 														</tr>															
 														<tr>
 															<td>작성자 : </td>
-															<td><input type="text" readonly name="memNum" value="${ loginUser.memNum }"><hr></td>
+															<td><input type="text" readonly name="memNum" value="관리자"><hr></td>
 														</tr>
 														<tr>
 															<td>내용 : </td>

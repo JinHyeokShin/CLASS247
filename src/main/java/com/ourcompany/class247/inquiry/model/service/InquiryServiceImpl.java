@@ -47,8 +47,8 @@ public class InquiryServiceImpl implements InquiryService {
 	}
 
 	@Override
-	public int insertaInquriy(Inquiry i) {
-		return iDao.insertaInquriy(i);
+	public int insertaInquiry(Inquiry i) {
+		return iDao.insertaInquiry(i);
 	}
 	
 	

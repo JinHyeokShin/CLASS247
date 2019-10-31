@@ -87,27 +87,16 @@ public class InquiryController {
 	}
 	
 	@RequestMapping("aIinsert.do")
-	public String insertaInquiry(Inquiry i, HttpServletRequest request, Model model,
-			@RequestParam(name="uploadFile", required=false)MultipartFile file) throws IllegalStateException, IOException {
-
-
-		if( !file.getOriginalFilename().equals("")) {
+	public String insertaInquiry(Inquiry i, Model model){
 		
-		String renameFileName = saveFile(file, request);
+		int result = iService.insertaInquiry(i);
 		
-		if(renameFileName != null) {
-		i.setInquiryFileName(renameFileName); }
-		
-		}
-		
-		
-		int result = iService.insertaInquriy(i);
-		
-		if(result > 0) {
-		return "redirect:adminInquriyList.do";
-		}else {
-		model.addAttribute("msg", "공지사항 작성실패!!");
-		return "common/errorPage";
+		System.out.println(result);
+		if (result > 0) {
+			return "redirect:adminInquriyList.do";
+		} else {
+			model.addAttribute("msg", "문의사항 작성실패!!");
+			return "common/errorPage";
 		}
 		
 	}

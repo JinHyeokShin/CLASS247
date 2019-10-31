@@ -43,6 +43,7 @@
 	<select id="selectListf" resultMap="FAQResultSet">
 		select *
 		from faq
+		order by faq_num asc
 	</select>
 	
 	<insert id="insertFAQ" parameterType="FAQ">
@@ -52,12 +53,13 @@
 		
 	<insert id="insertNotice" parameterType="Notice">
 		insert into Notice 
-		values(notice_seq.nextval, #{memNum}, #{noticeTitle}, #{noticeContent}, null, #{noticeFileName}, default, sysdate, sysdate, 'Y')
+		values(notice_seq.nextval, #{memNum}, #{noticeTitle}, #{noticeContent}, null, #{noticeFileName}, default, sysdate, sysdate, 'Y')		
 	</insert>
 	
 	<update id="updateNotice">
 		update notice
-		set	
+		set	noticeTitle=#{noticeTitle}, noticeContent{#noticeNum}
+		where notice_num=#{noticeNum}
 	</update>
 	
 	<select id="getListCount" resultType="_int">
@@ -83,13 +85,13 @@
 		select *
 		from notice
 		where notice_status='Y'
-		and notice_Num=#{noticeNum}
+		and notice_num=#{noticeNum}
 	</select>
 	
 	<update id="deleteNotice" parameterType="_int">
 		update notice
 		set notice_status='N'
-		where noitce_Num=#{noticeNum}
+		where notice_num=#{noticeNum}
 	</update>
 	
 	

@@ -40,21 +40,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where inquiry_status='Y' and answer_status='N'
 	</select>
 	
-	<select id="selectAdminInquiryList" resultMap="InquiryResultSet">
+	<select id="selectAdminInquiryList"  resultMap="InquiryResultSet">
 		select *
 		from inquiry
-		where inquiry_status='Y' and answer_status='N'
+		where inquiry_status='Y' and answer_status='N' or answer_status='Y'
+		order by inquiry_num desc
 	</select>
 	
-	<select id="selectaInquiry" resultMap="InquiryResultSet">
+	<select id="selectaInquiry" parameterType="_int" resultMap="InquiryResultSet">
 		select *
 		from inquiry
-		where inquiry_status='Y' and answer_status='N'	
+		where inquiry_status='Y'
+		and inquiry_num	= #{inquiryNum}
 	</select>
 	
-	<insert id="insertaInquiry" parameterType="Inquiry">
-		insert into Inquiry
-		values(inquiry_seq.nextval, #{creNum}, #{inquiryTitle}, #{inquiryContent}, null, #{inquiryFileName}, sysdate, 'Y', null, null, 'N' )
-	</insert>
+	<update id="insertaInquiry">
+		update Inquiry
+		set answer_status='Y', answer_content=#{inquiryContent},answer_enroll_date =sysdate
+		where inquiry_num = #{inquiryNum}
+	</update>
+	
+	
 
 </mapper>
