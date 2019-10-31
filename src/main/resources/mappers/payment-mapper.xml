@@ -55,4 +55,18 @@
 		where delivery_num = #{deliveryNum}
 	</update>
 	
+	<select id="paymentCount" resultType="_int">
+		select count(*)
+		from payment
+	</select>
+	
+	<select id="powerCount" resultType="_int">
+		select count(*)
+		from payment
+		where pay_num in (
+		        select pay_num
+		        from payment
+		        join power using(pay_num)
+		        )
+	</select>
 </mapper>

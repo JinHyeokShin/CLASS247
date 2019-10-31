@@ -88,6 +88,16 @@ private PaymentDao pDao;
 	public int updateDeliStatus(Delivery d) {
 		return pDao.updateDeliStatus(d);
 	}
+	
+	@Override
+	public int paymentCount() {
+		return pDao.paymentCount();
+	}
+	
+	@Override
+	public int powerCount() {
+		return pDao.powerCount();
+	}
 
 
 

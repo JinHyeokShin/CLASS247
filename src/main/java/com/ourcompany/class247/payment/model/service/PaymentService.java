@@ -36,5 +36,9 @@ public interface PaymentService {
 	
 	int updateDeliStatus(Delivery d);
 	
+	int paymentCount();
+	
+	int powerCount();
+	
 		
 }

@@ -62,6 +62,42 @@
                                             </c:forEach>
                                         </tbody>
                                     </table>
+                                     <div align="center">
+                                		<!-- 이전버튼 -->
+							    		<c:if test="${ pi1.currentPage eq 1 }">
+							    			[이전]
+							    		</c:if>
+							    		<c:if test="${ pi1.currentPage ne 1 }">
+											<c:url value="aPayment.do" var='before'>
+												<c:param name="currentPage1" value="${ pi1.currentPage -1 }"/>
+											</c:url>
+							    			<a href="${ before }">[이전]</a>
+							    		</c:if>
+							    		
+							    		<!-- 번호 -->
+							    		<c:forEach begin="${ pi.startPage }" end="${ pi1.endPage }" var="p">
+							    			<c:if test="${ p eq pi1.currentPage }">
+							    				<font color="black" size="4">[${ p }]</font>
+							    			</c:if>
+							    			<c:if test="${ p ne pi1.currentPage }">
+							    				<c:url value="aPayment.do" var="page">
+							    					<c:param name="currentPage1" value="${ p }"/>
+							    				</c:url>
+							    				<a href="${ page }">${ p }</a>
+							    			</c:if>
+							    		</c:forEach>
+							    		
+							    		<!-- 다음버튼 -->
+							    		<c:if test="${ pi1.currentPage eq pi1.maxPage }">
+							    			[다음]
+							    		</c:if>
+							    		<c:if test="${ pi1.currentPage ne pi1.maxPage}">
+							    			<c:url value="aPayment.do" var="next">
+							    				<c:param name="currentPage1" value="${ pi1.currentPage + 1 }"/>
+							    			</c:url>
+							    			<a href="${ next }"> [다음]</a>
+							    		</c:if>
+                                   </div>
                                 </div>
                                 
                                 <br><hr><br>
@@ -108,7 +144,45 @@
                                             </c:forEach>
                                         </tbody>
                                     </table>
+                                         <div align="center">
+                                		<!-- 이전버튼 -->
+							    		<c:if test="${ pi2.currentPage eq 1 }">
+							    			[이전]
+							    		</c:if>
+							    		<c:if test="${ pi2.currentPage ne 1 }">
+											<c:url value="aPayment.do" var='before'>
+												<c:param name="currentPage2" value="${ pi2.currentPage -1 }"/>
+											</c:url>
+							    			<a href="${ before }">[이전]</a>
+							    		</c:if>
+							    		
+							    		<!-- 번호 -->
+							    		<c:forEach begin="${ pi2.startPage }" end="${ pi.endPage }" var="p">
+							    			<c:if test="${ p eq pi.currentPage }">
+							    				<font color="black" size="4">[${ p }]</font>
+							    			</c:if>
+							    			<c:if test="${ p ne pi2.currentPage }">
+							    				<c:url value="aPayment.do" var="page">
+							    					<c:param name="currentPage2" value="${ p }"/>
+							    				</c:url>
+							    				<a href="${ page }">${ p }</a>
+							    			</c:if>
+							    		</c:forEach>
+							    		
+							    		<!-- 다음버튼 -->
+							    		<c:if test="${ pi2.currentPage eq pi2.maxPage }">
+							    			[다음]
+							    		</c:if>
+							    		<c:if test="${ pi2.currentPage ne pi2.maxPage}">
+							    			<c:url value="aPayment.do" var="next">
+							    				<c:param name="currentPage2" value="${ pi2.currentPage + 1 }"/>
+							    			</c:url>
+							    			<a href="${ next }"> [다음]</a>
+							    		</c:if>
+                                   </div>
                                 </div>
+                                
+                    
                                 
                             </div>
                         </div>   

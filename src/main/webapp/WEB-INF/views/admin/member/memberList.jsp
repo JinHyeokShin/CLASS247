@@ -1,74 +1,253 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
+        <!DOCTYPE html>
+        <html>
 
-<head>
-    <meta charset="UTF-8">
-<title>FAQ List</title>
+        <head>
+            <meta charset="UTF-8">
+            <title>Await</title>
 
-</head>
 
-<body class="animsition">
+        </head>
 
-	<c:import url="../common/aMenubar.jsp"/>
-        <div class="page-container2">
+        <body class="animsition">
+                    <script src="http://unpkg.com/vue@2.5.16/dist/vue.js"></script>
 
-            <!-- MAIN CONTENT-->
-            <div class="main-content">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h2 class="title-1 m-b-25">Member List</h2>
-                                <div class="table-responsive table--no-card m-b-40">
-                                    <table class="table table-borderless table-striped table-earning">
-                                        <thead>
-                                            <tr>
-                                                <th>No.</th>
-                                                <th>프로필사진</th>
-                                                <th>아이디</th>
-                                                <th class="text-right">닉네임</th>
-                                                <th class="text-right">회원타입</th>
-                                                <th class="text-right">탈퇴여부</th>
-                                            </tr>
-                                        	
-                                        </thead>
-                                        <tbody>
-                                        	<c:forEach items="${list}" var="m">
-                                            <tr>
-                                               
-                                                <td>${ m.memNum }</td>
-                                                <td></td>
-                                                 
-                                        		<td>
-												  <c:url value="aMemDetail.do" var="memDetail">
-                                                	<c:param name="memNum" value="${ m.memNum }"/>
-                                                  </c:url>
-                                                  <a style="color:black" href="${memDetail}">${m.memId }</a></td>
+            <c:import url="../common/aMenubar.jsp" />
+
+            <div class="page-container2">
+
+                <!-- MAIN CONTENT-->
+                <div class="main-content">
+                    <div class="section__content section__content--p30">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h2 class="title-1 m-b-25">CLASS List</h2>
+                                    	
+                                    
+
+                                    <div class="table-responsive table--no-card m-b-40" id="example">
+                                    <div id='p' style="{display:inline-block}">
+                                    	
+                                    </div>
+                                    <br>
+                                        <table class="table table-borderless table-striped table-earning" id="list">
+                                            <thead>
+                                                <tr>
+                                                    <th>No.</th>
+                                                    <th>프로필사진</th>
+                                                    <th>아이디</th>
+                                                    <th>닉네임</th>
+                                                    <th>회원타입</th>
+                                                    <th>탈퇴여부</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="contacts">
                                                 
-                                                <td class="text-right">${ m.memNickName }</td>
-                                                <td class="text-right">${ m.memType }</td>
-                                                <td class="text-right">${ m.memStatus }</td>
-                                               	
-                                            </tr>
-                                            </c:forEach>
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                            <tfoot align="center">
+                                            <tr>
+                                            <td id="tfoot" colspan="9">
+                                          
+                                            </td>
+                                            <tr>
+                                            </tfoot>
+                                            
+                                        </table>
+                                    </div>
+                         
                                 </div>
                             </div>
-                        </div>   
+                        </div>
                     </div>
                 </div>
+				
+
             </div>
+        
+
             
+            <c:import url="../common/aImportJs.jsp" />
+            <script>
+            
+            var start=1;
+            
+            var endPage = 1;
+            
+            var lenght = ${sizee};
+            
+            var vm;
+            
+            
+            $(function () {
+            	
+            	
+            	PageBar(start);
+            	Pageing(start);
+            	
+            	$('.divv').on('click', function(e) {
+            		
+            		
+            		var id = e.target.innerText;
+            		
+            		location.href="<c:url value='aMemDetail.do'/>?memNum="+id;
+            		
+            	});
+            	
+            });
+            
+            
+            
+            var model={
+            		userName : "",
+            		course : [
 
-            </div>
- 	<c:import url="../common/aImportJs.jsp"/>
+        				<c:forEach items="${list}" var="co">
+						 
+        				{nn:"${co.memNum}", tt:"${co.memProfileName}", kk:"${co.memId}", ii:"${co.memNickName}", pp:"${co.memType}", dd:"${co.memStatus}"},
+        				
+        				
+        				</c:forEach>
+            			
+            		]
+            
+            		
+            };
+            
+            
+            
+            function PageBar(num) {
+    			
+            	
+    			
+    			page = num;
+    			
+    			endPage = parseInt(lenght/20)+1;
+    			
+    			
+    			if(endPage > num+10) {
+    				endPage = 10;
+    			}
+				
+    			
+    			
+    			
+    		};
+            
+            function Pageing(num) {
+            	
+            	var $tableBody = $("#list tbody");
+            	var $pi = $("#p");
+            	$pi.html("");
+            	$pi.append("<input type='text' id='vm' v-model='userName' class='form-control' style='width:40%; display:inline-block;'/>")
+            	$pi.append("<input type='hidden' id='di' value='"+$("#vm").val()+"'>")
+            	$pi.append("<button onclick='test()' class='btn btn-primary btn-sm'>검색</button>")
+            	
+            	$tableBody.html("");
+            	
+            	start = (num-1)*20;
+            	
+            	
+            	
+            	var $tr = $("<tr v-for='d in filtered' class='tr'>");
+            	
+            	$tr.append($("<td>").append($("<div class='divv'>").text("{{d.nn}}")));
+            	
+            	$tr.append($("<td>").text("{{d.tt}}"));
+            	$tr.append($("<td>").text("{{d.kk}}"));
+            	$tr.append($("<td>").text("{{d.ii}}"));
+            	$tr.append($("<td>").text("{{d.pp}}"));
+            	$tr.append($("<td>").text("{{d.dd}}"));
+            	$tr.append($("<td>").text("{{d.ee}}"));
 
+            	
+            	
+            	
+            	$tableBody.append($tr);
+            	
+				var $tfoot = $("#tfoot");
+        		
+        		$tfoot.html("");
+    			
+    			if(page < 3) {
+    				
+    				var $tr = $("<tr style='margin:auto' colspan='9'>");
+    				
+    				for(var i = 1 ; i <= endPage ; i++) {
+    					$tr.append($("<td text-align='center' onclick='Pageing("+i+")'>").text(i));
+    				}
+    				
+    				$tfoot.append($tr);
+    				
+    			}
+    			
+    			
+            	var list = new Vue({
+                	el:"#example",
+                	data:model,
+                	computed: {
+                	    
+                        filtered: function() {
+                            var cname = this.userName.trim();
+                            lenght = this.course.filter(function(item, index) {
+                                if (item.ii.indexOf(cname) > -1) {
+                                    return true;
+                                }
+                            });
+                            
+                            
+                            return this.course.filter(function(item, index) {
+                                if (item.ii.indexOf(cname) > -1) {
+                                    return true;
+                                }
+                            }).slice(start, start+19);
+                        }
+                	    
+                    },
+                	
+                	methods : {
+                		nameChanged : function(e) {
+                			this.userName = e.target.value;
+                		}
+                	}
+                });
+            	
+            	
+            	
+            	
+            };
+            
+            function test() {
+            	
+            	
+            	endPage = (parseInt(lenght.length)/20)+1;
+            	
+				var $tfoot = $("#tfoot");
+        		
+				
+        		$tfoot.html("");
+    			
+				if(page < 10) {
+    				
+    				var $tr = $("<tr style='margin:auto' colspan='9'>");
+    				
+    				for(var i = 1 ; i <= endPage ; i++) {
+    					$tr.append($("<td text-align='center' onclick='Pageing("+i+")'>").text(i));
+    				}
+    				
+    				$tfoot.append($tr);
+    				
+    			};
+    				
+    				
+    			
+            };
+            
+            	
+            </script>
 
+        </body>
 
-</body>
-
-</html>
+        </html>

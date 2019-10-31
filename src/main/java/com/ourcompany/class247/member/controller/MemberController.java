@@ -400,7 +400,9 @@ public class MemberController {
 		
 		ArrayList<Member> list = mService.selectMemberList();
 		
-		mv.addObject("list", list).setViewName("admin/member/memberList");
+		int sizee = list.size();
+		
+		mv.addObject("list", list).addObject("sizee", sizee).setViewName("admin/member/memberList");
 		
 		return mv;
 		

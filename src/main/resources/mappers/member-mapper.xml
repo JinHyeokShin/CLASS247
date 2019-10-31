@@ -121,6 +121,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectMemberList" parameterType="Member" resultMap="memberResultSet">
 		select *
 		from member
+		order by
+		decode (mem_type,'U',1,'C', 2)
 	</select>
 	
 	

@@ -89,6 +89,15 @@
             	PageBar(start);
             	Pageing(start);
             	
+				$('.divv').on('click', function(e) {
+            		
+            		
+            		var id = e.target.innerText;
+            		
+            		location.href="<c:url value='aCourseDetail.do'/>?courseNum="+id;
+            		
+            	});
+            	
             });
             
             
@@ -145,6 +154,9 @@
             	
             	
             	var $tr = $("<tr v-for='d in filtered'>");
+            	
+            	$tr.append($("<td>").append($("<div class='divv'>").text("{{d.nn}}")));
+            	
             	$tr.append($("<td>").text("{{d.nn}}"));
             	$tr.append($("<td>").text("{{d.tt}}"));
             	$tr.append($("<td>").text("{{d.kk}}"));
@@ -217,8 +229,6 @@
             	endPage = (parseInt(lenght.length)/20)+1;
             	
 				var $tfoot = $("#tfoot");
-        		
-				console.log("실행");
 				
         		$tfoot.html("");
     			

@@ -94,7 +94,8 @@
 							<form action="aGiveCouponCourse.do" method="post"
 										enctype="multipart/form-data" class="form-horizontal"
 										id="aGiveCouponCourse">
-									<input name="courseNum" type="number">
+									<label>클래스 번호 : </label>
+									<input name="courseNum" type="number" class='form-control' style="width:10%; display:inline-block;">
 									<input type="hidden" name="couponNum" value="${co.couponType }">
 									<button class="btn btn-outline-primary" type="submit" >쿠폰 뿌리기</button>
 							</form>

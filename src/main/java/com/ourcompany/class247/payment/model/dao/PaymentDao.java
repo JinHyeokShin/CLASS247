@@ -85,4 +85,12 @@ public class PaymentDao {
 		return sqlSession.update("paymentMapper.updateDeliStatus", d);
 	}
 	
+	public int paymentCount() {
+		return sqlSession.selectOne("paymentMapper.paymentCount");
+	}
+	
+	public int powerCount() {
+		return sqlSession.selectOne("paymentMapper.powerCount");
+	}
+	
 }

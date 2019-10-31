@@ -1,11 +1,8 @@
 package com.ourcompany.class247.payment.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,13 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonIOException;
 import com.ourcompany.class247.common.PageInfo;
-import com.ourcompany.class247.common.ReplyPagination;
+import com.ourcompany.class247.common.Pagination;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.member.model.vo.Member;
-import com.ourcompany.class247.notice.model.vo.NoticeReply;
 import com.ourcompany.class247.payment.model.service.PamentServiceImpl;
 import com.ourcompany.class247.payment.model.vo.Delivery;
 import com.ourcompany.class247.payment.model.vo.Payment;
@@ -74,13 +68,22 @@ public class PaymentController {
 	}
 	
 	@RequestMapping("aPayment.do")
-	public ModelAndView paymentView(ModelAndView mv) {
+	public ModelAndView paymentView(ModelAndView mv, @RequestParam(value="currentPage1", required=false, defaultValue="1")int currentPage1, @RequestParam(value="currentPage2", required=false, defaultValue="1")int currentPage2) {
+		
+		int paymentCount = pService.paymentCount();
+		
+		PageInfo pi1 = Pagination.getPageInfo(currentPage1, paymentCount);
 		
 		ArrayList<Payment> pList = pService.selectPaymentList();
 		
+		int powerCount = pService.powerCount();
+		
+		PageInfo pi2 = Pagination.getPageInfo(currentPage2, powerCount);
+		
+		
 		ArrayList<Payment> poList = pService.selectPowerList();
 		
-		mv.addObject("pList", pList).addObject("poList", poList).setViewName("admin/payment/paymentList");
+		mv.addObject("pi1", pi1).addObject("pi2", pi2).addObject("pList", pList).addObject("poList", poList).setViewName("admin/payment/paymentList");
 		
 		return mv;
 		
