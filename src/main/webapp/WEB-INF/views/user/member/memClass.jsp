@@ -101,12 +101,23 @@
 					          	</h3>
                               </a>
                               &nbsp;   &nbsp;   &nbsp;
-                               <a href="${ codetail }">
-                           		 <h3  style="display:inline-block">
+                               <script>
+                                function rSubmit(){
+                                    var url = "insertReview.do?courseNum=${pon.courseNum}";
+                                    var name = "review test";
+                                    var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+                                    window.open(url, name, option);
+                                }
+
+                       		  </script>
+                       		  
+                               <a href="#" onclick="rSubmit();">
+                           		 <h3 style="display:inline-block">
                            		<input class="genric-btn primary-border radius" name="log-btn" type="button" style="font-size: 15" value="리뷰 작성하기">
 								</h3>
                                </a>
                                </div>
+                               
 					</div>
 				</div>
 			
@@ -175,7 +186,7 @@
 					          	</h3>
                               </a>
                               &nbsp;   &nbsp;   &nbsp;
-                               <a href="${ codetail }">
+                               <a href="#" onclick="rSubmit();">
                            		 <h3  style="display:inline-block">
                            		<input class="genric-btn primary-border radius" name="log-btn" type="button" style="font-size: 15" value="리뷰 작성하기">
 								</h3>

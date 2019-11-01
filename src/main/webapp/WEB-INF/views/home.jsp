@@ -159,7 +159,7 @@
                                         <div class="author_img">
                                             <img src="resources/user/img/author/author_1.png" alt="" onclick="location.href=${codetail}">
                                             <div class="author_info_text">
-                                                <p>선생님:</p>
+                                                <p>크리에이터:</p>
                                                 <h5><a href="${ codetail }">${co.memNickName }</a></h5>
                                             </div>
                                         </div>

@@ -462,11 +462,6 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public Course selectCourse(int courseNum, String courseKind) {
-		return null;
-	}
-
-	@Override
 	public ArrayList<Review> selectReviewList(int rId) {
 		// TODO Auto-generated method stub
 		return null;
@@ -536,6 +531,7 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public CourseAttachment selectCA(int courseNum) {
 		return coDao.selectCA(courseNum);
+	}
 	public Course selectCourse(int courseNum, String courseKind) {
 		return coDao.selectCourse(courseNum, courseKind);
 	}
