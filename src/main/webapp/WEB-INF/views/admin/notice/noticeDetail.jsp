@@ -100,12 +100,12 @@
 											        <tr>
 											          <td colspan="4">Table Foot</td>
 											        </tr>
-										      </tfoot>
+										      </tfoot>										     
 										    </table>
 																	
 										<div id="view-menu" align="center">
 															<c:url var="bupView" value="aNinsert.do">
-															<c:param name="noticeNum" value="${ n.noticeNum }"/>
+																<c:param name="noticeNum" value="${ n.noticeNum }"/>
 															</c:url>
 															<c:url var="bdelete" value="aNdelete.do">
 																<c:param name="noticeNum" value="${ n.noticeNum }"/>

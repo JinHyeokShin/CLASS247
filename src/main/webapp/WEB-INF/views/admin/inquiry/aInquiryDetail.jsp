@@ -83,13 +83,13 @@
 														<tr>
 															<input type="hidden" name="inquiryNum" value="${ ai.inquiryNum }"/>
 															<td>작성자 : </td>
-															<td><input type="text" readonly value="관리자"><hr width="80px"></td>
+															<td><input type="text" readonly value="관리자"><hr width="100px"></td>
 														</tr>																									
 														<tr>
 															<td>내용 : </td>
 															<td>
 																<p>
-																<textarea style="width:80%; height:100px" name="inquiryContent">${ai.answerContent}</textarea>
+																<textarea style="width:80%; height:50px" name="inquiryContent">${ai.answerContent}</textarea>
 																</p>
 																<hr width="80%">																
 															</td>

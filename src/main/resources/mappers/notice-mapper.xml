@@ -53,7 +53,7 @@
 		
 	<insert id="insertNotice" parameterType="Notice">
 		insert into Notice 
-		values(notice_seq.nextval, #{memNum}, #{noticeTitle}, #{noticeContent}, null, #{noticeFileName}, default, sysdate, sysdate, 'Y')		
+		values(notice_seq.nextval, 1, #{noticeTitle}, #{noticeContent}, null, #{noticeFileName}, default, sysdate, sysdate, 'Y')		
 	</insert>
 	
 	<update id="updateNotice">

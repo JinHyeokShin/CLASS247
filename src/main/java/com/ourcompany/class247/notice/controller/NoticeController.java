@@ -92,7 +92,7 @@ public class NoticeController {
 	public String insertNotice(Notice n, HttpServletRequest request, Model model,
 								@RequestParam(name="uploadFile", required=false)MultipartFile file) throws IllegalStateException, IOException {
 		
-
+		
 			 if( !file.getOriginalFilename().equals("")) {
 			 
 			 String renameFileName = saveFile(file, request);
