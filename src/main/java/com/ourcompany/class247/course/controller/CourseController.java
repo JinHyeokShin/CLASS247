@@ -223,7 +223,9 @@ public class CourseController {
       ArrayList<Member> stuList = mService.selectStuByCo(courseNum);
       ArrayList<Review> rlist = coService.selectRlist(courseNum); 
       
-      
+      for(Member m : stuList) {
+    	  System.out.println(m);
+      }
       /* System.out.println(course); */
       
       mv.addObject("co", course);

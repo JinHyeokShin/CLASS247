@@ -476,4 +476,12 @@ public class CourseServiceImpl implements CourseService {
 		return coDao.deleteCourse(courseNum);
 	}
 
+	/** 크리에이터 리뷰 평균값 가져오기 
+	 *
+	 */
+	@Override
+	public double getScoreSum(int creNum) {
+		return coDao.getScoreSum(creNum);
+	}
+
 }

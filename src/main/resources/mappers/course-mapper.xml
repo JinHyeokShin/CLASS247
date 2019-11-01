@@ -257,7 +257,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*)
 		from course
 		where cre_num = #{creNum}
-		and course_status='Y'
+		and course_status!='R' and course_approved!='N'
 	</select>
 	
 	<!-- 크리에이터 승인 대기중 클래스 목록  -->
@@ -764,6 +764,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(video_course_seq.nextval, #{onlineNum}, #{videoPath}, #{videoTitle}, #{videoContent})
 	</insert>
 	
+	<!-- 크리에이터 별점 평균 구하기  -->
+	<select id="getScoreSum" parameterType="_int" resultType="_double">
+		select round(avg(review_score),2)
+		from review
+		where course_num in 
+	        (select course_num
+				from course 
+				where cre_num=#{creNum})
+	</select>
 
 	
 	

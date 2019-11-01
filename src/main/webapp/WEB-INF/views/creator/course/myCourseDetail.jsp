@@ -372,65 +372,35 @@ star-input>.input.focus {
 																		<table class="table table-data2">
 																			<thead>
 																				<tr>
-																					<th><label class="au-checkbox"> <input
-																							type="checkbox"> <span
-																							class="au-checkmark"></span>
-																					</label></th>
+																					<th></th>
 																					<th>profile</th>
 																					<th>name</th>
 																					<th>class</th>
 																					<th>registration</th>
 																					<th>phone</th>
 																					<th>status</th>
-																					<th>level</th>
-																				</tr>
+																					<th>gender</th>
+																				</tr>	
 																			</thead>
 																			<tbody>
 																				<c:if test="${ !empty stuList }">
 																					<c:forEach items="${ stuList }" var="s">
-																						<c:url value="stuDetail.do" var="stuDetail">
-																							<c:param name="memNum" value="${s.memNum}" />
-																							<c:param name="courseNum" value="${s.courseNum}" />
-																						</c:url>
-																						<tr class="tr-shadow"
-																							onclick="location.href='${stuDetail}';">
-																							<td><label class="au-checkbox"> <input
-																									type="checkbox"> <span
-																									class="au-checkmark"></span>
-																							</label></td>
+																						<tr class="tr-shadow">
+																							<td></td>
 																							<td>
 																								<div class="image img-cir img-40">
 																									<img src="<%=request.getContextPath()%>/resources/user/img/profile/${s.memProfileName}"/>
 																								</div>
 																							</td>
 																							<td>${ s.memName }</td>
-																							<td><span class="block-email">${ s.courseTitle }</span>
+																							<td><span class="block-email">${ co.courseTitle }</span>
 																							</td>
-																							<td>09/27</td>
+																							<td>${s.payDate }</td>
 																							<td>${ s.memPhone }</td>
 																							<td><span class="status--process">수강</span>
 																							</td>
-																							<td>입문자</td>
-																							<td>
-																								<div class="table-data-feature">
-																									<button class="item" data-toggle="tooltip"
-																										data-placement="top" title="Send">
-																										<i class="zmdi zmdi-mail-send"></i>
-																									</button>
-																									<button class="item" data-toggle="tooltip"
-																										data-placement="top" title="Information">
-																										<i class="zmdi zmdi-info"></i>
-																									</button>
-																									<button class="item" data-toggle="tooltip"
-																										data-placement="top" title="Memo">
-																										<i class="zmdi zmdi-edit"></i>
-																									</button>
-																									<button class="item" data-toggle="tooltip"
-																										data-placement="top" title="More">
-																										<i class="zmdi zmdi-more"></i>
-																									</button>
-																								</div>
-																							</td>
+																							<td>${s.memGender}</td>
+
 																						</tr>
 																						<tr class="spacer"></tr>
 																					</c:forEach>
@@ -458,15 +428,18 @@ star-input>.input.focus {
 																		<thead>
 																			<tr>
 																				<th width="5%"></th>
-																				<th width="10%">회원 이름</th>
-																				<th width="5%"> 별점</th>
-																				<th width="28%">리뷰 내용</th>
-																				<th width="10%">작성 날짜</th>
+																				<th width="10%">user name</th>
+																				<th width="5%"> score</th>
+																				<th width="28%">comment</th>
+																				<th width="10%">date</th>
 																			</tr>
 																		</thead>
 																		<tbody>
-																			<c:if test="${empty revlist }">
-																				<p>작성된 댓글이 존재하지 않습니다.</p>
+																		
+																			<c:if test="${ empty revlist }">
+																					<tr class="tr-shadow">
+																						<td colspan='5' style="text-align: center">작성된 리뷰가 없습니다.</td>
+																					</tr>
 																			</c:if>
 																			<c:if test="${!empty revlist }">
 																				<c:forEach items="${ revlist }" var="rev">

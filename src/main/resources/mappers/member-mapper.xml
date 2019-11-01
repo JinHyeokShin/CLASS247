@@ -30,8 +30,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="memGender" column="mem_gender"/>
 		<result property="memPhone" column="mem_phone"/>
 		<result property="memAddress" column="mem_address"/>
-		<result property="memProfileName" column="mem_profil_name"/>
-		<result property="memProfilePath" column="mem_profil_path"/>
+		<result property="memProfileName" column="mem_profile_name"/>
+		<result property="memProfilePath" column="mem_profile_path"/>
 		<result property="payDate" column="pay_date"/>
 		<result property="payPrice" column="pay_price"/>
 		<result property="takeDate" column="take_date"/>

@@ -472,4 +472,12 @@ public class CourseDao {
 	public int deleteCourse(int courseNum) {
 		return sqlSession.update("courseMapper.deleteCourse2", courseNum);
 	}
+
+	/** 크리에이터 별점 평균 가져오기 
+	 * @param creNum
+	 * @return
+	 */
+	public double getScoreSum(int creNum) {
+		return sqlSession.selectOne("courseMapper.getScoreSum", creNum);
+	}
 }

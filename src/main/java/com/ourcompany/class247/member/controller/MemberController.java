@@ -493,6 +493,7 @@ public class MemberController {
 		int stuCount = mService.getStuCount(creNum);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, stuCount);
+		System.out.println(pi);
 		ArrayList<Member> studentList = mService.selectStuList(pi, creNum);
 		System.out.println("count : " + stuCount);
 		System.out.println(pi);

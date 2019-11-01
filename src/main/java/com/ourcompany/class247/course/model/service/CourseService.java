@@ -160,4 +160,8 @@ public interface CourseService {
 	
 	//클래스 삭제 
 	int deleteCourse(int courseNum);
+	
+	
+	//크리에이터 센터 메인에 띄울 총 평균 값 가져오기 
+	double getScoreSum(int creNum);
 }

@@ -129,10 +129,6 @@
                                     <a href="studentManage.do">
                                         <i class="far fa-id-card"></i>수강생 관리</a>
                                 </li>
-                                <li>
-                                    <a href="index4.html">
-                                        <i class="fas fa-tasks"></i>리뷰 및 댓글 관리</a>
-                                </li>
                             </ul>
                         </li>
                         <li>
@@ -141,7 +137,7 @@
                             <span class="inbox-num">3</span>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="editor.do">
                             <i class="fas fa-chart-bar"></i>통계</a>
                         </li>
                         <li>
