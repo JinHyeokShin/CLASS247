@@ -87,6 +87,10 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.updateBlackList", memNum);
 	}
 	
+	public int updateUnBlackList(int memNum) {
+		return sqlSession.update("memberMapper.updateUnBlackList", memNum);
+	}
+	
 
 	
 }

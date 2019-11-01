@@ -29,14 +29,14 @@ public class CouponController {
 	
 	
 	@RequestMapping("memCoupon.do")
-	public ModelAndView memCoupon(HttpServletRequest request, ModelAndView mv,@RequestParam(value="currentpage", required=false, defaultValue="1")int currentPage){
+	public ModelAndView memCoupon(HttpServletRequest request, ModelAndView mv,@RequestParam(value="currentPage", required=false, defaultValue="1")int currentPage){
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		int memNum = loginUser.getMemNum();
-		int listCount = cService.getListCount();
+		int listCount = cService.getListCount(memNum);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		ArrayList<GiveCoupon> couponlist = cService.listCoupon(memNum, pi);
 		
-		mv.addObject("pi",pi).addObject("couponlist", 	couponlist);
+		mv.addObject("pi",pi).addObject("couponlist", couponlist).addObject("listCount",listCount);
 		mv.setViewName("user/member/memCoupon");
 		
 		return mv;
@@ -47,7 +47,7 @@ public class CouponController {
 		
 		ArrayList<Coupon> list = cService.selectCouponList();
 		
-		mv.addObject("list", list).setViewName("admin/course/couponList");
+		mv.addObject("list", list).setViewName("admin/member/couponList");
 		
 		return mv;
 	}
@@ -72,7 +72,7 @@ public class CouponController {
 		
 		if(result > 0) {
 			
-			return "admin/member/couponList";
+			return "redirect:aCoupon.do";
 			
 		}else {
 			
@@ -82,21 +82,33 @@ public class CouponController {
 	}
 	
 	@RequestMapping("aGiveCouponCourse.do")
-	public String aGiveCouponCourse(int couponType, int courseNum) {
+	public String aGiveCouponCourse(String couponNum, int courseNum) {
+		
+		
+		int couponType = Integer.parseInt(couponNum);
 		
 		ArrayList<TakeCourse> list = pService.courseMemberList(courseNum);
+		
+		System.out.println(list);
 		
 		int result = cService.insertGiveCouponCourse(couponType, list);
 		
 		if(result > 0) {
 			
-			return "admin/member/couponList";
+			return "redirect:aCoupon.do";
 			
 		}else {
 			
 			return "common/errorPage";
 		}
 		
+		
+	}
+	
+	@RequestMapping("aCreateCouponView.do")
+	public String aCreateCouponView() {
+		
+		return "admin/member/createCoupon";
 		
 	}
 	

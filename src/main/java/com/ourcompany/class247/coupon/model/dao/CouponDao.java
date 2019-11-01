@@ -26,13 +26,13 @@ public class CouponDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.couponList",memNum,rowBounds );
 
 	}
-	public int getListCount() {
+	public int getListCount(int memNum) {
 		
-		return sqlSession.selectOne("memberMapper.getListCount");
+		return sqlSession.selectOne("memberMapper.getListCount",memNum);
 	}
 	
 	public ArrayList<Coupon> selectCouponList() {
-		return (ArrayList)sqlSession.selectList("memberMapper.selectCouponList()");
+		return (ArrayList)sqlSession.selectList("memberMapper.selectCouponList");
 	}
 	
 	public Coupon selectCoupon(int couponType) {

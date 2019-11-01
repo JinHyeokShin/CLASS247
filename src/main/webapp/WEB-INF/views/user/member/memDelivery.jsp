@@ -12,48 +12,34 @@
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
             <title>CLASS 247</title>
             <style>
-
-	.login{
-		margin: 9% auto;
-		border: 1px solid #954CBC;
-		padding: 10px;
-		width: 80%;
-		height:100%;  
-		border-radius: 10px;
-	}
-	.progress-table-wrap{
-	width: 90%;
-	
-	}
 	.table-head{
-	font-size: 25;
+	font-size: 18;
+	text-align: center;
 	}
 	.DELIVERY_NUM{
 	width: 10%;
 	}
 	.PAY_DATE{
-	width: 12%;
+	width: 15%;
 	}
 	.COURSE_TITLE{
-	width: 16%;
+	width: 15%;
 	}
 	.COURSE_MATERIAL{
-	width: 16%;
+	width: 15%;
 	}
 	.PAY_PRICE{
-	width: 12%;
+	width: 15%;
 	}
 	.DELIVERY_STATUS{
-	width: 12%;
-	}
-	.MEM_NAME{
-	width: 12%;
+	width: 10%;
 	}
 	.DELIVERY_detail{
-	width: 10%;
+	width: 20%;
 	}
 	.table-row{
 	font-size: 15;
+	text-align: center;
 	}
 	</style>
             <link rel="icon" href="resources/user/img/favicon.png">
@@ -63,14 +49,15 @@
         </head>
 <c:import url="/WEB-INF/views/user/common/menubar.jsp" />
 <body>
-      <br>
-	<div class="login" align="center">
-	  		<br>
-	  		 <h1>${ loginUser.memName }님의 주문 및 배송 목록</h1>
-                                 <br>
-	  		<hr>
-	  		
-		<div class="section-top-border">
+  
+	    <section class="contact-section section_padding">
+    <div class="container">
+	  	<br>
+      		<h1>${ loginUser.memName }님의 주문 및 배송 목록 </h1>
+      		<br>
+      		<hr>
+      		<br>
+	<div class="section-top-border">
 				<h3 class="mb-30"></h3>
 				<div class="progress-table-wrap">
 					<div class="progress-table">
@@ -81,12 +68,12 @@
 							<div class="COURSE_MATERIAL">준비물내역</div>
 							<div class="PAY_PRICE">주문금액</div>
 							<div class="DELIVERY_STATUS">주문상태</div>
-							<div class="MEM_NAME">주문자</div>
 							<div class="DELIVERY_detail">상세조회</div>
 						</div>
+					<c:if test="${ !empty delist }">
 						<c:forEach items="${ delist }" var="de">
 						<div class="table-row">
-							<div class="DELIVERY_NUM">${ de.deliveryNum }</div>
+							<div class="DELIVERY_NUM">${ de.payCode }</div>
 							<div class="PAY_DATE">${ de.payDate }</div>
 							<div class="COURSE_TITLE">${ de.courseTitle }</div>
 							<div class="COURSE_MATERIAL">${ de.courseMaterial }</div>
@@ -102,15 +89,36 @@
 							배송완료
 							</c:if>
 							</div>
-							<div class="MEM_NAME">${ de.memName }</div>
-							<div class="DELIVERY_detail"><input type="button" value="상세보기"></div>
+							<div class="DELIVERY_detail">
+							<c:url value="memDeliverydetail.do" var="memDeliverydetail">
+								<c:param name="payCode" value="${ de.payCode }"/>
+							</c:url>
+							<a href="${ memDeliverydetail }">
+							 <input class="genric-btn primary-border radius" name="log-btn" type="button" style="font-size: 15" value="상세보기">
+							</a>
+							</div>
 						</div>
 						</c:forEach>
-						
+						</c:if>
+						<c:if test="${ empty delist }">
+							<div class="table-row">
+								<div class="DELIVERY_NUM"></div>
+								<div class="PAY_DATE"></div>
+								<div class="COURSE_TITLE"></div>
+								<div class="COURSE_MATERIAL">주문 및 배송 내역이</div>
+								<div class="PAY_PRICE"> 없습니다</div>
+								<div class="DELIVERY_STATUS"></div>
+								<div class="MEM_NAME"></div>
+								<div class="DELIVERY_detail"></div>
+							</div>
+						</c:if>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			</section>
+			
+
 		
 </body>
  <c:import url="/WEB-INF/views/user/common/footer.jsp" />

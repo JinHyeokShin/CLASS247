@@ -15,32 +15,12 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <style>
-	.login{
-		margin: 9% auto;
-		border: 1px solid #954CBC;
-		padding: 10px;
-		width: 50%;
-		height:120%;  
-		border-radius: 10px;
-	}
-	table td{
-		text-align: left;
-	}
-	td a, td button{
-		width : 70%;
-	}	
 	.genric-btn{
 	padding: 9 9 10 9;
 	}
 	.genderForm{
 		align : left;
 	}
-	 td input{
-		 width : 80%;
-	 }
-	 .form-group mt-6{
-		 
-	 }
 .postcodify_postcode5, .postcodify_address, .postcodify_extra_info{
 	display: block;
     width: 100%;
@@ -75,10 +55,10 @@
 	      			<form action="updateMemProfile.do" method="post" enctype="multipart/form-data">
       		 	<div class="col-sm-9">
 	      				<div class="profileImg" align="left" >
-	      					<img src="<%= request.getContextPath() %>/resources/user/img/profile/${loginUser.memProfileName}" width="30%" height="30%">
+	      					<img src="<%= request.getContextPath() %>/resources/user/img/profile/${loginUser.memProfileName}" width="30%" height="30%" id="contentImg1">
 	      				</div>
 	      				<div id="fileArea" style="display:none">
-	      					<input type="file" name="profile" class="thumbnailImg1">
+	      					<input type="file" name="profile" class="thumbnailImg1" id="thumbnailImg1" onchange="loadImg(this, 1);">
 	      				</div>
 	      			</div>
 	      			<br><br>
@@ -109,7 +89,7 @@
 		              </div>
 		              <div class="col-sm-9">
 		                <div class="form-group">
-		                  <input class="form-control" type="password" name="memPwd" required>
+		                  <input class="form-control" type="password" name="memPwd" id="memPwd" required>
 		                </div>
 		              </div>
 		               <div class="col-sm-3">
@@ -119,7 +99,8 @@
 		              </div>
 		              <div class="col-sm-9">
 		                <div class="form-group">
-		                  <input class="form-control" type="password" name="memPwd2" required >
+		                  <input class="form-control" type="password" name="memPwd2" id="memPwd2" required >
+		                  <font name="check"size="2" color="red"></font>
 		                </div>
 		              </div>
 		              <div class="col-sm-3">
@@ -161,36 +142,36 @@
 					<c:when test="${ loginUser.memGender eq 'M' }">
 		              <div class="col-sm-2" style="display:inline-block" align="center">
 		                <div class="form-group">
-							<input type="radio" name="gender" value="M" checked><h5>남</h5>
+							<h5><input type="radio" name="gender" value="M" checked>&nbsp;&nbsp;남자</h5>
 						  </div>
 		              </div>
 		              <div class="col-sm-7" style="display:inline-block">
 		                <div class="form-group">
-							<input type="radio" name="gender" value="F"> 여
+							<h5><input type="radio" name="gender" value="F">&nbsp;&nbsp; 여자</h5>
 						  </div>
 		              </div>
 					</c:when>
 					<c:when test="${ loginUser.memGender eq 'F' }">
 					<div class="col-sm-2" style="display:inline-block" align="center">
 		                <div class="form-group">
-							<input type="radio" name="gender" value="M"> 남 
+							<h5><input type="radio" name="gender" value="M">&nbsp;&nbsp; 남자</h5>
 						  </div>
 		              </div>
 		              <div class="col-sm-7" style="display:inline-block">
 		                <div class="form-group">
-							<input type="radio" name="gender" value="F" checked> 여
+							<h5><input type="radio" name="gender" value="F" checked>&nbsp;&nbsp;여자</h5>
 						  </div>
 		              </div>
 					</c:when>
 					<c:otherwise>
 					<div class="col-sm-2" style="display:inline-block" align="center">
 		                <div class="form-group">
-							<input type="radio" name="gender" value="M"> 남 
+							<h5><input type="radio" name="gender" value="M"> &nbsp;&nbsp;남자</h5>
 						  </div>
 		              </div>
 		              <div class="col-sm-7" style="display:inline-block">
 		                <div class="form-group">
-							<input type="radio" name="gender" value="F"> 여
+							<h5><input type="radio" name="gender" value="F">&nbsp;&nbsp;여자</h5>
 						  </div>
 					  </div>
 					</c:otherwise>
@@ -310,7 +291,43 @@
 							$(".thumbnailImg1").click();
 						});
 					});
+					function loadImg(value, num){
+						
+						if(value.files&&value.files[0]){
+							// 파일을 읽어들일 FileReader객체 생성
+							var reader = new FileReader();
+							// 파일 읽기가 다 완료되었을 때 실행되는 메소드
+							reader.onload = function(e){
+								
+								switch(num){
+								case 1: $("#contentImg1").attr("src", e.target.result); break;
+								}
+								
+							}
+							
+							// 파일 읽어주는 메소드
+							reader.readAsDataURL(value.files[0]);
+							
+							
+						}
+					}
 					
+					   $(function() {
+						 
+				            $('#memPwd').keyup(function() {
+				               $('font[name=check]').text('');
+				            });
+				            
+				            $('#memPwd2').keyup(function() {
+				               if ($('#memPwd').val() != $('#memPwd2').val()) {
+				                  $('font[name=check]').text('');
+				                  $('font[name=check]').html("암호틀림");
+				               }else {
+				                  $('font[name=check]').text('');
+				                  $('font[name=check]').html("암호맞음");
+				               }
+				            });
+				         });
 				</script>
 					 <c:if test="${!empty msg }">
 	 	<script>

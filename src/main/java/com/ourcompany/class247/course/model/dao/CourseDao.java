@@ -155,6 +155,12 @@ public class CourseDao {
 		return sqlSession.update("courseMapper.rejectCourse", courseNum);
 	}
 	
+	public ArrayList<SingleCourse> allCourseList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.allCourseList");
+	}
+	
+
+	
 	
 	//김은기
 	public ArrayList<Course> selectList(){
@@ -203,9 +209,9 @@ public class CourseDao {
 		return (ArrayList)sqlSession.selectList("courseMapper.selectPopList");
 	}
 	
-	public int getListCount() {
+	public int getListCount(int memNum) {
 
-		return sqlSession.selectOne("courseMapper.getListCount");
+		return sqlSession.selectOne("courseMapper.getListCount",memNum);
 	}
 	
 	public ArrayList<Love> lovelist(int memNum, PageInfo pi) {
