@@ -90,8 +90,7 @@ public class InquiryController {
 	public String insertaInquiry(Inquiry i, Model model){
 		
 		int result = iService.insertaInquiry(i);
-		
-		System.out.println(result);
+			
 		if (result > 0) {
 			return "redirect:adminInquriyList.do";
 		} else {

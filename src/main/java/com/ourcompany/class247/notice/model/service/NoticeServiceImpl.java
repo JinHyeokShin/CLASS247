@@ -55,6 +55,11 @@ public class NoticeServiceImpl implements NoticeService{
 	public int deleteNotice(int noticeNum) {
 		return nDao.deleteBoard(noticeNum);
 	}
+	
+	@Override
+	public int updateNotice(Notice n) {
+		return nDao.updateNotice(n);
+	}
 /* 댓글
 	@Override
 	public ArrayList<NoticeReply> selectReplyList(int noticeNum) {
@@ -78,5 +83,7 @@ public class NoticeServiceImpl implements NoticeService{
 	public ArrayList<FAQ> selectUserFaqList(PageInfo pi) {
 		return nDao.selectUserFaqList(pi);
 	}
+
+	
 
 }

@@ -38,6 +38,8 @@ public interface NoticeService {
 	Notice selectNotice(int noticeNum);
 	
 	int deleteNotice(int noticeNum);
+
+	int updateNotice(Notice n);
 	
 
 	

@@ -73,6 +73,11 @@ public class NoticeDao {
 		
 		return (ArrayList)sqlSession.selectList("noticeMapper.selectUserFaqList", null, rowBounds);
 	}
+
+
+	public int updateNotice(Notice n) {
+		return sqlSession.update("noticeMapper.updateNotice", n);
+	}
 	
 	
 }

@@ -44,7 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select *
 		from inquiry
 		where inquiry_status='Y' and answer_status='N' or answer_status='Y'
-		order by inquiry_num desc
+		order by answer_status asc , inquiry_enroll_date
 	</select>
 	
 	<select id="selectaInquiry" parameterType="_int" resultMap="InquiryResultSet">

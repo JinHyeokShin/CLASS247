@@ -2,39 +2,21 @@ package com.ourcompany.class247.notice.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonIOException;
 import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.common.Pagination;
-import com.ourcompany.class247.member.model.vo.Member;
 import com.ourcompany.class247.notice.model.service.FAQService;
-import com.ourcompany.class247.notice.model.service.NoticeService;
-import com.ourcompany.class247.notice.model.vo.FAQ;
-import com.ourcompany.class247.notice.model.vo.Notice;
-import com.ourcompany.class247.notice.model.vo.NoticeReply;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.ourcompany.class247.common.PageInfo;
-import com.ourcompany.class247.common.Pagination;
 import com.ourcompany.class247.notice.model.service.NoticeService;
 import com.ourcompany.class247.notice.model.vo.FAQ;
 import com.ourcompany.class247.notice.model.vo.Notice;
@@ -91,7 +73,7 @@ public class NoticeController {
 	@RequestMapping("aNinsert.do")
 	public String insertNotice(Notice n, HttpServletRequest request, Model model,
 								@RequestParam(name="uploadFile", required=false)MultipartFile file) throws IllegalStateException, IOException {
-		
+		System.out.println(n);
 		
 			 if( !file.getOriginalFilename().equals("")) {
 			 
@@ -99,7 +81,7 @@ public class NoticeController {
 			 
 			 if(renameFileName != null) {
 			 n.setNoticeFileName(renameFileName); }
-			 
+			 System.out.println(n);
 			 }
 		
 		
@@ -153,6 +135,43 @@ public class NoticeController {
 			.setViewName("admin/common/errorPage");
 		}
 		return mv;
+	}
+	
+	@RequestMapping("aNupdate.do")
+	public ModelAndView noticeUpdate(ModelAndView mv, int noticeNum) {
+
+		Notice n = nService.selectNotice(noticeNum);
+		mv.addObject("n", n).setViewName("admin/notice/noticeUpdate");
+		
+		return mv;
+	}
+	
+	@RequestMapping("aNupdatedetail.do")
+	public String noticeUpdate(@RequestParam("noticeNum") int noticeNum, @RequestParam("noticeTitle") String noticeTitle, @RequestParam("noticeContent") String noticeContent) {
+	Notice n = new Notice();
+	
+	
+	System.out.println(noticeNum);
+		n.setNoticeNum(noticeNum);
+		
+		if(!noticeTitle.equals("")) {
+			n.setNoticeTitle(noticeTitle);
+		}
+		if(!noticeContent.equals("")) {
+			n.setNoticeContent(noticeContent);
+		}
+		System.out.println(n);
+		
+		int result = nService.updateNotice(n);
+		
+		if(result>0) {
+			
+			return "redirect:aNoticeList.do";
+		}else {
+			return "common/errorPage";
+		}
+		
+		
 	}
 	
 	@RequestMapping("aNdelete.do")

@@ -15,6 +15,7 @@
  
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+ 
 <style>
 		#test2{
 			background:white !important;
@@ -28,6 +29,42 @@
 	 		text-align:right
 	 	}
 </style>
+
+<!--
+<style>
+table.type10 {
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin: 20px 10px;
+}
+table.type10 thead th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #fff;
+    background: gray;
+    margin: 20px 10px;
+}
+table.type10 tbody th {
+    width: 150px;
+    padding: 10px;
+}
+table.type10 td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+}
+table.type10 .even {
+    background: #fdf3f5;
+}
+</style>
+-->
+
+
 </head>
 
   <body class="animsition">
@@ -43,12 +80,10 @@
                                 <div class="col-lg-12">
                                     <h2 class="title-1 m-b-25">notice  Detail</h2>
                                     <div class="table-responsive table--no-card" id="test2">
-                                        <table>	  				
-							
-							 
-								<div class="container">
+                                    
 						
-									<!--  
+						
+									<!--
 									<div id="test">
 										<table>
 											<br>
@@ -69,11 +104,13 @@
 										<hr>
 									-->
 									
+									
 									<table style="width:100%">
 										      <thead style="border:1px;">
 										        <tr>
-										          <th style="color: black;">제목 : ${ n.noticeTitle}</th>
-										          <th></th>
+										          
+										          <th>제목 : ${ n.noticeTitle}</th>
+										          <th width="750px"></th>
 										          <th></th>
 										          <th style="color: black;">날짜 : ${n.noticeEnrollDate}</th>
 										        </tr>
@@ -81,7 +118,7 @@
 										      <tbody>
 										        <tr>
 										          <th></th>
-										          <td></td>
+										          <td></td>										         
 										          <td></td>
 										          <td style="color: black;">관리자</td>
 										        </tr>
@@ -95,16 +132,37 @@
 										          <td></td>
 										          <td></td>
 										        </tr>
-										      </tbody>
-										      <tfoot>
-											        <tr>
-											          <td colspan="4">Table Foot</td>
-											        </tr>
-										      </tfoot>										     
-										    </table>
-																	
+										      </tbody>										   						     
+									</table>
+									 
+										  
+									<!--
+										  <table class="type10" width="98%">
+											    <thead>
+											    <tr>
+											    	<th scope="cols" >작성날짜 : ${n.noticeEnrollDate}</th>
+											        <th scope="cols" >제목 : ${ n.noticeTitle}</th>											        
+											    </tr>
+											    </thead>
+											    <tbody>
+											    <tr>
+											        <th scope="row"></th>
+											        <td scope="row"></td>
+											    </tr>
+											    <tr>
+											        <th scope="row" class="even">내용 : </th>
+											        <td style="background:white">${n.noticeContent }</td>
+											    </tr>
+											    <tr>
+											        <th scope="row"></th>
+											        <td scope="row"></td>
+											    </tr>
+											    </tbody>
+											</table>  
+										-->
+																
 										<div id="view-menu" align="center">
-															<c:url var="bupView" value="aNinsert.do">
+															<c:url var="bupView" value="aNupdate.do">
 																<c:param name="noticeNum" value="${ n.noticeNum }"/>
 															</c:url>
 															<c:url var="bdelete" value="aNdelete.do">
@@ -117,7 +175,7 @@
 															</c:if>
 																		
 										</div>		
-									</div>
+									
 														
 														<p>
 															<a>
@@ -125,8 +183,7 @@
 															</a>
 														</p>													
 									
-											
-                                      </table>
+									
                                     </div>
                                 </div>
                             </div>

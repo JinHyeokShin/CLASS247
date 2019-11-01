@@ -58,8 +58,7 @@
                                         <thead>
                                             <tr>
                                                 <th>공지번호</th>
-                                                <th>공지사항</th>
-                                                <th>조회수</th>
+                                                <th>공지사항</th>                                               
                                                 <th class="text-right">작성날짜</th>
                                                 <th class="text-right">첨부파일</th>
                                                
@@ -81,8 +80,7 @@
                                                 		</c:url>
                                                 		<a href ="${ aNdetail }" style="color:black;">${n.noticeTitle } </a>
                                                 	</c:if>
-                                                </td>
-                                                <td align="center">${n.noticeCount}</td>
+                                                </td>                                            
                                                 <td class="text-right">${n.noticeEnrollDate}</td>
                                                 <td align="center">
                                                 	<c:if test="${ !empty n.noticeFileName }">

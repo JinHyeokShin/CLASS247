@@ -53,14 +53,8 @@
 		
 	<insert id="insertNotice" parameterType="Notice">
 		insert into Notice 
-		values(notice_seq.nextval, 1, #{noticeTitle}, #{noticeContent}, null, #{noticeFileName}, default, sysdate, sysdate, 'Y')		
+		values(notice_seq.nextval, 1, #{noticeTitle}, #{noticeContent}, null, #{noticeFileName}, default, default, default, default)		
 	</insert>
-	
-	<update id="updateNotice">
-		update notice
-		set	noticeTitle=#{noticeTitle}, noticeContent{#noticeNum}
-		where notice_num=#{noticeNum}
-	</update>
 	
 	<select id="getListCount" resultType="_int">
 		select count(*)
@@ -91,6 +85,12 @@
 	<update id="deleteNotice" parameterType="_int">
 		update notice
 		set notice_status='N'
+		where notice_num=#{noticeNum}
+	</update>
+	
+	<update id="updateNotice" parameterType="Notice">
+		update notice
+		set notice_title=#{noticeTitle} , notice_content=#{noticeContent}, notice_modify_date=sysdate
 		where notice_num=#{noticeNum}
 	</update>
 	
