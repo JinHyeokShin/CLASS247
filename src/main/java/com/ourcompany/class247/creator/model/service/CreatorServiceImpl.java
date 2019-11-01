@@ -151,14 +151,6 @@ public class CreatorServiceImpl implements CreatorService{
 
 
 
-	/**
-	 * 차트값 구하기 
-	 */
-	@Override
-	public ArrayList<Chart> getChart(Chart chart) {
-		return creDao.getChart(chart);
-	}
-
 
 
 
@@ -180,6 +172,30 @@ public class CreatorServiceImpl implements CreatorService{
 		
 	}
 	
+	/**
+	 * 총 차트값 구하기 
+	 * */
+	@Override
+	public ArrayList<Chart> getChart(Chart chart) {
+		return creDao.getChart(chart);
+	}
+
+	
+	/**
+	 * 온라인 차트값 구하기 
+	 * */
+	@Override
+	public ArrayList<Chart> getOnlineChart(Chart onlineChart) {
+		return creDao.getOnlineChart(onlineChart);
+	}
+	
+	/**
+	 * 오프라인 차트값 구하기 
+	 * */	
+	@Override
+	public ArrayList<Chart> getOfflineChart(Chart offlineChart) {
+		return creDao.getOfflineChart(offlineChart);
+	}
 
 
 }

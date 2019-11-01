@@ -178,13 +178,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<select id="selectChart" parameterType="Chart" resultMap="chartResultMap">
-		select for_month, amount
+		select *
 		from salary_record 
 		where cre_num = #{creNum}
 		and for_month between #{forMonth}-5 and #{forMonth}
 		order by for_month
 	</select>
 	
+	<select id="onlineSumChart" parameterType="Chart" resultMap="chartResultMap">
+		select *
+		from salary_record 
+		where course_num in (select course_num
+							from course 
+							where cre_num=#{creNum} and course_kind='online')       
+		and for_month between #{forMonth}-5 and #{forMonth}
+		order by for_month
+	</select>
+	
+	<select id="offlineSumChart" parameterType="Chart" resultMap="chartResultMap">
+		select *
+		from salary_record 
+		where course_num in (select course_num
+							from course 
+							where cre_num=#{creNum} and course_kind='offline')       
+		and for_month between #{forMonth}-5 and #{forMonth}
+		order by for_month
+	</select>	
 	
 	
 </mapper>

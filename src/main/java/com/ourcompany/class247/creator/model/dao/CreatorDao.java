@@ -137,9 +137,23 @@ public class CreatorDao {
 	public int updateProfile(CreatorAttachment updateProfile) {
 		return sqlSession.update("creatorMapper.updateProfile", updateProfile);
 	}
-
+ 
+	/** 차트 구하기
+	 * @param chart
+	 * @return
+	 */
 	public ArrayList<Chart> getChart(Chart chart) {
 		ArrayList<Chart> list = (ArrayList)sqlSession.selectList("creatorMapper.selectChart", chart);
+		return list;
+	}
+
+	public ArrayList<Chart> getOnlineChart(Chart onlineChart) {
+		ArrayList<Chart> list = (ArrayList)sqlSession.selectList("creatorMapper.onlineSumChart", onlineChart);
+		return list;
+	}
+
+	public ArrayList<Chart> getOfflineChart(Chart offlineChart) {
+		ArrayList<Chart> list = (ArrayList)sqlSession.selectList("creatorMapper.offlineSumChart", offlineChart);
 		return list;
 	}
 

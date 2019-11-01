@@ -23,8 +23,8 @@
                             <div class="table-data__tool">
                                 <div class="table-data__tool-left">
                                     <div class="rs-select2--light rs-select2--md">
-                                        <select class="js-select2" name="property">
-                                            <option selected="selected">All Properties</option>
+                                        <select class="js-select2 " name="property">
+                                            <option selected="selected">All Student</option>
                                             <option value="">Option 1</option>
                                             <option value="">Option 2</option>
                                         </select>
@@ -38,18 +38,9 @@
                                         </select>
                                         <div class="dropDownSelect2"></div>
                                     </div>
-                                    <button class="au-btn-filter">
-                                        <i class="zmdi zmdi-filter-list"></i>filters</button>
                                 </div>
                                 <div class="table-data__tool-right">
-                                    <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                        <i class="zmdi zmdi-plus"></i>add item</button>
                                     <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
-                                        <select class="js-select2" name="type">
-                                            <option selected="selected">Export</option>
-                                            <option value="">Option 1</option>
-                                            <option value="">Option 2</option>
-                                        </select>
                                         <div class="dropDownSelect2"></div>
                                     </div>
                                 </div>
@@ -99,9 +90,10 @@
 			                             </c:if>
                                     </tbody>
                                 </table>
+                                <br>
                             </div>
                             <!-- END DATA TABLE -->
- <%--   							  <div id="pagingBarArea" style="text-align:center">
+    							  <div id="pagingBarArea" style="text-align:center">
 			                        <!-- 이전 -->
 									<c:if test="${ pi.currentPage eq 1}">
 										<button class="btn btn-secondary" disabled>이전</button>
@@ -136,50 +128,7 @@
 										</c:url>
 										<a href="${ next }" class="btn btn-primary">다음</a>
 									</c:if>
-		                         </div> --%>
-		                         
-		                         
-		                <c:if test="${ !empty studentList }">
-			                     <div id="pagingBarArea" style="text-align:center">
-			                        <!-- 이전 -->
-									<c:if test="${ pi.currentPage eq 1}">
-										<button class="btn btn-secondary" disabled>이전</button>
-									</c:if>
-									<c:if test="${ pi.currentPage ne 1 }">
-										<c:url value="inquiryList.do" var="before">
-											<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
-										</c:url>
-										<a href="${ before }" class="btn btn-primary">이전</a>
-									</c:if>
-									
-									<!-- 번호들 -->
-									<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
-										<c:if test="${ p eq pi.currentPage }">
-											<button class="btn btn-secondary" disabled>${ p }</button>	
-										</c:if>
-										<c:if test="${ p ne pi.currentPage }">
-											<c:url value="inquiryList.do" var="page">
-												<c:param name="currentPage" value="${ p }"/>
-											</c:url>
-											<a href="${ page }" class="btn btn-primary">${ p }</a>
-										</c:if>
-									</c:forEach>
-									
-									<!-- 다음 -->
-									<c:if test="${ pi.currentPage eq pi.maxPage }">
-										<button class="btn btn-secondary" disabled>다음</button>
-									</c:if>
-									<c:if test="${ pi.currentPage ne pi.maxPage }">
-										<c:url value="inquiryList.do" var="next">
-											<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
-										</c:url>
-										<a href="${ next }" class="btn btn-primary">다음</a>
-									</c:if>
-									</div>
-								</c:if>
-		                         
-		                         
-		                         
+		                         </div> 
                             </div>
                         </div>
                     </div>

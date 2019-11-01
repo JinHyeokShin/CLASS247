@@ -498,7 +498,7 @@ public class MemberController {
 		System.out.println("count : " + stuCount);
 		System.out.println(pi);
 		
-		mv.addObject("studentList", studentList);
+		mv.addObject("studentList", studentList).addObject("pi", pi);
 		mv.setViewName("creator/student/studentManage");
 		
 		return mv;

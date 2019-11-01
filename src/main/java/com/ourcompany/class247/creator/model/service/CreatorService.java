@@ -49,9 +49,13 @@ public interface CreatorService {
 	//크리에이터 프로필 사진 변경 
 	int updateProfile(CreatorAttachment update);
 	
-	
 	//차트 구하기 
 	ArrayList<Chart> getChart(Chart chart);
+	
+	ArrayList<Chart> getOnlineChart(Chart onlineChart);
+
+	ArrayList<Chart> getOfflineChart(Chart offlineChart);
+
 
 
 }

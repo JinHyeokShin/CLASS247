@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="inquiryEnrollDate" column="inquiry_enroll_date"/>
 		<result property="inquiryStatus" column="inquiry_status"/>
 		<result property="answerContent" column="answer_content"/>
-		<result property="answerEnrollDate" column="answer_eroll_date"/>
+		<result property="answerEnrollDate" column="answer_enroll_date"/>
 		<result property="answerStatus" column="answer_status"/>
 	</resultMap>
 
@@ -69,7 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="updateInquiry">
 		update inquiry
-		set inquiry_title = #{inquiryTitle}, inquiry_content=#{inquiryContent}, inquiry_filename=#{inquiryFileName}
+		set inquiry_title = #{inquiryTitle}, inquiry_content=#{inquiryContent} 
 		where inquiry_num = #{inquiryNum}
 	</update>
 

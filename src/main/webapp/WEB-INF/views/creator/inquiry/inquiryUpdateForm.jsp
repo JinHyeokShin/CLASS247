@@ -40,7 +40,7 @@
 	                         <input type="hidden" name="inquiryNum" value="${i.inquiryNum}">
 	                     </div>
 	                     <div class="form-group">
-	                     	<input type="file" name="file" value="${i.inquiryPath}"><br>
+	                    	 <input type="file" name="file" value="<%=request.getContextPath() %>/resources/creator/inquiryImage/${i.inquiryFileName}"><br>
 	                     </div>
 	                     <div class="form-group" align="center">
 			                 <button type="submit" class="btn btn-primary">작성하기</button>

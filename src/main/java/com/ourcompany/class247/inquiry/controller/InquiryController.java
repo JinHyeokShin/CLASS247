@@ -151,7 +151,7 @@ public class InquiryController {
 	
 	
 	@RequestMapping("deleteInquiry.do")
-	public ModelAndView deleteInquiry(@RequestParam int inquiryNum, Inquiry inq, ModelAndView mv) {
+	public ModelAndView deleteInquiry(@RequestParam(value="inquiryNum") int inquiryNum, Inquiry inq, ModelAndView mv) {
 		int result = iService.deleteInquiry(inquiryNum);
 		
 		if(result > 0) {

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -369,21 +370,74 @@ public class CreatorController {
 	 * @param month
 	 */
 	@RequestMapping("getChart.do")
-	public void getChart(@RequestParam(name="month") int month, HttpServletResponse response) throws JsonIOException, IOException{
-		Chart chart = new Chart();
-		chart.setCourseNum(113);
-		chart.setCreNum(3);
-		chart.setForMonth(month);
-		ArrayList<Chart> list = creService.getChart(chart);
+	public void getChart(@RequestParam(name="month") int month, HttpServletRequest request, HttpServletResponse response) throws JsonIOException, IOException{
+		System.out.println("에이작스 입성");
+		//온라인 최근 5개월 수입 가져오기 
+		Chart onlineChart = new Chart();
+		onlineChart.setCreNum(((Creator)request.getSession().getAttribute("creator")).getCreNum());
+		onlineChart.setForMonth(month);
+		ArrayList<Chart> onlineList = creService.getOnlineChart(onlineChart);
+	
 		
-		response.setContentType("application/json; charset=utf-8");
+		Chart offlineChart = new Chart();
+		offlineChart.setCreNum(((Creator)request.getSession().getAttribute("creator")).getCreNum());
+		offlineChart.setForMonth(month);
+		ArrayList<Chart> offlineList = creService.getOfflineChart(offlineChart);
 		
-		for(Chart c: list) {
-			System.out.println(c);
+		if(offlineList.size() <= 5) {
+			for(int i=offlineList.size(); i<5; i++) {
+				offlineList.add(new Chart());
+			}
+		}
+	
+		Chart totalChart = new Chart();
+		totalChart.setCreNum(((Creator)request.getSession().getAttribute("creator")).getCreNum());
+		totalChart.setForMonth(month);
+		ArrayList<Chart> totalList = creService.getOfflineChart(totalChart);
+		
+		
+		if(totalList.size() <= 5) {
+			for(int i=totalList.size(); i<5; i++) {
+				totalList.add(new Chart());
+			}
 		}
 		
+		int[] months = new int[5];
+		int[] online = new int[5];
+		int[] offline = new int[5];
+		int[] total = new int[5];
+		for(int i=0; i<5; i++) {
+			months[i] = onlineList.get(i).getForMonth();
+			System.out.println(months[i]);
+			online[i] = onlineList.get(i).getAmount();
+			offline[i] = offlineList.get(i).getAmount();
+			total[i] = totalList.get(i).getAmount();
+		}
+		
+		System.out.println(months);
+		System.out.println(online);
+		System.out.println(total);
+		
+		/*
+		 * for (Chart c : onlineList) { System.out.println(c); } System.out.println("on"
+		 * + onlineList.size());
+		 * 
+		 * for (Chart c : offlineList) { System.out.println(c); }
+		 * 
+		 * System.out.println("off" + offlineList.size()); for (Chart c : totalList) { }
+		 * System.out.println("t" + totalList.size());
+		 */
+		response.setContentType("application/json; charset=utf-8");
+		
 		Gson gson = new Gson();
-		gson.toJson(list, response.getWriter());
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("month", months);
+		map.put("online", online);
+		map.put("total", total);
+		map.put("offline", offline);
+		gson.toJson(map, response.getWriter());
+		
+		
 	}
 	
 	@RequestMapping("powerLink.do")
