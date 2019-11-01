@@ -76,12 +76,12 @@
 							 <c:forEach items="${ payonlist }" var="pon">
               		      <blockquote class="generic-blockquote">
 							
-                     	<c:url value="codetail.do" var="codetail">
+                     	<c:url value="goVideoList.do" var="goVideoList">
 							<c:param name="courseNum" value="${ pon.courseNum }"/>
 						</c:url>
 				<div class="row">
 					<div class="col-md-5">
-						<img src="resources/user/img/test1.jpeg" class="special_img" alt="" onclick="location.href=${codetail}">
+						<img src="resources/user/img/test1.jpeg" class="special_img" alt="" onclick="location.href=${goVideoList}">
 					</div>
 					<div class="col-md-7 mt-sm-10">
 						<p>
@@ -95,13 +95,13 @@
 						</p>
 							<br><br>
 							<div class="col-md-12" style="text-align:right">
-							 <a href="${ codetail }">
+							 <a href="${ goVideoList }">
                            		<h3  style="display:inline-block" >
                            		 <input class="genric-btn primary-border radius" name="log-btn" type="button" style="font-size: 15" value="클래스 바로가기">
 					          	</h3>
                               </a>
                               &nbsp;   &nbsp;   &nbsp;
-                               <a href="${ codetail }">
+                               <a href="${ goVideoList }">
                            		 <h3  style="display:inline-block">
                            		<input class="genric-btn primary-border radius" name="log-btn" type="button" style="font-size: 15" value="리뷰 작성하기">
 								</h3>

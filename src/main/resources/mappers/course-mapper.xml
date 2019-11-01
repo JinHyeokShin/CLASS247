@@ -176,6 +176,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<result property="payCancelDate" column="pay_cancel_date"/>
 	</resultMap>
 	
+	<resultMap type="Video" id="VideoResultSet">
+	<id property="videoCourse" column="video_course_num"/>
+	<result property="courseNum" column="course_Num"/>
+	<result property="rowNum" column="r"/>
+	<result property="videoPath" column="video_path"/>
+	<result property="videoTitle" column="video_title"/>
+	<result property="videoContent" column="video_content"/>
+	</resultMap>
+	
 
 
 	<!-- 1. 클래스 추가 쿼리 -->
@@ -747,8 +756,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insertVideo" parameterType="Video">
 		insert into video_course 
-		values(video_course_seq.nextval, #{onlineNum}, #{videoPath}, #{videoTitle}, #{videoContent})
+		values(video_course_seq.nextval, #{courseNum}, #{videoPath}, #{videoTitle}, #{videoContent})
 	</insert>
 	
+	<select id="selectVideoList" parameterType="_int" resultMap="VideoResultSet">
+        select rownum r, c.*
+        from video_course c
+        where course_num=#{courseNum}
+	</select>
+	<select id="selectVideo" parameterType="_int" resultMap="VideoResultSet">
+		select *
+		from video_course
+		where video_course_num=#{videoCourse}
+	</select>
 	
 </mapper>

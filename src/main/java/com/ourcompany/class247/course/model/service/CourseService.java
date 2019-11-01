@@ -156,4 +156,8 @@ public interface CourseService {
 	int insertPayment(Payment payment);
 
 	int insertVideo(Video v);
+	
+	ArrayList<Video> selectVideoList(int courseNum);
+	
+	Video selectVideo(int videoCourse);
 }

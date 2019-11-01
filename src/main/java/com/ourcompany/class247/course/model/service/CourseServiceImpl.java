@@ -467,4 +467,14 @@ public class CourseServiceImpl implements CourseService {
 		return coDao.insertVideo(v);
 	}
 
+	@Override
+	public ArrayList<Video> selectVideoList(int courseNum) {
+		return coDao.selectVideoList(courseNum);
+	}
+
+	@Override
+	public Video selectVideo(int videoCourse) {
+		return coDao.selectVideo(videoCourse);
+	}
+
 }

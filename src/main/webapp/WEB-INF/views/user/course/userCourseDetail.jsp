@@ -443,6 +443,9 @@
                                         <input type="button" onclick="takeAlert();" class="btn_1 d-block" value="수강하기" style="width:100%;">
                                     </c:if>
                                 </c:if>
+                                <c:if test="${ c.courseKind eq 'online' }">
+                                        <a href="${ coBuyOn }" class="btn_1 d-block">수강하기</a>
+                                </c:if>
                                 <c:url value="openChat.do" var="openChat">
                                     <c:param name="courseNum" value="${ c.courseNum }" />
                                     <c:param name="creNum" value="${c.creNum}" />

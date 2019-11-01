@@ -467,4 +467,13 @@ public class CourseDao {
 	public int insertVideo(Video v) {
 		return sqlSession.insert("courseMapper.insertVideo", v);
 	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Video> selectVideoList(int courseNum){
+		return (ArrayList)sqlSession.selectList("courseMapper.selectVideoList",courseNum);
+	}
+
+	public Video selectVideo(int videoCourse) {
+		return sqlSession.selectOne("courseMapper.selectVideo",videoCourse);
+	}
 }
