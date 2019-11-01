@@ -13,13 +13,14 @@ public class Review {
 	private Date reviewEnrollDate;		//작성날짜
 	private Date reviewModifyDate;		//수정날짜
 	private String reviewStatus;		//상태값
+	private String memProfileName; 		//회원 사진 가져오기
 	
 	public Review() {
 		
 	}
 
 	public Review(int reviewNum, int courseNum, int memNum, String memNickname, String memName, String reviewContent,
-			int reviewScore, Date reviewEnrollDate, Date reviewModifyDate, String reviewStatus) {
+			int reviewScore, Date reviewEnrollDate, Date reviewModifyDate, String reviewStatus, String memProfileName) {
 		super();
 		this.reviewNum = reviewNum;
 		this.courseNum = courseNum;
@@ -31,6 +32,16 @@ public class Review {
 		this.reviewEnrollDate = reviewEnrollDate;
 		this.reviewModifyDate = reviewModifyDate;
 		this.reviewStatus = reviewStatus;
+		this.memProfileName = memProfileName;
+	}
+
+
+	public String getMemProfileName() {
+		return memProfileName;
+	}
+
+	public void setMemProfileName(String memProfileName) {
+		this.memProfileName = memProfileName;
 	}
 //리뷰 작성할때 필요한 
 	public Review(int courseNum, int memNum, String reviewContent, int reviewScore) {

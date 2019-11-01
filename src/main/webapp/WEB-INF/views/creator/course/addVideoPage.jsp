@@ -30,7 +30,7 @@
 	                                                    <label for="hf-email" class=" form-control-label">강의 제목</label>
 	                                                </div>
 	                                                <div class="col-12 col-md-9">
-	                                                    <input type="text" id="videoTitle" name="videoTitle" placeholder="강의 제목을 입력하세요." class="form-control">
+	                                                    <input type="text" id="videoTitle" name="videoTitle" placeholder="강의 제목을 입력하세요." class="form-control" required>
 	                                                </div>
 	                                            </div>
 	                                            <div class="row form-group">
@@ -38,7 +38,7 @@
 	                                                    <label for="hf-password" class=" form-control-label">동영상 URL</label>
 	                                                </div>
 	                                                <div class="col-12 col-md-9">
-	                                                    <input type="text" id="videoUrl" name="videoUrl" placeholder="ex)http://youbute.mazzang/SE25&Dz2" class="form-control">
+	                                                    <input type="text" id="videoUrl" name="videoUrl" placeholder="ex)http://youbute.mazzang/SE25&Dz2" class="form-control" required>
 	                                                </div>
 	                                            </div>
 	                                            <div class="row form-group">
@@ -46,7 +46,7 @@
 	                                                    <label for="hf-password" class=" form-control-label">강의 내용</label>
 	                                                </div>
 	                                                <div class="col-12 col-md-9">
-	                                                    <textarea id="videoContent" name="videoContent" rows="7" class="form-control"></textarea>
+	                                                    <textarea id="videoContent" name="videoContent" rows="7" class="form-control" required></textarea>
 	                                                </div>
 	                                            </div>                                            
 	                                    	</div>
@@ -70,22 +70,22 @@
             <script>
             	function addVideo() {
             		
-            		var text='<div class="card-body card-block"><hr><div><button type="button" onclick="remove(event)")>삭제</button></div>'
+            		var text='<div class="card-body card-block"><hr><div align="right"><button type="button" class="btn btn-success" onclick="remove(event)")>삭제</button></div>'
             		+ '<div class="row form-group"><div class="col col-md-3">'+
                     	'<input type="hidden" name="cosureNum" value="${courseNum}"><label for="hf-email" class=" form-control-label">강의 제목</label></div>' 
                     	+
-                    '<div class="col-12 col-md-9"><input type="text" id="videoTitle" name="videoTitle" placeholder="강의 제목을 입력하세요." class="form-control"></div>' 
+                    '<div class="col-12 col-md-9"><input type="text" id="videoTitle" name="videoTitle" placeholder="강의 제목을 입력하세요." class="form-control" required></div>' 
                     +
-                 '</div><div class="row form-group"><div class="col col-md-3"><label for="hf-password" class=" form-control-label">동영상 URL</label></div>' 
+                 '</div><div class="row form-group"><div class="col col-md-3"><label for="hf-password" class=" form-control-label" required>동영상 URL</label></div>' 
                  +
-                    '<div class="col-12 col-md-9"><input type="text" id="videoUrl" name="videoUrl" placeholder="ex)http://youbute.mazzang/SE25&Dz2" class="form-control"></div></div>'
+                    '<div class="col-12 col-md-9"><input type="text" id="videoUrl" name="videoUrl" placeholder="ex)http://youbute.mazzang/SE25&Dz2" class="form-control" required></div></div>'
 					+
                     '<div class="row form-group">'
                     + '<div class="col col-md-3">'
-                    +    '<label for="hf-password" class=" form-control-label">강의 내용</label>'
+                    +    '<label for="hf-password" class=" form-control-label" >강의 내용</label>'
                     + '</div>'
                     + '<div class="col-12 col-md-9">'
-                    +    '<textarea id="videoContent" name="videoContent" rows="7" class="form-control"></textarea>'
+                    +    '<textarea id="videoContent" name="videoContent" rows="7" class="form-control" required></textarea>'
                     + '</div></div></div>';
         	
         			$('#videoTable').append(text);
@@ -93,7 +93,6 @@
             	
 
             		function remove(e){
-            			alert("클릭");
             			console.log(e.target);
             			$(e.target).parent().parent().remove();
             			

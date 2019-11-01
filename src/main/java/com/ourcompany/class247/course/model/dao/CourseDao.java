@@ -474,5 +474,16 @@ public class CourseDao {
 
 	public Video selectVideo(int videoCourse) {
 		return sqlSession.selectOne("courseMapper.selectVideo",videoCourse);
+	//클래스 삭제 
+	public int deleteCourse(int courseNum) {
+		return sqlSession.update("courseMapper.deleteCourse2", courseNum);
+	}
+
+	/** 크리에이터 별점 평균 가져오기 
+	 * @param creNum
+	 * @return
+	 */
+	public double getScoreSum(int creNum) {
+		return sqlSession.selectOne("courseMapper.getScoreSum", creNum);
 	}
 }

@@ -75,16 +75,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </discriminator>
    </resultMap>
    
-   <resultMap id="ReviewResultSet" type="Review">
+	<resultMap id="ReviewResultSet" type="Review">
       <id property="reviewNum" column="review_num"/>
       <result property="courseNum" column="course_num"/>
       <result property="memNum" column="mem_num"/>
+      <result property="memNickname" column="mem_nickname"/>
+      <result property="memName" column="mem_name"/>
       <result property="reviewContent" column="review_content"/>
       <result property="reviewScore" column="review_score"/>
       <result property="reviewEnrollDate" column="review_enroll_date"/>
       <result property="reviewModifyDate" column="review_modify_date"/>
       <result property="reviewStatus" column="review_status"/>   
+      <result property="memProfileName" column="mem_profile_name"/>
    </resultMap>
+   
+   
    <resultMap id="ReviewAttachmentResultSet" type="ReviewAttachment">
 		<id property="raNum" column="ra_num"/>
 		<result property="reviewNum" column="review_num"/>
@@ -115,7 +120,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="courseEnrollDate" column="course_enroll_date"/>
       <result property="courseStartDate" column="course_start_date"/>   
       <result property="courseEndDate" column="course_end_date"/>
-      <result property="coaRName" column="course_rname"/>
+      <result property="coaRName" column="coa_rname"/>
       <result property="loveCount" column="love_count"/>
          <result property="courseHourPrice" column="course_hour_price"/>
                <result property="coursePrice" column="course_price"/>
@@ -199,6 +204,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete course where course_num = #{courseNum}
 	</delete>
 	
+	<!-- 크리에이터가 클래스 삭제시.. -->
+	<update id="deleteCourse2" parameterType="_int">
+		update course
+		set course_status='D'
+		where course_num = #{courseNum}
+	</update>
+	
 	
 	<!-- 1_1. 온라인 클래스 추가 쿼리  -->
 	<insert id="insertOnline" parameterType="Online">
@@ -254,7 +266,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*)
 		from course
 		where cre_num = #{creNum}
-		and course_status='Y'
+		and course_status!='R' and course_approved!='N'
 	</select>
 	
 	<!-- 크리에이터 승인 대기중 클래스 목록  -->
@@ -573,8 +585,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	where mem_num=#{memNum} and course_num=#{courseNum}
 	</delete>
 	
-	<select id="selectRlist" resultMap="ReviewResultSet">
-		select * from review
+<select id="selectRlist" resultMap="ReviewResultSet">
+		select review_num, course_num, m.mem_nickname "mem_nickname",m.mem_name "mem_name" , m.mem_profile_name "mem_profile_name", review_content,review_score, review_enroll_date, review_modify_date, review_status
+		from review r
+        join member m on(r.mem_num=m.mem_num)
         where review_status='Y' and course_num=#{courseNum}
 	</select>
 	
@@ -769,5 +783,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from video_course
 		where video_course_num=#{videoCourse}
 	</select>
+	<!-- 크리에이터 별점 평균 구하기  -->
+	<select id="getScoreSum" parameterType="_int" resultType="_double">
+		select round(avg(review_score),2)
+		from review
+		where course_num in 
+	        (select course_num
+				from course 
+				where cre_num=#{creNum})
+	</select>
+
+	
 	
 </mapper>

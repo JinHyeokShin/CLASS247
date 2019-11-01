@@ -55,69 +55,39 @@
                                 </div>
                             </div>
                             <div class="table-responsive table-responsive-data2">
-                                <table class="table table-data2">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                <label class="au-checkbox">
-                                                    <input type="checkbox">
-                                                    <span class="au-checkmark"></span>
-                                                </label>
-                                            </th>
-                                            <th>profile</th>
-                                            <th>name </th>
-                                            <th>class</th>
-                                            <th>registration</th>
-                                            <th>phone</th>
-                                            <th>status</th>
-                                            <th>level</th>
-                                        </tr>
-                                    </thead>
+								<table class="table table-data2">
+									<thead>
+										<tr>
+											<th>profile</th>
+											<th>name</th>
+											<th>class</th>
+											<th>registration</th>
+											<th>phone</th>
+											<th>address</th>
+											<th>gender</th>
+										</tr>	
+									</thead>
                                     <tbody>
                                     <c:if test="${ !empty studentList }">
                                     <c:forEach items="${ studentList }" var="s">
-	                                    <c:url value="stuDetail.do" var="stuDetail">
-	                                    	<c:param name="memNum" value="${s.memNum}"/>
-	                                    	<c:param name="courseNum" value="${s.courseNum}"/>
-	                                    </c:url>
-	                                        <tr class="tr-shadow" onclick="location.href='${stuDetail}';">
-	                                            <td>
-	                                                <label class="au-checkbox">
-	                                                    <input type="checkbox">
-	                                                    <span class="au-checkmark"></span>
-	                                                </label>
-	                                            </td>
+	                                        <tr class="tr-shadow">
+
 	                                            <td>
 	                                                <div class="image img-cir img-40">
-	                                                    <img src="<%= request.getContextPath() %>/resources/creator/images/icon/avatar-02.jpg" alt="Cynthia Harvey" />
+	                                        	        <img src="<%=request.getContextPath()%>/resources/user/img/profile/${s.memProfileName}"/>
 	                                                </div> 
 	                                            </td>
 	                                            <td>${ s.memName }</td>
 	                                            <td>
 	                                                <span class="block-email">${ s.courseTitle }</span>
 	                                            </td>
-	                                            <td>09/27</td>
+	                                            <td>${ s.payDate }</td>
 	                                            <td>${ s.memPhone }</td>
 	                                                <td>
-	                                                    <span class="status--process">수강</span>
+	                                                    <span class="status--process" style="width:100%; overflow:auto">${s.memAddress}</span>
 	                                                </td>
-	                                            <td>입문자</td>
-	                                            <td>
-	                                                <div class="table-data-feature">
-	                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
-	                                                        <i class="zmdi zmdi-mail-send"></i>
-	                                                    </button>
-	                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Information">
-	                                                        <i class="zmdi zmdi-info"></i>
-	                                                    </button>
-	                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Memo">
-	                                                        <i class="zmdi zmdi-edit"></i>
-	                                                    </button>
-	                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-	                                                        <i class="zmdi zmdi-more"></i>
-	                                                    </button>
-	                                                </div>
-	                                            </td>
+	                                            <td>${s.memGender }</td>
+	                
 	                                        </tr>
                                         </c:forEach>
                                         </c:if>
@@ -131,7 +101,7 @@
                                 </table>
                             </div>
                             <!-- END DATA TABLE -->
-   							  <div id="pagingBarArea" style="text-align:center">
+ <%--   							  <div id="pagingBarArea" style="text-align:center">
 			                        <!-- 이전 -->
 									<c:if test="${ pi.currentPage eq 1}">
 										<button class="btn btn-secondary" disabled>이전</button>
@@ -166,7 +136,50 @@
 										</c:url>
 										<a href="${ next }" class="btn btn-primary">다음</a>
 									</c:if>
-		                         </div>
+		                         </div> --%>
+		                         
+		                         
+		                <c:if test="${ !empty studentList }">
+			                     <div id="pagingBarArea" style="text-align:center">
+			                        <!-- 이전 -->
+									<c:if test="${ pi.currentPage eq 1}">
+										<button class="btn btn-secondary" disabled>이전</button>
+									</c:if>
+									<c:if test="${ pi.currentPage ne 1 }">
+										<c:url value="inquiryList.do" var="before">
+											<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+										</c:url>
+										<a href="${ before }" class="btn btn-primary">이전</a>
+									</c:if>
+									
+									<!-- 번호들 -->
+									<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
+										<c:if test="${ p eq pi.currentPage }">
+											<button class="btn btn-secondary" disabled>${ p }</button>	
+										</c:if>
+										<c:if test="${ p ne pi.currentPage }">
+											<c:url value="inquiryList.do" var="page">
+												<c:param name="currentPage" value="${ p }"/>
+											</c:url>
+											<a href="${ page }" class="btn btn-primary">${ p }</a>
+										</c:if>
+									</c:forEach>
+									
+									<!-- 다음 -->
+									<c:if test="${ pi.currentPage eq pi.maxPage }">
+										<button class="btn btn-secondary" disabled>다음</button>
+									</c:if>
+									<c:if test="${ pi.currentPage ne pi.maxPage }">
+										<c:url value="inquiryList.do" var="next">
+											<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+										</c:url>
+										<a href="${ next }" class="btn btn-primary">다음</a>
+									</c:if>
+									</div>
+								</c:if>
+		                         
+		                         
+		                         
                             </div>
                         </div>
                     </div>

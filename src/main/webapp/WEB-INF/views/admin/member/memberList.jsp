@@ -135,7 +135,15 @@
     			
     			
     		};
-            
+    		
+    		
+    		
+    		$(function() {
+    			$('#contacts td').on("click", function(){
+    				$(this).parent().children().eq(0).children(".divv").click();
+    			})
+    		})
+             
             function Pageing(num) {
             	
             	var $tableBody = $("#list tbody");

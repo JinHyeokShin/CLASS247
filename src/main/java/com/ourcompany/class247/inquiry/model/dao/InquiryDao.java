@@ -57,4 +57,9 @@ public class InquiryDao {
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("inquiryMapper.getAdminInquiryList", null, rowBounds);
 	}
+
+
+	public int updateInquiry(Inquiry inq) {
+		return sqlSession.update("inquiryMapper.updateInquiry", inq);
+	}
 }

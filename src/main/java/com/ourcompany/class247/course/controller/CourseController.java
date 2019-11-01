@@ -221,14 +221,17 @@ public class CourseController {
       Course course = coService.selectCourse(courseNum, courseKind);
       CourseAttachment cover = coService.selectCover(courseNum);
       ArrayList<Member> stuList = mService.selectStuByCo(courseNum);
+      ArrayList<Review> rlist = coService.selectRlist(courseNum); 
       
-      
-      
+      for(Member m : stuList) {
+    	  System.out.println(m);
+      }
       /* System.out.println(course); */
       
       mv.addObject("co", course);
       mv.addObject("cover", cover);
       mv.addObject("stuList", stuList);
+      mv.addObject("revlist", rlist);
       mv.setViewName("creator/course/myCourseDetail");
       
       return mv;
@@ -737,5 +740,23 @@ public class CourseController {
 		  .setViewName("user/course/videoDetail");
 		return mv;
 	}
+	
+	@RequestMapping("deleteCourse.do")
+	public ModelAndView deleteCourse(int courseNum, ModelAndView mv, HttpServletRequest request) {
+		int result = coService.deleteCourse(courseNum);
+		
+		if(result > 0) {
+			request.getSession().setAttribute("msg", "해당 클래스가 성공정으로 삭제되었습니다.");
+			mv.setViewName("redirec:cMainView.do");
+			
+		} else {
+			mv.addObject("msg", "삭제 실패");
+			mv.setViewName("common/errorPage");
+		}
+		
+		return mv;
+		
+	}
+	
 
 }

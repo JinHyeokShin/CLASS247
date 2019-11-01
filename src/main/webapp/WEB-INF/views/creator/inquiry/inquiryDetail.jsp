@@ -28,7 +28,7 @@
 	                     		<tr>
 	                     			<td width="70px">
 	                     				<div class="mx-auto d-block">
-                                           	<img class="rounded-circle mx-auto d-block" style="width:35px; height:35px" src="<%= request.getContextPath() %>/resources/creator/images/icon/may.jpg" alt="Card image cap">
+                                           	<img class="rounded-circle mx-auto d-block" style="width:35px; height:35px" src="<%= request.getContextPath() %>/resources/creator/creatorImages/${creProfile}" alt="Card image cap">
                                         </div>
 	                     			</td>
 	                     			<td width="70px">${creator.creName }</td>
@@ -39,8 +39,10 @@
 		                     					<li class="nav-item dropdown">
 													<a class="nav-link dropdown-toggle" style="color:gray" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
 													<div class="dropdown-menu">
-														<a class="dropdown-item" href="updateInquiry.do?inquiryNum='${inq.inquiryNum}'">수정하기</a>
-														<a class="dropdown-item" onclick="deleteInquiry()">삭제하기</a>
+													<c:if test="${ inq.answerStatus == 'N' }">
+														<a class="dropdown-item" href="#" onclick="updateInquiry()">수정하기</a>
+													</c:if>
+														<a class="dropdown-item" href="#" onclick="deleteInquiry()">삭제하기</a>
 													</div>
 												</li>
 											</ul>
@@ -82,6 +84,11 @@
 			var num = ${inq.inquiryNum};
 			location.href= '<%= request.getContextPath() %>/deleteInquiry.do?inquiryNum=' + num; 
 		}
+	}
+	
+	function updateInquiry() {
+		var num = ${inq.inquiryNum};
+		location.href= '<%= request.getContextPath() %>/InquiryForm.do?inquiryNum=' + num; 
 	}
 	
 	$(document).ready(function() {
