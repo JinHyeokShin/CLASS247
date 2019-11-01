@@ -29,4 +29,7 @@ public interface InquiryService {
 	// 관리자 답변 리스트 조회
 	ArrayList<Inquiry> selectAdminInquiryList(PageInfo pi);
 
+	//문의글 수정하기 
+	int updateInquiry(Inquiry inq);
+
 }

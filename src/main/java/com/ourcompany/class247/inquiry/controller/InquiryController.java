@@ -151,8 +151,7 @@ public class InquiryController {
 	
 	
 	@RequestMapping("deleteInquiry.do")
-	public ModelAndView deleteInquiry(@RequestParam int inquiryNum, ModelAndView mv) {
-		System.out.println(inquiryNum);
+	public ModelAndView deleteInquiry(@RequestParam int inquiryNum, Inquiry inq, ModelAndView mv) {
 		int result = iService.deleteInquiry(inquiryNum);
 		
 		if(result > 0) {
@@ -161,6 +160,39 @@ public class InquiryController {
 			 mv.setViewName("common/errorPage");
 		}
 		
+		return mv;
+	}
+	
+	
+	//수정하기 페이지 이동
+	@RequestMapping("InquiryForm.do")
+	public ModelAndView goUpdatePage(@RequestParam int inquiryNum, ModelAndView mv) {
+		Inquiry inquiry = iService.selectInquiry(inquiryNum);
+		mv.addObject("i", inquiry).setViewName("creator/inquiry/inquiryUpdateForm");
+		return mv;
+	}
+	
+	
+	//수정하기 
+	@RequestMapping("updateInquiry.do")
+	public ModelAndView updateInquiry(Inquiry inq, HttpServletRequest request, ModelAndView mv,
+			@RequestParam(name="file", required=false) MultipartFile file) {
+		System.out.println(inq.getInquiryNum());
+		System.out.println(inq);
+	
+		if(!file.getOriginalFilename().equals("")) {
+	
+			String rename = saveFile(file, request);
+			inq.setInquiryFileName(rename);
+			inq.setInquiryPath(request.getSession().getServletContext().getRealPath("resources") + "\\creator\\inquiryImages\\");
+		}
+		int result = iService.updateInquiry(inq);
+		
+		if(result > 0) {
+			mv.addObject("msg", "수정되었습니다.").setViewName("redirect:inquiryList.do");
+		} else {
+			mv.addObject("msg", "수정 실패!!").setViewName("common/errorPage");
+		}
 		return mv;
 	}
 	

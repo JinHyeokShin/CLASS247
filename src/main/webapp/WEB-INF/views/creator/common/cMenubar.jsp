@@ -83,7 +83,7 @@
 	                    <img id="creProfile" src="<%= request.getContextPath() %>/resources/creator/creatorImages/${creProfile}" alt="Class247" />
 	                </c:if>
 	                <c:if test="${ empty creator.creNum }">
-	                	<img id="creProfile" src="<%= request.getContextPath() %>/resources/creator/creatorImages/basic.png">
+	                	<img id="creProfile" src="<%= request.getContextPath() %>/resources/creator/creatorImages/basic.jpg">
 	                </c:if>
                     </div>
                     <h4 class="name">${ loginUser.memName }</h4>
