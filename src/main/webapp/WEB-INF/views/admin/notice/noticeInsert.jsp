@@ -120,7 +120,7 @@
                 </div>
             </section>
          <!-- END PAGE CONTAINER-->
-   </div>
+   
     
    
 	<c:import url="../common/aImportJs.jsp"/>
@@ -130,5 +130,5 @@
 
 
 
-
+</html>
 

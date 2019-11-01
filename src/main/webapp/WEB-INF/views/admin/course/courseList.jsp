@@ -100,6 +100,12 @@
             	
             });
             
+            $(function() {
+                $('#contacts td').on("click", function(){
+                   $(this).parent().children().eq(0).children(".divv").click();
+                });
+             });
+            
             
             
             var model={
