@@ -81,7 +81,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="memNum" column="mem_num"/>
       <result property="reviewContent" column="review_content"/>
       <result property="reviewScore" column="review_score"/>
-      <result property="reviewEnrollDate" column="review_eroll_date"/>
+      <result property="reviewEnrollDate" column="review_enroll_date"/>
       <result property="reviewModifyDate" column="review_modify_date"/>
       <result property="reviewStatus" column="review_status"/>   
    </resultMap>
