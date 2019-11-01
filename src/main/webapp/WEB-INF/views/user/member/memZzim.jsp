@@ -49,6 +49,12 @@
    width:30%;
    height:30%;
    }
+   .tdd{
+   text-align: left;
+   }
+   #test{
+   width:90%;
+   }
    
 </style>
 
@@ -69,7 +75,8 @@
                <h4 align="left" style=>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                ${ loginUser.memName } 님의 총 클래스 찜한 갯수 : ${listCount}
                </h4>
-               <h4 align="right"><input class="genric-btn primary-border radius" name="log-btn" type="button" id="zzimDelete" value="삭제하기">   <br>
+               <h4 align="right">
+               	<input class="genric-btn primary-border radius" name="log-btn" type="button" id="zzimDelete" value="삭제하기">   <br>
                </h4>
                <br>
             </c:if>
@@ -77,10 +84,10 @@
                <h4 align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                ${ loginUser.memName } 님의 총 클래스 찜한 갯수 : 0 </h4>   
             </c:if>
-          <table align="center" border="1" cellspacing="0" width="90%">
+          <table align="center" border="1" cellspacing="0" width="100%">
             <tr style="color:white;background-color:#e0a9fc;">
-               <th width="10%"></th> 
-               <th></th>
+               <th width="15%"></th> 
+               <th width="40%"></th>
                <th colspan="3"></th>
                
             </tr>
@@ -93,15 +100,15 @@
                <c:param name="courseNum" value="${ l.courseNum }"/>
             </c:url>
               <a href="${ codetail }">
-               <img src="<%= request.getContextPath() %>/resources/user/img/cat/${ l.coaRName }" alt="" class="img-fluid" >
+               <img src="<%= request.getContextPath() %>/resources/course/images/${ l.coaRName }" alt="" class="img-fluid" >
                   </a>
          </td>
-         <td align="left" colspan="3">
-                  ${ l.wishedDate }<br>
-                  ${ l.courseTitle }<br>
-                  ${ l.coursePrice }<br>
-                  ${ l.courseKind }<br>
-                  ${ l.creatorName }<br>
+         <td class="tdd" colspan="3"><br>
+                  &nbsp;&nbsp;찜한 날짜  &nbsp; :  &nbsp; ${ l.wishedDate }<br><br>
+                  &nbsp;&nbsp;클래스  &nbsp; :  &nbsp;${ l.courseTitle }<br><br>
+                  &nbsp;&nbsp;금액  &nbsp; :  &nbsp;<fmt:formatNumber value="${ l.coursePrice }" pattern="#,###" />원<br><br>
+                  &nbsp;&nbsp;강의종류  &nbsp; :   &nbsp;  ${ l.courseKind }강의<br><br>
+                  &nbsp;&nbsp;튜터  &nbsp;  :  &nbsp; ${ l.creatorName }<br><br>
          
       </tr>
       </c:forEach>

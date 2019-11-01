@@ -81,7 +81,7 @@
 						</c:url>
 				<div class="row">
 					<div class="col-md-5">
-						<img src="<%= request.getContextPath() %>/resources/user/img/cat/${ pon.coaRname }" class="special_img" alt="" onclick="location.href=${codetail}">
+						<img src="<%= request.getContextPath() %>/resources/course/images/${ pon.coaRname }" class="special_img" alt="" onclick="location.href=${codetail}">
 					</div>
 					<div class="col-md-7 mt-sm-10">
 						<p>
@@ -155,7 +155,7 @@
 						</c:url>
 				<div class="row">
 					<div class="col-md-5">
-						<img src="<%= request.getContextPath() %>/resources/user/img/cat/${ poff.coaRname }"  class="special_img" alt="" onclick="location.href=${codetail}">
+						<img src="<%= request.getContextPath() %>/resources/course/images/${ poff.coaRname }" class="special_img" alt="" onclick="location.href=${codetail}">
 					</div>
 					<div class="col-md-7 mt-sm-10">
 						<p>
