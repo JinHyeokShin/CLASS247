@@ -47,7 +47,6 @@ header {
 	position: fixed;
 	bottom: 0px;
 }
-
 </style>
 <body>
 	<c:import url="/WEB-INF/views/user/common/menubar.jsp" />
@@ -135,52 +134,6 @@ header {
     	    buyer_tel :  '${loginUser.memPhone}',	
     	}, function(rsp) {
     		
-    		}
-    	</script>
-
-	<!--================ Start Course Details Area =================-->
-
-	<section class="course_details_area section_padding"
-		style="background: rgb(248, 248, 249);">
-		<div class="container" >
-			<!-- insert -->
-				<div class="row" >
-					<div class="col-lg-8 course_details_left" style="display: inline-block; background: white; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px; ">
-						<div class="tab-content">
-							
-                                <div class="single_special_cource">
-                                <br><br><br><br>
-                                <h2> 오프라인 강의 수강하기</h2>
-                                                <h3>강의제목:${ c.courseTitle }</h3>
-                                        <img src="resources/user/img/special_cource_1.png" class="special_img" alt="">
-                                        <div class="special_cource_text">
-                                            <h4>강의료:${ c.courseHourPrice*c.courseHours*c.courseCount }</h4>
-                                            
-                                            <p>수업 소개</p>
-                                         <span>${c.courseContent }</span>
-                                        </div>
-                
-                                    </div>
-                                <input type="hidden" name="offline" value="${ c }"/>
-                                <input type="hidden" name="payPrice" value="${ c.courseHourPrice*c.courseHours*c.courseCount }"/>
-                                <br>
-                                <br>
-                                
-								<button type="submit" class="genric-btn primary-border radius"
-									style="border-radius: 5px; width: 150px; height: 50px; text-align: center; line-height: 1"
-									 id="pay_btn" onclick="kakao();">kakao결제</button>
-								<button type="submit" class="genric-btn primary-border radius"
-								style="border-radius: 5px; width: 150px;  height: 50px; text-align: center; line-height: 1"
-								id="pay_btn1" onclick="kakao();">일반결제</button>
-								 
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-	</section>
-	<script>
-				
     		console.log(rsp.apply_num);
     		if ( rsp.success ) {
     		$.ajax({

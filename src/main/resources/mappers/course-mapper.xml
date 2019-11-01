@@ -79,11 +79,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <id property="reviewNum" column="review_num"/>
       <result property="courseNum" column="course_num"/>
       <result property="memNum" column="mem_num"/>
-      <result property="memNickname" column="mem_nickname"/>
-      <result property="memName" column="mem_name"/>
       <result property="reviewContent" column="review_content"/>
       <result property="reviewScore" column="review_score"/>
-      <result property="reviewEnrollDate" column="review_enroll_date"/>
+      <result property="reviewEnrollDate" column="review_eroll_date"/>
       <result property="reviewModifyDate" column="review_modify_date"/>
       <result property="reviewStatus" column="review_status"/>   
    </resultMap>
@@ -165,21 +163,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="payMethod" column="pay_method"/>
 		<result property="coursePrice" column="course_price"/>
 	</resultMap>
-<resultMap id="creatorResultSet" type="Creator">
-		<id property="creNum" column="cre_num"/>
-		<result property="creName" column="mem_name"/>
-		<result property="memNum" column="mem_num"/>
-		<result property="mem_NickName" column="mem_nick_name"/>
-		<result property="introduction" column="introduction"/>
-		<result property="career" column="career"/>
-		<result property="education" column="education"/>
-		<result property="certification" column="certification"/>
-		<result property="enrollDate" column="enroll_date"/>
-		<result property="approvedDate" column="approved_date"/>
-		<result property="endDate" column="end_date"/>
-		<result property="creStatus" column="cre_status"/>	
-	</resultMap>
-
+	
 	<resultMap type="Payment" id="PaymentResultSet">
 	<id property="payNum" column="pay_num"/>
 	<result property="memNum" column="mem_num"/>
@@ -191,11 +175,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<result property="payDate" column="pay_date"/>
 	<result property="payCancelDate" column="pay_cancel_date"/>
 	</resultMap>
-	<select id="selectCreator" parameterType="_int" resultMap="creatorResultSet">
-		select * 
-		from creator
-		where cre_num=#{creNum}
-	</select>
+	
+	<resultMap type="Video" id="VideoResultSet">
+	<id property="videoCourse" column="video_course_num"/>
+	<result property="courseNum" column="course_Num"/>
+	<result property="rowNum" column="r"/>
+	<result property="videoPath" column="video_path"/>
+	<result property="videoTitle" column="video_title"/>
+	<result property="videoContent" column="video_content"/>
+	</resultMap>
+	
+
+
 	<!-- 1. 클래스 추가 쿼리 -->
 	<insert id="insertCourse" parameterType="Course">
 		insert into course 
@@ -232,7 +223,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 클래스 상세정보 불러오기 -->
 	<select id="selectCourse" parameterType="_int" resultMap="CourseResultSet">
 		select *
-		from single_course_view
+		from single_course_view 
 		where course_num = #{courseNum}
 	</select>
 	
@@ -319,7 +310,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 
 	<select id="selectCourseAttachmentList" parameterType="CourseAttachment" resultMap="CourseAttachmentResultSet">
 		select *
-		from single_course_view
+		from course_attachment
 		where course_num = #{courseNum}
 		and coa_Level = 1
 	</select>
@@ -403,23 +394,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where mem_num = #{memNum}
 		and course_num = #{courseNum}
 	</delete>
-	<!--  댓글 -->
-	 
-	<select id="selectReviewList" parameterType="_int" resultMap="ReviewResultSet">
-		select *
-		from review
-		where review_num=#{reviewNum}
-		order by reviewNum desc
-	</select>
 	
-	<insert id="insertReview" parameterType="Review">
-		insert into review
-		values(review_seq.nextval, #{courseNum}, #{memNum}, #{reviewContent}, #{reviewScore}, default,default,default)
-	</insert>
-	<insert id="insertRReview" parameterType="Review">
-		insert into review
-		values(review_seq.nextval, #{courseNum}, #{memNum}, #{reviewContent}, #{reviewScore}, default,default,default)
-	</insert>
 	<!-- 온라인 클래스만 리스트 보여주기 -->
 	<select id="payonList" resultMap="TakeCourseResultSet">
 	select *
@@ -587,7 +562,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="checkLove" parameterType="Love" resultType="_int">
 		select count(*)
 		from love
-		where course_num = #{courseNum} and mem_num=#{memNum}
+		where  course_num = #{courseNum} and mem_num=#{memNum}
 	</select>
 	<insert id="insertLove"  parameterType="Love">
 		insert into love 
@@ -597,15 +572,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from love
     	where mem_num=#{memNum} and course_num=#{courseNum}
 	</delete>
-	<select id="selectCA" parameterType="CourseAttachment" resultMap="CourseAttachmentResultSet">
-		select *
-		from course_attachment
-		where course_num=#{courseNum}
-	</select>
+	
 	<select id="selectRlist" resultMap="ReviewResultSet">
-		select review_num, course_num, m.mem_nickname "mem_nickname",m.mem_name "mem_name" ,review_content,review_score, review_enroll_date, review_modify_date, review_status
-		from review r
-        join member m on(r.mem_num=m.mem_num)
+		select * from review
         where review_status='Y' and course_num=#{courseNum}
 	</select>
 	
@@ -613,62 +582,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into payment
 		values(payment_seq.nextval, #{memNum},#{courseNum},#{payPrice},#{payMethod},default,sysdate,default)
 	</insert>
-<select id="selectRReplyList" parameterType="_int" resultMap="ReviewReplyResultSet">
-		select *
-		from review_reply
-		join member using(mem_num)
-		where course_num = #{courseNum} and rev_reply_status!='N'
-		order by rev_reply_parent_num, rev_reply_depth
-	</select>
-	
-	<select id="getReviewReplyListCount" parameterType="_int" resultType="_int">
-		select count(*)
-		from review_reply
-		where course_num = #{courseNum} and rev_reply_status='Y'
-	</select>
-	
-	<insert id="insertReviewReply" parameterType="ReviewReply">
-		insert into reivew_reply
-		values(review_reply_seq.nextval, #{reviewNum}, #{memNum}, review_reply_seq.currval, 1, #{revReplyContent}, sysdate, sysdate, 'Y')
-	</insert>
-	
-	<insert id="insertRReviewReply" parameterType="ReviewReply">
-		insert into review_reply
-		values(review_reply_seq.nextval, #{reviewNum}, #{memNum}, #{revReplyParentNum}, #{revReplyDepth}, #{revReplyContent}, sysdate, sysdate, 'Y')
-	</insert>
-	
-	<select id="selectParentReply" parameterType="_int" resultMap="ReviewReplyResultSet">
-		select *
-		from review_reply
-		where rev_Reply_Num = #{revReplyNum}
-	</select>
-	
-	<select id="selectChild" parameterType="_int" resultType="_int">
-		select count(*)
-		from ( select rev_reply_depth
-		       from review_reply
-		       where rev_reply_parent_num = ( select rev_reply_parent_num from review_reply where rev_reply_num = #{revReplyNum}) and rev_reply_status != 'N' )
-		where rev_reply_depth > (select rev_reply_depth "REV_REPLY_DEPTH" from review_reply where rev_reply_num = #{revReplyNum})
-	
-	</select>
-	
-	<update id="updateReplyY" parameterType="_int">
-		update review_reply
-		set rev_reply_content='삭제된 댓글입니다.', rev_reply_modify_date=sysdate, rev_reply_status='D'
-		where rev_reply_num = #{revReplyNum}
-	</update>
-	
-	<update id="updateReplyN" parameterType="_int">
-		update review_reply
-		set rev_reply_status='N'
-		where rev_reply_num = #{revReplyNum}
-	</update>
-	
-	<update id="updateReply" parameterType="NoticeReply">
-		update notice_reply
-		set rev_reply_content=#{revReplyContent}, rev_reply_modify_date=sysdate
-		where rev_reply_num = #{revReplyNum}
-	</update>
 	
 	<select id="selectPowerListY" parameterType="_int" resultMap="SingleCourseResultSet">
 		select *
@@ -843,8 +756,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insertVideo" parameterType="Video">
 		insert into video_course 
-		values(video_course_seq.nextval, #{onlineNum}, #{videoPath}, #{videoTitle}, #{videoContent})
+		values(video_course_seq.nextval, #{courseNum}, #{videoPath}, #{videoTitle}, #{videoContent})
 	</insert>
 	
+	<select id="selectVideoList" parameterType="_int" resultMap="VideoResultSet">
+        select rownum r, c.*
+        from video_course c
+        where course_num=#{courseNum}
+	</select>
+	<select id="selectVideo" parameterType="_int" resultMap="VideoResultSet">
+		select *
+		from video_course
+		where video_course_num=#{videoCourse}
+	</select>
 	
 </mapper>

@@ -81,12 +81,9 @@ public class Love {
 		return courseNum;
 	}
 
-	
-
 	public void setCourseNum(int courseNum) {
 		this.courseNum = courseNum;
 	}
-
 
 	public String getCourseTitle() {
 		return courseTitle;

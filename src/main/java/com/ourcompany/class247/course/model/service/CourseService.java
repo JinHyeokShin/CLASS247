@@ -9,11 +9,9 @@ import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
-import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.course.model.vo.Video;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
-import com.ourcompany.class247.review.model.vo.ReviewReply;
 
 public interface CourseService {
 
@@ -63,7 +61,6 @@ public interface CourseService {
 	//클래스 상세보기
 	Course selectCourse(int courseNum);
 	
-	Creator selectCreator(int creNum);
 	
 	ArrayList<Review> selectRlist(int courseNum);
 
@@ -83,33 +80,7 @@ public interface CourseService {
 	//찜하기 리스트 선택 삭제하기
 	int deleteLove(Love i);
 
-	int insertRReview(Review review);
-	
-	int getReviewReplyListCount(int courseNum);
-	
-	// 댓글작성
-	int insertReviewReply(ReviewReply rr);
-	
-	// 대댓글 작성
-	int insertRReviewReply(ReviewReply rr);
-	
-	// 부모찾기
-		ReviewReply selectParentReply(int rReplyNum);
-		
-		// 자식찾기
-		int selectChild(int rReplyNum);
-		
-		// 자식이 있을 때
-		int updateReplyY(int rReplyNum);
-		
-		// 자식이 없을 때
-		int updateReplyN(int rReplyNum);
-		
-	
-	// 댓글 수정
-	int updateReply(ReviewReply rr);
-	
-	ArrayList<ReviewReply> selectRReplyList(int courseNum, PageInfo rpi);
+
 	
 	ArrayList<Love> selectLove();
 	
@@ -166,13 +137,11 @@ public interface CourseService {
 	//크리에이터센터 - 클래스 수 
 	int getCourseCount(int creNum);
 	
-	int checkLove(Love love);
+	boolean checkLove(Love love);
 	
 	int insertLove(Love iLove);
 	
 	int cancelLove(Love dLove);
-	
-	CourseAttachment selectCA(int courseNum);
 	
 	Course coursePayment(int courseNum);
 	
@@ -185,13 +154,10 @@ public interface CourseService {
 	int offlineCourseCount();
 	
 	int insertPayment(Payment payment);
-	
-	// 7. 게시글에 딸려있는 댓글 리스트 조회
-		ArrayList<Review> selectReviewList(int rId);
-		
-		
-		// 8. 댓글 작성하기 
-		int insertReview(Review r);
 
 	int insertVideo(Video v);
+	
+	ArrayList<Video> selectVideoList(int courseNum);
+	
+	Video selectVideo(int videoCourse);
 }

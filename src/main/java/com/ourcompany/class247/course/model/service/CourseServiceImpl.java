@@ -13,11 +13,9 @@ import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
-import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.course.model.vo.Video;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
-import com.ourcompany.class247.review.model.vo.ReviewReply;
 
 @Service("coService")
 public class CourseServiceImpl implements CourseService {
@@ -228,7 +226,7 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public int checkLove(Love love) {
+	public boolean checkLove(Love love) {
 		
 		return coDao.checkLove(love);
 	}
@@ -250,187 +248,185 @@ public class CourseServiceImpl implements CourseService {
 		
 		return coDao.coursePayment(courseNum);
 	}
+	// 수강페이지를 위한 온라인상세페이지
+	@Override
+	public Online selectOnline(int courseNum) {
+		return coDao.selectOnline(courseNum);
+	}
 
-   // 수강페이지를 위한 온라인상세페이지
-   @Override
-   public Online selectOnline(int courseNum) {
-      return coDao.selectOnline(courseNum);
-   }
+	@Override
+	public ArrayList<Review> selectRlist(int courseNum) {
+		return coDao.selectRlist(courseNum);
+	}
 
-   @Override
-   public ArrayList<Review> selectRlist(int courseNum) {
-      return coDao.selectRlist(courseNum);
-   }
+	
 
-   
+	@Override
+	public ArrayList<Course> categoryCraftsList() {
+		return coDao.categoryCraftsList();
+	}
 
-   @Override
-   public ArrayList<Course> categoryCraftsList() {
-      return coDao.categoryCraftsList();
-   }
+	@Override
+	public ArrayList<Course> categoryDesignList() {
+		return coDao.categoryDesignList();
+	}
 
-   @Override
-   public ArrayList<Course> categoryDesignList() {
-      return coDao.categoryDesignList();
-   }
+	@Override
+	public ArrayList<Course> categoryDevelopList() {
+		return coDao.categoryDevelopList();
+	}
 
-   @Override
-   public ArrayList<Course> categoryDevelopList() {
-      return coDao.categoryDevelopList();
-   }
+	@Override
+	public ArrayList<Course> categoryDigitalList() {
+		return coDao.categoryDigitalList();
+	}
 
-   @Override
-   public ArrayList<Course> categoryDigitalList() {
-      return coDao.categoryDigitalList();
-   }
+	@Override
+	public ArrayList<Course> categoryLifeList() {
+		return coDao.categoryLifeList();
+	}
 
-   @Override
-   public ArrayList<Course> categoryLifeList() {
-      return coDao.categoryLifeList();
-   }
+	@Override
+	public ArrayList<Course> categoryArtList() {
+		return coDao.categoryArtList();
+	}
 
-   @Override
-   public ArrayList<Course> categoryArtList() {
-      return coDao.categoryArtList();
-   }
+	@Override
+	public ArrayList<Course> categoryCameraList() {
+		return coDao.categoryCameraList();
+	}
 
-   @Override
-   public ArrayList<Course> categoryCameraList() {
-      return coDao.categoryCameraList();
-   }
+	@Override
+	public ArrayList<Course> categorySigitureList() {
+		return coDao.categorySigitureList();
+	}
 
-   @Override
-   public ArrayList<Course> categorySigitureList() {
-      return coDao.categorySigitureList();
-   }
+	@Override
+	public ArrayList<Course> categoryFoodList() {
+		return coDao.categoryFoodList();
+	}
 
-   @Override
-   public ArrayList<Course> categoryFoodList() {
-      return coDao.categoryFoodList();
-   }
+	@Override
+	public ArrayList<Course> categoryMusicList() {
+		return coDao.categoryMusicList();
+	}
 
-   @Override
-   public ArrayList<Course> categoryMusicList() {
-      return coDao.categoryMusicList();
-   }
+	@Override
+	public ArrayList<Course> categoryCareerList() {
+		return coDao.categoryCareerList();
+	}
 
-   @Override
-   public ArrayList<Course> categoryCareerList() {
-      return coDao.categoryCareerList();
-   }
+	@Override
+	public ArrayList<Course> onlinecategoryCraftsList() {
+		return coDao.onlinecategoryCraftsList();
+	}
 
-   @Override
-   public ArrayList<Course> onlinecategoryCraftsList() {
-      return coDao.onlinecategoryCraftsList();
-   }
+	@Override
+	public ArrayList<Course> onlinecategoryDesignList() {
+		return coDao.onlinecategoryDesignList();
+	}
 
-   @Override
-   public ArrayList<Course> onlinecategoryDesignList() {
-      return coDao.onlinecategoryDesignList();
-   }
+	@Override
+	public ArrayList<Course> onlinecategoryDevelopList() {
+		return coDao.onlinecategoryDevelopList();
+	}
 
-   @Override
-   public ArrayList<Course> onlinecategoryDevelopList() {
-      return coDao.onlinecategoryDevelopList();
-   }
+	@Override
+	public ArrayList<Course> onlinecategoryDigitalList() {
+		return coDao.onlinecategoryDigitalList();
+	}
 
-   @Override
-   public ArrayList<Course> onlinecategoryDigitalList() {
-      return coDao.onlinecategoryDigitalList();
-   }
+	@Override
+	public ArrayList<Course> onlinecategoryLifeList() {
+		return coDao.onlinecategoryLifeList();
+	}
 
-   @Override
-   public ArrayList<Course> onlinecategoryLifeList() {
-      return coDao.onlinecategoryLifeList();
-   }
+	@Override
+	public ArrayList<Course> onlinecategoryArtList() {
+		return coDao.onlinecategoryArtList();
+	}
 
-   @Override
-   public ArrayList<Course> onlinecategoryArtList() {
-      return coDao.onlinecategoryArtList();
-   }
+	@Override
+	public ArrayList<Course> onlinecategoryCameraList() {
+		return coDao.onlinecategoryCameraList();
+	}
 
-   @Override
-   public ArrayList<Course> onlinecategoryCameraList() {
-      return coDao.onlinecategoryCameraList();
-   }
+	@Override
+	public ArrayList<Course> onlinecategorySigitureList() {
+		return coDao.onlinecategorySigitureList();
+	}
 
-   @Override
-   public ArrayList<Course> onlinecategorySigitureList() {
-      return coDao.onlinecategorySigitureList();
-   }
+	@Override
+	public ArrayList<Course> onlinecategoryFoodList() {
+		return coDao.onlinecategoryFoodList();
+	}
 
-   @Override
-   public ArrayList<Course> onlinecategoryFoodList() {
-      return coDao.onlinecategoryFoodList();
-   }
+	@Override
+	public ArrayList<Course> onlinecategoryMusicList() {
+		return coDao.onlinecategoryMusicList();
+	}
 
-   @Override
-   public ArrayList<Course> onlinecategoryMusicList() {
-      return coDao.onlinecategoryMusicList();
-   }
+	@Override
+	public ArrayList<Course> onlinecategoryCareerList() {
+		return coDao.onlinecategoryCareerList();
+	}
 
-   @Override
-   public ArrayList<Course> onlinecategoryCareerList() {
-      return coDao.onlinecategoryCareerList();
-   }
+	@Override
+	public ArrayList<Course> offlinecategoryCraftsList() {
+		return coDao.offlinecategoryCraftsList();
+	}
 
-   @Override
-   public ArrayList<Course> offlinecategoryCraftsList() {
-      return coDao.offlinecategoryCraftsList();
-   }
+	@Override
+	public ArrayList<Course> offlinecategoryDesignList() {
+		return coDao.offlinecategoryDesignList();
+	}
 
-   @Override
-   public ArrayList<Course> offlinecategoryDesignList() {
-      return coDao.offlinecategoryDesignList();
-   }
+	@Override
+	public ArrayList<Course> offlinecategoryDevelopList() {
+		return coDao.offlinecategoryDevelopList();
+	}
 
-   @Override
-   public ArrayList<Course> offlinecategoryDevelopList() {
-      return coDao.offlinecategoryDevelopList();
-   }
+	@Override
+	public ArrayList<Course> offlinecategoryDigitalList() {
+		return coDao.offlinecategoryDigitalList();
+	}
 
-   @Override
-   public ArrayList<Course> offlinecategoryDigitalList() {
-      return coDao.offlinecategoryDigitalList();
-   }
+	@Override
+	public ArrayList<Course> offlinecategoryLifeList() {
+		return coDao.offlinecategoryLifeList();
+	}
 
-   @Override
-   public ArrayList<Course> offlinecategoryLifeList() {
-      return coDao.offlinecategoryLifeList();
-   }
+	@Override
+	public ArrayList<Course> offlinecategoryArtList() {
+		return coDao.offlinecategoryArtList();
+	}
 
-   @Override
-   public ArrayList<Course> offlinecategoryArtList() {
-      return coDao.offlinecategoryArtList();
-   }
+	@Override
+	public ArrayList<Course> offlinecategoryCameraList() {
+		return coDao.offlinecategoryCameraList();
+	}
 
-   @Override
-   public ArrayList<Course> offlinecategoryCameraList() {
-      return coDao.offlinecategoryCameraList();
-   }
+	@Override
+	public ArrayList<Course> offlinecategorySigitureList() {
+		return coDao.offlinecategorySigitureList();
+	}
 
-   @Override
-   public ArrayList<Course> offlinecategorySigitureList() {
-      return coDao.offlinecategorySigitureList();
-   }
+	@Override
+	public ArrayList<Course> offlinecategoryFoodList() {
+		return coDao.offlinecategoryFoodList();
+	}
 
-   @Override
-   public ArrayList<Course> offlinecategoryFoodList() {
-      return coDao.offlinecategoryFoodList();
-   }
+	@Override
+	public ArrayList<Course> offlinecategoryMusicList() {
+		return coDao.offlinecategoryMusicList();
+	}
 
-   @Override
-   public ArrayList<Course> offlinecategoryMusicList() {
-      return coDao.offlinecategoryMusicList();
-   }
+	@Override
+	public ArrayList<Course> offlinecategoryCareerList() {
+		return coDao.offlinecategoryCareerList();
+	}
 
-   @Override
-   public ArrayList<Course> offlinecategoryCareerList() {
-      return coDao.offlinecategoryCareerList();
-   }
-
-
-@Override
+	@Override
 	public ArrayList<SingleCourse> selectPopList() {
 		return coDao.selectPopList();
 	}
@@ -462,76 +458,6 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public ArrayList<Review> selectReviewList(int rId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int insertReview(Review r) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int insertRReview(Review review) {
-		return coDao.insertRReview(review);
-	}
-
-	@Override
-	public int getReviewReplyListCount(int courseNum) {
-		return coDao.getReviewReplyListCount(courseNum);
-	}
-
-	@Override
-	public int insertReviewReply(ReviewReply rr) {
-		return coDao.insertReviewReply(rr);
-	}
-
-	@Override
-	public int insertRReviewReply(ReviewReply rr) {
-		return coDao.insertRReviewReply(rr);
-	}
-
-	@Override
-	public int updateReply(ReviewReply rr) {
-		return coDao.updateReply(rr);
-	}
-
-	@Override
-	public ArrayList<ReviewReply> selectRReplyList(int courseNum, PageInfo rpi) {
-		return coDao.selectRReplyList(courseNum, rpi);
-	}
-
-	@Override
-	public ReviewReply selectParentReply(int rReplyNum) {
-		return coDao.selectParentReply(rReplyNum);
-	}
-
-	@Override
-	public int selectChild(int rReplyNum) {
-		return coDao.selectChild(rReplyNum);
-	}
-
-	@Override
-	public int updateReplyY(int rReplyNum) {
-		return coDao.updateReplyY(rReplyNum);
-	}
-
-	@Override
-	public int updateReplyN(int rReplyNum) {
-		return coDao.updateReplyN(rReplyNum);
-	}
-
-	@Override
-	public Creator selectCreator(int creNum) {
-		return coDao.selectCreator(creNum);
-	}
-
-	@Override
-	public CourseAttachment selectCA(int courseNum) {
-		return coDao.selectCA(courseNum);
-	}
 	public Course selectCourse(int courseNum, String courseKind) {
 		return coDao.selectCourse(courseNum, courseKind);
 	}
@@ -541,5 +467,14 @@ public class CourseServiceImpl implements CourseService {
 		return coDao.insertVideo(v);
 	}
 
-	
+	@Override
+	public ArrayList<Video> selectVideoList(int courseNum) {
+		return coDao.selectVideoList(courseNum);
+	}
+
+	@Override
+	public Video selectVideo(int videoCourse) {
+		return coDao.selectVideo(videoCourse);
+	}
+
 }

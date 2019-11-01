@@ -177,152 +177,140 @@
 
                             <!-- 클래스 소개 -->
 
-					<div class="content_wrapper">
-						<!-- 탭 만들기 -->
-						<ul class="nav nav-tabs">
-							<li class="nav-item"><a class="nav-link active" data-toggle="tab"
-								href="#ClassInfo">Class Info</a></li>	
-							<li class="nav-item"><a class="nav-link" data-toggle="tab"
-								href="#Tutor">Tutor</a></li>
-							<li class="nav-item"><a class="nav-link"
-								data-toggle="tab" href="#Review">Review</a></li>
-							<li class="nav-item"><a class="nav-link" data-toggle="tab"
-								href="#Curriculum">Curriculum</a></li>
-						</ul>
-						<div class="tab-content">
-						<!-- 클래스 소개 -->
-							<div class="tab-pane fade show active" id="ClassInfo">
-								<h4 class="title">Class Info</h4>
-								te irure dolor in
-								reprehenderit in voluptate velit esse cillum.
-							</div>
-							<div class="tab-pane fade" id="Review">
-								<h4 class="title_top">Review</h4>
-								<div class="comments-area mb-30">
-									
-		
-		 		<c:if test="${empty revlist }">
-		 			<p>작성된 댓글이 존재하지 않습니다.</p>
-		 		</c:if>
-		 		<c:if test="${!empty revlist }">
-		 		<c:forEach items="${ revlist }" var="rev">
-					<table class="table table-borderless table-striped table-earning" align="center" style="width:600px;" align="center" border="1" cellspacing="0" id="rtb">
-														
-						<tbody class="ttbody">
-														
-							</tbody>
-								<tfoot>
-								<tr>
-									<td><c:if test="${rev.reviewScore eq 1}">
-									<span class="star-input">
+                            <div class="content_wrapper">
+                                <!-- 탭 만들기 -->
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#ClassInfo">Class Info</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Tutor">Tutor</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Review">Review</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Curriculum">Curriculum</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <!-- 클래스 소개 -->
+                                    <div class="tab-pane fade show active" id="ClassInfo">
+                                        <h4 class="title">Class Info</h4>
+                                        te irure dolor in reprehenderit in voluptate velit esse cillum.
+                                    </div>
+                                    <div class="tab-pane fade" id="Review">
+                                        <h4 class="title_top">Review</h4>
+                                        <div class="comments-area mb-30">
+
+
+                                            <c:if test="${empty revlist }">
+                                                <p>작성된 댓글이 존재하지 않습니다.</p>
+                                            </c:if>
+                                            <c:if test="${!empty revlist }">
+                                                <c:forEach items="${ revlist }" var="rev">
+                                                    <table class="table table-borderless table-striped table-earning" align="center" style="width:600px;" align="center" border="1" cellspacing="0" id="rtb">
+
+                                                        <tbody class="ttbody">
+
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <td>
+                                                                    <c:if test="${rev.reviewScore eq 1}">
+                                                                        <span class="star-input">
 									<span class="input">
 									<input type="radio" value="1" id="p1" checked readonly> <label for="p1">1</label> 
 									</span>
-										</span>
-										</c:if>	
-										<c:if test="${rev.reviewScore eq 2}">
-										<span class="star-input">
+                                                                        </span>
+                                                                    </c:if>
+                                                                    <c:if test="${rev.reviewScore eq 2}">
+                                                                        <span class="star-input">
 									<span class="input">
 									<input type="radio" value="2" id="p2" checked readonly> <label for="p2">2</label> 
 									</span>
-										</span>
-										</c:if>		
-										<c:if test="${rev.reviewScore eq 3}">
-										<span class="star-input">
+                                                                        </span>
+                                                                    </c:if>
+                                                                    <c:if test="${rev.reviewScore eq 3}">
+                                                                        <span class="star-input">
 									<span class="input">
 									<input type="radio"  value="3" id="p3" checked readonly> <label for="p3">3</label> 
 									</span>
-										</span>
-										</c:if>		
-									<c:if test="${rev.reviewScore eq 4}">
-										<span class="star-input">
+                                                                        </span>
+                                                                    </c:if>
+                                                                    <c:if test="${rev.reviewScore eq 4}">
+                                                                        <span class="star-input">
 									<span class="input">
 									<input type="radio" value="4" id="p4" checked readonly> <label for="p4">4</label> 
 									</span>
-										</span>
-										</c:if>		
-									<c:if test="${rev.reviewScore eq 5}">
-										<span class="star-input">
+                                                                        </span>
+                                                                    </c:if>
+                                                                    <c:if test="${rev.reviewScore eq 5}">
+                                                                        <span class="star-input">
 									<span class="input">
 									<input type="radio" value="5" id="p5" checked readonly> <label for="p5">5</label> 
 									</span>
-									</span>
-										</c:if>							
-									</td>
-									
-									<td colspan="5" id="footTd" align="center"><p>${rev.memNickname}<br>${rev.reviewEnrollDate } </p> ${rev.reviewContent }</td>
-								</tr>
-							<tfoot>
-					</table>
-					</c:forEach>
-					</c:if>
-				
-								</div>
+                                                                        </span>
+                                                                    </c:if>
+                                                                </td>
 
-								
-								
-								<script src="resources/user/js/jquery-1.11.3.min.js"></script>
-								<script src="resources/user/js/star.js"></script>
-								
-								
-							</div>
-							<!-- 패키지    -->
-							<!-- 크리에이터 -->
-							<div class="tab-pane fade" id="Tutor">
-								<h4 class="title">Tutor</h4>
-								${creator.introduction }
-								${creator.career}
-								${creator.education}
-								
-							</div>
-							
+                                                                <td colspan="5" id="footTd" align="center">
+                                                                    <p>${rev.memNickname}<br>${rev.reviewEnrollDate } </p> ${rev.reviewContent }</td>
+                                                            </tr>
+                                                            <tfoot>
+                                                    </table>
+                                                </c:forEach>
+                                            </c:if>
 
-							<!-- 커리큘럼 -->
-							<div class="tab-pane fade" id="Curriculum">
-								<h4 class="title">Curriculum</h4>
-								<ul class="course_list">
-									<li class="justify-content-between align-items-center d-flex">
-										<p>Introduction Lesson</p> <a class="btn_2 text-uppercase"
-										href="#">View Details</a>
-									</li>
-									<li class="justify-content-between align-items-center d-flex">
-										<p>Basics of HTML</p> <a class="btn_2 text-uppercase" href="#">View
+                                        </div>
+
+
+
+                                        <script src="resources/user/js/jquery-1.11.3.min.js"></script>
+                                        <script src="resources/user/js/star.js"></script>
+
+
+                                    </div>
+                                    <!-- 패키지    -->
+                                    <!-- 크리에이터 -->
+                                    <div class="tab-pane fade" id="Tutor">
+                                        <h4 class="title">Tutor</h4>
+                                        ${creator.introduction } ${creator.career} ${creator.education}
+
+                                    </div>
+
+
+                                    <!-- 커리큘럼 -->
+                                    <div class="tab-pane fade" id="Curriculum">
+                                        <h4 class="title">Curriculum</h4>
+                                        <ul class="course_list">
+                                            <li class="justify-content-between align-items-center d-flex">
+                                                <p>Introduction Lesson</p> <a class="btn_2 text-uppercase" href="#">View Details</a>
+                                            </li>
+                                            <li class="justify-content-between align-items-center d-flex">
+                                                <p>Basics of HTML</p> <a class="btn_2 text-uppercase" href="#">View
 											Details</a>
-									</li>
-									<li class="justify-content-between align-items-center d-flex">
-										<p>Getting Know about HTML</p> <a class="btn_2 text-uppercase"
-										href="#">View Details</a>
-									</li>
-									<li class="justify-content-between align-items-center d-flex">
-										<p>Tags and Attributes</p> <a class="btn_2 text-uppercase"
-										href="#">View Details</a>
-									</li>
-									<li class="justify-content-between align-items-center d-flex">
-										<p>Basics of CSS</p> <a class="btn_2 text-uppercase" href="#">View
+                                            </li>
+                                            <li class="justify-content-between align-items-center d-flex">
+                                                <p>Getting Know about HTML</p> <a class="btn_2 text-uppercase" href="#">View Details</a>
+                                            </li>
+                                            <li class="justify-content-between align-items-center d-flex">
+                                                <p>Tags and Attributes</p> <a class="btn_2 text-uppercase" href="#">View Details</a>
+                                            </li>
+                                            <li class="justify-content-between align-items-center d-flex">
+                                                <p>Basics of CSS</p> <a class="btn_2 text-uppercase" href="#">View
 											Details</a>
-									</li>
-									<li class="justify-content-between align-items-center d-flex">
-										<p>Getting Familiar with CSS</p> <a
-										class="btn_2 text-uppercase" href="#">View Details</a>
-									</li>
-									<li class="justify-content-between align-items-center d-flex">
-										<p>Introduction to Bootstrap</p> <a
-										class="btn_2 text-uppercase" href="#">View Details</a>
-									</li>
-									<li class="justify-content-between align-items-center d-flex">
-										<p>Responsive Design</p> <a class="btn_2 text-uppercase"
-										href="#">View Details</a>
-									</li>
-									<li class="justify-content-between align-items-center d-flex">
-										<p>Canvas in HTML 5</p> <a class="btn_2 text-uppercase"
-										href="#">View Details</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-               <!-- 오른쪽 간단 설명 -->
+                                            </li>
+                                            <li class="justify-content-between align-items-center d-flex">
+                                                <p>Getting Familiar with CSS</p> <a class="btn_2 text-uppercase" href="#">View Details</a>
+                                            </li>
+                                            <li class="justify-content-between align-items-center d-flex">
+                                                <p>Introduction to Bootstrap</p> <a class="btn_2 text-uppercase" href="#">View Details</a>
+                                            </li>
+                                            <li class="justify-content-between align-items-center d-flex">
+                                                <p>Responsive Design</p> <a class="btn_2 text-uppercase" href="#">View Details</a>
+                                            </li>
+                                            <li class="justify-content-between align-items-center d-flex">
+                                                <p>Canvas in HTML 5</p> <a class="btn_2 text-uppercase" href="#">View Details</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 오른쪽 간단 설명 -->
                         <div class="col-lg-4 right-contents">
                             <div class="sidebar_top">
                                 <ul>
@@ -363,7 +351,7 @@
                                     </li>
                                     <li style="width: 100%;">
                                         <c:if test="${!empty loginUser }">
-                                           <c:if test="${checkLove > 0 }">
+                                            <c:if test="${checkLove > 0 }">
                                                 <span><img src="resources/creator/images/like.png" id="love" onclick="cancelLove();"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </c:if>
                                             <c:if test="${checkLove < 1 }">
@@ -422,7 +410,7 @@
                                                 })
 
                                             }
-                                        </script> 
+                                        </script>
                                         <span> 
                                         <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
 									<script type="text/javascript"> new ShareNaver.makeButton({"type": "e"});</script>
@@ -487,6 +475,9 @@
                                         <input type="button" onclick="takeAlert();" class="btn_1 d-block" value="수강하기" style="width:100%;">
                                     </c:if>
                                 </c:if>
+                                <c:if test="${ c.courseKind eq 'online' }">
+                                    <a href="${ coBuyOn }" class="btn_1 d-block">수강하기</a>
+                                </c:if>
                                 <c:url value="openChat.do" var="openChat">
                                     <c:param name="courseNum" value="${ c.courseNum }" />
                                     <c:param name="creNum" value="${c.creNum}" />
@@ -504,11 +495,11 @@
                             <!-- 레이팅 -->
 
                         </div>
-             </div>
-                      
+                    </div>
 
-                        
-                   
+
+
+
                 </div>
             </section>
             <!--================ End Course Details Area =================-->
