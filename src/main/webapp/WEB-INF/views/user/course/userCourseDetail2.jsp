@@ -118,11 +118,7 @@ header {
 								<p>수업 소개</p>
 								<span>${c.courseContent }</span>
 								
-									<select name="price" id="packbtn">
-										<option value=''>-- 선택 --</option>
-										<option  value="12000">패키지 구매하기</option>
-										<option value="13000">수강권만 구매하기</option>
-									</select>
+									 
 								
 							</div>
 

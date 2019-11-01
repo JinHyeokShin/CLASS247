@@ -16,6 +16,25 @@
             <script src="resources/user/js/waypoints.min.js"></script>
 
         </head>
+        <style>
+        /* 사진 호버시 확대  */
+.special_img {
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transition: all 0.3s ease-in-out;   /* 부드러운 모션을 위해 추가*/
+}
+.special_img:hover {
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+}
+.img { overflow:hidden }   /* 부모를 벗어나지 않고 내부 이미지만 확대 */
+        </style>
         <c:import url="/WEB-INF/views/user/common/menubar.jsp" />
 
         <body>
@@ -119,7 +138,9 @@
 						</c:url>
                         <div class="item" >
                             <div class="single_special_cource">
-                                <img src="resources/user/img/test1.jpeg" class="special_img" alt="" onclick="location.href=${codetail}">
+                           <div class="img">
+                                <img src="resources/user/img/test1.jpeg" class="special_img" alt="" onclick="location.href='${codetail}'">
+                                </div>
                                 <div class="special_cource_text">
                                     <a class="btn_4">${ co.categoryName }</a>
                                     <c:if test="${ co.courseKind eq 'online'}">
@@ -136,19 +157,14 @@
                                         <div class="author_img">
                                             <img src="resources/user/img/author/author_1.png" alt="" onclick="location.href=${codetail}">
                                             <div class="author_info_text">
-                                                <p>Conduct by:</p>
-                                                <h5><a href="${ codetail }">James Well</a></h5>
+                                                <p>선생님:</p>
+                                                <h5><a href="${ codetail }">${co.memNickName }</a></h5>
                                             </div>
                                         </div>
                                         <div class="author_rating">
-                                            <div class="rating">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/star.svg" alt="">
-                                            </div>
-                                            <p>3.8 Ratings</p>
+                                            <p>${ co.loveCount }</p> 
+                                            <img src="resources/creator/images/nlike.png"
+											id="love">
                                         </div>
                                     </div>
                                 </div>
@@ -197,18 +213,13 @@
                                             <img src="resources/user/img/author/author_1.png" alt="" onclick="location.href=${codetail}">
                                             <div class="author_info_text">
                                                 <p>Conduct by:</p>
-                                                <h5><a href="${ codetail }">James Well</a></h5>
+                                                <h5><a href="${ codetail }">${po.memNickName }</a></h5>
                                             </div>
                                         </div>
                                         <div class="author_rating">
-                                            <div class="rating">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/color_star.svg" alt="">
-                                                <img src="resources/user/img/icon/star.svg" alt="">
-                                            </div>
-                                            <p>3.8 Ratings</p>
+                                            <p>${ po.loveCount }</p> 
+                                            <img src="resources/creator/images/nlike.png"
+											id="love">
                                         </div>
                                     </div>
                                 </div>

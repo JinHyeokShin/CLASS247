@@ -13,8 +13,10 @@ import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
+import com.ourcompany.class247.review.model.vo.ReviewReply;
 
 @Service("coService")
 public class CourseServiceImpl implements CourseService {
@@ -220,7 +222,7 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public boolean checkLove(Love love) {
+	public int checkLove(Love love) {
 		
 		return coDao.checkLove(love);
 	}
@@ -242,18 +244,7 @@ public class CourseServiceImpl implements CourseService {
 		
 		return coDao.coursePayment(courseNum);
 	}
-	// 수강페이지를 위한 온라인상세페이지
-	@Override
-	public Online selectOnline(int courseNum) {
-		return coDao.selectOnline(courseNum);
-	}
 
-	@Override
-	public ArrayList<Review> selectRlist(int courseNum) {
-		return coDao.selectRlist(courseNum);
-	}
-
-	
    // 수강페이지를 위한 온라인상세페이지
    @Override
    public Online selectOnline(int courseNum) {
@@ -432,10 +423,7 @@ public class CourseServiceImpl implements CourseService {
       return coDao.offlinecategoryCareerList();
    }
 
-@Override
-public int insertPayment(Payment payment) {
-	return coDao.insertPayment(payment);
-}
+
 @Override
 	public ArrayList<SingleCourse> selectPopList() {
 		return coDao.selectPopList();
@@ -472,4 +460,77 @@ public int insertPayment(Payment payment) {
 		return null;
 	}
 
+	@Override
+	public ArrayList<Review> selectReviewList(int rId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int insertReview(Review r) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int insertRReview(Review review) {
+		return coDao.insertRReview(review);
+	}
+
+	@Override
+	public int getReviewReplyListCount(int courseNum) {
+		return coDao.getReviewReplyListCount(courseNum);
+	}
+
+	@Override
+	public int insertReviewReply(ReviewReply rr) {
+		return coDao.insertReviewReply(rr);
+	}
+
+	@Override
+	public int insertRReviewReply(ReviewReply rr) {
+		return coDao.insertRReviewReply(rr);
+	}
+
+	@Override
+	public int updateReply(ReviewReply rr) {
+		return coDao.updateReply(rr);
+	}
+
+	@Override
+	public ArrayList<ReviewReply> selectRReplyList(int courseNum, PageInfo rpi) {
+		return coDao.selectRReplyList(courseNum, rpi);
+	}
+
+	@Override
+	public ReviewReply selectParentReply(int rReplyNum) {
+		return coDao.selectParentReply(rReplyNum);
+	}
+
+	@Override
+	public int selectChild(int rReplyNum) {
+		return coDao.selectChild(rReplyNum);
+	}
+
+	@Override
+	public int updateReplyY(int rReplyNum) {
+		return coDao.updateReplyY(rReplyNum);
+	}
+
+	@Override
+	public int updateReplyN(int rReplyNum) {
+		return coDao.updateReplyN(rReplyNum);
+	}
+
+	@Override
+	public Creator selectCreator(int creNum) {
+		return coDao.selectCreator(creNum);
+	}
+
+	@Override
+	public CourseAttachment selectCA(int courseNum) {
+		return coDao.selectCA(courseNum);
+	}
+
+	
 }

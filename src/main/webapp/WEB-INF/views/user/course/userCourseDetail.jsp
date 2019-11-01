@@ -108,6 +108,7 @@ star-input>.input.focus {
 	text-align: right;
 	vertical-align: middle;
 }
+
 </style>
 <script>
     function share() {
@@ -169,7 +170,7 @@ star-input>.input.focus {
 				<div class="col-lg-8 course_details_left">
 					<div class="main_image">
 						<h1>${ c.courseTitle }</h1>
-						<img class="img-fluid" src="resources/creator/images/test1.jpeg"
+						<img class="img-fluid" src="/class247/resources/creator/images/test1.jpeg"
 							alt="">
 					</div>
 					<br> <br>
@@ -179,19 +180,29 @@ star-input>.input.focus {
 					<div class="content_wrapper">
 						<!-- 탭 만들기 -->
 						<ul class="nav nav-tabs">
-							<li class="nav-item"><a class="nav-link active"
+							<li class="nav-item"><a class="nav-link active" data-toggle="tab"
+								href="#ClassInfo">Class Info</a></li>	
+							<li class="nav-item"><a class="nav-link" data-toggle="tab"
+								href="#Tutor">Tutor</a></li>
+							<li class="nav-item"><a class="nav-link"
 								data-toggle="tab" href="#Review">Review</a></li>
 							<li class="nav-item"><a class="nav-link" data-toggle="tab"
-								href="#Eligibility">Eligibility</a></li>
-							<li class="nav-item"><a class="nav-link" data-toggle="tab"
-								href="#CourseOutline">Course Outline</a></li>
+								href="#Curriculum">Curriculum</a></li>
 						</ul>
 						<div class="tab-content">
-							<div class="tab-pane fade show active" id="Review">
+						<!-- 클래스 소개 -->
+							<div class="tab-pane fade show active" id="ClassInfo">
+								<h4 class="title">Class Info</h4>
+								te irure dolor in
+								reprehenderit in voluptate velit esse cillum.
+							</div>
+							<div class="tab-pane fade" id="Review">
 								<h4 class="title_top">Review</h4>
 								<div class="comments-area mb-30">
-									<!-- 수업을 이용한 고객들의 리뷰랑 평점 불러오기 (1)-->
-									<%-- <c:forEach items="${ rlist }" var="rv">
+									
+		<!-- 댓글 목록 부분-->
+		<!-- 수업을 이용한 고객들의 리뷰랑 평점 불러오기 (1)-->
+									<%-- <c:forEach items="${ revlist }" var="rev">
 
 										<div class="comment-list">
 											<div
@@ -202,17 +213,15 @@ star-input>.input.focus {
 													</div>
 													<div class="desc">
 														<h5>${rv.memNum}</h5>
-														<span class="star-input"> <span class="input">
-																<input type="radio" name="star-input" value="1" id="p1">
-																<label for="p1">1</label> <input type="radio"
-																name="star-input" value="2" id="p2"> <label
-																for="p2">2</label> <input type="radio" name="star-input"
-																value="3" id="p3"> <label for="p3">3</label> <input
-																type="radio" name="star-input" value="4" id="p4">
-																<label for="p4">4</label> <input type="radio"
-																name="star-input" value="5" id="p5"> <label
-																for="p5">5</label>
-														</span> <output for="star-input">
+														<span class="star-input">
+															<span class="input">
+																<input type="radio" name="star-input" value="1" id="p1"> <label for="p1">1</label> 
+																<input type="radio" name="star-input" value="2" id="p2"> <label for="p2">2</label> 
+																<input type="radio" name="star-input" value="3" id="p3"> <label for="p3">3</label> 
+																<input type="radio" name="star-input" value="4" id="p4"> <label for="p4">4</label> 
+																<input type="radio" name="star-input" value="5" id="p5"> <label for="p5">5</label>
+															</span> 
+															<output for="star-input">
 																<b>${rv.reviewScore }</b>점
 															</output>
 														</span>
@@ -222,171 +231,108 @@ star-input>.input.focus {
 											</div>
 										</div>
 									</c:forEach> --%>
-									<!-- 댓글 등록 부분 -->
-	<table align="center" width="500" border="1" cellspacing="0">
-		<tr>
-			<td><textarea cols="55" rows="3" id="rContent"></textarea></td>
-			<td><button id="rSubmit">등록하기</button></td>
-		</tr>
-	</table>
-	
-	<!-- 댓글 목록 부분 -->
-	<table align="center" width="500" border="1" cellspacing="0" id="rtb">
-		<thead>
+									 <!-- 댓글 등록 부분 -->
+	<!-- <table align="center" style="width:450px;" align="center" border="1" cellspacing="0">
+								
 			<tr>
-				<td colspan="2"><b id="rCount"></b></td> <!-- 댓글 수 -->
-			</tr>
-		</thead>
-		<tbody>
-			
-		</tbody>
-	</table>
-	
-	
-	<script>
-		$(function(){
-			getReplyList();
-			
-			setInterval(function(){
-				getReplyList();
-			}, 5000);
-			
-			
-			// 댓글 등록 ajax
-			$("#rSubmit").on("click", function(){
-				
-				var rContent = $("#rContent").val();
-				var refBid = ${rv.reviewNum};
-				
-				$.ajax({
-					url:"rinsert.do",
-					data:{rContent:rContent, refBid:refBid},
-					type:"post",
-					success:function(data){
-						if(data == "success"){
-							getReplyList(); // 댓글 등록 성공시 다시 댓글 리스트 불러오기
-							$("#rContent").val("");
-							
-						}else{
-							alert("댓글작성실패!");
-						}
-					},
-					error:function(){
-						console.log("서버와의 통신 실패");
-					}
-				});
-			});
-			
-		});
-		
-		function getReplyList(){
-			
-			var bId= ${b.bId};
-			
-			$.ajax({
-				url:"rlist.do",
-				data:{bId:bId},
-				dataType:"json",
-				success:function(data){
-					
-					//console.log(data.length);
-					$("#rCount").text("댓글(" + data.length + ")"); // 댓글(3)
-					
-					var $tableBody = $("#rtb tbody");	// <tbody> </tbody>
-					$tableBody.html("");
-					
-					
-					if(data.length > 0){ // 존재하는 댓글 있음
-						
-						$.each(data, function(index, value){ // value == data[index]
-							var $tr = $("<tr>");
-						
-							var $rWriter = $("<td width='100'>").text(value.rWriter);
-							var $rContent = $("<td>").text(value.rContent);
-							var $rCreateDate = $("<td width='100'>").text(value.rCreateDate);
-							
-							$tr.append($rWriter);
-							$tr.append($rContent);
-							$tr.append($rCreateDate); 
-							
-							$tableBody.append($tr);
-							
-						});
-						
-					}else{ // 존재하는 댓글 없음
-						
-						var $tr = $("<tr>");
-						var $rContent = $("<td colspan='3'>").text("등록된 댓글이 없습니다.");
-						
-						$tr.append($rContent); // <tr> <td>~~</td> </tr>
-						
-						$tableBody.append($tr);
-					}
-					
-					
-					
-					
-					
-				},
-				error:function(){
-					console.log("ajax 통신 실패");
-				}
-			});
-		}
-	</script>
-								</div>
-
-								<span class="star-input"> <span class="input"> <input
-										type="radio" name="star-input" value="1" id="p1"> <label
-										for="p1">1</label> <input type="radio" name="star-input"
-										value="2" id="p2"> <label for="p2">2</label> <input
-										type="radio" name="star-input" value="3" id="p3"> <label
-										for="p3">3</label> <input type="radio" name="star-input"
-										value="4" id="p4"> <label for="p4">4</label> <input
-										type="radio" name="star-input" value="5" id="p5"> <label
-										for="p5">5</label>
-								</span> <output for="star-input">
+							<td>
+								<span class="star-input">
+									<span class="input">
+										<input type="radio" name="reviewScore" value="1" id="p1"> <label for="p1">1</label> 
+										<input type="radio" name="reviewScore" value="2" id="p2"> <label for="p2">2</label> 
+										<input type="radio" name="reviewScore" value="3" id="p3"> <label for="p3">3</label> 
+										<input type="radio" name="reviewScore" value="4" id="p4"> <label for="p4">4</label> 
+										<input type="radio" name="reviewScore" value="5" id="p5"> <label for="p5">5</label>
+									</span> 
+									<output for="star-input">
 										<b>0</b>점
 									</output>
 								</span>
+								</td>
+								
+				<td><textarea cols="40" rows="2" id="rContent"></textarea></td>
+				<td><button id="rSubmit" class="btn_1 d-block" style="color:white;">등록하기</button></td>
+			</tr>
+		</table> -->
+		 		<c:if test="${empty revlist }">
+		 			<p>작성된 댓글이 존재하지 않습니다.</p>
+		 		</c:if>
+		 		<c:if test="${!empty revlist }">
+		 		<c:forEach items="${ revlist }" var="rev">
+					<table class="table table-borderless table-striped table-earning" align="center" style="width:600px;" align="center" border="1" cellspacing="0" id="rtb">
+														
+						<tbody class="ttbody">
+														
+							</tbody>
+								<tfoot>
+								<tr>
+									<td><c:if test="${rev.reviewScore eq 1}">
+									<span class="star-input">
+									<span class="input">
+									<input type="radio" value="1" id="p1" checked readonly> <label for="p1">1</label> 
+									</span>
+										</span>
+										</c:if>	
+										<c:if test="${rev.reviewScore eq 2}">
+										<span class="star-input">
+									<span class="input">
+									<input type="radio" value="2" id="p2" checked readonly> <label for="p2">2</label> 
+									</span>
+										</span>
+										</c:if>		
+										<c:if test="${rev.reviewScore eq 3}">
+										<span class="star-input">
+									<span class="input">
+									<input type="radio"  value="3" id="p3" checked readonly> <label for="p3">3</label> 
+									</span>
+										</span>
+										</c:if>		
+									<c:if test="${rev.reviewScore eq 4}">
+										<span class="star-input">
+									<span class="input">
+									<input type="radio" value="4" id="p4" checked readonly> <label for="p4">4</label> 
+									</span>
+										</span>
+										</c:if>		
+									<c:if test="${rev.reviewScore eq 5}">
+										<span class="star-input">
+									<span class="input">
+									<input type="radio" value="5" id="p5" checked readonly> <label for="p5">5</label> 
+									</span>
+									</span>
+										</c:if>							
+									</td>
+									
+									<td colspan="5" id="footTd" align="center"><p>${rev.memNickname}<br>${rev.reviewEnrollDate } </p> ${rev.reviewContent }</td>
+								</tr>
+							<tfoot>
+					</table>
+					</c:forEach>
+					</c:if>
+				
+								</div>
 
+								
+								
 								<script src="resources/user/js/jquery-1.11.3.min.js"></script>
 								<script src="resources/user/js/star.js"></script>
-								<br> <br> <br>
-								<div class="feedeback">
-									<h6>Your Feedback</h6>
-									<textarea name="feedback" class="form-control" cols="5"
-										rows="5"></textarea>
-									<div class="mt-10 text-right">
-										<a href="#" class="btn_1">Read more</a>
-									</div>
-
-								</div>
+								
+								
 							</div>
 							<!-- 패키지    -->
 							<!-- 크리에이터 -->
-							<div class="tab-pane fade" id="Eligibility">
-								<h4 class="title">Eligibility</h4>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-								eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-								enim ad minim veniam, quis nostrud exercitation ullamco laboris
-								nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-								in reprehenderit in voluptate velit esse cillum. <br> <br>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-								eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-								enim ad minim veniam, quis nostrud exercitation ullamco laboris
-								nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in
-								reprehenderit in voluptate velit esse cillum. Lorem ipsum dolor
-								sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-								incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-								veniam, quis nostrud exercitation ullamco laboris nisi ut
-								aliquip ex ea commodo consequat. Duis aute irure dolor in
-								reprehenderit in voluptate velit esse cillum.
+							<div class="tab-pane fade" id="Tutor">
+								<h4 class="title">Tutor</h4>
+								${creator.introduction }
+								${creator.career}
+								${creator.education}
+								
 							</div>
+							
 
 							<!-- 커리큘럼 -->
-							<div class="tab-pane fade" id="CourseOutline">
-								<h4 class="title">Course Outline</h4>
+							<div class="tab-pane fade" id="Curriculum">
+								<h4 class="title">Curriculum</h4>
 								<ul class="course_list">
 									<li class="justify-content-between align-items-center d-flex">
 										<p>Introduction Lesson</p> <a class="btn_2 text-uppercase"
@@ -450,31 +396,40 @@ star-input>.input.focus {
 								class="justify-content-between d-flex" href="#">
 									<p>Course Fee</p> 
 									<c:if test="${ c.courseKind eq 'online' }">
-										<span>${ c.coursePrice+c.courseMaterialPrice }</span>
+										<span>${ c.coursePrice }</span>
 									</c:if> 
 									<c:if test="${ c.courseKind eq 'offline' }">
-										<span>${ c.courseHourPrice*c.courseHour*c.courseCount } </span>
+										<span>${ c.coursePrice } </span>
 									</c:if>
 							</a></li>
 							<li style="width: 100%;"><a
-								class="justify-content-between d-flex" href="#">
+								class="justify-content-between d-flex">
 									<p>Available Seats</p> <c:if
 										test="${ c.courseKind eq 'offline' }">
 										<span>${c.courseCurrentNum}</span>
 									</c:if> <c:if test="${ c.courseKind eq 'online' }">
 										<span>${c.courseCurrentNum}</span>
 									</c:if>
-							</a></li>
-							<li style="width: 100%;"><c:if test="${!empty loginUser }">
-									<c:if test="${checkLove == true }">
-										<span><img src="resources/creator/images/like.png"
-											id="love" onclick="cancelLove();"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									</a></li>
+							<li style="width: 100%;">
+							
+								<c:if test="${!empty loginUser }">
+									<c:if test="${checkLove > 0 }">
+										<span>
+										<img src="resources/creator/images/like.png" id="love" onclick="cancelLove();">
+										</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     </c:if>
-									<c:if test="${checkLove == false }">
-										<span><img src="resources/creator/images/nlike.png"
-											id="love" onclick="insertLove();"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<c:if test="${checkLove < 1 }">
+										<span>
+										<img src="resources/creator/images/nlike.png" id="love" onclick="insertLove();">
+										</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                       </c:if>
-								</c:if> <script>
+									</c:if> 
+									
+									<script>
+									$(function () {
+										console.log(${checkLove });
+									});
 	                                      	function insertLove(){
 	                                      		var memNum='${loginUser.memNum}';
 	                                      		var courseNum='${c.courseNum}';
@@ -519,33 +474,68 @@ star-input>.input.focus {
 	                                      		})
 	                                      	
 	                                      	}
-	                                      </script> <span> <script
-										type="text/javascript"
-										src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
-									<script type="text/javascript">
+	                                      </script>
+	                                      <!-- 네이버 -->
+	                                       <span> 
+	                                       <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
+										<script type="text/javascript">
                                         new ShareNaver.makeButton({"type": "e"});
                                         </script>
+                                         
+<!-- 카카오2 -->
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+<a href="javascript:void(0);" onclick="sendLink();" id="kakao-link-btn1">
+<img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" width="10px" />
+</a>
+
+<script type="text/javascript">
+  //<![CDATA[
+   function sendLink(){
+    Kakao.init('bfd4cd7749e2b1ffca24a00eeb5aaabc');
+    // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+    Kakao.Link.createDefaultButton({
+      container: '#kakao-link-btn1',
+      objectType: 'feed',
+      content: {
+        title: document.title,
+        description: '내용, 주로 해시태그',
+        imageUrl: document.images[0].src,
+        link: {
+          webUrl: document.location.href,
+          mobileWebUrl: document.location.href
+        }
+      },
+      social: {
+        likeCount: 286,
+        commentCount: 45,
+        sharedCount: 845
+      },
+      buttons: [
+        {
+          title: 'Open!',
+          link: {
+            mobileWebUrl: document.location.href,
+            webUrl: document.location.href
+          }
+        }  
+      ]
+    });
+   };
+  //]]>
+</script>
 
 							</span></li>
 
 
 						</ul>
 
-						<c:if test="${ c.courseKind eq 'online' }">
-							<c:url value="coBuyOn.do" var="coBuyOn">
+						
+							<c:url value="coBuy.do" var="coBuyOn">
 								<c:param name="courseNum" value="${ c.courseNum }" />
-
 							</c:url>
 							<a href="${ coBuyOn }" class="btn_1 d-block">수강하기</a>
-						</c:if>
-						<c:if test="${ c.courseKind eq 'offline' }">
-							<c:url value="coBuyOff.do" var="coBuyOff">
-								<c:param name="courseNum" value="${ c.courseNum }" />
-
-							</c:url>
-							<a href="${ coBuyOff }" class="btn_1 d-block">수강하기</a>
-						</c:if>
-
+						
 					</div>
 
 					<!-- 레이팅 -->

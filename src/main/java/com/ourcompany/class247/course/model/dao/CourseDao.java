@@ -14,9 +14,10 @@ import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Single;
+import com.ourcompany.class247.review.model.vo.ReviewReply;
 
 @Repository("coDao")
 public class CourseDao {
@@ -180,6 +181,7 @@ public class CourseDao {
         }
           return co;
    }
+  
    
    public ArrayList<Love> selectLove() {
       
@@ -241,7 +243,9 @@ public class CourseDao {
         
          return co;
       }
-
+public int insertRReview(Review review) {
+	return sqlSession.insert("courseMapper.insertRReview",review);
+}
    @SuppressWarnings({ "unchecked", "rawtypes" })
    public ArrayList<Course> modalsearchList(String search){
       return (ArrayList)sqlSession.selectList("courseMapper.modalsearchList",search);
@@ -306,14 +310,10 @@ public class CourseDao {
    public ArrayList<Course> categoryCareerList() {
       return (ArrayList)sqlSession.selectList("courseMapper.categoryCareerList");
    }
-   public boolean checkLove(Love love) {
+   public int checkLove(Love love) {
       
-      boolean checkLove=false;
-      int result=sqlSession.selectOne("courseMapper.checkLove",love);
-      if(result>0) {
-         checkLove=true;
-      }
-      return checkLove;
+	  return sqlSession.selectOne("courseMapper.checkLove",love);
+      
    }
    public int insertLove(Love iLove) {
       
@@ -327,12 +327,49 @@ public class CourseDao {
     
     return sqlSession.selectOne("courseMapper.coursePayment", courseNum);
 	}
+   public CourseAttachment selectCA(int courseNum) {
+	   return sqlSession.selectOne("courseMapper.selectCA",courseNum);
+   }
 	public ArrayList<Review> selectRlist(int courseNum) {
 		
 		return (ArrayList)sqlSession.selectList("courseMapper.selectRlist",courseNum);
 	}
+	public int getReviewReplyListCount(int courseNum) {
+		return sqlSession.selectOne("courseMapper.getReviewReplyListCount", courseNum);
+	}
 	
+	public ArrayList<ReviewReply> selectRReplyList(int courseNum, PageInfo rpi) {
+		int offset = (rpi.getCurrentPage() - 1) *rpi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, rpi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("courseMapper.selectRReplyList", courseNum, rowBounds);
+	}
+	public int insertReviewReply(ReviewReply rr) {
+		return sqlSession.insert("courseMapper.insertReviewReply",rr);
+	}
+	public int insertRReviewReply(ReviewReply rr) {
+		return sqlSession.insert("courseMapper.insertRReviewReply",rr);
+	}
+	public Creator selectCreator(int creNum) {
+		return sqlSession.selectOne("courseMapper.selectCreator",creNum);
+	}
+public ReviewReply selectParentReply(int rReplyNum) {
+		
+		return sqlSession.selectOne("noticeMapper.selectParentReply", rReplyNum);
+	}
+	public int selectChild(int rReplyNum) {
+		return sqlSession.selectOne("noticeMapper.selectChild", rReplyNum);
+	}
+	public int updateReplyY(int rReplyNum) {
+		return sqlSession.update("noticeMapper.updateReplyY", rReplyNum);
+	}
 	
+	public int updateReplyN(int rReplyNum) {
+		return sqlSession.update("noticeMapper.updateReplyN", rReplyNum);
+	}
+	public int updateReply(ReviewReply rr) {
+		return sqlSession.update("courseMapper.updateReply",rr);
+	}
 	public int selectMemberCount() {
 		return sqlSession.selectOne("courseMapper.selectMemberCount");
 	}

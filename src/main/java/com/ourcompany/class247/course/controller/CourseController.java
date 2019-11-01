@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +24,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.common.Pagination;
+import com.ourcompany.class247.common.ReplyPagination;
 import com.ourcompany.class247.course.model.service.CourseService;
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
@@ -35,8 +37,10 @@ import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 import com.ourcompany.class247.member.model.service.MemberService;
 import com.ourcompany.class247.member.model.vo.Member;
+import com.ourcompany.class247.notice.model.vo.NoticeReply;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
+import com.ourcompany.class247.review.model.vo.ReviewReply;
 
 @Controller
 public class CourseController {
@@ -255,10 +259,12 @@ public class CourseController {
 		ArrayList<SingleCourse> poplist = coService.selectPopList(); // 인기 강의 조회
 		ArrayList<Course> list = coService.selectList();			 // MD 추천 조회
 		
+		
 		int memberCount = coService.selectMemberCount();			 // 멤버 숫자
 		int creCount = coService.selectCreCount();					 // 크리에이터 숫자
 		int onlineCourseCount = coService.onlineCourseCount();			 // 온라인 강의 숫자
 		int offlineCourseCount = coService.offlineCourseCount();			 // 온라인 강의 숫자
+		
 
 		mv.addObject("list", list);
 		mv.addObject("poplist", poplist);
@@ -281,25 +287,36 @@ public class CourseController {
 	public ModelAndView courseDetail(int courseNum, String courseKind, ModelAndView mv, HttpServletRequest request) {
 		
 		Member loginUser=(Member)request.getSession().getAttribute("loginUser");
-		ArrayList<Review> rlist = coService.selectRlist(courseNum); 
+		ArrayList<Review> revlist = coService.selectRlist(courseNum); 
+		CourseAttachment ca= coService.selectCA(courseNum);
 		
-		boolean checkLove=false;
+		int checkLove=1;
 		if(loginUser !=null) {
-			Love love= new Love(courseNum, loginUser.getMemNum());
+			
+			
+			
+			Love love= new Love();
+			
+			love.setCourseNum(courseNum);
+			love.setMemNum(loginUser.getMemNum());
+			
+			
 			
 			checkLove= coService.checkLove(love); 
 		}
+		
+		
+		
 		Course c = coService.selectCourse(courseNum);
 		
+		Creator creator= coService.selectCreator(c.getCreNum());
+		
 		if(c != null) {
-			mv.addObject("c", c)
-			.addObject("checkLove", checkLove).addObject("rlist", rlist)
+			mv.addObject("c", c).addObject("ca", ca)
+			.addObject("checkLove", checkLove).addObject("revlist", revlist).addObject("creator", creator)
 		    .setViewName("user/course/userCourseDetail");
-			System.out.println(c);
 			
-		}else {
-			mv.addObject("msg", "게시글 상세조회실패!")
-			  .setViewName("common/errorPage");
+			
 		}
 		
 		return mv;
@@ -562,50 +579,31 @@ public class CourseController {
       
    }
    
-   @RequestMapping("coBuyOn.do")
-   public ModelAndView coursePaymentOn(HttpServletRequest request,int courseNum, String courseKind, ModelAndView mv) {
-      Course c;
-      Member loginUser = (Member)request.getSession().getAttribute("loginUser");
-      
-         if(loginUser ==null) {
-            mv.setViewName("user/member/loginForm");
-         }else {
-         
-             c = coService.selectOnline(courseNum);
-         
-         System.out.print(c);
-         
-         if(c != null) {
-            mv.addObject("c", c)
-            .setViewName("creator/course/userCourseDetail2");
-            
-         }else {
-            mv.addObject("msg", "게시글 상세조회실패!")
-            .setViewName("common/errorPage");
-         }
-      }
-      
-      return mv;
-      
-   }
-   @RequestMapping("coBuyOff.do")
-   public ModelAndView coursePaymentOff(HttpServletRequest request,int courseNum, String courseKind, ModelAndView mv) {
+   @RequestMapping("coBuy.do")
+   public ModelAndView coursePayment(HttpServletRequest request,int courseNum, String courseKind, ModelAndView mv) {
 	   		Course c;
 	   		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 	      
 	         if(loginUser ==null) {
+	        	request.getSession().setAttribute("coNumNext", courseNum);
 	            mv.setViewName("user/member/loginForm");
 	         }else {
 	            	c = coService.selectCourse(courseNum);
-	            	System.out.println(c);
+	            	
          
-         if(c != null) {
+         if(c != null && c.getCourseKind().equals("offline")) {
             mv.addObject("c", c)
             .setViewName("user/course/userCourseDetailOff");
             
+         }else if(c != null && c.getCourseKind().equals("online")){
+        	 System.out.println(c);
+        	 mv.addObject("c", c)
+        	 
+             .setViewName("user/course/userCourseDetail2");
+        	 
          }else {
-            mv.addObject("msg", "게시글 상세조회실패!")
-            .setViewName("common/errorPage");
+        	 mv.addObject("msg", "게시글 상세조회실패!")
+             .setViewName("common/errorPage");
          }
 	   }
       
@@ -648,7 +646,145 @@ public class CourseController {
 	      }
 	      
 	   }
+//	로그인 회원 리뷰 인서트 하기
+   @ResponseBody
+   @RequestMapping("RInsert.do")
+   public String Rinsert(HttpServletRequest request, int courseNum, String rContent, int reviewScore) {
+	   
+	   Member loginUser = (Member)request.getSession().getAttribute("loginUser");	   
+	   int memNum=loginUser.getMemNum();
+	   
+	   Review review= new Review();
+	   review.setCourseNum(courseNum);
+	   review.setMemNum(memNum);
+	   review.setReviewContent(rContent);
+	   review.setReviewScore(reviewScore);
+	   
+	   int result = coService.insertRReview(review);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+   }
    
+   /**
+	 * 댓글 리스트 불러오기
+	 * @param currentPage
+	 * @param response
+	 * @param courseNum
+	 * @throws JsonIOException
+	 * @throws IOException
+	 */
+	@ResponseBody
+	@RequestMapping("reviewReplyList.do")
+	public void selectReviewReply(@RequestParam(value="currentPage", required=false, defaultValue="0") int currentPage,  HttpServletResponse response, int courseNum) throws JsonIOException, IOException {
+		
+		int listCount = coService.getReviewReplyListCount(courseNum);
+			
+		PageInfo rpi = ReplyPagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<ReviewReply> rrList = coService.selectRReplyList(courseNum, rpi);
+		
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new Gson();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("rrList", rrList);
+		map.put("rpi", rpi);
+		gson.toJson(map, response.getWriter());
+			
+	}
+	
+	/**
+	 * 
+	 * 대댓글 작성
+	 * @param memNum
+	 * @param rContent
+	 * @param noticeNum
+	 * @param parentId
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("aRRRInsert.do")
+	public String aRNRInsert(HttpServletRequest request, String rContent, int courseNum, int parentId) {
+		
+		ReviewReply rr = new ReviewReply();
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");	   
+		   int memNum=loginUser.getMemNum();
+		   
+		rr.setMemNum(memNum);
+		rr.setRevReplyContent(rContent);
+		rr.setReviewNum(courseNum);
+		
+		ReviewReply parent = coService.selectParentReply(parentId);
+		
+		
+		rr.setRevReplyParentNum(parent.getRevReplyParentNum());
+		rr.setRevReplyDepth(parent.getRevReplyDepth()+1);
+		
+		System.out.println(rr);
+		
+		int result = coService.insertRReviewReply(rr);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+		
+	}
+	
+	/**
+	 * 댓글 삭제
+	 * @param nReplyNum
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("aRRDelete.do")
+	public String aNRDelete(int revReplyNum) {
+		
+		int count = coService.selectChild(revReplyNum);
+		
+		System.out.println(count);
+		
+		int result;
+		
+		if(count > 0 ) {
+			result = coService.updateReplyY(revReplyNum);
+		}else {
+			result = coService.updateReplyN(revReplyNum);
+		}
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+			
+	}
+	
+	@ResponseBody
+	@RequestMapping("aRRRUpdate.do")
+	public String aRNRUpdate(String rContent, int nReplyNum) {
+		
+		ReviewReply rr = new ReviewReply();
+		
+		rr.setRevReplyContent(rContent);
+		rr.setRevReplyNum(nReplyNum);
+		
+		int result = coService.updateReply(rr);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+		
+	}
+	
    @RequestMapping("goOnline.do")
    public ModelAndView onlinecategoryList(ModelAndView mv) {
       ArrayList<Course> craftsList = coService.onlinecategoryCraftsList();
