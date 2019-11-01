@@ -10,6 +10,7 @@ import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.creator.model.vo.Creator;
+import com.ourcompany.class247.course.model.vo.Video;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
 import com.ourcompany.class247.review.model.vo.ReviewReply;
@@ -53,7 +54,9 @@ public interface CourseService {
 	int rejectCourse(int courseNum);
 	
 	Course selectCourse(int courseNum, String courseKind);
-
+	
+	ArrayList<SingleCourse> allCourseList();
+	
 	//클래스리스트 가지고 오기	
 	ArrayList<Course> selectList();
 	
@@ -72,7 +75,7 @@ public interface CourseService {
 	/*사용자 페이지*/
 	
 	//페이징처리
-	int getListCount();
+	int getListCount(int memNum);
 
 	//찜하기 리스트 가져오기
 	ArrayList<Love> lovelist(int memNum, PageInfo pi);
@@ -189,4 +192,6 @@ public interface CourseService {
 		
 		// 8. 댓글 작성하기 
 		int insertReview(Review r);
+
+	int insertVideo(Video v);
 }

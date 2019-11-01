@@ -15,6 +15,7 @@ import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.creator.model.vo.Creator;
+import com.ourcompany.class247.course.model.vo.Video;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
 import com.ourcompany.class247.review.model.vo.ReviewReply;
@@ -130,6 +131,78 @@ public class CourseDao {
 
       return sqlSession.update("courseMapper.allowCourse", courseNum);
    }
+	
+	  public Course selectCourse(int courseNum) {
+		  return sqlSession.selectOne("courseMapper.selectCourse", courseNum); 
+		  }
+	/* 
+	 * public Course selectCourse(int courseNum, String courseKind) { Course co;
+	 * if(courseKind.equals("online")) { //온라인 클래스일경우 co =
+	 * sqlSession.selectOne("courseMapper.selectOnline", courseNum); } else {
+	 * //오프라인클래스일 경우 co = sqlSession.selectOne("courseMapper.selectOffline",
+	 * courseNum); } return co; }
+	 */
+	
+	
+	
+	
+	
+	
+	public int rejectCourse(int courseNum) {
+		
+		return sqlSession.update("courseMapper.rejectCourse", courseNum);
+	}
+	
+	public ArrayList<SingleCourse> allCourseList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.allCourseList");
+	}
+	
+
+	
+	
+	//김은기
+	public ArrayList<Course> selectList(){
+		return (ArrayList)sqlSession.selectList("courseMapper.selectList");
+	}
+	
+	
+	public int countLove(int courseNum) {
+		return sqlSession.selectOne("courseMapper.countLove", courseNum);
+	}
+	
+	
+	
+	public Course selectCourse(int courseNum, String courseKind) {
+	      Course co;
+	      if(courseKind.equals("online")) { //온라인 클래스일경우
+	         co = sqlSession.selectOne("courseMapper.selectOnline", courseNum);
+	      } else { //오프라인클래스일 경우 
+	         co = sqlSession.selectOne("courseMapper.selectOffline", courseNum);
+
+		  }
+			 return co;
+	}
+	
+	public ArrayList<Love> selectLove() {
+		
+		return (ArrayList)sqlSession.selectList("courseMapper.selectLove");
+	}
+	
+	public ArrayList<SingleCourse> awaitSelectList() {
+		
+		return (ArrayList)sqlSession.selectList("courseMapper.awaitCourseList");
+	
+	
+	}
+	
+	public ArrayList<SingleCourse> selectMyTakeCourse(int memNum) {
+		
+		return (ArrayList)sqlSession.selectList("courseMapper.selectMyTakeCourse", memNum);
+	}
+	
+	
+	
+	//사용자 단
 	public ArrayList<SingleCourse> selectPopList(){
 		return (ArrayList)sqlSession.selectList("courseMapper.selectPopList");
 	}
@@ -206,6 +279,9 @@ public class CourseDao {
 	
 	public int insertReview(Review r) {
 		return sqlSession.insert("courseMapper.insertReview", r);
+	public int getListCount(int memNum) {
+
+		return sqlSession.selectOne("courseMapper.getListCount",memNum);
 	}
 	
    
@@ -503,4 +579,8 @@ public ReviewReply selectParentReply(int rReplyNum) {
       return (ArrayList)sqlSession.selectList("courseMapper.mySingleCourseList", creNum);
    }
    
+
+	public int insertVideo(Video v) {
+		return sqlSession.insert("courseMapper.insertVideo", v);
+	}
 }

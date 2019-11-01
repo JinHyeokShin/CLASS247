@@ -1651,7 +1651,7 @@
   }
 
   // Chatbox
-  try {
+  	try {
     var inbox_wrap = $('.js-inbox');
     var message = $('.au-message__item');
     message.each(function(){
@@ -1659,6 +1659,10 @@
 
       that.on('click', function(){
         $(this).parent().parent().parent().toggleClass('show-chat-box');
+    	  /*var courseId = $(this).children().eq(0).val();*/
+    	  
+    
+    	  
       });
     });
     

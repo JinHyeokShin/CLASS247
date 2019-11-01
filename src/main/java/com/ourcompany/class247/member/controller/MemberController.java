@@ -17,7 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -49,7 +48,6 @@ public class MemberController {
 	
 	@Autowired
 	private PaymentService pService;
-	
 	
 	/**
 	 * 1. 로그인폼으로 이동.
@@ -178,6 +176,7 @@ public class MemberController {
 	public String memUpdate() {
 		return "user/member/memUpdate";
 	}
+	
 	@RequestMapping("introduce.do")
 	public String intoduce() {
 		return "user/introduce/introduce";
@@ -251,6 +250,8 @@ public class MemberController {
 		if(!why.equals("")) { //주소 작성해서 값이 넘어왔을 경우
 			m.setMemAddress(why);	
 		}
+		
+		
 
 		
 	Member loginUser = mService.loginMember(m);
@@ -268,7 +269,7 @@ public class MemberController {
 				return "redirect:logout.do";
 			}else {
 				model.addAttribute("msg", "회원정보수정실패");
-				return "common/errorPage";
+				return "user/common/errorPage";
 			}
 		}else {
 			response.setContentType("text/html; charset=UTF-8");
@@ -315,6 +316,22 @@ public class MemberController {
 		
 		return mv;
 	}
+	
+	@RequestMapping("goUnBlack.do")
+	public String aUpdateUnBlack(int memNum) {
+		
+		int result = mService.updateUnBlackList(memNum);
+		
+		if(result > 0 ) {
+			return "redirect:aBlackList.do";
+		}else {
+			return "common/errorPage";
+		}
+		
+		
+	}
+	
+
 	
 	
 	@RequestMapping("aMemDetail.do")
@@ -370,7 +387,7 @@ public class MemberController {
 		
 		if(result > 0) {
 			
-			return "redirect:blackList.do";
+			return "redirect:aBlackList.do";
 			
 		}else {
 			
@@ -380,10 +397,22 @@ public class MemberController {
 		
 	}
 	
+	@RequestMapping("aMemberList.do")
+	public ModelAndView selectMemberList(ModelAndView mv) {
+		
+		ArrayList<Member> list = mService.selectMemberList();
+		
+		int sizee = list.size();
+		
+		mv.addObject("list", list).addObject("sizee", sizee).setViewName("admin/member/memberList");
+		
+		return mv;
+		
+	}
+	
 	@RequestMapping("updateMemProfile.do")
 	public ModelAndView updateMemProfile(@RequestParam(name="profile", required=false) MultipartFile profile,
 			HttpServletRequest request, ModelAndView mv) {
-		System.out.println(profile.getOriginalFilename());
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 		
 		int result;
@@ -442,7 +471,9 @@ public class MemberController {
 	      return renameFileName;
 	   }
 	   
+
 	
+
 	
 	
 	//----------------------------------------------------------------------------------

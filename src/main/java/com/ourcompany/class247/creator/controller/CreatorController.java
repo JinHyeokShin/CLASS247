@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
 import com.ourcompany.class247.course.model.service.CourseService;
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
@@ -27,6 +30,7 @@ import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 import com.ourcompany.class247.member.model.service.MemberService;
 import com.ourcompany.class247.member.model.vo.Member;
 import com.ourcompany.class247.payment.model.service.PaymentService;
+import com.ourcompany.class247.payment.model.vo.Chart;
 
 @SessionAttributes("creator")
 @Controller
@@ -64,6 +68,10 @@ public class CreatorController {
 			String creProfile = creService.getCreProfile(creNum);
 			request.getSession().setAttribute("creProfile", creProfile);
 			ArrayList<Course> list = coService.selectMyCoList(creNum);
+			
+			for(Course c : list) {
+				System.out.println(c);
+			}
 			ArrayList<CourseAttachment> coverList = coService.selectCoverList(creNum);
 			mv.addObject("list", list).addObject("coverList", coverList);
 			mv.addObject("creator", creator).addObject("totalStuCount", totalStuCount).addObject("classCount", classCount).addObject("totalAmount",totalAmount);
@@ -215,8 +223,8 @@ public class CreatorController {
 			if(result > 0) {
 				System.out.println(result);
 				mv.addObject("creator", newCre);
-				mv.addObject("msg", "정보수정이 완료되었습니다.");
-				mv.setViewName("creator/creatorCenter");
+				request.getSession().setAttribute("msg", "정보수정이 완료되었습니다.");
+				mv.setViewName("redirect:creatorInfo.do");
 			}
 			
 		}
@@ -224,12 +232,26 @@ public class CreatorController {
 		return mv;
 	}
 	
+	/** 크리에이터 프로필 사진 변경 
+	 * @param profile
+	 * @param request
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("updateProfile.do")
-	public String updateCreatorProfile(@RequestParam(name="file", required=false) MultipartFile profile) {
-		System.out.println(profile.getOriginalFilename());
+	public String updateCreatorProfile(@RequestParam(name="file", required=false) MultipartFile profile,
+										HttpServletRequest request) {
+		Creator creator = (Creator)request.getSession().getAttribute("creator");
+		String rename = saveFile(profile, request);
+		CreatorAttachment update = new CreatorAttachment(creator.getCreNum(), profile.getOriginalFilename(), rename);
+		int result = creService.updateProfile(update);
 		
-		return "오케이";
+		if( result > 0) {
+			request.getSession().setAttribute("creProfile", rename);
+			return rename;
+		} else {
+			return "fail";
+		}
 	}
 	
 	
@@ -296,13 +318,33 @@ public class CreatorController {
 	}
 	
 	@RequestMapping("aCreatorList.do")
-	public ModelAndView aCreatorList(ModelAndView mv) {
+	public ModelAndView selectCreatorList(ModelAndView mv) {
 		
-		ArrayList<Creator> list = creService.creSelectList();
+		ArrayList<Creator> list = creService.selectCreatorList();
 		
-		mv.addObject("list", list).setViewName("admin/creator/creatorList");
+		String i;
+		
+		for(Creator c : list) {
+			
+			if((c.getIntroduction()).length() > 10) {
+			
+				i = c.getIntroduction();
+			
+				i.substring(0, 8);
+				
+				i = i+"..";
+				
+				c.setIntroduction(i);
+			}
+				
+		}
+		
+		int sizee = list.size();
+		
+		mv.addObject("list", list).addObject("sizee", sizee).setViewName("admin/member/creatorList");
 		
 		return mv;
+		
 	}
 	
 	@RequestMapping("deleteCreator.do")
@@ -321,6 +363,35 @@ public class CreatorController {
 		
 		return mv;
 		
+	}
+	
+	
+	
+	/** 차트 구하기 
+	 * @param month
+	 */
+	@RequestMapping("getChart.do")
+	public void getChart(@RequestParam(name="month") int month, HttpServletResponse response) throws JsonIOException, IOException{
+		Chart chart = new Chart();
+		chart.setCourseNum(113);
+		chart.setCreNum(3);
+		chart.setForMonth(month);
+		ArrayList<Chart> list = creService.getChart(chart);
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		for(Chart c: list) {
+			System.out.println(c);
+		}
+		
+		Gson gson = new Gson();
+		gson.toJson(list, response.getWriter());
+	}
+	
+	@RequestMapping("powerLink.do")
+	public String goMDpage() {
+		
+		return "creator/MD/MDregister";
 	}
 	
 

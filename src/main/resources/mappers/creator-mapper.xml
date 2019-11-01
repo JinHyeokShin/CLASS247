@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<id property="creNum" column="cre_num"/>
 		<result property="creName" column="mem_name"/>
 		<result property="memNum" column="mem_num"/>
-		<result property="mem_NickName" column="mem_nick_name"/>
+		<result property="memNickName" column="mem_nickname"/>
 		<result property="introduction" column="introduction"/>
 		<result property="career" column="career"/>
 		<result property="education" column="education"/>
@@ -40,6 +40,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="approvedDate" column="approved_date"/>
 		<result property="endDate" column="endDate"/>
 		<result property="creStatus" column="cre_status"/>	
+	</resultMap>
+	
+	<resultMap id="chartResultMap" type="Chart">
+		<id property="salaryNum" column="salary_num"/>
+		<result property="creNum" column="cre_num"/>
+		<result property="courseNum" column="course_num"/>
+		<result property="amount" column="amount"/>
+		<result property="forMonth" column="for_month"/>
+		<result property="paidDate" column="paid_date"/>
+		<result property="salaryStatus" column="salary_status"/>
 	</resultMap>
 
 	<select id="selectCreator" parameterType="_int" resultMap="creatorResultSet">
@@ -147,16 +157,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where cre_num=#{creNum}
 	</select>
 	
-	<select id="selectCreatorList" resultMap="singleCreatorResultSet">
+	<select id="selectCreatorList" resultMap="creatorResultSet">
 		select *
 		from creator
+		join member using(mem_num)
 		order by cre_num desc
 	</select>
 	
-	<select id="aselectCreatorAttachmentList" resultMap="creatorAttachmentResultSet">
+	<select id="aSelectCreatorAttachmentList" resultMap="creatorAttachmentResultSet">
 		select *
 		from creator_attachment
 		where coa_level = 1
 		order by cre_num desc
 	</select>
+	
+	<update id="updateProfile" parameterType="CreatorAttachment">
+		update creator_attachment 
+		set cra_rname = #{craRname}, cra_oname=#{craOname}
+		where cre_num = #{creNum}
+	</update>
+	
+	<select id="selectChart" parameterType="Chart" resultMap="chartResultMap">
+		select for_month, amount
+		from salary_record 
+		where cre_num = #{creNum}
+		and for_month between #{forMonth}-5 and #{forMonth}
+		order by for_month
+	</select>
+	
+	
+	
 </mapper>

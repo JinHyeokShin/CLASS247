@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.payment.model.dao.PaymentDao;
+import com.ourcompany.class247.payment.model.vo.Complete;
 import com.ourcompany.class247.payment.model.vo.Delivery;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.payment.model.vo.TakeCourse;
@@ -17,13 +19,13 @@ private PaymentDao pDao;
 	
 	
 	@Override
-	public ArrayList<Payment> payonlist(int memNum) {
+	public ArrayList<TakeCourse> payonlist(int memNum) {
 		
 		return pDao.payonlist(memNum);
 	}
 
 	@Override
-	public ArrayList<Payment> payofflist(int memNum) {
+	public ArrayList<TakeCourse> payofflist(int memNum) {
 		
 		return pDao.payofflist(memNum);
 	}
@@ -63,8 +65,59 @@ private PaymentDao pDao;
 
 	@Override
 	public ArrayList<Payment> selectPowerList() {
-		
+		// TODO Auto-generated method stub
 		return pDao.selectPowerList();
+	}
+
+	@Override
+	public ArrayList<SingleCourse> selectPowerListY() {
+		
+		return pDao.selectPowerListY();
+	}
+	
+	@Override
+	public ArrayList<Delivery> selectDeliveryList() {
+		return pDao.selectDeliveryList();
+	}
+	
+	@Override
+	public Delivery aDeliverDetail(int deliveryNum) {
+		return pDao.aDeliverDetail(deliveryNum);
+	}
+	
+	@Override
+	public int updateDeliStatus(Delivery d) {
+		return pDao.updateDeliStatus(d);
+	}
+	
+	@Override
+	public int paymentCount() {
+		return pDao.paymentCount();
+	}
+	
+	@Override
+	public int powerCount() {
+		return pDao.powerCount();
+	}
+	
+	public int jhinsertPayment(Payment p) {
+		return pDao.jhinsertPayment(p);
+	}
+
+	@Override
+	public int jhinsertTakeCoruse(TakeCourse t) {
+		return pDao.jhinsertTakeCourse(t);
+	}
+
+	@Override
+	public ArrayList<Delivery> memdeliverydetail(String payCode) {
+		
+		return pDao.memdeliverydetail(payCode);
+	}
+	
+	@Override
+	public Complete complete(String payCode) {
+		return pDao.complete(payCode);
 	}
 
 

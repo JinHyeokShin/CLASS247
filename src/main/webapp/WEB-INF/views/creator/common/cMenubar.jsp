@@ -37,6 +37,15 @@
     <link href="<c:url value="/resources/creator/css/theme.css"/>" rel="stylesheet" media="all">
 <meta charset="UTF-8">
 <title>Creator Menubar</title>
+<style>
+	.navbar-sidebar2 .navbar__list li.active > a{
+		color:#555;
+	}
+	
+		.navbar-sidebar2 .navbar__list li.active > a:hover{
+		color:#007bff;
+	}
+</style>
 </head>
 <body class="animsition">
 
@@ -136,7 +145,7 @@
                             <i class="fas fa-chart-bar"></i>통계</a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="powerLink.do">
                             <i class="fas fa-trophy"></i>MD등록</a>
                         </li>
                         <li>

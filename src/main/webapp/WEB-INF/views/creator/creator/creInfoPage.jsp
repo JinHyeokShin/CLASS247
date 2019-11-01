@@ -13,6 +13,16 @@
 <body>
 	<c:import url="../common/cMenubar.jsp"/>
 	
+	<c:if test="${ !empty msg }">
+		<script>
+		$(function() {
+			alert('${msg}');
+			<% session.removeAttribute("msg"); %>
+			
+		})
+		</script>
+	</c:if>
+	
 	
 			<div class="main-content">
                 <div class="section__content section__content--p30">
@@ -24,7 +34,7 @@
                                         <strong class="card-title mb-3">${loginUser.memName}님의 크리에이터 정보</strong>
                                     </div>
                                     <div class="card-body">
-	                                    <form action="" id="profileUpdateForm" method="post" enctype="multipart/form-data">
+	                                    <form action="updateProfile.do" id="profileUpdateForm" method="post" enctype="multipart/form-data">
 	                                        <div class="mx-auto d-block" align="center">
 	                                        	<div class="image img-cir img-120 creProfile">
 	                                           		<img id="creProfile" src="<%= request.getContextPath() %>/resources/creator/creatorImages/${creProfile}" alt="Class247" />
@@ -34,8 +44,8 @@
 	                                                <i class="fa fa-quote-left"></i> ${ loginUser.memId }<i class="fa fa-quote-right"></i>
 	                                            </div>
 	                                        </div>
-	                                        <div style="display:hidden">
-		                                        <input type="file" id="creProfileBtn" onchange="updateProfile(this)">
+	                                        <div style="display:none">
+		                                        <input type="file" id="creProfileBtn" name="file" onchange="updateProfile()">
 		                                        <button type="submit" id="submitProfileBtn">사진바꾸기</button>
 	                                        </div>
                                         </form>
@@ -54,22 +64,29 @@
                                         		
                                         	
                                         	//프로필 사진 업데이트 
-                                        	function updateProfile(value) {
-                                        		alert(value);
-                                        	
+                                        	function updateProfile() {
+                                        		var formData = new FormData($('#profileUpdateForm')[0]);
+
                                         		
-                                        		$.ajax({
+                                         		$.ajax({
                                         			url:"updateProfile.do",
                                         			type:"post",
-                                        			enctype: 'multipart/form-data',
-                                        			data:{file:value},
+                                        			data:formData,
+                                        			contentType:false,
+                                        			processData:false,
                                         			success:function(data){
-                                        				alert(data);
+                                        				if(data == 'fail'){
+                                        					alert("프로필 사진 변경에 실패하였습니다.");
+                                        				} else {
+                                        					var newPic = "<%= request.getContextPath() %>/resources/creator/creatorImages/" + data;
+                                        					alert(newPic);
+                                        					$('#creProfile').attr("src", "newPic");
+                                        				}
                                         			}
                                         			, error:function(){
                                         				console.log("서버통신실패");
                                         			}
-                                        		});
+                                        		}); 
                                         		
                                         	
                                         	}
@@ -96,7 +113,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="introduction" class="control-label mb-1">자기소개</label>
-                                            	<textarea id="summernote" name="introduction"></textarea>
+                                            	<textarea id="summernote" rows="40" name="introduction"></textarea>
                                             </div>                                            
                                             <div>
                                                 <button type="submit" class="btn btn-lg btn-info btn-block">정보 수정</button>
@@ -116,6 +133,13 @@
              
              <script>
 	             $(document).ready(function() {
+	            	 
+	         		$('#summernote').summernote({
+	      			  height: 300,                 // set editor height
+	      			  minHeight: null,             // set minimum height of editor
+	      			  maxHeight: null, 
+	      			});
+	         		
 		             var markupStr = '${creator.introduction}';
 		             $('#summernote').summernote('code', markupStr);
 	             });

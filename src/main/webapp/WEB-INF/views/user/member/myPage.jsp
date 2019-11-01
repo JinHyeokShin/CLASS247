@@ -57,35 +57,38 @@
             <div class="col-sm-6 col-xl-2"></div>
                 <div class="col-sm-6 col-xl-3">
                     <div class="single_feature">
-                        <div class="single_feature_part">
-                            <a href="memUpdate.do">
-                            <img src="resources/user/img/notepad.png"></a>
+                       <a href="memUpdate.do">
+                        <div class="single_feature_part"> 
+                            <img src="resources/user/img/notepad.png">
                             <br><br> <br><br> 
                             <h4>회원 정보 수정</h4>
                             <br><br>
                         </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-sm-6 col-xl-3">
                     <div class="single_feature">
+                       <a href="memDelete.do">
                         <div class="single_feature_part">
-                            <a href="memDelete.do">
-                            <img src="resources/user/img/exit.png"></a>
+                            <img src="resources/user/img/exit.png">
                             <br><br> <br><br> 
                             <h4>회원 정보 탈퇴</h4>
                             <br><br>
                         </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-sm-6 col-xl-3">
                     <div class="single_feature">
+                       <a href="memClass.do">
                         <div class="single_feature_part single_feature_part_2">
-                            <a href="memClass.do">
-                            <img src="resources/user/img/presentation.png"></a>
+                            <img src="resources/user/img/presentation.png">
                              <br><br> <br><br> 
                             <h4>나의 수강 내역</h4>
                             <br><br>
                         </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -99,35 +102,38 @@
             <div class="col-sm-6 col-xl-2"></div>
                 <div class="col-sm-6 col-xl-3">
                     <div class="single_feature">
+                      <a href="memCoupon.do">
                         <div class="single_feature_part">
-                            <a href="memCoupon.do">
-                            <img src="resources/user/img/voucher.png"></a>
+                            <img src="resources/user/img/voucher.png">
                             <br><br> <br><br> 
                             <h4>나의 쿠폰 목록</h4>
                             <br><br>
                         </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-sm-6 col-xl-3">
                     <div class="single_feature">
+                       <a href="memZzim.do">
                         <div class="single_feature_part">
-                            <a href="memZzim.do">
-                            <img src="resources/user/img/heart.png"></a>
+                            <img src="resources/user/img/heart.png">
                             <br><br> <br><br> 
                             <h4>나의 찜하기 목록</h4>
                             <br><br>
                         </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-sm-6 col-xl-3">
                     <div class="single_feature">
+                       <a href="memDelivery.do">
                         <div class="single_feature_part single_feature_part_2">
-                           <a href="memDelivery.do">
-                           <img src="resources/user/img/truck.png"></a>
+                           <img src="resources/user/img/truck.png">
                              <br><br> <br><br> 
                             <h4>주문 및 배송 목록</h4>
                             <br><br>
                         </div>
+                        </a>
                     </div>
                 </div>
             </div>

@@ -14,6 +14,7 @@ import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.creator.model.vo.Creator;
+import com.ourcompany.class247.course.model.vo.Video;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
 import com.ourcompany.class247.review.model.vo.ReviewReply;
@@ -155,6 +156,11 @@ public class CourseServiceImpl implements CourseService {
 		return coDao.selectList();
 	}
 	
+	@Override
+	public ArrayList<SingleCourse> allCourseList() {
+		return coDao.allCourseList();
+	}
+	
 
 //	@Override
 //	public int coursePayment(int courseNum, String courseKind) {
@@ -192,9 +198,9 @@ public class CourseServiceImpl implements CourseService {
 	//사용자 단
 
 	@Override
-	public int getListCount() {
+	public int getListCount(int memNum) {
 		
-		return coDao.getListCount();
+		return coDao.getListCount(memNum);
 	}
 
 	@Override
@@ -530,6 +536,13 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public CourseAttachment selectCA(int courseNum) {
 		return coDao.selectCA(courseNum);
+	public Course selectCourse(int courseNum, String courseKind) {
+		return coDao.selectCourse(courseNum, courseKind);
+	}
+
+	@Override
+	public int insertVideo(Video v) {
+		return coDao.insertVideo(v);
 	}
 
 	

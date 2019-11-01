@@ -45,6 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<id property="rNum" column="rownum"/>
 		<result property="givecouponNum" column="givecoupon_Num"/>
 		<result property="memNum" column="mem_num"/>
+		<result property="memId" column="mem_id"/>
 		<result property="givecouponEnrolledDate" column="givecoupon_enrolled_date"/>
 		<result property="givecouponUsingDate" column="givecoupon_using_date"/>
 		<result property="givecouponStatus" column="givecoupon_status"/>
@@ -61,9 +62,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="couponDiscount" column="coupon_discount"/>
 		<result property="couponStartDate" column="coupon_start_date"/>
 		<result property="couponEndDate" column="coupon_end_date"/>
-		<result property="amount" column="amount"/>
+		<result property="amount" column="c_count"/>
 	</resultMap>
-	
 	
 	 <!-- 1. 로그인 -->
 	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
@@ -89,7 +89,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 4. 회원 정보 탈퇴 -->
 	<update id="deleteMember" parameterType="Member">
 		update member
-		set mem_address=#{memAddress}, mem_status='N'
+		set mem_address=#{memAddress}, mem_status='N', out_date=sysdate
 		where mem_id=#{memId} 
 	</update>
 	
@@ -103,10 +103,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 6. 페이지처리 구문 -->
-	<select id="getListCount" resultType="_int">
+	<select id="getListCount" parameterType="_int" resultType="_int" >
 		select count(*)
 		from givecoupon
-		where givecoupon_status='Y'
+		where mem_num=#{memNum} and givecoupon_status='Y'
 	</select>
 	
 	
@@ -121,6 +121,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectMemberList" parameterType="Member" resultMap="memberResultSet">
 		select *
 		from member
+		order by
+		decode (mem_type,'U',1,'C', 2)
 	</select>
 	
 	
@@ -154,7 +156,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectBlackList" resultMap="memberResultSet">
 		select *
 		from member
-		where mem_status = 'N' and out_date is not null
+		where mem_status = 'B'
 	</select> 
 	
 	<select id="getStuCount" parameterType="_int" resultType="_int">
@@ -187,47 +189,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where mem_num = #{memNum}
 	</select>
 	
-	<select id="updateBlackList" resultType="_int">
+	<select id="updateBlackList" parameterType="_int" resultType="_int">
 		update member
-		set mem_status = 'N', out_date = sysdate
+		set mem_status = 'B', out_date = sysdate
 		where mem_num = #{memNum}
 	</select>
 	
 	<select id="selectCouponList" resultMap="couponResultSet">
-		        select coupon_type, coupon_name, coupon_discount, coupon_start_date, coupon_end_date, count(*) "C_COUNT"
-        from (            
-            select coupon_type, coupon_name, coupon_discount, coupon_start_date, coupon_end_date, count(*) "C_COUNT"
-            from coupon
-            join givecoupon using(coupon_type)
-            where givecoupon_status = 'Y'
-            group by coupon_type, coupon_name, coupon_discount, coupon_start_date, coupon_end_date
-            order by C_COUNT DESC
-            )
-        group by coupon_type, coupon_name, coupon_discount, coupon_start_date, coupon_end_date
-            
-
-        UNION
-        select coupon_type, coupon_name, coupon_discount, coupon_start_date, coupon_end_date, count(*) "C_COUNT"
-        from (
-            select coupon_type, coupon_name, coupon_discount, coupon_start_date, coupon_end_date, count(*) "C_COUNT"
-            from coupon
-            join givecoupon using(coupon_type)
-            where givecoupon_status = 'N'
-            group by coupon_type, coupon_name, coupon_discount, coupon_start_date, coupon_end_date
-            order by coupon_start_date desc
-            )
-        group by coupon_type, coupon_name, coupon_discount, coupon_start_date, coupon_end_date
+		select *
+		from coupon_view
 	</select>
 	
 	<select id="selectCoupon" parameterType="_int" resultMap="couponResultSet">
 		select *
-		from coupon
+		from coupon_view
 		where coupon_type = #{couponType}
 	</select>
 	
 	<select id="selectGiveCouponList" parameterType="_int" resultMap="giveCouponResultSet">
 		select *
 		from givecoupon
+		join member using(mem_num)
 		where coupon_type = #{couponType}
 		order by givecoupon_status desc
 	</select>
@@ -242,6 +224,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(givecoupon_seq.nextval, #{memNum}, #{couponType}, sysdate, null, 'Y')
 		
 	</insert>
+	
+	<update id="updateUnBlackList" parameterType="_int">
+		update member
+		set mem_status = 'Y', out_date = null
+		where mem_num = #{memNum}
+	</update>
 	
 
 </mapper>

@@ -32,6 +32,7 @@ import com.ourcompany.class247.course.model.vo.Love;
 import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
+import com.ourcompany.class247.course.model.vo.Video;
 import com.ourcompany.class247.creator.model.service.CreatorService;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
@@ -224,11 +225,12 @@ public class CourseController {
     * 내 클래스관리 -> 클래스 디테일 (수강정보 + 수강생정보)
     */
    @RequestMapping("myCourseDetail.do")
-   public ModelAndView myCourseDetail(int courseNum, String courseKind, ModelAndView mv) {
-      
+   public ModelAndView myCourseDetail(@RequestParam(value="courseNum") int courseNum, String courseKind, ModelAndView mv) {
       Course course = coService.selectCourse(courseNum, courseKind);
       CourseAttachment cover = coService.selectCover(courseNum);
       ArrayList<Member> stuList = mService.selectStuByCo(courseNum);
+      
+      
       
       /* System.out.println(course); */
       
@@ -239,6 +241,50 @@ public class CourseController {
       
       return mv;
    }
+   
+   // 온라인 동영상 추가하기 페이지로 이동 
+   @RequestMapping("goAddVideoPage.do")
+   public ModelAndView goAddVideoPage(@RequestParam(value="courseNum") int courseNum, ModelAndView mv) {
+	   mv.addObject("courseNum", courseNum).setViewName("creator/course/addVideoPage");	  
+	   
+	   return mv;
+   }
+   
+   @RequestMapping("addOnlineVideo.do")
+   public ModelAndView insertOnlineVideo(@RequestParam(value="courseNum") int courseNum, @RequestParam(value="videoContent") String videoContent, 
+		   @RequestParam(value="videoTitle") String videoTitle,@RequestParam(value="videoUrl") String videoUrl,
+		   ModelAndView mv) {
+	   
+	   String[] contentArr = videoContent.split(",");
+	   String[] titleArr = videoTitle.split(",");
+	   String[] urlArr = videoUrl.split(",");
+	   String[] url = new String[urlArr.length];
+	   for(int i=0; i<urlArr.length; i++) {
+		   url[i] = urlArr[i].substring(17);
+	   }
+	   
+	   if(url.length > 0) {
+		   for(int i=0; i<url.length; i++) {
+			   Video v = new Video(courseNum, url[i], titleArr[i],  contentArr[i]);
+			   int result = coService.insertVideo(v);
+			   if(result > 0)  {
+				   
+				   System.out.println(url.length + "개 동영상 추가 완료!");
+				   mv.setViewName("creator/creatorCenter");
+		   }
+		   }
+		   
+	   } else {
+		   
+		   mv.setViewName("common/error");
+		   
+	   }
+	   return mv;
+	   //String url = videoUrl.substring(17, videoUrl.length());
+	   //System.out.println("url = " + url);
+   }
+   
+   
 
 	//김은기
 	
@@ -379,6 +425,40 @@ public class CourseController {
       }
    }
    
+   @RequestMapping("aCourseList.do")
+   public ModelAndView aCourseList(ModelAndView mv) {
+	   
+	   ArrayList<SingleCourse> list = coService.allCourseList();
+	   
+	   int sizee = list.size();
+	   
+	   mv.addObject("list", list).addObject("sizee", sizee).setViewName("admin/course/courseList");
+	   
+	   return mv;
+	   
+	   
+   }
+   
+   @RequestMapping("aCourseDetail.do")
+   public ModelAndView aCourseDetail(ModelAndView mv, int courseNum) {
+	   
+	   String courseKind = (coService.selectCourse(courseNum)).getCourseKind();
+	      
+	      Course course = coService.selectCourse(courseNum, courseKind);
+	      CourseAttachment cover = coService.selectCover(courseNum);
+	      ArrayList<Member> stuList = mService.selectStuByCo(courseNum);
+	      
+	      System.out.println(course);
+	      
+	      mv.addObject("co", course);
+	      mv.addObject("cover", cover);
+	      mv.addObject("stuList", stuList);
+	      mv.setViewName("admin/course/courseDetail");
+	      
+	      return mv;
+	   
+   }
+   
    
    
    
@@ -389,26 +469,24 @@ public class CourseController {
     * 1. 찜하기폼으로 이동.
     * @return
     */
-   @RequestMapping("memZzim.do")
-   public ModelAndView memZzim(HttpServletRequest request, ModelAndView mv, @RequestParam(value="currentpage", required=false, defaultValue="1")int currentPage ) {
-      Member loginUser = (Member)request.getSession().getAttribute("loginUser");
-      int memNum = loginUser.getMemNum();
-      int listCount = coService.getListCount();
-      PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-      ArrayList<Love> lovelist = coService.lovelist(memNum, pi);
-
-      mv.addObject("pi",pi).addObject("lovelist", lovelist);
-      mv.setViewName("user/member/memZzim");
-
-      
-   
-      
-      return mv;
-   }
-   
-   
-   
-   
+	@RequestMapping("memZzim.do")
+	public ModelAndView memZzim(HttpServletRequest request, ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1")int currentPage ) {
+		
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+		
+		int memNum = loginUser.getMemNum();
+		int listCount = coService.getListCount(memNum);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Love> lovelist = coService.lovelist(memNum, pi);
+		
+		mv.addObject("pi",pi).addObject("lovelist", lovelist).addObject("listCount", listCount);
+		mv.setViewName("user/member/memZzim");
+	
+		
+		return mv;
+	}
    /*
     * 
     * SingleCourse
@@ -426,61 +504,33 @@ public class CourseController {
       
       return mv;
    }
-   
-   
-   @RequestMapping("mZzim.do")
-   public ModelAndView mZzim(HttpServletRequest request, ModelAndView mv, @RequestParam(name="check") int check
-         , @RequestParam(value="currentpage", required=false, defaultValue="1")int currentPage) {
-   
-   Member loginUser = (Member)request.getSession().getAttribute("loginUser");
-   
-   //String[] checklist = check.split(",");
-   //for(String c : checklist) { }
-      int memNum = loginUser.getMemNum();
-      int listCount = coService.getListCount();
-      PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-      ArrayList<Love> lovelist = coService.lovelist(memNum, pi);
+	
+	
+	@RequestMapping("mZzim.do")
+	public String mZzim(HttpServletRequest request, Model model, HttpServletResponse response , @RequestParam(name="check") String[] check) {
+		
+	Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+	
+	int memNum = loginUser.getMemNum();
+	int result = 0;
 
-      for(Love l : lovelist ) {
-          Love i = new Love();
-          i.setMemNum(memNum);
-          i.setCourseNum(check);
-          coService.deleteLove(i);
-         }
-   
+	for(int a =0; a<check.length; a++) {
+		Love i = new Love();
 
-      mv.setViewName("user/member/memZzim");
-      return mv;
-   }
-   @ResponseBody
-	@RequestMapping("rinsert.do")
-	public String insertReply(Review r, HttpSession session) {
+		i.setMemNum(memNum);
 		
-		int id = ((Member)session.getAttribute("loginUser")).getMemNum();
+		i.setCourseNum(Integer.parseInt(check[a]));
 		
-		r.setMemNum(id); // 작성한 회원 아이디 담기
-		
-		int result = coService.insertReview(r);
-		
-		if(result > 0) {
-			return "success";
+		result += coService.deleteLove(i);
+
+	};
+	
+
+		if(result == check.length) {
+			return "redirect:memZzim.do";
 		}else {
-			return "fail";
+			return "common/errorPage";
 		}
-		
-	}
-   @RequestMapping("rlist.do")
-	public void getReplyList(int rId, HttpServletResponse response) throws JsonIOException, IOException {
-		
-		ArrayList<Review> list = coService.selectReviewList(rId);
-		
-		//System.out.println(list);
-		
-		response.setContentType("application/json; charset=utf-8");
-		
-		Gson gson = new Gson();
-		gson.toJson(list, response.getWriter());
-		
 		
 	}
 
@@ -596,11 +646,8 @@ public class CourseController {
             .setViewName("user/course/userCourseDetailOff");
             
          }else if(c != null && c.getCourseKind().equals("online")){
-        	 System.out.println(c);
         	 mv.addObject("c", c)
-        	 
-             .setViewName("user/course/userCourseDetail2");
-        	 
+             .setViewName("user/course/userCourseDetailOn");
          }else {
         	 mv.addObject("msg", "게시글 상세조회실패!")
              .setViewName("common/errorPage");
@@ -610,26 +657,7 @@ public class CourseController {
       return mv;
       
    }
-   @RequestMapping("coBuy2.do")
-   public ModelAndView coursePayment2(Online online,int courseNum, ModelAndView mv) {
-      Course c;
-      
-             c = coService.selectOnline(courseNum);
-        
-         System.out.print(c);
-         
-         if(c != null) {
-            mv.addObject("c", c)
-            .setViewName("user/course/userCourseDetail3");
-            
-         }else {
-            mv.addObject("msg", "게시글 상세조회실패!")
-            .setViewName("common/errorPage");
-         }
-      
-      return mv;
-      
-   }
+  
    @ResponseBody
    @RequestMapping("insertpayment.do")
    public String insertPayment(HttpServletRequest request,Course c, Offline offline, Model model,
@@ -860,5 +888,6 @@ public class CourseController {
    
       return mv;
    }
+	
 
 }

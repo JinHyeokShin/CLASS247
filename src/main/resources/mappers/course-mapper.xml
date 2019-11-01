@@ -74,6 +74,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             </case>
          </discriminator>
    </resultMap>
+   
    <resultMap id="ReviewResultSet" type="Review">
       <id property="reviewNum" column="review_num"/>
       <result property="courseNum" column="course_num"/>
@@ -121,6 +122,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          <result property="courseHourPrice" column="course_hour_price"/>
                <result property="coursePrice" column="course_price"/>
                <result property="courseArea" column="courseArea"/>
+               <result property="courseStatus" column="course_status"/>
+               <result property="courseCurrentNum" column="course_current_num"/>
             
    </resultMap>
    
@@ -150,6 +153,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 <resultMap id="DeliveryResultSet" type="Delivery">
 		<id property="deliveryNum" column="delivery_num"/>
 		<result property="payNum" column="pay_num"/>
+		<result property="payCode" column="pay_code"/>
 		<result property="deliveryAddress" column="delivery_address"/>
 		<result property="deliveryStatus" column="delivery_status"/>
 		<result property="payDate" column="pay_date"/>
@@ -158,6 +162,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="courseTitle" column="course_title"/>
 		<result property="courseMaterial" column="course_material"/>
 		<result property="memNum" column="mem_num"/>
+		<result property="payMethod" column="pay_method"/>
+		<result property="coursePrice" column="course_price"/>
 	</resultMap>
 <resultMap id="creatorResultSet" type="Creator">
 		<id property="creNum" column="cre_num"/>
@@ -172,6 +178,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="approvedDate" column="approved_date"/>
 		<result property="endDate" column="end_date"/>
 		<result property="creStatus" column="cre_status"/>	
+	</resultMap>
+
+	<resultMap type="Payment" id="PaymentResultSet">
+	<id property="payNum" column="pay_num"/>
+	<result property="memNum" column="mem_num"/>
+	<result property="courseNum" column="course_num"/>
+	<result property="courseTitle" column="course_title"/>
+	<result property="payPrice" column="pay_price"/>
+	<result property="payMethod" column="pay_method"/>
+	<result property="payCancel" column="pay_cancel"/>
+	<result property="payDate" column="pay_date"/>
+	<result property="payCancelDate" column="pay_cancel_date"/>
 	</resultMap>
 	<select id="selectCreator" parameterType="_int" resultMap="creatorResultSet">
 		select * 
@@ -336,9 +354,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 1. 페이지처리 구문 -->
-	<select id="getListCount" resultType="_int">
+	<select id="getListCount" parameterType="_int" resultType="_int">
 		select count(*)
 		from love_view
+		where mem_num = #{memNum}
 	</select>
 	
 	<select id="modalsearchList" parameterType="String" resultMap="SingleCourseResultSet">
@@ -363,6 +382,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			select *
 			from single_course_view
 			where category_name = #{categoryName} and course_approved='Y' and course_status='Y'
+	</select>
+	
+	<select id="aDeliverDetail" parameterType="_int" resultMap="DeliveryResultSet">
+		select *
+		from user_delivery_view
+		where delivery_num = #{deliveryNum}
 	</select>
 	
 	<!-- 찜하기  -->
@@ -413,7 +438,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="memdelivery" resultMap="DeliveryResultSet">
 	select *
 	from user_delivery_view
-	where mem_num= #{memNum}
+	where mem_num=#{memNum}
+	</select>
+	
+	<!-- 배송정보 상세페이지 보여주기 -->
+	<select id="selectmemdeliverydetailList" resultMap="DeliveryResultSet">
+	select *
+	from user_delivery_view
+	where pay_code= #{payCode}
 	</select>
    
 	
@@ -459,6 +491,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where cre_num = #{creNum} and course_status in ('Y', 'E', 'N')
         
 	</select>
+	
+	<select id="allCourseList" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+		order by
+		decode (course_approved,'N',1,'B',2)
+	
+	</select>
+	
 	
 	<select id="selectMyTakeCourse" resultMap="SingleCourseResultSet">
 		select *
@@ -629,6 +670,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where rev_reply_num = #{revReplyNum}
 	</update>
 	
+	<select id="selectPowerListY" parameterType="_int" resultMap="SingleCourseResultSet">
+		select *
+		from single_course_view
+        where course_num in (select course_num
+                             from power
+                             where power_status = 'n')
+    
+	</select>
+	
+	<select id="selectDelivery" resultMap="DeliveryResultSet">
+		select *
+		from user_delivery_view
+	</select>
+
+
+	
+	
 	<!-- 온라인 카테고리  -->
 	<select id="onlinecategoryCraftsList" resultMap="SingleCourseResultSet">
 		select *
@@ -782,4 +840,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from course
 		where course_kind = 'offline'
 	</select>
+	
+	<insert id="insertVideo" parameterType="Video">
+		insert into video_course 
+		values(video_course_seq.nextval, #{onlineNum}, #{videoPath}, #{videoTitle}, #{videoContent})
+	</insert>
+	
+	
 </mapper>

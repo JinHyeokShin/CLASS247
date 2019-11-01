@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
+import com.ourcompany.class247.payment.model.vo.Chart;
 
 @Repository("creDao")
 public class CreatorDao {
@@ -121,8 +122,25 @@ public class CreatorDao {
 		return (ArrayList)sqlSession.selectList("creatorMapper.selectCreatorList");
 	}
 
+	/** 크리에이터 프로필 사진명 가져오기 
+	 * @param creNum
+	 * @return
+	 */
 	public String getCreProfile(int creNum) {
 		return sqlSession.selectOne("creatorMapper.getCreProfile", creNum);
+	}
+
+	/** 크리에이터 프로필 사진 변경 
+	 * @param updateProfile
+	 * @return
+	 */
+	public int updateProfile(CreatorAttachment updateProfile) {
+		return sqlSession.update("creatorMapper.updateProfile", updateProfile);
+	}
+
+	public ArrayList<Chart> getChart(Chart chart) {
+		ArrayList<Chart> list = (ArrayList)sqlSession.selectList("creatorMapper.selectChart", chart);
+		return list;
 	}
 
 }
