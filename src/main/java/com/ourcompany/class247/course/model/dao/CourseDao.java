@@ -467,4 +467,9 @@ public class CourseDao {
 	public int insertVideo(Video v) {
 		return sqlSession.insert("courseMapper.insertVideo", v);
 	}
+	
+	//클래스 삭제 
+	public int deleteCourse(int courseNum) {
+		return sqlSession.update("courseMapper.deleteCourse2", courseNum);
+	}
 }

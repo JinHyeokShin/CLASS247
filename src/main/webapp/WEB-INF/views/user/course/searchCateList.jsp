@@ -36,7 +36,7 @@
 						</c:url>
 						<div class="item">
 							<div class="single_special_cource">
-								<img src="resources/user/img/test1.jpeg" class="special_img"
+								<img src="resources/course/images/${co.coaRName}" class="special_img"
 									alt="" onclick="location.href=${codetail}">
 								<div class="special_cource_text">
 									<a class="btn_4">${ co.categoryName }</a>

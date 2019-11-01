@@ -121,7 +121,7 @@
 						</c:url>
                         <div class="item" >
                             <div class="single_special_cource">
-                                <img src="resources/user/img/test1.jpeg" class="special_img" alt="" onclick="location.href=${codetail}">
+                                <img src="resources/course/images/${co.coaRName}" class="special_img" alt="" onclick="location.href=${codetail}">
                                 <div class="special_cource_text">
                                     <a class="btn_4">${ co.categoryName }</a>
                                     <c:if test="${ co.courseKind eq 'online'}">
@@ -181,7 +181,7 @@
 						</c:url>
                         <div class="item" >
                             <div class="single_special_cource">
-                                <img src="resources/user/img/test1.jpeg" class="special_img" alt="" onclick="location.href=${codetail}">
+                                <img src="resources/course/images/${co.coaRName}" class="special_img" alt="" onclick="location.href=${codetail}">
                                 <div class="special_cource_text">
                                     <a class="btn_4">${ po.categoryName }</a>
                                     <c:if test="${ po.courseKind eq 'online'}">

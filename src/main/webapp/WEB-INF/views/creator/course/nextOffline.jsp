@@ -40,7 +40,7 @@
                                                 <div class="form-group">
                                               	  <label for="categoryNum" class=" form-control-label">수업등록지역(대표)*</label> <br>
                                                   <div class="col-md-5" style="display:inline-block">
-                                                 	   <select name="area" id="area" class="form-control" onchange="showCityBox(this)">
+                                                 	   <select name="area" id="area" class="form-control" onchange="showCityBox(this)" required>
                                                  	 	  <option value="">대표지역을 선택해주세요</option>
                                                   	      <option value="서울">서울</option>
                                                   	      <option value="경기">경기</option>
@@ -54,7 +54,7 @@
                                                  	   </select>
                                                	 </div>
                                                	 <div class="col-md-5" style="display:inline-block">
-                                                 	   <select name="city" id="city" class="form-control" onchange="checkCity(this);">
+                                                 	   <select name="city" id="city" class="form-control" onchange="checkCity(this);" required>
                                                   	      <option value="">------</option>
 
                                                  	   </select>
@@ -115,8 +115,8 @@
                                                 <div class="form-group">
                                                     <label class=" form-control-label">수업 참원 인원</label><br>
                                                     <div>
-                                                    	<input type="number" name="courseMinPax" placeholder="최소인원수" class="form-control" style="width:200px; display:inline-block">명 ~ 
-                                                    	<input type="number" name="courseMaxPax" placeholder="최대인원수" class="form-control" style="width:200px;display:inline-block">명 
+                                                    	<input type="number" name="courseMinPax" id="courseMinPax" placeholder="최소인원수" class="form-control" style="width:200px; display:inline-block" required>명 ~ 
+                                                    	<input type="number" name="courseMaxPax" id="courseMaxPax" placeholder="최대인원수" class="form-control" style="width:200px;display:inline-block" required>명 
                                                     </div>
                                                     <small class="help-block form-text">&nbsp;class247 수강생들이 선호하는 그룹수업은 평균적으로 2~6인 내외입니다.</small>
                                                 </div>                                                
@@ -124,8 +124,8 @@
                                                 <div class="form-group">
                                                     <label class=" form-control-label">수업 날짜/시간</label><br>
                                                     <div>
-                                                    	<input type="date" name="courseStartDate" class="form-control" style="width:200px; display:inline-block"> ~ 
-                                                    	<input type="date" name="courseEndDate" class="form-control" style="width:200px;display:inline-block">
+                                                    	<input type="date" name="courseStartDate" id="courseStartDate" class="form-control" style="width:200px; display:inline-block" required> ~ 
+                                                    	<input type="date" name="courseEndDate" id="courseEndDate" class="form-control" style="width:200px;display:inline-block" required>
                                                     </div>  
                                                     <small class="help-block form-text">수업 시작일과 종료일을 입력해주세요(최소 1개월)</small><br>
                                                     &nbsp;
@@ -172,16 +172,77 @@
 								                			reader.readAsDataURL(value.files[0]);
 								                		}
 								                	}
+								                	
+								                	
+								                	
+								                	$(function() {
+								                		
+								                		$('#courseMinPax').on("change", function(){
+								                			var min = $('#courseMinPax').val();
+								                			
+								                			if(min < 1) {
+								                				alert('최소인원은 1명 이상 가능합니다.');
+								                				$('#courseMinPax').val('');
+								                				$('#courseMinPax').focus();
+								                			}
+								                		});
+								                		
+								                		
+/* 
+								                		$('#courseMaxPax').on("change", function(){
+								                			var min = $('#courseMinPax').val();
+								                			var max = $('#courseMaxPax').val();
+								                			console.log(min + "min");
+								                			console.log(max + "max");
+								                			if(max < min) {
+								                				alert('최대인원은 최소인원보다 커야합니다. ');
+								                				$('#courseMaxPax').val('');
+								                				$('#courseMaxPax').focus();
+								                			}
+								                		}); */
+								                		
+								                		
+								                		$('#courseStartDate').on("change", function(){
+								                			var start = $('#courseStartDate').val();
+								                			var startDate = new Date(start);
+								                			var today = new Date();
+								                			if(startDate < today) {
+								                				alert("오늘 이전 날짜는 입력이 불가합니다.");
+								                				$('#courseStartDate').val('');
+								                				$('#courseStartDate').focus();
+								                			} 
+								                		});
+								                		
+								                		
+								                		$('#courseEndDate').on("change", function(){
+								                			var start = $('#courseStartDate').val();
+								                			var end = $('#courseEndDate').val();
+								                			var endDate = new Date(end);
+								                			var startDate = new Date(start);
+								                			var newDate = startDate.setMonth(startDate.getMonth() + 1);
+								                			
+								                			if(endDate < newDate) {
+								                				alert("클래스 시작날로 부터 최소 1개월 이상 가능합니다.");
+								                				$('#courseEndDate').val('');
+								                				$('#courseEndDate').focus();
+								                			} else if(start == '') {
+								                				alert('시작일을 먼저 선택해주세요.');
+								                				$('#courseEndDate').val('');
+								                				$('#courseStartDate').focus();
+								                			} 
+								                		});
+
+								                	})
 								                </script>
                                                 
                                                 <div class="form-group">
                                                     <label class=" form-control-label">수업 가격*</label><br>
                                                     <div class="">
-                                                       <input type="number" placeholder="ex) 10000" id="courseHourPrice" name="courseHourPrice" class="form-control" style="width:300px; display:inline-block"> 원 &nbsp;&nbsp;
+                                                       <input type="number" placeholder="ex) 10000" id="courseHourPrice" name="courseHourPrice" class="form-control" style="width:300px; display:inline-block" required> 원 &nbsp;&nbsp;
                                                  	   <small class="help-block form-text">시간당 수업 가격을 입력하세요.</small><br>
-                                                  	   <input type="number" placeholder="ex) 1" id="courseHours" name="courseHours" class="form-control" style="width:300px; display:inline-block"> 시간                              
+                                                  	   <input type="number" placeholder="ex) 1" id="courseHours" name="courseHours" class="form-control" style="width:300px; display:inline-block" required> 시간                              
                                                   	   <small class="help-block form-text">1회당 수업 시간을 입력하세요.</small><br>
-                                                  	   <input type="number" placeholder="ex) 4" id="courseCount" name="courseCount" class="form-control" style="width:300px; display:inline-block"> 회                         
+                                                  	   <input type="number" placeholder="ex) 4" id="courseCount" name="courseCount" class="form-control" style="width:300px; display:inline-block" required> 회                         
                                                   	   <small class="help-block form-text">총 수업횟수를 입력하세요</small><br>
                                                     </div>
                                                     <div style="background-color: #e6b3ff; width:90%; height:100px; text-align:center; margin-left:auto; margin-right:auto;">
@@ -230,7 +291,7 @@
                                                 </script> 
                                                 <hr>
                                                 <div class="form-group">
-                                                	<img src="resources/creator/images/offline.jpg">
+                                                	<img src="resources/creator/images/offline.JPG">
                                                 </div>                                 
 		                                        <div style="text-align:center">
 		                                            <button type="submit" class="btn btn-primary btn-sm">

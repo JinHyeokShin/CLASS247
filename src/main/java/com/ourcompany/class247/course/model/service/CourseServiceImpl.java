@@ -466,5 +466,14 @@ public class CourseServiceImpl implements CourseService {
 	public int insertVideo(Video v) {
 		return coDao.insertVideo(v);
 	}
+	
+	
+	/** 클래스 삭제 
+	 *
+	 */
+	@Override
+	public int deleteCourse(int courseNum) {
+		return coDao.deleteCourse(courseNum);
+	}
 
 }

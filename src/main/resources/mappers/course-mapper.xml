@@ -75,16 +75,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          </discriminator>
    </resultMap>
    
-   <resultMap id="ReviewResultSet" type="Review">
+	<resultMap id="ReviewResultSet" type="Review">
       <id property="reviewNum" column="review_num"/>
       <result property="courseNum" column="course_num"/>
       <result property="memNum" column="mem_num"/>
+      <result property="memNickname" column="mem_nickname"/>
+      <result property="memName" column="mem_name"/>
       <result property="reviewContent" column="review_content"/>
       <result property="reviewScore" column="review_score"/>
-      <result property="reviewEnrollDate" column="review_eroll_date"/>
+      <result property="reviewEnrollDate" column="review_enroll_date"/>
       <result property="reviewModifyDate" column="review_modify_date"/>
       <result property="reviewStatus" column="review_status"/>   
+      <result property="memProfileName" column="mem_profile_name"/>
    </resultMap>
+   
+   
    <resultMap id="ReviewAttachmentResultSet" type="ReviewAttachment">
 		<id property="raNum" column="ra_num"/>
 		<result property="reviewNum" column="review_num"/>
@@ -115,7 +120,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="courseEnrollDate" column="course_enroll_date"/>
       <result property="courseStartDate" column="course_start_date"/>   
       <result property="courseEndDate" column="course_end_date"/>
-      <result property="coaRName" column="course_rname"/>
+      <result property="coaRName" column="coa_rname"/>
       <result property="loveCount" column="love_count"/>
          <result property="courseHourPrice" column="course_hour_price"/>
                <result property="coursePrice" column="course_price"/>
@@ -189,6 +194,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteCourse" parameterType="Course">
 		delete course where course_num = #{courseNum}
 	</delete>
+	
+	<!-- 크리에이터가 클래스 삭제시.. -->
+	<update id="deleteCourse2" parameterType="_int">
+		update course
+		set course_status='D'
+		where course_num = #{courseNum}
+	</update>
 	
 	
 	<!-- 1_1. 온라인 클래스 추가 쿼리  -->
@@ -564,8 +576,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	where mem_num=#{memNum} and course_num=#{courseNum}
 	</delete>
 	
-	<select id="selectRlist" resultMap="ReviewResultSet">
-		select * from review
+<select id="selectRlist" resultMap="ReviewResultSet">
+		select review_num, course_num, m.mem_nickname "mem_nickname",m.mem_name "mem_name" , m.mem_profile_name "mem_profile_name", review_content,review_score, review_enroll_date, review_modify_date, review_status
+		from review r
+        join member m on(r.mem_num=m.mem_num)
         where review_status='Y' and course_num=#{courseNum}
 	</select>
 	
@@ -749,6 +763,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into video_course 
 		values(video_course_seq.nextval, #{onlineNum}, #{videoPath}, #{videoTitle}, #{videoContent})
 	</insert>
+	
+
 	
 	
 </mapper>

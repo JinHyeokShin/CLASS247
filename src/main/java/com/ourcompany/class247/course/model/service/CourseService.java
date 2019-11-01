@@ -156,4 +156,8 @@ public interface CourseService {
 	int insertPayment(Payment payment);
 
 	int insertVideo(Video v);
+	
+	
+	//클래스 삭제 
+	int deleteCourse(int courseNum);
 }

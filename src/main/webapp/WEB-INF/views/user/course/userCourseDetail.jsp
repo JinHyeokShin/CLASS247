@@ -204,7 +204,7 @@
                                                                 <img src="resources/user/img/cource/cource_1.png" alt="">
                                                             </div>
                                                             <div class="desc">
-                                                                <h5>${rv.memNum}</h5>
+                                                                <h5>${rv.memNickname}</h5>
                                                                 <span class="star-input">
 												<span class="input">
 											    	<input type="radio" name="star-input" value="1" id="p1">
@@ -447,10 +447,20 @@
                                     <c:param name="courseNum" value="${ c.courseNum }" />
                                     <c:param name="creNum" value="${c.creNum}" />
                                 </c:url>
-                                <a href="${ openChat }" class="btn_1 d-block">1:1 채팅</a>
+                                <a href="${ openChat }" class="btn_1 d-block" onclick="return loginOnly()">1:1 채팅</a>
                                 <script>
                                     function takeAlert() {
                                         alert("이 강의는 꽉 찼어요 다음 기회에 뵈어요 !");
+                                    }
+                                    
+                                    function loginOnly(){
+
+                                        if ('${ loginUser.memNum }' == "") {
+                                            alert("로그인 후 사용할 수 있는 서비스입니다.");
+                                            return false;
+                                        } else {
+                                            return true;
+                                        }
                                     }
                                 </script>
 

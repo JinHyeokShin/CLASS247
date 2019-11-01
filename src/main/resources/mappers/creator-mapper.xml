@@ -141,7 +141,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*)
 		from course 
 		where cre_num=#{creNum}
-		and course_status = 'Y' 
+		and COURSE_APPROVED = 'Y' 
 	</select>
 	
 	<select id="getCreProfile" parameterType="_int" resultType="string">
