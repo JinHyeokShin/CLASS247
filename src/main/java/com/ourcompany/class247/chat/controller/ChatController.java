@@ -124,21 +124,60 @@ public class ChatController {
 		return mv;
 	}
 	
-	
 	@RequestMapping("userChattingView.do")
 	public ModelAndView userChattingView(HttpServletRequest request, ModelAndView mv) {
-		Creator creator = (Creator)request.getSession().getAttribute("creator");
-		
-		/*
-		 * if(creator != null) { String creNum = "C" +
-		 * Integer.toString(creator.getCreNum()); ArrayList<ChatList> chatList =
-		 * chService.selectChatList(creNum); System.out.println(creNum); for (ChatList
-		 * ch : chatList) { System.out.println(ch); } mv.addObject("chatList",
-		 * chatList);
-		 * 
-		 * } mv.setViewName("creator/cChatList");
-		 */
+		Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+
+		ArrayList<ChatList> chatList = chService.selectUserChatList(loginUser.getMemNum());
+		System.out.println("memID : " + loginUser.getMemNum());
+			for (ChatList ch : chatList) {
+				System.out.println(ch);				
+		}
+		mv.addObject("chatList", chatList);
+		mv.setViewName("creator/userChatList");
+
 		return mv;
 	}
+	
 
+	@RequestMapping("userChatDetail.do")
+	public ModelAndView userChatDetail(ModelAndView mv, @RequestParam(value="chatListNum") int roomId, @RequestParam(value="creNum") String creNum) {
+		
+		int num = Integer.parseInt(creNum.substring(1));
+		Creator c = chService.selectCreator(num);
+		mv.addObject("c", c);
+		mv.addObject("roomId", roomId);
+		mv.setViewName("creator/userChatDetail");
+		return mv;
+	}
+	
+	
+	@RequestMapping("deleteChat.do")
+	public ModelAndView deleteChat(@RequestParam(value="chatListNum") int chatListNum, ModelAndView mv) {
+		int result = chService.deleteChat(chatListNum); 
+		if(result > 0 ) {
+			mv.addObject("msg", "채팅방을 나갔습니다.");
+			mv.setViewName("redirect:userChattingView.do");
+		} else { //실패
+			mv.addObject("msg", "채팅방 나가기 실패");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	
+		@RequestMapping("deleteCreChat.do")
+		public ModelAndView deleteCreChat(@RequestParam(value="chatListNum") int chatListNum, ModelAndView mv) {
+			int result = chService.deleteChat(chatListNum); 
+			if(result > 0 ) {
+				mv.addObject("msg", "채팅방을 나갔습니다.");
+				mv.setViewName("redirect:cChattingView.do");
+			} else { //실패
+				mv.addObject("msg", "채팅방 나가기 실패");
+				mv.setViewName("common/errorPage");
+			}
+			return mv;
+		}
 }
+	
+

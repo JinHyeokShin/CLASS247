@@ -54,10 +54,10 @@
                                             <div class="bg-overlay bg-overlay--blue" style="background:#954CBC !important;"></div>
                                             <h3>
                                                 <i class="zmdi zmdi-comment-text"></i>Messages</h3>
-                                            <button class="au-btn-plus">
-                                                <i class="fas fa-heart"></i>
+                                            <button class="au-btn-plus" onclick="deleteChat()">
+                                                <i class="fa fa-sign-out"></i>
                                             </button>
-                                        </div>
+                                        </div>  
                                         <div class="au-inbox-wrap js-inbox-wrap show-chat-box">
                                             <div class="au-message js-list-load">
                                                 <div class="au-message-list">
@@ -73,7 +73,7 @@
                                                             </div>
                                                         </div>
                                                         <span class="nick">
-                                                            <a href="#">${c.creName } 튜터</a>
+                                                            <a href="#">${c.creName } 튜터님과의 대화</a>
                                                             <c:if test="${!empty creator.creNum}">
                                                             	<input type="hidden" id="creNum" value="C${creator.creNum}">
                                                             </c:if>
@@ -103,6 +103,15 @@
                 </session>
                 
       <script>
+      
+      function deleteChat(){
+    	  if(confirm('정말 채팅방을 나가시겠습니까?')){
+    		  var roomId = ${roomId}
+    		  location.href = '<%= request.getContextPath() %>/deleteChat.do?chatListNum=' + roomId;
+    	  }
+    	  
+      }
+      
 		$(function(){
 		var roomId = ${roomId};
 			
@@ -147,7 +156,6 @@
 							    var $div3 = $('<div class="recei-mess-list">');
 							    var $div4 = $('<div class="recei-mess">').text(value.chatContent);
 							    
-
 				                var $profile = $('<div class="avatar avatar--tiny">');
 				                var $profile1 =  $(img);
 
@@ -311,7 +319,8 @@
 			    
 
                 var $profile = $('<div class="avatar avatar--tiny">');
-                var $profile1 =  $('<img src="resources/creator/images/icon/avatar-02.jpg">');
+                var img = '<img src="resources/creator/creatorImages/' + '${c.creProfile}'  + '">';
+                var $profile1 =  $(img);
 
 			    
 	 		    //$div.append($time);

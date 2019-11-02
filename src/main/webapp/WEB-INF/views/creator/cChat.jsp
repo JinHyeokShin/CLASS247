@@ -28,8 +28,8 @@
                                             <div class="bg-overlay bg-overlay--blue"></div>
                                             <h3>
                                                 <i class="zmdi zmdi-comment-text"></i>Messages</h3>
-                                            <button class="au-btn-plus">
-                                                <i class="fas fa-heart"></i>
+                                            <button class="au-btn-plus" onclick="deleteChat();">
+                                                <i class="fas fa-sign-out"></i>
                                             </button>
                                         </div>
                                         <div class="au-inbox-wrap js-inbox-wrap show-chat-box">
@@ -76,7 +76,17 @@
                     </div>
                 </session>
                 
-                	<script>
+       <script>
+                    
+         function deleteChat(){
+       	  if(confirm('정말 채팅방을 나가시겠습니까?')){
+       		  var roomId = ${roomId}
+       		  location.href = '<%= request.getContextPath() %>/deleteCreChat.do?chatListNum=' + roomId;
+       	  }
+       	  
+         }	
+                	
+                	
 		$(function(){
 		var roomId = ${roomId};
 			
@@ -285,7 +295,8 @@
 			    
 
                 var $profile = $('<div class="avatar avatar--tiny">');
-                var $profile1 =  $('<img src="resources/creator/images/icon/avatar-02.jpg">');
+                var img = '<img src="resources/user/img/profile/' + '${student.memProfileName}' + '">';
+                var $profile1 =  $(img);
 
 			    
 	 		    //$div.append($time);

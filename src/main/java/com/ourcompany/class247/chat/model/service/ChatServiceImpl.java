@@ -74,5 +74,16 @@ public class ChatServiceImpl implements ChatService {
 	public Creator selectCreator(int creNum) {
 		return chDao.selectCreator(creNum);
 	}
+	
+	//사용자 입장, 채팅 리스트 불러오기 
+	@Override
+	public ArrayList<ChatList> selectUserChatList(int memNum) {
+		return chDao.selectUserChatList(memNum);
+	}
+
+	@Override
+	public int deleteChat(int chatListNum) {
+		return chDao.deleteChat(chatListNum);
+	}
 
 }

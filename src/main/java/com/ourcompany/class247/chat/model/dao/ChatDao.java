@@ -65,4 +65,13 @@ public class ChatDao {
 		return sqlSession.selectOne("chatMapper.selectCreator", creNum);
 	}
 
+	//사용자 입장, 채팅 리스트 불러오기 
+	public ArrayList<ChatList> selectUserChatList(int memNum) {
+		return (ArrayList)sqlSession.selectList("chatMapper.selectUserChatList", memNum);
+	}
+
+	public int deleteChat(int chatListNum) {
+		return sqlSession.update("chatMapper.deleteChat", chatListNum);
+	}
+
 }

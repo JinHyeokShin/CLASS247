@@ -7,14 +7,15 @@ public class ChatList {
 	private int chatListNum;
 	private int courseNum; 
 	private String fromId;
-	private String fromName; 
+	private String fromName; 	//회원이름
 	private String toId;
-	private String toName;
+	private String toName;		//튜터이름
 	private Date lastChatTime;
 	private String lastChatContent;
 	private String readStatus;
 	private String chatStatus;
 	private String stuProfile;	//학생프로필사진
+	private String creProfile;  //튜터 프로필사진
 	
 	ChatList() {}
 	
@@ -26,8 +27,11 @@ public class ChatList {
 		this.toId = toId;
 	}
 
+
+
 	public ChatList(int chatListNum, int courseNum, String fromId, String fromName, String toId, String toName,
-			Date lastChatTime, String lastChatContent, String readStatus, String chatStatus, String stuProfile) {
+			Date lastChatTime, String lastChatContent, String readStatus, String chatStatus, String stuProfile,
+			String creProfile) {
 		super();
 		this.chatListNum = chatListNum;
 		this.courseNum = courseNum;
@@ -40,6 +44,7 @@ public class ChatList {
 		this.readStatus = readStatus;
 		this.chatStatus = chatStatus;
 		this.stuProfile = stuProfile;
+		this.creProfile = creProfile;
 	}
 
 
@@ -133,6 +138,18 @@ public class ChatList {
 	public void setStuProfile(String stuProfile) {
 		this.stuProfile = stuProfile;
 	}
+	
+	
+
+
+	public String getCreProfile() {
+		return creProfile;
+	}
+
+
+	public void setCreProfile(String creProfile) {
+		this.creProfile = creProfile;
+	}
 
 
 	@Override
@@ -140,14 +157,7 @@ public class ChatList {
 		return "ChatList [chatListNum=" + chatListNum + ", courseNum=" + courseNum + ", fromId=" + fromId
 				+ ", fromName=" + fromName + ", toId=" + toId + ", toName=" + toName + ", lastChatTime=" + lastChatTime
 				+ ", lastChatContent=" + lastChatContent + ", readStatus=" + readStatus + ", chatStatus=" + chatStatus
-				+ ", stuProfile=" + stuProfile + "]";
+				+ ", stuProfile=" + stuProfile + ", creProfile=" + creProfile + "]";
 	}
-
-
-
-	
-	
-	
-	
 
 }

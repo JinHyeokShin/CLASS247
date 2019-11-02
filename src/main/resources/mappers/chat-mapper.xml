@@ -22,12 +22,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="fromId" column="from_id"/>
 		<result property="fromName" column="mem_name"/>
 		<result property="toId" column="to_id"/>
-		<result property="toName" column="to_name"/>
+		<result property="toName" column="cre_name"/>
 		<result property="lastChatTime" column="last_chat_time"/>
 		<result property="lastChatContent" column="LAST_CHAT_CONTENT"/>
 		<result property="readStatus" column="READ_STATUS"/>
 		<result property="chatStatus" column="CHAT_STATUS"/>
 		<result property="stuProfile" column="mem_profile_name"/>
+		<result property="creProfile" column="cra_rname"/>
 	</resultMap>
 	
 	
@@ -93,6 +94,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		left join member on(from_id = mem_num)
 		where (from_id = #{creNum} or to_id=#{creNum})
 		and chat_status = 'Y'
+		order by last_chat_time desc
 	</select>
 	
 	<insert id="insertChatRoom" parameterType="ChatList">
@@ -115,4 +117,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		join member using(mem_num)
 		where cre_num = #{creNum} and cra_level = 1
 	</select>
+	
+	<!-- 사용자단 채팅 리스트 불러오기 -->
+	<select id="selectUserChatList" parameterType="_int" resultMap="chatListResultMap">
+		select c.*, cra_rname, mem_name as cre_name
+		from chat_list c
+		join creator_attachment b on( substr(c.to_id, 2) = b.cre_num)
+		join creator a on(substr(c.to_id, 2) = a.cre_num)
+		join member m on(a.mem_num = m.mem_num)
+		where from_id = #{memNum} and cra_level=0 and chat_status='Y'
+		order by last_chat_time desc
+	</select>
+	
+	<update id="deleteChat" parameterType="_int">
+		update chat_list set chat_status = 'N' where chatlist_num=#{chatListNum} 
+	</update>
 </mapper>

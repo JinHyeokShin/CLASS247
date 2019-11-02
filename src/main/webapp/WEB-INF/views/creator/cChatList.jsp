@@ -27,16 +27,13 @@
                                         <h3>
                                             <i class="zmdi zmdi-comment-text"></i>CHAT LIST</h3>
                                         <button class="au-btn-plus">
-                                            <i class="zmdi zmdi-plus"></i>
+                                            <i class="fa fa-heart"></i>
                                         </button>
                                     </div>
                                     <div class="au-inbox-wrap">
                                         <div class="au-message js-list-load">
                                             <div class="au-message__noti">
-                                                <p>You Have
-                                                    <span>2</span>
-                                                    new messages
-                                                </p>
+
                                             </div>
                                             <div class="au-message-list">
                                             
@@ -94,7 +91,13 @@
                                             	  var chatListNum = $(this).children().eq(0).val();
                                                   var fromId = $(this).children().eq(1).val();
                                             	  
-                                            	location.href='<%= request.getContextPath() %>/cChatDetailView.do?chatListNum=' + chatListNum + '&fromId=' + fromId;
+                                                  
+                                            	  if(chatListNum == "") {
+                                            		  
+                                            	  } else {
+		                                            	location.href='<%= request.getContextPath() %>/cChatDetailView.do?chatListNum=' + chatListNum + '&fromId=' + fromId;
+                                            		  
+                                            	  }
                                             	  
                                               });
                                             });

@@ -32,5 +32,11 @@ public interface ChatService {
 	Member selectStuProfile(int memNum);
 	//사용자 입장에서 크리에이터 정보 가져오기 
 	Creator selectCreator(int creNum);
+	
+	
+	//사용자 입장, 채팅 리스트 불러오기 
+	ArrayList<ChatList> selectUserChatList(int memNum);
+
+	int deleteChat(int chatListNum);
 
 }
