@@ -2,6 +2,7 @@ package com.ourcompany.class247.creator.model.service;
 
 import java.util.ArrayList;
 
+import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 import com.ourcompany.class247.member.model.vo.Member;
@@ -57,7 +58,9 @@ public interface CreatorService {
 	ArrayList<Chart> getOfflineChart(Chart offlineChart);
 	
 	//크리에이터 급여 명세서 
-	ArrayList<Chart> selectCreSalary(int creNum);
+	ArrayList<Chart> selectCreSalary(PageInfo pi, int creNum);
+
+	int selectSalaryCount(int creNum);
 
 
 

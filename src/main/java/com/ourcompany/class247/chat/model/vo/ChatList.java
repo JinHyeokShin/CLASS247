@@ -14,6 +14,7 @@ public class ChatList {
 	private String lastChatContent;
 	private String readStatus;
 	private String chatStatus;
+	private String stuProfile;	//학생프로필사진
 	
 	ChatList() {}
 	
@@ -25,10 +26,8 @@ public class ChatList {
 		this.toId = toId;
 	}
 
-
-
 	public ChatList(int chatListNum, int courseNum, String fromId, String fromName, String toId, String toName,
-			Date lastChatTime, String lastChatContent, String readStatus, String chatStatus) {
+			Date lastChatTime, String lastChatContent, String readStatus, String chatStatus, String stuProfile) {
 		super();
 		this.chatListNum = chatListNum;
 		this.courseNum = courseNum;
@@ -40,7 +39,9 @@ public class ChatList {
 		this.lastChatContent = lastChatContent;
 		this.readStatus = readStatus;
 		this.chatStatus = chatStatus;
+		this.stuProfile = stuProfile;
 	}
+
 
 	public int getChatListNum() {
 		return chatListNum;
@@ -121,15 +122,29 @@ public class ChatList {
 	public void setChatStatus(String chatStatus) {
 		this.chatStatus = chatStatus;
 	}
+	
+	
+
+	public String getStuProfile() {
+		return stuProfile;
+	}
+
+
+	public void setStuProfile(String stuProfile) {
+		this.stuProfile = stuProfile;
+	}
+
 
 	@Override
 	public String toString() {
 		return "ChatList [chatListNum=" + chatListNum + ", courseNum=" + courseNum + ", fromId=" + fromId
 				+ ", fromName=" + fromName + ", toId=" + toId + ", toName=" + toName + ", lastChatTime=" + lastChatTime
 				+ ", lastChatContent=" + lastChatContent + ", readStatus=" + readStatus + ", chatStatus=" + chatStatus
-				+ "]";
+				+ ", stuProfile=" + stuProfile + "]";
 	}
-	
+
+
+
 	
 	
 	

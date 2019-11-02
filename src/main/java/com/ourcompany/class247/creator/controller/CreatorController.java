@@ -22,6 +22,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
+import com.ourcompany.class247.common.PageInfo;
+import com.ourcompany.class247.common.Pagination;
 import com.ourcompany.class247.course.model.service.CourseService;
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
@@ -369,12 +371,15 @@ public class CreatorController {
 	 * @return
 	 */
 	@RequestMapping("editor.do")
-	public ModelAndView editor(ModelAndView mv, HttpServletRequest request) {
+	public ModelAndView editor(ModelAndView mv, HttpServletRequest request,
+			@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
 		int creNum = ((Creator)request.getSession().getAttribute("creator")).getCreNum();
 		
-		ArrayList<Chart> list = creService.selectSalary(creNum);
+		int salaryCount = creService.selectSalaryCount(creNum);
+		PageInfo pi = Pagination.getPageInfo(currentPage, salaryCount);
+		ArrayList<Chart> list = creService.selectCreSalary(pi, creNum);
 		
-		
+		mv.addObject("salaryList", list).addObject("pi", pi);
 		mv.setViewName("creator/creChart");
 		return mv;
 	}

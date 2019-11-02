@@ -36,9 +36,9 @@ public class ChatController {
 	 @RequestMapping("cChatDetailView.do") public ModelAndView
 	 chattingView(@RequestParam(value="chatListNum") int roomId, 
 			 		@RequestParam(value="fromId") int memNum, ModelAndView mv) {
-		 
+		 Member student = chService.selectStuProfile(memNum);
 		 System.out.println(roomId + "    :  " + memNum);
-		 mv.addObject("memNum", memNum);
+		 mv.addObject("memNum", memNum).addObject("student", student);
 		 mv.addObject("roomId", roomId).setViewName("creator/cChat"); 
 		 return mv; 
 	 }
@@ -74,7 +74,6 @@ public class ChatController {
 	public void getChatList(@RequestParam(value="roomId") int roomId, HttpServletResponse response) throws JsonIOException, IOException {
 		System.out.println("에이작스에 입성" + roomId);
 		ArrayList<Chat> list = chService.selectChatDetail(roomId);
-		
 		for(Chat c : list) {
 			System.out.println(c);
 		}
@@ -109,7 +108,7 @@ public class ChatController {
 			mv.addObject("creNum", toId);
 			mv.addObject("mgs", "존재하는 채팅 창에 오신 것을 환영합니다!");
 			mv.addObject("roomId", roomId);
-			mv.setViewName("creator/cChat");
+			mv.setViewName("creator/userChatDetail");
 		} else {
 			int result1 = chService.insertChatRoom(chatList);
 			int roomId = chService.selectRoomdId(chatList);
@@ -117,9 +116,11 @@ public class ChatController {
 			mv.addObject("creNum", toId);
 			mv.addObject("msg", "새로운 채팅방에 입장하셨습니다!");
 			mv.addObject("roomId", roomId);
-			mv.setViewName("creator/cChat");
+			mv.setViewName("creator/userChatDetail");
 		}
 		
+		Creator c = chService.selectCreator(creNum);
+		mv.addObject("c", c);
 		return mv;
 	}
 	

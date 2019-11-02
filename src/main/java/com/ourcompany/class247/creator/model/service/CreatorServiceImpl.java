@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.creator.model.dao.CreatorDao;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
@@ -202,8 +203,13 @@ public class CreatorServiceImpl implements CreatorService{
 
 	//크리에이터 급여 명세서 
 	@Override
-	public ArrayList<Chart> selectCreSalary(int creNum) {
-		return creDao.selectCreSalary(creNum);
+	public ArrayList<Chart> selectCreSalary(PageInfo pi, int creNum) {
+		return creDao.selectCreSalary(pi, creNum);
+	}
+	//크리에이터 급여 명세서 - 페이징 처리를 위한 
+	@Override
+	public int selectSalaryCount(int creNum) {
+		return creDao.selectSalaryCount(creNum);
 	}
 
 

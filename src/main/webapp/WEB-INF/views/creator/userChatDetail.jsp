@@ -1,21 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.ourcompany.class247.creator.model.vo.*"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    pageEncoding="UTF-8" import="com.ourcompany.class247.member.model.vo.Member" import="com.ourcompany.class247.creator.model.vo.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <% Creator creator = (Creator)request.getSession().getAttribute("creator"); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="<c:url value="/resources/chat/sockjs-0.3.4.js"/>"></script>
-<title>실시간 채팅</title>
+<link href="<c:url value="/resources/creator/css/theme.css"/>" rel="stylesheet" media="all">
+<link href="<c:url value="/resources/creator/css/font-face.css"/>" rel="stylesheet" media="all">
+<link href="<c:url value="/resources/creator/vendor/font-awesome-4.7/css/font-awesome.min.css"/>" rel="stylesheet" media="all">
+<link href="<c:url value="/resources/creator/vendor/font-awesome-5/css/fontawesome-all.min.css"/>"  rel="stylesheet" media="all">
+<link href="<c:url value="/resources/creator/vendor/mdi-font/css/material-design-iconic-font.min.css"/>" rel="stylesheet" media="all">
+<link href="<c:url value="/resources/creator/vendor/bootstrap-4.1/bootstrap.min.css"/>" rel="stylesheet" media="all">
+<link href="<c:url value="/resources/creator/vendor/animsition/animsition.min.css"/>" rel="stylesheet" media="all">
+<link href="<c:url value="/resources/creator/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css"/>" rel="stylesheet" media="all">
+<link href="<c:url value="/resources/creator/vendor/wow/animate.css"/>" rel="stylesheet" media="all">
+<link href="<c:url value="/resources/creator/vendor/css-hamburgers/hamburgers.min.css"/>" rel="stylesheet" media="all">
+<link href="<c:url value="/resources/creator/vendor/slick/slick.css"/>" rel="stylesheet" media="all">
+<link href="<c:url value="/resources/creator/vendor/select2/select2.min.css"/>" rel="stylesheet" media="all">
+<link href="<c:url value="/resources/creator/vendor/perfect-scrollbar/perfect-scrollbar.css"/>" rel="stylesheet" media="all">
+<link href="<c:url value="/resources/creator/vendor/vector-map/jqvmap.min.css"/>" rel="stylesheet" media="all">
+<title>사용자 채팅방</title>
 </head>
-<body class="animsition">
-	<c:import url="common/cMenubar.jsp"/>
-
-	<div class="page-wrapper">
-            <!-- MAIN CONTENT-->
-                 <session class="main-content">
+<body>
+ <c:import url="/WEB-INF/views/user/common/menubar.jsp" />
+ 
+           <session class="main-content">
                     <div class="section__content section__content--p30">
                         <div class="container-fluid">
                             <h3 class="title-3 m-b-30"><br>
@@ -43,11 +56,11 @@
                                                     <div class="au-chat-info">
                                                         <div class="avatar-wrap">
                                                             <div class="avatar avatar--small">
-                                                                <img src="resources/user/img/profile/${student.memProfileName}" alt="John Smith">
+                                                                <img src="resources/user/img/profile/${c.creProfile}" alt="John Smith">
                                                             </div>
                                                         </div>
                                                         <span class="nick">
-                                                            <a href="#">${student.memName }</a>
+                                                            <a href="#">${c.creName }</a>
                                                             <c:if test="${!empty creator.creNum}">
                                                             	<input type="hidden" id="creNum" value="C${creator.creNum}">
                                                             </c:if>
@@ -76,7 +89,7 @@
                     </div>
                 </session>
                 
-                	<script>
+      <script>
 		$(function(){
 		var roomId = ${roomId};
 			
@@ -114,7 +127,7 @@
 							    $("#chatBox").append($div);
 								
 						    } else {
-						    	var img = '<img src="resources/user/img/profile/' + '${student.memProfileName}' + '">';
+						    	var img = '<img src="resources/user/img/profile/' + '${c.creProfile}' + '">';
 							    var $div = $('<div class="recei-mess-wrap">');
 							    var $time = $('<span class="mess-time">').text('1 Sec ago');
 							    var $div2 = $('<div class="recei-mess__inner">');
@@ -317,21 +330,8 @@
 		
 
 	</script>
+ 
+ 
 
-            <!-- END PAGE CONTAINER-->
-            <section>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="copyright">
-                                <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- END PAGE CONTAINER-->
-	</div>
-	<c:import url="common/cMenubar.jsp"/>
 </body>
 </html>

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.ourcompany.class247.chat.model.dao.ChatDao;
 import com.ourcompany.class247.chat.model.vo.Chat;
 import com.ourcompany.class247.chat.model.vo.ChatList;
+import com.ourcompany.class247.creator.model.vo.Creator;
+import com.ourcompany.class247.member.model.vo.Member;
 
 @Service("chService")
 public class ChatServiceImpl implements ChatService {
@@ -61,6 +63,16 @@ public class ChatServiceImpl implements ChatService {
 	@Override
 	public ArrayList<ChatList> selectChatList(String creNum) {
 		return chDao.selectChatList(creNum);
+	}
+
+	@Override
+	public Member selectStuProfile(int memNum) {
+		return chDao.selectStuProfile(memNum);
+	}
+
+	@Override
+	public Creator selectCreator(int creNum) {
+		return chDao.selectCreator(creNum);
 	}
 
 }

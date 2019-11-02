@@ -27,7 +27,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="lastChatContent" column="LAST_CHAT_CONTENT"/>
 		<result property="readStatus" column="READ_STATUS"/>
 		<result property="chatStatus" column="CHAT_STATUS"/>
+		<result property="stuProfile" column="mem_profile_name"/>
 	</resultMap>
+	
+	
+	<resultMap id="memberResultSet" type="Member">
+		<result property="memName" column="mem_name"/>
+		<result property="memProfileName" column="mem_profile_name"/>
+	</resultMap>
+	
+	<resultMap id="creatorResultSet" type="Creator">
+		<id property="creNum" column="cre_num"/>
+		<result property="creName" column="mem_name"/>
+		<result property="memNum" column="mem_num"/>
+		<result property="memNickName" column="mem_nickname"/>
+		<result property="introduction" column="introduction"/>
+		<result property="career" column="career"/>
+		<result property="education" column="education"/>
+		<result property="certification" column="certification"/>
+		<result property="enrollDate" column="enroll_date"/>
+		<result property="approvedDate" column="approved_date"/>
+		<result property="endDate" column="end_date"/>
+		<result property="creStatus" column="cre_status"/>	
+		<result property="creProfile" column="cra_rname"/>
+	</resultMap>	
+	
+	
 	
 	
 	<insert id="insertMessage" parameterType="Chat">
@@ -63,7 +88,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectChatList" parameterType="string" resultMap="chatListResultMap">
-		select c.*, mem_name 
+		select c.*, mem_name, mem_profile_name
 		from chat_list c
 		left join member on(from_id = mem_num)
 		where (from_id = #{creNum} or to_id=#{creNum})
@@ -74,5 +99,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into chat_list 
 		values(chat_list_seq.nextval, #{courseNum}, #{fromId}, null, #{toId}, null, sysdate, '공백', default, default)
 	</insert>
+	
+	<!-- 프로필 사진 가져오기 -->
+	<select id="selectStuProfile" parameterType="_int" resultMap="memberResultSet">
+		select mem_profile_name, mem_name
+		from member
+		where mem_num = #{memNum}
+	</select>
 
+
+	<select id="selectCreator" parameterType="_int" resultMap="creatorResultSet">
+		select cre_num, cra_rname, mem_name
+		from creator
+		join creator_attachment using(cre_num)
+		join member using(mem_num)
+		where cre_num = #{creNum} and cra_level = 1
+	</select>
 </mapper>

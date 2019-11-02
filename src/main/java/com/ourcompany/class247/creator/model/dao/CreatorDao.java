@@ -2,10 +2,12 @@ package com.ourcompany.class247.creator.model.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
@@ -158,8 +160,14 @@ public class CreatorDao {
 	}
 
 	//크리에이터 급여 명세서 
-	public ArrayList<Chart> selectCreSalary(int creNum) {
-		return (ArrayList)sqlSession.selectList("creatorMapper.selectCreSalary", creNum);
+	public ArrayList<Chart> selectCreSalary(PageInfo pi, int creNum) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit(); 
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("creatorMapper.selectCreSalary", creNum, rowBounds);
+	}
+
+	public int selectSalaryCount(int creNum) {
+		return sqlSession.selectOne("creatorMapper.selectSalaryCount", creNum);
 	}
 
 }

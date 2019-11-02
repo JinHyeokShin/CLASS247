@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.ourcompany.class247.chat.model.vo.Chat;
 import com.ourcompany.class247.chat.model.vo.ChatList;
+import com.ourcompany.class247.creator.model.vo.Creator;
+import com.ourcompany.class247.member.model.vo.Member;
 
 @Repository
 public class ChatDao {
@@ -53,6 +55,14 @@ public class ChatDao {
 
 	public ArrayList<ChatList> selectChatList(String creNum) {
 		return (ArrayList)sqlSession.selectList("chatMapper.selectChatList", creNum);
+	}
+
+	public Member selectStuProfile(int memNum) {
+		return sqlSession.selectOne("chatMapper.selectStuProfile", memNum);
+	}
+
+	public Creator selectCreator(int creNum) {
+		return sqlSession.selectOne("chatMapper.selectCreator", creNum);
 	}
 
 }

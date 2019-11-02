@@ -50,6 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="forMonth" column="for_month"/>
 		<result property="paidDate" column="paid_date"/>
 		<result property="salaryStatus" column="salary_status"/>
+		<result property="courseTitle" column="course_title"/>
 	</resultMap>
 
 	<select id="selectCreator" parameterType="_int" resultMap="creatorResultSet">
@@ -224,7 +225,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 크리에이터 급여 명세서 조회  -->
 	<select id="selectCreSalary" parameterType="_int" resultMap="chartResultMap">
-	
+		select *
+		from salary_record s
+        join course  c using(course_num)
+		where s.cre_num = #{creNum}
+		and salary_status='Y'
+		order by paid_date desc
+	</select>
+	<!-- 크리에이터 급여 명세서 조회  페이징 처리를 위한.. -->
+	<select id="selectSalaryCount" parameterType="_int" resultType="_int">
+		select count(*)
+		from salary_record
+		where cre_num = #{creNum}
+		and salary_status='Y'	
 	</select>
 	
 	

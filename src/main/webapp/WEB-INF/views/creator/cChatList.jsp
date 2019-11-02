@@ -49,7 +49,7 @@
 	                                                        <div class="au-message__item-text">
 	                                                            <div class="avatar-wrap">
 	                                                                <div class="avatar">
-	                                                                    <img src="creator/images/icon/avatar-02.jpg">
+	                                                                    <img src="<%= request.getContextPath() %>/resources/user/img/profile/${ch.stuProfile}">
 	                                                                </div>
 	                                                            </div>
 	                                                            <div class="text">
