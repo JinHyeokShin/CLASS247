@@ -55,6 +55,9 @@ public interface CreatorService {
 	ArrayList<Chart> getOnlineChart(Chart onlineChart);
 
 	ArrayList<Chart> getOfflineChart(Chart offlineChart);
+	
+	//크리에이터 급여 명세서 
+	ArrayList<Chart> selectCreSalary(int creNum);
 
 
 

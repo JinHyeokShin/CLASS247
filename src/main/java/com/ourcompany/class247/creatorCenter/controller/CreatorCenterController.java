@@ -23,10 +23,7 @@ public class CreatorCenterController {
 		return "inquiry/cInquiryList";
 	}
 	
-	@RequestMapping("editor.do")
-	public String editor() {
-		return "creator/creChart";
-	}
+
 	
 
 

@@ -14,6 +14,12 @@ public class Chart {
     
     public Chart() {}
     
+	public Chart(int creNum,int forMonth) {
+		super();
+		this.creNum = creNum;
+		this.forMonth = forMonth;
+	}
+    
 	public Chart(int salaryNum, int creNum, int courseNum, int amount, int forMonth, Date paidDate,
 			String salaryStatus) {
 		super();

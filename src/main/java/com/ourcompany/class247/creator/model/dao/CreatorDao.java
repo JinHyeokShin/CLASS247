@@ -157,4 +157,9 @@ public class CreatorDao {
 		return list;
 	}
 
+	//크리에이터 급여 명세서 
+	public ArrayList<Chart> selectCreSalary(int creNum) {
+		return (ArrayList)sqlSession.selectList("creatorMapper.selectCreSalary", creNum);
+	}
+
 }

@@ -186,7 +186,8 @@ public class CreatorServiceImpl implements CreatorService{
 	 * */
 	@Override
 	public ArrayList<Chart> getOnlineChart(Chart onlineChart) {
-		return creDao.getOnlineChart(onlineChart);
+		ArrayList<Chart> list = creDao.getOnlineChart(onlineChart);
+		return list; 
 	}
 	
 	/**
@@ -194,8 +195,17 @@ public class CreatorServiceImpl implements CreatorService{
 	 * */	
 	@Override
 	public ArrayList<Chart> getOfflineChart(Chart offlineChart) {
-		return creDao.getOfflineChart(offlineChart);
+		ArrayList<Chart> list =  creDao.getOfflineChart(offlineChart);
+		return list; 
+	}
+
+
+	//크리에이터 급여 명세서 
+	@Override
+	public ArrayList<Chart> selectCreSalary(int creNum) {
+		return creDao.selectCreSalary(creNum);
 	}
 
 
 }
+
