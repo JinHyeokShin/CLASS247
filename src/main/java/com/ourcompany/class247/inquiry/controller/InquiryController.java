@@ -168,6 +168,7 @@ public class InquiryController {
 	@RequestMapping("InquiryForm.do")
 	public ModelAndView goUpdatePage(@RequestParam int inquiryNum, ModelAndView mv) {
 		Inquiry inquiry = iService.selectInquiry(inquiryNum);
+		System.out.println(inquiry + " i ");
 		mv.addObject("i", inquiry).setViewName("creator/inquiry/inquiryUpdateForm");
 		return mv;
 	}

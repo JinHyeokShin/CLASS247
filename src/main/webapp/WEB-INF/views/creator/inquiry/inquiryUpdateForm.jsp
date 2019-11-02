@@ -35,13 +35,17 @@
 	                     <hr>
 	                     <div class="form-group">
 	                         <label for="summernote" class=" form-control-label">문의 내용</label>
-	                         <textarea id="summernote" name="inquiryContent"></textarea>
+	                         <textarea id="summernote" name="inquiryContent">${ i.inquiryContent }</textarea>
 	                         <input type="hidden" name="creNum" value="${ creator.creNum }">
 	                         <input type="hidden" name="inquiryNum" value="${i.inquiryNum}">
 	                     </div>
-	                     <div class="form-group">
-	                    	 <input type="file" name="file" value="<%=request.getContextPath() %>/resources/creator/inquiryImage/${i.inquiryFileName}"><br>
-	                     </div>
+	                     	<c:if test="${ i.inquiryFileName != 'null'}">
+			                    	첨부파일<br>
+			                    	<div style="width:300px;">
+	                     				<img src="<%= request.getContextPath() %>/resources/creator/inquiryImages/${i.inquiryFileName}">
+	                     			</div>
+		                    	 <hr>
+	                     	</c:if>
 	                     <div class="form-group" align="center">
 			                 <button type="submit" class="btn btn-primary">작성하기</button>
 			                 <button type="button" class="btn btn-danger" onclick="history.back()">취소하기</button>	                     
