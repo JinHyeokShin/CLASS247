@@ -24,21 +24,34 @@
 <link href="<c:url value="/resources/creator/vendor/perfect-scrollbar/perfect-scrollbar.css"/>" rel="stylesheet" media="all">
 <link href="<c:url value="/resources/creator/vendor/vector-map/jqvmap.min.css"/>" rel="stylesheet" media="all">
 <title>사용자 채팅방</title>
+<style>
+
+	.send-mess {
+		background:rgb(182, 151, 199) !important;
+	
+	}
+	
+	body{
+		background-color:#f4ecf8 !important;
+	}
+	
+</style>
 </head>
 <body>
  <c:import url="/WEB-INF/views/user/common/menubar.jsp" />
  
+ 		<br><br><br><br><br>
            <session class="main-content">
                     <div class="section__content section__content--p30">
                         <div class="container-fluid">
                             <h3 class="title-3 m-b-30"><br>
-                                <i class="fas fa-comment-alt"></i>실시간 톡  
+                               
                             </h3>
                             <div class="row">
-                                <div class="col-lg-6" style="margin-right:auto; margin-left:auto;">
+                                <div class="col-lg-5" style="margin-right:auto; margin-left:auto;">
                                     <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
-                                        <div class="au-card-title" style="background-image:url('images/bg-title-02.jpg');">
-                                            <div class="bg-overlay bg-overlay--blue"></div>
+                                        <div class="au-card-title">
+                                            <div class="bg-overlay bg-overlay--blue" style="background:#954CBC !important;"></div>
                                             <h3>
                                                 <i class="zmdi zmdi-comment-text"></i>Messages</h3>
                                             <button class="au-btn-plus">
@@ -56,11 +69,11 @@
                                                     <div class="au-chat-info">
                                                         <div class="avatar-wrap">
                                                             <div class="avatar avatar--small">
-                                                                <img src="resources/user/img/profile/${c.creProfile}" alt="John Smith">
+                                                                <img src="resources/creator/creatorImages/${c.creProfile}" >
                                                             </div>
                                                         </div>
                                                         <span class="nick">
-                                                            <a href="#">${c.creName }</a>
+                                                            <a href="#">${c.creName } 튜터</a>
                                                             <c:if test="${!empty creator.creNum}">
                                                             	<input type="hidden" id="creNum" value="C${creator.creNum}">
                                                             </c:if>
@@ -77,7 +90,7 @@
                                                 <div class="au-chat-textfield">
                                                     <form class="au-form-icon">
                                                         <input style="width:80%; margin:0; padding:0;" id="message" class="au-input au-input--full au-input--h65" type="text" placeholder="&nbsp;&nbsp;&nbsp; Type a message">
-                                                        <button type="button" class="btn btn-primary btn-lg" id="sendBtn" style="background:#4272d7;">SEND</button>
+                                                        <button type="button" class="btn btn-primary btn-lg" id="sendBtn" style="background:rgb(182, 151, 199); border:none;">SEND</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -127,7 +140,7 @@
 							    $("#chatBox").append($div);
 								
 						    } else {
-						    	var img = '<img src="resources/user/img/profile/' + '${c.creProfile}' + '">';
+						    	var img = '<img src="resources/creator/creatorImages/' + '${c.creProfile}' + '">';
 							    var $div = $('<div class="recei-mess-wrap">');
 							    var $time = $('<span class="mess-time">').text('1 Sec ago');
 							    var $div2 = $('<div class="recei-mess__inner">');
