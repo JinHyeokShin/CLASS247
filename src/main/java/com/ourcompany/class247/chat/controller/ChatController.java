@@ -124,5 +124,21 @@ public class ChatController {
 		return mv;
 	}
 	
+	
+	@RequestMapping("userChattingView.do")
+	public ModelAndView userChattingView(HttpServletRequest request, ModelAndView mv) {
+		Creator creator = (Creator)request.getSession().getAttribute("creator");
+		
+		/*
+		 * if(creator != null) { String creNum = "C" +
+		 * Integer.toString(creator.getCreNum()); ArrayList<ChatList> chatList =
+		 * chService.selectChatList(creNum); System.out.println(creNum); for (ChatList
+		 * ch : chatList) { System.out.println(ch); } mv.addObject("chatList",
+		 * chatList);
+		 * 
+		 * } mv.setViewName("creator/cChatList");
+		 */
+		return mv;
+	}
 
 }

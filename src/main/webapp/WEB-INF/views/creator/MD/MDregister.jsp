@@ -46,8 +46,19 @@
                                             <h2 class="text-sm-center mt-2 mb-1 mdText"> 지금 바로!<br> 당신의 클래스를<span class="red"> MD등록</span>하세요! </h2>
                                         </div>
                                       	<br>
-                                      	<div style="height:200px;"></div>
-                                      	<div><h2  class="text-sm-center mt-2 mb-1 mdText"> 100,000원/1개월</h2><br></div>
+                                      	<div style="height:200px;">
+                                      	</div>
+                                      	<div>
+                                      	<h2  class="text-sm-center mt-2 mb-1 mdText"> 100,000원/1개월</h2><br>
+                                      	<c:if test="${ !empty list }">
+                              	           <select name="select" id="select" class="form-control" style="width:300px">
+                                                <option value="">Please select your class</option>                                                
+                                                <c:forEach items="${list}" var="c">
+                                                	<option value="${c.courseNum}">${c.courseTitle}</option>
+                                                </c:forEach>
+                                            </select><br>
+                                         </c:if>
+                                      	</div>
                                         <div align="center" style="font-family:Noto Serif KR;">
 	                                        <button type="button" class="btn btn-danger btn-lg" onclick="">결제하기</button>
 	                                        <button type="button" style="background:yellow; color:black" class="btn btn-danger btn-lg" onclick="">카카오 결제하기</button>

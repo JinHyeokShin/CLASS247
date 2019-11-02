@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ourcompany.class247.common.PageInfo;
+import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
@@ -168,6 +169,10 @@ public class CreatorDao {
 
 	public int selectSalaryCount(int creNum) {
 		return sqlSession.selectOne("creatorMapper.selectSalaryCount", creNum);
+	}
+
+	public ArrayList<Course> getCourseList(int creNum) {
+		return (ArrayList)sqlSession.selectList("courseMapper.getCourseList", creNum);
 	}
 
 }

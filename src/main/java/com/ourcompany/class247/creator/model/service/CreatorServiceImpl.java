@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ourcompany.class247.common.PageInfo;
+import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.creator.model.dao.CreatorDao;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
@@ -210,6 +211,13 @@ public class CreatorServiceImpl implements CreatorService{
 	@Override
 	public int selectSalaryCount(int creNum) {
 		return creDao.selectSalaryCount(creNum);
+	}
+
+
+	//MD 클래스 선택 옵션
+	@Override
+	public ArrayList<Course> getCourseList(int creNum) {
+		return creDao.getCourseList(creNum);
 	}
 
 

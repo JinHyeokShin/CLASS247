@@ -443,9 +443,13 @@ public class CreatorController {
 	}
 	
 	@RequestMapping("powerLink.do")
-	public String goMDpage() {
+	public ModelAndView goMDpage(HttpServletRequest request, ModelAndView mv) {
+		int creNum = ((Creator)request.getSession().getAttribute("creator")).getCreNum();
+		ArrayList<Course> list = creService.getCourseList(creNum);
 		
-		return "creator/MD/MDregister";
+		mv.addObject("list", list);
+		mv.setViewName("creator/MD/MDregister");
+		return mv;
 	}
 	
 
