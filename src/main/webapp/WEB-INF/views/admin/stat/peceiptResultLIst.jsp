@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
-<title>월말 결산</title>
+<title>영수증</title>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 </head>
@@ -22,48 +22,46 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h2 class="title-1 m-b-25">월말 결산</h2>
+                                <h2 class="title-1 m-b-25">전체영수증</h2>
                                 <div class="table-responsive table--no-card m-b-40">
                                 	<div>
-                                		<button onclick="location.href='<%= request.getContextPath() %>/insertPeceipt.do">결산하기</button>
+                                		<input type="button" onclick="location.href='insertPeceipt.do';" value="결산하기">
                                 	</div>
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>
                                             <tr>
-                                                <th>공지번호</th>
-                                                <th>공지사항</th>
-                                                <th>조회수</th>
-                                                <th class="text-right">작성날짜</th>
-                                                <th class="text-right">첨부파일</th>
+                                                <th>수업번호</th>
+                                                <th>수업제목</th>
+                                                <th class="text-right">이름</th>
+                                                <th class="text-right">가격</th>
                                                
                                             </tr>
                                         </thead>
                                         <tbody id="contacts">
-                                      
-                                        <c:forEach items="${ nlist }" var="n">
+                                      	<c:forEach items="${ list }" var="n">
                                         
                                             <tr>
-                                            <td>${n.noticeNum}</td>
+                                            <td>${n.courseNum}</td>
                                                 <td>
 
-                                                		<a href ="${ aNdetail }" style="color:black;">${n.noticeTitle } </a>
-     
+                                                		${n.courseTitle }
                                                 </td>
-                                                <td>${n.noticeCount}</td>
-                                                <td class="text-right">${n.noticeEnrollDate}</td>
+                                                <td>${n.memNickName}</td>
+
                                                 <td>
-                                                	<c:if test="${ !empty n.noticeFileName }">
-														◎
-													</c:if>
-													<c:if test="${ empty n.noticeFileName }">
-														&nbsp;
-													</c:if>
+                                                	${n.loveCount }
                                                 </td>
                                             
                                             </tr>
                                          </c:forEach>
                                            
                                         </tbody>
+                                        <tfoot>
+                                        	<tr>총 갯수</tr>
+                                        	<tr>${count }</tr>
+                                        	<tr>총 가격</tr>
+                                        	<tr>${sum }</tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                                 <div align="center">
@@ -72,7 +70,7 @@
 							    			[이전]
 							    		</c:if>
 							    		<c:if test="${ pi.currentPage ne 1 }">
-											<c:url value="aNoticeList.do" var='before'>
+											<c:url value="aAPeceipt.do" var='before'>
 												<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
 											</c:url>
 							    			<a href="${ before }">[이전]</a>
@@ -84,7 +82,7 @@
 							    				<font color="black" size="4">[${ p }]</font>
 							    			</c:if>
 							    			<c:if test="${ p ne pi.currentPage }">
-							    				<c:url value="aNoticeList.do" var="page">
+							    				<c:url value="aAPeceipt.do" var="page">
 							    					<c:param name="currentPage" value="${ p }"/>
 							    				</c:url>
 							    				<a href="${ page }">${ p }</a>
@@ -96,12 +94,11 @@
 							    			[다음]
 							    		</c:if>
 							    		<c:if test="${ pi.currentPage ne pi.maxPage}">
-							    			<c:url value="aNoticeList.do" var="next">
+							    			<c:url value="aAPeceipt.do" var="next">
 							    				<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 							    			</c:url>
 							    			<a href="${ next }"> [다음]</a>
-							    		</c:if>	
-                                        <input class="btn btn-outline-info" type="button" onclick="location.href='aNinsertView.do';" value="글쓰기">
+							    		</c:if>
                                    </div>
                             </div>
                         </div>   
@@ -111,14 +108,7 @@
             
 
             </div>
-            <script>
             
-            $(function() {
-                $('#contacts td').on("click", function(){
-                   $(this).parent().children().eq(1).click();
-                });
-             });
-             </script>
  	<c:import url="../common/aImportJs.jsp"/>
 
 

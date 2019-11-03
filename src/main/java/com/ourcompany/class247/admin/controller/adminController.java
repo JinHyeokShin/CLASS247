@@ -24,7 +24,7 @@ public class adminController {
 	@RequestMapping("adminMain.do")
 	public String adminMainView() {
 		
-
+		
 		
 		return "admin/adminMain";
 		
@@ -84,6 +84,16 @@ public class adminController {
 		mv.addObject("list", peceipt).addObject("peceiptCount", aPeceiptCount).setViewName("admin/stat/aPeceiptList");
 		
 		return mv;
+		
+	}
+	
+	@RequestMapping("insertPeceipt.do")
+	public String insertPeceipt() {
+		
+		
+		
+		
+		return "redirect:aAPeceipt.do";
 		
 	}
 	
