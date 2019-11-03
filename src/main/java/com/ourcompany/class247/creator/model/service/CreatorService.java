@@ -66,6 +66,12 @@ public interface CreatorService {
 	//MD 클래스 선택 옵션
 	ArrayList<Course> getCourseList(int creNum);
 
+	int reRegister(Creator creator);
+
+	void reRegisterProfile(CreatorAttachment caProfile);
+
+	void reRegisterID(CreatorAttachment caId);
+
 
 
 }

@@ -221,5 +221,26 @@ public class CreatorServiceImpl implements CreatorService{
 	}
 
 
+
+	@Override
+	public int reRegister(Creator creator) {
+		return creDao.reRegister(creator);
+	}
+
+
+
+	@Override
+	public void reRegisterProfile(CreatorAttachment caProfile) {
+		creDao.reRegisterProfile(caProfile);
+	}
+
+
+
+	@Override
+	public void reRegisterID(CreatorAttachment caId) {
+		creDao.reRegisterID(caId);
+	}
+
+
 }
 

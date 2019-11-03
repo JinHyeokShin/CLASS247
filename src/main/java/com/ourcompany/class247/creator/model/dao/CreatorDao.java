@@ -175,4 +175,16 @@ public class CreatorDao {
 		return (ArrayList)sqlSession.selectList("courseMapper.getCourseList", creNum);
 	}
 
+	public int reRegister(Creator creator) {
+		return sqlSession.update("creatorMapper.reRegisterCreator", creator);
+	}
+
+	public void reRegisterProfile(CreatorAttachment caProfile) {
+		sqlSession.update("creatorMapper.reRegisterProfile", caProfile);
+	}
+
+	public void reRegisterID(CreatorAttachment caId) {
+		sqlSession.update("creatorMapper.reRegisterID", caId);
+	}
+
 }

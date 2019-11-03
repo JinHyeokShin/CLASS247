@@ -76,9 +76,56 @@
 
 	</c:if>
 	
-	
-	
-	
+	<!-- 승인거절일 경우 -->
+<c:if test="${creator.creStatus == 'R' }">	
+
+ 	<div class="page-wrapper">
+	       <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                             <div class="col-md-12">
+                                <div class="card" style="height:600px">
+                                    <div class="card-body" align="center">
+                                    	<div style="width:50%">
+                                    	<br><br>
+	                                    	<img src="resources/creator/images/NonCreator.jpg">
+                                    	</div><br>
+                                        <div class="mx-auto d-block" style="font-family:Noto Serif KR">
+                                            <h1 class="text-sm-center mt-2 mb-1"> 크리에이터 센터에 오신것을 환영합니다!</h1>
+                                            <h3 class="text-sm-center mt-2 mb-1"> '${ loginUser.memName}'님의 크리에이터 신청서 기준에 적합하지 않아 승인 거절되었습니다. <br>
+                                            										서류를 검토해 다시 신청해주세요! </h3>
+                                        </div>
+                                      	<br>
+                                        <div align="center" style="font-family:Noto Serif KR">
+                                        	<button type="button" class="btn btn-primary" onclick="location.href='goReRegister.do';">재신청하기</button>
+	                                        <button type="button" class="btn btn-primary" onclick="location.href='inquiryList.do';">문의하기</button>
+	                                        <button type="button" class="btn btn-secondary" onclick="location.href='home.do';">메인으로 돌아가기</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                       
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright">
+                                <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END PAGE CONTAINER-->
+        </div>
+</c:if>	
+
 	<!-- 크리에이터 Status == 'Y'일 경우 -->
 <c:if test="${ creator.creStatus == 'Y' }">
    <div class="page-wrapper">

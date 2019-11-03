@@ -188,18 +188,15 @@
 								                		});
 								                		
 								                		
-/* 
-								                		$('#courseMaxPax').on("change", function(){
+ 
+								                		$('#courseMaxPax').on("blur", function(){
 								                			var min = $('#courseMinPax').val();
 								                			var max = $('#courseMaxPax').val();
-								                			console.log(min + "min");
-								                			console.log(max + "max");
 								                			if(max < min) {
 								                				alert('최대인원은 최소인원보다 커야합니다. ');
 								                				$('#courseMaxPax').val('');
-								                				$('#courseMaxPax').focus();
 								                			}
-								                		}); */
+								                		}); 
 								                		
 								                		
 								                		$('#courseStartDate').on("change", function(){

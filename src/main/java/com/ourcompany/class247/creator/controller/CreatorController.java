@@ -63,7 +63,7 @@ public class CreatorController {
 		Creator creator = creService.getCreator(memNum);
 		System.out.println(creator);
 
-		if(creator != null) { //크리에이터 존재 시 
+		if(creator != null && creator.getCreStatus().equals("Y")) { //크리에이터 존재 시 
 			int creNum = creator.getCreNum();
 			int totalStuCount = mService.getStuCount(creNum);
 			int classCount = coService.getCourseCount(creNum);
@@ -102,7 +102,7 @@ public class CreatorController {
 	 */
 	@RequestMapping("creInsert.do")
 	public String insertCreator(Creator creator, HttpServletRequest request,
-								@RequestParam(name="creProfile", required=false) MultipartFile profile,
+								@RequestParam(name="creProfilee", required=false) MultipartFile profile,
 								@RequestParam(name="creID", required=false) MultipartFile creID) {
 		
 		int result = creService.insertCreator(creator);
@@ -450,6 +450,65 @@ public class CreatorController {
 		mv.addObject("list", list);
 		mv.setViewName("creator/MD/MDregister");
 		return mv;
+	}
+	 
+	/** 크리에이터 거절시 재신청 페이지로 이동 
+	 * @return
+	 */
+	@RequestMapping("goReRegister.do")
+	public String goReRegisterPage() {
+		return "creator/creReRegistration";
+	}
+	
+	/** 재신청서 업데이트 
+	 * @return
+	 */
+	@RequestMapping("reRegister.do")
+	public String updateRegister(Creator creator, HttpServletRequest request,
+			@RequestParam(name="creProfilee", required=false) MultipartFile profile,
+			@RequestParam(name="creID", required=false) MultipartFile creID) {
+		int creNum = ((Creator)request.getSession().getAttribute("creator")).getCreNum();
+		creator.setCreNum(creNum);
+		
+		int result = creService.reRegister(creator);
+		
+		
+		if(!profile.getOriginalFilename().equals("")) { //프로필 첨부사진이 존재하면 
+			
+			String profileRename = saveFile(profile, request);
+			
+			if(profileRename != null) {
+				CreatorAttachment caProfile = new CreatorAttachment();
+				caProfile.setCraRname(profileRename);
+				caProfile.setCraOname(profile.getOriginalFilename());
+				caProfile.setCraPath(request.getSession().getServletContext().getRealPath("resources") + "\\creator\\creatorImages");
+				caProfile.setCreNum(creNum);
+				creService.reRegisterProfile(caProfile);
+			}
+		}
+		
+		
+		if(!creID.getOriginalFilename().equals("")) {
+			String idRename = saveFile(creID, request);
+			
+			if(idRename != null) {
+				CreatorAttachment caId = new CreatorAttachment();
+				caId.setCraRname(idRename);
+				caId.setCraOname(profile.getOriginalFilename());
+				caId.setCraPath(request.getSession().getServletContext().getRealPath("resources") + "\\creator\\creatorImages");
+				caId.setCreNum(creNum);
+				
+				creService.reRegisterID(caId);
+			}
+			
+		}
+		
+		
+		if(result > 0) {
+			return "redirect:cMainView.do";
+		} else {
+			return "common/errorPage";
+		}
 	}
 	
 

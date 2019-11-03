@@ -80,7 +80,7 @@
                                             <h3><strong>크리에이터 기본 정보</strong></h3>
                                         </div>
                                         <div class="card-body card-block">
-                                            <form action="creInsert.do" method="post" enctype="multipart/form-data" class="form-horizontal" id="creatorForm">
+                                            <form action="reRegister.do" method="post" enctype="multipart/form-data" class="form-horizontal" id="creatorForm">
                                                 <div class="row form-group">
                                                     <div class="col col-md-2">
                                                         <label for="phone" class=" form-control-label">* 전화번호 인증</label>
