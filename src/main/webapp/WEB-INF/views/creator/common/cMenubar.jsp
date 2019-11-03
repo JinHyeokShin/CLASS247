@@ -49,7 +49,7 @@
 </head>
 <body class="animsition">
 
-<c:if test="${ empty creator || creator.creStatus == 'N' }">
+<c:if test="${ empty creator || creator.creStatus == 'N' || creator.creStatus == 'R'}">
 	<script>
 		$(function() {
 			$(".navbar-sidebar2 li a").click(function () { alert('크리에이터 승인 후 이용가능한 서비스 입니다.'); return false;});

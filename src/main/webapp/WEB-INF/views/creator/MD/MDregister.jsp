@@ -60,15 +60,15 @@
                                             <div style="height:200px;"></div>
                                             <div>
                                                 <h2  class="text-sm-center mt-2 mb-1 mdText"> 100,000원/1개월</h2><br>
-                                                <c:if test="${ !empty list }">
                                                    <select name="select" id="select" class="form-control" style="width:300px">
                                                       <option value="">Please select your class</option>                                                
-                                                      <c:forEach items="${list}" var="c">
-                                                          <option value="${c.courseNum}">${c.courseTitle}</option>
-                                                      </c:forEach>
+		                                                <c:if test="${ !empty list }">
+	                                                      <c:forEach items="${list}" var="c">
+	                                                          <option value="${c.courseNum}">${c.courseTitle}</option>
+	                                                      </c:forEach>
+                                             		  </c:if>
                                                   </select><br>
-                                               </c:if>
-                                                </div>
+                                              </div>
                                             <div align="center" style="font-family:Noto Serif KR;">
                                                 <button type="button" class="btn btn-danger btn-lg" onclick="inicis();">결제하기</button>
                                                 <button type="button" style="background:yellow; color:black" class="btn btn-danger btn-lg" onclick="kakao();">카카오 결제하기</button>

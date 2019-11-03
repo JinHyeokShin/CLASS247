@@ -81,7 +81,8 @@
 	                                                                </div>
 	                                                            </div>
 	                                                            <div class="text">
-	                                                                <h5 class="name">${ch.toName}</h5>
+	                                                                <h5 class="name">${ch.toName}&nbsp;&nbsp;&nbsp;
+	                                                                <span class="badge badge-warning" style="align:right">${ch.courseTitle}</span></h5>
 	                                                                <p>${ch.lastChatContent }</p>
 	                                                            </div>
 	                                                        </div>

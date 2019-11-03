@@ -50,7 +50,8 @@
 	                                                                </div>
 	                                                            </div>
 	                                                            <div class="text">
-	                                                                <h5 class="name">${ch.fromName}</h5>
+	                                                                <h5 class="name">${ch.fromName}&nbsp;&nbsp;&nbsp;
+	                                                        <span class="badge badge-warning" style="align:right">${ch.courseTitle}</span></h5> 
 	                                                                <p>${ch.lastChatContent }</p>
 	                                                            </div>
 	                                                        </div>

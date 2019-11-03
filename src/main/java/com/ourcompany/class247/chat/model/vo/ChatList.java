@@ -16,6 +16,7 @@ public class ChatList {
 	private String chatStatus;
 	private String stuProfile;	//학생프로필사진
 	private String creProfile;  //튜터 프로필사진
+	private String courseTitle; //클래스이름
 	
 	ChatList() {}
 	
@@ -29,9 +30,10 @@ public class ChatList {
 
 
 
+
 	public ChatList(int chatListNum, int courseNum, String fromId, String fromName, String toId, String toName,
 			Date lastChatTime, String lastChatContent, String readStatus, String chatStatus, String stuProfile,
-			String creProfile) {
+			String creProfile, String courseTitle) {
 		super();
 		this.chatListNum = chatListNum;
 		this.courseNum = courseNum;
@@ -45,6 +47,7 @@ public class ChatList {
 		this.chatStatus = chatStatus;
 		this.stuProfile = stuProfile;
 		this.creProfile = creProfile;
+		this.courseTitle = courseTitle;
 	}
 
 
@@ -151,13 +154,26 @@ public class ChatList {
 		this.creProfile = creProfile;
 	}
 
+	
+
+	public String getCourseTitle() {
+		return courseTitle;
+	}
+
+
+	public void setCourseTitle(String courseTitle) {
+		this.courseTitle = courseTitle;
+	}
+
 
 	@Override
 	public String toString() {
 		return "ChatList [chatListNum=" + chatListNum + ", courseNum=" + courseNum + ", fromId=" + fromId
 				+ ", fromName=" + fromName + ", toId=" + toId + ", toName=" + toName + ", lastChatTime=" + lastChatTime
 				+ ", lastChatContent=" + lastChatContent + ", readStatus=" + readStatus + ", chatStatus=" + chatStatus
-				+ ", stuProfile=" + stuProfile + ", creProfile=" + creProfile + "]";
+				+ ", stuProfile=" + stuProfile + ", creProfile=" + creProfile + ", courseTitle=" + courseTitle + "]";
 	}
 
+
+	
 }

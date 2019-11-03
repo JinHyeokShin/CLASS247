@@ -29,6 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="chatStatus" column="CHAT_STATUS"/>
 		<result property="stuProfile" column="mem_profile_name"/>
 		<result property="creProfile" column="cra_rname"/>
+		<result property="courseTitle" column="course_title"/>
 	</resultMap>
 	
 	
@@ -89,9 +90,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectChatList" parameterType="string" resultMap="chatListResultMap">
-		select c.*, mem_name, mem_profile_name
+		select *
 		from chat_list c
 		left join member on(from_id = mem_num)
+		left join course using(course_num)
 		where (from_id = #{creNum} or to_id=#{creNum})
 		and chat_status = 'Y'
 		order by last_chat_time desc
@@ -120,11 +122,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 사용자단 채팅 리스트 불러오기 -->
 	<select id="selectUserChatList" parameterType="_int" resultMap="chatListResultMap">
-		select c.*, cra_rname, mem_name as cre_name
+        select c.*, b.cra_rname, m.mem_name as cre_name, co.course_title
 		from chat_list c
 		join creator_attachment b on( substr(c.to_id, 2) = b.cre_num)
 		join creator a on(substr(c.to_id, 2) = a.cre_num)
 		join member m on(a.mem_num = m.mem_num)
+        join course co on(co.course_num = c.course_num)
 		where from_id = #{memNum} and cra_level=0 and chat_status='Y'
 		order by last_chat_time desc
 	</select>

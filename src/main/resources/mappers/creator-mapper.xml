@@ -249,14 +249,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="reRegisterProfile" parameterType="CreatorAttachment">
 		update creator_attachment
-		set cra_rname = #{craRname}, cra_oname=#{craOname}, 
+		set cra_rname = #{craRname}, cra_oname=#{craOname}
 		where cre_num=#{creNum} and cra_level=0
 	
 	</update>
 	
 	<update id="reRegisterID" parameterType="CreatorAttachment">
 		update creator_attachment
-		set cra_rname = #{craRname}, cra_oname=#{craOname}, 
+		set cra_rname = #{craRname}, cra_oname=#{craOname}
 		where cre_num=#{creNum} and cra_level=1
 	</update>
 	

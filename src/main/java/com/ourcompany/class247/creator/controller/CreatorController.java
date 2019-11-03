@@ -71,10 +71,10 @@ public class CreatorController {
 			String creProfile = creService.getCreProfile(creNum);
 			request.getSession().setAttribute("creProfile", creProfile);
 			ArrayList<Course> list = coService.selectMyCoList(creNum);
-			double score = coService.getScoreSum(creNum);
+			//double score = coService.getScoreSum(creNum);
 			ArrayList<CourseAttachment> coverList = coService.selectCoverList(creNum);
-			
-			mv.addObject("list", list).addObject("coverList", coverList).addObject("score", score);
+			//.addObject("score", score)
+			mv.addObject("list", list).addObject("coverList", coverList);
 			mv.addObject("creator", creator).addObject("totalStuCount", totalStuCount).addObject("classCount", classCount).addObject("totalAmount",totalAmount);
 			mv.setViewName("creator/creatorCenter");
 		} else { //크리에이터가 아닐 때 
@@ -457,7 +457,7 @@ public class CreatorController {
 	 */
 	@RequestMapping("goReRegister.do")
 	public String goReRegisterPage() {
-		return "creator/creReRegistration";
+		return "creator/creator/creReRegistration";
 	}
 	
 	/** 재신청서 업데이트 

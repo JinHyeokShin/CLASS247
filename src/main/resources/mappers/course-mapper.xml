@@ -797,7 +797,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getCourseList" parameterType="_int" resultMap="CourseResultSet">
 		select *
 		from course 
-		where cre_num = #{creNum} and course_status = 'Y'
+        left join power using (course_num)
+		where cre_num = #{creNum} and course_status = 'Y' and power_num is null
 	</select>
 
 	
