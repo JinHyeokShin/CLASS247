@@ -474,6 +474,7 @@ public class CourseDao {
 
 	public Video selectVideo(int videoCourse) {
 		return sqlSession.selectOne("courseMapper.selectVideo",videoCourse);
+	}
 	//클래스 삭제 
 	public int deleteCourse(int courseNum) {
 		return sqlSession.update("courseMapper.deleteCourse2", courseNum);
