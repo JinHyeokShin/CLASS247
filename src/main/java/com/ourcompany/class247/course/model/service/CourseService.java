@@ -167,4 +167,16 @@ public interface CourseService {
 	
 	//크리에이터 센터 메인에 띄울 총 평균 값 가져오기 
 	double getScoreSum(int creNum);
+	
+	
+	ArrayList<SingleCourse> personStat(int categroyNum);
+
+	
+	ArrayList<SingleCourse> peceiptList(PageInfo pi);
+	
+	int peceiptCount();
+	
+	int aPeceiptCount();
+	
+	ArrayList<SingleCourse> aPeceiptList(PageInfo pi);
 }

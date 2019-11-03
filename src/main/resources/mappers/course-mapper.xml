@@ -795,4 +795,72 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	
 	
+	<select id="personStat" parameterType="_int" resultMap="SingleCourseResultSet">
+				
+		select p.course_num, o.course_price, count(take_num ) "love_count"
+		from payment p
+		join course c on(p.course_num = c.course_num)
+		join takecourse using(pay_num)
+		join online_course o on(o.course_num = c.course_num)
+		where category_num = #{categroyNum}
+		group by p.course_num, o.course_price
+		order by 2
+
+
+	
+	</select>
+	
+	
+	<select id="peceiptList" resultMap="SingleCourseResultSet">
+		select cre_num "COURSE_NUM", course_num "COURSE_PRICE", sum(take_price*0.9) "LOVE_COUNT"
+		from takecourse tc
+		join payment p on(tc.pay_num = p.pay_num)
+		join course using(course_num)
+		join creator using(cre_num)
+		where p.pay_num in tc.pay_num and to_CHAR(take_date, 'YYYYMM') = TO_CHAR(SYSDATE, 'YYYYMM')
+		group by cre_num, course_num
+		order by 2
+	</select>
+	
+	<select id="peceiptCount" resultType="_int">
+		
+		select count(*)
+		from (
+			select cre_num "COURSE_NUM", course_num "COURSE_PRICE", sum(take_price*0.9) "LOVE_COUNT"
+			from takecourse tc
+			join payment p on(tc.pay_num = p.pay_num)
+			join course using(course_num)
+			join creator using(cre_num)
+			where p.pay_num in tc.pay_num and to_CHAR(take_date, 'YYYYMM') = TO_CHAR(SYSDATE, 'YYYYMM')
+			group by cre_num, course_num
+        )
+	</select>
+	
+	<select id="aPeceiptList" resultMap="SingleCourseResultSet">
+	
+		select cre_num "COURSE_NUM", course_num "COURSE_PRICE", to_char(take_date, 'YYYY/MM') "COURSE_ENROLL_DATE", sum(take_price*0.9) "LOVE_COUNT"
+		from takecourse tc
+		join payment p on(tc.pay_num = p.pay_num)
+		join course using(course_num)
+		join creator using(cre_num)
+		where p.pay_num in tc.pay_num
+		group by cre_num, course_num, to_char(take_date, 'YYYY/MM')
+		order by 3, 2
+		
+	</select>
+	
+	<select id="aPeceiptCount" resultType="_int">
+		select count(*)
+		from (
+			select cre_num "COURSE_NUM", course_num "COURSE_PRICE", to_char(take_date, 'YYYY/MM'), sum(take_price*0.9) "LOVE_COUNT"
+			from takecourse tc
+			join payment p on(tc.pay_num = p.pay_num)
+			join course using(course_num)
+			join creator using(cre_num)
+			where p.pay_num in tc.pay_num
+			group by cre_num, course_num, to_char(take_date, 'YYYY/MM')
+
+        )
+	
+	</select>
 </mapper>

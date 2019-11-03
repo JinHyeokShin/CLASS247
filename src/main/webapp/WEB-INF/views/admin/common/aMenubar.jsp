@@ -129,7 +129,7 @@
 							class="fas fa-copy"></i>STATS
 					</a>
 						<ul class="list-unstyled navbar__sub-list js-sub-list">
-							<li><a href="aNoticeList.do">STATS</a></li>
+							<li><a href="aStat.do">STATS</a></li>
 							<li><a href="aFAQList.do">STATS</a></li>
 							<li><a href="aFAQList.do">STATS</a></li>
 						</ul></li>

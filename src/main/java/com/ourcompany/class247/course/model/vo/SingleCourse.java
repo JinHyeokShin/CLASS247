@@ -21,9 +21,25 @@ public class SingleCourse {
 	private String courseStatus;
 	private int courseCurrentNum;
 	
+	
 	public SingleCourse() {
 		
 	}
+	
+	public SingleCourse(int courseNum, int coursePrice, int loveCount) {
+		super();
+		this.courseNum = courseNum;
+		this.coursePrice = coursePrice;
+		this.loveCount = loveCount;
+	}
+	
+	
+	public SingleCourse(int coursePrice, int loveCount) {
+		super();
+		this.coursePrice = coursePrice;
+		this.loveCount=loveCount;
+	}
+	
 
 	public SingleCourse(int courseNum, String courseTitle, String categoryName, String memNickName, String courseKind,
 			String courseLevel, Date courseEnrollDate, Date courseStartDate, Date courseEndDate, int coursePrice,

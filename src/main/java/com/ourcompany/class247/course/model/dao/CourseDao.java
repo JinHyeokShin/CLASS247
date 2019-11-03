@@ -474,6 +474,8 @@ public class CourseDao {
 
 	public Video selectVideo(int videoCourse) {
 		return sqlSession.selectOne("courseMapper.selectVideo",videoCourse);
+	}
+	
 	//클래스 삭제 
 	public int deleteCourse(int courseNum) {
 		return sqlSession.update("courseMapper.deleteCourse2", courseNum);
@@ -485,5 +487,32 @@ public class CourseDao {
 	 */
 	public double getScoreSum(int creNum) {
 		return sqlSession.selectOne("courseMapper.getScoreSum", creNum);
+	}
+	
+	
+	public ArrayList<SingleCourse> personStat(int categroyNum) {
+		return (ArrayList)sqlSession.selectList("courseMapper.personStat", categroyNum);
+	}
+	
+	public ArrayList<SingleCourse> peceiptList(PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("courseMapper.peceiptList", null, rowBounds);
+	}
+	
+	public int peceiptCount() {
+		return sqlSession.selectOne("courseMapper.peceiptCount");
+	}
+	
+	public int aPeceiptCount() {
+		return sqlSession.selectOne("courseMapper.aPeceiptCount");
+	}
+	
+	public ArrayList<SingleCourse> aPeceiptList(PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("courseMapper.aPeceiptList", null, rowBounds);
 	}
 }

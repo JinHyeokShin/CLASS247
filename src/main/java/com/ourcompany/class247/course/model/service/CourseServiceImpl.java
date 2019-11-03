@@ -494,4 +494,30 @@ public class CourseServiceImpl implements CourseService {
 		return coDao.selectVideo(videoCourse);
 	}
 
+	@Override
+	public ArrayList<SingleCourse> personStat(int categroyNum) {
+		
+		return coDao.personStat(categroyNum);
+	}
+	
+	@Override
+	public ArrayList<SingleCourse> peceiptList(PageInfo pi) {
+		return coDao.peceiptList(pi);
+	}
+	
+	@Override
+	public int peceiptCount() {
+		return coDao.peceiptCount();
+	}
+
+	@Override
+	public int aPeceiptCount() {
+		return coDao.aPeceiptCount();
+	}
+
+	@Override
+	public ArrayList<SingleCourse> aPeceiptList(PageInfo pi) {
+		return coDao.aPeceiptList(pi);
+	}
+
 }
