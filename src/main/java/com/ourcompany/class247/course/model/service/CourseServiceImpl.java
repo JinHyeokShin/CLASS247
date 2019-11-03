@@ -484,4 +484,14 @@ public class CourseServiceImpl implements CourseService {
 		return coDao.getScoreSum(creNum);
 	}
 
+	@Override
+	public ArrayList<Video> selectVideoList(int courseNum) {
+		return coDao.selectVideoList(courseNum);
+	}
+
+	@Override
+	public Video selectVideo(int videoCourse) {
+		return coDao.selectVideo(videoCourse);
+	}
+
 }

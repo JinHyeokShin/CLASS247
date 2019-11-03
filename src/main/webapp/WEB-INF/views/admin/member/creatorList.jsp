@@ -118,6 +118,12 @@
             		
             };
             
+            $(function() {
+                $('#contacts td').on("click", function(){
+                   $(this).parent().children().eq(1).children(".divv").click();
+                })
+             })
+            
             
             
             function PageBar(num) {

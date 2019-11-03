@@ -699,6 +699,7 @@ public class CourseController {
        * System.out.println(foodList); System.out.println(musicList);
        * System.out.println(careerList);
        */
+		
       
       mv.addObject("craftsList",craftsList)
         .addObject("designList", designList)
@@ -716,6 +717,29 @@ public class CourseController {
       return mv;
    }
 	
+	@RequestMapping("goVideoList.do")
+	public ModelAndView video(ModelAndView mv,int courseNum) {
+		
+		ArrayList<Video> list = coService.selectVideoList(courseNum);
+		Course c = coService.selectCourse(courseNum);
+		
+		mv.addObject("list", list)
+		  .addObject("c",c)
+		  .setViewName("user/course/videoList");
+		return mv;
+	}
+	
+	@RequestMapping("vdetail.do")
+	public ModelAndView videoDetail(ModelAndView mv,int videoCourse,int courseNum) {
+		
+		Course c = coService.selectCourse(courseNum);
+		Video list = coService.selectVideo(videoCourse);
+		System.out.println(courseNum);
+		mv.addObject("c", c)
+		  .addObject("list", list)
+		  .setViewName("user/course/videoDetail");
+		return mv;
+	}
 	
 	@RequestMapping("deleteCourse.do")
 	public ModelAndView deleteCourse(int courseNum, ModelAndView mv, HttpServletRequest request) {

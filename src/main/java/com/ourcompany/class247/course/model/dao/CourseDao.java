@@ -137,18 +137,6 @@ public class CourseDao {
 	  public Course selectCourse(int courseNum) {
 		  return sqlSession.selectOne("courseMapper.selectCourse", courseNum); 
 		  }
-	/* 
-	 * public Course selectCourse(int courseNum, String courseKind) { Course co;
-	 * if(courseKind.equals("online")) { //온라인 클래스일경우 co =
-	 * sqlSession.selectOne("courseMapper.selectOnline", courseNum); } else {
-	 * //오프라인클래스일 경우 co = sqlSession.selectOne("courseMapper.selectOffline",
-	 * courseNum); } return co; }
-	 */
-	
-	
-	
-	
-	
 	
 	public int rejectCourse(int courseNum) {
 		
@@ -208,7 +196,18 @@ public class CourseDao {
 	public ArrayList<SingleCourse> selectPopList(){
 		return (ArrayList)sqlSession.selectList("courseMapper.selectPopList");
 	}
+   // --------------------------------------------------김은기--------------------------------------------------
+   
+
+   
+   
+   public ArrayList<Review> selectReviewList(int rId){
+		return (ArrayList)sqlSession.selectList("courseMapper.selectReviewList", rId);
+	}
 	
+	public int insertReview(Review r) {
+		return sqlSession.insert("courseMapper.insertReview", r);
+	}
 	public int getListCount(int memNum) {
 
 		return sqlSession.selectOne("courseMapper.getListCount",memNum);
@@ -468,6 +467,13 @@ public class CourseDao {
 		return sqlSession.insert("courseMapper.insertVideo", v);
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Video> selectVideoList(int courseNum){
+		return (ArrayList)sqlSession.selectList("courseMapper.selectVideoList",courseNum);
+	}
+
+	public Video selectVideo(int videoCourse) {
+		return sqlSession.selectOne("courseMapper.selectVideo",videoCourse);
 	//클래스 삭제 
 	public int deleteCourse(int courseNum) {
 		return sqlSession.update("courseMapper.deleteCourse2", courseNum);

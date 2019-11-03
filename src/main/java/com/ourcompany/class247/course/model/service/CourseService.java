@@ -157,6 +157,9 @@ public interface CourseService {
 
 	int insertVideo(Video v);
 	
+	ArrayList<Video> selectVideoList(int courseNum);
+	
+	Video selectVideo(int videoCourse);
 	
 	//클래스 삭제 
 	int deleteCourse(int courseNum);

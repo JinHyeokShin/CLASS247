@@ -35,7 +35,7 @@
                                                
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="contacts">
                                       
                                         <c:forEach items="${ nlist }" var="n">
                                         
@@ -111,6 +111,14 @@
             
 
             </div>
+            <script>
+            
+            $(function() {
+                $('#contacts td').on("click", function(){
+                   $(this).parent().children().eq(1).click();
+                });
+             });
+             </script>
  	<c:import url="../common/aImportJs.jsp"/>
 
 

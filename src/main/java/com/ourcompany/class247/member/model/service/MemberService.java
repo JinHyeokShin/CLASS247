@@ -3,8 +3,8 @@ package com.ourcompany.class247.member.model.service;
 import java.util.ArrayList;
 
 import com.ourcompany.class247.common.PageInfo;
-import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.member.model.vo.Member;
+import com.ourcompany.class247.review.model.vo.Review;
 
 public interface MemberService {
 
@@ -33,7 +33,7 @@ public interface MemberService {
 	
 	int deleteMember(Member m);
 	
-	
+	int insertReview(Review review);
 	
 	
 	

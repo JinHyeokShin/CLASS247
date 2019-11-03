@@ -31,6 +31,7 @@ import com.ourcompany.class247.member.model.service.MemberService;
 import com.ourcompany.class247.member.model.vo.Member;
 import com.ourcompany.class247.payment.model.service.PaymentService;
 import com.ourcompany.class247.payment.model.vo.Payment;
+import com.ourcompany.class247.review.model.vo.Review;
 
 @Controller
 public class MemberController {
@@ -503,7 +504,35 @@ public class MemberController {
 		
 		return mv;
 	}
-	
-	
-	
+//-------------------------------------- 마이페이지 리뷰 작성--------------------------------
+	@RequestMapping("insertReview.do")
+	public ModelAndView insertReviews(ModelAndView mv,int courseNum) {
+		mv.addObject("courseNum",courseNum).setViewName("user/member/insertReview");
+		
+		return mv;
+	}
+	@RequestMapping("reviewInsert.do")
+	public String insertReview(HttpServletRequest request,int courseNum,Model model,
+			@RequestParam("star-input") int reviewScore,
+			@RequestParam("feedback") String rContent) {
+		
+		System.out.println(courseNum);
+		Member loginUser= (Member)request.getSession().getAttribute("loginUser");
+		int memNum=loginUser.getMemNum();
+		Review review= new Review();
+		review.setCourseNum(courseNum);
+		review.setMemNum(memNum);
+		review.setReviewContent(rContent);
+		review.setReviewScore(reviewScore);
+		int result= mService.insertReview(review);
+		if(result>0) {
+			
+			return "redirect:memClass.do";
+		}else {
+			
+			model.addAttribute("msg","회원가입 실패!!");
+			return "common/errorPage";
+		}
+	}
 }
+	

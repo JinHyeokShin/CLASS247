@@ -168,7 +168,6 @@
             	$tr.append($("<td>").text("{{d.ii}}"));
             	$tr.append($("<td>").text("{{d.pp}}"));
             	$tr.append($("<td>").text("{{d.dd}}"));
-            	$tr.append($("<td>").text("{{d.ee}}"));
 
             	
             	
@@ -252,6 +251,12 @@
     				
     			
             };
+            
+            $(function() {
+                $('#contacts td').on("click", function(){
+                   $(this).parent().children().eq(0).children(".divv").click();
+                });
+             });
             
             	
             </script>

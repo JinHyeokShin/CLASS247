@@ -43,6 +43,14 @@ public class Review {
 	public void setMemProfileName(String memProfileName) {
 		this.memProfileName = memProfileName;
 	}
+//리뷰 작성할때 필요한 
+	public Review(int courseNum, int memNum, String reviewContent, int reviewScore) {
+		super();
+		this.courseNum = courseNum;
+		this.memNum = memNum;
+		this.reviewContent = reviewContent;
+		this.reviewScore = reviewScore;
+	}
 
 	public int getReviewNum() {
 		return reviewNum;

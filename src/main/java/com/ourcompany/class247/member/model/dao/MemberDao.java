@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.member.model.vo.Member;
+import com.ourcompany.class247.review.model.vo.Review;
 
 @Repository("mDao")
 public class MemberDao {
@@ -90,7 +91,9 @@ public class MemberDao {
 	public int updateUnBlackList(int memNum) {
 		return sqlSession.update("memberMapper.updateUnBlackList", memNum);
 	}
-	
+	public int insertReview(Review review) {
+		return sqlSession.insert("courseMapper.insertReview",review);
+	}
 
 	
 }

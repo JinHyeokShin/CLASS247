@@ -180,142 +180,136 @@
                             <div class="content_wrapper">
                                 <!-- 탭 만들기 -->
                                 <ul class="nav nav-tabs">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" data-toggle="tab" href="#Review">Review</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#Eligibility">Eligibility</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#CourseOutline">Course Outline</a>
-                                    </li>
+                                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#ClassInfo">Class Info</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Tutor">Tutor</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Review">Review</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Curriculum">Curriculum</a></li>
                                 </ul>
                                 <div class="tab-content">
-                                    <div class="tab-pane fade show active" id="Review">
+                                    <!-- 클래스 소개 -->
+                                    <div class="tab-pane fade show active" id="ClassInfo">
+                                        <h4 class="title">Class Info</h4>
+                                        te irure dolor in reprehenderit in voluptate velit esse cillum.
+                                    </div>
+                                    <div class="tab-pane fade" id="Review">
                                         <h4 class="title_top">Review</h4>
                                         <div class="comments-area mb-30">
-                                            <!-- 수업을 이용한 고객들의 리뷰랑 평점 불러오기 (1)-->
-                                            <c:forEach items="${ rlist }" var="rv">
 
-                                                <div class="comment-list">
-                                                    <div class="single-comment single-reviews justify-content-between d-flex">
-                                                        <div class="user justify-content-between d-flex">
-                                                            <div class="thumb">
-                                                                <img src="resources/user/img/cource/cource_1.png" alt="">
-                                                            </div>
-                                                            <div class="desc">
-                                                                <h5>${rv.memNickname}</h5>
-                                                                <span class="star-input">
-												<span class="input">
-											    	<input type="radio" name="star-input" value="1" id="p1">
-											    	<label for="p1">1</label>
-											    	<input type="radio" name="star-input" value="2" id="p2">
-											    	<label for="p2">2</label>
-											    	<input type="radio" name="star-input" value="3" id="p3">
-											    	<label for="p3">3</label>
-											    	<input type="radio" name="star-input" value="4" id="p4">
-											    	<label for="p4">4</label>
-											    	<input type="radio" name="star-input" value="5" id="p5">
-											    	<label for="p5">5</label>
-											  	</span>
-                                                                <output for="star-input"><b>${rv.reviewScore }</b>점</output>
-                                                                </span>
-                                                                <p class="comment">
-                                                                    ${rv.reviewContent }
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </c:forEach>
+
+                                            <c:if test="${empty revlist }">
+                                                <p>작성된 댓글이 존재하지 않습니다.</p>
+                                            </c:if>
+                                            <c:if test="${!empty revlist }">
+                                                <c:forEach items="${ revlist }" var="rev">
+                                                    <table class="table table-borderless table-striped table-earning" align="center" style="width:600px;" align="center" border="1" cellspacing="0" id="rtb">
+
+                                                        <tbody class="ttbody">
+
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <td>
+                                                                    <c:if test="${rev.reviewScore eq 1}">
+                                                                        <span class="star-input">
+									<span class="input">
+									<input type="radio" value="1" id="p1" checked readonly> <label for="p1">1</label> 
+									</span>
+                                                                        </span>
+                                                                    </c:if>
+                                                                    <c:if test="${rev.reviewScore eq 2}">
+                                                                        <span class="star-input">
+									<span class="input">
+									<input type="radio" value="2" id="p2" checked readonly> <label for="p2">2</label> 
+									</span>
+                                                                        </span>
+                                                                    </c:if>
+                                                                    <c:if test="${rev.reviewScore eq 3}">
+                                                                        <span class="star-input">
+									<span class="input">
+									<input type="radio"  value="3" id="p3" checked readonly> <label for="p3">3</label> 
+									</span>
+                                                                        </span>
+                                                                    </c:if>
+                                                                    <c:if test="${rev.reviewScore eq 4}">
+                                                                        <span class="star-input">
+									<span class="input">
+									<input type="radio" value="4" id="p4" checked readonly> <label for="p4">4</label> 
+									</span>
+                                                                        </span>
+                                                                    </c:if>
+                                                                    <c:if test="${rev.reviewScore eq 5}">
+                                                                        <span class="star-input">
+									<span class="input">
+									<input type="radio" value="5" id="p5" checked readonly> <label for="p5">5</label> 
+									</span>
+                                                                        </span>
+                                                                    </c:if>
+                                                                </td>
+
+                                                                <td colspan="5" id="footTd" align="center">
+                                                                    <p>${rev.memNickname}<br>${rev.reviewEnrollDate } </p> ${rev.reviewContent }</td>
+                                                            </tr>
+                                                            <tfoot>
+                                                    </table>
+                                                </c:forEach>
+                                            </c:if>
+
                                         </div>
 
-                                        <span class="star-input">
-								<span class="input">
-							    	<input type="radio" name="star-input" value="1" id="p1">
-							    	<label for="p1">1</label>
-							    	<input type="radio" name="star-input" value="2" id="p2">
-							    	<label for="p2">2</label>
-							    	<input type="radio" name="star-input" value="3" id="p3">
-							    	<label for="p3">3</label>
-							    	<input type="radio" name="star-input" value="4" id="p4">
-							    	<label for="p4">4</label>
-							    	<input type="radio" name="star-input" value="5" id="p5">
-							    	<label for="p5">5</label>
-							  	</span>
-                                        <output for="star-input"><b>0</b>점</output>
-                                        </span>
+
 
                                         <script src="resources/user/js/jquery-1.11.3.min.js"></script>
                                         <script src="resources/user/js/star.js"></script>
-                                        <br><br><br>
-                                        <div class="feedeback">
-                                            <h6>Your Feedback</h6>
-                                            <textarea name="feedback" class="form-control" cols="5" rows="5"></textarea>
-                                            <div class="mt-10 text-right">
-                                                <a href="#" class="btn_1">Read more</a>
-                                            </div>
 
-                                        </div>
+
                                     </div>
                                     <!-- 패키지    -->
                                     <!-- 크리에이터 -->
-                                    <div class="tab-pane fade" id="Eligibility">
-                                        <h4 class="title">Eligibility</h4>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                                        in reprehenderit in voluptate velit esse cillum.
-                                        <br>
-                                        <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                                        ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+                                    <div class="tab-pane fade" id="Tutor">
+                                        <h4 class="title">Tutor</h4>
+                                        ${creator.introduction } ${creator.career} ${creator.education}
+
                                     </div>
 
+
                                     <!-- 커리큘럼 -->
-                                    <div class="tab-pane fade" id="CourseOutline">
-                                        <h4 class="title">Course Outline</h4>
+                                    <div class="tab-pane fade" id="Curriculum">
+                                        <h4 class="title">Curriculum</h4>
                                         <ul class="course_list">
                                             <li class="justify-content-between align-items-center d-flex">
-                                                <p>Introduction Lesson</p>
-                                                <a class="btn_2 text-uppercase" href="#">View Details</a>
+                                                <p>Introduction Lesson</p> <a class="btn_2 text-uppercase" href="#">View Details</a>
                                             </li>
                                             <li class="justify-content-between align-items-center d-flex">
-                                                <p>Basics of HTML</p>
-                                                <a class="btn_2 text-uppercase" href="#">View Details</a>
+                                                <p>Basics of HTML</p> <a class="btn_2 text-uppercase" href="#">View
+											Details</a>
                                             </li>
                                             <li class="justify-content-between align-items-center d-flex">
-                                                <p>Getting Know about HTML</p>
-                                                <a class="btn_2 text-uppercase" href="#">View Details</a>
+                                                <p>Getting Know about HTML</p> <a class="btn_2 text-uppercase" href="#">View Details</a>
                                             </li>
                                             <li class="justify-content-between align-items-center d-flex">
-                                                <p>Tags and Attributes</p>
-                                                <a class="btn_2 text-uppercase" href="#">View Details</a>
+                                                <p>Tags and Attributes</p> <a class="btn_2 text-uppercase" href="#">View Details</a>
                                             </li>
                                             <li class="justify-content-between align-items-center d-flex">
-                                                <p>Basics of CSS</p>
-                                                <a class="btn_2 text-uppercase" href="#">View Details</a>
+                                                <p>Basics of CSS</p> <a class="btn_2 text-uppercase" href="#">View
+											Details</a>
                                             </li>
                                             <li class="justify-content-between align-items-center d-flex">
-                                                <p>Getting Familiar with CSS</p>
-                                                <a class="btn_2 text-uppercase" href="#">View Details</a>
+                                                <p>Getting Familiar with CSS</p> <a class="btn_2 text-uppercase" href="#">View Details</a>
                                             </li>
                                             <li class="justify-content-between align-items-center d-flex">
-                                                <p>Introduction to Bootstrap</p>
-                                                <a class="btn_2 text-uppercase" href="#">View Details</a>
+                                                <p>Introduction to Bootstrap</p> <a class="btn_2 text-uppercase" href="#">View Details</a>
                                             </li>
                                             <li class="justify-content-between align-items-center d-flex">
-                                                <p>Responsive Design</p>
-                                                <a class="btn_2 text-uppercase" href="#">View Details</a>
+                                                <p>Responsive Design</p> <a class="btn_2 text-uppercase" href="#">View Details</a>
                                             </li>
                                             <li class="justify-content-between align-items-center d-flex">
-                                                <p>Canvas in HTML 5</p>
-                                                <a class="btn_2 text-uppercase" href="#">View Details</a>
+                                                <p>Canvas in HTML 5</p> <a class="btn_2 text-uppercase" href="#">View Details</a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                         <!-- 오른쪽 간단 설명 -->
                         <div class="col-lg-4 right-contents">
                             <div class="sidebar_top">
@@ -357,12 +351,11 @@
                                     </li>
                                     <li style="width: 100%;">
                                         <c:if test="${!empty loginUser }">
-                                            <c:if test="${checkLove == true }">
+                                            <c:if test="${checkLove > 0 }">
                                                 <span><img src="resources/creator/images/like.png" id="love" onclick="cancelLove();"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </c:if>
-                                            <c:if test="${checkLove == false }">
-                                                <span><img src="resources/creator/images/nlike.png"
-											id="love" onclick="insertLove();"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <c:if test="${checkLove < 1 }">
+                                                <span><img src="resources/creator/images/nlike.png" id="love" onclick="insertLove();"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </c:if>
                                         </c:if>
                                         <script>
@@ -417,13 +410,52 @@
                                                 })
 
                                             }
-                                        </script> <span> <script
-										type="text/javascript"
-										src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
-									<script type="text/javascript">
-                                        new ShareNaver.makeButton({"type": "e"});
                                         </script>
-                                        
+                                        <span> 
+                                        <script type="text/javascript" src="https://ssl.pstatic.net/share/js/naver_sharebutton.js"></script>
+									<script type="text/javascript"> new ShareNaver.makeButton({"type": "e"});</script>
+                                        <!-- 카카오2 -->
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+<a href="javascript:void(0);" onclick="sendLink();" id="kakao-link-btn1">
+<img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png" width="10px" />
+</a>
+
+<script type="text/javascript">
+  //<![CDATA[
+   function sendLink(){
+    Kakao.init('bfd4cd7749e2b1ffca24a00eeb5aaabc');
+    // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+    Kakao.Link.createDefaultButton({
+      container: '#kakao-link-btn1',
+      objectType: 'feed',
+      content: {
+        title: document.title,
+        description: '내용, 주로 해시태그',
+        imageUrl: document.images[0].src,
+        link: {
+          webUrl: document.location.href,
+          mobileWebUrl: document.location.href
+        }
+      },
+      social: {
+        likeCount: 286,
+        commentCount: 45,
+        sharedCount: 845
+      },
+      buttons: [
+        {
+          title: 'Open!',
+          link: {
+            mobileWebUrl: document.location.href,
+            webUrl: document.location.href
+          }
+        }  
+      ]
+    });
+   };
+  //]]>
+</script>
                                     </span>
 
                                     </li>
@@ -443,6 +475,9 @@
                                         <input type="button" onclick="takeAlert();" class="btn_1 d-block" value="수강하기" style="width:100%;">
                                     </c:if>
                                 </c:if>
+                                <c:if test="${ c.courseKind eq 'online' }">
+                                    <a href="${ coBuyOn }" class="btn_1 d-block">수강하기</a>
+                                </c:if>
                                 <c:url value="openChat.do" var="openChat">
                                     <c:param name="courseNum" value="${ c.courseNum }" />
                                     <c:param name="creNum" value="${c.creNum}" />
@@ -452,8 +487,8 @@
                                     function takeAlert() {
                                         alert("이 강의는 꽉 찼어요 다음 기회에 뵈어요 !");
                                     }
-                                    
-                                    function loginOnly(){
+
+                                    function loginOnly() {
 
                                         if ('${ loginUser.memNum }' == "") {
                                             alert("로그인 후 사용할 수 있는 서비스입니다.");
@@ -471,6 +506,10 @@
 
                         </div>
                     </div>
+
+
+
+
                 </div>
             </section>
             <!--================ End Course Details Area =================-->

@@ -185,7 +185,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="allowCreator" parameterType="_int" resultType="_int">
 		update member
-		set mem_status = 'C'
+		set mem_type = 'C'
 		where mem_num = #{memNum}
 	</select>
 	
