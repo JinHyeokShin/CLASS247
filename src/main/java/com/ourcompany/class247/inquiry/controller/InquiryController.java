@@ -111,45 +111,7 @@ public class InquiryController {
 	
 	
 	 
-	/** 서버에 파일 저장하기 
-	 * @param file
-	 * @param request
-	 * @return
-	 */
-	public String saveFile(MultipartFile file, HttpServletRequest request) {
-		
-		//파일이 저장될 경로 설정
-		String root = request.getSession().getServletContext().getRealPath("resources");
-		String savePath = root + "\\creator\\inquiryImages";
-		
-		File folder = new File(savePath); //저장될 폴더 지정 
-		
-		if(!folder.exists()) {
-			folder.mkdir();
-		}
-		
-		String originalFileName = file.getOriginalFilename(); //원본명
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) 
-								+ originalFileName.substring(originalFileName.lastIndexOf("."));
-		
-		
-		String renamePath = savePath + "\\" + renameFileName;
-		
-		//서버에 저장
-		try {
-			file.transferTo(new File(renamePath));
-			
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		
-		return renameFileName;
-	}
+
 	
 	
 	@RequestMapping("deleteInquiry.do")
@@ -254,27 +216,45 @@ public class InquiryController {
 		
 	}
 
-	private String saveFile(MultipartFile file, HttpServletRequest request) throws IllegalStateException, IOException {
+	
+	/** 서버에 파일 저장하기 
+	 * @param file
+	 * @param request
+	 * @return
+	 */
+	public String saveFile(MultipartFile file, HttpServletRequest request) {
 		
+		//파일이 저장될 경로 설정
 		String root = request.getSession().getServletContext().getRealPath("resources");
-		String savePath = root + "\\admin\\images\\aInquiryupload";
+		String savePath = root + "\\creator\\inquiryImages";
 		
-		File folder = new File(savePath);
+		File folder = new File(savePath); //저장될 폴더 지정 
 		
 		if(!folder.exists()) {
 			folder.mkdir();
 		}
 		
-		String inquiryFileName = file.getOriginalFilename();
+		String originalFileName = file.getOriginalFilename(); //원본명
 		
-		String renamePath = savePath + "\\" + inquiryFileName;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) 
+								+ originalFileName.substring(originalFileName.lastIndexOf("."));
 		
-
+		
+		String renamePath = savePath + "\\" + renameFileName;
+		
+		//서버에 저장
+		try {
 			file.transferTo(new File(renamePath));
 			
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		
-		return inquiryFileName;
+		return renameFileName;
 	}
 
 }

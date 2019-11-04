@@ -56,7 +56,7 @@
                                                 <c:forEach items="${ nlist }" var="n">
 
                                                     <tr>
-                                                        <td align="center">${n.noticeNum}</td>
+                                                        <td>${n.noticeNum}</td>
                                                         <td>
 
                                                             <c:url value="aNdetail.do" var="aNdetail">
@@ -65,7 +65,7 @@
                                                             <a href="${ aNdetail }" style="color:black;">${n.noticeTitle } </a>
 
                                                         </td>
-                                                        <td>${n.noticeCount}</td>
+              
                                                         <td class="text-right">${n.noticeEnrollDate}</td>
                                                         <td align="center">
                                                             <c:if test="${ !empty n.noticeFileName }">
