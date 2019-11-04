@@ -343,7 +343,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="allowCourse" parameterType="_int">
 		update course
-		set course_approved_date=sysdate, course_approved='Y, course_status='Y'
+		set course_approved_date=sysdate, course_approved='Y', course_status='Y'
 		where course_num = #{courseNum}
 	</update>
 	

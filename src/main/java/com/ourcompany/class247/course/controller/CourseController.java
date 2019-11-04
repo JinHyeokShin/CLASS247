@@ -432,7 +432,7 @@ public class CourseController {
    @RequestMapping("aCourseDetail.do")
    public ModelAndView aCourseDetail(ModelAndView mv, int courseNum) {
 	   
-	   String courseKind = (coService.selectCourse(courseNum)).getCourseKind();
+	   	  String courseKind = (coService.selectCourse(courseNum)).getCourseKind();
 	      
 	      Course course = coService.selectCourse(courseNum, courseKind);
 	      CourseAttachment cover = coService.selectCover(courseNum);
@@ -444,7 +444,7 @@ public class CourseController {
 	      mv.addObject("cover", cover);
 	      mv.addObject("stuList", stuList);
 	      mv.addObject("revlist", rlist);
-	      mv.setViewName("admin/course/courseList");
+	      mv.setViewName("admin/course/courseDetail");
 	      
 	      return mv;
 	   
