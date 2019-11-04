@@ -95,6 +95,9 @@ public class PaymentController {
 		System.out.println(p);
 		System.out.println(po);
 		
+		pService.jhinsertPayment(p);
+		pService.jhinsertPower(po);
+		
 //		pService.jhinsertPayment(p);
 		
 		return p.getPayCode();
@@ -187,5 +190,6 @@ public class PaymentController {
 		mv.setViewName("user/course/complete");
 		return mv;
 	}
+	
 	
 }

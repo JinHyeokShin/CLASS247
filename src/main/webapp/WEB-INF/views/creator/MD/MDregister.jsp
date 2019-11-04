@@ -3,21 +3,34 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <!DOCTYPE html>
         <html>
-        <head>
-            <meta charset="UTF-8">
-            <title>Insert title here</title>
-            <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
-            <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-            <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-            <!-- CSS -->
-            <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/alertify.min.css" />
-            <!-- Default theme -->
-            <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/default.min.css" />
-            <!-- Semantic UI theme -->
-            <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/semantic.min.css" />
-            <!-- Bootstrap theme -->
-            <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/bootstrap.min.css" />
-            <style>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<!-- JavaScript -->
+<script
+	src="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/alertify.min.js"></script>
+
+<!-- CSS -->
+<link rel="stylesheet"
+	href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/alertify.min.css" />
+<!-- Default theme -->
+<link rel="stylesheet"
+	href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/default.min.css" />
+<!-- Semantic UI theme -->
+<link rel="stylesheet"
+	href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/semantic.min.css" />
+<!-- Bootstrap theme -->
+<link rel="stylesheet"
+	href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/bootstrap.min.css" />
+</head>
+<style>
                 .ground {
                     width: 100%;
                     height: 100%;
@@ -36,7 +49,6 @@
                     color: red;
                 }
             </style>
-        </head>
 
         <body class="animsition">
 
@@ -82,24 +94,18 @@
                 </div>
                 <script>
                     function inicis() {
+						console.log("test");
 
                         IMP.init('imp79990634');
 
                         IMP.request_pay({
                             pg: 'inicis',
-                            /* 결제PG사 */
                             pay_method: 'card',
-                            /* 결제방법 */
                             merchant_uid: 'T' + new Date().getTime(),
-                            /* 주문번호 */
-                            name: '${c.courseTitle}',
-                            /* 주문이름 */
+                            name: $("#select option:selected").text(),
                             amount: 100,
-                            /* 결제 가격 */
                             buyer_email: '${loginUser.memId}',
-                            /* 구매자 이멜 */
                             buyer_name: '${loginUser.memName}',
-                            /* 구매자 이름 */
                             buyer_tel: '${loginUser.memPhone}',
                         }, function(rsp) {
 
@@ -115,13 +121,13 @@
                                         payPrice: rsp.paid_amount,
                                         confirmNum: rsp.apply_num,
                                         payMethod: 'C',
-                                        confirmNum: rsp.apply_num,
                                         memNum: '${loginUser.memNum}',
+                                        memName :'${loginUser.memName}',
                                         courseNum: $("#select option:selected").val(),
                                         payPrice: 100000
                                     },
                                     success: function(data) {
-                                        location.href = "completeMD.do?payCode=" + data;
+                                        location.href = "cMainView.do";
                                     },
                                     error: function() {
                                         alertify.alert('', '결제 실패');
@@ -144,7 +150,7 @@
                             /* 결제방법 */
                             merchant_uid: 'T' + new Date().getTime(),
                             /* 주문번호 */
-                            name: '${c.courseTitle}',
+                            name: $("#select option:selected").text(),
                             /* 주문이름 */
                             amount: 100,
                             /* 결제 가격 */
@@ -166,13 +172,13 @@
                                         payPrice: rsp.paid_amount,
                                         confirmNum: rsp.apply_num,
                                         payMethod: 'C',
-                                        confirmNum: rsp.apply_num,
                                         memNum: '${loginUser.memNum}',
+                                        memName :'${loginUser.memName}',
                                         courseNum: $("#select option:selected").val(),
                                         payPrice: 100000
                                     },
                                     success: function(data) {
-                                        location.href = "completeMD.do?payCode=" + data;
+                                        location.href = "cMainView.do";
                                     },
                                     error: function() {
                                         alertify.alert('', '결제 실패');
