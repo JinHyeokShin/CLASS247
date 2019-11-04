@@ -80,7 +80,7 @@
                 <div class="account2">
                     <div class="image img-cir img-120 creProfile">
                     <c:if test="${ !empty creator.creNum }">
-	                    <img id="creProfile" src="<%= request.getContextPath() %>/resources/creator/creatorImages/${creProfile}" alt="Class247" />
+	                    <img id="creProfile" class="creProfileImg" src="<%= request.getContextPath() %>/resources/creator/creatorImages/${creProfile}" alt="Class247" />
 	                </c:if>
 	                <c:if test="${ empty creator.creNum }">
 	                	<img id="creProfile" src="<%= request.getContextPath() %>/resources/creator/creatorImages/basic.jpg">

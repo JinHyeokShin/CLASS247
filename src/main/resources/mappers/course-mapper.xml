@@ -785,7 +785,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 크리에이터 별점 평균 구하기  -->
 	<select id="getScoreSum" parameterType="_int" resultType="_double">
-		select round(avg(review_score),2)
+		select NVL(round(avg(review_score),2), 0)
 		from review
 		where course_num in 
 	        (select course_num

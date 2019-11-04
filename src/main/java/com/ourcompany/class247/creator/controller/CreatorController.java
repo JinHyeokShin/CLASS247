@@ -71,15 +71,28 @@ public class CreatorController {
 			String creProfile = creService.getCreProfile(creNum);
 			request.getSession().setAttribute("creProfile", creProfile);
 			ArrayList<Course> list = coService.selectMyCoList(creNum);
-			//double score = coService.getScoreSum(creNum);
+			double score = coService.getScoreSum(creNum);
 			ArrayList<CourseAttachment> coverList = coService.selectCoverList(creNum);
-			//.addObject("score", score)
+			mv.addObject("score", score);
 			mv.addObject("list", list).addObject("coverList", coverList);
 			mv.addObject("creator", creator).addObject("totalStuCount", totalStuCount).addObject("classCount", classCount).addObject("totalAmount",totalAmount);
 			mv.setViewName("creator/creatorCenter");
-		} else { //크리에이터가 아닐 때 
+		} else if(creator != null && creator.getCreStatus().equals("R")) { //크리에이터가 아닐 때 
+			int creNum = creator.getCreNum();
+			String creProfile = creService.getCreProfile(creNum);
+			request.getSession().setAttribute("creProfile", creProfile);
+			mv.addObject("creator", creator).setViewName("creator/creatorCenter");
+		} else if(creator != null && creator.getCreStatus().equals("N")) {
+			int creNum = creator.getCreNum();
+			String creProfile = creService.getCreProfile(creNum);
+			request.getSession().setAttribute("creProfile", creProfile);
+			mv.addObject("creator", creator).setViewName("creator/creatorCenter");			
+			
+		} else {
 			mv.addObject("creator", creator);
 			mv.setViewName("creator/creatorCenter");
+				
+			
 		}
 		return mv;
 		
