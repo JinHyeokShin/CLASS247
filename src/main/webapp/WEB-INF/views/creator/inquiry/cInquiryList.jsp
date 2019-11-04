@@ -41,9 +41,9 @@
                                         
                                         <!-- 문의사항이 없을 때  -->
                                         <c:if test="${ empty iList }">
-                                        	<tbody style="text-align:center">
+                                        	<tbody>
                                         		<tr>
-                                        			<td colspan='5'> 등록된 문의 글이 없습니다.</td>
+                                        			<td colspan='5' style="text-align:center"> 등록된 문의 글이 없습니다.</td>
                                         		</tr>
                                         	</tbody>
                                         </c:if>
@@ -57,7 +57,7 @@
 		                                                <td>${i.inquiryTitle}</td>
 		                                                <td>${i.answerStatus}</td>
 		                                                <td>${i.inquiryEnrollDate}</td>
-		                                                <td>이름?</td>
+		                                                <td>${loginUser.memName}</td>
 		                                            </tr>
 		                                            <c:if test="${i.answerStatus == 'Y' }">
 			                                            <tr class="test">
@@ -126,7 +126,6 @@
 	            		$(this).parent().css({"background":"white"});
 	            	}).click(function() {
 	            		var num = $(this).parent().children().eq(0).text();
-	            		alert(num);
 	            		location.href='<%= request.getContextPath() %>/idetail.do?inquiryNum=' + num; 
 	            	})
 	            	

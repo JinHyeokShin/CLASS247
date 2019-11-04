@@ -64,6 +64,14 @@ public class InquiryServiceImpl implements InquiryService {
 		return iDao.selectAdminInquiryList(pi);
 	}
 	
+	/** 문의글 수정하기 
+	 *
+	 */
+	@Override
+	public int updateInquiry(Inquiry inq) {
+		return iDao.updateInquiry(inq);
+	}
+	
 	
 
 }

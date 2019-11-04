@@ -37,7 +37,7 @@
                                             </tr>
                                         	
                                         </thead>
-                                        <tbody>
+                                        <tbody id="contacts1">
                                         	<c:forEach items="${pList}" var="p">
                                             <tr>
                                                
@@ -119,7 +119,7 @@
                                             </tr>
                                         	
                                         </thead>
-                                        <tbody>
+                                        <tbody id="contacts2">
                                         	<c:forEach items="${poList}" var="po">
                                             <tr>
                                                
@@ -192,6 +192,21 @@
             
 
             </div>
+            <script>
+            $(function() {
+                $('#contacts1 td').on("click", function(){
+                   $(this).parent().children().eq(1).click();
+                });
+             });
+            
+            $(function() {
+                $('#contacts2 td').on("click", function(){
+                   $(this).parent().children().eq(1).click();
+                });
+             });
+            
+            
+            </script>
  	<c:import url="../common/aImportJs.jsp"/>
 
 

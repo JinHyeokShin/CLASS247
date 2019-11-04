@@ -263,9 +263,14 @@ public class Member {
 	public String toString() {
 		return "Member [memNum=" + memNum + ", memId=" + memId + ", memPwd=" + memPwd + ", memNickName=" + memNickName
 				+ ", memName=" + memName + ", memGender=" + memGender + ", memPhone=" + memPhone + ", memAddress="
-				+ memAddress + ", memType=" + memType + ", memEnrollDate=" + memEnrollDate + ", memOutDate="
-				+ memOutDate + ", memStatus=" + memStatus + "]";
+				+ memAddress + ", memProfileName=" + memProfileName + ", memProfilePath=" + memProfilePath
+				+ ", memType=" + memType + ", memEnrollDate=" + memEnrollDate + ", memOutDate=" + memOutDate
+				+ ", memStatus=" + memStatus + ", payDate=" + payDate + ", payPrice=" + payPrice + ", takeDate="
+				+ takeDate + ", courseNum=" + courseNum + ", courseTitle=" + courseTitle + ", courseKind=" + courseKind
+				+ ", courseLevel=" + courseLevel + "]";
 	}
+
+
 	
 	
 	

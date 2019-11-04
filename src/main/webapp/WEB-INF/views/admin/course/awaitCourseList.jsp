@@ -35,7 +35,7 @@
                                                     <th>등록날짜</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="contacts">
                                                 <c:forEach items="${ list }" var="co">
                       
                                                     
@@ -79,6 +79,12 @@
             </div>
 
             <script>
+            $(function() {
+                $('#contacts td').on("click", function(){
+                   $(this).parent().children().eq(2).click();
+                })
+             })
+            
             </script>
             <c:import url="../common/aImportJs.jsp" />
 

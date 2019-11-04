@@ -65,5 +65,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from inquiry
 		where inquiry_status='Y' and answer_status='N'
 	</select>
+	
+	
+	<update id="updateInquiry">
+		update inquiry
+		set inquiry_title = #{inquiryTitle}, inquiry_content=#{inquiryContent}, inquiry_filename=#{inquiryFileName}
+		where inquiry_num = #{inquiryNum}
+	</update>
 
 </mapper>

@@ -82,35 +82,8 @@
 	<!-- 크리에이터 Status == 'Y'일 경우 -->
 <c:if test="${ creator.creStatus == 'Y' }">
    <div class="page-wrapper">
-            <!-- BREADCRUMB-->
-            <section class="au-breadcrumb m-t-75">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="au-breadcrumb-content">
-                                    <div class="au-breadcrumb-left">
-                                        <span class="au-breadcrumb-span">You are here:</span>
-                                        <ul class="list-unstyled list-inline au-breadcrumb__list">
-                                            <li class="list-inline-item active">
-                                                <a href="editor.do">Home</a>
-                                            </li>
-                                            <li class="list-inline-item seprate">
-                                                <span>/</span>
-                                            </li>
-                                            <li class="list-inline-item">Dashboard</li>
-                                        </ul>
-                                    </div>
-                                    <button class="au-btn au-btn-icon au-btn--green">
-                                        <i class="zmdi zmdi-plus"></i>new class</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- END BREADCRUMB-->
 
+		<div class="main-content">
             <!-- STATISTIC-->
             <section class="statistic">
                 <div class="section__content section__content--p30">
@@ -143,12 +116,12 @@
                                         <div class="au-progress">
                                                 <span class="au-progress__title"></span>
                                                 <div class="au-progress__bar">
-                                                    <div class="au-progress__inner js-progressbar-simple" role="progressbar" data-transitiongoal="78">
+                                                    <div class="au-progress__inner js-progressbar-simple" role="progressbar" data-transitiongoal="${score * 20}">
                                                         <span class="au-progress__value js-value"></span>
                                                     </div>
                                                 </div>
                                             </div>
-                                    <span class="desc">rating</span>
+                                    <span class="desc">satisfaction</span>
                                     <div class="icon">
                                         <i class="zmdi zmdi-star"></i>
                                     </div>
@@ -551,7 +524,7 @@
                     </div>
                 </div>
             </div>
-
+</div>
 </c:if>
 	
 	<c:import url="../creator/common/cMenubar.jsp"/>

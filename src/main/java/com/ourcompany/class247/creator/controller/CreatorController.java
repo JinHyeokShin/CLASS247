@@ -68,12 +68,10 @@ public class CreatorController {
 			String creProfile = creService.getCreProfile(creNum);
 			request.getSession().setAttribute("creProfile", creProfile);
 			ArrayList<Course> list = coService.selectMyCoList(creNum);
-			
-			for(Course c : list) {
-				System.out.println(c);
-			}
+			double score = coService.getScoreSum(creNum);
 			ArrayList<CourseAttachment> coverList = coService.selectCoverList(creNum);
-			mv.addObject("list", list).addObject("coverList", coverList);
+			
+			mv.addObject("list", list).addObject("coverList", coverList).addObject("score", score);
 			mv.addObject("creator", creator).addObject("totalStuCount", totalStuCount).addObject("classCount", classCount).addObject("totalAmount",totalAmount);
 			mv.setViewName("creator/creatorCenter");
 		} else { //크리에이터가 아닐 때 

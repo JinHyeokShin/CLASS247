@@ -4,35 +4,60 @@ public class Video {
 
 	
 	private int videoCourse; 
-	private int onlineNum;
-	private String videoOname;
-	private String videoRname;
+	private String courseTitle;
+	private int rowNum;
+	private int courseNum;
 	private String videoPath;
 	private String videoTitle;
 	private String videoContent;
 	
 	public Video() {}
-	
-	public Video(int onlineNum, String videoPath, String videoTitle, String videoContent) {
+
+	public Video(int courseNum, String videoPath, String videoTitle, String videoContent) {
 		super();
-		this.onlineNum = onlineNum;
-		this.videoPath = videoPath;
-		this.videoTitle = videoTitle;
-		this.videoContent = videoContent;
-	}
-	
-	public Video(int videoCourse, int onlineNum, String videoOname, String videoRname, String videoPath,
-			String videoTitle, String videoContent) {
-		super();
-		this.videoCourse = videoCourse;
-		this.onlineNum = onlineNum;
-		this.videoOname = videoOname;
-		this.videoRname = videoRname;
+		this.courseNum = courseNum;
 		this.videoPath = videoPath;
 		this.videoTitle = videoTitle;
 		this.videoContent = videoContent;
 	}
 
+	public Video(int videoCourse, int courseNum, String videoPath, String videoTitle, String videoContent) {
+		super();
+		this.videoCourse = videoCourse;
+		this.courseNum = courseNum;
+		this.videoPath = videoPath;
+		this.videoTitle = videoTitle;
+		this.videoContent = videoContent;
+	}
+	
+	
+
+	public Video(int videoCourse, String courseTitle, int courseNum, String videoPath, String videoTitle,
+			String videoContent) {
+		super();
+		this.videoCourse = videoCourse;
+		this.courseTitle = courseTitle;
+		this.courseNum = courseNum;
+		this.videoPath = videoPath;
+		this.videoTitle = videoTitle;
+		this.videoContent = videoContent;
+	}
+
+	
+	public Video(int videoCourse, String courseTitle, int rowNum, int courseNum, String videoPath, String videoTitle,
+			String videoContent) {
+		super();
+		this.videoCourse = videoCourse;
+		this.courseTitle = courseTitle;
+		this.rowNum = rowNum;
+		this.courseNum = courseNum;
+		this.videoPath = videoPath;
+		this.videoTitle = videoTitle;
+		this.videoContent = videoContent;
+	}
+
+	
+	
 	public int getVideoCourse() {
 		return videoCourse;
 	}
@@ -41,28 +66,28 @@ public class Video {
 		this.videoCourse = videoCourse;
 	}
 
-	public int getOnlineNum() {
-		return onlineNum;
+	public String getCourseTitle() {
+		return courseTitle;
 	}
 
-	public void setOnlineNum(int onlineNum) {
-		this.onlineNum = onlineNum;
+	public void setCourseTitle(String courseTitle) {
+		this.courseTitle = courseTitle;
 	}
 
-	public String getVideoOname() {
-		return videoOname;
+	public int getRowNum() {
+		return rowNum;
 	}
 
-	public void setVideoOname(String videoOname) {
-		this.videoOname = videoOname;
+	public void setRowNum(int rowNum) {
+		this.rowNum = rowNum;
 	}
 
-	public String getVideoRname() {
-		return videoRname;
+	public int getCourseNum() {
+		return courseNum;
 	}
 
-	public void setVideoRname(String videoRname) {
-		this.videoRname = videoRname;
+	public void setCourseNum(int courseNum) {
+		this.courseNum = courseNum;
 	}
 
 	public String getVideoPath() {
@@ -91,10 +116,12 @@ public class Video {
 
 	@Override
 	public String toString() {
-		return "Video [videoCourse=" + videoCourse + ", onlineNum=" + onlineNum + ", videoOname=" + videoOname
-				+ ", videoRname=" + videoRname + ", videoPath=" + videoPath + ", videoTitle=" + videoTitle
+		return "Video [videoCourse=" + videoCourse + ", courseTitle=" + courseTitle + ", rowNum=" + rowNum
+				+ ", courseNum=" + courseNum + ", videoPath=" + videoPath + ", videoTitle=" + videoTitle
 				+ ", videoContent=" + videoContent + "]";
 	}
+
+	
 	
 	
 	

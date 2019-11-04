@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.member.model.dao.MemberDao;
 import com.ourcompany.class247.member.model.vo.Member;
+import com.ourcompany.class247.review.model.vo.Review;
 
 @Service("mService")
 public class MemberServiceImpl implements MemberService{
@@ -115,6 +116,11 @@ public class MemberServiceImpl implements MemberService{
 	public int updateUnBlackList(int memNum) {
 		
 		return mDao.updateUnBlackList(memNum);
+	}
+
+	@Override
+	public int insertReview(Review review) {
+		return mDao.insertReview(review);
 	}
 	
 
