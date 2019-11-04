@@ -7,28 +7,28 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link
-	href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap"
-	rel="stylesheet">
+   href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap"
+   rel="stylesheet">
 <script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+   src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript"
-	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+   src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <!-- JavaScript -->
 <script
-	src="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/alertify.min.js"></script>
+   src="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/alertify.min.js"></script>
 
 <!-- CSS -->
 <link rel="stylesheet"
-	href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/alertify.min.css" />
+   href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/alertify.min.css" />
 <!-- Default theme -->
 <link rel="stylesheet"
-	href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/default.min.css" />
+   href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/default.min.css" />
 <!-- Semantic UI theme -->
 <link rel="stylesheet"
-	href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/semantic.min.css" />
+   href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/semantic.min.css" />
 <!-- Bootstrap theme -->
 <link rel="stylesheet"
-	href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/bootstrap.min.css" />
+   href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/bootstrap.min.css" />
 </head>
 <style>
                 .ground {
@@ -73,7 +73,7 @@
                                             <div>
                                                 <h2  class="text-sm-center mt-2 mb-1 mdText"> 100,000원/1개월</h2><br>
                                                    <select name="select" id="select" class="form-control" style="width:300px">
-                                                      <option value="">Please select your class</option>                                                
+                                                      <option value="none">Please select your class</option>                                                
                                                       <c:if test="${ !empty list }">
                                                          <c:forEach items="${list}" var="c">
                                                              <option value="${c.courseNum}">${c.courseTitle}</option>
@@ -82,8 +82,8 @@
                                                   </select><br>
                                               </div>
                                             <div align="center" style="font-family:Noto Serif KR;">
-                                                <button type="button" class="btn btn-danger btn-lg" onclick="inicis();">결제하기</button>
-                                                <button type="button" style="background:yellow; color:black" class="btn btn-danger btn-lg" onclick="kakao();">카카오 결제하기</button>
+                                                <button type="button" class="btn btn-danger btn-lg payBtn" onclick="inicis();">결제하기</button>
+                                                <button type="button" style="background:yellow; color:black" class="btn btn-danger btn-lg payBtn" onclick="kakao();">카카오 결제하기</button>
                                             </div>
                                         </div>
                                     </div>
@@ -93,6 +93,21 @@
                     </div>
                 </div>
                 <script>
+                	$(function() {
+                		if($("#select").val() == 'none'){
+                			$('.payBtn').attr("disabled", true);
+                		}
+                		
+                		$("#select").on("change", function(){
+                			if($("#select").val() == 'none'){
+                				$('.payBtn').attr("disabled", true);
+                			} else {
+                				$('.payBtn').attr("disabled", false);
+                			}
+                		})
+                	})
+                	
+
                     function inicis() {
                   console.log("test");
                         IMP.init('imp79990634');
