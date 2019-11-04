@@ -137,7 +137,7 @@ public interface CourseService {
 	//크리에이터센터 - 클래스 수 
 	int getCourseCount(int creNum);
 	
-	boolean checkLove(Love love);
+	int checkLove(Love love);
 	
 	int insertLove(Love iLove);
 	

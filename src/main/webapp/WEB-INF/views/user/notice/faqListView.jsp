@@ -46,34 +46,34 @@
 		width:900px;
 		text-align:center;
 	}
-	.
 </style>
 </head>
 <body>
    <c:import url="../common/menubar.jsp"/>
-   <div class="container"  style="padding-top:120px">
-   <h3 align="center"> 
-      총 게시글 갯수 : ${ pi.listCount }
-   </h3>
-
+    <section class="contact-section section_padding">
+   <div class="container" >
+    <br>
+            <h1>자주 묻는 질문 </h1>
+             <h4 align="right"> 총 게시글 갯수 : ${ pi.listCount }</h4>
+            <hr>
+            <br>
             <!-- MAIN CONTENT-->
-            <div class="main-content">
+            <div class="main-content" align="center">
                     <div class="col-lg-12">
-                        <div class="">
-                                <h2 align="center">자주 묻는 질문</h2><br><br>
-                                <div><br>                        
+                                <div><br><br>                        
                                  
                                  <c:forEach items="${ flist }" var="f">
                          <ul>
                              <li class="collapsible">
-                                 <h2 class="title"><a href="#html5">&nbsp; ${ f.faqNum }.  ${ f.faqTitle}</a></h2>
+                                 <h3 class="title" align="left"><a href="#html5">&nbsp; ${ f.faqNum }.  ${ f.faqTitle}</a></h3>
                                  <hr>     
-                                 <h3 class="content">${ f.faqContent }</h3>
+                                 &nbsp;&nbsp;<h4 class="content" align="left">${ f.faqContent }</h4>
+                                 <br><br>
                              </li>                         
                          </ul>
                          
                           </c:forEach>
-                         
+                         <br><br>
                          <tr align="center" height="20">
                             <td colspan="6">
                                
@@ -114,13 +114,12 @@
                                
                                
                             </td>
-                            </tr>
-                            
-                                </div>
+                           </tr>
                             </div>
                         </div>   
                     </div>
                 </div>
+                </section>
    <c:import url="../common/footer.jsp"/>
 
 </body>
