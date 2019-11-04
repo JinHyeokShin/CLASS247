@@ -63,7 +63,7 @@
                                                 
                                                 <div class="au-chat-textfield">
                                                     <form class="au-form-icon">
-                                                        <input style="width:80%; margin:0; padding:0;" id="message" class="au-input au-input--full au-input--h65" type="text" placeholder="&nbsp;&nbsp;&nbsp; Type a message">
+                                                        <input style="width:80%; margin:0; padding:0;" id="message" onkeypress="if(event.keyCode==13){goSearch();}" class="au-input au-input--full au-input--h65" type="text" placeholder="&nbsp;&nbsp;&nbsp; Type a message">
                                                         <button type="button" class="btn btn-primary btn-lg" id="sendBtn" style="background:#4272d7;">SEND</button>
                                                     </form>
                                                 </div>
@@ -77,6 +77,11 @@
                 </session>
                 
        <script>
+       
+       
+
+
+
                     
          function deleteChat(){
        	  if(confirm('정말 채팅방을 나가시겠습니까?')){
@@ -144,10 +149,7 @@
 							    $div3.append($div4); 
 							    
 							    $("#chatBox").append($div);
-						    	
-						    	
-						    	
-						    	
+						    					    	
 						    	
 						    }
 						});

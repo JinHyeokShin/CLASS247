@@ -9,6 +9,7 @@ public class Online extends Course{
 	private String courseMaterial;		//준비물
 	private int courseMaterialPrice;	//준비물가격
 	private String courseVideoUrl;			//소개영상링크
+	private String coaRName;
 	
 	public Online() {
 		
@@ -41,6 +42,28 @@ public class Online extends Course{
 		this.courseMaterial = courseMaterial;
 		this.courseMaterialPrice = courseMaterialPrice;
 		this.courseVideoUrl = courseVideoUrl;
+	}
+	
+	
+	
+
+	public Online(int onlineNum, int coursePrice, String courseMaterial, int courseMaterialPrice, String courseVideoUrl,
+			String coaRName) {
+		super();
+		this.onlineNum = onlineNum;
+		this.coursePrice = coursePrice;
+		this.courseMaterial = courseMaterial;
+		this.courseMaterialPrice = courseMaterialPrice;
+		this.courseVideoUrl = courseVideoUrl;
+		this.coaRName = coaRName;
+	}
+
+	public String getCoaRName() {
+		return coaRName;
+	}
+
+	public void setCoaRName(String coaRName) {
+		this.coaRName = coaRName;
 	}
 
 	public int getOnlineNum() {
@@ -90,7 +113,7 @@ public class Online extends Course{
 				+ ", loveCount=" + getLoveCount() + ", courseCurrentNum=" + getCourseCurrentNum() + ", courseEnrollDate=" + getCourseEnrollDate() 
 				+ ", courseApprovedDate= " + getCourseApprovedDate() + ", courseStartDate=" + getCourseStartDate() + ", courseEndDate=" + getCourseEndDate() + 
 				 ", courseApproved=" + getCourseApproved() + ", courseStatus=" + getCourseStatus()  + "onlineNum=" + onlineNum + ", coursePrice=" + coursePrice + ", courseMaterial=" + courseMaterial
-				+ ", courseMaterialPrice=" + courseMaterialPrice + ", courseVideoUrl=" + courseVideoUrl + "]";
+				+ ", courseMaterialPrice=" + courseMaterialPrice + ", courseVideoUrl=" + courseVideoUrl + "coaRName" + coaRName +" ]";
 	}
 	
 	

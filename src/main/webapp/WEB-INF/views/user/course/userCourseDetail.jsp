@@ -161,7 +161,10 @@
             </script>
 
 
-
+<script>
+ var test = ${c};
+ console.log(c);
+</script>
             <!--================ Start Course Details Area =================-->
 
             <section class="course_details_area section_padding">

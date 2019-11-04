@@ -142,7 +142,7 @@
                             <div class="item">
                                 <div class="single_special_cource">
                                 <div class="img">
-                                    <img src="resources/course/images/${co.craRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
+                                    <img src="resources/course/images/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
                                     </div>
                                     <div class="special_cource_text">
                                         <a class="btn_4">${ co.categoryName }</a>

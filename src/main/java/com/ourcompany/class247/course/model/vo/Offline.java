@@ -13,6 +13,7 @@ public class Offline extends Course{
 	private int coursePrice;
 	private String courseDay;		//수업일
 	private int courseCount;		//수업횟수(사용미정)
+	private String coaRName;
 	
 	public Offline() {
 		
@@ -61,6 +62,32 @@ public class Offline extends Course{
 		this.coursePrice = coursePrice;
 		this.courseDay = courseDay;
 		this.courseCount = courseCount;
+	}
+	
+	
+	
+
+	public Offline(int offlineNum, String courseArea, int courseMinPax, int courseMaxPax, int courseHours,
+			int courseHourPrice, int coursePrice, String courseDay, int courseCount, String coaRName) {
+		super();
+		this.offlineNum = offlineNum;
+		this.courseArea = courseArea;
+		this.courseMinPax = courseMinPax;
+		this.courseMaxPax = courseMaxPax;
+		this.courseHours = courseHours;
+		this.courseHourPrice = courseHourPrice;
+		this.coursePrice = coursePrice;
+		this.courseDay = courseDay;
+		this.courseCount = courseCount;
+		this.coaRName = coaRName;
+	}
+
+	public String getCoaRName() {
+		return coaRName;
+	}
+
+	public void setCoaRName(String coaRName) {
+		this.coaRName = coaRName;
 	}
 
 	public int getCoursePrice() {
@@ -140,7 +167,7 @@ public class Offline extends Course{
 		return "Offline [offlineNum=" + offlineNum + ", courseArea=" + courseArea + ", courseMinPax=" + courseMinPax
 				+ ", courseMaxPax=" + courseMaxPax + ", courseHours=" + courseHours + ", courseHourPrice="
 				+ courseHourPrice + ", coursePrice=" + coursePrice + ", courseDay=" + courseDay + ", courseCount="
-				+ courseCount + "]";
+				+ courseCount + ",coaRName : " + coaRName + "]";
 	}
 
 

@@ -21,6 +21,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="courseApproved" column="course_approved"/>
 		<result property="courseStatus" column="course_status"/>
 		<result property="memNickName" column="mem_nickname"/>	
+		<result property="coaRName" column="coa_rname"/>
 		
 		<discriminator javaType="string" column="course_kind">
      		 <case value="online" resultType="Online">
@@ -120,14 +121,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="courseEnrollDate" column="course_enroll_date"/>
       <result property="courseStartDate" column="course_start_date"/>   
       <result property="courseEndDate" column="course_end_date"/>
-      <result property="coaRName" column="course_rname"/>
-      <result property="craRName" column="creator_rname"/>
+      <result property="coaRName" column="coa_rname"/>
+      <result property="craRName" column="cra_rname"/>
       <result property="loveCount" column="love_count"/>
          <result property="courseHourPrice" column="course_hour_price"/>
                <result property="coursePrice" column="course_price"/>
                <result property="courseArea" column="courseArea"/>
                <result property="courseStatus" column="course_status"/>
                <result property="courseCurrentNum" column="course_current_num"/>
+               <result property="courseMaxPax" column="course_max"/>
             
    </resultMap>
    
@@ -624,7 +626,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from single_course_view
         where course_num in (select course_num
                              from power
-                             where power_status = 'n')
+                             where power_status = 'Y')
     
 	</select>
 	
@@ -894,7 +896,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="aPeceiptCount" resultType="_int">
 		select count(*)
 		from (
-			select cre_num "COURSE_NUM", course_num "COURSE_PRICE", to_date(to_char(take_date, 'YYYY/MM'), 'YYYY/MM'), sum(take_price*0.9) "LOVE_COUNT"
+			select cre_num "COURSE_NUM", course_num "COURSE_PRICE", to_date(to_char(take_date, 'YYYY/MM'), 'YYYY/MM'), sum(take_price-1000) "LOVE_COUNT"
 			from takecourse tc
 			join payment p on(tc.pay_num = p.pay_num)
 			join course using(course_num)

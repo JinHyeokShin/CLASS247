@@ -192,10 +192,10 @@ public class CreatorController {
 		String originalFileName = file.getOriginalFilename(); //원본명
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) 
+		String renameFileName3 = sdf.format(new Date(System.currentTimeMillis())) 
 								+ originalFileName.substring(originalFileName.lastIndexOf("."));
 		
-		
+		String renameFileName = renameFileName3.toLowerCase();
 		String renamePath = savePath + "\\" + renameFileName;
 		
 		//서버에 저장

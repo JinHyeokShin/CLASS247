@@ -321,7 +321,7 @@
                 			type:"post",
                 			success:function(data){
                 				alert("추천가격 : " + data.coursePrice );
-                				alert("예상 학생 : " + data.loveCount );
+                				alert("예상 총 수익 : " + data.loveCount );
                 				
                 				var test = '안녕';
                 				var $p = $('<p>').text(test);

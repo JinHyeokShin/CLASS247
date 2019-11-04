@@ -21,7 +21,7 @@ public class SingleCourse {
 	private int loveCount;
 	private String courseStatus;
 	private int courseCurrentNum;
-	
+	private int courseMaxPax;
 	
 	public SingleCourse() {
 		

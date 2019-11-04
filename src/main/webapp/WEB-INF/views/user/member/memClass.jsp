@@ -82,7 +82,7 @@
                                                 </c:url>
                                                 <div class="row">
                                                     <div class="col-md-5">
-                                                        <img src="resources/user/img/test1.jpeg" class="special_img" alt="" onclick="location.href=${goVideoList}">
+                                                        <img src="resources/course/images/${ pon.coaRname}" class="special_img" alt="" onclick="location.href=${goVideoList}">
                                                     </div>
                                                     <div class="col-md-7 mt-sm-10">
                                                         <p>
@@ -102,20 +102,13 @@
                                                                 </h3>
                                                             </a>
                                                             &nbsp; &nbsp; &nbsp;
-                                                            <script>
-                                                                function rSubmit() {
-                                                                    var url = "insertReview.do?courseNum=${pon.courseNum}";
-                                                                    var name = "review test";
-                                                                    var option = "width = 500, height = 500, top = 100, left = 200, location = no"
-                                                                    window.open(url, name, option);
-                                                                }
-                                                            </script>
 
-                                                           <a href="#" onclick="rSubmit();">
+                                                           <a href="#" onclick="rSubmit(${pon.courseNum});">
                                                                 <h3 style="display:inline-block">
                                                                     <input class="genric-btn primary-border radius" name="log-btn" type="button" style="font-size: 15" value="리뷰 작성하기">
                                                                 </h3>
                                                             </a>
+                                                         
                                                         </div>
 
                                                     </div>
@@ -123,6 +116,14 @@
 
                                             </blockquote>
                                         </c:forEach>
+                                        <script>
+                                                 function rSubmit(data) {
+                                                        var url = "insertReview.do?courseNum=" + data;
+                                                        var name = "review test";
+                                                        var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+                                                        window.open(url, name, option);
+                                                                }
+                                        </script>
                                     </div>
                                 </section>
                                 <script src="resources/user/js/jquery-1.11.3.min.js"></script>
@@ -165,7 +166,7 @@
                                                 </c:url>
                                                 <div class="row">
                                                     <div class="col-md-5">
-                                                        <img src="resources/user/img/test1.jpeg" class="special_img" alt="" onclick="location.href=${codetail}">
+                                                        <img src="resources/course/images/${poff.coaRname }" class="special_img" alt="" onclick="location.href=${codetail}">
                                                     </div>
                                                     <div class="col-md-7 mt-sm-10">
                                                         <p>
@@ -185,19 +186,19 @@
                                                                 </h3>
                                                             </a>
                                                             &nbsp; &nbsp; &nbsp;
+                                                            <a href="#" onclick="rSubmitt(${poff.courseNum});">
+                                                                <h3 style="display:inline-block">
+                                                                    <input class="genric-btn primary-border radius" name="log-btn" type="button" style="font-size: 15" value="리뷰 작성하기">
+                                                                </h3>
+                                                            </a>
                                                             <script>
-                                                                function rSubmitt() {
-                                                                    var url = "insertReview.do?courseNum=${poff.courseNum}";
+                                                                function rSubmitt(data) {
+                                                                    var url = "insertReview.do?courseNum=" + data;;
                                                                     var name = "review test";
                                                                     var option = "width = 500, height = 500, top = 100, left = 200, location = no"
                                                                     window.open(url, name, option);
                                                                 }
                                                             </script>
-                                                            <a href="#" onclick="rSubmitt();">
-                                                                <h3 style="display:inline-block">
-                                                                    <input class="genric-btn primary-border radius" name="log-btn" type="button" style="font-size: 15" value="리뷰 작성하기">
-                                                                </h3>
-                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>

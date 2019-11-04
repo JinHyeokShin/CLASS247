@@ -7,6 +7,7 @@ public class Complete {
 	private String categoryName;
 	private String payCode;
 	private int payPrice;
+	private String coaRName;
 	
 	
 	public Complete() {
@@ -23,6 +24,29 @@ public class Complete {
 		this.categoryName = categoryName;
 		this.payCode = payCode;
 		this.payPrice = payPrice;
+	}
+
+
+	public Complete(String courseTitle, String memNickName, int memNum, String categoryName, String payCode,
+			int payPrice, String coaRName) {
+		super();
+		this.courseTitle = courseTitle;
+		this.memNickName = memNickName;
+		this.memNum = memNum;
+		this.categoryName = categoryName;
+		this.payCode = payCode;
+		this.payPrice = payPrice;
+		this.coaRName = coaRName;
+	}
+
+
+	public String getCoaRName() {
+		return coaRName;
+	}
+
+
+	public void setCoaRName(String coaRName) {
+		this.coaRName = coaRName;
 	}
 
 
@@ -89,8 +113,12 @@ public class Complete {
 	@Override
 	public String toString() {
 		return "Complete [courseTitle=" + courseTitle + ", memNickName=" + memNickName + ", memNum=" + memNum
-				+ ", categoryName=" + categoryName + ", payCode=" + payCode + ", payPrice=" + payPrice + "]";
+				+ ", categoryName=" + categoryName + ", payCode=" + payCode + ", payPrice=" + payPrice + ", coaRName="
+				+ coaRName + "]";
 	}
+
+
+	
 
 	
 	

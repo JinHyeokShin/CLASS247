@@ -111,7 +111,7 @@
 								
 											<c:forEach items="${ craList }" var="craList">
 											<div class="image img-240">
-												<img src="/class247/resources/creator/creatorImages/${ craList.craRname }">
+												<img src="/class247/resources/creator/creatorImages/20191104151233.jpg">
 											</div>
 											
 											</c:forEach>

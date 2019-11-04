@@ -172,10 +172,10 @@ public class CourseController {
       String originalFileName = file.getOriginalFilename(); //원본명
       
       SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-      String renameFileName = sdf.format(new Date(System.currentTimeMillis())) 
+      String renameFileName3 = sdf.format(new Date(System.currentTimeMillis())) 
                         + originalFileName.substring(originalFileName.lastIndexOf("."));
       
-      
+      String renameFileName = renameFileName3.toLowerCase();
       String renamePath = savePath + "\\" + renameFileName;
       
       //서버에 저장
@@ -781,6 +781,7 @@ public class CourseController {
 		
 		 ArrayList<SingleCourse> personStat = coService.personStat(categoryNum);
 		 
+		 System.out.println(personStat);
 		 
 		 SingleCourse pes = new AStat().perStat(personStat);
 
