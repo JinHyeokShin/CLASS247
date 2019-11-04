@@ -82,7 +82,7 @@ img {
 	
 }
 
-#creProfile {
+.creProfileImg {
             position:absolute;
             max-width:150%; max-height:150%;
             width:auto; height:auto;

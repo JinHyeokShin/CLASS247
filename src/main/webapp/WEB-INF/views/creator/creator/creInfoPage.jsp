@@ -37,7 +37,7 @@
 	                                    <form action="updateProfile.do" id="profileUpdateForm" method="post" enctype="multipart/form-data">
 	                                        <div class="mx-auto d-block" align="center">
 	                                        	<div class="image img-cir img-120 creProfile">
-	                                           		<img id="creProfile" src="<%= request.getContextPath() %>/resources/creator/creatorImages/${creProfile}" alt="Class247" />
+	                                           		<img id="creProfile2" class="creProfileImg" src="<%= request.getContextPath() %>/resources/creator/creatorImages/${creProfile}" alt="Class247" />
 	                                           	</div>
 	                                            <br><h5 class="text-sm-center mt-2 mb-1">${ loginUser.memName }</h5>
 	                                            <div class="location text-sm-center">
@@ -79,8 +79,8 @@
                                         					alert("프로필 사진 변경에 실패하였습니다.");
                                         				} else {
                                         					var newPic = "<%= request.getContextPath() %>/resources/creator/creatorImages/" + data;
-                                        					alert(newPic);
-                                        					$('#creProfile').attr("src", "newPic");
+                                        					$('#creProfile2').attr("src", newPic);
+                                        					$('#creProfile').attr("src", newPic);
                                         				}
                                         			}
                                         			, error:function(){

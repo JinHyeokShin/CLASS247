@@ -36,9 +36,9 @@ public class ChatController {
 	 @RequestMapping("cChatDetailView.do") public ModelAndView
 	 chattingView(@RequestParam(value="chatListNum") int roomId, 
 			 		@RequestParam(value="fromId") int memNum, ModelAndView mv) {
-		 
+		 Member student = chService.selectStuProfile(memNum);
 		 System.out.println(roomId + "    :  " + memNum);
-		 mv.addObject("memNum", memNum);
+		 mv.addObject("memNum", memNum).addObject("student", student);
 		 mv.addObject("roomId", roomId).setViewName("creator/cChat"); 
 		 return mv; 
 	 }
@@ -74,7 +74,6 @@ public class ChatController {
 	public void getChatList(@RequestParam(value="roomId") int roomId, HttpServletResponse response) throws JsonIOException, IOException {
 		System.out.println("에이작스에 입성" + roomId);
 		ArrayList<Chat> list = chService.selectChatDetail(roomId);
-		
 		for(Chat c : list) {
 			System.out.println(c);
 		}
@@ -109,7 +108,7 @@ public class ChatController {
 			mv.addObject("creNum", toId);
 			mv.addObject("mgs", "존재하는 채팅 창에 오신 것을 환영합니다!");
 			mv.addObject("roomId", roomId);
-			mv.setViewName("creator/cChat");
+			mv.setViewName("creator/userChatDetail");
 		} else {
 			int result1 = chService.insertChatRoom(chatList);
 			int roomId = chService.selectRoomdId(chatList);
@@ -117,11 +116,68 @@ public class ChatController {
 			mv.addObject("creNum", toId);
 			mv.addObject("msg", "새로운 채팅방에 입장하셨습니다!");
 			mv.addObject("roomId", roomId);
-			mv.setViewName("creator/cChat");
+			mv.setViewName("creator/userChatDetail");
 		}
 		
+		Creator c = chService.selectCreator(creNum);
+		mv.addObject("c", c);
+		return mv;
+	}
+	
+	@RequestMapping("userChattingView.do")
+	public ModelAndView userChattingView(HttpServletRequest request, ModelAndView mv) {
+		Member loginUser = (Member) request.getSession().getAttribute("loginUser");
+
+		ArrayList<ChatList> chatList = chService.selectUserChatList(loginUser.getMemNum());
+		System.out.println("memID : " + loginUser.getMemNum());
+			for (ChatList ch : chatList) {
+				System.out.println(ch);				
+		}
+		mv.addObject("chatList", chatList);
+		mv.setViewName("creator/userChatList");
+
 		return mv;
 	}
 	
 
+	@RequestMapping("userChatDetail.do")
+	public ModelAndView userChatDetail(ModelAndView mv, @RequestParam(value="chatListNum") int roomId, @RequestParam(value="creNum") String creNum) {
+		
+		int num = Integer.parseInt(creNum.substring(1));
+		Creator c = chService.selectCreator(num);
+		mv.addObject("c", c);
+		mv.addObject("roomId", roomId);
+		mv.setViewName("creator/userChatDetail");
+		return mv;
+	}
+	
+	
+	@RequestMapping("deleteChat.do")
+	public ModelAndView deleteChat(@RequestParam(value="chatListNum") int chatListNum, ModelAndView mv) {
+		int result = chService.deleteChat(chatListNum); 
+		if(result > 0 ) {
+			mv.addObject("msg", "채팅방을 나갔습니다.");
+			mv.setViewName("redirect:userChattingView.do");
+		} else { //실패
+			mv.addObject("msg", "채팅방 나가기 실패");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	
+		@RequestMapping("deleteCreChat.do")
+		public ModelAndView deleteCreChat(@RequestParam(value="chatListNum") int chatListNum, ModelAndView mv) {
+			int result = chService.deleteChat(chatListNum); 
+			if(result > 0 ) {
+				mv.addObject("msg", "채팅방을 나갔습니다.");
+				mv.setViewName("redirect:cChattingView.do");
+			} else { //실패
+				mv.addObject("msg", "채팅방 나가기 실패");
+				mv.setViewName("common/errorPage");
+			}
+			return mv;
+		}
 }
+	
+

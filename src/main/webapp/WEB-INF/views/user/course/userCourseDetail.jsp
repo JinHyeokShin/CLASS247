@@ -350,14 +350,14 @@
                                         </a>
                                     </li>
                                     <li style="width: 100%;">
-                                        <c:if test="${!empty loginUser }">
+<%--                                         <c:if test="${!empty loginUser }">
                                             <c:if test="${checkLove > 0 }">
                                                 <span><img src="resources/creator/images/like.png" id="love" onclick="cancelLove();"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </c:if>
                                             <c:if test="${checkLove < 1 }">
                                                 <span><img src="resources/creator/images/nlike.png" id="love" onclick="insertLove();"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </c:if>
-                                        </c:if>
+                                        </c:if> --%>
                                         <script>
                                             function insertLove() {
                                                 var memNum = '${loginUser.memNum}';

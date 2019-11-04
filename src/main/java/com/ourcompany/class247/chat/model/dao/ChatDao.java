@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.ourcompany.class247.chat.model.vo.Chat;
 import com.ourcompany.class247.chat.model.vo.ChatList;
+import com.ourcompany.class247.creator.model.vo.Creator;
+import com.ourcompany.class247.member.model.vo.Member;
 
 @Repository
 public class ChatDao {
@@ -53,6 +55,23 @@ public class ChatDao {
 
 	public ArrayList<ChatList> selectChatList(String creNum) {
 		return (ArrayList)sqlSession.selectList("chatMapper.selectChatList", creNum);
+	}
+
+	public Member selectStuProfile(int memNum) {
+		return sqlSession.selectOne("chatMapper.selectStuProfile", memNum);
+	}
+
+	public Creator selectCreator(int creNum) {
+		return sqlSession.selectOne("chatMapper.selectCreator", creNum);
+	}
+
+	//사용자 입장, 채팅 리스트 불러오기 
+	public ArrayList<ChatList> selectUserChatList(int memNum) {
+		return (ArrayList)sqlSession.selectList("chatMapper.selectUserChatList", memNum);
+	}
+
+	public int deleteChat(int chatListNum) {
+		return sqlSession.update("chatMapper.deleteChat", chatListNum);
 	}
 
 }

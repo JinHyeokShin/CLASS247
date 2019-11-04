@@ -65,6 +65,16 @@
 		                    	 <hr>
 	                     	</c:if>
 	                     </div>
+	                     <c:if test="${inq.answerStatus == 'Y' }">
+		                     <div class="form-group"  style="padding:30px; text-align:center; width:100%; height:500px; overflow:auto">
+		                     <div><h2>문의 준신 답변에 대한 내용입니다.</h2></div>
+		                     <div style="float:right">답변 시간  ${ inq.answerEnrollDate }</div> 
+		                     <br><br>
+		                         <div>${inq.answerContent}</div>
+		                     </div>	     
+		                     <hr>                
+	                    </c:if> 
+	                     
 	                     <div class="form-group" align="center">
 			                 <button type="button" class="btn btn-primary" onclick="location.href='inquiryList.do'">목록으로</button>
 	                     </div>

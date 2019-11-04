@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +22,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
+import com.ourcompany.class247.common.PageInfo;
+import com.ourcompany.class247.common.Pagination;
 import com.ourcompany.class247.course.model.service.CourseService;
 import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
@@ -60,7 +63,7 @@ public class CreatorController {
 		Creator creator = creService.getCreator(memNum);
 		System.out.println(creator);
 
-		if(creator != null) { //크리에이터 존재 시 
+		if(creator != null && creator.getCreStatus().equals("Y")) { //크리에이터 존재 시 
 			int creNum = creator.getCreNum();
 			int totalStuCount = mService.getStuCount(creNum);
 			int classCount = coService.getCourseCount(creNum);
@@ -70,13 +73,26 @@ public class CreatorController {
 			ArrayList<Course> list = coService.selectMyCoList(creNum);
 			double score = coService.getScoreSum(creNum);
 			ArrayList<CourseAttachment> coverList = coService.selectCoverList(creNum);
-			
-			mv.addObject("list", list).addObject("coverList", coverList).addObject("score", score);
+			mv.addObject("score", score);
+			mv.addObject("list", list).addObject("coverList", coverList);
 			mv.addObject("creator", creator).addObject("totalStuCount", totalStuCount).addObject("classCount", classCount).addObject("totalAmount",totalAmount);
 			mv.setViewName("creator/creatorCenter");
-		} else { //크리에이터가 아닐 때 
+		} else if(creator != null && creator.getCreStatus().equals("R")) { //크리에이터가 아닐 때 
+			int creNum = creator.getCreNum();
+			String creProfile = creService.getCreProfile(creNum);
+			request.getSession().setAttribute("creProfile", creProfile);
+			mv.addObject("creator", creator).setViewName("creator/creatorCenter");
+		} else if(creator != null && creator.getCreStatus().equals("N")) {
+			int creNum = creator.getCreNum();
+			String creProfile = creService.getCreProfile(creNum);
+			request.getSession().setAttribute("creProfile", creProfile);
+			mv.addObject("creator", creator).setViewName("creator/creatorCenter");			
+			
+		} else {
 			mv.addObject("creator", creator);
 			mv.setViewName("creator/creatorCenter");
+				
+			
 		}
 		return mv;
 		
@@ -99,7 +115,7 @@ public class CreatorController {
 	 */
 	@RequestMapping("creInsert.do")
 	public String insertCreator(Creator creator, HttpServletRequest request,
-								@RequestParam(name="creProfile", required=false) MultipartFile profile,
+								@RequestParam(name="creProfilee", required=false) MultipartFile profile,
 								@RequestParam(name="creID", required=false) MultipartFile creID) {
 		
 		int result = creService.insertCreator(creator);
@@ -363,33 +379,149 @@ public class CreatorController {
 		
 	}
 	
+
+	/** 크리에이터 통계 페이지로 이동 
+	 * @return
+	 */
+	@RequestMapping("editor.do")
+	public ModelAndView editor(ModelAndView mv, HttpServletRequest request,
+			@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+		int creNum = ((Creator)request.getSession().getAttribute("creator")).getCreNum();
+		
+		int salaryCount = creService.selectSalaryCount(creNum);
+		PageInfo pi = Pagination.getPageInfo(currentPage, salaryCount);
+		ArrayList<Chart> list = creService.selectCreSalary(pi, creNum);
+		
+		mv.addObject("salaryList", list).addObject("pi", pi);
+		mv.setViewName("creator/creChart");
+		return mv;
+	}
+	
+	
+	
 	
 	
 	/** 차트 구하기 
 	 * @param month
 	 */
 	@RequestMapping("getChart.do")
-	public void getChart(@RequestParam(name="month") int month, HttpServletResponse response) throws JsonIOException, IOException{
-		Chart chart = new Chart();
-		chart.setCourseNum(113);
-		chart.setCreNum(3);
-		chart.setForMonth(month);
-		ArrayList<Chart> list = creService.getChart(chart);
+	public void getChart(@RequestParam(name="month") int month, HttpServletRequest request, HttpServletResponse response) throws JsonIOException, IOException{
+		System.out.println("에이작스 입성" + month);
+		int creNum = ((Creator)request.getSession().getAttribute("creator")).getCreNum();
+		//온라인 최근 5개월 수입 가져오기 
+		Chart onlineChart = new Chart(creNum, month);
+		ArrayList<Chart> onlineList = creService.getOnlineChart(onlineChart);
 		
-		response.setContentType("application/json; charset=utf-8");
+		Chart offlineChart = new Chart(creNum, month);
+		ArrayList<Chart> offlineList = creService.getOfflineChart(offlineChart);
 		
-		for(Chart c: list) {
+		Chart totalChart = new Chart(creNum, month);
+		ArrayList<Chart> totalList = creService.getChart(totalChart);
+		
+		
+		for(Chart c : totalList) {
 			System.out.println(c);
 		}
 		
+		String[] months = new String[5];
+		int[] online = new int[5];
+		int[] offline = new int[5];
+
+		for(int i=0; i<5; i++) {
+			months[i] = onlineList.get(i).getForMonth() + "월";
+			online[i] = onlineList.get(i).getAmount();
+			offline[i] = offlineList.get(i).getAmount();
+		}
+		
+		
+		String[] toMonths = new String[6];
+		int[] total = new int[6];		
+		for(int i=0; i<6; i++) {
+			toMonths[i] = totalList.get(i).getForMonth() + "월";
+			total[i] = totalList.get(i).getAmount();
+		}
+
+		response.setContentType("application/json; charset=utf-8");
+		
 		Gson gson = new Gson();
-		gson.toJson(list, response.getWriter());
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("months", months);
+		map.put("online", online);
+		map.put("offline", offline);
+		map.put("total", total);
+		map.put("toMonths", toMonths);
+		gson.toJson(map, response.getWriter());
+		
+		
 	}
 	
 	@RequestMapping("powerLink.do")
-	public String goMDpage() {
+	public ModelAndView goMDpage(HttpServletRequest request, ModelAndView mv) {
+		int creNum = ((Creator)request.getSession().getAttribute("creator")).getCreNum();
+		ArrayList<Course> list = creService.getCourseList(creNum);
 		
-		return "creator/MD/MDregister";
+		mv.addObject("list", list);
+		mv.setViewName("creator/MD/MDregister");
+		return mv;
+	}
+	 
+	/** 크리에이터 거절시 재신청 페이지로 이동 
+	 * @return
+	 */
+	@RequestMapping("goReRegister.do")
+	public String goReRegisterPage() {
+		return "creator/creator/creReRegistration";
+	}
+	
+	/** 재신청서 업데이트 
+	 * @return
+	 */
+	@RequestMapping("reRegister.do")
+	public String updateRegister(Creator creator, HttpServletRequest request,
+			@RequestParam(name="creProfilee", required=false) MultipartFile profile,
+			@RequestParam(name="creID", required=false) MultipartFile creID) {
+		int creNum = ((Creator)request.getSession().getAttribute("creator")).getCreNum();
+		creator.setCreNum(creNum);
+		
+		int result = creService.reRegister(creator);
+		
+		
+		if(!profile.getOriginalFilename().equals("")) { //프로필 첨부사진이 존재하면 
+			
+			String profileRename = saveFile(profile, request);
+			
+			if(profileRename != null) {
+				CreatorAttachment caProfile = new CreatorAttachment();
+				caProfile.setCraRname(profileRename);
+				caProfile.setCraOname(profile.getOriginalFilename());
+				caProfile.setCraPath(request.getSession().getServletContext().getRealPath("resources") + "\\creator\\creatorImages");
+				caProfile.setCreNum(creNum);
+				creService.reRegisterProfile(caProfile);
+			}
+		}
+		
+		
+		if(!creID.getOriginalFilename().equals("")) {
+			String idRename = saveFile(creID, request);
+			
+			if(idRename != null) {
+				CreatorAttachment caId = new CreatorAttachment();
+				caId.setCraRname(idRename);
+				caId.setCraOname(profile.getOriginalFilename());
+				caId.setCraPath(request.getSession().getServletContext().getRealPath("resources") + "\\creator\\creatorImages");
+				caId.setCreNum(creNum);
+				
+				creService.reRegisterID(caId);
+			}
+			
+		}
+		
+		
+		if(result > 0) {
+			return "redirect:cMainView.do";
+		} else {
+			return "common/errorPage";
+		}
 	}
 	
 

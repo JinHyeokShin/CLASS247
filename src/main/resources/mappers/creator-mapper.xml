@@ -50,6 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="forMonth" column="for_month"/>
 		<result property="paidDate" column="paid_date"/>
 		<result property="salaryStatus" column="salary_status"/>
+		<result property="courseTitle" column="course_title"/>
 	</resultMap>
 
 	<select id="selectCreator" parameterType="_int" resultMap="creatorResultSet">
@@ -178,13 +179,88 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<select id="selectChart" parameterType="Chart" resultMap="chartResultMap">
-		select for_month, amount
-		from salary_record 
-		where cre_num = #{creNum}
-		and for_month between #{forMonth}-5 and #{forMonth}
-		order by for_month
+		 select for_month, NVL(a, 0) as amount
+		 from(select for_month, sum(amount) a
+				from salary_record 
+				where cre_num = #{creNum}
+				and for_month between extract(month from (sysdate-180)) and extract(month from sysdate)-1
+		         group by for_month
+				order by for_month) a 
+		  right join chart_view using(for_month)
+		  where for_month between extract(month from (sysdate-180)) and extract(month from sysdate)-1
+		  order by for_month
 	</select>
 	
+	<select id="onlineSumChart" parameterType="Chart" resultMap="chartResultMap">
+        select for_month, NVL(a, 0) as amount
+        from 
+		(select for_month, sum(amount) a
+		from salary_record 
+		where course_num in (select course_num
+							from course 
+							where cre_num=#{creNum} and course_kind='online')       
+		and for_month between extract(month from (sysdate-150)) and extract(month from sysdate)-1
+        group by for_month
+		order by for_month	) a
+        right join chart_view using(for_month)
+        where for_month between extract(month from (sysdate-150)) and extract(month from sysdate)-1
+        order by for_month
+	</select>
+	
+	<select id="offlineSumChart" parameterType="Chart" resultMap="chartResultMap">
+        select for_month, NVL(a, 0) as amount
+        from 
+		(select for_month, sum(amount) a
+		from salary_record 
+		where course_num in (select course_num
+							from course 
+							where cre_num=#{creNum} and course_kind='offline')       
+		and for_month between extract(month from (sysdate-150)) and extract(month from sysdate)-1
+        group by for_month
+		order by for_month	) a
+        right join chart_view using(for_month)
+        where for_month between extract(month from (sysdate-150)) and extract(month from sysdate)-1
+        order by for_month
+	</select>	
+	
+	<!-- 크리에이터 급여 명세서 조회  -->
+	<select id="selectCreSalary" parameterType="_int" resultMap="chartResultMap">
+		select *
+		from salary_record s
+        join course  c using(course_num)
+		where s.cre_num = #{creNum}
+		and salary_status='Y'
+		order by paid_date desc
+	</select>
+	<!-- 크리에이터 급여 명세서 조회  페이징 처리를 위한.. -->
+	<select id="selectSalaryCount" parameterType="_int" resultType="_int">
+		select count(*)
+		from salary_record
+		where cre_num = #{creNum}
+		and salary_status='Y'	
+	</select>
+	
+	<update id="reRegisterCreator" parameterType="Creator">
+		update creator
+		set introduction = #{introduction}, career = #{career}, education=#{education}, certification=#{certification}, enroll_date=sysdate, 
+		approved_date = null, cre_status='N'
+		where cre_num = #{creNum}
+	</update>
+	
+	<update id="reRegisterProfile" parameterType="CreatorAttachment">
+		update creator_attachment
+		set cra_rname = #{craRname}, cra_oname=#{craOname}
+		where cre_num=#{creNum} and cra_level=0
+	
+	</update>
+	
+	<update id="reRegisterID" parameterType="CreatorAttachment">
+		update creator_attachment
+		set cra_rname = #{craRname}, cra_oname=#{craOname}
+		where cre_num=#{creNum} and cra_level=1
+	</update>
+	
+
 	
 	
 </mapper>

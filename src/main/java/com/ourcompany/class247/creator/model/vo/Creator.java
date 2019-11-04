@@ -16,6 +16,7 @@ public class Creator {
 	private Date approvedDate;
 	private Date endDate;
 	private String creStatus;		
+	private String creProfile;	//프로필 사진 
 	
 	public Creator() {
 		
@@ -37,10 +38,15 @@ public class Creator {
 	
 
 
-	public Creator(int creNum, int memNum, String memNickName, String introduction, String career, String education,
-			String certification, Date enrollDate, Date approvedDate, Date endDate, String creStatus) {
+
+
+
+	public Creator(int creNum, String creName, int memNum, String memNickName, String introduction, String career,
+			String education, String certification, Date enrollDate, Date approvedDate, Date endDate, String creStatus,
+			String creProfile) {
 		super();
 		this.creNum = creNum;
+		this.creName = creName;
 		this.memNum = memNum;
 		this.memNickName = memNickName;
 		this.introduction = introduction;
@@ -51,6 +57,7 @@ public class Creator {
 		this.approvedDate = approvedDate;
 		this.endDate = endDate;
 		this.creStatus = creStatus;
+		this.creProfile = creProfile;
 	}
 
 
@@ -176,13 +183,24 @@ public class Creator {
 		this.certification = certification;
 	}
 
+	
+
+	public String getCreProfile() {
+		return creProfile;
+	}
+
+
+	public void setCreProfile(String creProfile) {
+		this.creProfile = creProfile;
+	}
+
 
 	@Override
 	public String toString() {
-		return "Creator [creNum=" + creNum + ", memNum=" + memNum + ", memNickName=" + memNickName + ", introduction="
-				+ introduction + ", career=" + career + ", education=" + education + ", certification=" + certification
-				+ ", enrollDate=" + enrollDate + ", approvedDate=" + approvedDate + ", endDate=" + endDate
-				+ ", creStatus=" + creStatus + "]";
+		return "Creator [creNum=" + creNum + ", creName=" + creName + ", memNum=" + memNum + ", memNickName="
+				+ memNickName + ", introduction=" + introduction + ", career=" + career + ", education=" + education
+				+ ", certification=" + certification + ", enrollDate=" + enrollDate + ", approvedDate=" + approvedDate
+				+ ", endDate=" + endDate + ", creStatus=" + creStatus + ", creProfile=" + creProfile + "]";
 	}
 
 

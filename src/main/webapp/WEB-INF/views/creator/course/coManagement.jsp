@@ -12,40 +12,12 @@
 	
 
 	   <div class="page-wrapper">
-            <!-- BREADCRUMB-->
-            <section class="au-breadcrumb m-t-75">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="au-breadcrumb-content">
-                                    <div class="au-breadcrumb-left">
-                                        <span class="au-breadcrumb-span">You are here:</span>
-                                        <ul class="list-unstyled list-inline au-breadcrumb__list">
-                                            <li class="list-inline-item active">
-                                                <a href="#">Home</a>
-                                            </li>
-                                            <li class="list-inline-item seprate">
-                                                <span>/</span>
-                                            </li>
-                                            <li class="list-inline-item">Dashboard</li>
-                                        </ul>
-                                    </div>
-                                    <button class="au-btn au-btn-icon au-btn--green">
-                                        <i class="zmdi zmdi-plus"></i>new class</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- END BREADCRUMB-->
 
             <section class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <h3 class="title-3 m-b-30">
-                            <i class="zmdi zmdi-book"></i>my class
+                            <i class="zmdi zmdi-book"></i>현재 진행중인 클래스
                         </h3>
                         <div class="row">
                             <!-- <div class="col-xl-16"> -->

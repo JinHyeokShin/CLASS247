@@ -178,11 +178,7 @@ star-input>.input.focus {
 														</div>
 														<br>
 														<div class="coDiv">
-															<div class="progress mb-2">
-																<div class="progress-bar bg-info" role="progressbar"
-																	style="width: 40%" aria-valuenow="50" aria-valuemin="0"
-																	aria-valuemax="100">40%</div>
-															</div>
+															<span class="coTitle">수강 신청 인원</span><br>
 															<span class="coTitle">${co.courseCurrentNum}명 신청</span>
 														</div>
 														<br>
@@ -276,29 +272,25 @@ star-input>.input.focus {
 														<br>
 														<div class="coDiv">
 															<span class="coTitle">수강 기간</span><br>
-															${co.courseStartDate} ~ ${co.courseEndDate}<br> <span
-																class="coTitle">수업 요일</span><br> 매주 ${co.courseDay}
+															${co.courseStartDate} ~ ${co.courseEndDate}<br> <br>
+															<span class="coTitle">수업 요일</span><br> 매주 ${co.courseDay}
 															<span
 																style="font-family: 'Noto Serif KR'; font-size: 12px;">총
 																${co.courseCount}회</span>
 														</div>
 														<br>
 														<div class="coDiv">
-															<div class="progress mb-2">
-																<div class="progress-bar bg-info" role="progressbar"
-																	style="width: 40%" aria-valuenow="50" aria-valuemin="0"
-																	aria-valuemax="100">40%</div>
-															</div>
-															<span class="coTitle">${co.courseCurrentNum}명 신청</span> <span
-																style="font-family: 'Noto Serif KR'; font-size: 12px;">최대인원
+															<span class="coTitle">수강 신청 인원</span><br>
+															<span class="coTitle">${co.courseCurrentNum}명 신청</span> 
+															<span style="font-family: 'Noto Serif KR'; font-size: 12px;">최대인원
 																${ co.courseMaxPax }명/ 최소인원 ${ co.courseMinPax }명</span>
 														</div>
 														<br>
 														<div class="coDiv">
 															<table>
 																<tr>
-																	<td style="width: 300px">신청 날짜</td>
-																	<td style="width: 50%">승인 날짜</td>
+																	<td class="coTitle" style="width: 300px">신청 날짜</td>
+																	<td class="coTitle" style="width: 50%">승인 날짜</td>
 																</tr>
 																<tr>
 																	<td>${co.courseApprovedDate}</td>
@@ -335,9 +327,6 @@ star-input>.input.focus {
 														</div>
 														<hr>
 														<div>
-															<button type="button"
-																class="btn btn-warning btn-lg btn-block">클래스
-																수정하기</button>
 															<br>
 															<button type="button"
 																class="btn btn-danger btn-lg btn-block"

@@ -113,7 +113,6 @@
 
                                                             <a href="${ goVideoList }">
                                                                 <h3 style="display:inline-block">
-
                                                                     <input class="genric-btn primary-border radius" name="log-btn" type="button" style="font-size: 15" value="리뷰 작성하기">
                                                                 </h3>
                                                             </a>

@@ -138,6 +138,25 @@
                 </div>
             </div>
         </div>
+        <br>
+        <br>
+        <div class="container" align="center">
+            <div class="row" >
+            <div class="col-sm-6 col-xl-2"></div>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="single_feature">
+                      <a href="userChattingView.do">
+                        <div class="single_feature_part">
+                            <img src="resources/user/img/chat.png" style="width:50%">
+                            <br><br> <br><br> 
+                            <h4>나의 채팅 목록</h4>
+                            <br><br>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
     <br><br><br><br><br>
     	
