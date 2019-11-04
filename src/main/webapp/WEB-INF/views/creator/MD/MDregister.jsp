@@ -9,14 +9,7 @@
             <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
             <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
             <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-            <!-- CSS -->
-            <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/alertify.min.css" />
-            <!-- Default theme -->
-            <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/default.min.css" />
-            <!-- Semantic UI theme -->
-            <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/semantic.min.css" />
-            <!-- Bootstrap theme -->
-            <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/bootstrap.min.css" />
+           </head>
             <style>
                 .ground {
                     width: 100%;
@@ -36,7 +29,6 @@
                     color: red;
                 }
             </style>
-        </head>
 
         <body class="animsition">
 
@@ -62,11 +54,11 @@
                                                 <h2  class="text-sm-center mt-2 mb-1 mdText"> 100,000원/1개월</h2><br>
                                                    <select name="select" id="select" class="form-control" style="width:300px">
                                                       <option value="">Please select your class</option>                                                
-		                                                <c:if test="${ !empty list }">
-	                                                      <c:forEach items="${list}" var="c">
-	                                                          <option value="${c.courseNum}">${c.courseTitle}</option>
-	                                                      </c:forEach>
-                                             		  </c:if>
+                                                      <c:if test="${ !empty list }">
+                                                         <c:forEach items="${list}" var="c">
+                                                             <option value="${c.courseNum}">${c.courseTitle}</option>
+                                                         </c:forEach>
+                                                     </c:if>
                                                   </select><br>
                                               </div>
                                             <div align="center" style="font-family:Noto Serif KR;">
@@ -82,31 +74,27 @@
                 </div>
                 <script>
                     function inicis() {
-
+                  console.log("test");
                         IMP.init('imp79990634');
 
+                       
+                        
                         IMP.request_pay({
                             pg: 'inicis',
-                            /* 결제PG사 */
                             pay_method: 'card',
-                            /* 결제방법 */
                             merchant_uid: 'T' + new Date().getTime(),
-                            /* 주문번호 */
                             name: '${c.courseTitle}',
-                            /* 주문이름 */
                             amount: 100,
-                            /* 결제 가격 */
                             buyer_email: '${loginUser.memId}',
-                            /* 구매자 이멜 */
                             buyer_name: '${loginUser.memName}',
-                            /* 구매자 이름 */
                             buyer_tel: '${loginUser.memPhone}',
                         }, function(rsp) {
 
                             console.log(rsp.apply_num);
+                            
                             if (rsp.success) {
                                 $.ajax({
-                                    url: "payment.do",
+                                    url: "paymentMD.do",
                                     type: "post",
                                     data: {
                                         payCode: rsp.imp_uid,
@@ -114,15 +102,13 @@
                                         payPrice: rsp.paid_amount,
                                         confirmNum: rsp.apply_num,
                                         payMethod: 'C',
-                                        takeCode: rsp.merchant_uid,
                                         confirmNum: rsp.apply_num,
                                         memNum: '${loginUser.memNum}',
-                                        courseNum: '${c.courseNum}',
-                                        payPrice: $("#totalPrice").text(),
-                                        takePrice: $("#totalPrice").text()
+                                        courseNum: $("#select option:selected").val(),
+                                        payPrice: 100000
                                     },
                                     success: function(data) {
-                                        location.href = "complete.do?payCode=" + data;
+                                        location.href = "completeMD.do?payCode=" + data;
                                     },
                                     error: function() {
                                         alertify.alert('', '결제 실패');
@@ -159,23 +145,21 @@
                             console.log(rsp.apply_num);
                             if (rsp.success) {
                                 $.ajax({
-                                    url: "payment.do",
+                                    url: "paymentMD.do",
                                     type: "post",
                                     data: {
-                                        payCode: rsp.imp_uid,
+                                       payCode: rsp.imp_uid,
                                         reservNum: rsp.merchant_uid,
                                         payPrice: rsp.paid_amount,
                                         confirmNum: rsp.apply_num,
-                                        payMethod: 'K',
-                                        takeCode: rsp.merchant_uid,
+                                        payMethod: 'C',
                                         confirmNum: rsp.apply_num,
                                         memNum: '${loginUser.memNum}',
-                                        courseNum: '${c.courseNum}',
-                                        payPrice: $("#totalPrice").text(),
-                                        takePrice: $("#totalPrice").text()
+                                        courseNum: $("#select option:selected").val(),
+                                        payPrice: 100000
                                     },
                                     success: function(data) {
-                                        location.href = "complete.do?payCode=" + data;
+                                        location.href = "completeMD.do?payCode=" + data;
                                     },
                                     error: function() {
                                         alertify.alert('', '결제 실패');

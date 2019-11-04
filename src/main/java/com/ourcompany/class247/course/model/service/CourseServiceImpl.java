@@ -494,4 +494,13 @@ public class CourseServiceImpl implements CourseService {
 		return coDao.selectVideo(videoCourse);
 	}
 
+	
+	/** 거절된 클래스 
+	 *
+	 */
+	@Override
+	public ArrayList<Course> selectRejectByCreNum(int creNum) {
+		return coDao.selectRejectByCreNum(creNum);
+	}
+
 }

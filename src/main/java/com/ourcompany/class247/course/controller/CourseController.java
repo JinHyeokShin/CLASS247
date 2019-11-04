@@ -201,11 +201,13 @@ public class CourseController {
       ArrayList<Course> list = coService.selectMyCoList(creNum);
       //승인 대기중인 클래스 불러오기 
       ArrayList<Course> awaitList = coService.selectAwaitByCreNum(creNum);
+      ArrayList<Course> rejectList = coService.selectRejectByCreNum(creNum);
+      System.out.println(rejectList.size() + "size");
 
       ArrayList<CourseAttachment> coverList = coService.selectCoverList(creNum);
 
       mv.addObject("list", list);
-      mv.addObject("awaitList", awaitList);
+      mv.addObject("awaitList", awaitList).addObject("rejectList", rejectList);
       mv.addObject("coverList", coverList);
       mv.setViewName("creator/course/coManagement");
        return mv;
