@@ -61,7 +61,7 @@ header {
                 <div class="col-lg-8 course_details_left">
                     <div class="main_image">
                     	<h1>${ c.courseTitle }</h1>			
-                        <img class="img-fluid" src="resources/creator/images/test1.jpeg" alt="">
+                        <img class="img-fluid" src="resources/creator/creatorImages/${c.craRname }" alt="">
                     </div>
                     <br>
                     <br>

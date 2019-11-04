@@ -188,7 +188,7 @@
 								                		});
 								                		
 								                		
- 
+ /* 
 								                		$('#courseMaxPax').on("blur", function(){
 								                			var min = $('#courseMinPax').val();
 								                			var max = $('#courseMaxPax').val();
@@ -196,7 +196,7 @@
 								                				alert('최대인원은 최소인원보다 커야합니다. ');
 								                				$('#courseMaxPax').val('');
 								                			}
-								                		}); 
+								                		});  */
 								                		
 								                		
 								                		$('#courseStartDate').on("change", function(){

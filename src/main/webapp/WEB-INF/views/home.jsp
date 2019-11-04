@@ -33,7 +33,7 @@
   -ms-transform: scale(1.2);
   -o-transform: scale(1.2);
 }
-.img { overflow:hidden }   /* 부모를 벗어나지 않고 내부 이미지만 확대 */
+.img { overflow:hidden  }   /* 부모를 벗어나지 않고 내부 이미지만 확대 */
         </style>
         <c:import url="/WEB-INF/views/user/common/menubar.jsp" />
 
@@ -140,7 +140,7 @@
                             <div class="item">
                                 <div class="single_special_cource">
                                 <div class="img">
-                                    <img src="resources/user/img/test1.jpeg" class="special_img" alt="" onclick="location.href='${codetail}'">
+                                    <img src="resources/course/images/${co.craRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
                                     </div>
                                     <div class="special_cource_text">
                                         <a class="btn_4">${ co.categoryName }</a>
@@ -156,7 +156,7 @@
                                         <p></p>
                                         <div class="author_info">
                                             <div class="author_img">
-                                                <img src="resources/user/img/author/${co.craRname }" alt="" onclick="location.href='${codetail}'">
+                                                <img src="resources/creator/creatorImages/${co.craRName }" alt="" onclick="location.href='${codetail}'">
                                                 <div class="author_info_text">
                                                     <p>크리에이터:</p>
                                                     <h5><a href="${ codetail }">${co.memNickName }</a></h5>
@@ -196,7 +196,7 @@
                             </c:url>
                             <div class="item">
                                 <div class="single_special_cource">
-                                    <img src="resources/user/img/${po.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
+                                    <img src="resources/course/images/${po.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
                                     <div class="special_cource_text">
                                         <a class="btn_4">${ po.categoryName }</a>
                                         <c:if test="${ po.courseKind eq 'online'}">
@@ -211,7 +211,7 @@
                                         <p></p>
                                         <div class="author_info">
                                             <div class="author_img">
-                                                <img src="resources/user/img/author/${po.craRname }" alt="" onclick="location.href='${codetail}'">
+                                                <img src="resources/creator/creatorImages/${po.craRName }" alt="" onclick="location.href='${codetail}'">
                                                 <div class="author_info_text">
                                                     <p>크리에이터:</p>
                                                     <h5><a href="${ codetail }">${po.memNickName }</a></h5>

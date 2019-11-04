@@ -121,6 +121,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="courseStartDate" column="course_start_date"/>   
       <result property="courseEndDate" column="course_end_date"/>
       <result property="coaRName" column="coa_rname"/>
+      <result property="craRName" column="cra_rname"/>
       <result property="loveCount" column="love_count"/>
          <result property="courseHourPrice" column="course_hour_price"/>
                <result property="coursePrice" column="course_price"/>
@@ -210,7 +211,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertCourse" parameterType="Course">
 		insert into course 
 		values(course_seq.nextval, #{categoryNum}, #{creNum}, #{courseTitle}, #{courseContent}, 
-				#{courseKind}, #{courseLevel}, 0, sysdate, null, #{ courseStartDate }, #{ courseEndDate}, default, default)
+				#{courseKind}, #{courseLevel}, 0, sysdate, null, #{ courseStartDate }, #{ courseEndDate}, 'N', 'N')
 	</insert>
 	
 	<!-- 1. 클래스 추가 실패시 삭제 -->
@@ -343,7 +344,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="allowCourse" parameterType="_int">
 		update course
-		set course_approved_date=sysdate, course_approved='Y, course_status='Y'
+		set course_approved_date=sysdate, course_approved='Y', course_status='Y'
 		where course_num = #{courseNum}
 	</update>
 	
@@ -363,7 +364,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectPopList" resultMap="SingleCourseResultSet">
 	
 		SELECT *
-		FROM (SELECT * FROM single_course_view ORDER BY love_count DESC)
+		FROM (SELECT * FROM single_course_view 
+		WHERE CATEGORY_NAME != '기타' AND COURSE_APPROVED='Y' ORDER BY love_count DESC)
 		<!--[CDATA[
 		 where ROWNUM<=10
  		]]-->

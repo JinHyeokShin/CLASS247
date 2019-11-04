@@ -91,7 +91,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectCreatorAttachmentList" parameterType="_int" resultMap="creatorAttachmentResultSet">
 		select *
 		from creator_attachment
-		where cre_num = #{creNum} and cra_level = 1
+		where cre_num = #{creNum} and cra_level = 0
 	</select>
 	
 	<select id="awaitSelectList" resultMap="singleCreatorResultSet">

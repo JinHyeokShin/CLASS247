@@ -170,7 +170,7 @@
                         <div class="col-lg-8 course_details_left">
                             <div class="main_image">
                                 <h1>${ c.courseTitle }</h1>
-                                <img class="img-fluid" src="resources/creator/images/test1.jpeg" alt="">
+                                <img class="img-fluid" src="resources/creator/creatorImages/${c.craRName }" alt="">
                             </div>
                             <br>
                             <br>
@@ -350,14 +350,14 @@
                                         </a>
                                     </li>
                                     <li style="width: 100%;">
-<%--                                         <c:if test="${!empty loginUser }">
+                                        <c:if test="${!empty loginUser }">
                                             <c:if test="${checkLove > 0 }">
                                                 <span><img src="resources/creator/images/like.png" id="love" onclick="cancelLove();"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </c:if>
                                             <c:if test="${checkLove < 1 }">
                                                 <span><img src="resources/creator/images/nlike.png" id="love" onclick="insertLove();"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </c:if>
-                                        </c:if> --%>
+                                        </c:if> 
                                         <script>
                                             function insertLove() {
                                                 var memNum = '${loginUser.memNum}';

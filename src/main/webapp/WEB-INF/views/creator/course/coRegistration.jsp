@@ -54,7 +54,7 @@
                                                  	       <option value="5">라이프 스타일</option>
                                                  	       <option value="6">미술</option>
                                                  	       <option value="7">사진, 영상</option>
-                                                 	       <option value="8">여행</option>
+                                                 	       <option value="8">시그니처</option>
                                                  	       <option value="9">요리, 음료</option>
                                                  	       <option value="10">음악</option>
                                                  	       <option value="11">커리어</option>
