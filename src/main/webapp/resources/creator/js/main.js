@@ -1200,7 +1200,7 @@
 
   try {
 
-    // single bar chart
+/*    // single bar chart
     var ctx = document.getElementById("singelBarChart");
     if (ctx) {
       ctx.height = 150;
@@ -1242,7 +1242,7 @@
           }
         }
       });
-    }
+    }*/
 
   } catch (error) {
     console.log(error);

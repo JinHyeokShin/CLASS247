@@ -747,7 +747,7 @@ public class CourseController {
 		
 		if(result > 0) {
 			request.getSession().setAttribute("msg", "해당 클래스가 성공정으로 삭제되었습니다.");
-			mv.setViewName("redirec:cMainView.do");
+			mv.setViewName("redirect:cMainView.do");
 			
 		} else {
 			mv.addObject("msg", "삭제 실패");

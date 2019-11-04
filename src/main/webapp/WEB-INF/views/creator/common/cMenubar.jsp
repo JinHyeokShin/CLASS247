@@ -49,7 +49,7 @@
 </head>
 <body class="animsition">
 
-<c:if test="${ empty creator || creator.creStatus == 'N' }">
+<c:if test="${ empty creator || creator.creStatus == 'N' || creator.creStatus == 'R'}">
 	<script>
 		$(function() {
 			$(".navbar-sidebar2 li a").click(function () { alert('크리에이터 승인 후 이용가능한 서비스 입니다.'); return false;});
@@ -80,7 +80,7 @@
                 <div class="account2">
                     <div class="image img-cir img-120 creProfile">
                     <c:if test="${ !empty creator.creNum }">
-	                    <img id="creProfile" src="<%= request.getContextPath() %>/resources/creator/creatorImages/${creProfile}" alt="Class247" />
+	                    <img id="creProfile" class="creProfileImg" src="<%= request.getContextPath() %>/resources/creator/creatorImages/${creProfile}" alt="Class247" />
 	                </c:if>
 	                <c:if test="${ empty creator.creNum }">
 	                	<img id="creProfile" src="<%= request.getContextPath() %>/resources/creator/creatorImages/basic.jpg">

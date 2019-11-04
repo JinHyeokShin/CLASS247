@@ -2,6 +2,8 @@ package com.ourcompany.class247.creator.model.service;
 
 import java.util.ArrayList;
 
+import com.ourcompany.class247.common.PageInfo;
+import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
 import com.ourcompany.class247.member.model.vo.Member;
@@ -49,9 +51,27 @@ public interface CreatorService {
 	//크리에이터 프로필 사진 변경 
 	int updateProfile(CreatorAttachment update);
 	
-	
 	//차트 구하기 
 	ArrayList<Chart> getChart(Chart chart);
+	
+	ArrayList<Chart> getOnlineChart(Chart onlineChart);
+
+	ArrayList<Chart> getOfflineChart(Chart offlineChart);
+	
+	//크리에이터 급여 명세서 
+	ArrayList<Chart> selectCreSalary(PageInfo pi, int creNum);
+
+	int selectSalaryCount(int creNum);
+	
+	//MD 클래스 선택 옵션
+	ArrayList<Course> getCourseList(int creNum);
+
+	int reRegister(Creator creator);
+
+	void reRegisterProfile(CreatorAttachment caProfile);
+
+	void reRegisterID(CreatorAttachment caId);
+
 
 
 }

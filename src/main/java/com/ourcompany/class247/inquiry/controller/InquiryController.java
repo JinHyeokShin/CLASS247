@@ -151,7 +151,7 @@ public class InquiryController {
 	
 	
 	@RequestMapping("deleteInquiry.do")
-	public ModelAndView deleteInquiry(@RequestParam int inquiryNum, Inquiry inq, ModelAndView mv) {
+	public ModelAndView deleteInquiry(@RequestParam(value="inquiryNum") int inquiryNum, Inquiry inq, ModelAndView mv) {
 		int result = iService.deleteInquiry(inquiryNum);
 		
 		if(result > 0) {
@@ -168,6 +168,7 @@ public class InquiryController {
 	@RequestMapping("InquiryForm.do")
 	public ModelAndView goUpdatePage(@RequestParam int inquiryNum, ModelAndView mv) {
 		Inquiry inquiry = iService.selectInquiry(inquiryNum);
+		System.out.println(inquiry + " i ");
 		mv.addObject("i", inquiry).setViewName("creator/inquiry/inquiryUpdateForm");
 		return mv;
 	}

@@ -2,10 +2,13 @@ package com.ourcompany.class247.creator.model.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ourcompany.class247.common.PageInfo;
+import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.course.model.vo.CourseAttachment;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
@@ -137,10 +140,51 @@ public class CreatorDao {
 	public int updateProfile(CreatorAttachment updateProfile) {
 		return sqlSession.update("creatorMapper.updateProfile", updateProfile);
 	}
-
+ 
+	/** 차트 구하기
+	 * @param chart
+	 * @return
+	 */
 	public ArrayList<Chart> getChart(Chart chart) {
 		ArrayList<Chart> list = (ArrayList)sqlSession.selectList("creatorMapper.selectChart", chart);
 		return list;
+	}
+
+	public ArrayList<Chart> getOnlineChart(Chart onlineChart) {
+		ArrayList<Chart> list = (ArrayList)sqlSession.selectList("creatorMapper.onlineSumChart", onlineChart);
+		return list;
+	}
+
+	public ArrayList<Chart> getOfflineChart(Chart offlineChart) {
+		ArrayList<Chart> list = (ArrayList)sqlSession.selectList("creatorMapper.offlineSumChart", offlineChart);
+		return list;
+	}
+
+	//크리에이터 급여 명세서 
+	public ArrayList<Chart> selectCreSalary(PageInfo pi, int creNum) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit(); 
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("creatorMapper.selectCreSalary", creNum, rowBounds);
+	}
+
+	public int selectSalaryCount(int creNum) {
+		return sqlSession.selectOne("creatorMapper.selectSalaryCount", creNum);
+	}
+
+	public ArrayList<Course> getCourseList(int creNum) {
+		return (ArrayList)sqlSession.selectList("courseMapper.getCourseList", creNum);
+	}
+
+	public int reRegister(Creator creator) {
+		return sqlSession.update("creatorMapper.reRegisterCreator", creator);
+	}
+
+	public void reRegisterProfile(CreatorAttachment caProfile) {
+		sqlSession.update("creatorMapper.reRegisterProfile", caProfile);
+	}
+
+	public void reRegisterID(CreatorAttachment caId) {
+		sqlSession.update("creatorMapper.reRegisterID", caId);
 	}
 
 }
