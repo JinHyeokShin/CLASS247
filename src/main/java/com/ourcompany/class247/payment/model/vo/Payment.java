@@ -128,9 +128,23 @@ public class Payment {
 	public void setPayMethod(String payMethod) {
 		this.payMethod = payMethod;
 	}
+	
+	
+	
+	public String getPayCancel() {
+		return payCancel;
+	}
 
 	public void setPayCancel(String payCancel) {
 		this.payCancel = payCancel;
+	}
+
+	public void setCourseTitle(String courseTitle) {
+		this.courseTitle = courseTitle;
+	}
+
+	public void setPayDate(Date payDate) {
+		this.payDate = payDate;
 	}
 
 	public Date getPayDate() {

@@ -151,7 +151,7 @@
                                                 <i class="zmdi zmdi-money"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>${mPrice }</h2>
+                                                <h2>${mPrice}</h2>
                                                 <span>이번달 거래액</span>
                                             </div>
                                         </div>
