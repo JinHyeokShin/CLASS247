@@ -304,14 +304,11 @@ public class CourseDao {
 	public ArrayList<Course> categoryCareerList() {
 		return (ArrayList)sqlSession.selectList("courseMapper.categoryCareerList");
 	}
-	public boolean checkLove(Love love) {
+	public int checkLove(Love love) {
 		
-		boolean checkLove=false;
-		int result=sqlSession.selectOne("courseMapper.checkLove",love);
-		if(result>0) {
-			checkLove=true;
-		}
-		return checkLove;
+		
+		return sqlSession.selectOne("courseMapper.checkLove",love);
+		
 	}
 	public int insertLove(Love iLove) {
 		

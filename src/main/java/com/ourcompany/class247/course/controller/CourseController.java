@@ -328,9 +328,11 @@ public class CourseController {
 		Member loginUser=(Member)request.getSession().getAttribute("loginUser");
 		ArrayList<Review> rlist = coService.selectRlist(courseNum); 
 		
-		boolean checkLove=false;
+		int checkLove=1;
 		if(loginUser !=null) {
-			Love love= new Love(courseNum, loginUser.getMemNum());
+			Love love= new Love();
+		love.setCourseNum(courseNum);
+		love.setMemNum( loginUser.getMemNum());
 			
 			checkLove= coService.checkLove(love); 
 		}

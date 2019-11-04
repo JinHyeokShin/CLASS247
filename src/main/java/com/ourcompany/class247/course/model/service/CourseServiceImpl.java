@@ -226,7 +226,7 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public boolean checkLove(Love love) {
+	public int checkLove(Love love) {
 		
 		return coDao.checkLove(love);
 	}

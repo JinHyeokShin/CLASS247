@@ -360,7 +360,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getListCount" parameterType="_int" resultType="_int">
 		select count(*)
 		from love_view
-		where mem_num = #{memNum}
+		where mem_num = #{memNum} and coa_level=1
 	</select>
 	
 	<select id="modalsearchList" parameterType="String" resultMap="SingleCourseResultSet">
@@ -397,7 +397,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<select id="selectLove" resultMap="LoveResultSet">
    select *
    from love_view
-   where mem_num = #{memNum}
+   where mem_num = #{memNum} and coa_level=1
    </select>
    
    <!-- 찜하기 리스트 삭제 -->
@@ -411,7 +411,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="payonList" resultMap="TakeCourseResultSet">
 	select *
 	from user_course_view
-	where course_kind = 'online' and mem_num = #{memNum} and take_status = 'Y'
+	where course_kind = 'online' and mem_num = #{memNum} and take_status = 'Y' and coa_level=1
 	</select>
 	
 	<!-- 오프라인 클래스만 리스트 보여주기 -->

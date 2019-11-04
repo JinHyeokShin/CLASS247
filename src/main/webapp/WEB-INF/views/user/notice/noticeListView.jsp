@@ -13,32 +13,30 @@
 	}
 	table tr{
 		height:30px;
+		font-size:20;
+	}
+	.table{
+		width:90% !important;
+		 border:1px solid black;
 	}
 </style>
 <body>
 	<c:import url="/WEB-INF/views/user/common/menubar.jsp"/>
- 	<section class="special_cource padding_top" style="padding-top:100px">
-		<div class="container" style="padding-bottom: 40px">
-			<hr>
-			<h1>CLASS 247</h1>
-			<hr>
-			<div class="row justify-content-left">
-				<div class="col-xl-5">
-					<div class="section_tittle text-left">
-						<p></p>
-						<h2>공 지 사 항</h2>
-					</div>
-				</div>
-			</div>
-			<div class="container">
-			<table border="1px solid black" style="width:900px;" align="center">
+ 	<section class="contact-section section_padding">
+		<div class="container">
+			<br>
+						<h1>공 지 사 항</h1>
+						<br>
+						<hr>
+						<br>
+			<table class="table" align="center">
 				<tr style="color:white;background-color:#954CBC;">
 					<th width="5%">번호</th>
 					<th>제목</th>
-					<th width="90px">작성된 날짜</th>
-					<th width="90px">수정된 날짜</th>
-					<th width="60px">작성자</th>
-					<th width="60px">조회수</th>
+					<th width="10%">작성된 날짜</th>
+					<th width="10%">수정된 날짜</th>
+					<th width="10%">작성자</th>
+					<th width="10%">조회수</th>
 				</tr>
 		<c:if test="${ !empty list }">
 			<c:forEach items="${ list }" var="n">
@@ -64,6 +62,7 @@
 						</td>
 					</tr>
 		</c:if>
+
 		<tr align="center" height="20" style="background-color:#954CBC;cursor:default;">
 			<td colspan="6">
 				<!-- 이전 -->
@@ -104,9 +103,9 @@
 			</td>
 			
 		</tr> 
+			
 			</table>
 			</div>
-		</div>
 	</section>
 		<script>
 		$(function(){
