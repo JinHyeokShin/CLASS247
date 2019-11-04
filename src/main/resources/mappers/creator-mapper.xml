@@ -94,7 +94,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where cre_num = #{creNum} and cra_level = 1
 	</select>
 	
-	<select id="awaitSelectList" resultMap="singleCreatorResultSet">
+	<select id="awaitSelectList" resultMap="creatorResultSet">
 		select *
 		from creator
 		join member using(mem_num)

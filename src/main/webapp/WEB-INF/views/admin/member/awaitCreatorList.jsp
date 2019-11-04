@@ -28,6 +28,7 @@
                                                 <tr>
                                                     <th>No</th>
                                                     <th>제목</th>
+                                                    <th>이름</th>
                                                     <th>작성자</th>
                                                     <th>등록날짜</th>
                                                 </tr>
@@ -45,9 +46,11 @@
                                                          <a style="color:black" href="${awaitCreatorDetail}">${cre.introduction }</a>
                                                         </td>
                                                         <td>
-                                                        	${ cre.memNickName }
+                                                        	${cre.creName }
                                                         </td>
-														                                                        
+                                                        <td>
+                                                        	${ cre.memNickName }
+                                                        </td>                                          
                                                         <td>${cre.enrollDate }</td>
                                                     </tr>
                                                     

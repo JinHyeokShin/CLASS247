@@ -623,7 +623,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from single_course_view
         where course_num in (select course_num
                              from power
-                             where power_status = 'n')
+                             where power_status = 'Y')
     
 	</select>
 	

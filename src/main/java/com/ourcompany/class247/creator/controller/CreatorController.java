@@ -220,6 +220,25 @@ public class CreatorController {
 		
 		ArrayList<Creator> list = creService.awaitSelectList();
 		
+		System.out.println(list);
+		
+		String i;
+		
+		for(Creator c : list) {
+			
+			if((c.getIntroduction()).length() > 10) {
+			
+				i = c.getIntroduction();
+			
+				i.substring(0, 8);
+				
+				i = i+"..";
+				
+				c.setIntroduction(i);
+			}
+				
+		}
+		
 		mv.addObject("list", list).setViewName("admin/member/awaitCreatorList");
 				
 		return mv;
