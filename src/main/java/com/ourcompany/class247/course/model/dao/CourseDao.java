@@ -15,9 +15,9 @@ import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.course.model.vo.Video;
+import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Single;
 
 @Repository("coDao")
 public class CourseDao {
@@ -324,6 +324,9 @@ public class CourseDao {
 	public ArrayList<Review> selectRlist(int courseNum) {
 		
 		return (ArrayList)sqlSession.selectList("courseMapper.selectRlist",courseNum);
+	}
+	public Creator selectCreator(int creNum) {
+		return sqlSession.selectOne("courseMapper.selectCreator",creNum);
 	}
 	/* 온라인 카테고리 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })

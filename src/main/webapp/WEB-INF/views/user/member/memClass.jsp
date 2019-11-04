@@ -111,7 +111,7 @@
                                                                 }
                                                             </script>
 
-                                                            <a href="${ goVideoList }">
+                                                           <a href="#" onclick="rSubmit();">
                                                                 <h3 style="display:inline-block">
                                                                     <input class="genric-btn primary-border radius" name="log-btn" type="button" style="font-size: 15" value="리뷰 작성하기">
                                                                 </h3>
@@ -185,7 +185,15 @@
                                                                 </h3>
                                                             </a>
                                                             &nbsp; &nbsp; &nbsp;
-                                                            <a href="#" onclick="rSubmit();">
+                                                            <script>
+                                                                function rSubmitt() {
+                                                                    var url = "insertReview.do?courseNum=${poff.courseNum}";
+                                                                    var name = "review test";
+                                                                    var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+                                                                    window.open(url, name, option);
+                                                                }
+                                                            </script>
+                                                            <a href="#" onclick="rSubmitt();">
                                                                 <h3 style="display:inline-block">
                                                                     <input class="genric-btn primary-border radius" name="log-btn" type="button" style="font-size: 15" value="리뷰 작성하기">
                                                                 </h3>

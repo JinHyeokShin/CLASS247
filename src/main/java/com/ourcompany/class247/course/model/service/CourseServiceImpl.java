@@ -14,6 +14,7 @@ import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.course.model.vo.Video;
+import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
 
@@ -244,6 +245,10 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
+	public Creator selectCreator(int creNum) {
+		return coDao.selectCreator(creNum);
+	}
+	@Override
 	public Course coursePayment(int courseNum) {
 		
 		return coDao.coursePayment(courseNum);
@@ -253,6 +258,8 @@ public class CourseServiceImpl implements CourseService {
 	public Online selectOnline(int courseNum) {
 		return coDao.selectOnline(courseNum);
 	}
+	
+	
 
 	@Override
 	public ArrayList<Review> selectRlist(int courseNum) {

@@ -10,6 +10,7 @@ import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.course.model.vo.Video;
+import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
 
@@ -148,6 +149,8 @@ public interface CourseService {
 	int selectMemberCount();
 	
 	int selectCreCount();
+	
+	Creator selectCreator(int creNum);
 
 	int onlineCourseCount();
 	

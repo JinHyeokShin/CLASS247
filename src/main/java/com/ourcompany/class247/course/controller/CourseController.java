@@ -328,7 +328,7 @@ public class CourseController {
 	public ModelAndView courseDetail(int courseNum, String courseKind, ModelAndView mv, HttpServletRequest request) {
 		
 		Member loginUser=(Member)request.getSession().getAttribute("loginUser");
-		ArrayList<Review> rlist = coService.selectRlist(courseNum); 
+		ArrayList<Review> revlist = coService.selectRlist(courseNum); 
 		
 		int checkLove=1;
 		if(loginUser !=null) {
@@ -339,12 +339,13 @@ public class CourseController {
 			checkLove= coService.checkLove(love); 
 		}
 		Course c = coService.selectCourse(courseNum);
+		Creator creator= coService.selectCreator(c.getCreNum());
 		
 		if(c != null) {
 			mv.addObject("c", c)
-			.addObject("checkLove", checkLove).addObject("rlist", rlist)
+			.addObject("checkLove", checkLove).addObject("revlist", revlist).addObject("creator", creator)
 		    .setViewName("user/course/userCourseDetail");
-			System.out.println(c);
+			
 			
 		}else {
 			mv.addObject("msg", "게시글 상세조회실패!")
@@ -621,10 +622,11 @@ public class CourseController {
 	   		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 	      
 	         if(loginUser ==null) {
+	        	 request.getSession().setAttribute("coNumNext", courseNum);
 	            mv.setViewName("user/member/loginForm");
 	         }else {
 	            	c = coService.selectCourse(courseNum);
-	            	System.out.println(c);
+	            	
 	            	
          
          if(c != null && c.getCourseKind().equals("offline")) {
