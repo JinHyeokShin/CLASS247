@@ -37,9 +37,9 @@
                                             <thead>
                                                 <tr>
                                                     <th>No.</th>
-                                                    <th>프로필사진</th>
                                                     <th>아이디</th>
                                                     <th>닉네임</th>
+                                                    <th>이름</th>
                                                     <th>회원타입</th>
                                                     <th>탈퇴여부</th>
                                                 </tr>
@@ -106,7 +106,7 @@
 
         				<c:forEach items="${list}" var="co">
 						 
-        				{nn:"${co.memNum}", tt:"${co.memProfileName}", kk:"${co.memId}", ii:"${co.memNickName}", pp:"${co.memType}", dd:"${co.memStatus}"},
+        				{nn:"${co.memNum}", kk:"${co.memId}", ii:"${co.memNickName}", nn:"${co.memName}", pp:"${co.memType}", dd:"${co.memStatus}"},
         				
         				
         				</c:forEach>
@@ -166,6 +166,7 @@
             	$tr.append($("<td>").text("{{d.tt}}"));
             	$tr.append($("<td>").text("{{d.kk}}"));
             	$tr.append($("<td>").text("{{d.ii}}"));
+            	$tr.append($("<td>").text("{{d.nn}}"));
             	$tr.append($("<td>").text("{{d.pp}}"));
             	$tr.append($("<td>").text("{{d.dd}}"));
 
