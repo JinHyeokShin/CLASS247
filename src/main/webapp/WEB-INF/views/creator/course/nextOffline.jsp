@@ -236,7 +236,7 @@
                                                     <label class=" form-control-label">수업 가격*</label><br>
                                                     <div class="">
                                                        <input type="number" placeholder="ex) 10000" id="courseHourPrice" name="courseHourPrice" class="form-control" style="width:300px; display:inline-block" required> 원 &nbsp;&nbsp;
-                                                 	   <small class="help-block form-text">시간당 수업 가격을 입력하세요.</small><br>
+                                                 	   <small class="help-block form-text">시간당 수업 가격을 입력하세요.</small><button type="button" onclick="recommend()">추천 가격</button>	<br>
                                                   	   <input type="number" placeholder="ex) 1" id="courseHours" name="courseHours" class="form-control" style="width:300px; display:inline-block" required> 시간                              
                                                   	   <small class="help-block form-text">1회당 수업 시간을 입력하세요.</small><br>
                                                   	   <input type="number" placeholder="ex) 4" id="courseCount" name="courseCount" class="form-control" style="width:300px; display:inline-block" required> 회                         
@@ -248,7 +248,7 @@
 	                                                    	<br><p class="hr"><span id="amount">0</span>원</p>
                                                     	</div>
                                                     </div>
-                                                    <input type="hidden" name="categoryNum" value="${ co.categoryNum }">
+                                                    <input type="hidden" id="categoryNum" name="categoryNum" value="${ co.categoryNum }">
                                                     <input type="hidden" name="creNum" value="${ co.creNum }">
                                                     <input type="hidden" name="courseTitle" value="${ co.courseTitle }">
                                                     <input type="hidden" name="courseContent" value="${ co.courseContent }">
@@ -310,7 +310,59 @@
                     </div>
                 </section>
                 
-
+                <script>
+                //추천가격 
+                	function recommend(){
+                		var category = $('#categoryNum').val();
+                		
+                		$.ajax({
+                			url:"aStat.do",
+                			data:{categoryNum:category},
+                			type:"post",
+                			success:function(data){
+                				alert("추천가격 : " + data.coursePrice );
+                				alert("예상 학생 : " + data.loveCount );
+                				
+                				var test = '안녕';
+                				var $p = $('<p>').text(test);
+                				
+                				$('#modalBox').append($p);
+                				
+                				
+                			}, 
+                			error:function() {
+                				console.log('아이작스 통신 실패!');
+                			}
+                			
+                			
+                		});
+                		
+                	}
+                
+                </script>
+                
+			<div class="modal fade" id="preInfoModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="mediumModalLabel"><b>CLASS247에서 제안하는 추천 수강료</b></h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body" id="modalBox">
+							<p>
+					            	  해당 클래스의 추천 가격은    {}원<br>
+					                                추천가격을 적용 했을 시 수강 예상되는 학생 인원은 {}명 입니다.  <br>
+							</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="goSubmit()">확인</button>
+						</div>
+					</div>
+				</div>
+			</div>
+	   		 <button type="button" data-toggle="modal" data-target="#preInfoModal" id="preInfoModalBtn"></button>	
 
             <!-- PAGE CONTAINER-->
             <section>

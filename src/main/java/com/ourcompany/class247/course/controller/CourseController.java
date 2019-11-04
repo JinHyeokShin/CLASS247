@@ -760,5 +760,26 @@ public class CourseController {
 		
 	}
 	
+	
+	
+	 /** 추천가격 알고리즘 
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("aStat.do") 
+	   public SingleCourse adminStat(int categoryNum, ModelAndView mv) {
+
+	      System.out.println("추천알고리즘 들어옴 :" +categoryNum );
+		
+		 ArrayList<SingleCourse> personStat = coService.personStat(categoryNum);
+		 
+		 
+		 SingleCourse pes = new AStat().perStat(personStat);
+
+		 return pes;
+		  
+
+	   }
+	
 
 }
