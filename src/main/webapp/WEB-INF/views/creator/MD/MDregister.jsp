@@ -3,7 +3,6 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <!DOCTYPE html>
         <html>
-
         <head>
             <meta charset="UTF-8">
             <title>Insert title here</title>
@@ -60,7 +59,16 @@
                                             <br>
                                             <div style="height:200px;"></div>
                                             <div>
-                                                <h2 class="text-sm-center mt-2 mb-1 mdText"> 100,000원/1개월</h2><br></div>
+                                                <h2  class="text-sm-center mt-2 mb-1 mdText"> 100,000원/1개월</h2><br>
+                                                   <select name="select" id="select" class="form-control" style="width:300px">
+                                                      <option value="">Please select your class</option>                                                
+                                                      <c:if test="${ !empty list }">
+                                                         <c:forEach items="${list}" var="c">
+                                                             <option value="${c.courseNum}">${c.courseTitle}</option>
+                                                         </c:forEach>
+                                                     </c:if>
+                                                  </select><br>
+                                              </div>
                                             <div align="center" style="font-family:Noto Serif KR;">
                                                 <button type="button" class="btn btn-danger btn-lg" onclick="inicis();">결제하기</button>
                                                 <button type="button" style="background:yellow; color:black" class="btn btn-danger btn-lg" onclick="kakao();">카카오 결제하기</button>
@@ -96,9 +104,10 @@
                         }, function(rsp) {
 
                             console.log(rsp.apply_num);
+                            
                             if (rsp.success) {
                                 $.ajax({
-                                    url: "payment.do",
+                                    url: "paymentMD.do",
                                     type: "post",
                                     data: {
                                         payCode: rsp.imp_uid,
@@ -106,15 +115,13 @@
                                         payPrice: rsp.paid_amount,
                                         confirmNum: rsp.apply_num,
                                         payMethod: 'C',
-                                        takeCode: rsp.merchant_uid,
                                         confirmNum: rsp.apply_num,
                                         memNum: '${loginUser.memNum}',
-                                        courseNum: '${c.courseNum}',
-                                        payPrice: $("#totalPrice").text(),
-                                        takePrice: $("#totalPrice").text()
+                                        courseNum: $("#select option:selected").val(),
+                                        payPrice: 100000
                                     },
                                     success: function(data) {
-                                        location.href = "complete.do?payCode=" + data;
+                                        location.href = "completeMD.do?payCode=" + data;
                                     },
                                     error: function() {
                                         alertify.alert('', '결제 실패');
@@ -151,23 +158,21 @@
                             console.log(rsp.apply_num);
                             if (rsp.success) {
                                 $.ajax({
-                                    url: "payment.do",
+                                    url: "paymentMD.do",
                                     type: "post",
                                     data: {
-                                        payCode: rsp.imp_uid,
+                                    	payCode: rsp.imp_uid,
                                         reservNum: rsp.merchant_uid,
                                         payPrice: rsp.paid_amount,
                                         confirmNum: rsp.apply_num,
-                                        payMethod: 'K',
-                                        takeCode: rsp.merchant_uid,
+                                        payMethod: 'C',
                                         confirmNum: rsp.apply_num,
                                         memNum: '${loginUser.memNum}',
-                                        courseNum: '${c.courseNum}',
-                                        payPrice: $("#totalPrice").text(),
-                                        takePrice: $("#totalPrice").text()
+                                        courseNum: $("#select option:selected").val(),
+                                        payPrice: 100000
                                     },
                                     success: function(data) {
-                                        location.href = "complete.do?payCode=" + data;
+                                        location.href = "completeMD.do?payCode=" + data;
                                     },
                                     error: function() {
                                         alertify.alert('', '결제 실패');
