@@ -11,11 +11,18 @@ public class Chart {
     private int forMonth;
     private Date paidDate;
     private String salaryStatus;
+    private String courseTitle;
     
     public Chart() {}
     
-	public Chart(int salaryNum, int creNum, int courseNum, int amount, int forMonth, Date paidDate,
-			String salaryStatus) {
+	public Chart(int creNum,int forMonth) {
+		super();
+		this.creNum = creNum;
+		this.forMonth = forMonth;
+	}
+
+	public Chart(int salaryNum, int creNum, int courseNum, int amount, int forMonth, Date paidDate, String salaryStatus,
+			String courseTitle) {
 		super();
 		this.salaryNum = salaryNum;
 		this.creNum = creNum;
@@ -24,8 +31,18 @@ public class Chart {
 		this.forMonth = forMonth;
 		this.paidDate = paidDate;
 		this.salaryStatus = salaryStatus;
+		this.courseTitle = courseTitle;
+	}
+	
+	
+
+	public String getCourseTitle() {
+		return courseTitle;
 	}
 
+	public void setCourseTitle(String courseTitle) {
+		this.courseTitle = courseTitle;
+	}
 
 	public int getSalaryNum() {
 		return salaryNum;
@@ -96,15 +113,12 @@ public class Chart {
 		this.salaryStatus = salaryStatus;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Chart [salaryNum=" + salaryNum + ", creNum=" + creNum + ", courseNum=" + courseNum + ", amount="
-				+ amount + ", forMonth=" + forMonth + ", paidDate=" + paidDate + ", salaryStatus=" + salaryStatus + "]";
+				+ amount + ", forMonth=" + forMonth + ", paidDate=" + paidDate + ", salaryStatus=" + salaryStatus
+				+ ", courseTitle=" + courseTitle + "]";
 	}
-	
-	
-    
-    
+   
 
 }

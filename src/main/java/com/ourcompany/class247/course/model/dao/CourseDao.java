@@ -15,9 +15,9 @@ import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.course.model.vo.Video;
+import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Single;
 
 @Repository("coDao")
 public class CourseDao {
@@ -304,14 +304,11 @@ public class CourseDao {
 	public ArrayList<Course> categoryCareerList() {
 		return (ArrayList)sqlSession.selectList("courseMapper.categoryCareerList");
 	}
-	public boolean checkLove(Love love) {
+	public int checkLove(Love love) {
 		
-		boolean checkLove=false;
-		int result=sqlSession.selectOne("courseMapper.checkLove",love);
-		if(result>0) {
-			checkLove=true;
-		}
-		return checkLove;
+		
+		return sqlSession.selectOne("courseMapper.checkLove",love);
+		
 	}
 	public int insertLove(Love iLove) {
 		
@@ -327,6 +324,9 @@ public class CourseDao {
 	public ArrayList<Review> selectRlist(int courseNum) {
 		
 		return (ArrayList)sqlSession.selectList("courseMapper.selectRlist",courseNum);
+	}
+	public Creator selectCreator(int creNum) {
+		return sqlSession.selectOne("courseMapper.selectCreator",creNum);
 	}
 	/* 온라인 카테고리 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -475,7 +475,6 @@ public class CourseDao {
 	public Video selectVideo(int videoCourse) {
 		return sqlSession.selectOne("courseMapper.selectVideo",videoCourse);
 	}
-	
 	//클래스 삭제 
 	public int deleteCourse(int courseNum) {
 		return sqlSession.update("courseMapper.deleteCourse2", courseNum);
@@ -549,5 +548,12 @@ public class CourseDao {
 	}
 	public int selectMPrice() {
 		return sqlSession.selectOne("courseMapper.selectMPrice");
+
+	/** 거절된 클래스 가져오기 
+	 * @param creNum
+	 * @return
+	 */
+	public ArrayList<Course> selectRejectByCreNum(int creNum) {
+		return (ArrayList)sqlSession.selectList("courseMapper.selectRejectClassByCreNum", creNum);
 	}
 }

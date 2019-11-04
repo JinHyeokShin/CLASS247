@@ -6,6 +6,7 @@ import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.payment.model.vo.Complete;
 import com.ourcompany.class247.payment.model.vo.Delivery;
 import com.ourcompany.class247.payment.model.vo.Payment;
+import com.ourcompany.class247.payment.model.vo.Power;
 import com.ourcompany.class247.payment.model.vo.TakeCourse;
 
 public interface PaymentService {
@@ -48,5 +49,7 @@ public interface PaymentService {
 	
 	int jhinsertTakeCoruse(TakeCourse t);
 
+	int jhinsertPower(Power po);
+	
 	Complete complete(String payCode);
 }

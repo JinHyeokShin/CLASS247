@@ -14,6 +14,7 @@ import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.course.model.vo.Video;
+import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
 
@@ -226,7 +227,7 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public boolean checkLove(Love love) {
+	public int checkLove(Love love) {
 		
 		return coDao.checkLove(love);
 	}
@@ -244,6 +245,10 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
+	public Creator selectCreator(int creNum) {
+		return coDao.selectCreator(creNum);
+	}
+	@Override
 	public Course coursePayment(int courseNum) {
 		
 		return coDao.coursePayment(courseNum);
@@ -253,6 +258,8 @@ public class CourseServiceImpl implements CourseService {
 	public Online selectOnline(int courseNum) {
 		return coDao.selectOnline(courseNum);
 	}
+	
+	
 
 	@Override
 	public ArrayList<Review> selectRlist(int courseNum) {
@@ -567,6 +574,13 @@ public class CourseServiceImpl implements CourseService {
 	public int selectMPrice() {
 
 		return coDao.selectMPrice();
+	
+	/** 거절된 클래스 
+	 *
+	 */
+	@Override
+	public ArrayList<Course> selectRejectByCreNum(int creNum) {
+		return coDao.selectRejectByCreNum(creNum);
 	}
 
 }

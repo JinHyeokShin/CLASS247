@@ -499,7 +499,7 @@ public class MemberController {
 		System.out.println("count : " + stuCount);
 		System.out.println(pi);
 		
-		mv.addObject("studentList", studentList);
+		mv.addObject("studentList", studentList).addObject("pi", pi);
 		mv.setViewName("creator/student/studentManage");
 		
 		return mv;
@@ -516,7 +516,7 @@ public class MemberController {
 			@RequestParam("star-input") int reviewScore,
 			@RequestParam("feedback") String rContent) {
 		
-		System.out.println(courseNum);
+		
 		Member loginUser= (Member)request.getSession().getAttribute("loginUser");
 		int memNum=loginUser.getMemNum();
 		Review review= new Review();

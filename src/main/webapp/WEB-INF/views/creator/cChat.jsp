@@ -27,36 +27,27 @@
                                         <div class="au-card-title" style="background-image:url('images/bg-title-02.jpg');">
                                             <div class="bg-overlay bg-overlay--blue"></div>
                                             <h3>
-                                                <i class="zmdi zmdi-comment-text"></i>New Messages</h3>
-                                            <button class="au-btn-plus">
-                                                <i class="zmdi zmdi-plus"></i>
+                                                <i class="zmdi zmdi-comment-text"></i>Messages</h3>
+                                            <button class="au-btn-plus" onclick="deleteChat();">
+                                                <i class="fas fa-sign-out"></i>
                                             </button>
                                         </div>
                                         <div class="au-inbox-wrap js-inbox-wrap show-chat-box">
                                             <div class="au-message js-list-load">
-                                                <div class="au-message__noti">
-                                                    <p>You Have
-                                                        <span>2</span>
-    
-                                                        new messages
-                                                    </p>
-                                                </div>
                                                 <div class="au-message-list">
-                                                    
-
                                                 </div>
                                             </div>
 
                                             <div class="au-chat">
                                                 <div class="au-chat__title">
                                                     <div class="au-chat-info">
-                                                        <div class="avatar-wrap online">
+                                                        <div class="avatar-wrap">
                                                             <div class="avatar avatar--small">
-                                                                <img src="resources/creator/images/icon/avatar-02.jpg" alt="John Smith">
+                                                                <img src="resources/user/img/profile/${student.memProfileName}" alt="John Smith">
                                                             </div>
                                                         </div>
                                                         <span class="nick">
-                                                            <a href="#">John Smith</a>
+                                                            <a href="#">${student.memName }</a>
                                                             <c:if test="${!empty creator.creNum}">
                                                             	<input type="hidden" id="creNum" value="C${creator.creNum}">
                                                             </c:if>
@@ -72,10 +63,8 @@
                                                 
                                                 <div class="au-chat-textfield">
                                                     <form class="au-form-icon">
-                                                        <input id="message" class="au-input au-input--full au-input--h65" type="text" placeholder="Type a message">
-                                                        <button type="button" class="" id="sendBtn"> 보내기
-                                                            <i class="zmdi zmdi-camera"></i>
-                                                        </button>
+                                                        <input style="width:80%; margin:0; padding:0;" id="message" class="au-input au-input--full au-input--h65" type="text" placeholder="&nbsp;&nbsp;&nbsp; Type a message">
+                                                        <button type="button" class="btn btn-primary btn-lg" id="sendBtn" style="background:#4272d7;">SEND</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -87,7 +76,17 @@
                     </div>
                 </session>
                 
-                	<script>
+       <script>
+                    
+         function deleteChat(){
+       	  if(confirm('정말 채팅방을 나가시겠습니까?')){
+       		  var roomId = ${roomId}
+       		  location.href = '<%= request.getContextPath() %>/deleteCreChat.do?chatListNum=' + roomId;
+       	  }
+       	  
+         }	
+                	
+                	
 		$(function(){
 		var roomId = ${roomId};
 			
@@ -125,7 +124,7 @@
 							    $("#chatBox").append($div);
 								
 						    } else {
-						    	
+						    	var img = '<img src="resources/user/img/profile/' + '${student.memProfileName}' + '">';
 							    var $div = $('<div class="recei-mess-wrap">');
 							    var $time = $('<span class="mess-time">').text('1 Sec ago');
 							    var $div2 = $('<div class="recei-mess__inner">');
@@ -134,7 +133,7 @@
 							    
 
 				                var $profile = $('<div class="avatar avatar--tiny">');
-				                var $profile1 =  $('<img src="resources/creator/images/icon/avatar-02.jpg">');
+				                var $profile1 =  $(img);
 
 							    
 					 		    //$div.append($time);
@@ -296,7 +295,8 @@
 			    
 
                 var $profile = $('<div class="avatar avatar--tiny">');
-                var $profile1 =  $('<img src="resources/creator/images/icon/avatar-02.jpg">');
+                var img = '<img src="resources/user/img/profile/' + '${student.memProfileName}' + '">';
+                var $profile1 =  $(img);
 
 			    
 	 		    //$div.append($time);

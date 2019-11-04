@@ -21,6 +21,7 @@ import com.ourcompany.class247.member.model.vo.Member;
 import com.ourcompany.class247.payment.model.service.PamentServiceImpl;
 import com.ourcompany.class247.payment.model.vo.Delivery;
 import com.ourcompany.class247.payment.model.vo.Payment;
+import com.ourcompany.class247.payment.model.vo.Power;
 import com.ourcompany.class247.payment.model.vo.TakeCourse;
 
 @Controller
@@ -84,6 +85,20 @@ public class PaymentController {
 	public String payment(Payment p, TakeCourse t) {
 		pService.jhinsertPayment(p);
 		pService.jhinsertTakeCoruse(t);
+		
+		return p.getPayCode();
+	}
+	
+	@ResponseBody
+	@RequestMapping("paymentMD.do")
+	public String payment(Payment p, Power po) {
+		System.out.println(p);
+		System.out.println(po);
+		
+		pService.jhinsertPayment(p);
+		pService.jhinsertPower(po);
+		
+//		pService.jhinsertPayment(p);
 		
 		return p.getPayCode();
 	}
@@ -175,5 +190,6 @@ public class PaymentController {
 		mv.setViewName("user/course/complete");
 		return mv;
 	}
+	
 	
 }

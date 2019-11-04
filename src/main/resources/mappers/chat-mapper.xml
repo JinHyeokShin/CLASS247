@@ -22,12 +22,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="fromId" column="from_id"/>
 		<result property="fromName" column="mem_name"/>
 		<result property="toId" column="to_id"/>
-		<result property="toName" column="to_name"/>
+		<result property="toName" column="cre_name"/>
 		<result property="lastChatTime" column="last_chat_time"/>
 		<result property="lastChatContent" column="LAST_CHAT_CONTENT"/>
 		<result property="readStatus" column="READ_STATUS"/>
 		<result property="chatStatus" column="CHAT_STATUS"/>
+		<result property="stuProfile" column="mem_profile_name"/>
+		<result property="creProfile" column="cra_rname"/>
+		<result property="courseTitle" column="course_title"/>
 	</resultMap>
+	
+	
+	<resultMap id="memberResultSet" type="Member">
+		<result property="memName" column="mem_name"/>
+		<result property="memProfileName" column="mem_profile_name"/>
+	</resultMap>
+	
+	<resultMap id="creatorResultSet" type="Creator">
+		<id property="creNum" column="cre_num"/>
+		<result property="creName" column="mem_name"/>
+		<result property="memNum" column="mem_num"/>
+		<result property="memNickName" column="mem_nickname"/>
+		<result property="introduction" column="introduction"/>
+		<result property="career" column="career"/>
+		<result property="education" column="education"/>
+		<result property="certification" column="certification"/>
+		<result property="enrollDate" column="enroll_date"/>
+		<result property="approvedDate" column="approved_date"/>
+		<result property="endDate" column="end_date"/>
+		<result property="creStatus" column="cre_status"/>	
+		<result property="creProfile" column="cra_rname"/>
+	</resultMap>	
+	
+	
 	
 	
 	<insert id="insertMessage" parameterType="Chat">
@@ -63,16 +90,49 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectChatList" parameterType="string" resultMap="chatListResultMap">
-		select c.*, mem_name 
+		select *
 		from chat_list c
 		left join member on(from_id = mem_num)
+		left join course using(course_num)
 		where (from_id = #{creNum} or to_id=#{creNum})
 		and chat_status = 'Y'
+		order by last_chat_time desc
 	</select>
 	
 	<insert id="insertChatRoom" parameterType="ChatList">
 		insert into chat_list 
 		values(chat_list_seq.nextval, #{courseNum}, #{fromId}, null, #{toId}, null, sysdate, '공백', default, default)
 	</insert>
+	
+	<!-- 프로필 사진 가져오기 -->
+	<select id="selectStuProfile" parameterType="_int" resultMap="memberResultSet">
+		select mem_profile_name, mem_name
+		from member
+		where mem_num = #{memNum}
+	</select>
 
+
+	<select id="selectCreator" parameterType="_int" resultMap="creatorResultSet">
+		select cre_num, cra_rname, mem_name
+		from creator
+		join creator_attachment using(cre_num)
+		join member using(mem_num)
+		where cre_num = #{creNum} and cra_level = 1
+	</select>
+	
+	<!-- 사용자단 채팅 리스트 불러오기 -->
+	<select id="selectUserChatList" parameterType="_int" resultMap="chatListResultMap">
+        select c.*, b.cra_rname, m.mem_name as cre_name, co.course_title
+		from chat_list c
+		join creator_attachment b on( substr(c.to_id, 2) = b.cre_num)
+		join creator a on(substr(c.to_id, 2) = a.cre_num)
+		join member m on(a.mem_num = m.mem_num)
+        join course co on(co.course_num = c.course_num)
+		where from_id = #{memNum} and cra_level=0 and chat_status='Y'
+		order by last_chat_time desc
+	</select>
+	
+	<update id="deleteChat" parameterType="_int">
+		update chat_list set chat_status = 'N' where chatlist_num=#{chatListNum} 
+	</update>
 </mapper>

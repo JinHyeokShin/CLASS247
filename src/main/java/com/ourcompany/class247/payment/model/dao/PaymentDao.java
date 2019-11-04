@@ -114,4 +114,8 @@ public class PaymentDao {
 	public Complete complete(String payCode) {
 		return sqlSession.selectOne("paymentMapper.complete",payCode);
 	}
+	
+	public int jhinsertPower(Power po) {
+		return sqlSession.insert("paymentMapper.jhinsertPower", po);
+	}
 }

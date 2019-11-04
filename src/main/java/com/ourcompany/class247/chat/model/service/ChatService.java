@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.ourcompany.class247.chat.model.vo.Chat;
 import com.ourcompany.class247.chat.model.vo.ChatList;
+import com.ourcompany.class247.creator.model.vo.Creator;
+import com.ourcompany.class247.member.model.vo.Member;
 
 public interface ChatService {
 
@@ -24,5 +26,17 @@ public interface ChatService {
 
 	// 크리에이터 채팅 리스트 불러오기 
 	ArrayList<ChatList> selectChatList(String creNum);
+	
+	
+	//상세보기에서 학생 이미지 사진 가져오기
+	Member selectStuProfile(int memNum);
+	//사용자 입장에서 크리에이터 정보 가져오기 
+	Creator selectCreator(int creNum);
+	
+	
+	//사용자 입장, 채팅 리스트 불러오기 
+	ArrayList<ChatList> selectUserChatList(int memNum);
+
+	int deleteChat(int chatListNum);
 
 }

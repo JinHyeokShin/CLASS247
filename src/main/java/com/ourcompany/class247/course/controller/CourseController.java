@@ -201,11 +201,13 @@ public class CourseController {
       ArrayList<Course> list = coService.selectMyCoList(creNum);
       //승인 대기중인 클래스 불러오기 
       ArrayList<Course> awaitList = coService.selectAwaitByCreNum(creNum);
+      ArrayList<Course> rejectList = coService.selectRejectByCreNum(creNum);
+      System.out.println(rejectList.size() + "size");
 
       ArrayList<CourseAttachment> coverList = coService.selectCoverList(creNum);
 
       mv.addObject("list", list);
-      mv.addObject("awaitList", awaitList);
+      mv.addObject("awaitList", awaitList).addObject("rejectList", rejectList);
       mv.addObject("coverList", coverList);
       mv.setViewName("creator/course/coManagement");
        return mv;
@@ -326,21 +328,24 @@ public class CourseController {
 	public ModelAndView courseDetail(int courseNum, String courseKind, ModelAndView mv, HttpServletRequest request) {
 		
 		Member loginUser=(Member)request.getSession().getAttribute("loginUser");
-		ArrayList<Review> rlist = coService.selectRlist(courseNum); 
+		ArrayList<Review> revlist = coService.selectRlist(courseNum); 
 		
-		boolean checkLove=false;
+		int checkLove=1;
 		if(loginUser !=null) {
-			Love love= new Love(courseNum, loginUser.getMemNum());
+			Love love= new Love();
+		love.setCourseNum(courseNum);
+		love.setMemNum( loginUser.getMemNum());
 			
 			checkLove= coService.checkLove(love); 
 		}
 		Course c = coService.selectCourse(courseNum);
+		Creator creator= coService.selectCreator(c.getCreNum());
 		
 		if(c != null) {
 			mv.addObject("c", c)
-			.addObject("checkLove", checkLove).addObject("rlist", rlist)
+			.addObject("checkLove", checkLove).addObject("revlist", revlist).addObject("creator", creator)
 		    .setViewName("user/course/userCourseDetail");
-			System.out.println(c);
+			
 			
 		}else {
 			mv.addObject("msg", "게시글 상세조회실패!")
@@ -620,10 +625,11 @@ public class CourseController {
 	   		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 	      
 	         if(loginUser ==null) {
+	        	 request.getSession().setAttribute("coNumNext", courseNum);
 	            mv.setViewName("user/member/loginForm");
 	         }else {
 	            	c = coService.selectCourse(courseNum);
-	            	System.out.println(c);
+	            	
 	            	
          
          if(c != null && c.getCourseKind().equals("offline")) {
@@ -750,7 +756,7 @@ public class CourseController {
 		
 		if(result > 0) {
 			request.getSession().setAttribute("msg", "해당 클래스가 성공정으로 삭제되었습니다.");
-			mv.setViewName("redirec:cMainView.do");
+			mv.setViewName("redirect:cMainView.do");
 			
 		} else {
 			mv.addObject("msg", "삭제 실패");

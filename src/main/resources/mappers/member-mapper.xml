@@ -65,6 +65,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="amount" column="c_count"/>
 	</resultMap>
 	
+	
+	
+	
 	 <!-- 1. 로그인 -->
 	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
 		select *

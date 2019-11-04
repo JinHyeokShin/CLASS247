@@ -96,7 +96,7 @@
                                                         <label for="creProfile" class=" form-control-label">* 프로필 사진</label>
                                                     </div>
                                                     <div class="col-12 col-md-9" style="height:200px">
-                                                        <input name="creProfile" id="creProfile" class="btn btn-sm" type="file" onchange="loadImg(this)" required>
+                                                        <input name="creProfilee" id="creProfile" class="btn btn-sm" type="file" onchange="loadImg(this)" required>
                                                         <div style="width:150px; height:150px; margin-top: 10px; text-align: center">
                                                             <img id="profileImg" src="resources/creator/images/icon/user.png" alt="basic_profile" />
                                                         </div>

@@ -3,22 +3,34 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <!DOCTYPE html>
         <html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<!-- JavaScript -->
+<script
+	src="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/alertify.min.js"></script>
 
-        <head>
-            <meta charset="UTF-8">
-            <title>Insert title here</title>
-            <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
-            <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-            <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-            <!-- CSS -->
-            <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/alertify.min.css" />
-            <!-- Default theme -->
-            <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/default.min.css" />
-            <!-- Semantic UI theme -->
-            <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/semantic.min.css" />
-            <!-- Bootstrap theme -->
-            <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/bootstrap.min.css" />
-            <style>
+<!-- CSS -->
+<link rel="stylesheet"
+	href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/alertify.min.css" />
+<!-- Default theme -->
+<link rel="stylesheet"
+	href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/default.min.css" />
+<!-- Semantic UI theme -->
+<link rel="stylesheet"
+	href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/semantic.min.css" />
+<!-- Bootstrap theme -->
+<link rel="stylesheet"
+	href="//cdn.jsdelivr.net/npm/alertifyjs@1.12.0/build/css/themes/bootstrap.min.css" />
+</head>
+<style>
                 .ground {
                     width: 100%;
                     height: 100%;
@@ -37,7 +49,6 @@
                     color: red;
                 }
             </style>
-        </head>
 
         <body class="animsition">
 
@@ -60,7 +71,16 @@
                                             <br>
                                             <div style="height:200px;"></div>
                                             <div>
-                                                <h2 class="text-sm-center mt-2 mb-1 mdText"> 100,000원/1개월</h2><br></div>
+                                                <h2  class="text-sm-center mt-2 mb-1 mdText"> 100,000원/1개월</h2><br>
+                                                   <select name="select" id="select" class="form-control" style="width:300px">
+                                                      <option value="">Please select your class</option>                                                
+                                                      <c:if test="${ !empty list }">
+                                                         <c:forEach items="${list}" var="c">
+                                                             <option value="${c.courseNum}">${c.courseTitle}</option>
+                                                         </c:forEach>
+                                                     </c:if>
+                                                  </select><br>
+                                              </div>
                                             <div align="center" style="font-family:Noto Serif KR;">
                                                 <button type="button" class="btn btn-danger btn-lg" onclick="inicis();">결제하기</button>
                                                 <button type="button" style="background:yellow; color:black" class="btn btn-danger btn-lg" onclick="kakao();">카카오 결제하기</button>
@@ -74,31 +94,27 @@
                 </div>
                 <script>
                     function inicis() {
-
+                  console.log("test");
                         IMP.init('imp79990634');
 
+                       
+                        
                         IMP.request_pay({
                             pg: 'inicis',
-                            /* 결제PG사 */
                             pay_method: 'card',
-                            /* 결제방법 */
                             merchant_uid: 'T' + new Date().getTime(),
-                            /* 주문번호 */
-                            name: '${c.courseTitle}',
-                            /* 주문이름 */
+                            name: $("#select option:selected").text(),
                             amount: 100,
-                            /* 결제 가격 */
                             buyer_email: '${loginUser.memId}',
-                            /* 구매자 이멜 */
                             buyer_name: '${loginUser.memName}',
-                            /* 구매자 이름 */
                             buyer_tel: '${loginUser.memPhone}',
                         }, function(rsp) {
 
                             console.log(rsp.apply_num);
+                            
                             if (rsp.success) {
                                 $.ajax({
-                                    url: "payment.do",
+                                    url: "paymentMD.do",
                                     type: "post",
                                     data: {
                                         payCode: rsp.imp_uid,
@@ -106,15 +122,14 @@
                                         payPrice: rsp.paid_amount,
                                         confirmNum: rsp.apply_num,
                                         payMethod: 'C',
-                                        takeCode: rsp.merchant_uid,
-                                        confirmNum: rsp.apply_num,
                                         memNum: '${loginUser.memNum}',
-                                        courseNum: '${c.courseNum}',
-                                        payPrice: $("#totalPrice").text(),
-                                        takePrice: $("#totalPrice").text()
+                                        memName :'${loginUser.memName}',
+                                        courseNum: $("#select option:selected").val(),
+                                        payPrice: 100000
                                     },
                                     success: function(data) {
-                                        location.href = "complete.do?payCode=" + data;
+                                    	alertify.alert("결제 완료되었습니다.");
+                                        location.href = "cMainView.do";
                                     },
                                     error: function() {
                                         alertify.alert('', '결제 실패');
@@ -137,7 +152,7 @@
                             /* 결제방법 */
                             merchant_uid: 'T' + new Date().getTime(),
                             /* 주문번호 */
-                            name: '${c.courseTitle}',
+                            name: $("#select option:selected").text(),
                             /* 주문이름 */
                             amount: 100,
                             /* 결제 가격 */
@@ -151,23 +166,22 @@
                             console.log(rsp.apply_num);
                             if (rsp.success) {
                                 $.ajax({
-                                    url: "payment.do",
+                                    url: "paymentMD.do",
                                     type: "post",
                                     data: {
-                                        payCode: rsp.imp_uid,
+                                    	payCode: rsp.imp_uid,
                                         reservNum: rsp.merchant_uid,
                                         payPrice: rsp.paid_amount,
                                         confirmNum: rsp.apply_num,
-                                        payMethod: 'K',
-                                        takeCode: rsp.merchant_uid,
-                                        confirmNum: rsp.apply_num,
+                                        payMethod: 'C',
                                         memNum: '${loginUser.memNum}',
-                                        courseNum: '${c.courseNum}',
-                                        payPrice: $("#totalPrice").text(),
-                                        takePrice: $("#totalPrice").text()
+                                        memName :'${loginUser.memName}',
+                                        courseNum: $("#select option:selected").val(),
+                                        payPrice: 100000
                                     },
                                     success: function(data) {
-                                        location.href = "complete.do?payCode=" + data;
+                                    	alertify.alert("결제 완료되었습니다.");
+                                        location.href = "cMainView.do";
                                     },
                                     error: function() {
                                         alertify.alert('', '결제 실패');

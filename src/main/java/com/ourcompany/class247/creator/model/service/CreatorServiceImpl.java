@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ourcompany.class247.common.PageInfo;
+import com.ourcompany.class247.course.model.vo.Course;
 import com.ourcompany.class247.creator.model.dao.CreatorDao;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.creator.model.vo.CreatorAttachment;
@@ -151,14 +153,6 @@ public class CreatorServiceImpl implements CreatorService{
 
 
 
-	/**
-	 * 차트값 구하기 
-	 */
-	@Override
-	public ArrayList<Chart> getChart(Chart chart) {
-		return creDao.getChart(chart);
-	}
-
 
 
 
@@ -188,7 +182,73 @@ public class CreatorServiceImpl implements CreatorService{
 	@Override
 	public int selectMCre() {
 		return creDao.selectMCre();
+	/**
+	 * 총 차트값 구하기 
+	 * */
+	@Override
+	public ArrayList<Chart> getChart(Chart chart) {
+		return creDao.getChart(chart);
+	}
+
+	
+	/**
+	 * 온라인 차트값 구하기 
+	 * */
+	@Override
+	public ArrayList<Chart> getOnlineChart(Chart onlineChart) {
+		ArrayList<Chart> list = creDao.getOnlineChart(onlineChart);
+		return list; 
+	}
+	
+	/**
+	 * 오프라인 차트값 구하기 
+	 * */	
+	@Override
+	public ArrayList<Chart> getOfflineChart(Chart offlineChart) {
+		ArrayList<Chart> list =  creDao.getOfflineChart(offlineChart);
+		return list; 
+	}
+
+
+	//크리에이터 급여 명세서 
+	@Override
+	public ArrayList<Chart> selectCreSalary(PageInfo pi, int creNum) {
+		return creDao.selectCreSalary(pi, creNum);
+	}
+	//크리에이터 급여 명세서 - 페이징 처리를 위한 
+	@Override
+	public int selectSalaryCount(int creNum) {
+		return creDao.selectSalaryCount(creNum);
+	}
+
+
+	//MD 클래스 선택 옵션
+	@Override
+	public ArrayList<Course> getCourseList(int creNum) {
+		return creDao.getCourseList(creNum);
+	}
+
+
+
+	@Override
+	public int reRegister(Creator creator) {
+		return creDao.reRegister(creator);
+	}
+
+
+
+	@Override
+	public void reRegisterProfile(CreatorAttachment caProfile) {
+		creDao.reRegisterProfile(caProfile);
+	}
+
+
+
+	@Override
+	public void reRegisterID(CreatorAttachment caId) {
+		creDao.reRegisterID(caId);
 	}
 
 
 }
+
