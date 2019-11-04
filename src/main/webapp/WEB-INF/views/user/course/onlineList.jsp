@@ -56,7 +56,7 @@
 						<div class="item">
 							<div class="single_special_cource">
 								<div class="img">
-                                    <img src="resources/user/img/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
+                                    <img src="resources/course/images/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
                                     </div>
                                     <div class="special_cource_text">
                                         <a class="btn_4">${ co.categoryName }</a>
@@ -72,7 +72,7 @@
                                         <p></p>
                                         <div class="author_info">
                                             <div class="author_img">
-                                                <img src="resources/user/img/author/${co.craRname }" alt="" onclick="location.href='${codetail}'">
+                                                <img src="resources/creator/creatorImages/${co.craRName }" alt="" style="border-radius: 50%; width:50px; height:50px;" onclick="location.href='${codetail}'">
                                                 <div class="author_info_text">
                                                     <p>크리에이터:</p>
                                                     <h5><a href="${ codetail }">${co.memNickName }</a></h5>
@@ -116,7 +116,7 @@
 						<div class="item">
 							<div class="single_special_cource">
 								<div class="img">
-                                    <img src="resources/user/img/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
+                                    <img src="resources/course/images/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
                                     </div>
                                     <div class="special_cource_text">
                                         <a class="btn_4">${ co.categoryName }</a>
@@ -132,7 +132,7 @@
                                         <p></p>
                                         <div class="author_info">
                                             <div class="author_img">
-                                                <img src="resources/user/img/author/${co.craRname }" alt="" onclick="location.href='${codetail}'">
+                                                <img src="resources/creator/creatorImages/${co.craRName }" alt="" style="border-radius: 50%; width:50px; height:50px;" onclick="location.href='${codetail}'">
                                                 <div class="author_info_text">
                                                     <p>크리에이터:</p>
                                                     <h5><a href="${ codetail }">${co.memNickName }</a></h5>
@@ -175,7 +175,7 @@
 						<div class="item">
 							<div class="single_special_cource">
 								<div class="img">
-                                    <img src="resources/user/img/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
+                                    <img src="resources/course/images/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
                                     </div>
                                     <div class="special_cource_text">
                                         <a class="btn_4">${ co.categoryName }</a>
@@ -191,7 +191,7 @@
                                         <p></p>
                                         <div class="author_info">
                                             <div class="author_img">
-                                                <img src="resources/user/img/author/${co.craRname }" alt="" onclick="location.href='${codetail}'">
+                                                <img src="resources/creator/creatorImages/${co.craRName }" alt="" style="border-radius: 50%; width:50px; height:50px;" onclick="location.href='${codetail}'">
                                                 <div class="author_info_text">
                                                     <p>크리에이터:</p>
                                                     <h5><a href="${ codetail }">${co.memNickName }</a></h5>
@@ -234,7 +234,7 @@
 						<div class="item">
 							<div class="single_special_cource">
 								<div class="img">
-                                    <img src="resources/user/img/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
+                                    <img src="resources/course/images/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
                                     </div>
                                     <div class="special_cource_text">
                                         <a class="btn_4">${ co.categoryName }</a>
@@ -250,7 +250,7 @@
                                         <p></p>
                                         <div class="author_info">
                                             <div class="author_img">
-                                                <img src="resources/user/img/author/${co.craRname }" alt="" onclick="location.href='${codetail}'">
+                                                <img src="resources/creator/creatorImages/${co.craRName }" alt="" style="border-radius: 50%; width:50px; height:50px;" onclick="location.href='${codetail}'">
                                                 <div class="author_info_text">
                                                     <p>크리에이터:</p>
                                                     <h5><a href="${ codetail }">${co.memNickName }</a></h5>
@@ -293,7 +293,7 @@
 						<div class="item">
 							<div class="single_special_cource">
 								<div class="img">
-                                    <img src="resources/user/img/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
+                                    <img src="resources/course/images/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
                                     </div>
                                     <div class="special_cource_text">
                                         <a class="btn_4">${ co.categoryName }</a>
@@ -309,7 +309,7 @@
                                         <p></p>
                                         <div class="author_info">
                                             <div class="author_img">
-                                                <img src="resources/user/img/author/${co.craRname }" alt="" onclick="location.href='${codetail}'">
+                                                <img src="resources/creator/creatorImages/${co.craRName }" alt="" style="border-radius: 50%; width:50px; height:50px;" onclick="location.href='${codetail}'">
                                                 <div class="author_info_text">
                                                     <p>크리에이터:</p>
                                                     <h5><a href="${ codetail }">${co.memNickName }</a></h5>
@@ -352,7 +352,7 @@
 						<div class="item">
 							<div class="single_special_cource">
 								<div class="img">
-                                    <img src="resources/user/img/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
+                                    <img src="resources/course/images/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
                                     </div>
                                     <div class="special_cource_text">
                                         <a class="btn_4">${ co.categoryName }</a>
@@ -368,7 +368,7 @@
                                         <p></p>
                                         <div class="author_info">
                                             <div class="author_img">
-                                                <img src="resources/user/img/author/${co.craRname }" alt="" onclick="location.href='${codetail}'">
+                                                <img src="resources/creator/creatorImages/${co.craRName }" alt="" style="border-radius: 50%; width:50px; height:50px;" onclick="location.href='${codetail}'">
                                                 <div class="author_info_text">
                                                     <p>크리에이터:</p>
                                                     <h5><a href="${ codetail }">${co.memNickName }</a></h5>
@@ -411,7 +411,7 @@
 						<div class="item">
 							<div class="single_special_cource">
 								<div class="img">
-                                    <img src="resources/user/img/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
+                                    <img src="resources/course/images/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
                                     </div>
                                     <div class="special_cource_text">
                                         <a class="btn_4">${ co.categoryName }</a>
@@ -427,7 +427,7 @@
                                         <p></p>
                                         <div class="author_info">
                                             <div class="author_img">
-                                                <img src="resources/user/img/author/${co.craRname }" alt="" onclick="location.href='${codetail}'">
+                                                <img src="resources/creator/creatorImages/${co.craRName }" alt="" style="border-radius: 50%; width:50px; height:50px;" onclick="location.href='${codetail}'">
                                                 <div class="author_info_text">
                                                     <p>크리에이터:</p>
                                                     <h5><a href="${ codetail }">${co.memNickName }</a></h5>
@@ -470,7 +470,7 @@
 						<div class="item">
 							<div class="single_special_cource">
 								<div class="img">
-                                    <img src="resources/user/img/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
+                                    <img src="resources/course/images/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
                                     </div>
                                     <div class="special_cource_text">
                                         <a class="btn_4">${ co.categoryName }</a>
@@ -486,7 +486,7 @@
                                         <p></p>
                                         <div class="author_info">
                                             <div class="author_img">
-                                                <img src="resources/user/img/author/${co.craRname }" alt="" onclick="location.href='${codetail}'">
+                                                <img src="resources/creator/creatorImages/${co.craRName }" alt="" style="border-radius: 50%; width:50px; height:50px;" onclick="location.href='${codetail}'">
                                                 <div class="author_info_text">
                                                     <p>크리에이터:</p>
                                                     <h5><a href="${ codetail }">${co.memNickName }</a></h5>
@@ -529,7 +529,7 @@
 						<div class="item">
 							<div class="single_special_cource">
 								<div class="img">
-                                    <img src="resources/user/img/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
+                                    <img src="resources/course/images/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
                                     </div>
                                     <div class="special_cource_text">
                                         <a class="btn_4">${ co.categoryName }</a>
@@ -545,7 +545,7 @@
                                         <p></p>
                                         <div class="author_info">
                                             <div class="author_img">
-                                                <img src="resources/user/img/author/${co.craRname }" alt="" onclick="location.href='${codetail}'">
+                                                <img src="resources/creator/creatorImages/${co.craRName }" alt="" style="border-radius: 50%; width:50px; height:50px;" onclick="location.href='${codetail}'">
                                                 <div class="author_info_text">
                                                     <p>크리에이터:</p>
                                                     <h5><a href="${ codetail }">${co.memNickName }</a></h5>
@@ -588,7 +588,7 @@
 						<div class="item">
 							<div class="single_special_cource">
 								<div class="img">
-                                    <img src="resources/user/img/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
+                                    <img src="resources/course/images/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
                                     </div>
                                     <div class="special_cource_text">
                                         <a class="btn_4">${ co.categoryName }</a>
@@ -604,7 +604,7 @@
                                         <p></p>
                                         <div class="author_info">
                                             <div class="author_img">
-                                                <img src="resources/user/img/author/${co.craRname }" alt="" onclick="location.href='${codetail}'">
+                                                <img src="resources/creator/creatorImages/${co.craRName }" alt="" style="border-radius: 50%; width:50px; height:50px;" onclick="location.href='${codetail}'">
                                                 <div class="author_info_text">
                                                     <p>크리에이터:</p>
                                                     <h5><a href="${ codetail }">${co.memNickName }</a></h5>
@@ -647,7 +647,7 @@
 						<div class="item">
 							<div class="single_special_cource">
 								<div class="img">
-                                    <img src="resources/user/img/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
+                                    <img src="resources/course/images/${co.coaRName }" class="special_img" alt="" onclick="location.href='${codetail}'">
                                     </div>
                                     <div class="special_cource_text">
                                         <a class="btn_4">${ co.categoryName }</a>
@@ -663,7 +663,7 @@
                                         <p></p>
                                         <div class="author_info">
                                             <div class="author_img">
-                                                <img src="resources/user/img/author/${co.craRname }" alt="" onclick="location.href='${codetail}'">
+                                                <img src="resources/creator/creatorImages/${co.craRName }" alt="" style="border-radius: 50%; width:50px; height:50px;" onclick="location.href='${codetail}'">
                                                 <div class="author_info_text">
                                                     <p>크리에이터:</p>
                                                     <h5><a href="${ codetail }">${co.memNickName }</a></h5>

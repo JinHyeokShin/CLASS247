@@ -8,7 +8,7 @@ public class SingleCourse {
 	private String courseTitle;
 	private String categoryName;
 	private String memNickName;
-	private String craRname;
+	private String craRName;
 	private String courseKind;
 	private String courseLevel;
 	private Date courseEnrollDate;
@@ -42,15 +42,15 @@ public class SingleCourse {
 	}
 	
 
-	public String getCraRname() {
-		return craRname;
+	public String getCraRName() {
+		return craRName;
 	}
 
-	public void setCraRname(String craRname) {
-		this.craRname = craRname;
+	public void setCraRName(String craRName) {
+		this.craRName = craRName;
 	}
 
-	public SingleCourse(int courseNum, String courseTitle, String categoryName, String memNickName, String craRname,
+	public SingleCourse(int courseNum, String courseTitle, String categoryName, String memNickName, String craRName,
 			String courseKind, String courseLevel, Date courseEnrollDate, Date courseStartDate, Date courseEndDate,
 			int courseHourPrice, int coursePrice, String coaRName, String courseArea, int loveCount,
 			String courseStatus, int courseCurrentNum) {
@@ -59,7 +59,7 @@ public class SingleCourse {
 		this.courseTitle = courseTitle;
 		this.categoryName = categoryName;
 		this.memNickName = memNickName;
-		this.craRname = craRname;
+		this.craRName = craRName;
 		this.courseKind = courseKind;
 		this.courseLevel = courseLevel;
 		this.courseEnrollDate = courseEnrollDate;
@@ -296,7 +296,7 @@ public class SingleCourse {
 	@Override
 	public String toString() {
 		return "SingleCourse [courseNum=" + courseNum + ", courseTitle=" + courseTitle + ", categoryName="
-				+ categoryName + ", memNickName=" + memNickName + ", craRname=" + craRname + ", courseKind="
+				+ categoryName + ", memNickName=" + memNickName + ", craRName=" + craRName + ", courseKind="
 				+ courseKind + ", courseLevel=" + courseLevel + ", courseEnrollDate=" + courseEnrollDate
 				+ ", courseStartDate=" + courseStartDate + ", courseEndDate=" + courseEndDate + ", courseHourPrice="
 				+ courseHourPrice + ", coursePrice=" + coursePrice + ", coaRName=" + coaRName + ", courseArea="
