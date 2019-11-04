@@ -127,6 +127,7 @@
                                         payPrice: 100000
                                     },
                                     success: function(data) {
+                                    	alertify.alert("결제 완료되었습니다.");
                                         location.href = "cMainView.do";
                                     },
                                     error: function() {
@@ -178,6 +179,7 @@
                                         payPrice: 100000
                                     },
                                     success: function(data) {
+                                    	alertify.alert("결제 완료되었습니다.");
                                         location.href = "cMainView.do";
                                     },
                                     error: function() {
