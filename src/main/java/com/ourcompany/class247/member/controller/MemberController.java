@@ -515,7 +515,7 @@ public class MemberController {
 			@RequestParam("star-input") int reviewScore,
 			@RequestParam("feedback") String rContent) {
 		
-		System.out.println(courseNum);
+		
 		Member loginUser= (Member)request.getSession().getAttribute("loginUser");
 		int memNum=loginUser.getMemNum();
 		Review review= new Review();
