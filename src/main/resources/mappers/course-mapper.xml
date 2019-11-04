@@ -362,7 +362,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getListCount" parameterType="_int" resultType="_int">
 		select count(*)
 		from love_view
-		where mem_num = #{memNum}
+		where mem_num = #{memNum} 
 	</select>
 	
 	<select id="modalsearchList" parameterType="String" resultMap="SingleCourseResultSet">
@@ -766,12 +766,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="onlineCourseCount" parameterType="_int" resultType="_int">
 		select count(*)
 		from course
-		where course_kind ='online'
+		where course_kind ='online'and CATEGORY_NUM !=0 and COURSE_APPROVED =‘Y’ 
 	</select>
 	<select id="offlineCourseCount" parameterType="_int" resultType="_int">
 		select count(*)
 		from course
-		where course_kind = 'offline'
+		where course_kind = 'offline'and CATEGORY_NUM !=0 and COURSE_APPROVED =‘Y’ 
 	</select>
 	
 	<insert id="insertVideo" parameterType="Video">
