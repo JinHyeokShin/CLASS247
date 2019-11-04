@@ -548,7 +548,7 @@ public class CourseDao {
 	}
 	public int selectMPrice() {
 		return sqlSession.selectOne("courseMapper.selectMPrice");
-
+	}
 	/** 거절된 클래스 가져오기 
 	 * @param creNum
 	 * @return

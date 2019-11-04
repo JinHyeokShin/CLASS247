@@ -57,21 +57,6 @@ public class adminController {
 		
 	}
 	
-	@RequestMapping("aStat.do") 
-	public String adminStat() {
-
-		int categoryNum = 0;
-		
-		ArrayList<SingleCourse> personStat = coService.personStat(categoryNum);
-
-		
-		SingleCourse pes = new AStat().perStat(personStat);
-		
-		
-		return "admin/stat/stat";
-
-	}
-	
 	@RequestMapping("aPeceipt.do")
 	public ModelAndView aPeceipt(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1")int currentPage) {
 		

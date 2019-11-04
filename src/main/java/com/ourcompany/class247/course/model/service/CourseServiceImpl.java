@@ -574,7 +574,7 @@ public class CourseServiceImpl implements CourseService {
 	public int selectMPrice() {
 
 		return coDao.selectMPrice();
-	
+	}
 	/** 거절된 클래스 
 	 *
 	 */

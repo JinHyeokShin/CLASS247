@@ -182,6 +182,7 @@ public class CreatorServiceImpl implements CreatorService{
 	@Override
 	public int selectMCre() {
 		return creDao.selectMCre();
+	}
 	/**
 	 * 총 차트값 구하기 
 	 * */
