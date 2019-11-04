@@ -230,7 +230,7 @@
                                 <c:if test="${ empty list }">
 	                                <div class="col-md-4">
 	                                        <div class="card" onclick="location.href='courseFormView.do';">
-	                                          <img class="card-img-top" src="<%= request.getContextPath() %>/resources/creator/images/class-default-01.png" alt="Card image cap">
+	                                          <img class="card-img-top" src="<%= request.getContextPath() %>/resources/creator/images/class-sample-01.PNG" alt="Card image cap">
 	                                            <div class="card-body" style="text-align:center;">
 	                                               <h4 class="card-title mb-3">새로운 클래스를 추가하세요.</h4>
 	                                                <p class="card-text" style="text-align:center;"> 

@@ -484,4 +484,12 @@ public class CourseDao {
 	public double getScoreSum(int creNum) {
 		return sqlSession.selectOne("courseMapper.getScoreSum", creNum);
 	}
+
+	/** 거절된 클래스 가져오기 
+	 * @param creNum
+	 * @return
+	 */
+	public ArrayList<Course> selectRejectByCreNum(int creNum) {
+		return (ArrayList)sqlSession.selectList("courseMapper.selectRejectClassByCreNum", creNum);
+	}
 }

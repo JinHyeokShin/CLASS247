@@ -266,7 +266,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*)
 		from course
 		where cre_num = #{creNum}
-		and course_status!='R' and course_approved!='N'
+		and course_status!='R' and course_status != 'N'and course_approved!='N'
 	</select>
 	
 	<!-- 크리에이터 승인 대기중 클래스 목록  -->
@@ -276,7 +276,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		left join offline_course using(course_num)
 		left join online_course using(course_num)
 		join category using(category_num)
-		where course_approved ='N'
+		where course_approved ='N' and course_status='N'
 		and cre_num = #{creNum}
 		order by course_num
 	</select>
@@ -329,13 +329,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="allowCourse" parameterType="_int">
 		update course
-		set course_approved_date=sysdate, course_approved='Y'
+		set course_approved_date=sysdate, course_approved='Y, course_status='Y'
 		where course_num = #{courseNum}
 	</update>
 	
 	<update id="rejectCourse" parameterType="_int">
 		update course
-		set course_approved_date=sysdate, course_approved='R'
+		set course_approved_date=sysdate, course_status='R'
 		where course_num = #{courseNum}
 	</update>
 	
@@ -801,6 +801,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where cre_num = #{creNum} and course_status = 'Y' and power_num is null
 	</select>
 
+	<select id="selectRejectClassByCreNum" parameterType="_int" resultMap="CourseResultSet"	>
+		select *
+		from course
+		left join offline_course using(course_num)
+		left join online_course using(course_num)
+		join category using(category_num)
+		where course_approved ='N' and course_status='R'
+		and cre_num = #{creNum}
+		order by course_num	
 	
+	</select>
 	
 </mapper>

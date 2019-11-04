@@ -94,10 +94,11 @@
                 </div>
                 <script>
                     function inicis() {
-						console.log("test");
-
+                  console.log("test");
                         IMP.init('imp79990634');
 
+                       
+                        
                         IMP.request_pay({
                             pg: 'inicis',
                             pay_method: 'card',
