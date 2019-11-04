@@ -27,7 +27,7 @@
                             </div>
                         </div>
                         <div class="row m-t-25">
-                            <div class="col-sm-6 col-lg-3">
+                             <div class="col-sm-6 col-lg-3">
                                 <div class="overview-item overview-item--c1">
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
@@ -35,79 +35,65 @@
                                                 <i class="zmdi zmdi-account-o"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>{memCount}</h2>
+                                                <h2>${tMem}</h2>
                                                 <span>members</span>
                                             </div>
                                         </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart1"></canvas>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c1">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-account-o"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2>${tCre}</h2>
+                                                <span>creator</span>
+                                            </div>
                                         </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c2">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-shopping-cart"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2>${oCou}</h2>
+                                                <span>Online Class</span>
+                                            </div>
+                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-lg-3">
-                                <div class="overview-item overview-item--c1">
+                                <div class="overview-item overview-item--c2">
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
-                                                <i class="zmdi zmdi-account-o"></i>
+                                                <i class="zmdi zmdi-shopping-cart"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>{creCount}</h2>
-                                                <span>members</span>
+                                                <h2>${iCou}</h2>
+                                                <span>Offline Class</span>
                                             </div>
                                         </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart1"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="overview-item overview-item--c1">
-                                    <div class="overview__inner">
-                                        <div class="overview-box clearfix">
-                                            <div class="icon">
-                                                <i class="zmdi zmdi-account-o"></i>
-                                            </div>
-                                            <div class="text">
-                                                <h2>{onCourse}</h2>
-                                                <span>members</span>
-                                            </div>
-                                        </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart1"></canvas>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="overview-item overview-item--c1">
-                                    <div class="overview__inner">
-                                        <div class="overview-box clearfix">
-                                            <div class="icon">
-                                                <i class="zmdi zmdi-account-o"></i>
-                                            </div>
-                                            <div class="text">
-                                                <h2>총클래스</h2>
-                                                <span>members</span>
-                                            </div>
-                                        </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart1"></canvas>
-                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>
                             
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="overview-wrap">
-                                    <h2 class="title-1">overview</h2>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="row m-t-25">
                             <div class="col-sm-6 col-lg-3">
                                 <div class="overview-item overview-item--c1">
@@ -117,13 +103,11 @@
                                                 <i class="zmdi zmdi-account-o"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>{memCount}</h2>
+                                                <h2>${mMem}</h2>
                                                 <span>증가된 회원수</span>
                                             </div>
                                         </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart1"></canvas>
-                                        </div>
+                                      
                                     </div>
                                 </div>
                             </div>
@@ -135,49 +119,43 @@
                                                 <i class="zmdi zmdi-account-o"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>{creCount}</h2>
+                                                <h2>${mCre}</h2>
                                                 <span>증가된 크리에어터</span>
                                             </div>
                                         </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart1"></canvas>
-                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-lg-3">
-                                <div class="overview-item overview-item--c1">
+                                <div class="overview-item overview-item--c2">
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
-                                                <i class="zmdi zmdi-account-o"></i>
+                                                <i class="zmdi zmdi-shopping-cart"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>{onCourse}</h2>
+                                                <h2>${mCou}</h2>
                                                 <span>증가된 클래스</span>
                                             </div>
                                         </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart1"></canvas>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-lg-3">
-                                <div class="overview-item overview-item--c1">
+                                <div class="overview-item overview-item--c4">
                                     <div class="overview__inner">
                                         <div class="overview-box clearfix">
                                             <div class="icon">
-                                                <i class="zmdi zmdi-account-o"></i>
+                                                <i class="zmdi zmdi-money"></i>
                                             </div>
                                             <div class="text">
-                                                <h2>총클래스</h2>
+                                                <h2>${mPrice }</h2>
                                                 <span>이번달 거래액</span>
                                             </div>
                                         </div>
-                                        <div class="overview-chart">
-                                            <canvas id="widgetChart1"></canvas>
-                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -186,7 +164,7 @@
                         
                          <div class="row">
                                 <div class="col-lg-12">
-                                    <h2 class="title-1 m-b-25">Await List</h2>
+                                    <h2 class="title-1 m-b-25">Await Creator List</h2>
                                     <div class="table-responsive table--no-card m-b-40">
                                         <table class="table table-borderless table-striped table-earning">
                                             <thead>
@@ -198,7 +176,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <c:forEach items="${ crelist }" var="cre">
+                                                <c:forEach items="${ creList }" var="cre">
                       
                                                     
                                                     <tr>
@@ -226,7 +204,7 @@
                         
                        <div class="row">
                                 <div class="col-lg-12">
-                                    <h2 class="title-1 m-b-25">Await List</h2>
+                                    <h2 class="title-1 m-b-25">Await Class List</h2>
                                     <div class="table-responsive table--no-card m-b-40">
                                         <table class="table table-borderless table-striped table-earning">
                                             <thead>
@@ -241,7 +219,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="contacts">
-                                                <c:forEach items="${ curlist }" var="co">
+                                                <c:forEach items="${ coList }" var="co">
                       
                                                     
                                                     <tr>

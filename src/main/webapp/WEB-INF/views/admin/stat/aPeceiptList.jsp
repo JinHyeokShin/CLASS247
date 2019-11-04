@@ -30,8 +30,8 @@
                                                 <th>수업번호</th>
                                                 <th>수업제목</th>
                                                 <th>이름</th>
-                                                <th class="text-right">날짜</th>
-                                                <th class="text-right">가격</th>
+                                                <th>날짜</th>
+                                                <th>가격</th>
                                                
                                             </tr>
                                         </thead>
@@ -46,7 +46,7 @@
                                                 		${n.courseTitle }
                                                 </td>
                                                 <td>${n.memNickName}</td>
-                                                <td class="text-right">${n.courseEnrollDate}</td>
+                                                <td>${n.courseEnrollDate}</td>
                                                 <td>
                                                 	${n.loveCount }
                                                 </td>
@@ -57,6 +57,7 @@
                                         </tbody>
                                     </table>
                                 </div>
+                               <c:if test="${ !empty list }">
                                 <div align="center">
                                 		<!-- 이전버튼 -->
 							    		<c:if test="${ pi.currentPage eq 1 }">
@@ -93,6 +94,7 @@
 							    			<a href="${ next }"> [다음]</a>
 							    		</c:if>
                                    </div>
+                                   </c:if>
                             </div>
                         </div>   
                     </div>

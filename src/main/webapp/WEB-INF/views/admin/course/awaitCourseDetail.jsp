@@ -236,12 +236,6 @@
 
 							</div>
 			
-
-
-
-
-
-
 						<div class="card" id="detail-div" style="display:none">
 							<div class="card-header">
 								<h3>
@@ -299,13 +293,13 @@
 								</div>
 								<hr>
 								<div class="form-group">
-									<label class=" form-control-label"> 샘플 영상등록</label><br>
+									<label class=" form-control-label"> 영상등록</label><br>
 									<div class="">
-										<input type="text"
+										<c:forEach items="${ vo }" var="vo">
+											<a href="https://youtu.be/${ vo.videoPath }">${vo.videoTitle }</a>
+											<br>
 											
-											name="CourseVideoUrl" class="form-control"
-											style="width: 300px; display: inline-block " value="${co.courseVideoUrl}" disabled> 
-										<br>
+										</c:forEach>
 									</div>
 									
 								</div>

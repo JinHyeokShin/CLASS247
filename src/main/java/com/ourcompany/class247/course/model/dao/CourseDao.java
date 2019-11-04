@@ -515,4 +515,39 @@ public class CourseDao {
 		
 		return (ArrayList)sqlSession.selectList("courseMapper.aPeceiptList", null, rowBounds);
 	}
+	
+	public int logger() {
+		return sqlSession.insert("courseMapper.logger");
+	}
+	
+	public int checkLogger() {
+		return sqlSession.selectOne("courseMapper.checkLogger");
+	}
+	
+	public ArrayList<SingleCourse> peceiptList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.aPeceiptList");
+	}
+	
+	public int insertPeceipt(SingleCourse peceipt) {
+		return sqlSession.insert("courseMapper.insertPeceipt", peceipt);
+	}
+	
+	public int checkPeceipt() {
+		return sqlSession.selectOne("courseMapper.checkPeceipt");
+	}
+	
+	public int selectOCou() {
+		return sqlSession.selectOne("courseMapper.selectOCou");
+	}
+	
+	public int selectICou() {
+		return sqlSession.selectOne("courseMapper.selectICou");
+	}
+	
+	public int selectMCou() {
+		return sqlSession.selectOne("courseMapper.selectMCou");
+	}
+	public int selectMPrice() {
+		return sqlSession.selectOne("courseMapper.selectMPrice");
+	}
 }

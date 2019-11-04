@@ -179,4 +179,19 @@ public interface CourseService {
 	int aPeceiptCount();
 	
 	ArrayList<SingleCourse> aPeceiptList(PageInfo pi);
+	
+	int logger();
+	
+	int checkLogger();
+	
+	ArrayList<SingleCourse> peceiptList();
+	
+	int insertPeceipt(SingleCourse peceipt);
+	
+	int checkPeceipt();
+	
+	int selectOCou();
+	int selectICou();
+	int selectMCou();
+	int selectMPrice();
 }

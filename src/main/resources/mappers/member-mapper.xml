@@ -231,5 +231,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where mem_num = #{memNum}
 	</update>
 	
+	<select id="selectTMem" resultType="_int">
+		select count(*)
+		from member
+		where mem_status != 'N'
+	</select>
+	
+	<select id="selectMMem" resultType="_int">
+	  select count(*)
+	  from (select mem_num
+      from member
+      where to_char(enroll_date, 'YYYYMM') = to_char(sysdate, 'YYYYMM') and mem_status != 'N')
+	
+	</select>
 
 </mapper>

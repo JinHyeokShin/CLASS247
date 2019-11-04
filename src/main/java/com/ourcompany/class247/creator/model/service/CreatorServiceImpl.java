@@ -180,6 +180,15 @@ public class CreatorServiceImpl implements CreatorService{
 		
 	}
 	
+	@Override
+	public int selectTCre() {
+		return creDao.selectTCre();
+	}
+	
+	@Override
+	public int selectMCre() {
+		return creDao.selectMCre();
+	}
 
 
 }

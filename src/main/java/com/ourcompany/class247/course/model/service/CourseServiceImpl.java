@@ -519,5 +519,54 @@ public class CourseServiceImpl implements CourseService {
 	public ArrayList<SingleCourse> aPeceiptList(PageInfo pi) {
 		return coDao.aPeceiptList(pi);
 	}
+	
+	@Override
+	public int logger() {
+		return coDao.logger();
+	}
+	
+	@Override
+	public int checkLogger() {
+		return coDao.checkLogger();
+	}
+	
+	@Override
+	public ArrayList<SingleCourse> peceiptList() {
+		return coDao.peceiptList();
+	}
+	
+	@Override
+	public int insertPeceipt(SingleCourse peceipt) {
+		return coDao.insertPeceipt(peceipt);
+	}
+	
+	@Override
+	public int checkPeceipt() {
+		return coDao.checkPeceipt();
+	}
+
+	@Override
+	public int selectOCou() {
+
+		return coDao.selectOCou();
+	}
+
+	@Override
+	public int selectICou() {
+
+		return coDao.selectICou();
+	}
+
+	@Override
+	public int selectMCou() {
+
+		return coDao.selectMCou();
+	}
+
+	@Override
+	public int selectMPrice() {
+
+		return coDao.selectMPrice();
+	}
 
 }

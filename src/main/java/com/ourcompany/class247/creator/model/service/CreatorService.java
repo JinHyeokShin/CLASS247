@@ -52,6 +52,9 @@ public interface CreatorService {
 	
 	//차트 구하기 
 	ArrayList<Chart> getChart(Chart chart);
+	
+	int selectTCre();
+	int selectMCre();
 
 
 }

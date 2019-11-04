@@ -70,26 +70,23 @@
 
 	<aside class="menu-sidebar d-none d-lg-block">
 		<div class="logo">
-			<a href="#"> <img
-				src="<%= request.getContextPath() %>/resources/admin/images/icon/logo.png"
-				alt="Cool Admin" />
-			</a>
+			 <a href="adminMain.do">
+	               <img src="<%= request.getContextPath() %>/resources/creator/images/icon/class247logo.png" alt="Class247" />
+             </a>
 		</div>
 		<div class="menu-sidebar__content js-scrollbar1">
 			<nav class="navbar-sidebar">
 				<ul class="list-unstyled navbar__list">
-					<li class="has-sub"><a class="js-arrow" href="#"> <i
-							class="fas fa-users"></i>Member
+					<li class="has-sub"><a class="js-arrow" href="#"> Member
 					</a>
 						<ul class="list-unstyled navbar__sub-list js-sub-list">
 							<li><a href="aMemberList.do">User</a></li>
 							<li><a href="aCreatorList.do">Creator</a></li>
-							<li><a href="aAwaitCreatorList.do"><i class="far fa-check-square"></i>Await
+							<li><a href="aAwaitCreatorList.do">Await
 									Creator</a></li>
 							<li><a href="aBlackList.do">Black List</a></li>
 						</ul></li>
-					<li class="has-sub"><a class="js-arrow" href="#"> <i
-							class="fas fa-users"></i>Class
+					<li class="has-sub"><a class="js-arrow" href="#"> Class
 					</a>
 					<ul class="list-unstyled navbar__sub-list js-sub-list">
 							<li><a href="aCourseList.do">Class</a></li>
@@ -98,44 +95,36 @@
 
 						</ul>
 					</li>
-					<li class="has-sub"><a class="js-arrow" href="#"> <i
-							class="fas fa-copy"></i>Board
+					<li class="has-sub"><a class="js-arrow" href="#"> Board
 					</a>
 						<ul class="list-unstyled navbar__sub-list js-sub-list">
 							<li><a href="aNoticeList.do">Notice</a></li>
 							<li><a href="aFAQList.do">FAQ</a></li>
 						</ul></li>
 
-					<li><a href="adminInquriyList.do"> <i class="fas fa-table"></i>Iquired
+					<li><a href="adminInquriyList.do">Iquired
 					</a></li>
 
-					<li class="has-sub"><a class="js-arrow" href="#"> <i
-							class="fas fa-copy"></i>Payment
+					<li class="has-sub"><a class="js-arrow" href="#">Payment
 					</a>
 						<ul class="list-unstyled navbar__sub-list js-sub-list">
 							<li><a href="aPayment.do">Payment</a></li>
 							<li><a href="aPower.do">POWER</a></li>
 							<li><a href="aDelivery.do">Delivery</a></li>
 						</ul></li>
-					<li class="has-sub"><a class="js-arrow" href="#"> <i
-							class="fas fa-copy"></i>EVENT
+					<li class="has-sub"><a class="js-arrow" href="#"> EVENT
 					</a>
 						<ul class="list-unstyled navbar__sub-list js-sub-list">
 							<li><a href="aCoupon.do">COUPONE</a></li>
-							<li><a href="aFAQList.do">LOGO</a></li>
+							<!-- <li><a href="aFAQList.do">LOGO</a></li> -->
 						</ul></li>
 						
-					<li class="has-sub"><a class="js-arrow" href="#"> <i
-							class="fas fa-copy"></i>STATS
+					<li class="has-sub"><a class="js-arrow" href="#"> STATS
 					</a>
 						<ul class="list-unstyled navbar__sub-list js-sub-list">
-							<li><a href="aStat.do">STATS</a></li>
-							<li><a href="aFAQList.do">STATS</a></li>
-							<li><a href="aFAQList.do">STATS</a></li>
+							<li><a href="aAPeceipt.do">전체 결산</a></li>
+							<li><a href="aPeceipt.do">월말결산</a></li>
 						</ul></li>
-						
-
-
 					
 				</ul>
 			</nav>
@@ -150,30 +139,22 @@
 					<div class="header-wrap">
 						
 						<div class="header-button">
-							<div class="noti-wrap">
-								<div class="noti__item js-item-menu">
-									<i class="zmdi zmdi-comment-more"></i> <span class="quantity">1</span>
-									<div class="mess-dropdown js-dropdown">
-										
+
 										<div class="mess__item">
-											<div class="image img-cir img-40">
-												<img
-													src="<%= request.getContextPath() %>/resources/admin/images/icon/avatar-04.jpg"
-													alt="Diane Myers" />
-											</div>
-											<div class="content">
-												<h6>Diane Myers</h6>
-												<p>You are now connected on message</p>
-												<span class="time">Yesterday</span>
-											</div>
+											<button onclick="location.href='home.do'" class="btn btn-outline-primary"><i class="fa fa-star">HOME</i></button>
+											
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											
+											<c:if test="${checkLogger eq 0}">
+												<button onclick="location.href='logger.do'" class="btn btn-outline-success"><i class="fa fa-magic">업데이트</i></button>
+											</c:if>
+											<c:if test="${checkLogger ne 0}">
+												<button class="btn btn-outline-success" disabled><i class="fa fa-magic">업데이트 완료</i></button>
+												
+											</c:if>
 										</div>
-										<div class="mess__footer">
-											<a href="#">View all messages</a>
-										</div>
-									</div>
-								</div>
-								
-							</div>
+										
+	
 						</div>
 					</div>
 				</div>

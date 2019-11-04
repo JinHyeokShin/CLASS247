@@ -70,6 +70,8 @@ public interface MemberService {
 	
 	int updateUnBlackList(int memNum);
 	
+	int selectTMem();
+	int selectMMem();
 
 	
 }

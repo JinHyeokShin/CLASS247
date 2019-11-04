@@ -185,6 +185,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by for_month
 	</select>
 	
+	<select id="selectTCre" resultType="_int">
+		select count(*)
+	  
+      from creator
+      where  cre_status != 'N'
 	
+	</select>
+	
+	<select id="selectMCre" resultType="_int">
+		select count(*)
+	  from (select cre_num
+      from creator
+      where to_char(approved_date, 'YYYYMM') = to_char(sysdate, 'YYYYMM') and cre_status != 'N')
+	
+	</select>
 	
 </mapper>

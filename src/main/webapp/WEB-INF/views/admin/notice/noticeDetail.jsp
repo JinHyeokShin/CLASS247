@@ -178,7 +178,12 @@
 								
 								var $tr = $("<tr id='n"+value.nReplyNum+"'>");
 								var $profile = $("<td width='50'>");
-								var $profileDiv = $("<div class='img'>");
+								
+								var img = "<img src='<%=request.getContextPath()%>" + "/resources/user/img/profile/${s.memProfileName}'/>";
+								
+								var $profileDiv = $("<div class='image img-cir img-40'>").append(img);
+								
+								
 								var $rNReply = $("<td id="+value.nReplyNum+" >")
 								
 								

@@ -368,7 +368,9 @@ public class CourseController {
       
       Member m = mService.selectMember(cre.getMemNum());
       
-      mv.addObject("coaList", coaList).addObject("cre", cre).addObject("craList", craList).addObject("m", m);
+      ArrayList<Video> vo = coService.selectVideoList(courseNum);
+      
+      mv.addObject("coaList", coaList).addObject("cre", cre).addObject("craList", craList).addObject("m", m).addObject("vo", vo);
       
       mv.setViewName("admin/course/awaitCourseDetail");
       
@@ -429,13 +431,14 @@ public class CourseController {
 	      Course course = coService.selectCourse(courseNum, courseKind);
 	      CourseAttachment cover = coService.selectCover(courseNum);
 	      ArrayList<Member> stuList = mService.selectStuByCo(courseNum);
+	      ArrayList<Review> rlist = coService.selectRlist(courseNum); 
 	      
-	      System.out.println(course);
 	      
 	      mv.addObject("co", course);
 	      mv.addObject("cover", cover);
 	      mv.addObject("stuList", stuList);
-	      mv.setViewName("admin/course/courseDetail");
+	      mv.addObject("revlist", rlist);
+	      mv.setViewName("admin/course/courseList");
 	      
 	      return mv;
 	   
