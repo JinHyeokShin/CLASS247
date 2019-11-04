@@ -56,7 +56,7 @@
                                                 <td class="text-right">${ p.payMethod }</td>
                                                 <td class="text-right">
                                                		<c:if test="${p.payCancel eq 'Y'}">Y</c:if>
-                                               		<c:if test="${p.payCancel eq 'N'}">N</c:if>                                              	
+                                               		<c:if test="${empty p.payCancel}">N</c:if>                                              	
                                                	</td>
                                             </tr>
                                             </c:forEach>
@@ -75,7 +75,7 @@
 							    		</c:if>
 							    		
 							    		<!-- 번호 -->
-							    		<c:forEach begin="${ pi.startPage }" end="${ pi1.endPage }" var="p">
+							    		<c:forEach begin="${ pi1.startPage }" end="${ pi1.endPage }" var="p">
 							    			<c:if test="${ p eq pi1.currentPage }">
 							    				<font color="black" size="4">[${ p }]</font>
 							    			</c:if>
@@ -144,6 +144,7 @@
                                             </c:forEach>
                                         </tbody>
                                     </table>
+                                    
                                          <div align="center">
                                 		<!-- 이전버튼 -->
 							    		<c:if test="${ pi2.currentPage eq 1 }">

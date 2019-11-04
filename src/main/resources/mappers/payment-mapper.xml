@@ -53,7 +53,7 @@
 		from payment p
 		join course c on(p.course_num = c.course_num)
 		join member m on(p.mem_num = m.mem_num)
-		join power using(pay_num)
+		join power using(pay_code)
 		order by pay_num desc
 	</select>
 	
@@ -74,7 +74,7 @@
 		where pay_num in (
 		        select pay_num
 		        from payment
-		        join power using(pay_num)
+		        join power using(pay_code)
 		        )
 	</select>
 	
