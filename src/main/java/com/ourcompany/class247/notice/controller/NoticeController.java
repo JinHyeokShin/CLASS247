@@ -2,8 +2,6 @@ package com.ourcompany.class247.notice.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -84,14 +82,13 @@ public class NoticeController {
 	public String insertNotice(Notice n, HttpServletRequest request, Model model,
 								@RequestParam(name="uploadFile", required=false)MultipartFile file) throws IllegalStateException, IOException {
 		
-
 			 if( !file.getOriginalFilename().equals("")) {
 			 
 			 String renameFileName = saveFile(file, request);
 			 
 			 if(renameFileName != null) {
 			 n.setNoticeFileName(renameFileName); }
-			 
+			 System.out.println(n);
 			 }
 		
 		
@@ -119,19 +116,14 @@ public class NoticeController {
 		
 		String noticeFileName = file.getOriginalFilename();
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-		
-		String renameFileName = sdf.format(new Date(System.currentTimeMillis()))
-							 	+ noticeFileName.substring(noticeFileName.lastIndexOf("."));
-		
-		String renamePath = savePath + "\\" + renameFileName;
+		String renamePath = savePath + "\\" + noticeFileName;
 		
 
 			file.transferTo(new File(renamePath));
 			
 		
 		
-		return renameFileName;
+		return noticeFileName;
 	}
 
 	
@@ -152,6 +144,40 @@ public class NoticeController {
 			.setViewName("admin/common/errorPage");
 		}
 		return mv;
+	}
+	
+	@RequestMapping("aNupdate.do")
+	public ModelAndView noticeUpdate(ModelAndView mv, int noticeNum) {
+
+		Notice n = nService.selectNotice(noticeNum);
+		mv.addObject("n", n).setViewName("admin/notice/noticeUpdate");
+		
+		return mv;
+	}
+	
+	@RequestMapping("aNupdatedetail.do")
+	public String noticeUpdate(@RequestParam("noticeNum") int noticeNum, @RequestParam("noticeTitle") String noticeTitle, @RequestParam("noticeContent") String noticeContent) {
+	Notice n = new Notice();
+	
+		n.setNoticeNum(noticeNum);
+		
+		if(!noticeTitle.equals("")) {
+			n.setNoticeTitle(noticeTitle);
+		}
+		if(!noticeContent.equals("")) {
+			n.setNoticeContent(noticeContent);
+		}
+		
+		int result = nService.updateNotice(n);
+		
+		if(result>0) {
+			
+			return "redirect:aNoticeList.do";
+		}else {
+			return "common/errorPage";
+		}
+		
+		
 	}
 	
 	@RequestMapping("aNdelete.do")
@@ -187,38 +213,6 @@ public class NoticeController {
 		}
 	}
 	
-/*	댓글
-	@RequestMapping("rnlist.do")
-	public void getReplyList(int nreplyNum, HttpServletResponse response) throws JsonIOException, IOException {
-		
-		ArrayList<NoticeReply> list = nService.selectReplyList(nreplyNum);
-		
-		response.setContentType("application/json; charset=utf-8");
-		
-		Gson gson = new Gson();
-		gson.toJson(list, response.getWriter());
-		
-		
-	}
-
-	@ResponseBody
-	@RequestMapping("rninsert.do")
-	public String insertReply(NoticeReply nr, HttpSession session) {
-		
-		String id = ((Member)session.getAttribute("loginUser")).getMemId();
-		
-		nr.setNoticeNum(id); // 작성한 회원 아이디 담기
-		
-		int result = nService.insertReply(nr);
-		
-		if(result > 0) {
-			return "success";
-		}else {
-			return "fail";
-		}
-		
-	}
-*/
 	
 	@RequestMapping("noticeListView.do")
 	public ModelAndView selectList(ModelAndView mv,@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {

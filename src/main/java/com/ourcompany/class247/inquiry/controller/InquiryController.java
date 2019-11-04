@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +21,7 @@ import com.ourcompany.class247.common.Pagination;
 import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.inquiry.model.service.InquiryService;
 import com.ourcompany.class247.inquiry.model.vo.Inquiry;
+import com.ourcompany.class247.notice.model.vo.Notice;
 
 @Controller
 public class InquiryController {
@@ -109,45 +111,7 @@ public class InquiryController {
 	
 	
 	 
-	/** 서버에 파일 저장하기 
-	 * @param file
-	 * @param request
-	 * @return
-	 */
-	public String saveFile(MultipartFile file, HttpServletRequest request) {
-		
-		//파일이 저장될 경로 설정
-		String root = request.getSession().getServletContext().getRealPath("resources");
-		String savePath = root + "\\creator\\inquiryImages";
-		
-		File folder = new File(savePath); //저장될 폴더 지정 
-		
-		if(!folder.exists()) {
-			folder.mkdir();
-		}
-		
-		String originalFileName = file.getOriginalFilename(); //원본명
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) 
-								+ originalFileName.substring(originalFileName.lastIndexOf("."));
-		
-		
-		String renamePath = savePath + "\\" + renameFileName;
-		
-		//서버에 저장
-		try {
-			file.transferTo(new File(renamePath));
-			
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		
-		return renameFileName;
-	}
+
 	
 	
 	@RequestMapping("deleteInquiry.do")
@@ -210,13 +174,87 @@ public class InquiryController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		ArrayList<Inquiry> list = iService.selectAdminInquiryList(pi);
+		ArrayList<Inquiry> adminInquirylist = iService.selectAdminInquiryList(pi);
+		System.out.println(adminInquirylist);
 
 		mv.addObject("pi", pi)
-		  .addObject("list", list)
+		  .addObject("aiList", adminInquirylist)
 		  .setViewName("admin/inquiry/aInquiryList");
 		
 		return mv;
 		
 	}
+	
+	@RequestMapping("aIdetail.do")
+	public ModelAndView aInquriyDetail(int inquiryNum, ModelAndView mv) {
+		
+		Inquiry ai = iService.selectaInquiry(inquiryNum);
+		
+		
+		if(ai != null) {
+			mv.addObject("ai", ai)
+			.setViewName("admin/inquiry/aInquiryDetail");
+			
+		}else {
+			mv.addObject("msg", "게시글 상세조회실패!")
+			.setViewName("admin/common/errorPage");
+		}
+		return mv;
+	}
+	
+	@RequestMapping("aIinsert.do")
+	public String insertaInquiry(Inquiry i, Model model){
+		
+		int result = iService.insertaInquiry(i);
+			
+		if (result > 0) {
+			return "redirect:adminInquriyList.do";
+		} else {
+			model.addAttribute("msg", "문의사항 작성실패!!");
+			return "common/errorPage";
+		}
+		
+	}
+
+	
+	/** 서버에 파일 저장하기 
+	 * @param file
+	 * @param request
+	 * @return
+	 */
+	public String saveFile(MultipartFile file, HttpServletRequest request) {
+		
+		//파일이 저장될 경로 설정
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\creator\\inquiryImages";
+		
+		File folder = new File(savePath); //저장될 폴더 지정 
+		
+		if(!folder.exists()) {
+			folder.mkdir();
+		}
+		
+		String originalFileName = file.getOriginalFilename(); //원본명
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		String renameFileName = sdf.format(new Date(System.currentTimeMillis())) 
+								+ originalFileName.substring(originalFileName.lastIndexOf("."));
+		
+		
+		String renamePath = savePath + "\\" + renameFileName;
+		
+		//서버에 저장
+		try {
+			file.transferTo(new File(renamePath));
+			
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return renameFileName;
+	}
+
 }
