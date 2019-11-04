@@ -54,6 +54,8 @@ public interface CreatorService {
 	//차트 구하기 
 	ArrayList<Chart> getChart(Chart chart);
 	
+	int selectTCre();
+	int selectMCre();
 	ArrayList<Chart> getOnlineChart(Chart onlineChart);
 
 	ArrayList<Chart> getOfflineChart(Chart offlineChart);

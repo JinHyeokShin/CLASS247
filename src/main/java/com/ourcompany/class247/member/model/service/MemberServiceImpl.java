@@ -123,6 +123,15 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.insertReview(review);
 	}
 	
+	@Override
+	public int selectTMem() {
+		return mDao.selectTMem();
+	}
+	
+	@Override
+	public int selectMMem() {
+		return mDao.selectMMem();
+	}
 
 
 

@@ -91,4 +91,8 @@
 		from payment_view
 		where pay_Code=#{payCode}
 	</select>
+	
+	<insert id="jhinsertPower">
+		insert into power values(power_seq.nextval, #{courseNum}, #{payCode}, sysdate, sysdate+30, 'Y')
+	</insert>
 </mapper>

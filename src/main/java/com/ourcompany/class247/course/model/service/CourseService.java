@@ -10,6 +10,7 @@ import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.course.model.vo.Video;
+import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
 
@@ -137,7 +138,7 @@ public interface CourseService {
 	//크리에이터센터 - 클래스 수 
 	int getCourseCount(int creNum);
 	
-	boolean checkLove(Love love);
+	int checkLove(Love love);
 	
 	int insertLove(Love iLove);
 	
@@ -148,6 +149,8 @@ public interface CourseService {
 	int selectMemberCount();
 	
 	int selectCreCount();
+	
+	Creator selectCreator(int creNum);
 
 	int onlineCourseCount();
 	
@@ -168,6 +171,32 @@ public interface CourseService {
 	//크리에이터 센터 메인에 띄울 총 평균 값 가져오기 
 	double getScoreSum(int creNum);
 	
+	
+	ArrayList<SingleCourse> personStat(int categroyNum);
+
+	
+	ArrayList<SingleCourse> peceiptList(PageInfo pi);
+	
+	int peceiptCount();
+	
+	int aPeceiptCount();
+	
+	ArrayList<SingleCourse> aPeceiptList(PageInfo pi);
+	
+	int logger();
+	
+	int checkLogger();
+	
+	ArrayList<SingleCourse> peceiptList();
+	
+	int insertPeceipt(SingleCourse peceipt);
+	
+	int checkPeceipt();
+	
+	int selectOCou();
+	int selectICou();
+	int selectMCou();
+	int selectMPrice();
 	//크리에이터 센터 거절된 클래스 불러오기 
 	ArrayList<Course> selectRejectByCreNum(int creNum);
 }

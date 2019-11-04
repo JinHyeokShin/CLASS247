@@ -15,9 +15,9 @@ import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.course.model.vo.Video;
+import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Single;
 
 @Repository("coDao")
 public class CourseDao {
@@ -304,14 +304,11 @@ public class CourseDao {
 	public ArrayList<Course> categoryCareerList() {
 		return (ArrayList)sqlSession.selectList("courseMapper.categoryCareerList");
 	}
-	public boolean checkLove(Love love) {
+	public int checkLove(Love love) {
 		
-		boolean checkLove=false;
-		int result=sqlSession.selectOne("courseMapper.checkLove",love);
-		if(result>0) {
-			checkLove=true;
-		}
-		return checkLove;
+		
+		return sqlSession.selectOne("courseMapper.checkLove",love);
+		
 	}
 	public int insertLove(Love iLove) {
 		
@@ -327,6 +324,9 @@ public class CourseDao {
 	public ArrayList<Review> selectRlist(int courseNum) {
 		
 		return (ArrayList)sqlSession.selectList("courseMapper.selectRlist",courseNum);
+	}
+	public Creator selectCreator(int creNum) {
+		return sqlSession.selectOne("courseMapper.selectCreator",creNum);
 	}
 	/* 온라인 카테고리 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -487,7 +487,68 @@ public class CourseDao {
 	public double getScoreSum(int creNum) {
 		return sqlSession.selectOne("courseMapper.getScoreSum", creNum);
 	}
-
+	
+	
+	public ArrayList<SingleCourse> personStat(int categroyNum) {
+		return (ArrayList)sqlSession.selectList("courseMapper.personStat", categroyNum);
+	}
+	
+	public ArrayList<SingleCourse> peceiptList(PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("courseMapper.peceiptList", null, rowBounds);
+	}
+	
+	public int peceiptCount() {
+		return sqlSession.selectOne("courseMapper.peceiptCount");
+	}
+	
+	public int aPeceiptCount() {
+		return sqlSession.selectOne("courseMapper.aPeceiptCount");
+	}
+	
+	public ArrayList<SingleCourse> aPeceiptList(PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("courseMapper.aPeceiptList", null, rowBounds);
+	}
+	
+	public int logger() {
+		return sqlSession.insert("courseMapper.logger");
+	}
+	
+	public int checkLogger() {
+		return sqlSession.selectOne("courseMapper.checkLogger");
+	}
+	
+	public ArrayList<SingleCourse> peceiptList() {
+		return (ArrayList)sqlSession.selectList("courseMapper.aPeceiptList");
+	}
+	
+	public int insertPeceipt(SingleCourse peceipt) {
+		return sqlSession.insert("courseMapper.insertPeceipt", peceipt);
+	}
+	
+	public int checkPeceipt() {
+		return sqlSession.selectOne("courseMapper.checkPeceipt");
+	}
+	
+	public int selectOCou() {
+		return sqlSession.selectOne("courseMapper.selectOCou");
+	}
+	
+	public int selectICou() {
+		return sqlSession.selectOne("courseMapper.selectICou");
+	}
+	
+	public int selectMCou() {
+		return sqlSession.selectOne("courseMapper.selectMCou");
+	}
+	public int selectMPrice() {
+		return sqlSession.selectOne("courseMapper.selectMPrice");
+	}
 	/** 거절된 클래스 가져오기 
 	 * @param creNum
 	 * @return

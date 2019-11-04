@@ -149,6 +149,14 @@ public class CreatorDao {
 		ArrayList<Chart> list = (ArrayList)sqlSession.selectList("creatorMapper.selectChart", chart);
 		return list;
 	}
+	
+	public int selectTCre() {
+		return sqlSession.selectOne("creatorMapper.selectTCre");
+	}
+	
+	public int selectMCre() {
+		return sqlSession.selectOne("creatorMapper.selectMCre");
+	}
 
 	public ArrayList<Chart> getOnlineChart(Chart onlineChart) {
 		ArrayList<Chart> list = (ArrayList)sqlSession.selectList("creatorMapper.onlineSumChart", onlineChart);

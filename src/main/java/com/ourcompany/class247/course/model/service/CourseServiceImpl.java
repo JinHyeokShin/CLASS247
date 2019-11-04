@@ -14,6 +14,7 @@ import com.ourcompany.class247.course.model.vo.Offline;
 import com.ourcompany.class247.course.model.vo.Online;
 import com.ourcompany.class247.course.model.vo.SingleCourse;
 import com.ourcompany.class247.course.model.vo.Video;
+import com.ourcompany.class247.creator.model.vo.Creator;
 import com.ourcompany.class247.payment.model.vo.Payment;
 import com.ourcompany.class247.review.model.vo.Review;
 
@@ -226,7 +227,7 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
-	public boolean checkLove(Love love) {
+	public int checkLove(Love love) {
 		
 		return coDao.checkLove(love);
 	}
@@ -244,6 +245,10 @@ public class CourseServiceImpl implements CourseService {
 	}
 
 	@Override
+	public Creator selectCreator(int creNum) {
+		return coDao.selectCreator(creNum);
+	}
+	@Override
 	public Course coursePayment(int courseNum) {
 		
 		return coDao.coursePayment(courseNum);
@@ -253,6 +258,8 @@ public class CourseServiceImpl implements CourseService {
 	public Online selectOnline(int courseNum) {
 		return coDao.selectOnline(courseNum);
 	}
+	
+	
 
 	@Override
 	public ArrayList<Review> selectRlist(int courseNum) {
@@ -494,7 +501,80 @@ public class CourseServiceImpl implements CourseService {
 		return coDao.selectVideo(videoCourse);
 	}
 
+	@Override
+	public ArrayList<SingleCourse> personStat(int categroyNum) {
+		
+		return coDao.personStat(categroyNum);
+	}
 	
+	@Override
+	public ArrayList<SingleCourse> peceiptList(PageInfo pi) {
+		return coDao.peceiptList(pi);
+	}
+	
+	@Override
+	public int peceiptCount() {
+		return coDao.peceiptCount();
+	}
+
+	@Override
+	public int aPeceiptCount() {
+		return coDao.aPeceiptCount();
+	}
+
+	@Override
+	public ArrayList<SingleCourse> aPeceiptList(PageInfo pi) {
+		return coDao.aPeceiptList(pi);
+	}
+	
+	@Override
+	public int logger() {
+		return coDao.logger();
+	}
+	
+	@Override
+	public int checkLogger() {
+		return coDao.checkLogger();
+	}
+	
+	@Override
+	public ArrayList<SingleCourse> peceiptList() {
+		return coDao.peceiptList();
+	}
+	
+	@Override
+	public int insertPeceipt(SingleCourse peceipt) {
+		return coDao.insertPeceipt(peceipt);
+	}
+	
+	@Override
+	public int checkPeceipt() {
+		return coDao.checkPeceipt();
+	}
+
+	@Override
+	public int selectOCou() {
+
+		return coDao.selectOCou();
+	}
+
+	@Override
+	public int selectICou() {
+
+		return coDao.selectICou();
+	}
+
+	@Override
+	public int selectMCou() {
+
+		return coDao.selectMCou();
+	}
+
+	@Override
+	public int selectMPrice() {
+
+		return coDao.selectMPrice();
+	}
 	/** 거절된 클래스 
 	 *
 	 */

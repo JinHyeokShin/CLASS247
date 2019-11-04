@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ourcompany.class247.admin.controller.AStat;
 import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.common.Pagination;
 import com.ourcompany.class247.course.model.service.CourseService;
@@ -328,21 +329,24 @@ public class CourseController {
 	public ModelAndView courseDetail(int courseNum, String courseKind, ModelAndView mv, HttpServletRequest request) {
 		
 		Member loginUser=(Member)request.getSession().getAttribute("loginUser");
-		ArrayList<Review> rlist = coService.selectRlist(courseNum); 
+		ArrayList<Review> revlist = coService.selectRlist(courseNum); 
 		
-		boolean checkLove=false;
+		int checkLove=1;
 		if(loginUser !=null) {
-			Love love= new Love(courseNum, loginUser.getMemNum());
+			Love love= new Love();
+		love.setCourseNum(courseNum);
+		love.setMemNum( loginUser.getMemNum());
 			
 			checkLove= coService.checkLove(love); 
 		}
 		Course c = coService.selectCourse(courseNum);
+		Creator creator= coService.selectCreator(c.getCreNum());
 		
 		if(c != null) {
 			mv.addObject("c", c)
-			.addObject("checkLove", checkLove).addObject("rlist", rlist)
+			.addObject("checkLove", checkLove).addObject("revlist", revlist).addObject("creator", creator)
 		    .setViewName("user/course/userCourseDetail");
-			System.out.println(c);
+			
 			
 		}else {
 			mv.addObject("msg", "게시글 상세조회실패!")
@@ -370,7 +374,9 @@ public class CourseController {
       
       Member m = mService.selectMember(cre.getMemNum());
       
-      mv.addObject("coaList", coaList).addObject("cre", cre).addObject("craList", craList).addObject("m", m);
+      ArrayList<Video> vo = coService.selectVideoList(courseNum);
+      
+      mv.addObject("coaList", coaList).addObject("cre", cre).addObject("craList", craList).addObject("m", m).addObject("vo", vo);
       
       mv.setViewName("admin/course/awaitCourseDetail");
       
@@ -431,13 +437,14 @@ public class CourseController {
 	      Course course = coService.selectCourse(courseNum, courseKind);
 	      CourseAttachment cover = coService.selectCover(courseNum);
 	      ArrayList<Member> stuList = mService.selectStuByCo(courseNum);
+	      ArrayList<Review> rlist = coService.selectRlist(courseNum); 
 	      
-	      System.out.println(course);
 	      
 	      mv.addObject("co", course);
 	      mv.addObject("cover", cover);
 	      mv.addObject("stuList", stuList);
-	      mv.setViewName("admin/course/courseDetail");
+	      mv.addObject("revlist", rlist);
+	      mv.setViewName("admin/course/courseList");
 	      
 	      return mv;
 	   
@@ -619,10 +626,11 @@ public class CourseController {
 	   		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 	      
 	         if(loginUser ==null) {
+	        	 request.getSession().setAttribute("coNumNext", courseNum);
 	            mv.setViewName("user/member/loginForm");
 	         }else {
 	            	c = coService.selectCourse(courseNum);
-	            	System.out.println(c);
+	            	
 	            	
          
          if(c != null && c.getCourseKind().equals("offline")) {

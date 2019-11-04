@@ -89,6 +89,20 @@ public class PaymentController {
 		return p.getPayCode();
 	}
 	
+	@ResponseBody
+	@RequestMapping("paymentMD.do")
+	public String payment(Payment p, Power po) {
+		System.out.println(p);
+		System.out.println(po);
+		
+		pService.jhinsertPayment(p);
+		pService.jhinsertPower(po);
+		
+//		pService.jhinsertPayment(p);
+		
+		return p.getPayCode();
+	}
+	
 	@RequestMapping("aPayment.do")
 	public ModelAndView paymentView(ModelAndView mv, @RequestParam(value="currentPage1", required=false, defaultValue="1")int currentPage1, @RequestParam(value="currentPage2", required=false, defaultValue="1")int currentPage2) {
 		
@@ -177,22 +191,5 @@ public class PaymentController {
 		return mv;
 	}
 	
-	
-	
-	   /** MD결제
-	 * @param p
-	 * @param po
-	 * @return
-	 */
-	@ResponseBody
-	   @RequestMapping("paymentMD.do")
-	   public String payment(Payment p, Power po) {
-	      System.out.println(p);
-	      System.out.println(po);
-	      
-//	      pService.jhinsertPayment(p);
-	      
-	      return p.getPayCode();
-	   }
 	
 }

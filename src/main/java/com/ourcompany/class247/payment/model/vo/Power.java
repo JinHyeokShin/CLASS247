@@ -6,7 +6,7 @@ public class Power {
 	
 	private int powerNum;			//파워번호
 	private int courseNum;			//수업번호
-	private int payNum;				//결제번호
+	private String payCode;				//결제번호
 	private Date powerStartDate;	//파워등록날짜
 	private Date powerEndDate;		//파워종료날짜
 	private String powerStatus;		//등록상태
@@ -15,11 +15,12 @@ public class Power {
 		
 	}
 
-	public Power(int powerNum, int courseNum, int payNum, Date powerStartDate, Date powerEndDate, String powerStatus) {
+	public Power(int powerNum, int courseNum, String payCode, Date powerStartDate, Date powerEndDate,
+			String powerStatus) {
 		super();
 		this.powerNum = powerNum;
 		this.courseNum = courseNum;
-		this.payNum = payNum;
+		this.payCode = payCode;
 		this.powerStartDate = powerStartDate;
 		this.powerEndDate = powerEndDate;
 		this.powerStatus = powerStatus;
@@ -41,12 +42,12 @@ public class Power {
 		this.courseNum = courseNum;
 	}
 
-	public int getPayNum() {
-		return payNum;
+	public String getPayCode() {
+		return payCode;
 	}
 
-	public void setPayNum(int payNum) {
-		this.payNum = payNum;
+	public void setPayCode(String payCode) {
+		this.payCode = payCode;
 	}
 
 	public Date getPowerStartDate() {
@@ -75,11 +76,11 @@ public class Power {
 
 	@Override
 	public String toString() {
-		return "Power [powerNum=" + powerNum + ", courseNum=" + courseNum + ", payNum=" + payNum + ", powerStartDate="
+		return "Power [powerNum=" + powerNum + ", courseNum=" + courseNum + ", payCode=" + payCode + ", powerStartDate="
 				+ powerStartDate + ", powerEndDate=" + powerEndDate + ", powerStatus=" + powerStatus + "]";
 	}
-	
-	
+
+
 
 	
 	

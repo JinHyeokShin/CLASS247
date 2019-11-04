@@ -94,6 +94,14 @@ public class MemberDao {
 	public int insertReview(Review review) {
 		return sqlSession.insert("courseMapper.insertReview",review);
 	}
+	
+	public int selectTMem() {
+		return sqlSession.selectOne("memberMapper.selectTMem");
+	}
+	
+	public int selectMMem() {
+		return sqlSession.selectOne("memberMapper.selectMMem");
+	}
 
 	
 }

@@ -143,7 +143,7 @@
                                         payPrice: 100000
                                     },
                                     success: function(data) {
-                                       alertify.alert("결제 완료되었습니다.");
+                                    	alertify.alert("결제 완료되었습니다.");
                                         location.href = "cMainView.do";
                                     },
                                     error: function() {
@@ -184,7 +184,7 @@
                                     url: "paymentMD.do",
                                     type: "post",
                                     data: {
-                                       payCode: rsp.imp_uid,
+                                    	payCode: rsp.imp_uid,
                                         reservNum: rsp.merchant_uid,
                                         payPrice: rsp.paid_amount,
                                         confirmNum: rsp.apply_num,
@@ -195,7 +195,7 @@
                                         payPrice: 100000
                                     },
                                     success: function(data) {
-                                       alertify.alert("결제 완료되었습니다.");
+                                    	alertify.alert("결제 완료되었습니다.");
                                         location.href = "cMainView.do";
                                     },
                                     error: function() {

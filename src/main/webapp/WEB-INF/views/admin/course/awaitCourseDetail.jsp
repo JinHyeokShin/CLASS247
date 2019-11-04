@@ -196,7 +196,7 @@
 										<label for="class_title" class=" form-control-label">
 											클래스 제목</label> 
 										
-										<label for="creID" class=" form-control-label text">${ co.courseMaterial }</label>
+										<label for="creID" class=" form-control-label text">${ co.courseTitle }</label>
 									</div>
 									<hr>
 									<div class="form-group">
@@ -236,12 +236,6 @@
 
 							</div>
 			
-
-
-
-
-
-
 						<div class="card" id="detail-div" style="display:none">
 							<div class="card-header">
 								<h3>
@@ -299,13 +293,13 @@
 								</div>
 								<hr>
 								<div class="form-group">
-									<label class=" form-control-label"> 샘플 영상등록</label><br>
+									<label class=" form-control-label"> 영상등록</label><br>
 									<div class="">
-										<input type="text"
+										<c:forEach items="${ vo }" var="vo">
+											<a href="https://youtu.be/${ vo.videoPath }">${vo.videoTitle }</a>
+											<br>
 											
-											name="CourseVideoUrl" class="form-control"
-											style="width: 300px; display: inline-block " value="${co.courseVideoUrl}" disabled> 
-										<br>
+										</c:forEach>
 									</div>
 									
 								</div>
@@ -345,9 +339,16 @@
                                                     </div>
                                                     <c:if test="${courseMinPax ne 1}">
                                                     <div>
-                                                    	<input type="number" class="form-control" style="width:200px; display:inline-block" value="${ co.courseMinPax }">명 ~ 
-                                                    	<input type="number" class="form-control" style="width:200px;display:inline-block" value="${ co.courseMaxPax }">명 
+                                                    	<input type="number" class="form-control" style="width:200px; display:inline-block" value="${ co.courseMinPax }" disabled>명 ~ 
+                                                    	<input type="number" class="form-control" style="width:200px;display:inline-block" value="${ co.courseMaxPax }" disabled>명 
                                                     </div>
+                                                    </c:if>
+                                                    <c:if test="${courseMinPax eq 1 }">
+                                                    <div>
+                                                    	<input type="number" class="form-control" style="width:200px; display:inline-block" value="${ co.courseMinPax }" disabled>명 ~ 
+                                                    	<input type="number" class="form-control" style="width:200px;display:inline-block" value="${ co.courseMaxPax }" disabled>명 
+                                                    </div>
+                                                    
                                                     </c:if>
                                                 </div>                                                
                                                 <hr>
@@ -359,7 +360,7 @@
 															${co.courseStartDate } ~ ${co.courseEndDate }
 														</div>
 													</div>
-													<hr>
+											
                                                     
      
                                                     
@@ -370,11 +371,11 @@
                                                     <label class=" form-control-label">수업 가격*</label><br>
                                                     <div>
                                                     	<small class="help-block form-text">1회당 수업 시간</small><br>
-                                                    	<input type="number" class="form-control" style="width:300px; display:inline-block" value="${co.courseHours} }"> 원 &nbsp;&nbsp;
+                                                    	<input type="number" class="form-control" style="width:300px; display:inline-block" value="${co.courseHours} }" disabled> 원 &nbsp;&nbsp;
                                                  	    <small class="help-block form-text">가격</small><br>
-                                                  	   <input type="number" class="form-control" style="width:300px; display:inline-block" value="${ co.courseHourPrice }"> 시간                              
+                                                  	   <input type="number" class="form-control" style="width:300px; display:inline-block" value="${ co.courseHourPrice }" disabled> 시간                              
                                                   	   <small class="help-block form-text">수업 일수</small><br>
-                                                  	   <input type="text" class="form-control" style="width:300px; display:inline-block" value="${ co.courseDay }">                         
+                                                  	   <input type="text" class="form-control" style="width:300px; display:inline-block" value="${ co.courseDay }" disabled>                         
                                                   	   
                                                     </div>
                                                     

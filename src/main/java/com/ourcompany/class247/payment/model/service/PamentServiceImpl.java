@@ -10,6 +10,7 @@ import com.ourcompany.class247.payment.model.dao.PaymentDao;
 import com.ourcompany.class247.payment.model.vo.Complete;
 import com.ourcompany.class247.payment.model.vo.Delivery;
 import com.ourcompany.class247.payment.model.vo.Payment;
+import com.ourcompany.class247.payment.model.vo.Power;
 import com.ourcompany.class247.payment.model.vo.TakeCourse;
 
 @Service("pService")
@@ -118,6 +119,11 @@ private PaymentDao pDao;
 	@Override
 	public Complete complete(String payCode) {
 		return pDao.complete(payCode);
+	}
+
+	@Override
+	public int jhinsertPower(Power po) {
+		return pDao.jhinsertPower(po);
 	}
 
 
