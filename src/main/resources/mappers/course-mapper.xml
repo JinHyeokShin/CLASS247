@@ -120,8 +120,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       <result property="courseEnrollDate" column="course_enroll_date"/>
       <result property="courseStartDate" column="course_start_date"/>   
       <result property="courseEndDate" column="course_end_date"/>
-      <result property="coaRName" column="coa_rname"/>
-      <result property="craRName" column="cra_rname"/>
+      <result property="coaRName" column="course_rname"/>
+      <result property="craRName" column="creator_rname"/>
       <result property="loveCount" column="love_count"/>
          <result property="courseHourPrice" column="course_hour_price"/>
                <result property="coursePrice" column="course_price"/>
