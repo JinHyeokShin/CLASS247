@@ -620,10 +620,11 @@ public class CourseController {
 	   		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
 	      
 	         if(loginUser ==null) {
+	        	 request.getSession().setAttribute("coNumNext", courseNum);
 	            mv.setViewName("user/member/loginForm");
 	         }else {
 	            	c = coService.selectCourse(courseNum);
-	            	System.out.println(c);
+	            	
 	            	
          
          if(c != null && c.getCourseKind().equals("offline")) {
