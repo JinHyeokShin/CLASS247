@@ -95,9 +95,6 @@
 	</update>
 	
 	
-	
-
-	
 <!--  
 	<select id="selectNoticeReply" parameterType="_int" resultMap="noitceReplyResultSet">
 		select *

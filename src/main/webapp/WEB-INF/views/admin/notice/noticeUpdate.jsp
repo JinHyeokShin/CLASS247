@@ -37,76 +37,62 @@
                                     <div class="table-responsive table--no-card" id="test2">
                                           				
 			<form action="aNupdatedetail.do" method="post">
-			<div>
-									<table style="width:100%">
-							 
-							
+		
+										<div class="container" role="main">
+										
+										<div class="mb-3">
 						
-									<!--  
-									<div id="test">
-										<table>
-											<br>
-											<th style="witdh: 200px;">제목 : </th>
-											<th style="color: black; width: 80%;">${ n.noticeTitle}</th>
-											<th>날짜 : </th>
-											<th style="width: 130px; color: black; ">${n.noticeEnrollDate}</th>
-										</table>
-										
-										
-										<hr>
-										<table>
-											<th style=" width: 83%;"></th>									
-											<th style="color: black;"> 관리자  </th>
-											<th></th>
-											<th>${n.noticeContent }</th>									
-										</table>
-										<hr>
-									-->
-													
-										      <thead style="border:1px;">
-										        <tr>
-										          <th style="color: black;">제목 :
-										          <input type="hidden" name="noticeNum" value="${n.noticeNum }">
-										          <input type="text" name="noticeTitle" value="${ n.noticeTitle }"><hr width="80px">
-										          </th>
-										          <th></th>
-										          <th></th>
-										          <th style="color: black;">날짜 : ${n.noticeEnrollDate}</th>
-										        </tr>
-										      </thead>
-										      <tbody>
-										        <tr>
-										          <th></th>
-										          <td></td>
-										          <td></td>
-										          <td style="color: black;">관리자</td>
-										        </tr>
-										        <tr>										         
-										          <td rowspan="4"><input type="text" style="width:80%; height:100px" name="noticeContent" value="${n.noticeContent }"></td>
-										          <td rowspan="4"></td>
-										        </tr>
-										        <tr>
-										          <th></th>
-										          <td></td>
-										          <td></td>
-										          <td></td>
-										        </tr>
-										      </tbody>
-										 
-
-										</table>	
+											<label for="title">제목</label>
+											<input type="hidden" name="noticeNum" value="${n.noticeNum }">
+											<input type="text" class="form-control" name="noticeTitle" id="noticeTitle" value=" ${ n.noticeTitle}" >
+						
+										</div>
 														
-															
-																<input type="submit" value="수정완료">		
-																<button type="button" onclick="location.href='aNoticeList.do';" class="button">목록으로</button>
-															
-														
-														</div>												
+						
+										<div class="mb-3">									
+											<label for="title">작성날짜</label>
 									
-										     </form>			
-											
-                                      
-                                 
+											<input type="text" class="form-control" name="noticeEnrollDate" id="noticeEnrollDate" value=" ${n.noticeEnrollDate}" >
+						
+										</div>
+		
+						
+										<div class="mb-3">
+						
+											<label for="reg_id">작성자</label>
+						
+											<input type="text" class="form-control" readonly  placeholder="관리자">
+						
+										</div>
+						
+										
+						
+										<div class="mb-3">
+						
+											<label for="content">내용</label>
+						
+											<textarea class="form-control" rows="5" name="noticeContent" id="noticeContent" >${n.noticeContent }</textarea>
+						
+										</div>
+										
+										<div class="mb-3">
+						
+											<label for="reg_id">첨부파일</label>
+						
+											<input type="file" name="uploadFile">
+						
+										</div>
+						
+															
+														<div align="center">
+															<button type="submit"  class="btn btn-primary">수정완료</button>&nbsp;&nbsp;		
+															<button type="button"  onclick="location.href='aNoticeList.do';" class="btn btn-primary">목록으로</button>
+																	
+														</div>		
+												</div>												
+									
+										 </form>			
+	
                                     </div>
                                 </div>
                             </div>

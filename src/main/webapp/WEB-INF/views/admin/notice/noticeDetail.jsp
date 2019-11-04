@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,41 +30,8 @@
 	 	p{
 	 		text-align:right
 	 	}
+	
 </style>
-
-<!--
-<style>
-table.type10 {
-    border-collapse: collapse;
-    text-align: left;
-    line-height: 1.5;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    margin: 20px 10px;
-}
-table.type10 thead th {
-    width: 150px;
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    color: #fff;
-    background: gray;
-    margin: 20px 10px;
-}
-table.type10 tbody th {
-    width: 150px;
-    padding: 10px;
-}
-table.type10 td {
-    width: 350px;
-    padding: 10px;
-    vertical-align: top;
-}
-table.type10 .even {
-    background: #fdf3f5;
-}
-</style>
--->
 
 
 </head>
@@ -80,87 +49,60 @@ table.type10 .even {
                                 <div class="col-lg-12">
                                     <h2 class="title-1 m-b-25">notice  Detail</h2>
                                     <div class="table-responsive table--no-card" id="test2">
-                                    
+                                    		
+									
+								<div class="container" role="main">
+														
+		
+										<div class="mb-3">
 						
+											<label for="title">제목</label>
 						
-									<!--
-									<div id="test">
-										<table>
-											<br>
-											<th style="witdh: 200px;">제목 : </th>
-											<th style="color: black; width: 80%;">${ n.noticeTitle}</th>
-											<th>날짜 : </th>
-											<th style="width: 130px; color: black; ">${n.noticeEnrollDate}</th>
-										</table>
+											<input type="text" class="form-control" name="noticeTitle" id="noticeTitle" value=" ${ n.noticeTitle}" readonly style="background:white">
+						
+										</div>
+										
+										<div class="mb-3">
+						
+											<label for="title">작성날짜</label>
+						
+											<input type="text" class="form-control" name="noticeEnrollDate" id="noticeEnrollDate" value=" ${n.noticeEnrollDate}" readonly style="background:white">
+						
+										</div>
 										
 										
-										<hr>
-										<table>
-											<th style=" width: 83%;"></th>									
-											<th style="color: black;"> 관리자  </th>
-											<th></th>
-											<th>${n.noticeContent }</th>									
-										</table>
-										<hr>
-									-->
-									
-									
-									<table style="width:100%">
-										      <thead style="border:1px;">
-										        <tr>
-										          
-										          <th>제목 : ${ n.noticeTitle}</th>
-										          <th width="750px"></th>
-										          <th></th>
-										          <th style="color: black;">날짜 : ${n.noticeEnrollDate}</th>
-										        </tr>
-										      </thead>
-										      <tbody>
-										        <tr>
-										          <th></th>
-										          <td></td>										         
-										          <td></td>
-										          <td style="color: black;">관리자</td>
-										        </tr>
-										        <tr>										         
-										          <td rowspan="4">${n.noticeContent }</td>
-										          <td rowspan="4"></td>
-										        </tr>
-										        <tr>
-										          <th></th>
-										          <td></td>
-										          <td></td>
-										          <td></td>
-										        </tr>
-										      </tbody>										   						     
-									</table>
-									 
-										  
-									<!--
-										  <table class="type10" width="98%">
-											    <thead>
-											    <tr>
-											    	<th scope="cols" >작성날짜 : ${n.noticeEnrollDate}</th>
-											        <th scope="cols" >제목 : ${ n.noticeTitle}</th>											        
-											    </tr>
-											    </thead>
-											    <tbody>
-											    <tr>
-											        <th scope="row"></th>
-											        <td scope="row"></td>
-											    </tr>
-											    <tr>
-											        <th scope="row" class="even">내용 : </th>
-											        <td style="background:white">${n.noticeContent }</td>
-											    </tr>
-											    <tr>
-											        <th scope="row"></th>
-											        <td scope="row"></td>
-											    </tr>
-											    </tbody>
-											</table>  
-										-->
-																
+										
+						
+										<div class="mb-3">
+						
+											<label for="reg_id">작성자</label>
+						
+											<input type="text" class="form-control" readonly  placeholder="관리자" style="background:white">
+						
+										</div>
+						
+										
+						
+										<div class="mb-3">
+						
+											<label for="content">내용</label>
+						
+											<textarea class="form-control" rows="5" name="noticeContent" id="noticeContent" readonly style="background:white">${n.noticeContent }</textarea>
+						
+										</div>
+						
+										
+						
+										<div class="mb-3">
+						
+											<label for="tag">첨부파일</label>
+						
+											<c:if test="${ !empty n.noticeFileName }">
+												<a href="${ contextPath }/resources/admin/images/noticeupload/${ n.noticeFileName }" download="${ n.noticeFileName }">${ n.noticeFileName }</a>
+											</c:if>	
+						
+										</div>
+								
 										<div id="view-menu" align="center">
 															<c:url var="bupView" value="aNupdate.do">
 																<c:param name="noticeNum" value="${ n.noticeNum }"/>
@@ -181,9 +123,10 @@ table.type10 .even {
 															<a>
 																<button type="button" onclick="location.href='aNoticeList.do';" class="button" id="listbutton">목록으로</button>
 															</a>
-														</p>													
-									
-									
+														</p>
+														
+																			
+									</div>
                                     </div>
                                 </div>
                             </div>

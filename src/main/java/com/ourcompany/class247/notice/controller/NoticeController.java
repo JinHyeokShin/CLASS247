@@ -73,7 +73,6 @@ public class NoticeController {
 	@RequestMapping("aNinsert.do")
 	public String insertNotice(Notice n, HttpServletRequest request, Model model,
 								@RequestParam(name="uploadFile", required=false)MultipartFile file) throws IllegalStateException, IOException {
-		System.out.println(n);
 		
 			 if( !file.getOriginalFilename().equals("")) {
 			 
@@ -150,8 +149,6 @@ public class NoticeController {
 	public String noticeUpdate(@RequestParam("noticeNum") int noticeNum, @RequestParam("noticeTitle") String noticeTitle, @RequestParam("noticeContent") String noticeContent) {
 	Notice n = new Notice();
 	
-	
-	System.out.println(noticeNum);
 		n.setNoticeNum(noticeNum);
 		
 		if(!noticeTitle.equals("")) {
@@ -160,7 +157,6 @@ public class NoticeController {
 		if(!noticeContent.equals("")) {
 			n.setNoticeContent(noticeContent);
 		}
-		System.out.println(n);
 		
 		int result = nService.updateNotice(n);
 		
@@ -207,38 +203,6 @@ public class NoticeController {
 		}
 	}
 	
-/*	댓글
-	@RequestMapping("rnlist.do")
-	public void getReplyList(int nreplyNum, HttpServletResponse response) throws JsonIOException, IOException {
-		
-		ArrayList<NoticeReply> list = nService.selectReplyList(nreplyNum);
-		
-		response.setContentType("application/json; charset=utf-8");
-		
-		Gson gson = new Gson();
-		gson.toJson(list, response.getWriter());
-		
-		
-	}
-
-	@ResponseBody
-	@RequestMapping("rninsert.do")
-	public String insertReply(NoticeReply nr, HttpSession session) {
-		
-		String id = ((Member)session.getAttribute("loginUser")).getMemId();
-		
-		nr.setNoticeNum(id); // 작성한 회원 아이디 담기
-		
-		int result = nService.insertReply(nr);
-		
-		if(result > 0) {
-			return "success";
-		}else {
-			return "fail";
-		}
-		
-	}
-*/
 	
 	@RequestMapping("noticeListView.do")
 	public ModelAndView selectList(ModelAndView mv,@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {

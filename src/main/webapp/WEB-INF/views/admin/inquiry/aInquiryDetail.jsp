@@ -108,74 +108,7 @@
 		                              </div>                                          
 		                           </div>
 		                       </div>
-		                       
-		                       
-		                    
-		                   <!--  
-		                   <div class="row">
-	                        <div class="col-lg-12">
-	                                <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
-	                                    <div class="au-card-title" style="background-image:url('images/bg-title-02.jpg');">
-	                                        <div class="bg-overlay bg-overlay--blue"></div>
-	                                        
-	                                        <h3>
-	                                           <i class="fas fa-users"></i> 문의사항</h3>
-	
-	                                    </div>
-	                                    <div class="au-inbox-wrap js-inbox-wrap">	                            			
-	                                        <div class="au-chat">
-	                                            <div class="au-chat__title">
-	                                                <div class="au-chat-info">
-	                                                    <div class="avatar-wrap online">
-	                                                        <div class="avatar avatar--small">
-	                                                            <img src="images/icon/avatar-02.jpg" alt="John Smith">
-	                                                        </div>
-	                                                    </div>
-	                                                    <span class="nick">
-	                                                    	<input type="hidden" name="inquiryNum" value="${ ai.inquiryNum }"/>
-	                                                        <a href="#">${ ai.creNum }</a>
-	                                                    </span>
-	                                                </div>
-	                                            </div>
-	                                            <div class="au-chat__content">
-	                                                <div class="recei-mess-wrap">
-	                                                    <span class="mess-time">${ai.inquiryEnrollDate}</span>
-	                                                    <div class="recei-mess__inner">
-	                                                        <div class="avatar avatar--tiny">
-	                                                            <img src="images/icon/avatar-02.jpg" alt="John Smith">
-	                                                        </div>
-	                                                        <div class="recei-mess-list">
-	                                                            <div class="recei-mess">${ ai.inquiryContent }</div>
-	                                                            
-	                                                        </div>
-	                                                    </div>
-	                                                </div>
-	                                                <div class="send-mess-wrap">
-	                                                    <span class="mess-time">${ai.answerEnrollDate}</span>
-	                                                    <div class="send-mess__inner">
-	                                                        <div class="send-mess-list">
-	                                                            <div class="send-mess">${ ai.answerContent }</div>
-	                                                        </div>
-	                                                    </div>
-	                                                </div>
-	                                            </div>
-	                                            <div class="au-chat-textfield">
-	                                                <form class="au-form-icon">
-	                                                    <input class="au-input au-input--full au-input--h65" type="text" placeholder="Type a message">
-	                                                    <button class="au-input-icon" type="submit">
-	                                                    		등록                                                       
-	                                                    </button>
-	                                                    <button type="button" onclick="location.href='adminInquriyList.do';" class="button">목록으로</button>
-	                                                </form>	                                                	                                                
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                            </div> 
-                       		 </div>
-		                       
-		                        -->
-		                       
+                  
 		                      </div>		                    
 		                      </div>
 		                   </section>

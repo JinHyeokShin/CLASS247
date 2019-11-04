@@ -106,11 +106,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <h2 class="title-1 m-b-25" align="center">FAQ 자주 묻는 질문들!</h2>
-                                <div id="container">
-                                <ul class="tab">
-									<li class="current" data-tab="tab1"><a href="#tab1">수강생</a></li>
-									<li data-tab="tab2"><a href="#tab2">크리에이터</a></li>
-								</ul>
+                                <div id="container">                          
 								        
                                 <div class="table-responsive table--no-card m-b-40">                                 
                            
@@ -168,62 +164,7 @@
 							   	 </tr>
 							   	 </div>						   							  							   	 
                                 </div>
-                                
-                                 <div class="table-responsive table--no-card m-b-40">  
-                                 <div id="tab2" class="tabcontent">
-									<c:forEach items="${ flist }" var="f">
-                                 <ul>
-							        <li class="collapsible">
-							            <h2 class="title"><a href="#html5" style="color:gray;">&nbsp; ${ f.faqNum}.  ${ f.faqTitle}</a></h2>
-							            <hr>     
-							            <h3 class="content">${ f.faqContent }</h3>
-							        </li>
-							        <hr>							       
-							    </ul>
-							    
-							     </c:forEach>
-							     
-							        <tr align="center" height="20">
-							    	<td colspan="6">
-							    		
-							    		<!-- 이전버튼 -->
-							    		<c:if test="${ pi.currentPage eq 1 }">
-							    			[이전]
-							    		</c:if>
-							    		<c:if test="${ pi.currentPage ne 1 }">
-											<c:url value="aFAQList.do" var='before'>
-												<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
-											</c:url>
-							    			<a href="${ before }">[이전]</a>
-							    		</c:if>
-							    		
-							    		<!-- 번호 -->
-							    		<c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
-							    			<c:if test="${ p eq pi.currentPage }">
-							    				<font color="black" size="4">[${ p }]</font>
-							    			</c:if>
-							    			<c:if test="${ p ne pi.currentPage }">
-							    				<c:url value="aFAQList.do" var="page">
-							    					<c:param name="currentPage" value="${ p }"/>
-							    				</c:url>
-							    				<a href="${ page }">${ p }</a>
-							    			</c:if>
-							    		</c:forEach>
-							    		
-							    		<!-- 다음버튼 -->
-							    		<c:if test="${ pi.currentPage eq pi.maxPage }">
-							    			[다음]
-							    		</c:if>
-							    		<c:if test="${ pi.currentPage ne pi.maxPage}">
-							    			<c:url value="aFAQList.do" var="next">
-							    				<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
-							    			</c:url>
-							    			<a href="${ next }"> [다음]</a>
-							    		</c:if>				    									    		
-							    	</td>
-							   	 </tr>
-							   	 </div>						   
-								</div>
+                                                               
 							 						                               
                             </div>
                             </div>
