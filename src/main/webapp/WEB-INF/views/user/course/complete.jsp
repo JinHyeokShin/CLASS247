@@ -73,7 +73,7 @@ star-input>.input.focus{outline:1px dotted #ddd;}
                 <div class="col-lg-8 course_details_left">
                     <div class="main_image">
                     	<h1>${ c.courseTitle }</h1>			
-                        <img class="img-fluid" src="resources/creator/images/test1.jpeg" alt="">
+                        <img class="img-fluid" src="resources/course/images/${c.coaRName }" alt="">
                     </div>
                     <br>
                     <br>

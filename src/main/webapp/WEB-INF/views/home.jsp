@@ -33,7 +33,9 @@
   -ms-transform: scale(1.2);
   -o-transform: scale(1.2);
 }
-.img { overflow:hidden }   /* 부모를 벗어나지 않고 내부 이미지만 확대 */
+.img { overflow:hidden; }   /* 부모를 벗어나지 않고 내부 이미지만 확대 */
+
+
         </style>
         <c:import url="/WEB-INF/views/user/common/menubar.jsp" />
 
@@ -157,7 +159,7 @@
                                         <p></p>
                                         <div class="author_info">
                                             <div class="author_img">
-                                                <img src="resources/user/img/author/${co.craRname }" alt="" onclick="location.href='${codetail}'">
+                                                <img src="resources/creator/creatorImages/${co.craRName }" alt="" style="border-radius: 50%; width:50px; height:50px;" onclick="location.href='${codetail}'">
                                                 <div class="author_info_text">
                                                     <p>크리에이터:</p>
                                                     <h5><a href="${ codetail }">${co.memNickName }</a></h5>
@@ -212,7 +214,9 @@
                                         <p></p>
                                         <div class="author_info">
                                             <div class="author_img">
-                                                <img src="resources/user/img/author/${po.craRname }" alt="" onclick="location.href='${codetail}'">
+                                            	<div class="authorimg">
+                                                <img src="resources/creator/creatorImages/${po.craRName }" alt="" style="border-radius: 50%; width:50px; height:50px;" onclick="location.href='${codetail}'">
+                                                </div>
                                                 <div class="author_info_text">
                                                     <p>크리에이터:</p>
                                                     <h5><a href="${ codetail }">${po.memNickName }</a></h5>
