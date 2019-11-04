@@ -61,6 +61,13 @@ public class NoticeServiceImpl implements NoticeService{
 	public int getNoticeReplyListCount(int noticeNum) {
 		return nDao.getNoticeReplyListCount(noticeNum);
 	}
+	@Override
+	public int updateNotice(Notice n) {
+		return nDao.updateNotice(n);
+	}
+	
+
+	
 /* 댓글
 	@Override
 	public ArrayList<NoticeReply> selectReplyList(int noticeNum) {
@@ -133,5 +140,7 @@ public class NoticeServiceImpl implements NoticeService{
 
 	
 
+
+	
 
 }

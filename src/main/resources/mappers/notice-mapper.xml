@@ -44,6 +44,7 @@
 	<select id="selectListf" resultMap="FAQResultSet">
 		select *
 		from faq
+		order by faq_num asc
 	</select>
 	
 	<insert id="insertFAQ" parameterType="FAQ">
@@ -53,13 +54,8 @@
 		
 	<insert id="insertNotice" parameterType="Notice">
 		insert into Notice 
-		values(notice_seq.nextval, #{memNum}, #{noticeTitle}, #{noticeContent}, null, #{noticeFileName}, default, sysdate, sysdate, 'Y')
+		values(notice_seq.nextval, 1, #{noticeTitle}, #{noticeContent}, null, #{noticeFileName}, default, default, default, default)		
 	</insert>
-	
-	<update id="updateNotice">
-		update notice
-		set	
-	</update>
 	
 	<select id="getListCount" resultType="_int">
 		select count(*)
@@ -84,13 +80,13 @@
 		select *
 		from notice
 		where notice_status='Y'
-		and notice_Num=#{noticeNum}
+		and notice_num=#{noticeNum}
 	</select>
 	
 	<update id="deleteNotice" parameterType="_int">
 		update notice
 		set notice_status='N'
-		where noitce_Num=#{noticeNum}
+		where notice_num=#{noticeNum}
 	</update>
 	
 
@@ -104,7 +100,16 @@
 		from faq
 	</select>
 	
-	<select id="selectNReplyList" parameterType="_int" resultMap="noticeReplyResultSet">
+
+	<update id="updateNotice" parameterType="Notice">
+		update notice
+		set notice_title=#{noticeTitle} , notice_content=#{noticeContent}, notice_modify_date=sysdate
+		where notice_num=#{noticeNum}
+	</update>
+	
+	
+
+	<select id="selectNoticeReply" parameterType="_int" resultMap="noitceReplyResultSet">
 		select *
 		from notice_reply
 		join member using(mem_num)

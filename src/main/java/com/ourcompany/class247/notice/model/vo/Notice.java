@@ -19,6 +19,17 @@ public class Notice {
 		
 	}
 
+	
+
+	public Notice(int noticeNum, String noticeTitle, String noticeContent) {
+		super();
+		this.noticeNum = noticeNum;
+		this.noticeTitle = noticeTitle;
+		this.noticeContent = noticeContent;
+	}
+
+
+
 	public Notice(int noticeNum, int memNum, String noticeTitle, String noticeContent, String noticePath,
 			String noticeFileName, int noticeCount, Date noticeEnrollDate, Date noticeModifyDate, String noticeStatus) {
 		super();
