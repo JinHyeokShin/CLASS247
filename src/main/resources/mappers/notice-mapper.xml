@@ -109,7 +109,7 @@
 	
 	
 
-	<select id="selectNoticeReply" parameterType="_int" resultMap="noticeReplyResultSet">
+	<select id="selectNReplyList" parameterType="_int" resultMap="noticeReplyResultSet">
 		select *
 		from notice_reply
 		join member using(mem_num)
