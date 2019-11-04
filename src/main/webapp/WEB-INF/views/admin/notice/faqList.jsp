@@ -43,6 +43,46 @@
         });
     });
   </script>
+  <style>
+		#container {
+			width:960px;
+			margin:0 auto;
+			text-align:center;
+		}
+		.tab {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+		/* Float the list items side by side */
+		.tab li {
+			float: left;
+		}
+		/* Style the links inside the list items */
+		.tab li a {
+			display: inline-block;
+			color: #000;
+			text-align: center;
+			text-decoration: none;
+			padding: 14px 16px;
+			font-size: 17px;
+			transition:0.3s;
+		}
+		/* Style the tab content */
+		.tabcontent {
+			display: none;			
+			padding: 6px 12px;
+			color:#fff;
+		}
+		ul.tab li.current{
+			background-color: rgb(0,154,200);
+			color: #222;
+		}
+		.tabcontent.current {
+			display: block;
+		}
+	</style>
 </head>
 
 <body>
@@ -66,8 +106,11 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <h2 class="title-1 m-b-25" align="center">FAQ 자주 묻는 질문들!</h2>
-                                <div class="table-responsive table--no-card m-b-40">                        
-                                 
+                                <div id="container">                          
+								        
+                                <div class="table-responsive table--no-card m-b-40">                                 
+                           
+                                 <div id="tab1" class="tabcontent current">
                                  <c:forEach items="${ flist }" var="f">
                                  <ul>
 							        <li class="collapsible">
@@ -91,7 +134,7 @@
 											<c:url value="aFAQList.do" var='before'>
 												<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
 											</c:url>
-							    			<a href="${ before }">[이전]</a>
+							    			<a href="${ before }" style="color:black;">[이전]</a>
 							    		</c:if>
 							    		
 							    		<!-- 번호 -->
@@ -103,7 +146,7 @@
 							    				<c:url value="aFAQList.do" var="page">
 							    					<c:param name="currentPage" value="${ p }"/>
 							    				</c:url>
-							    				<a href="${ page }">${ p }</a>
+							    				<a href="${ page }" style="color:black;">${ p }</a>
 							    			</c:if>
 							    		</c:forEach>
 							    		
@@ -115,15 +158,15 @@
 							    			<c:url value="aFAQList.do" var="next">
 							    				<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 							    			</c:url>
-							    			<a href="${ next }"> [다음]</a>
+							    			<a href="${ next }" style="color:black;"> [다음]</a>
 							    		</c:if>
-							    		
-							    		
-							    	</td>
+		    						</td>
 							   	 </tr>
-							 						
-							   	 
-                                </div>                               
+							   	 </div>						   							  							   	 
+                                </div>
+                                                               
+							 						                               
+                            </div>
                             </div>
                         </div>   
                     </div>
@@ -131,6 +174,18 @@
             </div>
             
             </div>
+            
+     <script>
+		$(function() {
+			$('ul.tab li').click(function() {
+				var activeTab = $(this).attr('data-tab');
+				$('ul.tab li').removeClass('current');
+				$('.tabcontent').removeClass('current');
+				$(this).addClass('current');
+				$('#' + activeTab).addClass('current');
+			})
+		});
+	</script>
    
     
  	<c:import url="../common/aImportJs.jsp"/>

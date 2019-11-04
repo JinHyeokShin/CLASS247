@@ -778,12 +778,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from creator
 	</select>
 	<select id="onlineCourseCount" parameterType="_int" resultType="_int">
-		select count(*)
+		 select count(*)
 		from course
 		where course_kind ='online'and CATEGORY_NUM !=0 and COURSE_APPROVED ='Y' 
 	</select>
 	<select id="offlineCourseCount" parameterType="_int" resultType="_int">
-		select count(*)
+		 select count(*)
 		from course
 		where course_kind = 'offline'and CATEGORY_NUM !=0 and COURSE_APPROVED ='Y' 
 	</select>

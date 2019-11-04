@@ -60,10 +60,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where inquiry_status='Y' and answer_status='N'
 	</select>
 	
-	<select id="selectAdminInquiryList" resultMap="InquiryResultSet">
+	<select id="selectAdminInquiryList"  resultMap="InquiryResultSet">
 		select *
 		from inquiry
-		where inquiry_status='Y' and answer_status='N'
+		where inquiry_status='Y' and answer_status='N' or answer_status='Y'
+		order by answer_status asc , inquiry_enroll_date
+	</select>
+	
+	<select id="selectaInquiry" parameterType="_int" resultMap="InquiryResultSet">
+		select *
+		from inquiry
+		where inquiry_status='Y'
+		and inquiry_num	= #{inquiryNum}
 	</select>
 	
 	
@@ -72,5 +80,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set inquiry_title = #{inquiryTitle}, inquiry_content=#{inquiryContent} 
 		where inquiry_num = #{inquiryNum}
 	</update>
+	
+	<update id="insertaInquiry">
+		update Inquiry
+		set answer_status='Y', answer_content=#{inquiryContent},answer_enroll_date =sysdate
+		where inquiry_num = #{inquiryNum}
+	</update>
+	
+	
 
 </mapper>

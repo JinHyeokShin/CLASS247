@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.ourcompany.class247.common.PageInfo;
 import com.ourcompany.class247.inquiry.model.vo.Inquiry;
+import com.ourcompany.class247.notice.model.vo.Notice;
 
 public interface InquiryService {
 
@@ -28,6 +29,16 @@ public interface InquiryService {
 		
 	// 관리자 답변 리스트 조회
 	ArrayList<Inquiry> selectAdminInquiryList(PageInfo pi);
+	
+	// 관리자 디테일 조회
+	Inquiry aInquiryDetail(int inquiryNum);
+
+	Inquiry selectaInquiry(int inquiryNum);
+
+	int insertaInquiry(Inquiry i);
+
+
+	
 
 	//문의글 수정하기 
 	int updateInquiry(Inquiry inq);

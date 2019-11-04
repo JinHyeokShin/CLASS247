@@ -21,7 +21,7 @@
 	
 	    width:100px;
 	
-	    background-color: #f8585b;
+	    background-color: #4272d7;
 	
 	    border: none;
 	
@@ -43,6 +43,12 @@
 	    
 	    border-radius: 10px;
 	
+	}
+	
+	td {
+	    display: table-cell;
+	    vertical-align: Text-top;
+		width:50px;
 	}
 </style>
 
@@ -69,22 +75,22 @@
                                         <div class="card-body card-block">
                                             	<form action="aNinsert.do" method="post" encType="multipart/form-data">
 												  <div class="form-group">
-													<table align="center">
+													<table style="width:100%" >
 														<tr>												
 															<td>제목 : </td>
-															<td><input type="text" name="noticeTitle"><hr></td>								
+															<td><input type="text" name="noticeTitle"><hr width="80px"></td>								
 														</tr>															
 														<tr>
 															<td>작성자 : </td>
-															<td><input type="text" readonly name="memNum" value="${ loginUser.memNum }"><hr></td>
+															<td><input type="text"  readonly value="관리자" ><hr width="80px"></td>
 														</tr>
 														<tr>
 															<td>내용 : </td>
-															<td><textarea cols="50" rows="7" name="noticeContent"></textarea><hr></td>
+															<td><textarea style="width:80%; height:100px" name="noticeContent"></textarea><hr width="80%"></td>
 														</tr>
 														<tr>
 															<td>첨부파일 &nbsp; </td>															
-															<td><input type="file" name="uploadFile"><hr></td>
+															<td><input type="file" name="uploadFile"><hr width="200px"></td>
 														</tr>
 														<tr>
 															<td colspan="2" align="center">	
