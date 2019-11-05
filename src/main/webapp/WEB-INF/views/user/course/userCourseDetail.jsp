@@ -186,13 +186,15 @@
                                     <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#ClassInfo">Class Info</a></li>
                                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Tutor">Tutor</a></li>
                                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Review">Review</a></li>
-                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Curriculum">Curriculum</a></li>
                                 </ul>
                                 <div class="tab-content">
                                     <!-- 클래스 소개 -->
                                     <div class="tab-pane fade show active" id="ClassInfo">
                                         <h4 class="title">Class Info</h4>
-                                        te irure dolor in reprehenderit in voluptate velit esse cillum.
+                                        <c:if test="${ c.courseKind eq 'online' }">
+                              				       준비물: <br> ${c.courseMaterial } <br>
+                                     </c:if>
+                                    			 클래스 소개: <br> ${c.courseContent }
                                     </div>
                                     <div class="tab-pane fade" id="Review">
                                         <h4 class="title_top">Review</h4>

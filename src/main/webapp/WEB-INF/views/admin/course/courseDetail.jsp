@@ -126,10 +126,9 @@ star-input>.input.focus {
 </style>
 </head>
 <body class="animsition">
-	<c:import url="../common/cMenubar.jsp" />
 
-
-	<div class="page-wrapper">
+<c:import url="../common/aMenubar.jsp" />
+	<div class="page-container2" style="">
 		<!-- PAGE CONTAINER-->
 		<!-- MAIN CONTENT-->
 		<div class="main-content">
@@ -323,15 +322,7 @@ star-input>.input.focus {
 															</table>
 														</div>
 														<hr>
-														<div>
-															<button type="button"
-																class="btn btn-warning btn-lg btn-block">클래스
-																수정하기</button>
-															<br>
-															<button type="button"
-																class="btn btn-danger btn-lg btn-block"
-																onclick="cancel()">클래스 취소하기</button>
-														</div>
+														
 													</div>
 												</div>
 											</div>
@@ -515,7 +506,7 @@ star-input>.input.focus {
 	</div>
 
 
-	<c:import url="../common/cMenubar.jsp" />
+	<c:import url="../common/aImportJs.jsp" />
 
 </body>
 </html>

@@ -93,7 +93,7 @@
                                                 <hr>
                                                 <div class="row form-group">
                                                     <div class="col col-md-2">
-                                                        <label for="creProfile" class=" form-control-label">* 프로필 사진</label>
+                                                        <label for="creProfilee" class=" form-control-label">* 프로필 사진</label>
                                                     </div>
                                                     <div class="col-12 col-md-9" style="height:200px">
                                                         <input name="creProfilee" id="creProfile" class="btn btn-sm" type="file" onchange="loadImg(this)" required>

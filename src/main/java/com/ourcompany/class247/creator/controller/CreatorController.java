@@ -130,7 +130,7 @@ public class CreatorController {
 				caProfile.setCraRname(profileRename);
 				caProfile.setCraOname(profile.getOriginalFilename());
 				caProfile.setCraPath(request.getSession().getServletContext().getRealPath("resources") + "\\creator\\creatorImages");
-				
+				request.getSession().setAttribute("creProfile", profileRename);
 				creService.insertProfile(caProfile, creator.getMemNum());
 			}
 		}

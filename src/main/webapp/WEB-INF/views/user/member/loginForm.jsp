@@ -100,9 +100,9 @@
             </table>
             <hr>
             </form>
-    	<a id="custom-login-btn" href="javascript:loginWithKakao()">
+<!--     	<a id="custom-login-btn" href="javascript:loginWithKakao()">
 				<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
-			</a>
+			</a> -->
 			<script type='text/javascript'>
 			//<![CDATA[
 		    // 사용할 앱의 JavaScript 키를 설정해 주세요.
@@ -121,8 +121,8 @@
 			  //]]>
 			</script>
            
-           
-	    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="width:300px">구글로 로그인하기</div>
+           <!-- 
+	    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="width:300px">구글로 로그인하기</div> -->
 	    <script>
 	        function onSignIn(googleUser) {
 	            // Useful data for your client-side scripts:

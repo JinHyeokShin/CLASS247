@@ -76,7 +76,7 @@
                                                </c:if> 
                                             </div>
                                             <div class="au-message__footer">
-                                                <button class="au-btn au-btn-load js-load-btn">load more</button>
+                                              <!--   <button class="au-btn au-btn-load js-load-btn">load more</button> -->
                                             </div>
                                         </div>
                                         

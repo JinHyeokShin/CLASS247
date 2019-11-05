@@ -94,7 +94,7 @@
             		
             		var id = e.target.innerText;
             		
-            		location.href="<c:url value='aCourseDetail.do'/>?courseNum="+id;
+            		location.href="<c:url value='aMemDetail.do'/>?memNum="+id
             		
             	});
             	

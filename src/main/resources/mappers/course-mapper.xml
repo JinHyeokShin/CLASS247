@@ -910,7 +910,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="logger">
 		insert into logger
-		values(sysdate);
+		values(sysdate)
 	</insert>
 	
 	<select id="checkLogger" resultType="_int">

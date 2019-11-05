@@ -106,7 +106,7 @@
 
         				<c:forEach items="${list}" var="co">
 						 
-        				{nn:"${co.memNum}", kk:"${co.memId}", ii:"${co.memNickName}", nn:"${co.memName}", pp:"${co.memType}", dd:"${co.memStatus}"},
+        				{nn:"${co.memNum}", kk:"${co.memId}", ii:"${co.memNickName}", tt:"${co.memName}", pp:"${co.memType}", dd:"${co.memStatus}"},
         				
         				
         				</c:forEach>
@@ -163,10 +163,9 @@
             	
             	$tr.append($("<td>").append($("<div class='divv'>").text("{{d.nn}}")));
             	
-            	$tr.append($("<td>").text("{{d.tt}}"));
             	$tr.append($("<td>").text("{{d.kk}}"));
             	$tr.append($("<td>").text("{{d.ii}}"));
-            	$tr.append($("<td>").text("{{d.nn}}"));
+            	$tr.append($("<td>").text("{{d.tt}}"));
             	$tr.append($("<td>").text("{{d.pp}}"));
             	$tr.append($("<td>").text("{{d.dd}}"));
 

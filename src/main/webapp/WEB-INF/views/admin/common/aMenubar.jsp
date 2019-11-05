@@ -145,10 +145,10 @@
 											
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											
-											<c:if test="${checkLogger eq 0}">
+											<c:if test="${empty checkLogger }">
 												<button onclick="location.href='logger.do'" class="btn btn-outline-success"><i class="fa fa-magic">업데이트</i></button>
 											</c:if>
-											<c:if test="${checkLogger ne 0}">
+											<c:if test="${!empty checkLogger }">
 												<button class="btn btn-outline-success" disabled><i class="fa fa-magic">업데이트 완료</i></button>
 												
 											</c:if>

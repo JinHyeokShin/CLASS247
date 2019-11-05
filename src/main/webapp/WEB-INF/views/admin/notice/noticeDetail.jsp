@@ -242,7 +242,7 @@
                         var $profile = $("<td width='50'>");
                         
                         
-                        var $profileDiv = $("<div class='image img-cir img-40'>");
+
                         
                         
                         var $rNReply = $("<td id="+value.nReplyNum+" >")
@@ -283,8 +283,7 @@
                            $updateA = $("<div id=d"+value.nReplyNum+" class='rU'>").text("[수정]")
                         }
                         
-                        $profileDiv.prepend("<img src='<%=request.getContextPath()%>/resources/user/img/profile/${s.memProfileName}'>");
-                        $profile.append($profileDiv);
+
                         
                         
                         $tr.append($profile);

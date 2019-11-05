@@ -91,9 +91,9 @@
       			<tr>
       				<td>휴대폰번호 </td>
    				</tr>
-   				<tr>
+<!--    				<tr>
       				<td><input type="text" name="memPhone" style="border-radius: 5px;" placeholder="휴대폰 번호" style=""required><input type="button" value="인증하기" class="genric-btn primary-border radius"></td>
-      			</tr>
+      			</tr> -->
       			<tr>
       				<td><br>성별<br></td>
    				</tr>
