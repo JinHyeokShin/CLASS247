@@ -473,4 +473,7 @@ public class CourseDao {
 	public Video selectVideo(int videoCourse) {
 		return sqlSession.selectOne("courseMapper.selectVideo",videoCourse);
 	}
+	public int selectAvgReview(int courseNum) {
+		return sqlSession.selectOne("courseMapper.selectAvgReview",courseNum);
+	}
 }

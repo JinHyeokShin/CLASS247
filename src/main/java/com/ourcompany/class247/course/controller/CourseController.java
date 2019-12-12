@@ -323,7 +323,7 @@ public class CourseController {
 	public ModelAndView courseDetail(int courseNum, String courseKind, ModelAndView mv, HttpServletRequest request) {
 		
 		Member loginUser=(Member)request.getSession().getAttribute("loginUser");
-		ArrayList<Review> revlist = coService.selectRlist(courseNum); 
+		ArrayList<Review> revlist = coService.selectRlist(courseNum);
 		
 		int checkLove=1;
 		if(loginUser !=null) {
@@ -336,9 +336,9 @@ public class CourseController {
 			
 			checkLove= coService.checkLove(love); 
 		}
+		
 		Course c = coService.selectCourse(courseNum);
 		Creator creator= coService.selectCreator(c.getCreNum());
-		
 		if(c != null) {
 			mv.addObject("c", c)
 			.addObject("checkLove", checkLove).addObject("revlist", revlist).addObject("creator", creator)

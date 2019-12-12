@@ -189,7 +189,13 @@
                                     <!-- 클래스 소개 -->
                                     <div class="tab-pane fade show active" id="ClassInfo">
                                         <h4 class="title">Class Info</h4>
-                                        te irure dolor in reprehenderit in voluptate velit esse cillum.
+                                       <c:if test="${ c.courseKind eq 'online' }">
+                                     준비물: ${c.courseMaterial } <br>
+                                     </c:if>
+                                     클래스 소개:${c.courseContent }
+                                     <c:if test="${!empty revlist }">
+                                     	<p>${ avgReview}</p>
+                                     	</c:if>
                                     </div>
                                     <div class="tab-pane fade" id="Review">
                                         <h4 class="title_top">Review</h4>
@@ -208,6 +214,7 @@
                                                         </tbody>
                                                         <tfoot>
                                                             <tr>
+                                                           
                                                                 <td>
                                                                     <c:if test="${rev.reviewScore eq 1}">
                                                                         <span class="star-input">

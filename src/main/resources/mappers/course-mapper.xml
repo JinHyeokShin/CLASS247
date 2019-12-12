@@ -595,10 +595,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<select id="selectRlist" resultMap="ReviewResultSet">
-		select * from review
+		select memNickname,reviewEnrollDate, round(avg(review_score))
+		from review
         where review_status='Y' and course_num=#{courseNum}
 	</select>
-	
+	<select id="selectAvgReview" parameterType="_int" resultMap="ReviewResultSet">
+        select round(avg(review_score))
+        from review
+        where course_num=#{courseNum}
+	</select>
 	<insert id="insertPayment" parameterType="Payment">
 		insert into payment
 		values(payment_seq.nextval, #{memNum},#{courseNum},#{payPrice},#{payMethod},default,sysdate,default)
@@ -795,4 +800,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into review
 		values(review_seq.nextval, #{courseNum}, #{memNum}, #{reviewContent}, #{reviewScore}, default,default,default)
 	</insert>
+	
 </mapper>

@@ -25,7 +25,7 @@ public interface CourseService {
 	// 1_2. 클래스 커버사진 추가 
 	int insertCoverImage(CourseAttachment cover);
 
-	
+	int selectAvgReview(int courseNum);
 	// 2. 내 클래스 리스트 가져오기 
 	ArrayList<Course> selectMyCoList(int creNum);
 

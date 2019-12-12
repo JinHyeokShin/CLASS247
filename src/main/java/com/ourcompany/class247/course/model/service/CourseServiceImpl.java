@@ -484,4 +484,10 @@ public class CourseServiceImpl implements CourseService {
 		return coDao.selectVideo(videoCourse);
 	}
 
+	@Override
+	public int selectAvgReview(int courseNum) {
+		
+		return coDao.selectAvgReview(courseNum);
+	}
+
 }
